@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { db } from '@/lib/db';
 import { resources, categories, ratings } from '@/drizzle/schema';
 import { eq, desc, sql, and, ilike, or } from 'drizzle-orm';
@@ -171,7 +172,9 @@ export default async function HomePage({
                 </p>
               </div>
               
-              <SortDropdown />
+              <Suspense fallback={<div className="h-6 w-32 bg-white/5 animate-pulse rounded" />}>
+                <SortDropdown />
+              </Suspense>
             </div>
 
             {/* Featured Section (Hide if searching/filtering unless featured) */}
