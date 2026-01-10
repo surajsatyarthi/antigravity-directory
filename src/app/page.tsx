@@ -7,6 +7,7 @@ import { ResourceCard } from '@/components/ResourceCard';
 import { SortDropdown } from '@/components/SortDropdown';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChevronRight, Sparkles, TrendingUp, Zap } from 'lucide-react';
 
 export default async function HomePage({
@@ -236,53 +237,60 @@ export default async function HomePage({
             </section>
           </div>
 
-          {/* Right Sidebar - Ad Placeholders */}
+          {/* Right Sidebar - Ads */}
           <aside className="w-80 shrink-0 hidden xl:block">
             <div className="sticky top-28 space-y-6">
-              {/* Ad Slot 1 - Skyscraper */}
-              <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-lg p-8 h-[600px] flex flex-col items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-white/5 rounded-lg flex items-center justify-center">
-                    <Zap className="w-8 h-8 text-gray-600" />
-                  </div>
-                  <p className="text-xs font-mono text-gray-600 uppercase tracking-widest">
-                    Advertisement
-                  </p>
-                  <p className="text-sm text-gray-700 font-mono">
-                    300 × 600
-                  </p>
-                </div>
-              </div>
+              {/* Ad 1 - Qodo AI Code Review */}
+              <a 
+                href="https://qodo.ai" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block overflow-hidden rounded-lg border border-gray-800 hover:border-gray-700 transition-all hover:scale-[1.02] group relative"
+              >
+                <Image
+                  src="/ads/1.png"
+                  alt="Qodo - AI Code Review"
+                  width={300}
+                  height={600}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+                <span className="absolute bottom-2 right-2 text-[10px] font-mono text-white/20 uppercase tracking-widest">AD</span>
+              </a>
 
-              {/* Ad Slot 2 - Medium Rectangle */}
-              <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-lg p-8 h-[250px] flex flex-col items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="w-12 h-12 mx-auto bg-white/5 rounded-lg flex items-center justify-center">
-                    <TrendingUp className="w-6 h-6 text-gray-600" />
-                  </div>
-                  <p className="text-xs font-mono text-gray-600 uppercase tracking-widest">
-                    Advertisement
-                  </p>
-                  <p className="text-sm text-gray-700 font-mono">
-                    300 × 250
-                  </p>
-                </div>
-              </div>
+              {/* Ad 2 - Supabase */}
+              <a 
+                href="https://supabase.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block overflow-hidden rounded-lg border border-gray-800 hover:border-gray-700 transition-all hover:scale-[1.02] group relative"
+              >
+                <Image
+                  src="/ads/2.png"
+                  alt="Supabase - Open Source Firebase Alternative"
+                  width={300}
+                  height={250}
+                  className="w-full h-auto object-cover"
+                />
+                <span className="absolute bottom-2 right-2 text-[10px] font-mono text-white/20 uppercase tracking-widest">AD</span>
+              </a>
 
-              {/* Ad Slot 3 - Square */}
-              <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-lg p-8 h-[250px] flex flex-col items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="w-12 h-12 mx-auto bg-white/5 rounded-lg flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-gray-600" />
-                  </div>
-                  <p className="text-xs font-mono text-gray-600 uppercase tracking-widest">
-                    Advertisement
-                  </p>
-                  <p className="text-sm text-gray-700 font-mono">
-                    300 × 250
-                  </p>
-                </div>
-              </div>
+              {/* Ad 3 - Speechify */}
+              <a 
+                href="https://speechify.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block overflow-hidden rounded-lg border border-gray-800 hover:border-gray-700 transition-all hover:scale-[1.02] group relative"
+              >
+                <Image
+                  src="/ads/Untitled design (1).png"
+                  alt="Speechify - Text to Speech"
+                  width={300}
+                  height={250}
+                  className="w-full h-auto object-cover"
+                />
+                <span className="absolute bottom-2 right-2 text-[10px] font-mono text-white/20 uppercase tracking-widest">AD</span>
+              </a>
             </div>
           </aside>
 
