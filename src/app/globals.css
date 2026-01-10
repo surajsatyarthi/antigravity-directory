@@ -214,30 +214,12 @@ body {
   transition: opacity 0.3s ease;
 }
 
-.matrix-char.flash-white {
-  color: #ffffff !important;
-  text-shadow: 
-    0 0 10px #ffffff,
-    0 0 20px #ffffff,
-    0 0 30px #ffffff,
-    0 0 40px rgba(255, 255, 255, 0.8) !important;
-  animation: flash-pulse 0.8s ease-in-out;
-  font-weight: bold;
-}
-
-@keyframes flash-pulse {
-  0% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
+.matrix-char {
+  font-family: var(--font-mono), 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  transition: opacity 0.3s ease;
 }
 
 @keyframes matrix-fall {

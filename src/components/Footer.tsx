@@ -72,27 +72,8 @@ export function Footer() {
       });
     }, 4000);
 
-    // Flash random characters in white - more frequently and brighter
-    const flashInterval = setInterval(() => {
-      const chars = container.querySelectorAll('.matrix-char');
-      chars.forEach(char => {
-        // Remove existing flash
-        char.classList.remove('flash-white');
-        
-        // Randomly flash 10% of characters (increased from 5%)
-        if (Math.random() > 0.90) {
-          char.classList.add('flash-white');
-          // Remove flash after animation
-          setTimeout(() => {
-            char.classList.remove('flash-white');
-          }, 800);
-        }
-      });
-    }, 80); // Check every 80ms for more frequent flashing
-
     return () => {
       clearInterval(refreshInterval);
-      clearInterval(flashInterval);
     };
   }, []);
 
