@@ -137,10 +137,9 @@ export default async function HomePage({
                   {/* Submit Link */}
                   <Link 
                     href="/submit" 
-                    className="flex items-center justify-between px-4 py-3 text-sm font-bold rounded-xl bg-white text-black border border-white/20 transition-all hover:bg-gray-200 mt-2"
+                    className="flex items-center justify-center px-4 py-3 text-sm font-bold rounded-xl bg-white text-black border border-white/20 transition-all hover:bg-gray-200 mt-2 animate-shimmer"
                   >
                     Submit Resource
-                    <Sparkles className="w-4 h-4" />
                   </Link>
                 </nav>
               </div>
