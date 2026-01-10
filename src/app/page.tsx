@@ -72,107 +72,89 @@ export default async function HomePage() {
   const latestResources = await addRatings(latestResourcesRaw);
 
   return (
-    <div className="min-h-screen bg-background-app flex flex-col">
+    <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
       <MarketplaceHeader />
 
-      <main className="flex-1 container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <main className="flex-1 container mx-auto px-4 py-12 max-w-6xl">
+        {/* Main Content Area - Single Column */}
+        <div className="space-y-16">
           
-          {/* Sidebar - Categories (Amazon/OpenRouter style) */}
-          <aside className="w-full lg:w-64 shrink-0">
-            <div className="sticky top-24">
-              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 px-2">
-                Categories
-              </h2>
-              <nav className="space-y-1">
-                <Link 
-                  href="/resources" 
-                  className="flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400"
-                >
-                  All Resources
-                  <ChevronRight className="w-4 h-4 opacity-50" />
-                </Link>
-                {allCategories.map((cat) => (
-                  <Link
-                    key={cat.id}
-                    href={`/categories/${cat.slug}`}
-                    className="flex items-center justify-between px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors group"
-                  >
-                    {cat.name}
-                    <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
-                ))}
-              </nav>
-
-              {/* Promo Card */}
-              <div className="mt-8 p-4 bg-gradient-to-br from-indigo-600 to-blue-700 rounded-xl text-white">
-                <Sparkles className="w-6 h-6 mb-2" />
-                <h3 className="font-bold text-sm mb-1">Bet on the Winner</h3>
-                <p className="text-xs text-blue-100 leading-relaxed mb-3">
-                  Google's $2.4B acquisition of Windsurf is the starting signal. Build with the best tools.
-                </p>
-                <Link 
-                  href="/submit" 
-                  className="inline-block text-xs font-bold bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-lg transition-colors"
-                >
-                  Join the momentum
-                </Link>
-              </div>
-            </div>
-          </aside>
-
-          {/* Main Content Area */}
-          <div className="flex-1 min-w-0">
-            
-            {/* Featured Section */}
-            {featuredResources.length > 0 && (
-              <section className="mb-12">
-                <div className="flex items-center gap-2 mb-6">
-                  <TrendingUp className="w-5 h-5 text-blue-600" />
-                  <h2 className="text-2xl font-bold tracking-tight">Featured Collections</h2>
-                </div>
-                <div className="marketplace-grid">
-                  {featuredResources.map((resource) => (
-                    <ResourceCard key={resource.id} resource={resource} />
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Latest Resources Section */}
+          {/* Featured Section */}
+          {featuredResources.length > 0 && (
             <section>
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold tracking-tight">Latest Discoveries</h2>
-                <Link href="/resources" className="text-sm font-medium text-blue-600 hover:underline">
-                  View all
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center border border-white/10">
+                  <TrendingUp className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight text-white">Featured Collections</h2>
+                  <p className="text-sm text-gray-400">Hand-picked high-value resources for Antigravity.</p>
+                </div>
+              </div>
+              <div className="marketplace-grid">
+                {featuredResources.map((resource) => (
+                  <ResourceCard key={resource.id} resource={resource} />
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Latest Resources Section */}
+          <section>
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center border border-white/10">
+                  <Sparkles className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight text-white">Latest Discoveries</h2>
+                  <p className="text-sm text-gray-400">The newest additions to the ecosystem.</p>
+                </div>
+              </div>
+              <Link href="/resources" className="text-sm font-mono uppercase tracking-widest text-gray-400 hover:text-white transition-colors">
+                View all →
+              </Link>
+            </div>
+            
+            {latestResources.length > 0 ? (
+              <div className="marketplace-grid">
+                {latestResources.map((resource) => (
+                  <ResourceCard key={resource.id} resource={resource} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-32 bg-[#0A0A0A] border border-dashed rounded-3xl border-gray-800">
+                <p className="text-gray-400 mb-6 font-medium">No resources found yet.</p>
+                <Link href="/submit" className="inline-flex px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all">
+                  Submit first resource
                 </Link>
               </div>
-              
-              {latestResources.length > 0 ? (
-                <div className="marketplace-grid">
-                  {latestResources.map((resource) => (
-                    <ResourceCard key={resource.id} resource={resource} />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-20 bg-white dark:bg-gray-900 border border-dashed rounded-2xl border-gray-300 dark:border-gray-800">
-                  <p className="text-gray-500 mb-4">No resources found yet.</p>
-                  <Link href="/submit" className="text-blue-600 font-bold hover:underline">
-                    Be the first to submit →
-                  </Link>
-                </div>
-              )}
-            </section>
-          </div>
+            )}
+          </section>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 py-12 mt-20">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm text-gray-500">
-            © 2026 Antigravity Directory. Curated resources for the next generation of developers.
-          </p>
+      {/* Footer - Fixed to Pure Dark */}
+      <footer className="bg-black border-t border-gray-900 py-16 mt-32">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 bg-white rounded flex items-center justify-center">
+                <span className="text-[10px] font-bold text-black font-mono leading-none">A</span>
+              </div>
+              <span className="text-sm font-bold tracking-tighter text-white font-mono lowercase">
+                antigravity
+              </span>
+            </div>
+            <p className="text-xs text-gray-600 font-mono">
+              © 2026 Antigravity Directory. built for the next generation of engineers.
+            </p>
+            <div className="flex gap-6 text-xs text-gray-500 font-mono">
+              <Link href="/resources" className="hover:text-white transition-colors">Resources</Link>
+              <Link href="/submit" className="hover:text-white transition-colors">Submit</Link>
+              <Link href="https://github.com" className="hover:text-white transition-colors">GitHub</Link>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

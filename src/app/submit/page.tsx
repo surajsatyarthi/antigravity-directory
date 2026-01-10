@@ -9,41 +9,57 @@ export default async function SubmitPage() {
   const allCategories = await db.select().from(categories).orderBy(categories.order);
 
   return (
-    <div className="min-h-screen bg-background-app flex flex-col">
+    <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
       <MarketplaceHeader />
 
-      <main className="flex-1 container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto">
-          {/* Back Button */}
-          <Link 
-            href="/" 
-            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 mb-8 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Marketplace
-          </Link>
+      <main className="flex-1 container mx-auto px-4 py-12 max-w-2xl">
+        {/* Back Button */}
+        <Link 
+          href="/" 
+          className="inline-flex items-center gap-2 text-xs text-gray-500 hover:text-white mb-10 transition-colors font-mono uppercase tracking-widest"
+        >
+          <ArrowLeft className="w-3 h-3" />
+          back
+        </Link>
 
-          <div className="bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-sm p-8 md:p-10">
-            <div className="mb-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 rounded-full text-xs font-bold mb-4">
-                <Sparkles className="w-3.5 h-3.5" />
-                Contribute to the Ecosystem
-              </div>
-              <h1 className="text-3xl font-extrabold tracking-tight mb-2">Submit a Resource</h1>
-              <p className="text-gray-500">
-                Share your favorite prompts, MCP servers, or rules with the Antigravity community.
-              </p>
+        <div className="bg-[#0A0A0A] border border-gray-900 rounded-3xl p-8 md:p-12">
+          <div className="mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 text-blue-500 border border-blue-500/20 rounded-full text-[10px] font-bold mb-6 uppercase tracking-widest font-mono">
+              <Sparkles className="w-3 h-3" />
+              community contribution
             </div>
-
-            <SubmitForm categories={allCategories} />
+            <h1 className="text-3xl font-extrabold tracking-tight text-white mb-4">Submit a Resource</h1>
+            <p className="text-gray-400 font-medium leading-relaxed">
+              Share your favorite prompts, MCP servers, or rules with the Antigravity ecosystem.
+            </p>
           </div>
+
+          <SubmitForm categories={allCategories} />
         </div>
       </main>
 
-      <footer className="py-12 text-center border-t border-gray-200 dark:border-gray-800 mt-auto">
-        <p className="text-sm text-gray-500">
-          © 2026 Antigravity Directory. Thank you for contributing!
-        </p>
+      {/* Footer - Fixed to Pure Dark */}
+      <footer className="bg-black border-t border-gray-900 py-16 mt-32">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 bg-white rounded flex items-center justify-center">
+                <span className="text-[10px] font-bold text-black font-mono leading-none">A</span>
+              </div>
+              <span className="text-sm font-bold tracking-tighter text-white font-mono lowercase">
+                antigravity
+              </span>
+            </div>
+            <p className="text-xs text-gray-600 font-mono">
+              © 2026 Antigravity Directory. built for the next generation of engineers.
+            </p>
+            <div className="flex gap-6 text-xs text-gray-500 font-mono">
+              <Link href="/resources" className="hover:text-white transition-colors">Resources</Link>
+              <Link href="/submit" className="hover:text-white transition-colors">Submit</Link>
+              <Link href="https://github.com" className="hover:text-white transition-colors">GitHub</Link>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );
