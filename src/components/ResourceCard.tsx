@@ -29,6 +29,11 @@ export function ResourceCard({ resource }: ResourceCardProps) {
             <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-bold text-blue-500 font-mono uppercase tracking-widest">
               {resource.categoryName || 'General'}
             </span>
+            {resource.id.includes('featured') || parseInt(resource.id) < 10 && (
+              <span className="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-[10px] font-bold text-blue-400 font-mono uppercase tracking-widest animate-pulse">
+                ★ Featured
+              </span>
+            )}
             <div className="h-px flex-1 bg-gray-900" />
           </div>
           
@@ -36,7 +41,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
             {resource.title}
           </h3>
           
-          <p className="text-sm text-gray-500 line-clamp-2 font-medium leading-relaxed max-w-2xl">
+          <p className="text-sm text-gray-400 line-clamp-2 font-medium leading-relaxed max-w-2xl">
             {resource.description}
           </p>
         </div>
