@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import { ArrowLeft, Sparkles } from 'lucide-react';
+import { ArrowLeft, Sparkles, Zap } from 'lucide-react';
 import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 import { db } from '@/lib/db';
 import { categories } from '@/drizzle/schema';
 import { SubmitForm } from '@/components/SubmitForm';
+import { Footer } from '@/components/Footer';
 
 export default async function SubmitPage() {
   const allCategories = await db.select().from(categories).orderBy(categories.order);
@@ -38,29 +39,7 @@ export default async function SubmitPage() {
         </div>
       </main>
 
-      {/* Footer - Fixed to Pure Dark */}
-      <footer className="bg-black border-t border-gray-900 py-16 mt-32">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 bg-white rounded flex items-center justify-center">
-                <span className="text-[10px] font-bold text-black font-mono leading-none">A</span>
-              </div>
-              <span className="text-sm font-bold tracking-tighter text-white font-mono lowercase">
-                antigravity
-              </span>
-            </div>
-            <p className="text-xs text-gray-600 font-mono">
-              © 2026 Antigravity Directory. built for the next generation of engineers.
-            </p>
-            <div className="flex gap-6 text-xs text-gray-500 font-mono">
-              <Link href="/resources" className="hover:text-white transition-colors">Resources</Link>
-              <Link href="/submit" className="hover:text-white transition-colors">Submit</Link>
-              <Link href="https://github.com" className="hover:text-white transition-colors">GitHub</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
