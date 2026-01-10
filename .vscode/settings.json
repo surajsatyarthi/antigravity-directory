@@ -1,0 +1,41 @@
+{
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/.git/**": true,
+    "**/build/**": true,
+    "**/dist/**": true,
+    "**/.cache/**": true,
+    "**/.vercel/**": true,
+    "**/.turbo/**": true,
+    "**/out/**": true,
+    "**/coverage/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/.git": true,
+    "**/coverage": true
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": false
+  },
+  "antigravity.languageServer.indexExcludedDirectories": [
+    "node_modules",
+    ".next",
+    ".git",
+    "build",
+    "dist",
+    ".cache",
+    ".vercel",
+    ".turbo",
+    "out",
+    "coverage"
+  ],
+  "typescript.tsserver.maxTsServerMemory": 3072,
+  "typescript.disableAutomaticTypeAcquisition": true
+}
