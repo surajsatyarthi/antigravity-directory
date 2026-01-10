@@ -67,7 +67,28 @@ export function Footer() {
       });
     }, 4000);
 
-    return () => clearInterval(refreshInterval);
+    // Flash random characters in white
+    const flashInterval = setInterval(() => {
+      const chars = container.querySelectorAll('.matrix-char');
+      chars.forEach(char => {
+        // Remove existing flash
+        char.classList.remove('flash-white');
+        
+        // Randomly flash 5% of characters
+        if (Math.random() > 0.95) {
+          char.classList.add('flash-white');
+          // Remove flash after animation
+          setTimeout(() => {
+            char.classList.remove('flash-white');
+          }, 600);
+        }
+      });
+    }, 100); // Check every 100ms for more dynamic flashing
+
+    return () => {
+      clearInterval(refreshInterval);
+      clearInterval(flashInterval);
+    };
   }, []);
 
   return (
