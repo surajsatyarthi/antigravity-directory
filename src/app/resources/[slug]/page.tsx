@@ -1,32 +1,53 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Star, Eye, Copy, ExternalLink } from 'lucide-react';
-import { prisma } from '@/lib/prisma';
+import { db } from '@/lib/db';
+import { resources, categories, ratings, tags, resourceTags } from '@/drizzle/schema';
+import { eq } from 'drizzle-orm';
 
 export default async function ResourceDetailPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const resource = await prisma.resource.findUnique({
-    where: { slug: params.slug },
-    include: {
-      category: true,
-      ratings: true,
-      tags: true,
-    },
-  });
+  // Fetch resource with category
+  const [resource] = await db
+    .select({
+      id: resources.id,
+      title: resources.title,
+      description: resources.description,
+      content: resources.content,
+      url: resources.url,
+      views: resources.views,
+      copiedCount: resources.copiedCount,
+      categoryName: categories.name,
+    })
+    .from(resources)
+    .leftJoin(categories, eq(resources.categoryId, categories.id))
+    .where(eq(resources.slug, params.slug))
+    .limit(1);
 
   if (!resource) {
     notFound();
   }
 
-  // Calculate average rating
+  // Get ratings
+  const resourceRatings = await db
+    .select({ rating: ratings.rating })
+    .from(ratings)
+    .where(eq(ratings.resourceId, resource.id));
+
   const avgRating =
-    resource.ratings.length > 0
-      ? resource.ratings.reduce((sum, r) => sum + r.rating, 0) /
-        resource.ratings.length
+    resourceRatings.length > 0
+      ? resourceRatings.reduce((sum, r) => sum + r.rating, 0) / resourceRatings.length
       : 0;
+
+  // Get tags
+  const resourceTagsList = await db
+    .select({ name: tags.name })
+    .from(resourceTags)
+    .leftJoin(tags, eq(resourceTags.tagId, tags.id))
+    .where(eq(resourceTags.resourceId, resource.id));
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -44,7 +65,7 @@ export default async function ResourceDetailPage({
         <article className="bg-white rounded-lg shadow-sm p-8">
           {/* Category Badge */}
           <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full mb-4">
-            {resource.category.name}
+            {resource.categoryName}
           </div>
 
           {/* Title */}
@@ -55,7 +76,7 @@ export default async function ResourceDetailPage({
             <div className="flex items-center gap-2">
               <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
               <span className="font-semibold">{avgRating.toFixed(1)}</span>
-              <span>({resource.ratings.length} ratings)</span>
+              <span>({resourceRatings.length} ratings)</span>
             </div>
             <div className="flex items-center gap-2">
               <Eye className="w-5 h-5" />
@@ -102,13 +123,13 @@ export default async function ResourceDetailPage({
           )}
 
           {/* Tags */}
-          {resource.tags.length > 0 && (
+          {resourceTagsList.length > 0 && (
             <div className="mb-8">
               <h3 className="text-lg font-semibold mb-3">Tags</h3>
               <div className="flex flex-wrap gap-2">
-                {resource.tags.map((tag) => (
+                {resourceTagsList.map((tag, index) => (
                   <span
-                    key={tag.id}
+                    key={index}
                     className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
                   >
                     {tag.name}

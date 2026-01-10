@@ -14,8 +14,10 @@
     "@prisma/adapter-neon": "^7.2.0",
     "@prisma/client": "5.22.0",
     "clsx": "^2.1.1",
+    "drizzle-orm": "^0.45.1",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
+    "postgres": "^3.4.8",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "tailwind-merge": "^3.4.0"
@@ -28,6 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^8.52.0",
     "@typescript-eslint/parser": "^8.52.0",
     "babel-plugin-react-compiler": "1.0.0",
+    "drizzle-kit": "^0.31.8",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "eslint-config-prettier": "^10.1.8",

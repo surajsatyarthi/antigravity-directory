@@ -1,29 +1,45 @@
 import Link from 'next/link';
 import { Search, Filter, Star } from 'lucide-react';
-import { prisma } from '@/lib/prisma';
+import { db } from '@/lib/db';
+import { resources, categories, ratings } from '@/drizzle/schema';
+import { eq, desc } from 'drizzle-orm';
 
 export default async function ResourcesPage() {
   // Fetch all resources with categories
-  const resources = await prisma.resource.findMany({
-    include: {
-      category: true,
-      ratings: true,
-    },
-    orderBy: {
-      publishedAt: 'desc',
-    },
-    take: 50, // Limit for now
-  });
+  const allResources = await db
+    .select({
+      id: resources.id,
+      title: resources.title,
+      slug: resources.slug,
+      description: resources.description,
+      views: resources.views,
+      categoryName: categories.name,
+    })
+    .from(resources)
+    .leftJoin(categories, eq(resources.categoryId, categories.id))
+    .orderBy(desc(resources.publishedAt))
+    .limit(50);
 
-  // Calculate average rating for each resource
-  const resourcesWithRatings = resources.map((resource) => {
-    const avgRating =
-      resource.ratings.length > 0
-        ? resource.ratings.reduce((sum, r) => sum + r.rating, 0) /
-          resource.ratings.length
-        : 0;
-    return { ...resource, avgRating };
-  });
+  // Get ratings for each resource
+  const resourcesWithRatings = await Promise.all(
+    allResources.map(async (resource) => {
+      const resourceRatings = await db
+        .select({ rating: ratings.rating })
+        .from(ratings)
+        .where(eq(ratings.resourceId, resource.id));
+
+      const avgRating =
+        resourceRatings.length > 0
+          ? resourceRatings.reduce((sum, r) => sum + r.rating, 0) / resourceRatings.length
+          : 0;
+
+      return {
+        ...resource,
+        avgRating,
+        ratingCount: resourceRatings.length,
+      };
+    })
+  );
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -41,7 +57,7 @@ export default async function ResourcesPage() {
         <div className="container mx-auto px-4 py-12">
           <h1 className="text-4xl font-bold mb-4">All Resources</h1>
           <p className="text-gray-600 text-lg">
-            Browse {resources.length} curated Antigravity resources
+            Browse {allResources.length} curated Antigravity resources
           </p>
         </div>
       </div>
@@ -78,7 +94,7 @@ export default async function ResourcesPage() {
             >
               {/* Category Badge */}
               <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full mb-4">
-                {resource.category.name}
+                {resource.categoryName}
               </div>
 
               {/* Title */}
@@ -96,7 +112,7 @@ export default async function ResourcesPage() {
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                   <span>{resource.avgRating.toFixed(1)}</span>
-                  <span>({resource.ratings.length})</span>
+                  <span>({resource.ratingCount})</span>
                 </div>
                 <div>{resource.views} views</div>
               </div>
@@ -105,7 +121,7 @@ export default async function ResourcesPage() {
         </div>
 
         {/* Empty State */}
-        {resources.length === 0 && (
+        {allResources.length === 0 && (
           <div className="text-center py-20">
             <p className="text-gray-500 text-lg">No resources found.</p>
             <Link
