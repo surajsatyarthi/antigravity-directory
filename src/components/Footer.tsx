@@ -1,246 +1,80 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Zap } from 'lucide-react';
 
 export function Footer() {
+  const matrixRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!matrixRef.current) return;
+
+    // Character sets
+    const binary = ['0', '1'];
+    const symbols = ['{', '}', '[', ']', '(', ')', '<', '>', '==', '!==', '&&', '||', '=>', '::', '...'];
+    const keywords = ['AI', 'ML', 'fn', 'var', 'let', 'api', 'sql', 'js', 'py', 'git', 'npm', 'GPT', 'GPU', 'CPU'];
+    const dataTerms = ['NULL', 'TRUE', '0x', 'FF', 'SSL', 'DNS', 'API', 'JWT', 'XML', 'JSON'];
+
+    const getRandomChar = () => {
+      const rand = Math.random();
+      if (rand < 0.6) {
+        // 60% binary
+        return binary[Math.floor(Math.random() * binary.length)];
+      } else if (rand < 0.75) {
+        // 15% symbols
+        return symbols[Math.floor(Math.random() * symbols.length)];
+      } else if (rand < 0.9) {
+        // 15% keywords
+        return keywords[Math.floor(Math.random() * keywords.length)];
+      } else {
+        // 10% data terms
+        return dataTerms[Math.floor(Math.random() * dataTerms.length)];
+      }
+    };
+
+    // Create columns
+    const columnCount = 30;
+    const container = matrixRef.current;
+    container.innerHTML = '';
+
+    for (let i = 0; i < columnCount; i++) {
+      const column = document.createElement('div');
+      column.className = 'matrix-column';
+      
+      // Random height between 8-23 characters
+      const charCount = Math.floor(Math.random() * 16) + 8;
+      
+      for (let j = 0; j < charCount; j++) {
+        const char = document.createElement('span');
+        char.className = 'matrix-char';
+        char.textContent = getRandomChar();
+        column.appendChild(char);
+      }
+      
+      // Random animation delay
+      column.style.animationDelay = `${Math.random() * 3}s`;
+      container.appendChild(column);
+    }
+
+    // Refresh characters every 4 seconds
+    const refreshInterval = setInterval(() => {
+      const chars = container.querySelectorAll('.matrix-char');
+      chars.forEach(char => {
+        if (Math.random() > 0.7) { // Refresh 30% of characters
+          char.textContent = getRandomChar();
+        }
+      });
+    }, 4000);
+
+    return () => clearInterval(refreshInterval);
+  }, []);
+
   return (
     <footer className="relative mt-32 overflow-hidden border-t border-gray-900 bg-black py-20">
-      {/* Binary Waterfall Effect */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Background glow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent blur-2xl" />
-        
-        {/* Binary rain columns */}
-        <div className="absolute inset-0 flex justify-around items-start opacity-20">
-          {/* Column 1 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0s' }}>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-          </div>
-          
-          {/* Column 2 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.3s' }}>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-          </div>
-          
-          {/* Column 3 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.7s' }}>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-          </div>
-          
-          {/* Column 4 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '1.2s' }}>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-          </div>
-          
-          {/* Column 5 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.5s' }}>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-          </div>
-          
-          {/* Column 6 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '1.5s' }}>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-          </div>
-          
-          {/* Column 7 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.9s' }}>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-          </div>
-          
-          {/* Column 8 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.2s' }}>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-          </div>
-          
-          {/* Column 9 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '1.8s' }}>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-          </div>
-          
-          {/* Column 10 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.4s' }}>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-          </div>
-          
-          {/* Column 11 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '2.1s' }}>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-          </div>
-          
-          {/* Column 12 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.6s' }}>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-          </div>
-          
-          {/* Column 13 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '1.4s' }}>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-          </div>
-          
-          {/* Column 14 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.8s' }}>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-          </div>
-          
-          {/* Column 15 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '2.4s' }}>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-          </div>
-          
-          {/* Column 16 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.1s' }}>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-          </div>
-          
-          {/* Column 17 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '1.7s' }}>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-          </div>
-          
-          {/* Column 18 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '1.0s' }}>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-          </div>
-          
-          {/* Column 19 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '2.2s' }}>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-          </div>
-          
-          {/* Column 20 */}
-          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.35s' }}>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">1</span>
-            <span className="font-mono text-xs text-white">0</span>
-            <span className="font-mono text-xs text-white">1</span>
-          </div>
-        </div>
+      {/* Matrix Waterfall Effect */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-15">
+        <div ref={matrixRef} className="matrix-background"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4">

@@ -180,6 +180,40 @@ body {
   animation: binary-fall 8s infinite linear;
 }
 
+/* Matrix Waterfall Effect */
+.matrix-background {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+.matrix-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: matrix-fall 12s infinite linear;
+  transform: translateY(-100%);
+}
+
+@keyframes matrix-fall {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(150%);
+  }
+}
+
+.matrix-char {
+  font-family: var(--font-mono), 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  transition: opacity 0.3s ease;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
