@@ -1,9 +1,12 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
-import { Search, Zap, Plus, Menu } from 'lucide-react';
+import { Zap, Plus, Menu, User, LogOut } from 'lucide-react';
+import { auth } from '@/auth';
 import { SearchInput } from './SearchInput';
 
-export function MarketplaceHeader() {
+export async function MarketplaceHeader() {
+  const session = await auth();
+
   return (
     <header className="sticky top-0 z-50 w-full bg-black/80 backdrop-blur-md border-b border-gray-800">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-4">
@@ -12,7 +15,7 @@ export function MarketplaceHeader() {
           <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center group-hover:bg-gray-200 transition-colors shadow-[0_0_15px_rgba(255,255,255,0.3)]">
             <Zap className="w-5 h-5 text-black fill-black animate-shimmer" />
           </div>
-          <span className="text-xl font-bold tracking-tighter hidden sm:block font-mono lowercase">
+          <span className="text-xl font-bold tracking-tighter hidden sm:block font-mono lowercase text-white">
             antigravity
           </span>
         </Link>
@@ -31,16 +34,47 @@ export function MarketplaceHeader() {
           <Link href="/resources" className="hover:text-white transition-colors">
             Explore
           </Link>
-          <Link href="/categories" className="hover:text-white transition-colors">
-            Categories
-          </Link>
-          <Link 
-            href="/submit" 
-            className="flex items-center gap-1.5 px-4 py-2 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-all active:scale-95"
-          >
-            <Plus className="w-4 h-4" />
-            Submit
-          </Link>
+          
+          {session ? (
+            <div className="flex items-center gap-6">
+              <Link 
+                href="/submit" 
+                className="flex items-center gap-1.5 px-4 py-2 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-all active:scale-95"
+              >
+                <Plus className="w-4 h-4" />
+                Submit
+              </Link>
+              
+              <div className="flex items-center gap-3 pl-4 border-l border-gray-800">
+                {session.user?.image ? (
+                  <img src={session.user.image} alt={session.user.name || ''} className="w-8 h-8 rounded-full border border-gray-800" />
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center text-gray-400">
+                    <User className="w-4 h-4" />
+                  </div>
+                )}
+                <form action={async () => {
+                  'use server';
+                  const { signOut } = await import('@/auth');
+                  await signOut();
+                }}>
+                  <button type="submit" className="p-2 hover:text-red-500 transition-colors" title="Sign Out">
+                    <LogOut className="w-4 h-4" />
+                  </button>
+                </form>
+              </div>
+            </div>
+          ) : (
+            <form action={async () => {
+              'use server';
+              const { signIn } = await import('@/auth');
+              await signIn();
+            }}>
+              <button type="submit" className="hover:text-white transition-colors">
+                Sign In
+              </button>
+            </form>
+          )}
         </nav>
 
         {/* Mobile Menu Toggle */}
