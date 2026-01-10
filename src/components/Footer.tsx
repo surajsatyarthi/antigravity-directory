@@ -5,8 +5,14 @@ export function Footer() {
   return (
     <footer className="relative mt-32 overflow-hidden border-t border-gray-900 bg-black py-20">
       {/* Lightning Flash Effect (Ambient) */}
-      <div className="pointer-events-none absolute inset-0 opacity-10">
-        <div className="animate-flash absolute top-0 left-1/2 h-full w-px -translate-x-1/2 bg-white blur-md" />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Main Background Flash */}
+        <div className="animate-flash absolute inset-0 bg-white/5 blur-3xl" />
+        
+        {/* Vertical Bolts */}
+        <div className="animate-flash absolute top-[-50%] left-[20%] h-[200%] w-[1px] rotate-[15deg] bg-white/20 blur-[2px]" />
+        <div className="animate-flash absolute top-[-50%] right-[30%] h-[200%] w-[2px] rotate-[-10deg] bg-white/10 blur-[4px]" style={{ animationDelay: '1.2s' }} />
+        <div className="animate-flash absolute top-0 left-1/2 h-full w-px -translate-x-1/2 bg-white/30 blur-md" style={{ animationDelay: '0.5s' }} />
       </div>
 
       <div className="relative z-10 container mx-auto px-4">
@@ -21,11 +27,14 @@ export function Footer() {
                 antigravity
               </span>
             </div>
-            <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-500 uppercase">
-              This site is not affiliated with, endorsed by, or sponsored by
-              Google. <br />
-              Care of Invictus International Consulting Services 2026
-            </p>
+            <div className="space-y-2">
+              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-500 uppercase">
+                This site is not affiliated with, endorsed by, or sponsored by Google.
+              </p>
+              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase font-bold">
+                © Invictus International Consulting Services 2026
+              </p>
+            </div>
           </div>
 
           {/* Links */}
@@ -50,10 +59,6 @@ export function Footer() {
                 GitHub
               </Link>
             </nav>
-            <div className="hidden h-4 w-px bg-gray-900 md:block" />
-            <p className="font-mono text-[10px] tracking-widest text-gray-600 uppercase">
-              © 2026 Antigravity Directory
-            </p>
           </div>
         </div>
       </div>
