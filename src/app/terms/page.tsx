@@ -25,14 +25,14 @@ export default function TermsPage() {
           <div className="prose prose-invert max-w-none space-y-8">
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Acceptance of Terms</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 By accessing and using Antigravity Directory ("the Service"), you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Service.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Description of Service</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 Antigravity Directory is a curated directory of AI tools, prompts, and resources for Google's AI ecosystem. We provide a platform for users to discover, submit, and rate AI-related content.
               </p>
             </section>
@@ -40,10 +40,10 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">User Accounts</h2>
               <h3 className="text-xl font-semibold text-white mb-3">Account Creation</h3>
-              <p className="text-gray-400 leading-relaxed mb-4">
+              <p className="text-white leading-relaxed mb-4">
                 You may sign in using your Google account. By creating an account, you agree to:
               </p>
-              <ul className="list-disc list-inside text-gray-400 space-y-2 ml-4">
+              <ul className="list-disc list-inside text-white space-y-2 ml-4">
                 <li>Provide accurate and complete information</li>
                 <li>Maintain the security of your account</li>
                 <li>Accept responsibility for all activities under your account</li>
@@ -53,8 +53,8 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Acceptable Use</h2>
-              <p className="text-gray-400 leading-relaxed mb-4">You agree NOT to:</p>
-              <ul className="list-disc list-inside text-gray-400 space-y-2 ml-4">
+              <p className="text-white leading-relaxed mb-4">You agree NOT to:</p>
+              <ul className="list-disc list-inside text-white space-y-2 ml-4">
                 <li>Submit false, misleading, or inappropriate content</li>
                 <li>Violate any applicable laws or regulations</li>
                 <li>Infringe on intellectual property rights of others</li>
@@ -67,10 +67,10 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Content Submission</h2>
-              <p className="text-gray-400 leading-relaxed mb-4">
+              <p className="text-white leading-relaxed mb-4">
                 When you submit content to Antigravity Directory:
               </p>
-              <ul className="list-disc list-inside text-gray-400 space-y-2 ml-4">
+              <ul className="list-disc list-inside text-white space-y-2 ml-4">
                 <li>You retain ownership of your content</li>
                 <li>You grant us a non-exclusive license to display and distribute your submissions</li>
                 <li>You confirm you have the right to submit the content</li>
@@ -80,17 +80,17 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Intellectual Property</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 The Service and its original content (excluding user submissions) are protected by copyright, trademark, and other laws. Our trademarks may not be used without prior written permission.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Disclaimer of Warranties</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 The Service is provided "AS IS" and "AS AVAILABLE" without warranties of any kind. We do not guarantee:
               </p>
-              <ul className="list-disc list-inside text-gray-400 space-y-2 ml-4">
+              <ul className="list-disc list-inside text-white space-y-2 ml-4">
                 <li>Uninterrupted or error-free operation</li>
                 <li>Accuracy or reliability of content</li>
                 <li>That defects will be corrected</li>
@@ -100,28 +100,28 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Limitation of Liability</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Service.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Termination</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 We reserve the right to suspend or terminate your account at our discretion, with or without notice, for violations of these Terms or for any other reason.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Changes to Terms</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 We may modify these Terms at any time. Continued use of the Service after changes constitutes acceptance of the modified Terms.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Contact</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 For questions about these Terms, contact us at:{' '}
                 <a href="mailto:legal@googleantigravity.directory" className="text-blue-500 hover:text-blue-400 transition-colors">
                   legal@googleantigravity.directory
