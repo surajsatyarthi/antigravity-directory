@@ -133,6 +133,15 @@ export default async function HomePage({
                       <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 transition-all" />
                     </Link>
                   ))}
+                  
+                  {/* Submit Link */}
+                  <Link 
+                    href="/submit" 
+                    className="flex items-center justify-between px-4 py-3 text-sm font-bold rounded-xl bg-blue-600/10 text-blue-500 border border-blue-500/20 transition-all hover:bg-blue-600/20 hover:border-blue-500/40 mt-2"
+                  >
+                    Submit Resource
+                    <Sparkles className="w-4 h-4" />
+                  </Link>
                 </nav>
               </div>
 
