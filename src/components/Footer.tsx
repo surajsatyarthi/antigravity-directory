@@ -9,10 +9,51 @@ export function Footer() {
         {/* Main Background Flash */}
         <div className="animate-flash absolute inset-0 bg-white/5 blur-3xl" />
         
-        {/* Vertical Bolts */}
-        <div className="animate-flash absolute top-[-50%] left-[20%] h-[200%] w-[1px] rotate-[15deg] bg-white/20 blur-[2px]" />
-        <div className="animate-flash absolute top-[-50%] right-[30%] h-[200%] w-[2px] rotate-[-10deg] bg-white/10 blur-[4px]" style={{ animationDelay: '1.2s' }} />
-        <div className="animate-flash absolute top-0 left-1/2 h-full w-px -translate-x-1/2 bg-white/30 blur-md" style={{ animationDelay: '0.5s' }} />
+        {/* Fractal Lightning Bolts */}
+        {/* Left Lightning */}
+        <svg className="animate-flash absolute top-0 left-[20%] h-full w-auto opacity-20" viewBox="0 0 100 400" fill="none">
+          <path d="M50 0 L45 80 L55 80 L48 150 L60 150 L52 220 L40 250 L50 250 L45 300 L35 330 L45 330 L40 400" 
+                stroke="white" strokeWidth="2" strokeLinecap="round" />
+          {/* Branches */}
+          <path d="M48 150 L35 170" stroke="white" strokeWidth="1" opacity="0.6" />
+          <path d="M60 150 L70 180" stroke="white" strokeWidth="1" opacity="0.6" />
+          <path d="M52 220 L65 240" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M40 250 L25 270" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M45 300 L55 320" stroke="white" strokeWidth="1" opacity="0.4" />
+        </svg>
+
+        {/* Center Lightning */}
+        <svg className="animate-flash absolute top-0 left-1/2 -translate-x-1/2 h-full w-auto opacity-30" viewBox="0 0 100 400" fill="none" style={{ animationDelay: '0.5s' }}>
+          <path d="M50 0 L48 70 L52 70 L50 140 L58 140 L53 200 L62 200 L55 270 L48 270 L45 330 L50 330 L48 400" 
+                stroke="white" strokeWidth="3" strokeLinecap="round" filter="url(#glow)" />
+          {/* Branches */}
+          <path d="M50 140 L40 160" stroke="white" strokeWidth="1.5" opacity="0.7" />
+          <path d="M58 140 L68 165" stroke="white" strokeWidth="1.5" opacity="0.7" />
+          <path d="M53 200 L45 220" stroke="white" strokeWidth="1.5" opacity="0.6" />
+          <path d="M62 200 L72 225" stroke="white" strokeWidth="1.5" opacity="0.6" />
+          <path d="M55 270 L65 290" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M48 270 L38 285" stroke="white" strokeWidth="1" opacity="0.5" />
+          <defs>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+        </svg>
+
+        {/* Right Lightning */}
+        <svg className="animate-flash absolute top-0 right-[30%] h-full w-auto opacity-15" viewBox="0 0 100 400" fill="none" style={{ animationDelay: '1.2s' }}>
+          <path d="M50 0 L52 90 L48 90 L50 160 L42 160 L48 230 L38 260 L46 260 L43 320 L52 350 L48 350 L50 400" 
+                stroke="white" strokeWidth="2" strokeLinecap="round" />
+          {/* Branches */}
+          <path d="M50 160 L60 180" stroke="white" strokeWidth="1" opacity="0.6" />
+          <path d="M42 160 L32 175" stroke="white" strokeWidth="1" opacity="0.6" />
+          <path d="M48 230 L58 250" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M43 320 L33 335" stroke="white" strokeWidth="1" opacity="0.4" />
+        </svg>
       </div>
 
       <div className="relative z-10 container mx-auto px-4">
