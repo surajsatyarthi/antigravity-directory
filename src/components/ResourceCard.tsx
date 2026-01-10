@@ -15,8 +15,14 @@ interface ResourceCardProps {
 }
 
 export function ResourceCard({ resource }: ResourceCardProps) {
+  const isFeatured = resource.id.includes('featured') || parseInt(resource.id) < 10;
+  
   return (
-    <div className="group relative flex flex-col md:flex-row bg-[#0A0A0A] border border-gray-900 rounded-2xl overflow-hidden hover:border-white/40 transition-all duration-500 shadow-2xl">
+    <div className={`group relative flex flex-col md:flex-row bg-[#0A0A0A] border rounded-2xl overflow-hidden hover:border-white/40 transition-all duration-500 shadow-2xl ${
+      isFeatured 
+        ? 'border-yellow-500/50 shadow-yellow-500/20' 
+        : 'border-gray-900'
+    }`}>
       <Link href={`/resources/${resource.slug}`} className="absolute inset-0 z-10">
         <span className="sr-only">View {resource.title}</span>
       </Link>
@@ -29,9 +35,10 @@ export function ResourceCard({ resource }: ResourceCardProps) {
             <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-bold text-blue-500 font-mono uppercase tracking-widest">
               {resource.categoryName || 'General'}
             </span>
-            {resource.id.includes('featured') || parseInt(resource.id) < 10 && (
-              <span className="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-[10px] font-bold text-blue-400 font-mono uppercase tracking-widest animate-pulse">
-                ★ Featured
+            {isFeatured && (
+              <span className="px-2 py-0.5 rounded bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border border-yellow-500/30 text-[10px] font-bold text-yellow-500 font-mono uppercase tracking-widest animate-pulse flex items-center gap-1">
+                <Star className="w-3 h-3 fill-yellow-500" />
+                Featured
               </span>
             )}
             <div className="h-px flex-1 bg-gray-900" />
