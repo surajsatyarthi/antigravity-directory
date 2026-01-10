@@ -25,7 +25,7 @@ export default function PrivacyPage() {
           <div className="prose prose-invert max-w-none space-y-8">
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Introduction</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 Antigravity Directory ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our directory service.
               </p>
             </section>
@@ -33,20 +33,20 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Information We Collect</h2>
               <h3 className="text-xl font-semibold text-white mb-3">Account Information</h3>
-              <p className="text-gray-400 leading-relaxed mb-4">
+              <p className="text-white leading-relaxed mb-4">
                 When you sign in with Google, we collect:
               </p>
-              <ul className="list-disc list-inside text-gray-400 space-y-2 ml-4">
+              <ul className="list-disc list-inside text-white space-y-2 ml-4">
                 <li>Your Google account email address</li>
                 <li>Your name (as provided by Google)</li>
                 <li>Your profile picture (if available)</li>
               </ul>
               
               <h3 className="text-xl font-semibold text-white mb-3 mt-6">Usage Data</h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 We automatically collect certain information when you visit our directory, including:
               </p>
-              <ul className="list-disc list-inside text-gray-400 space-y-2 ml-4">
+              <ul className="list-disc list-inside text-white space-y-2 ml-4">
                 <li>IP address</li>
                 <li>Browser type and version</li>
                 <li>Pages visited and time spent</li>
@@ -56,8 +56,8 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">How We Use Your Information</h2>
-              <p className="text-gray-400 leading-relaxed mb-4">We use the collected information to:</p>
-              <ul className="list-disc list-inside text-gray-400 space-y-2 ml-4">
+              <p className="text-white leading-relaxed mb-4">We use the collected information to:</p>
+              <ul className="list-disc list-inside text-white space-y-2 ml-4">
                 <li>Provide and maintain our directory service</li>
                 <li>Authenticate your account</li>
                 <li>Send you important updates about the service</li>
@@ -68,10 +68,10 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Data Sharing</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following circumstances:
               </p>
-              <ul className="list-disc list-inside text-gray-400 space-y-2 ml-4">
+              <ul className="list-disc list-inside text-white space-y-2 ml-4">
                 <li>With your explicit consent</li>
                 <li>To comply with legal obligations</li>
                 <li>To protect our rights and prevent fraud</li>
@@ -80,15 +80,15 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Data Security</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 We implement appropriate technical and organizational security measures to protect your personal information. However, no method of transmission over the Internet is 100% secure.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Your Rights</h2>
-              <p className="text-gray-400 leading-relaxed">You have the right to:</p>
-              <ul className="list-disc list-inside text-gray-400 space-y-2 ml-4">
+              <p className="text-white leading-relaxed">You have the right to:</p>
+              <ul className="list-disc list-inside text-white space-y-2 ml-4">
                 <li>Access your personal data</li>
                 <li>Request correction of inaccurate data</li>
                 <li>Request deletion of your data</li>
@@ -98,14 +98,14 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Cookies</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 We use essential cookies to maintain your session and ensure the directory functions properly. These cookies are necessary for authentication and cannot be disabled.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Contact Us</h2>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 If you have questions about this Privacy Policy, please contact us at:{' '}
                 <a href="mailto:privacy@googleantigravity.directory" className="text-blue-500 hover:text-blue-400 transition-colors">
                   privacy@googleantigravity.directory
