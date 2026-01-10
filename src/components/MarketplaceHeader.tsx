@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { Search, Zap, Plus, Menu } from 'lucide-react';
 import { SearchInput } from './SearchInput';
@@ -17,7 +18,13 @@ export function MarketplaceHeader() {
         </Link>
 
         {/* Search Bar - Center (Cursor / Amazon Style) */}
-        <SearchInput />
+        <Suspense fallback={
+          <div className="flex-1 max-w-2xl relative">
+            <div className="w-full bg-[#0A0A0A] border border-gray-800 rounded-full h-9" />
+          </div>
+        }>
+          <SearchInput />
+        </Suspense>
 
         {/* Nav Links */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-400">
