@@ -105,11 +105,11 @@ export default async function HomePage({
     <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
       <MarketplaceHeader />
 
-      <main className="flex-1 container mx-auto px-4 py-12 max-w-7xl">
-        <div className="flex flex-col lg:flex-row gap-12">
+      <main className="flex-1 w-full px-2 py-12">
+        <div className="flex gap-4">
           
-          {/* Sidebar - Categories & Filters (Restored) */}
-          <aside className="w-full lg:w-72 shrink-0">
+          {/* Left Sidebar - Categories & Filters - Minimal Margin */}
+          <aside className="w-64 shrink-0">
             <div className="sticky top-28 space-y-10">
               <div>
                 <h2 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-6 px-4">
@@ -161,8 +161,8 @@ export default async function HomePage({
             </div>
           </aside>
 
-          {/* Main Content Area - List View (Amazon style) */}
-          <div className="flex-1 min-w-0">
+          {/* Main Content Area - List View */}
+          <div className="flex-1 min-w-0 px-4">
             
             {/* Header / Filter Status */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-gray-900 pb-10">
