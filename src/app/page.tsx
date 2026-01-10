@@ -137,7 +137,7 @@ export default async function HomePage({
                   {/* Submit Link */}
                   <Link 
                     href="/submit" 
-                    className="flex items-center justify-between px-4 py-3 text-sm font-bold rounded-xl bg-blue-600/10 text-blue-500 border border-blue-500/20 transition-all hover:bg-blue-600/20 hover:border-blue-500/40 mt-2"
+                    className="flex items-center justify-between px-4 py-3 text-sm font-bold rounded-xl bg-white text-black border border-white/20 transition-all hover:bg-gray-200 mt-2"
                   >
                     Submit Resource
                     <Sparkles className="w-4 h-4" />
@@ -171,14 +171,11 @@ export default async function HomePage({
                 <h1 className="text-4xl font-black tracking-tighter text-white uppercase italic mb-2">
                   {q ? `Search: "${q}"` : category ? `Category: ${category}` : 'Discovery Engine'}
                 </h1>
-                <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">
-                  Found {allFilteredResources.length} verified neural resources.
-                  {(q || category) && (
-                    <Link href="/" className="ml-4 text-blue-500 hover:text-white transition-colors">
-                      [ Clear Filters ]
-                    </Link>
-                  )}
-                </p>
+                {(q || category) && (
+                  <Link href="/" className="text-blue-500 hover:text-white transition-colors text-xs font-mono uppercase tracking-widest">
+                    [ Clear Filters ]
+                  </Link>
+                )}
               </div>
               
               <Suspense fallback={<div className="h-6 w-32 bg-white/5 animate-pulse rounded" />}>
