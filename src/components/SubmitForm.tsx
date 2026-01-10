@@ -36,12 +36,12 @@ export function SubmitForm({ categories }: SubmitFormProps) {
   return (
     <div className="space-y-6">
       {message && (
-        <div className={`p-4 rounded-xl flex items-center gap-3 text-sm font-medium ${
+        <div className={`p-6 rounded-2xl flex items-center gap-4 text-sm font-bold border ${
           message.type === 'success' 
-            ? 'bg-green-50 text-green-700 border border-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800' 
-            : 'bg-red-50 text-red-700 border border-red-100 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800'
+            ? 'bg-green-500/10 text-green-400 border-green-500/20' 
+            : 'bg-red-500/10 text-red-400 border-red-500/20'
         }`}>
-          {message.type === 'success' ? <CheckCircle2 className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
+          {message.type === 'success' ? <CheckCircle2 className="w-5 h-5 shrink-0" /> : <AlertCircle className="w-5 h-5 shrink-0" />}
           {message.text}
         </div>
       )}
@@ -58,7 +58,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
             name="title"
             required
             placeholder="e.g. Next.js App Router Helper"
-            className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-4 py-3 text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all outline-none"
+            className="w-full bg-black border border-gray-900 rounded-2xl px-4 py-4 text-sm text-white focus:border-white transition-all outline-none placeholder:text-gray-700 font-medium"
           />
         </div>
 
@@ -70,11 +70,11 @@ export function SubmitForm({ categories }: SubmitFormProps) {
           <select
             id="categoryName"
             name="categoryName"
-            className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-4 py-3 text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all outline-none appearance-none"
+            className="w-full bg-black border border-gray-900 rounded-2xl px-4 py-4 text-sm text-white focus:border-white transition-all outline-none appearance-none font-medium"
           >
-            <option value="">Select a category</option>
+            <option value="" className="bg-[#0A0A0A]">Select a category</option>
             {categories.map((cat) => (
-              <option key={cat.id} value={cat.name}>
+              <option key={cat.id} value={cat.name} className="bg-[#0A0A0A]">
                 {cat.name}
               </option>
             ))}
@@ -91,7 +91,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
             id="url"
             name="url"
             placeholder="https://github.com/..."
-            className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-4 py-3 text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all outline-none"
+            className="w-full bg-black border border-gray-900 rounded-2xl px-4 py-4 text-sm text-white focus:border-white transition-all outline-none placeholder:text-gray-700 font-medium"
           />
         </div>
 
@@ -106,7 +106,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
             required
             rows={3}
             placeholder="What does this resource do?"
-            className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-4 py-3 text-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all outline-none resize-none"
+            className="w-full bg-black border border-gray-900 rounded-2xl px-4 py-4 text-sm text-white focus:border-white transition-all outline-none resize-none placeholder:text-gray-700 font-medium leading-relaxed"
           />
         </div>
 
@@ -118,9 +118,9 @@ export function SubmitForm({ categories }: SubmitFormProps) {
           <textarea
             id="content"
             name="content"
-            rows={6}
+            rows={8}
             placeholder="Paste your code snippet or prompt here..."
-            className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl px-4 py-3 text-sm font-mono focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all outline-none resize-none"
+            className="w-full bg-black border border-gray-900 rounded-2xl px-4 py-4 text-sm text-white focus:border-white transition-all outline-none resize-none placeholder:text-gray-700 font-mono leading-relaxed"
           />
         </div>
 
@@ -128,14 +128,14 @@ export function SubmitForm({ categories }: SubmitFormProps) {
           <button
             type="submit"
             disabled={isPending}
-            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-blue-600 border-none hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 px-8 py-5 bg-white hover:bg-gray-200 text-black font-extrabold rounded-2xl transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-widest text-xs font-mono"
           >
             {isPending ? (
-              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
             ) : (
               <Send className="w-4 h-4" />
             )}
-            {isPending ? 'Submitting...' : 'Submit for Approval'}
+            {isPending ? 'Submitting...' : 'Submit Resource'}
           </button>
           <p className="mt-4 text-center text-xs text-gray-400">
             By submitting, you agree to our community guidelines.
