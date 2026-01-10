@@ -235,6 +235,57 @@ export default async function HomePage({
               )}
             </section>
           </div>
+
+          {/* Right Sidebar - Ad Placeholders */}
+          <aside className="w-80 shrink-0 hidden xl:block">
+            <div className="sticky top-28 space-y-6">
+              {/* Ad Slot 1 - Skyscraper */}
+              <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-lg p-8 h-[600px] flex flex-col items-center justify-center">
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 mx-auto bg-white/5 rounded-lg flex items-center justify-center">
+                    <Zap className="w-8 h-8 text-gray-600" />
+                  </div>
+                  <p className="text-xs font-mono text-gray-600 uppercase tracking-widest">
+                    Advertisement
+                  </p>
+                  <p className="text-sm text-gray-700 font-mono">
+                    300 × 600
+                  </p>
+                </div>
+              </div>
+
+              {/* Ad Slot 2 - Medium Rectangle */}
+              <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-lg p-8 h-[250px] flex flex-col items-center justify-center">
+                <div className="text-center space-y-4">
+                  <div className="w-12 h-12 mx-auto bg-white/5 rounded-lg flex items-center justify-center">
+                    <TrendingUp className="w-6 h-6 text-gray-600" />
+                  </div>
+                  <p className="text-xs font-mono text-gray-600 uppercase tracking-widest">
+                    Advertisement
+                  </p>
+                  <p className="text-sm text-gray-700 font-mono">
+                    300 × 250
+                  </p>
+                </div>
+              </div>
+
+              {/* Ad Slot 3 - Square */}
+              <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-lg p-8 h-[250px] flex flex-col items-center justify-center">
+                <div className="text-center space-y-4">
+                  <div className="w-12 h-12 mx-auto bg-white/5 rounded-lg flex items-center justify-center">
+                    <Sparkles className="w-6 h-6 text-gray-600" />
+                  </div>
+                  <p className="text-xs font-mono text-gray-600 uppercase tracking-widest">
+                    Advertisement
+                  </p>
+                  <p className="text-sm text-gray-700 font-mono">
+                    300 × 250
+                  </p>
+                </div>
+              </div>
+            </div>
+          </aside>
+
         </div>
       </main>
 
