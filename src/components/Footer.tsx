@@ -102,6 +102,144 @@ export function Footer() {
             <span className="font-mono text-xs text-white">1</span>
             <span className="font-mono text-xs text-white">0</span>
           </div>
+          
+          {/* Column 9 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '1.8s' }}>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+          </div>
+          
+          {/* Column 10 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.4s' }}>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+          </div>
+          
+          {/* Column 11 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '2.1s' }}>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+          </div>
+          
+          {/* Column 12 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.6s' }}>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+          </div>
+          
+          {/* Column 13 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '1.4s' }}>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+          </div>
+          
+          {/* Column 14 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.8s' }}>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+          </div>
+          
+          {/* Column 15 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '2.4s' }}>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+          </div>
+          
+          {/* Column 16 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.1s' }}>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">0</span>
+          </div>
+          
+          {/* Column 17 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '1.7s' }}>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+          </div>
+          
+          {/* Column 18 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '1.0s' }}>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+          </div>
+          
+          {/* Column 19 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '2.2s' }}>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+          </div>
+          
+          {/* Column 20 */}
+          <div className="flex flex-col gap-2 animate-binary-fall" style={{ animationDelay: '0.35s' }}>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">1</span>
+            <span className="font-mono text-xs text-white">0</span>
+            <span className="font-mono text-xs text-white">1</span>
+          </div>
         </div>
       </div>
 
