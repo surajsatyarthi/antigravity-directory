@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Star, Eye, ExternalLink, ArrowRight } from 'lucide-react';
+import { Star, Eye, ArrowRight } from 'lucide-react';
 
 interface ResourceCardProps {
   resource: {
