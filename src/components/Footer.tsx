@@ -42,7 +42,7 @@ export function Footer() {
       const column = document.createElement('div');
       column.className = 'matrix-column';
       
-      // More characters for continuous effect - between 15-30 characters
+      // Random length for each column - between 15-30 characters
       const charCount = Math.floor(Math.random() * 16) + 15;
       
       for (let j = 0; j < charCount; j++) {
@@ -52,8 +52,13 @@ export function Footer() {
         column.appendChild(char);
       }
       
-      // Random animation delay
-      column.style.animationDelay = `${Math.random() * 3}s`;
+      // CRITICAL: Random animation duration (speed) for each column
+      const animationDuration = Math.random() * 8 + 6; // Between 6-14 seconds
+      column.style.animationDuration = `${animationDuration}s`;
+      
+      // Random animation delay (timing) for staggered start
+      column.style.animationDelay = `${Math.random() * 5}s`;
+      
       container.appendChild(column);
     }
 

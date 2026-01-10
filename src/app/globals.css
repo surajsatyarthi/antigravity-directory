@@ -193,7 +193,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  animation: matrix-fall 10s infinite linear;
+  animation: matrix-fall infinite linear;
   transform: translateY(-100%);
 }
 
