@@ -42,8 +42,8 @@ export function Footer() {
       const column = document.createElement('div');
       column.className = 'matrix-column';
       
-      // Random height between 8-23 characters
-      const charCount = Math.floor(Math.random() * 16) + 8;
+      // More characters for continuous effect - between 15-30 characters
+      const charCount = Math.floor(Math.random() * 16) + 15;
       
       for (let j = 0; j < charCount; j++) {
         const char = document.createElement('span');
@@ -67,23 +67,23 @@ export function Footer() {
       });
     }, 4000);
 
-    // Flash random characters in white
+    // Flash random characters in white - more frequently and brighter
     const flashInterval = setInterval(() => {
       const chars = container.querySelectorAll('.matrix-char');
       chars.forEach(char => {
         // Remove existing flash
         char.classList.remove('flash-white');
         
-        // Randomly flash 5% of characters
-        if (Math.random() > 0.95) {
+        // Randomly flash 10% of characters (increased from 5%)
+        if (Math.random() > 0.90) {
           char.classList.add('flash-white');
           // Remove flash after animation
           setTimeout(() => {
             char.classList.remove('flash-white');
-          }, 600);
+          }, 800);
         }
       });
-    }, 100); // Check every 100ms for more dynamic flashing
+    }, 80); // Check every 80ms for more frequent flashing
 
     return () => {
       clearInterval(refreshInterval);
