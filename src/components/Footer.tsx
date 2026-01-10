@@ -12,21 +12,52 @@ export function Footer() {
         {/* Horizontal Lightning Bolt - Near Bottom */}
         <svg className="animate-flash absolute bottom-12 left-0 w-full h-auto opacity-25" viewBox="0 0 1200 100" fill="none" preserveAspectRatio="none">
           {/* Main horizontal bolt with zigzag pattern */}
-          <path d="M0 50 L150 45 L180 55 L350 48 L380 52 L550 45 L580 55 L750 48 L780 52 L950 47 L980 53 L1200 50" 
+          <path d="M0 50 L100 48 L130 52 L250 47 L280 53 L400 49 L430 51 L550 48 L580 52 L700 49 L730 51 L850 48 L880 52 L1000 49 L1030 51 L1200 50" 
                 stroke="white" strokeWidth="3" strokeLinecap="round" filter="url(#horizontalGlow)" />
           
-          {/* Upward branches */}
-          <path d="M180 55 L190 35" stroke="white" strokeWidth="1.5" opacity="0.6" />
-          <path d="M380 52 L390 30 L400 35" stroke="white" strokeWidth="1.5" opacity="0.7" />
-          <path d="M580 55 L570 40 L575 30" stroke="white" strokeWidth="1.5" opacity="0.6" />
-          <path d="M780 52 L790 35" stroke="white" strokeWidth="1.5" opacity="0.7" />
-          <path d="M980 53 L985 38 L995 30" stroke="white" strokeWidth="1.5" opacity="0.6" />
+          {/* Primary Branches - Upward */}
+          <path d="M130 52 L140 35 L145 25" stroke="white" strokeWidth="2" opacity="0.7" />
+          <path d="M280 53 L290 30 L295 20 L300 15" stroke="white" strokeWidth="2" opacity="0.8" />
+          <path d="M430 51 L425 35 L420 25" stroke="white" strokeWidth="2" opacity="0.7" />
+          <path d="M580 52 L590 30 L595 18" stroke="white" strokeWidth="2" opacity="0.8" />
+          <path d="M730 51 L735 35 L738 22" stroke="white" strokeWidth="2" opacity="0.7" />
+          <path d="M880 52 L890 28 L895 15" stroke="white" strokeWidth="2" opacity="0.8" />
           
-          {/* Downward branches */}
-          <path d="M350 48 L360 65" stroke="white" strokeWidth="1.5" opacity="0.5" />
-          <path d="M550 45 L545 60 L550 70" stroke="white" strokeWidth="1.5" opacity="0.6" />
-          <path d="M750 48 L755 65" stroke="white" strokeWidth="1.5" opacity="0.5" />
-          <path d="M950 47 L960 62 L965 70" stroke="white" strokeWidth="1.5" opacity="0.6" />
+          {/* Primary Branches - Downward */}
+          <path d="M100 48 L105 65 L108 75" stroke="white" strokeWidth="2" opacity="0.6" />
+          <path d="M250 47 L255 68 L258 78 L262 85" stroke="white" strokeWidth="2" opacity="0.7" />
+          <path d="M400 49 L410 70 L415 80" stroke="white" strokeWidth="2" opacity="0.6" />
+          <path d="M550 48 L548 68 L545 78" stroke="white" strokeWidth="2" opacity="0.7" />
+          <path d="M700 49 L708 67 L712 77" stroke="white" strokeWidth="2" opacity="0.6" />
+          <path d="M850 48 L855 70 L858 82" stroke="white" strokeWidth="2" opacity="0.7" />
+          <path d="M1000 49 L1010 68 L1015 78" stroke="white" strokeWidth="2" opacity="0.6" />
+          
+          {/* Secondary Branches (branches off primary) */}
+          <path d="M145 25 L150 18 L155 15" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M145 25 L138 20" stroke="white" strokeWidth="1" opacity="0.4" />
+          <path d="M295 20 L302 12" stroke="white" strokeWidth="1" opacity="0.6" />
+          <path d="M295 20 L288 15" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M595 18 L602 10" stroke="white" strokeWidth="1" opacity="0.6" />
+          <path d="M595 18 L588 12" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M890 28 L895 20 L898 15" stroke="white" strokeWidth="1" opacity="0.6" />
+          <path d="M890 28 L883 22" stroke="white" strokeWidth="1" opacity="0.5" />
+          
+          {/* Secondary Branches - Downward */}
+          <path d="M108 75 L115 82" stroke="white" strokeWidth="1" opacity="0.4" />
+          <path d="M108 75 L102 82" stroke="white" strokeWidth="1" opacity="0.4" />
+          <path d="M258 78 L265 88" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M258 78 L252 85" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M545 78 L540 88" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M545 78 L550 85" stroke="white" strokeWidth="1" opacity="0.4" />
+          <path d="M858 82 L865 90" stroke="white" strokeWidth="1" opacity="0.5" />
+          <path d="M858 82 L852 88" stroke="white" strokeWidth="1" opacity="0.4" />
+          
+          {/* Tertiary Branches (small offshoots) */}
+          <path d="M155 15 L160 10" stroke="white" strokeWidth="0.5" opacity="0.3" />
+          <path d="M302 12 L308 8" stroke="white" strokeWidth="0.5" opacity="0.4" />
+          <path d="M602 10 L608 5" stroke="white" strokeWidth="0.5" opacity="0.4" />
+          <path d="M115 82 L120 88" stroke="white" strokeWidth="0.5" opacity="0.3" />
+          <path d="M265 88 L270 95" stroke="white" strokeWidth="0.5" opacity="0.3" />
           
           <defs>
             <filter id="horizontalGlow">
