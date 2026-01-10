@@ -9,50 +9,34 @@ export function Footer() {
         {/* Main Background Flash */}
         <div className="animate-flash absolute inset-0 bg-white/5 blur-3xl" />
         
-        {/* Fractal Lightning Bolts */}
-        {/* Left Lightning */}
-        <svg className="animate-flash absolute top-0 left-[20%] h-full w-auto opacity-20" viewBox="0 0 100 400" fill="none">
-          <path d="M50 0 L45 80 L55 80 L48 150 L60 150 L52 220 L40 250 L50 250 L45 300 L35 330 L45 330 L40 400" 
-                stroke="white" strokeWidth="2" strokeLinecap="round" />
-          {/* Branches */}
-          <path d="M48 150 L35 170" stroke="white" strokeWidth="1" opacity="0.6" />
-          <path d="M60 150 L70 180" stroke="white" strokeWidth="1" opacity="0.6" />
-          <path d="M52 220 L65 240" stroke="white" strokeWidth="1" opacity="0.5" />
-          <path d="M40 250 L25 270" stroke="white" strokeWidth="1" opacity="0.5" />
-          <path d="M45 300 L55 320" stroke="white" strokeWidth="1" opacity="0.4" />
-        </svg>
-
-        {/* Center Lightning */}
-        <svg className="animate-flash absolute top-0 left-1/2 -translate-x-1/2 h-full w-auto opacity-30" viewBox="0 0 100 400" fill="none" style={{ animationDelay: '0.5s' }}>
-          <path d="M50 0 L48 70 L52 70 L50 140 L58 140 L53 200 L62 200 L55 270 L48 270 L45 330 L50 330 L48 400" 
-                stroke="white" strokeWidth="3" strokeLinecap="round" filter="url(#glow)" />
-          {/* Branches */}
-          <path d="M50 140 L40 160" stroke="white" strokeWidth="1.5" opacity="0.7" />
-          <path d="M58 140 L68 165" stroke="white" strokeWidth="1.5" opacity="0.7" />
-          <path d="M53 200 L45 220" stroke="white" strokeWidth="1.5" opacity="0.6" />
-          <path d="M62 200 L72 225" stroke="white" strokeWidth="1.5" opacity="0.6" />
-          <path d="M55 270 L65 290" stroke="white" strokeWidth="1" opacity="0.5" />
-          <path d="M48 270 L38 285" stroke="white" strokeWidth="1" opacity="0.5" />
+        {/* Horizontal Lightning Bolt - Near Bottom */}
+        <svg className="animate-flash absolute bottom-12 left-0 w-full h-auto opacity-25" viewBox="0 0 1200 100" fill="none" preserveAspectRatio="none">
+          {/* Main horizontal bolt with zigzag pattern */}
+          <path d="M0 50 L150 45 L180 55 L350 48 L380 52 L550 45 L580 55 L750 48 L780 52 L950 47 L980 53 L1200 50" 
+                stroke="white" strokeWidth="3" strokeLinecap="round" filter="url(#horizontalGlow)" />
+          
+          {/* Upward branches */}
+          <path d="M180 55 L190 35" stroke="white" strokeWidth="1.5" opacity="0.6" />
+          <path d="M380 52 L390 30 L400 35" stroke="white" strokeWidth="1.5" opacity="0.7" />
+          <path d="M580 55 L570 40 L575 30" stroke="white" strokeWidth="1.5" opacity="0.6" />
+          <path d="M780 52 L790 35" stroke="white" strokeWidth="1.5" opacity="0.7" />
+          <path d="M980 53 L985 38 L995 30" stroke="white" strokeWidth="1.5" opacity="0.6" />
+          
+          {/* Downward branches */}
+          <path d="M350 48 L360 65" stroke="white" strokeWidth="1.5" opacity="0.5" />
+          <path d="M550 45 L545 60 L550 70" stroke="white" strokeWidth="1.5" opacity="0.6" />
+          <path d="M750 48 L755 65" stroke="white" strokeWidth="1.5" opacity="0.5" />
+          <path d="M950 47 L960 62 L965 70" stroke="white" strokeWidth="1.5" opacity="0.6" />
+          
           <defs>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <filter id="horizontalGlow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
               <feMerge>
                 <feMergeNode in="coloredBlur"/>
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
           </defs>
-        </svg>
-
-        {/* Right Lightning */}
-        <svg className="animate-flash absolute top-0 right-[30%] h-full w-auto opacity-15" viewBox="0 0 100 400" fill="none" style={{ animationDelay: '1.2s' }}>
-          <path d="M50 0 L52 90 L48 90 L50 160 L42 160 L48 230 L38 260 L46 260 L43 320 L52 350 L48 350 L50 400" 
-                stroke="white" strokeWidth="2" strokeLinecap="round" />
-          {/* Branches */}
-          <path d="M50 160 L60 180" stroke="white" strokeWidth="1" opacity="0.6" />
-          <path d="M42 160 L32 175" stroke="white" strokeWidth="1" opacity="0.6" />
-          <path d="M48 230 L58 250" stroke="white" strokeWidth="1" opacity="0.5" />
-          <path d="M43 320 L33 335" stroke="white" strokeWidth="1" opacity="0.4" />
         </svg>
       </div>
 
