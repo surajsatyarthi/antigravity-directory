@@ -3,8 +3,9 @@ import { resources, categories, ratings } from '@/drizzle/schema';
 import { eq, desc } from 'drizzle-orm';
 import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 import { ResourceCard } from '@/components/ResourceCard';
+import { Footer } from '@/components/Footer';
 import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Zap } from 'lucide-react';
 
 export default async function ResourcesPage() {
   // Fetch Categories
@@ -54,53 +55,81 @@ export default async function ResourcesPage() {
     <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
       <MarketplaceHeader />
 
-      <main className="flex-1 container mx-auto px-4 py-12 max-w-6xl">
-        <header className="mb-12">
-          <h1 className="text-3xl font-extrabold tracking-tight mb-2 text-white">All Resources</h1>
-          <p className="text-gray-400">
-            Browse our complete collection of curated Antigravity tools, rules, and workflows.
-          </p>
-        </header>
-
-        {resourcesWithRatings.length > 0 ? (
-          <div className="marketplace-grid">
-            {resourcesWithRatings.map((resource) => (
-              <ResourceCard key={resource.id} resource={resource} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-32 bg-[#0A0A0A] border border-dashed rounded-3xl border-gray-800">
-            <p className="text-gray-400 mb-6">No resources found matching your criteria.</p>
-            <Link href="/submit" className="inline-flex px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all">
-              Submit a new resource →
-            </Link>
-          </div>
-        )}
-      </main>
-
-      {/* Footer - Fixed to Pure Dark */}
-      <footer className="bg-black border-t border-gray-900 py-16 mt-32">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 bg-white rounded flex items-center justify-center">
-                <span className="text-[10px] font-bold text-black font-mono leading-none">A</span>
+      <main className="flex-1 container mx-auto px-4 py-12 max-w-7xl">
+        <div className="flex flex-col lg:flex-row gap-12">
+          
+          {/* Sidebar - Categories (Restored) */}
+          <aside className="w-full lg:w-72 shrink-0">
+            <div className="sticky top-28 space-y-12">
+              <div>
+                <h2 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-6 px-4">
+                  Browse by Category
+                </h2>
+                <nav className="space-y-1">
+                  <Link 
+                    href="/resources" 
+                    className="flex items-center justify-between px-4 py-3 text-sm font-bold rounded-xl bg-white/5 text-white border border-white/10 transition-all hover:bg-white/10"
+                  >
+                    All Tools
+                    <ChevronRight className="w-4 h-4 opacity-50" />
+                  </Link>
+                  {allCategories.map((cat) => (
+                    <Link
+                      key={cat.id}
+                      href={`/categories/${cat.slug}`}
+                      className="flex items-center justify-between px-4 py-3 text-sm font-medium text-gray-500 hover:text-white hover:bg-white/[0.02] rounded-xl transition-all group"
+                    >
+                      {cat.name}
+                      <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0" />
+                    </Link>
+                  ))}
+                </nav>
               </div>
-              <span className="text-sm font-bold tracking-tighter text-white font-mono lowercase">
-                antigravity
-              </span>
+
+              {/* Promo Card */}
+              <div className="p-6 bg-[#0A0A0A] border border-gray-900 rounded-2xl">
+                <h3 className="text-white font-bold text-sm mb-3">Community Hub</h3>
+                <p className="text-xs text-gray-500 leading-relaxed mb-4">
+                  Help us build the most comprehensive directory for Google's UI Intelligence.
+                </p>
+                <Link 
+                  href="/submit" 
+                  className="inline-block w-full text-center text-[10px] font-bold bg-white text-black px-4 py-3 rounded-xl hover:bg-gray-200 transition-colors uppercase tracking-widest"
+                >
+                  Submit Tool
+                </Link>
+              </div>
             </div>
-            <p className="text-xs text-gray-600 font-mono">
-              © 2026 Antigravity Directory. built for the next generation of engineers.
-            </p>
-            <div className="flex gap-6 text-xs text-gray-500 font-mono">
-              <Link href="/resources" className="hover:text-white transition-colors">Resources</Link>
-              <Link href="/submit" className="hover:text-white transition-colors">Submit</Link>
-              <Link href="https://github.com" className="hover:text-white transition-colors">GitHub</Link>
-            </div>
+          </aside>
+
+          {/* Main Content Area - List View */}
+          <div className="flex-1 min-w-0">
+            <header className="mb-12 border-b border-gray-900 pb-10">
+              <h1 className="text-4xl font-black tracking-tighter text-white uppercase italic mb-4">Discovery Engine</h1>
+              <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">
+                Scanned {resourcesWithRatings.length} verified neural resources.
+              </p>
+            </header>
+
+            {resourcesWithRatings.length > 0 ? (
+              <div className="marketplace-list">
+                {resourcesWithRatings.map((resource) => (
+                  <ResourceCard key={resource.id} resource={resource} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-40 bg-[#050505] border border-gray-900 rounded-[32px]">
+                <p className="text-gray-600 mb-8 font-mono text-xs uppercase tracking-widest">Neural link failed. No resources detected.</p>
+                <Link href="/submit" className="inline-flex px-10 py-4 bg-white text-black font-black rounded-2xl hover:bg-gray-200 transition-all uppercase tracking-widest text-xs">
+                  Initialize Submission
+                </Link>
+              </div>
+            )}
           </div>
         </div>
-      </footer>
+      </main>
+
+      <Footer />
     </div>
   );
 }

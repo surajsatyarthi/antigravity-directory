@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Star, Eye, ExternalLink } from 'lucide-react';
+import { Star, Eye, ExternalLink, ArrowRight } from 'lucide-react';
 
 interface ResourceCardProps {
   resource: {
@@ -16,53 +16,62 @@ interface ResourceCardProps {
 
 export function ResourceCard({ resource }: ResourceCardProps) {
   return (
-    <div className="group relative flex flex-col bg-black border border-gray-800 rounded-xl overflow-hidden hover:border-white transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.01)] hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]">
+    <div className="group relative flex flex-col md:flex-row bg-[#0A0A0A] border border-gray-900 rounded-2xl overflow-hidden hover:border-white/40 transition-all duration-500 shadow-2xl">
       <Link href={`/resources/${resource.slug}`} className="absolute inset-0 z-10">
         <span className="sr-only">View {resource.title}</span>
       </Link>
       
-      <div className="p-5 flex-1 flex flex-col">
-        {/* Category & Stats */}
-        <div className="flex items-center justify-between mb-3 font-mono text-[10px] uppercase tracking-widest">
-          <span className="text-blue-500 font-bold">
-            {resource.categoryName || 'General'}
-          </span>
-          <div className="flex items-center gap-3 text-gray-500">
-            <div className="flex items-center gap-1 group-hover:text-gray-300 transition-colors">
-              <Eye className="w-3 h-3" />
-              {resource.views.toLocaleString()}
-            </div>
-          </div>
-        </div>
-
-        {/* Title */}
-        <h3 className="text-base font-bold text-white mb-2 leading-tight group-hover:text-blue-400 transition-colors line-clamp-2">
-          {resource.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-sm text-gray-500 line-clamp-2 mb-4 flex-1 font-medium leading-relaxed">
-          {resource.description}
-        </p>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-900 mt-auto">
-          <div className="flex items-center gap-2 font-mono text-xs">
-            <div className="flex items-center gap-1">
-              <Star className="w-3 h-3 fill-white text-white animate-shimmer" />
-              <span className="text-white font-bold">
-                {resource.avgRating.toFixed(1)}
-              </span>
-            </div>
-            <span className="text-gray-600">
-              ({resource.ratingCount})
+      {/* Main Content */}
+      <div className="flex-1 p-6 md:p-8 flex flex-col md:flex-row gap-6 md:items-center">
+        {/* Title & Description Column */}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-bold text-blue-500 font-mono uppercase tracking-widest">
+              {resource.categoryName || 'General'}
             </span>
+            <div className="h-px flex-1 bg-gray-900" />
           </div>
           
-          <div className="z-20">
-            <div className="p-1.5 rounded-lg text-gray-600 group-hover:text-white transition-all">
-              <ExternalLink className="w-3.5 h-3.5" />
+          <h3 className="text-xl font-extrabold text-white mb-2 leading-tight group-hover:text-blue-400 transition-colors truncate">
+            {resource.title}
+          </h3>
+          
+          <p className="text-sm text-gray-500 line-clamp-2 font-medium leading-relaxed max-w-2xl">
+            {resource.description}
+          </p>
+        </div>
+
+        {/* Vertical Divider (Desktop) */}
+        <div className="hidden md:block w-px h-12 bg-gray-900" />
+
+        {/* Stats & Actions Column */}
+        <div className="flex items-center justify-between md:justify-end gap-10 shrink-0">
+          {/* Rating */}
+          <div className="flex flex-col items-center md:items-start">
+            <span className="text-[10px] text-gray-600 font-mono uppercase tracking-tighter mb-1">Rating</span>
+            <div className="flex items-center gap-1.5 font-mono">
+              <Star className="w-3.5 h-3.5 fill-white text-white animate-shimmer" />
+              <span className="text-white font-bold text-sm">
+                {resource.avgRating.toFixed(1)}
+              </span>
+              <span className="text-gray-700 text-[10px]">
+                ({resource.ratingCount})
+              </span>
             </div>
+          </div>
+
+          {/* Views */}
+          <div className="flex flex-col items-center md:items-start">
+            <span className="text-[10px] text-gray-600 font-mono uppercase tracking-tighter mb-1">Popularity</span>
+            <div className="flex items-center gap-1.5 font-mono text-gray-300">
+              <Eye className="w-3.5 h-3.5" />
+              <span className="text-sm font-bold">{resource.views.toLocaleString()}</span>
+            </div>
+          </div>
+
+          {/* Action Icon */}
+          <div className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gray-900 group-hover:border-white group-hover:bg-white group-hover:text-black transition-all">
+            <ArrowRight className="w-4 h-4" />
           </div>
         </div>
       </div>
