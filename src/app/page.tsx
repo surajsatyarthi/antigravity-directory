@@ -134,50 +134,13 @@ export default async function HomePage({
                     </Link>
                   ))}
                   
-                  {/* Submit Buttons - Testing Different Effects */}
-                  <div className="space-y-3">
-                    <p className="text-[10px] text-gray-500 uppercase tracking-widest px-2">Choose Your Style:</p>
-                    
-                    {/* Option 1: Shimmer */}
-                    <Link 
-                      href="/submit" 
-                      className="flex items-center justify-center px-4 py-3 text-sm font-bold rounded-xl bg-white text-black border border-white/20 transition-all hover:bg-gray-200 animate-shimmer"
-                    >
-                      1. Shimmer
-                    </Link>
-
-                    {/* Option 2: Pulse Glow */}
-                    <Link 
-                      href="/submit" 
-                      className="flex items-center justify-center px-4 py-3 text-sm font-bold rounded-xl bg-white text-black border border-white/20 transition-all hover:bg-gray-200 animate-pulse-glow"
-                    >
-                      2. Pulse Glow
-                    </Link>
-
-                    {/* Option 3: Slide Gradient */}
-                    <Link 
-                      href="/submit" 
-                      className="flex items-center justify-center px-4 py-3 text-sm font-bold rounded-xl text-black border border-white/20 transition-all hover:opacity-90 animate-slide-gradient"
-                    >
-                      3. Slide Gradient
-                    </Link>
-
-                    {/* Option 4: Bounce */}
-                    <Link 
-                      href="/submit" 
-                      className="flex items-center justify-center px-4 py-3 text-sm font-bold rounded-xl bg-white text-black border border-white/20 transition-all hover:bg-gray-200 animate-bounce-subtle"
-                    >
-                      4. Bounce
-                    </Link>
-
-                    {/* Option 5: Neon Glow */}
-                    <Link 
-                      href="/submit" 
-                      className="flex items-center justify-center px-4 py-3 text-sm font-bold rounded-xl bg-white text-black border border-white/20 transition-all hover:bg-gray-200 animate-neon-glow"
-                    >
-                      5. Neon Glow
-                    </Link>
-                  </div>
+                  {/* Submit Link */}
+                  <Link 
+                    href="/submit" 
+                    className="flex items-center justify-center px-4 py-3 text-sm font-bold rounded-xl bg-white text-black border border-white/20 transition-all hover:bg-gray-200 mt-2 animate-bounce-subtle"
+                  >
+                    Submit Resource
+                  </Link>
                 </nav>
               </div>
 
