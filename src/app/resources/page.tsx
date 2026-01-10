@@ -105,10 +105,7 @@ export default async function ResourcesPage() {
           {/* Main Content Area - List View */}
           <div className="flex-1 min-w-0">
             <header className="mb-12 border-b border-gray-900 pb-10">
-              <h1 className="text-4xl font-black tracking-tighter text-white uppercase italic mb-4">Discovery Engine</h1>
-              <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">
-                Scanned {resourcesWithRatings.length} verified neural resources.
-              </p>
+              <h1 className="text-4xl font-black tracking-tighter text-white uppercase italic">Discovery Engine</h1>
             </header>
 
             {resourcesWithRatings.length > 0 ? (
