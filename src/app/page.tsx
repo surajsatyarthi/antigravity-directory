@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
+import Link from 'next/link';
 import { Package } from 'lucide-react';
 import { auth } from '@/auth';
 import { MarketplaceHeader } from '@/components/MarketplaceHeader';
@@ -88,9 +89,15 @@ export default async function HomePage({
                     <Package className="w-8 h-8 text-gray-700" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">No tools found</h3>
-                  <p className="text-gray-500 max-w-sm">
-                    We couldn't find any resources matching your current filter criteria. Try broadening your search.
+                  <p className="text-gray-500 max-w-sm mb-8">
+                    We couldn&apos;t find any resources matching your current filter criteria. Try broadening your search.
                   </p>
+                  <Link
+                    href="/"
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-blue-600 hover:text-white transition-all text-sm"
+                  >
+                    Clear all filters
+                  </Link>
                 </div>
               )}
             </div>

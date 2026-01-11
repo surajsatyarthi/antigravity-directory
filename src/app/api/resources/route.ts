@@ -83,17 +83,19 @@ export async function GET(request: NextRequest) {
     
     // Handle specific error types
     if (error instanceof Error) {
-      if (error.message === 'Invalid input detected') {
+      const message = error.message.toLowerCase();
+      
+      if (message.includes('invalid input') || message.includes('sanitize')) {
         return NextResponse.json(
-          { error: 'Invalid input' },
+          { error: 'Invalid search parameters provided', code: 'INVALID_INPUT' },
           { status: 400 }
         );
       }
       
       // Database connection errors
-      if (error.message.includes('ECONNREFUSED')) {
+      if (message.includes('econnrefused') || message.includes('failed to connect') || message.includes('postgreserror')) {
         return NextResponse.json(
-          { error: 'Service unavailable' },
+          { error: 'Database service is temporarily unavailable', code: 'DB_OFFLINE' },
           { status: 503 }
         );
       }
@@ -101,7 +103,7 @@ export async function GET(request: NextRequest) {
     
     // Generic error response
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'An unexpected server error occurred', code: 'INTERNAL_ERROR' },
       { status: 500 }
     );
   }
