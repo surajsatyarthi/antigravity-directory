@@ -109,12 +109,12 @@ export function Footer() {
           {/* Links */}
           <div className="flex flex-col items-center gap-12 md:flex-row">
             <nav className="flex gap-10 font-mono text-[10px] tracking-widest text-gray-400 uppercase" aria-label="Footer Navigation">
-              <Link
-                href="/resources"
-                className="transition-colors hover:text-white focus:outline-none focus:text-blue-500"
-              >
-                Resources
-              </Link>
+                <Link 
+                  href="/" 
+                  className="text-gray-500 hover:text-white transition-colors"
+                >
+                  Explore
+                </Link>
               <Link
                 href="/submit"
                 className="transition-colors hover:text-white focus:outline-none focus:text-blue-500"

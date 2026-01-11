@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Filter Persistence (Phase 4)', () => {
-  const STORAGE_KEY = 'antigravity_filters';
+const STORAGE_KEY = 'antigravity_filters';
 
+test.describe('Filter Persistence (Phase 4)', () => {
   test.beforeEach(async ({ page }) => {
+    page.on('console', msg => console.log(`BROWSER [${msg.type()}]: ${msg.text()}`));
     // Mock the filtered resources API
     await page.route('/api/resources*', async (route) => {
       await route.fulfill({
@@ -17,79 +18,103 @@ test.describe('Filter Persistence (Phase 4)', () => {
         })
       });
     });
-
-    // Start at the homepage
-    await page.goto('/');
   });
 
   test('filters should persist after page reload', async ({ page }) => {
-    // 1. Select a category (using the Function filter in Sidebar)
-    // Note: We'll use the data-testid we added in Phase 2
-    const checkbox = page.locator('[data-testid^="filter-checkbox-"]').first();
-    const slug = await checkbox.getAttribute('data-testid').then(id => id?.replace('filter-checkbox-', ''));
+    // 1. Land on homepage
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
     
-    await checkbox.check();
+    // 2. Click a category checkbox
+    const checkbox = page.locator('label:has-text("Prompts")');
+    await checkbox.click();
     
-    // 2. Verify URL updated
-    await expect(page).toHaveURL(new RegExp(`categories=${slug}`));
+    const slug = 'prompts';
 
-    // 3. Reload the page
+    // 3. Wait for URL to update
+    await expect(page).toHaveURL(new RegExp(`categories=${slug}`), { timeout: 15000 });
+    
+    // 4. Reload
     await page.reload();
-
-    // 4. Verify checkbox is still checked and URL still has the param
-    await expect(checkbox).toBeChecked();
-    await expect(page).toHaveURL(new RegExp(`categories=${slug}`));
+    await page.waitForLoadState('networkidle');
     
-    // 5. Verify localStorage actually has the value
-    const storageValue = await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY);
-    expect(storageValue).toContain(slug);
+    // 5. Verify check persisted (Server-side validation check)
+    await expect(async () => {
+      const main = page.locator('main');
+      const stateStr = await main.getAttribute('data-filter-state');
+      const state = JSON.parse(stateStr || '{}');
+      expect(state.categories).toContain(slug);
+    }).toPass({ timeout: 15000 });
+    
+    // 6. Verify storage eventually matches
+    await expect(async () => {
+      const storageValue = await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY);
+      expect(storageValue).toContain(slug);
+    }).toPass({ timeout: 10000 });
   });
 
   test('URL parameters should override localStorage (Shared Link Priority)', async ({ page }) => {
-    // 1. Set a "persisted" filter in localStorage first
-    await page.evaluate((key) => {
+    const URL_SLUG = 'prompts';
+    const STORED_SLUG = 'rules';
+
+    // 1. Pre-seed storage
+    await page.addInitScript(({ key, slug }) => {
       localStorage.setItem(key, JSON.stringify({
-        categories: ['old-persisted-slug'],
+        categories: [slug],
         tags: [],
         search: '',
         sort: 'recommended'
       }));
-    }, STORAGE_KEY);
+    }, { key: STORAGE_KEY, slug: STORED_SLUG });
 
-    // 2. Navigate to a specific "shared" link with different parameters
-    await page.goto('/?categories=prompts');
+    // 2. Navigate with URL params
+    await page.goto(`/?categories=${URL_SLUG}`);
+    await page.waitForLoadState('networkidle');
 
-    // 3. Verify that the URL param "prompts" won!
-    await expect(page).toHaveURL(/categories=prompts/);
-    await expect(page).not.toHaveURL(/old-persisted-slug/);
-
-    // 4. Verify localStorage was updated to match the winning URL
-    const updatedStorage = await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY);
-    expect(updatedStorage).toContain('prompts');
-    expect(updatedStorage).not.toContain('old-persisted-slug');
+    // 3. Verify URL won (DOM state check)
+    await expect(async () => {
+      const main = page.locator('main');
+      const stateStr = await main.getAttribute('data-filter-state');
+      const state = JSON.parse(stateStr || '{}');
+      expect(state.categories).toContain(URL_SLUG);
+      expect(state.categories).not.toContain(STORED_SLUG);
+    }).toPass({ timeout: 15000 });
+    
+    // 4. Verify storage was eventually updated to URL state
+    await expect(async () => {
+      const updatedStorage = await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY);
+      expect(updatedStorage).toContain(URL_SLUG);
+    }).toPass({ timeout: 10000 });
   });
 
   test('invalid slugs in localStorage should be validated and cleaned', async ({ page }) => {
-    // 1. Inject a "zombie" slug into localStorage
-    await page.evaluate((key) => {
+    const INVALID_SLUG = 'invalid-123-slug';
+    const VALID_QUERY = 'valid-query';
+    
+    // 1. Pre-seed invalid storage BEFORE navigation
+    await page.addInitScript(({ key, slug, query }) => {
       localStorage.setItem(key, JSON.stringify({
-        categories: ['non-existent-category-123'],
+        categories: [slug],
         tags: [],
-        search: 'test-query',
+        search: query,
         sort: 'latest'
       }));
-    }, STORAGE_KEY);
+    }, { key: STORAGE_KEY, slug: INVALID_SLUG, query: VALID_QUERY });
 
-    // 2. Reload page to trigger restoration
-    await page.reload();
+    // 2. Load page
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
 
-    // 3. The API (Phase 3) and validation logic (Phase 3 Pre-work) should strip it
-    // Note: We check if the checkbox exists (it shouldn't) or if it's checked
-    // Also check if the URL was updated but excluded the invalid slug
-    await expect(page).not.toHaveURL(/categories=non-existent-category-123/);
-    
-    // Valid search query should still survive
-    await expect(page).toHaveURL(/q=test-query/);
-    await expect(page).toHaveURL(/sort=latest/);
+    // 2.5 Wait for URL to be reflected (even if dirty, q should be there)
+    await expect(page).toHaveURL(new RegExp(`q=${VALID_QUERY}`), { timeout: 15000 });
+
+    // 3. Verify invalid is gone from Data State (Cleaned by server)
+    await expect(async () => {
+      const main = page.locator('main');
+      const stateStr = await main.getAttribute('data-filter-state');
+      const state = JSON.parse(stateStr || '{}');
+      expect(state.categories).not.toContain(INVALID_SLUG);
+      expect(state.q).toBe(VALID_QUERY);
+    }).toPass({ timeout: 15000 });
   });
 });

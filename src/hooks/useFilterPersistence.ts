@@ -1,93 +1,145 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { FILTERS } from '@/constants';
+import { validateFilterParams } from '@/lib/validation';
 
 /**
- * Hook to persist filters in localStorage and sync with URL.
- * Follows "URL First" priority: 
- * - If URL has params, they override localStorage.
- * - If URL is empty, restores from localStorage.
+ * Robust filter persistence hook.
+ * Uses direct window.location for restoration handshake to avoid Next.js hook delays.
  */
 export function useFilterPersistence() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  
+  const [isReady, setIsReady] = useState(false);
   const isInitialMount = useRef(true);
+  const restorationActive = useRef(false);
+  const lastSyncedState = useRef<string | null>(null);
 
-  // Sync LOCAL STORAGE -> URL on Mount
+  // Sync state with URL params
+  const categoriesParam = searchParams.get('categories') || '';
+  const tagsParam = searchParams.get('tags') || '';
+  const qParam = searchParams.get('q') || '';
+  const sortParam = searchParams.get('sort') || FILTERS.DEFAULT_SORT;
+  
+  const hasUrlParams = categoriesParam !== '' || tagsParam !== '' || qParam !== '' || sortParam !== FILTERS.DEFAULT_SORT;
+
+  // 1. Initial Restoration / Readiness Check
   useEffect(() => {
     if (!isInitialMount.current) return;
     isInitialMount.current = false;
 
-    // Check if URL is "Clean" (no relevant filter params)
-    const hasUrlParams = 
-      searchParams.has('categories') || 
-      searchParams.has('tags') || 
-      searchParams.has('q') || 
-      searchParams.has('sort');
-
-    if (!hasUrlParams) {
-      try {
-        const saved = localStorage.getItem(FILTERS.LOCAL_STORAGE_KEY);
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          const params = new URLSearchParams();
-
-          if (parsed.categories?.length) params.set('categories', parsed.categories.join(','));
-          if (parsed.tags?.length) params.set('tags', parsed.tags.join(','));
-          if (parsed.search) params.set('q', parsed.search);
-          if (parsed.sort && parsed.sort !== FILTERS.DEFAULT_SORT) params.set('sort', parsed.sort);
-
-          if (params.toString()) {
-            router.replace(`${pathname}?${params.toString()}`);
-          }
-        }
-      } catch (e) {
-        console.error('Failed to restore filters from localStorage:', e);
-        localStorage.removeItem(FILTERS.LOCAL_STORAGE_KEY);
-      }
+    // If URL already has params, we are ready
+    if (hasUrlParams) {
+      setIsReady(true);
+      return;
     }
-  }, [pathname, router, searchParams]);
 
-  // Sync URL -> LOCAL STORAGE on Change
+    // Otherwise, try to restore from localStorage
+    const saved = localStorage.getItem(FILTERS.STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        const restorationParams = new URLSearchParams();
+        if (parsed.categories?.length) restorationParams.set('categories', parsed.categories.join(','));
+        if (parsed.tags?.length) restorationParams.set('tags', parsed.tags.join(','));
+        if (parsed.search) restorationParams.set('q', parsed.search);
+        if (parsed.sort) restorationParams.set('sort', parsed.sort);
+
+        const validated = validateFilterParams(restorationParams);
+        const finalParams = new URLSearchParams();
+        if (validated.categories.length) finalParams.set('categories', validated.categories.join(','));
+        if (validated.tags.length) finalParams.set('tags', validated.tags.join(','));
+        if (validated.search) finalParams.set('q', validated.search);
+        if (validated.sort !== FILTERS.DEFAULT_SORT) finalParams.set('sort', validated.sort);
+
+        const paramsString = finalParams.toString();
+        if (paramsString) {
+          const target = `${pathname}?${paramsString}`;
+          restorationActive.current = true;
+          router.replace(target);
+          
+          // Safety fallback: if URL doesn't change, we should still become ready
+          setTimeout(() => {
+            if (!isReady) setIsReady(true);
+          }, 1000);
+          return;
+        }
+      } catch (e) {}
+    }
+    
+    setIsReady(true);
+  }, []); 
+
+  // 2. Handshake: Monitor window.location directly
   useEffect(() => {
-    const filters = {
-      categories: searchParams.get('categories')?.split(',').filter(Boolean) || [],
-      tags: searchParams.get('tags')?.split(',').filter(Boolean) || [],
-      search: searchParams.get('q') || '',
-      sort: searchParams.get('sort') || FILTERS.DEFAULT_SORT,
+    if (isReady) return;
+    
+    const checkRestoration = () => {
+      if (restorationActive.current) {
+        const hasParams = window.location.search.length > 1;
+        if (hasParams) {
+          restorationActive.current = false;
+          setIsReady(true);
+        }
+      }
     };
 
-    // Only save if there is actually state to save
-    if (filters.categories.length || filters.tags.length || filters.search || filters.sort !== FILTERS.DEFAULT_SORT) {
-      localStorage.setItem(FILTERS.LOCAL_STORAGE_KEY, JSON.stringify(filters));
-    }
-  }, [searchParams]);
+    checkRestoration();
+    const timer = setInterval(checkRestoration, 100);
+    return () => clearInterval(timer);
+  }, [searchParams, isReady]);
 
-  // Cross-Tab Sync
+  // 3. Continuous Sync (URL -> Storage)
   useEffect(() => {
+    if (!isReady) return;
+
+    const filters = {
+      categories: categoriesParam.split(',').filter(Boolean),
+      tags: tagsParam.split(',').filter(Boolean),
+      search: qParam,
+      sort: sortParam,
+    };
+
+    const hasValues = filters.categories.length > 0 || filters.tags.length > 0 || filters.search !== '' || filters.sort !== FILTERS.DEFAULT_SORT;
+    const stateStr = JSON.stringify(filters);
+
+    if (hasValues) {
+      if (stateStr !== lastSyncedState.current) {
+        localStorage.setItem(FILTERS.STORAGE_KEY, stateStr);
+        lastSyncedState.current = stateStr;
+      }
+    } else if (searchParams.size === 0 && lastSyncedState.current !== null) {
+      localStorage.removeItem(FILTERS.STORAGE_KEY);
+      lastSyncedState.current = null;
+    }
+  }, [categoriesParam, tagsParam, qParam, sortParam, isReady, searchParams.size]);
+
+  // 4. Tab Sync
+  useEffect(() => {
+    if (!isReady) return;
+
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === FILTERS.LOCAL_STORAGE_KEY && e.newValue) {
+      if (e.key === FILTERS.STORAGE_KEY && e.newValue) {
+        if (e.newValue === lastSyncedState.current) return;
+        
         try {
           const parsed = JSON.parse(e.newValue);
-          const params = new URLSearchParams(searchParams);
+          const newParams = new URLSearchParams();
+          if (parsed.categories) newParams.set('categories', parsed.categories.join(','));
+          if (parsed.tags) newParams.set('tags', parsed.tags.join(','));
+          if (parsed.search) newParams.set('q', parsed.search);
+          if (parsed.sort) newParams.set('sort', parsed.sort);
           
-          // Update URL to match new storage values from other tab
-          if (parsed.categories) params.set('categories', parsed.categories.join(','));
-          if (parsed.tags) params.set('tags', parsed.tags.join(','));
-          if (parsed.search) params.set('q', parsed.search);
-          if (parsed.sort) params.set('sort', parsed.sort);
-
-          router.replace(`${pathname}?${params.toString()}`);
-        } catch (e) {
-          console.error('Storage sync error:', e);
-        }
+          const target = `${pathname}?${newParams.toString()}`;
+          router.push(target);
+        } catch (e) {}
       }
     };
-
     window.addEventListener('storage', handleStorageChange);
     return () => window.removeEventListener('storage', handleStorageChange);
-  }, [pathname, router, searchParams]);
+  }, [isReady, pathname, router]);
 }

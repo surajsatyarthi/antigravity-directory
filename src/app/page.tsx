@@ -8,10 +8,12 @@ import { FilterSidebar } from '@/components/filters/FilterSidebar';
 import { TopFilterBar } from '@/components/filters/TopFilterBar';
 import { FilterPersistenceManager } from '@/components/filters/FilterPersistenceManager';
 import { ResourceCard } from '@/components/ResourceCard';
+import { Pagination } from '@/components/filters/Pagination';
 import { Footer } from '@/components/Footer';
-import { getCategoriesWithCounts, getAllTags, getFilteredResources } from '@/lib/queries';
+import { DirectoryIntelligence } from '@/components/DirectoryIntelligence';
+import { Testimonials } from '@/components/Testimonials';
+import { getCategoriesWithCounts, getAllTags, getFilteredResources, validateCategorySlugs } from '@/lib/queries';
 import { validateFilterParams } from '@/lib/validation';
-import { LAYOUT } from '@/constants';
 
 export async function generateMetadata({
   searchParams,
@@ -25,14 +27,14 @@ export async function generateMetadata({
   
   return {
     title: "Discovery Engine | Antigravity AI Hub",
-    description: "The official directory for Google Antigravity resources, Windsurf rules, and MCP servers.",
+    description: "The primary directory for Google Antigravity resources, Windsurf rules, and MCP servers.",
   };
 }
 
 export default async function HomePage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; categories?: string; tags?: string; sort?: string }>;
+  searchParams: Promise<{ q?: string; categories?: string; tags?: string; sort?: string; page?: string }>;
 }) {
   const params = await searchParams;
   
@@ -40,88 +42,154 @@ export default async function HomePage({
   const urlParams = new URLSearchParams(params as Record<string, string>);
   const filters = validateFilterParams(urlParams);
   
-  // Fetch data with graceful degradation (db logic is inside these helpers)
-  const [categoriesWithCounts, tags, filteredResources] = await Promise.all([
+  // Validate slugs against DB to clean invalid ones
+  const validCategorySlugs = await validateCategorySlugs(filters.categories);
+  
+  const cleanedFilters = {
+    ...filters,
+    categories: validCategorySlugs
+  };
+
+  const page = Number(params.page) || 1;
+  const pageSize = 20;
+
+  const [session, categoriesWithCounts, tags, { resources: filteredResources, totalCount }] = await Promise.all([
+    auth(),
     getCategoriesWithCounts(),
     getAllTags(),
-    getFilteredResources(filters),
+    getFilteredResources(cleanedFilters, page, pageSize),
   ]);
+
+  const activeFilters = {
+    categories: cleanedFilters.categories,
+    tags: cleanedFilters.tags,
+    q: cleanedFilters.search,
+    sort: cleanedFilters.sort
+  };
 
   return (
     <>
       <MarketplaceHeader />
       <FilterPersistenceManager />
       
-      <main className="min-h-screen bg-black text-white selection:bg-blue-500/30">
+      <main 
+        className="min-h-screen bg-black text-white selection:bg-blue-500/30"
+        data-filter-state={JSON.stringify(activeFilters)}
+      >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
           {/* Main Layout Rail System */}
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             
             {/* Left Rail: Sticky Filter Sidebar */}
             <aside className="lg:w-[300px] shrink-0">
-              <div className="lg:sticky lg:top-[100px]">
+              <div className="lg:sticky lg:top-24">
+                <DirectoryIntelligence />
                 <FilterSidebar 
                   categories={categoriesWithCounts}
                   tags={tags}
                 />
+                <Testimonials />
               </div>
             </aside>
             
             {/* Center Rail: Filter Bar + Resource Grid */}
-            <div className="flex-1 min-w-0">
-              <TopFilterBar totalCount={filteredResources.length} />
+            <div className="flex-1 min-w-0" id="main-grid">
+              <TopFilterBar totalCount={totalCount} />
               
-              {filteredResources.length > 0 ? (
-                <div 
-                  className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8"
-                  data-testid="resource-grid"
-                >
-                  {filteredResources.map((resource) => (
-                    <ResourceCard
-                      key={resource.id}
-                      resource={resource as any}
-                    />
-                  ))}
+              <Suspense fallback={<div className="py-20 text-center text-gray-500 font-mono text-sm uppercase tracking-widest animate-pulse">Synchronizing directory...</div>}>
+                <div className="relative">
+                  {filteredResources.length > 0 ? (
+                    <>
+                      <div 
+                        id="resource-grid"
+                        className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 auto-rows-fr"
+                        role="region"
+                        aria-label="Agent Marketplace Grid"
+                      >
+                        {filteredResources.map((resource) => (
+                          <ResourceCard
+                            key={resource.id}
+                            resource={resource as any}
+                          />
+                        ))}
+                      </div>
+                      
+                      <Pagination totalCount={totalCount} pageSize={pageSize} />
+                    </>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center py-24 text-center border-2 border-dashed border-gray-900 rounded-3xl bg-gray-950/30">
+                      <div className="w-16 h-16 bg-gray-900 rounded-2xl flex items-center justify-center mb-6">
+                        <Package className="w-8 h-8 text-gray-700" />
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-2">No tools matching your filters</h3>
+                      <p className="text-gray-500 max-w-sm mb-8 leading-relaxed">
+                        We couldn&apos;t find any resources that match your current selection. 
+                        Try clearing your filters or changing your search query.
+                      </p>
+                      <Link
+                        href="/"
+                        className="flex items-center justify-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-blue-600 hover:text-white transition-all text-sm group"
+                      >
+                        Reset All Filters
+                      </Link>
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <div className="flex flex-col items-center justify-center py-24 text-center border-2 border-dashed border-gray-900 rounded-3xl bg-gray-950/30">
-                  <div className="w-16 h-16 bg-gray-900 rounded-2xl flex items-center justify-center mb-6">
-                    <Package className="w-8 h-8 text-gray-700" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">No tools found</h3>
-                  <p className="text-gray-500 max-w-sm mb-8">
-                    We couldn&apos;t find any resources matching your current filter criteria. Try broadening your search.
-                  </p>
-                  <Link
-                    href="/"
-                    className="flex items-center justify-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-blue-600 hover:text-white transition-all text-sm"
-                  >
-                    Clear all filters
-                  </Link>
-                </div>
-              )}
+              </Suspense>
             </div>
             
-            {/* Right Rail: Optional Social / Ad Rail (Desktop Only) */}
-            <aside className="hidden 2xl:block w-[320px] shrink-0">
-              <div className="sticky top-[100px] space-y-6">
-                <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-8 relative overflow-hidden group">
-                   <div className="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                   <h3 className="text-sm font-bold text-blue-500 uppercase tracking-widest mb-4">Community</h3>
-                   <p className="text-white font-medium mb-6 leading-relaxed">
-                     Join 5,000+ AI engineers building the next generation of agents.
-                   </p>
-                   <button className="w-full py-3 bg-white text-black font-bold rounded-xl hover:bg-blue-500 hover:text-white transition-all">
-                     Join Discord
-                   </button>
-                </div>
-                
-                <div className="bg-gray-950/50 border border-gray-900 rounded-3xl p-6">
-                   <h3 className="text-[10px] font-bold text-gray-600 uppercase tracking-[0.2em] mb-4 text-center">Sponsored</h3>
-                   <div className="aspect-[4/5] bg-gray-900/50 rounded-2xl border border-gray-800 flex items-center justify-center border-dashed">
-                      <span className="text-gray-700 font-mono text-xs italic">Advertisement Area</span>
-                   </div>
-                </div>
+            {/* Right Rail: Ads (Optimized Sticky) */}
+            <aside className="hidden xl:block w-[320px] shrink-0">
+              <div className="sticky top-24 space-y-6">
+                 {/* Ads Restored */}
+                 <div className="space-y-6">
+                    <h3 className="text-[10px] font-bold text-gray-600 uppercase tracking-[0.2em] mb-4 text-center italic">Sponsored</h3>
+                    
+                    {/* Ad 1 - Qodo AI */}
+                    <a 
+                      href="https://qodo.ai" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block overflow-hidden rounded-[24px] border border-gray-900 hover:border-blue-500/50 transition-all hover:scale-[1.02] active:scale-[0.98] group relative bg-gray-950/50"
+                    >
+                      <img
+                        src="/ads/1.png"
+                        alt="Qodo AI - Code Quality Platform"
+                        className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-all duration-500"
+                      />
+                      <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[8px] font-bold text-white/40 tracking-widest uppercase">Sponsored</span>
+                    </a>
+
+                    {/* Ad 2 - Supabase */}
+                    <a 
+                      href="https://supabase.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block overflow-hidden rounded-[24px] border border-gray-900 hover:border-emerald-500/50 transition-all hover:scale-[1.02] active:scale-[0.98] group relative bg-gray-950/50"
+                    >
+                      <img
+                        src="/ads/2.png"
+                        alt="Supabase - Build in a weekend"
+                        className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-all duration-500"
+                      />
+                      <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[8px] font-bold text-white/40 tracking-widest uppercase">Partner</span>
+                    </a>
+
+                    {/* Ad 3 - Speechify */}
+                    <a 
+                      href="https://speechify.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block overflow-hidden rounded-[24px] border border-gray-900 hover:border-orange-500/50 transition-all hover:scale-[1.02] active:scale-[0.98] group relative bg-gray-950/50"
+                    >
+                      <img
+                        src="/ads/Untitled design (1).png"
+                        alt="Speechify - Natural AI Voices"
+                        className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-all duration-500"
+                      />
+                      <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[8px] font-bold text-white/40 tracking-widest uppercase">Featured</span>
+                    </a>
+                 </div>
               </div>
             </aside>
             

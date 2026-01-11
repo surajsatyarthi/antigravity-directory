@@ -7,6 +7,7 @@ import { useFilterPersistence } from '@/hooks/useFilterPersistence';
  * This is separated to keep the main Page as a server component.
  */
 export function FilterPersistenceManager() {
+  console.log('[FilterPersistenceManager] Mounted');
   useFilterPersistence();
-  return null; // This component doesn't render anything
+  return null;
 }

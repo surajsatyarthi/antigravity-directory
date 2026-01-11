@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, Search, Zap } from 'lucide-react';
+import { Home, Search, Eye, Sparkles, Zap } from 'lucide-react';
 import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 import { Footer } from '@/components/Footer';
 
@@ -30,10 +30,10 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Link 
             href="/" 
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-black rounded-2xl hover:bg-gray-200 transition-all uppercase tracking-widest text-xs active:scale-95"
+            className="group flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-blue-500/20"
           >
-            <ArrowLeft className="w-4 h-4" />
-            Recalibrate Home
+            <Home className="w-5 h-5" />
+            Back to Hub
           </Link>
           <Link 
             href="/resources" 

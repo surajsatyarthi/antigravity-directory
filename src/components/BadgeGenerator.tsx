@@ -14,7 +14,7 @@ export function BadgeGenerator({ slug, title }: BadgeGeneratorProps) {
   // Use a relative path for the image for now, or a public CDN if we had one
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory';
   const badgeUrl = `${siteUrl}/api/badges/${slug}`;
-  const profileUrl = `${siteUrl}/resources/${slug}`;
+  const profileUrl = `${siteUrl}/t/${slug}`;
   
   const embedCode = `<a href="${profileUrl}" target="_blank"><img src="${badgeUrl}" alt="Featured on Antigravity: ${title}" width="150" height="auto" /></a>`;
 

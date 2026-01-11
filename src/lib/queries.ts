@@ -12,9 +12,10 @@ import { FilterState, ResourceWithRelations, CategoryWithCount, Tag } from '@/ty
  * Get filtered resources with all relations
  * Optimized with single query using JOINs and aggregations
  */
-export async function getFilteredResources(filters: FilterState): Promise<ResourceWithRelations[]> {
+export async function getFilteredResources(filters: FilterState, page: number = 1, pageSize: number = 20): Promise<{ resources: ResourceWithRelations[], totalCount: number }> {
   try {
     const conditions = [];
+    const offset = (page - 1) * pageSize;
     
     // Filter by categories (OR logic within categories)
     if (filters.categories.length > 0) {
@@ -29,8 +30,7 @@ export async function getFilteredResources(filters: FilterState): Promise<Resour
       if (categoryIds.length > 0) {
         conditions.push(inArray(resources.categoryId, categoryIds));
       } else {
-        // If categories were requested but none found, return empty
-        return [];
+        return { resources: [], totalCount: 0 };
       }
     }
     
@@ -54,7 +54,7 @@ export async function getFilteredResources(filters: FilterState): Promise<Resour
         if (resourceIds.length > 0) {
           conditions.push(inArray(resources.id, resourceIds));
         } else {
-          return [];
+          return { resources: [], totalCount: 0 };
         }
       }
     }
@@ -69,7 +69,16 @@ export async function getFilteredResources(filters: FilterState): Promise<Resour
       );
     }
     
-    // Build main query
+    // Get total count first
+    const countResult = await db
+      .select({ count: sql<number>`count(distinct ${resources.id})` })
+      .from(resources)
+      .leftJoin(categories, eq(resources.categoryId, categories.id))
+      .where(conditions.length > 0 ? and(...conditions) : undefined);
+    
+    const totalCount = Number(countResult[0]?.count || 0);
+
+    // Build main query with limit/offset
     const results = await db
       .select({
         id: resources.id,
@@ -94,41 +103,66 @@ export async function getFilteredResources(filters: FilterState): Promise<Resour
       .leftJoin(ratings, eq(resources.id, ratings.resourceId))
       .where(conditions.length > 0 ? and(...conditions) : undefined)
       .groupBy(resources.id, categories.name)
-      .orderBy(desc(resources.featured), desc(resources.views));
+      .orderBy(desc(resources.featured), desc(resources.views))
+      .limit(pageSize)
+      .offset(offset);
 
-    return results as unknown as ResourceWithRelations[];
+    return { 
+      resources: results as unknown as ResourceWithRelations[],
+      totalCount
+    };
 
   } catch (error) {
     console.warn('Database unavailable, returning mock data:', error);
     // Return mock data for development/testing when DB is down
-    return [
+    const mockResources = [
       {
         id: '1',
         title: 'Prompt Engineering Guide',
-        slug: 'prompts',
+        slug: 'prompt-engineering-guide',
         description: 'Comprehensive guide for all AI models.',
+        content: '# Guide Content',
+        url: 'https://example.com/guide',
+        thumbnail: null,
+        categoryId: '1',
+        authorId: null,
+        featured: true,
+        verified: true,
         views: 1200,
+        copiedCount: 45,
+        publishedAt: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
         categoryName: 'Prompts',
         avgRating: 4.8,
         ratingCount: 156,
-        featured: true,
-        integrations: ['openai', 'anthropic'],
-        publishedAt: new Date()
       },
       {
         id: '2',
         title: 'MCP Server Boilerplate',
         slug: 'mcp-boilerplate',
         description: 'Get started with Model Context Protocol.',
+        content: '# Boilerplate Content',
+        url: 'https://github.com/example/mcp-boilerplate',
+        thumbnail: null,
+        categoryId: '2',
+        authorId: null,
+        featured: false,
+        verified: true,
         views: 850,
+        copiedCount: 12,
+        publishedAt: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
         categoryName: 'Development',
         avgRating: 4.5,
         ratingCount: 42,
-        featured: false,
-        integrations: ['typescript', 'node'],
-        publishedAt: new Date()
-      }
+      },
     ];
+    return {
+      resources: mockResources as ResourceWithRelations[],
+      totalCount: mockResources.length
+    };
   }
 }
 
@@ -181,16 +215,21 @@ export async function getAllTags(): Promise<Tag[]> {
  * Validate category slugs
  */
 export async function validateCategorySlugs(slugs: string[]): Promise<string[]> {
+  console.log('[validateCategorySlugs] Validating:', slugs);
   if (slugs.length === 0) return [];
   try {
     const validCategories = await db
       .select({ slug: categories.slug })
       .from(categories)
       .where(inArray(categories.slug, slugs));
-    return validCategories.map((c: any) => c.slug);
+    const result = validCategories.map((c: any) => c.slug);
+    console.log('[validateCategorySlugs] Result:', result);
+    return result;
   } catch (error) {
     // If DB is down, assume the slugs from pre-defined mock set are valid
     const mockSlugs = ['prompts', 'rules'];
-    return slugs.filter(s => mockSlugs.includes(s));
+    const result = slugs.filter(s => mockSlugs.includes(s));
+    console.log('[validateCategorySlugs] DB Error. Mock Result:', result);
+    return result;
   }
 }

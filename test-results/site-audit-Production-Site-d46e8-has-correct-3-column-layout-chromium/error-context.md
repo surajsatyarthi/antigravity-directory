@@ -1,0 +1,3811 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "antigravity" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img [ref=e8]
+          - generic [ref=e10]: antigravity
+        - generic [ref=e11]:
+          - img [ref=e12]
+          - textbox "Search prompts, rules, MCPs..." [ref=e15]
+        - generic [ref=e16]:
+          - navigation [ref=e17]:
+            - link "Explore" [ref=e18] [cursor=pointer]:
+              - /url: /
+            - button "Sign In" [ref=e20]
+          - button "Sign In" [ref=e22]
+    - main [ref=e23]:
+      - generic [ref=e25]:
+        - complementary [ref=e26]:
+          - complementary "Filters" [ref=e28]:
+            - generic [ref=e29]:
+              - heading "Filters" [level=2] [ref=e30]
+              - generic [ref=e31]:
+                - button "Function" [expanded] [ref=e32]:
+                  - generic [ref=e33]: Function
+                  - img [ref=e34]
+                - group "Filters" [ref=e36]:
+                  - generic [ref=e37] [cursor=pointer]:
+                    - generic [ref=e38]:
+                      - checkbox "Filter by Prompts, 4 items available" [ref=e39]
+                      - img
+                    - generic [ref=e40]: Prompts
+                    - generic [ref=e41]: "4"
+                  - generic [ref=e42] [cursor=pointer]:
+                    - generic [ref=e43]:
+                      - checkbox "Filter by MCP Servers, 102 items available" [ref=e44]
+                      - img
+                    - generic [ref=e45]: MCP Servers
+                    - generic [ref=e46]: "102"
+                  - generic [ref=e47] [cursor=pointer]:
+                    - generic [ref=e48]:
+                      - checkbox "Filter by Rules, 4 items available" [ref=e49]
+                      - img
+                    - generic [ref=e50]: Rules
+                    - generic [ref=e51]: "4"
+                  - generic [ref=e52] [cursor=pointer]:
+                    - generic [ref=e53]:
+                      - checkbox "Filter by Workflows, 3 items available" [ref=e54]
+                      - img
+                    - generic [ref=e55]: Workflows
+                    - generic [ref=e56]: "3"
+                  - generic [ref=e57] [cursor=pointer]:
+                    - generic [ref=e58]:
+                      - checkbox "Filter by Boilerplates, 3 items available" [ref=e59]
+                      - img
+                    - generic [ref=e60]: Boilerplates
+                    - generic [ref=e61]: "3"
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - radiogroup "Filter by category group" [ref=e64]:
+              - radio "AI for Process" [ref=e65]
+              - radio "AI for Work" [ref=e66]
+              - radio "AI for Service" [ref=e67]
+            - generic [ref=e68]:
+              - search [ref=e69]:
+                - generic [ref=e70]: Search resources
+                - img [ref=e71]
+                - searchbox "Search resources by title or description" [ref=e74]
+              - generic [ref=e75]:
+                - generic [ref=e76]:
+                  - generic [ref=e77]: "Sort:"
+                  - combobox "Sort resources by" [ref=e78] [cursor=pointer]:
+                    - option "Recommended" [selected]
+                    - option "Latest"
+                    - option "Most Viewed"
+                    - option "Highest Rated"
+                - status [ref=e79]: 116 RESULTS
+          - region "Agent Marketplace Grid" [ref=e81]:
+            - generic [ref=e82]:
+              - 'link "View details for sooperset/mcp-atlassian: MCP server for Atlassian tools (Confluence, Jira)" [ref=e83] [cursor=pointer]':
+                - /url: /resources/sooperset-mcp-atlassian
+                - generic [ref=e84]: "View details for sooperset/mcp-atlassian: MCP server for Atlassian tools (Confluence, Jira)"
+              - generic [ref=e85]:
+                - generic [ref=e86]:
+                  - generic [ref=e88]: MCP Servers
+                  - generic "Featured Resource" [ref=e89]:
+                    - img [ref=e90]
+                - generic [ref=e92]:
+                  - heading "sooperset/mcp-atlassian" [level=3] [ref=e93]
+                  - paragraph [ref=e94]: MCP server for Atlassian tools (Confluence, Jira)
+                - generic [ref=e95]:
+                  - generic [ref=e96]:
+                    - 'generic "Rating: 4.6 stars out of 10 reviews" [ref=e97]':
+                      - generic [ref=e98]:
+                        - img [ref=e99]
+                        - generic [ref=e101]: "4.6"
+                      - generic [ref=e102]: (10)
+                    - generic "1095 views" [ref=e103]:
+                      - img [ref=e104]
+                      - generic [ref=e107]: 1.1k
+                  - generic [ref=e108]:
+                    - button "Add Bookmark" [ref=e109]:
+                      - img [ref=e110]
+                    - img [ref=e113]
+            - generic [ref=e115]:
+              - 'link "View details for ThinkInAIXYZ/deepchat: 🐬DeepChat - A smart assistant that connects powerful AI to your personal world" [ref=e116] [cursor=pointer]':
+                - /url: /resources/thinkinaixyz-deepchat
+                - generic [ref=e117]: "View details for ThinkInAIXYZ/deepchat: 🐬DeepChat - A smart assistant that connects powerful AI to your personal world"
+              - generic [ref=e118]:
+                - generic [ref=e119]:
+                  - generic [ref=e121]: MCP Servers
+                  - generic "Featured Resource" [ref=e122]:
+                    - img [ref=e123]
+                - generic [ref=e125]:
+                  - heading "ThinkInAIXYZ/deepchat" [level=3] [ref=e126]
+                  - paragraph [ref=e127]: 🐬DeepChat - A smart assistant that connects powerful AI to your personal world
+                - generic [ref=e128]:
+                  - generic [ref=e129]:
+                    - 'generic "Rating: 4.7 stars out of 3 reviews" [ref=e130]':
+                      - generic [ref=e131]:
+                        - img [ref=e132]
+                        - generic [ref=e134]: "4.7"
+                      - generic [ref=e135]: (3)
+                    - generic "1082 views" [ref=e136]:
+                      - img [ref=e137]
+                      - generic [ref=e140]: 1.1k
+                  - generic [ref=e141]:
+                    - button "Add Bookmark" [ref=e142]:
+                      - img [ref=e143]
+                    - img [ref=e146]
+            - generic [ref=e148]:
+              - 'link "View details for open-webui/open-webui: User-friendly AI Interface (Supports Ollama, OpenAI API, ...)" [ref=e149] [cursor=pointer]':
+                - /url: /resources/open-webui-open-webui
+                - generic [ref=e150]: "View details for open-webui/open-webui: User-friendly AI Interface (Supports Ollama, OpenAI API, ...)"
+              - generic [ref=e151]:
+                - generic [ref=e152]:
+                  - generic [ref=e154]: MCP Servers
+                  - generic "Featured Resource" [ref=e155]:
+                    - img [ref=e156]
+                - generic [ref=e158]:
+                  - heading "open-webui/open-webui" [level=3] [ref=e159]
+                  - paragraph [ref=e160]: User-friendly AI Interface (Supports Ollama, OpenAI API, ...)
+                - generic [ref=e161]:
+                  - generic [ref=e162]:
+                    - 'generic "Rating: 4.5 stars out of 8 reviews" [ref=e163]':
+                      - generic [ref=e164]:
+                        - img [ref=e165]
+                        - generic [ref=e167]: "4.5"
+                      - generic [ref=e168]: (8)
+                    - generic "1081 views" [ref=e169]:
+                      - img [ref=e170]
+                      - generic [ref=e173]: 1.1k
+                  - generic [ref=e174]:
+                    - button "Add Bookmark" [ref=e175]:
+                      - img [ref=e176]
+                    - img [ref=e179]
+            - generic [ref=e181]:
+              - 'link "View details for aipotheosis-labs/aci: ACI.dev is the open source tool-calling platform that hooks up 600+ tools into any agentic IDE or custom AI agent through direct function calling or a unified MCP server. The birthplace of VibeOps." [ref=e182] [cursor=pointer]':
+                - /url: /resources/aipotheosis-labs-aci
+                - generic [ref=e183]: "View details for aipotheosis-labs/aci: ACI.dev is the open source tool-calling platform that hooks up 600+ tools into any agentic IDE or custom AI agent through direct function calling or a unified MCP server. The birthplace of VibeOps."
+              - generic [ref=e184]:
+                - generic [ref=e185]:
+                  - generic [ref=e187]: MCP Servers
+                  - generic "Featured Resource" [ref=e188]:
+                    - img [ref=e189]
+                - generic [ref=e191]:
+                  - heading "aipotheosis-labs/aci" [level=3] [ref=e192]
+                  - paragraph [ref=e193]: ACI.dev is the open source tool-calling platform that hooks up 600+ tools into any agentic IDE or custom AI agent through direct function calling or a unified MCP server. The birthplace of VibeOps.
+                - generic [ref=e194]:
+                  - generic [ref=e195]:
+                    - 'generic "Rating: 4.7 stars out of 12 reviews" [ref=e196]':
+                      - generic [ref=e197]:
+                        - img [ref=e198]
+                        - generic [ref=e200]: "4.7"
+                      - generic [ref=e201]: (12)
+                    - generic "1075 views" [ref=e202]:
+                      - img [ref=e203]
+                      - generic [ref=e206]: 1.1k
+                  - generic [ref=e207]:
+                    - button "Add Bookmark" [ref=e208]:
+                      - img [ref=e209]
+                    - img [ref=e212]
+            - generic [ref=e214]:
+              - 'link "View details for VoltAgent/voltagent: AI Agent Engineering Platform built on an Open Source TypeScript AI Agent Framework" [ref=e215] [cursor=pointer]':
+                - /url: /resources/voltagent-voltagent
+                - generic [ref=e216]: "View details for VoltAgent/voltagent: AI Agent Engineering Platform built on an Open Source TypeScript AI Agent Framework"
+              - generic [ref=e217]:
+                - generic [ref=e218]:
+                  - generic [ref=e220]: MCP Servers
+                  - generic "Featured Resource" [ref=e221]:
+                    - img [ref=e222]
+                - generic [ref=e224]:
+                  - heading "VoltAgent/voltagent" [level=3] [ref=e225]
+                  - paragraph [ref=e226]: AI Agent Engineering Platform built on an Open Source TypeScript AI Agent Framework
+                - generic [ref=e227]:
+                  - generic [ref=e228]:
+                    - 'generic "Rating: 4.6 stars out of 12 reviews" [ref=e229]':
+                      - generic [ref=e230]:
+                        - img [ref=e231]
+                        - generic [ref=e233]: "4.6"
+                      - generic [ref=e234]: (12)
+                    - generic "1074 views" [ref=e235]:
+                      - img [ref=e236]
+                      - generic [ref=e239]: 1.1k
+                  - generic [ref=e240]:
+                    - button "Add Bookmark" [ref=e241]:
+                      - img [ref=e242]
+                    - img [ref=e245]
+            - generic [ref=e247]:
+              - 'link "View details for googleapis/genai-toolbox: MCP Toolbox for Databases is an open source MCP server for databases." [ref=e248] [cursor=pointer]':
+                - /url: /resources/googleapis-genai-toolbox
+                - generic [ref=e249]: "View details for googleapis/genai-toolbox: MCP Toolbox for Databases is an open source MCP server for databases."
+              - generic [ref=e250]:
+                - generic [ref=e251]:
+                  - generic [ref=e253]: MCP Servers
+                  - generic "Featured Resource" [ref=e254]:
+                    - img [ref=e255]
+                - generic [ref=e257]:
+                  - heading "googleapis/genai-toolbox" [level=3] [ref=e258]
+                  - paragraph [ref=e259]: MCP Toolbox for Databases is an open source MCP server for databases.
+                - generic [ref=e260]:
+                  - generic [ref=e261]:
+                    - 'generic "Rating: 4.3 stars out of 9 reviews" [ref=e262]':
+                      - generic [ref=e263]:
+                        - img [ref=e264]
+                        - generic [ref=e266]: "4.3"
+                      - generic [ref=e267]: (9)
+                    - generic "1072 views" [ref=e268]:
+                      - img [ref=e269]
+                      - generic [ref=e272]: 1.1k
+                  - generic [ref=e273]:
+                    - button "Add Bookmark" [ref=e274]:
+                      - img [ref=e275]
+                    - img [ref=e278]
+            - generic [ref=e280]:
+              - 'link "View details for iflytek/astron-rpa: Agent-ready RPA suite with out-of-the-box automation tools. Built for individuals and enterprises." [ref=e281] [cursor=pointer]':
+                - /url: /resources/iflytek-astron-rpa
+                - generic [ref=e282]: "View details for iflytek/astron-rpa: Agent-ready RPA suite with out-of-the-box automation tools. Built for individuals and enterprises."
+              - generic [ref=e283]:
+                - generic [ref=e284]:
+                  - generic [ref=e286]: MCP Servers
+                  - generic "Featured Resource" [ref=e287]:
+                    - img [ref=e288]
+                - generic [ref=e290]:
+                  - heading "iflytek/astron-rpa" [level=3] [ref=e291]
+                  - paragraph [ref=e292]: Agent-ready RPA suite with out-of-the-box automation tools. Built for individuals and enterprises.
+                - generic [ref=e293]:
+                  - generic [ref=e294]:
+                    - 'generic "Rating: 4.7 stars out of 3 reviews" [ref=e295]':
+                      - generic [ref=e296]:
+                        - img [ref=e297]
+                        - generic [ref=e299]: "4.7"
+                      - generic [ref=e300]: (3)
+                    - generic "1071 views" [ref=e301]:
+                      - img [ref=e302]
+                      - generic [ref=e305]: 1.1k
+                  - generic [ref=e306]:
+                    - button "Add Bookmark" [ref=e307]:
+                      - img [ref=e308]
+                    - img [ref=e311]
+            - generic [ref=e313]:
+              - 'link "View details for ag2ai/ag2: AG2 (formerly AutoGen): The Open-Source AgentOS. Join us at: https://discord.gg/sNGSwQME3x" [ref=e314] [cursor=pointer]':
+                - /url: /resources/ag2ai-ag2
+                - generic [ref=e315]: "View details for ag2ai/ag2: AG2 (formerly AutoGen): The Open-Source AgentOS. Join us at: https://discord.gg/sNGSwQME3x"
+              - generic [ref=e316]:
+                - generic [ref=e317]:
+                  - generic [ref=e319]: MCP Servers
+                  - generic "Featured Resource" [ref=e320]:
+                    - img [ref=e321]
+                - generic [ref=e323]:
+                  - heading "ag2ai/ag2" [level=3] [ref=e324]
+                  - paragraph [ref=e325]: "AG2 (formerly AutoGen): The Open-Source AgentOS. Join us at: https://discord.gg/sNGSwQME3x"
+                - generic [ref=e326]:
+                  - generic [ref=e327]:
+                    - 'generic "Rating: 4.5 stars out of 8 reviews" [ref=e328]':
+                      - generic [ref=e329]:
+                        - img [ref=e330]
+                        - generic [ref=e332]: "4.5"
+                      - generic [ref=e333]: (8)
+                    - generic "1055 views" [ref=e334]:
+                      - img [ref=e335]
+                      - generic [ref=e338]: 1.1k
+                  - generic [ref=e339]:
+                    - button "Add Bookmark" [ref=e340]:
+                      - img [ref=e341]
+                    - img [ref=e344]
+            - generic [ref=e346]:
+              - 'link "View details for Klavis-AI/klavis: Klavis AI (YC X25): MCP integration platforms that let AI agents use tools reliably at any scale" [ref=e347] [cursor=pointer]':
+                - /url: /resources/klavis-ai-klavis
+                - generic [ref=e348]: "View details for Klavis-AI/klavis: Klavis AI (YC X25): MCP integration platforms that let AI agents use tools reliably at any scale"
+              - generic [ref=e349]:
+                - generic [ref=e350]:
+                  - generic [ref=e352]: MCP Servers
+                  - generic "Featured Resource" [ref=e353]:
+                    - img [ref=e354]
+                - generic [ref=e356]:
+                  - heading "Klavis-AI/klavis" [level=3] [ref=e357]
+                  - paragraph [ref=e358]: "Klavis AI (YC X25): MCP integration platforms that let AI agents use tools reliably at any scale"
+                - generic [ref=e359]:
+                  - generic [ref=e360]:
+                    - 'generic "Rating: 4.7 stars out of 3 reviews" [ref=e361]':
+                      - generic [ref=e362]:
+                        - img [ref=e363]
+                        - generic [ref=e365]: "4.7"
+                      - generic [ref=e366]: (3)
+                    - generic "1040 views" [ref=e367]:
+                      - img [ref=e368]
+                      - generic [ref=e371]: 1.0k
+                  - generic [ref=e372]:
+                    - button "Add Bookmark" [ref=e373]:
+                      - img [ref=e374]
+                    - img [ref=e377]
+            - generic [ref=e379]:
+              - 'link "View details for Portkey-AI/gateway: A blazing fast AI Gateway with integrated guardrails. Route to 200+ LLMs, 50+ AI Guardrails with 1 fast & friendly API." [ref=e380] [cursor=pointer]':
+                - /url: /resources/portkey-ai-gateway
+                - generic [ref=e381]: "View details for Portkey-AI/gateway: A blazing fast AI Gateway with integrated guardrails. Route to 200+ LLMs, 50+ AI Guardrails with 1 fast & friendly API."
+              - generic [ref=e382]:
+                - generic [ref=e383]:
+                  - generic [ref=e385]: MCP Servers
+                  - generic "Featured Resource" [ref=e386]:
+                    - img [ref=e387]
+                - generic [ref=e389]:
+                  - heading "Portkey-AI/gateway" [level=3] [ref=e390]
+                  - paragraph [ref=e391]: A blazing fast AI Gateway with integrated guardrails. Route to 200+ LLMs, 50+ AI Guardrails with 1 fast & friendly API.
+                - generic [ref=e392]:
+                  - generic [ref=e393]:
+                    - 'generic "Rating: 4.5 stars out of 6 reviews" [ref=e394]':
+                      - generic [ref=e395]:
+                        - img [ref=e396]
+                        - generic [ref=e398]: "4.5"
+                      - generic [ref=e399]: (6)
+                    - generic "998 views" [ref=e400]:
+                      - img [ref=e401]
+                      - generic [ref=e404]: "998"
+                  - generic [ref=e405]:
+                    - button "Add Bookmark" [ref=e406]:
+                      - img [ref=e407]
+                    - img [ref=e410]
+            - generic [ref=e412]:
+              - 'link "View details for NevaMind-AI/memU: Memory infrastructure for LLMs and AI agents" [ref=e413] [cursor=pointer]':
+                - /url: /resources/nevamind-ai-memu
+                - generic [ref=e414]: "View details for NevaMind-AI/memU: Memory infrastructure for LLMs and AI agents"
+              - generic [ref=e415]:
+                - generic [ref=e416]:
+                  - generic [ref=e418]: MCP Servers
+                  - generic "Featured Resource" [ref=e419]:
+                    - img [ref=e420]
+                - generic [ref=e422]:
+                  - heading "NevaMind-AI/memU" [level=3] [ref=e423]
+                  - paragraph [ref=e424]: Memory infrastructure for LLMs and AI agents
+                - generic [ref=e425]:
+                  - generic [ref=e426]:
+                    - 'generic "Rating: 4.6 stars out of 5 reviews" [ref=e427]':
+                      - generic [ref=e428]:
+                        - img [ref=e429]
+                        - generic [ref=e431]: "4.6"
+                      - generic [ref=e432]: (5)
+                    - generic "974 views" [ref=e433]:
+                      - img [ref=e434]
+                      - generic [ref=e437]: "974"
+                  - generic [ref=e438]:
+                    - button "Add Bookmark" [ref=e439]:
+                      - img [ref=e440]
+                    - img [ref=e443]
+            - generic [ref=e445]:
+              - 'link "View details for yzfly/Awesome-MCP-ZH: MCP 资源精选， MCP指南，Claude MCP，MCP Servers, MCP Clients" [ref=e446] [cursor=pointer]':
+                - /url: /resources/yzfly-awesome-mcp-zh
+                - generic [ref=e447]: "View details for yzfly/Awesome-MCP-ZH: MCP 资源精选， MCP指南，Claude MCP，MCP Servers, MCP Clients"
+              - generic [ref=e448]:
+                - generic [ref=e449]:
+                  - generic [ref=e451]: MCP Servers
+                  - generic "Featured Resource" [ref=e452]:
+                    - img [ref=e453]
+                - generic [ref=e455]:
+                  - heading "yzfly/Awesome-MCP-ZH" [level=3] [ref=e456]
+                  - paragraph [ref=e457]: MCP 资源精选， MCP指南，Claude MCP，MCP Servers, MCP Clients
+                - generic [ref=e458]:
+                  - generic [ref=e459]:
+                    - 'generic "Rating: 4.3 stars out of 6 reviews" [ref=e460]':
+                      - generic [ref=e461]:
+                        - img [ref=e462]
+                        - generic [ref=e464]: "4.3"
+                      - generic [ref=e465]: (6)
+                    - generic "951 views" [ref=e466]:
+                      - img [ref=e467]
+                      - generic [ref=e470]: "951"
+                  - generic [ref=e471]:
+                    - button "Add Bookmark" [ref=e472]:
+                      - img [ref=e473]
+                    - img [ref=e476]
+            - generic [ref=e478]:
+              - 'link "View details for beclab/Olares: Olares: An Open-Source Personal Cloud to Reclaim Your Data" [ref=e479] [cursor=pointer]':
+                - /url: /resources/beclab-olares
+                - generic [ref=e480]: "View details for beclab/Olares: Olares: An Open-Source Personal Cloud to Reclaim Your Data"
+              - generic [ref=e481]:
+                - generic [ref=e482]:
+                  - generic [ref=e484]: MCP Servers
+                  - generic "Featured Resource" [ref=e485]:
+                    - img [ref=e486]
+                - generic [ref=e488]:
+                  - heading "beclab/Olares" [level=3] [ref=e489]
+                  - paragraph [ref=e490]: "Olares: An Open-Source Personal Cloud to Reclaim Your Data"
+                - generic [ref=e491]:
+                  - generic [ref=e492]:
+                    - 'generic "Rating: 4.6 stars out of 5 reviews" [ref=e493]':
+                      - generic [ref=e494]:
+                        - img [ref=e495]
+                        - generic [ref=e497]: "4.6"
+                      - generic [ref=e498]: (5)
+                    - generic "946 views" [ref=e499]:
+                      - img [ref=e500]
+                      - generic [ref=e503]: "946"
+                  - generic [ref=e504]:
+                    - button "Add Bookmark" [ref=e505]:
+                      - img [ref=e506]
+                    - img [ref=e509]
+            - generic [ref=e511]:
+              - 'link "View details for mcp-use/mcp-use: mcp-use is the easiest way to interact with mcp servers with custom agents" [ref=e512] [cursor=pointer]':
+                - /url: /resources/mcp-use-mcp-use
+                - generic [ref=e513]: "View details for mcp-use/mcp-use: mcp-use is the easiest way to interact with mcp servers with custom agents"
+              - generic [ref=e514]:
+                - generic [ref=e515]:
+                  - generic [ref=e517]: MCP Servers
+                  - generic "Featured Resource" [ref=e518]:
+                    - img [ref=e519]
+                - generic [ref=e521]:
+                  - heading "mcp-use/mcp-use" [level=3] [ref=e522]
+                  - paragraph [ref=e523]: mcp-use is the easiest way to interact with mcp servers with custom agents
+                - generic [ref=e524]:
+                  - generic [ref=e525]:
+                    - 'generic "Rating: 4.4 stars out of 5 reviews" [ref=e526]':
+                      - generic [ref=e527]:
+                        - img [ref=e528]
+                        - generic [ref=e530]: "4.4"
+                      - generic [ref=e531]: (5)
+                    - generic "946 views" [ref=e532]:
+                      - img [ref=e533]
+                      - generic [ref=e536]: "946"
+                  - generic [ref=e537]:
+                    - button "Add Bookmark" [ref=e538]:
+                      - img [ref=e539]
+                    - img [ref=e542]
+            - generic [ref=e544]:
+              - 'link "View details for BrowserMCP/mcp: Browser MCP is a Model Context Provider (MCP) server that allows AI applications to control your browser" [ref=e545] [cursor=pointer]':
+                - /url: /resources/browsermcp-mcp
+                - generic [ref=e546]: "View details for BrowserMCP/mcp: Browser MCP is a Model Context Provider (MCP) server that allows AI applications to control your browser"
+              - generic [ref=e547]:
+                - generic [ref=e548]:
+                  - generic [ref=e550]: MCP Servers
+                  - generic "Featured Resource" [ref=e551]:
+                    - img [ref=e552]
+                - generic [ref=e554]:
+                  - heading "BrowserMCP/mcp" [level=3] [ref=e555]
+                  - paragraph [ref=e556]: Browser MCP is a Model Context Provider (MCP) server that allows AI applications to control your browser
+                - generic [ref=e557]:
+                  - generic [ref=e558]:
+                    - 'generic "Rating: 4.8 stars out of 8 reviews" [ref=e559]':
+                      - generic [ref=e560]:
+                        - img [ref=e561]
+                        - generic [ref=e563]: "4.8"
+                      - generic [ref=e564]: (8)
+                    - generic "944 views" [ref=e565]:
+                      - img [ref=e566]
+                      - generic [ref=e569]: "944"
+                  - generic [ref=e570]:
+                    - button "Add Bookmark" [ref=e571]:
+                      - img [ref=e572]
+                    - img [ref=e575]
+            - generic [ref=e577]:
+              - 'link "View details for activepieces/activepieces: AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents • MCPs for AI Agents" [ref=e578] [cursor=pointer]':
+                - /url: /resources/activepieces-activepieces
+                - generic [ref=e579]: "View details for activepieces/activepieces: AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents • MCPs for AI Agents"
+              - generic [ref=e580]:
+                - generic [ref=e581]:
+                  - generic [ref=e583]: MCP Servers
+                  - generic "Featured Resource" [ref=e584]:
+                    - img [ref=e585]
+                - generic [ref=e587]:
+                  - heading "activepieces/activepieces" [level=3] [ref=e588]
+                  - paragraph [ref=e589]: AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents • MCPs for AI Agents
+                - generic [ref=e590]:
+                  - generic [ref=e591]:
+                    - 'generic "Rating: 4.5 stars out of 11 reviews" [ref=e592]':
+                      - generic [ref=e593]:
+                        - img [ref=e594]
+                        - generic [ref=e596]: "4.5"
+                      - generic [ref=e597]: (11)
+                    - generic "923 views" [ref=e598]:
+                      - img [ref=e599]
+                      - generic [ref=e602]: "923"
+                  - generic [ref=e603]:
+                    - button "Add Bookmark" [ref=e604]:
+                      - img [ref=e605]
+                    - img [ref=e608]
+            - generic [ref=e610]:
+              - 'link "View details for grab/cursor-talk-to-figma-mcp: TalkToFigma: MCP integration between Cursor and Figma, allowing Cursor Agentic AI to communicate with Figma for reading designs and modifying them programmatically." [ref=e611] [cursor=pointer]':
+                - /url: /resources/grab-cursor-talk-to-figma-mcp
+                - generic [ref=e612]: "View details for grab/cursor-talk-to-figma-mcp: TalkToFigma: MCP integration between Cursor and Figma, allowing Cursor Agentic AI to communicate with Figma for reading designs and modifying them programmatically."
+              - generic [ref=e613]:
+                - generic [ref=e614]:
+                  - generic [ref=e616]: MCP Servers
+                  - generic "Featured Resource" [ref=e617]:
+                    - img [ref=e618]
+                - generic [ref=e620]:
+                  - heading "grab/cursor-talk-to-figma-mcp" [level=3] [ref=e621]
+                  - paragraph [ref=e622]: "TalkToFigma: MCP integration between Cursor and Figma, allowing Cursor Agentic AI to communicate with Figma for reading designs and modifying them programmatically."
+                - generic [ref=e623]:
+                  - generic [ref=e624]:
+                    - 'generic "Rating: 4.6 stars out of 9 reviews" [ref=e625]':
+                      - generic [ref=e626]:
+                        - img [ref=e627]
+                        - generic [ref=e629]: "4.6"
+                      - generic [ref=e630]: (9)
+                    - generic "919 views" [ref=e631]:
+                      - img [ref=e632]
+                      - generic [ref=e635]: "919"
+                  - generic [ref=e636]:
+                    - button "Add Bookmark" [ref=e637]:
+                      - img [ref=e638]
+                    - img [ref=e641]
+            - generic [ref=e643]:
+              - 'link "View details for GaiaNet-AI/gaianet-node: Install, run and deploy your own decentralized AI agent service" [ref=e644] [cursor=pointer]':
+                - /url: /resources/gaianet-ai-gaianet-node
+                - generic [ref=e645]: "View details for GaiaNet-AI/gaianet-node: Install, run and deploy your own decentralized AI agent service"
+              - generic [ref=e646]:
+                - generic [ref=e647]:
+                  - generic [ref=e649]: MCP Servers
+                  - generic "Featured Resource" [ref=e650]:
+                    - img [ref=e651]
+                - generic [ref=e653]:
+                  - heading "GaiaNet-AI/gaianet-node" [level=3] [ref=e654]
+                  - paragraph [ref=e655]: Install, run and deploy your own decentralized AI agent service
+                - generic [ref=e656]:
+                  - generic [ref=e657]:
+                    - 'generic "Rating: 4.5 stars out of 6 reviews" [ref=e658]':
+                      - generic [ref=e659]:
+                        - img [ref=e660]
+                        - generic [ref=e662]: "4.5"
+                      - generic [ref=e663]: (6)
+                    - generic "901 views" [ref=e664]:
+                      - img [ref=e665]
+                      - generic [ref=e668]: "901"
+                  - generic [ref=e669]:
+                    - button "Add Bookmark" [ref=e670]:
+                      - img [ref=e671]
+                    - img [ref=e674]
+            - generic [ref=e676]:
+              - 'link "View details for CoplayDev/unity-mcp: Unity MCP acts as a bridge, allowing AI assistants (like Claude, Cursor) to interact directly with your Unity Editor via a local MCP (Model Context Protocol) Client. Give your LLM tools to manage assets, control scenes, edit scripts, and automate tasks within Unity." [ref=e677] [cursor=pointer]':
+                - /url: /resources/coplaydev-unity-mcp
+                - generic [ref=e678]: "View details for CoplayDev/unity-mcp: Unity MCP acts as a bridge, allowing AI assistants (like Claude, Cursor) to interact directly with your Unity Editor via a local MCP (Model Context Protocol) Client. Give your LLM tools to manage assets, control scenes, edit scripts, and automate tasks within Unity."
+              - generic [ref=e679]:
+                - generic [ref=e680]:
+                  - generic [ref=e682]: MCP Servers
+                  - generic "Featured Resource" [ref=e683]:
+                    - img [ref=e684]
+                - generic [ref=e686]:
+                  - heading "CoplayDev/unity-mcp" [level=3] [ref=e687]
+                  - paragraph [ref=e688]: Unity MCP acts as a bridge, allowing AI assistants (like Claude, Cursor) to interact directly with your Unity Editor via a local MCP (Model Context Protocol) Client. Give your LLM tools to manage assets, control scenes, edit scripts, and automate tasks within Unity.
+                - generic [ref=e689]:
+                  - generic [ref=e690]:
+                    - 'generic "Rating: 4.5 stars out of 4 reviews" [ref=e691]':
+                      - generic [ref=e692]:
+                        - img [ref=e693]
+                        - generic [ref=e695]: "4.5"
+                      - generic [ref=e696]: (4)
+                    - generic "898 views" [ref=e697]:
+                      - img [ref=e698]
+                      - generic [ref=e701]: "898"
+                  - generic [ref=e702]:
+                    - button "Add Bookmark" [ref=e703]:
+                      - img [ref=e704]
+                    - img [ref=e707]
+            - generic [ref=e709]:
+              - 'link "View details for appcypher/awesome-mcp-servers: Awesome MCP Servers - A curated list of Model Context Protocol servers" [ref=e710] [cursor=pointer]':
+                - /url: /resources/appcypher-awesome-mcp-servers
+                - generic [ref=e711]: "View details for appcypher/awesome-mcp-servers: Awesome MCP Servers - A curated list of Model Context Protocol servers"
+              - generic [ref=e712]:
+                - generic [ref=e713]:
+                  - generic [ref=e715]: MCP Servers
+                  - generic "Featured Resource" [ref=e716]:
+                    - img [ref=e717]
+                - generic [ref=e719]:
+                  - heading "appcypher/awesome-mcp-servers" [level=3] [ref=e720]
+                  - paragraph [ref=e721]: Awesome MCP Servers - A curated list of Model Context Protocol servers
+                - generic [ref=e722]:
+                  - generic [ref=e723]:
+                    - 'generic "Rating: 4.7 stars out of 7 reviews" [ref=e724]':
+                      - generic [ref=e725]:
+                        - img [ref=e726]
+                        - generic [ref=e728]: "4.7"
+                      - generic [ref=e729]: (7)
+                    - generic "877 views" [ref=e730]:
+                      - img [ref=e731]
+                      - generic [ref=e734]: "877"
+                  - generic [ref=e735]:
+                    - button "Add Bookmark" [ref=e736]:
+                      - img [ref=e737]
+                    - img [ref=e740]
+            - generic [ref=e742]:
+              - 'link "View details for bytedance/UI-TARS-desktop: The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra" [ref=e743] [cursor=pointer]':
+                - /url: /resources/bytedance-ui-tars-desktop
+                - generic [ref=e744]: "View details for bytedance/UI-TARS-desktop: The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra"
+              - generic [ref=e745]:
+                - generic [ref=e746]:
+                  - generic [ref=e748]: MCP Servers
+                  - generic "Featured Resource" [ref=e749]:
+                    - img [ref=e750]
+                - generic [ref=e752]:
+                  - heading "bytedance/UI-TARS-desktop" [level=3] [ref=e753]
+                  - paragraph [ref=e754]: "The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra"
+                - generic [ref=e755]:
+                  - generic [ref=e756]:
+                    - 'generic "Rating: 4.4 stars out of 5 reviews" [ref=e757]':
+                      - generic [ref=e758]:
+                        - img [ref=e759]
+                        - generic [ref=e761]: "4.4"
+                      - generic [ref=e762]: (5)
+                    - generic "867 views" [ref=e763]:
+                      - img [ref=e764]
+                      - generic [ref=e767]: "867"
+                  - generic [ref=e768]:
+                    - button "Add Bookmark" [ref=e769]:
+                      - img [ref=e770]
+                    - img [ref=e773]
+            - generic [ref=e775]:
+              - 'link "View details for iflytek/astron-agent: Enterprise-grade, commercial-friendly agentic workflow platform for building next-generation SuperAgents." [ref=e776] [cursor=pointer]':
+                - /url: /resources/iflytek-astron-agent
+                - generic [ref=e777]: "View details for iflytek/astron-agent: Enterprise-grade, commercial-friendly agentic workflow platform for building next-generation SuperAgents."
+              - generic [ref=e778]:
+                - generic [ref=e779]:
+                  - generic [ref=e781]: MCP Servers
+                  - generic "Featured Resource" [ref=e782]:
+                    - img [ref=e783]
+                - generic [ref=e785]:
+                  - heading "iflytek/astron-agent" [level=3] [ref=e786]
+                  - paragraph [ref=e787]: Enterprise-grade, commercial-friendly agentic workflow platform for building next-generation SuperAgents.
+                - generic [ref=e788]:
+                  - generic [ref=e789]:
+                    - 'generic "Rating: 4.3 stars out of 7 reviews" [ref=e790]':
+                      - generic [ref=e791]:
+                        - img [ref=e792]
+                        - generic [ref=e794]: "4.3"
+                      - generic [ref=e795]: (7)
+                    - generic "866 views" [ref=e796]:
+                      - img [ref=e797]
+                      - generic [ref=e800]: "866"
+                  - generic [ref=e801]:
+                    - button "Add Bookmark" [ref=e802]:
+                      - img [ref=e803]
+                    - img [ref=e806]
+            - generic [ref=e808]:
+              - 'link "View details for CursorTouch/Windows-MCP: MCP Server for Computer Use in Windows" [ref=e809] [cursor=pointer]':
+                - /url: /resources/cursortouch-windows-mcp
+                - generic [ref=e810]: "View details for CursorTouch/Windows-MCP: MCP Server for Computer Use in Windows"
+              - generic [ref=e811]:
+                - generic [ref=e812]:
+                  - generic [ref=e814]: MCP Servers
+                  - generic "Featured Resource" [ref=e815]:
+                    - img [ref=e816]
+                - generic [ref=e818]:
+                  - heading "CursorTouch/Windows-MCP" [level=3] [ref=e819]
+                  - paragraph [ref=e820]: MCP Server for Computer Use in Windows
+                - generic [ref=e821]:
+                  - generic [ref=e822]:
+                    - 'generic "Rating: 4.4 stars out of 8 reviews" [ref=e823]':
+                      - generic [ref=e824]:
+                        - img [ref=e825]
+                        - generic [ref=e827]: "4.4"
+                      - generic [ref=e828]: (8)
+                    - generic "839 views" [ref=e829]:
+                      - img [ref=e830]
+                      - generic [ref=e833]: "839"
+                  - generic [ref=e834]:
+                    - button "Add Bookmark" [ref=e835]:
+                      - img [ref=e836]
+                    - img [ref=e839]
+            - generic [ref=e841]:
+              - 'link "View details for awslabs/mcp: AWS MCP Servers — helping you get the most out of AWS, wherever you use MCP." [ref=e842] [cursor=pointer]':
+                - /url: /resources/awslabs-mcp
+                - generic [ref=e843]: "View details for awslabs/mcp: AWS MCP Servers — helping you get the most out of AWS, wherever you use MCP."
+              - generic [ref=e844]:
+                - generic [ref=e845]:
+                  - generic [ref=e847]: MCP Servers
+                  - generic "Featured Resource" [ref=e848]:
+                    - img [ref=e849]
+                - generic [ref=e851]:
+                  - heading "awslabs/mcp" [level=3] [ref=e852]
+                  - paragraph [ref=e853]: AWS MCP Servers — helping you get the most out of AWS, wherever you use MCP.
+                - generic [ref=e854]:
+                  - generic [ref=e855]:
+                    - 'generic "Rating: 4.4 stars out of 7 reviews" [ref=e856]':
+                      - generic [ref=e857]:
+                        - img [ref=e858]
+                        - generic [ref=e860]: "4.4"
+                      - generic [ref=e861]: (7)
+                    - generic "838 views" [ref=e862]:
+                      - img [ref=e863]
+                      - generic [ref=e866]: "838"
+                  - generic [ref=e867]:
+                    - button "Add Bookmark" [ref=e868]:
+                      - img [ref=e869]
+                    - img [ref=e872]
+            - generic [ref=e874]:
+              - 'link "View details for yamadashy/repomix: 📦 Repomix is a powerful tool that packs your entire repository into a single, AI-friendly file. Perfect for when you need to feed your codebase to Large Language Models (LLMs) or other AI tools like Claude, ChatGPT, DeepSeek, Perplexity, Gemini, Gemma, Llama, Grok, and more." [ref=e875] [cursor=pointer]':
+                - /url: /resources/yamadashy-repomix
+                - generic [ref=e876]: "View details for yamadashy/repomix: 📦 Repomix is a powerful tool that packs your entire repository into a single, AI-friendly file. Perfect for when you need to feed your codebase to Large Language Models (LLMs) or other AI tools like Claude, ChatGPT, DeepSeek, Perplexity, Gemini, Gemma, Llama, Grok, and more."
+              - generic [ref=e877]:
+                - generic [ref=e878]:
+                  - generic [ref=e880]: MCP Servers
+                  - generic "Featured Resource" [ref=e881]:
+                    - img [ref=e882]
+                - generic [ref=e884]:
+                  - heading "yamadashy/repomix" [level=3] [ref=e885]
+                  - paragraph [ref=e886]: 📦 Repomix is a powerful tool that packs your entire repository into a single, AI-friendly file. Perfect for when you need to feed your codebase to Large Language Models (LLMs) or other AI tools like Claude, ChatGPT, DeepSeek, Perplexity, Gemini, Gemma, Llama, Grok, and more.
+                - generic [ref=e887]:
+                  - generic [ref=e888]:
+                    - 'generic "Rating: 4.6 stars out of 8 reviews" [ref=e889]':
+                      - generic [ref=e890]:
+                        - img [ref=e891]
+                        - generic [ref=e893]: "4.6"
+                      - generic [ref=e894]: (8)
+                    - generic "830 views" [ref=e895]:
+                      - img [ref=e896]
+                      - generic [ref=e899]: "830"
+                  - generic [ref=e900]:
+                    - button "Add Bookmark" [ref=e901]:
+                      - img [ref=e902]
+                    - img [ref=e905]
+            - generic [ref=e907]:
+              - 'link "View details for patchy631/ai-engineering-hub: In-depth tutorials on LLMs, RAGs and real-world AI agent applications." [ref=e908] [cursor=pointer]':
+                - /url: /resources/patchy631-ai-engineering-hub
+                - generic [ref=e909]: "View details for patchy631/ai-engineering-hub: In-depth tutorials on LLMs, RAGs and real-world AI agent applications."
+              - generic [ref=e910]:
+                - generic [ref=e911]:
+                  - generic [ref=e913]: MCP Servers
+                  - generic "Featured Resource" [ref=e914]:
+                    - img [ref=e915]
+                - generic [ref=e917]:
+                  - heading "patchy631/ai-engineering-hub" [level=3] [ref=e918]
+                  - paragraph [ref=e919]: In-depth tutorials on LLMs, RAGs and real-world AI agent applications.
+                - generic [ref=e920]:
+                  - generic [ref=e921]:
+                    - 'generic "Rating: 4.8 stars out of 11 reviews" [ref=e922]':
+                      - generic [ref=e923]:
+                        - img [ref=e924]
+                        - generic [ref=e926]: "4.8"
+                      - generic [ref=e927]: (11)
+                    - generic "824 views" [ref=e928]:
+                      - img [ref=e929]
+                      - generic [ref=e932]: "824"
+                  - generic [ref=e933]:
+                    - button "Add Bookmark" [ref=e934]:
+                      - img [ref=e935]
+                    - img [ref=e938]
+            - generic [ref=e940]:
+              - 'link "View details for 53AI/53AIHub: 53AI Hub is an open-source AI portal, which enables you to quickly build a operational-level AI portal to launch and operate AI agents, prompts, and AI tools. It supports seamless integration with development platforms like Coze, Dify, FastGPT, RAGFlow." [ref=e941] [cursor=pointer]':
+                - /url: /resources/53ai-53aihub
+                - generic [ref=e942]: "View details for 53AI/53AIHub: 53AI Hub is an open-source AI portal, which enables you to quickly build a operational-level AI portal to launch and operate AI agents, prompts, and AI tools. It supports seamless integration with development platforms like Coze, Dify, FastGPT, RAGFlow."
+              - generic [ref=e943]:
+                - generic [ref=e944]:
+                  - generic [ref=e946]: MCP Servers
+                  - generic "Featured Resource" [ref=e947]:
+                    - img [ref=e948]
+                - generic [ref=e950]:
+                  - heading "53AI/53AIHub" [level=3] [ref=e951]
+                  - paragraph [ref=e952]: 53AI Hub is an open-source AI portal, which enables you to quickly build a operational-level AI portal to launch and operate AI agents, prompts, and AI tools. It supports seamless integration with development platforms like Coze, Dify, FastGPT, RAGFlow.
+                - generic [ref=e953]:
+                  - generic [ref=e954]:
+                    - 'generic "Rating: 4.4 stars out of 8 reviews" [ref=e955]':
+                      - generic [ref=e956]:
+                        - img [ref=e957]
+                        - generic [ref=e959]: "4.4"
+                      - generic [ref=e960]: (8)
+                    - generic "824 views" [ref=e961]:
+                      - img [ref=e962]
+                      - generic [ref=e965]: "824"
+                  - generic [ref=e966]:
+                    - button "Add Bookmark" [ref=e967]:
+                      - img [ref=e968]
+                    - img [ref=e971]
+            - generic [ref=e973]:
+              - 'link "View details for google/adk-go: An open-source, code-first Go toolkit for building, evaluating, and deploying sophisticated AI agents with flexibility and control." [ref=e974] [cursor=pointer]':
+                - /url: /resources/google-adk-go
+                - generic [ref=e975]: "View details for google/adk-go: An open-source, code-first Go toolkit for building, evaluating, and deploying sophisticated AI agents with flexibility and control."
+              - generic [ref=e976]:
+                - generic [ref=e977]:
+                  - generic [ref=e979]: MCP Servers
+                  - generic "Featured Resource" [ref=e980]:
+                    - img [ref=e981]
+                - generic [ref=e983]:
+                  - heading "google/adk-go" [level=3] [ref=e984]
+                  - paragraph [ref=e985]: An open-source, code-first Go toolkit for building, evaluating, and deploying sophisticated AI agents with flexibility and control.
+                - generic [ref=e986]:
+                  - generic [ref=e987]:
+                    - 'generic "Rating: 4.8 stars out of 4 reviews" [ref=e988]':
+                      - generic [ref=e989]:
+                        - img [ref=e990]
+                        - generic [ref=e992]: "4.8"
+                      - generic [ref=e993]: (4)
+                    - generic "811 views" [ref=e994]:
+                      - img [ref=e995]
+                      - generic [ref=e998]: "811"
+                  - generic [ref=e999]:
+                    - button "Add Bookmark" [ref=e1000]:
+                      - img [ref=e1001]
+                    - img [ref=e1004]
+            - generic [ref=e1006]:
+              - 'link "View details for mrexodia/ida-pro-mcp: AI-powered reverse engineering assistant that bridges IDA Pro with language models through MCP." [ref=e1007] [cursor=pointer]':
+                - /url: /resources/mrexodia-ida-pro-mcp
+                - generic [ref=e1008]: "View details for mrexodia/ida-pro-mcp: AI-powered reverse engineering assistant that bridges IDA Pro with language models through MCP."
+              - generic [ref=e1009]:
+                - generic [ref=e1010]:
+                  - generic [ref=e1012]: MCP Servers
+                  - generic "Featured Resource" [ref=e1013]:
+                    - img [ref=e1014]
+                - generic [ref=e1016]:
+                  - heading "mrexodia/ida-pro-mcp" [level=3] [ref=e1017]
+                  - paragraph [ref=e1018]: AI-powered reverse engineering assistant that bridges IDA Pro with language models through MCP.
+                - generic [ref=e1019]:
+                  - generic [ref=e1020]:
+                    - 'generic "Rating: 4.5 stars out of 6 reviews" [ref=e1021]':
+                      - generic [ref=e1022]:
+                        - img [ref=e1023]
+                        - generic [ref=e1025]: "4.5"
+                      - generic [ref=e1026]: (6)
+                    - generic "801 views" [ref=e1027]:
+                      - img [ref=e1028]
+                      - generic [ref=e1031]: "801"
+                  - generic [ref=e1032]:
+                    - button "Add Bookmark" [ref=e1033]:
+                      - img [ref=e1034]
+                    - img [ref=e1037]
+            - generic [ref=e1039]:
+              - 'link "View details for yusufkaraaslan/Skill_Seekers: Convert documentation websites, GitHub repositories, and PDFs into Claude AI skills with automatic conflict detection" [ref=e1040] [cursor=pointer]':
+                - /url: /resources/yusufkaraaslan-skill-seekers
+                - generic [ref=e1041]: "View details for yusufkaraaslan/Skill_Seekers: Convert documentation websites, GitHub repositories, and PDFs into Claude AI skills with automatic conflict detection"
+              - generic [ref=e1042]:
+                - generic [ref=e1043]:
+                  - generic [ref=e1045]: MCP Servers
+                  - generic "Featured Resource" [ref=e1046]:
+                    - img [ref=e1047]
+                - generic [ref=e1049]:
+                  - heading "yusufkaraaslan/Skill_Seekers" [level=3] [ref=e1050]
+                  - paragraph [ref=e1051]: Convert documentation websites, GitHub repositories, and PDFs into Claude AI skills with automatic conflict detection
+                - generic [ref=e1052]:
+                  - generic [ref=e1053]:
+                    - 'generic "Rating: 4.4 stars out of 8 reviews" [ref=e1054]':
+                      - generic [ref=e1055]:
+                        - img [ref=e1056]
+                        - generic [ref=e1058]: "4.4"
+                      - generic [ref=e1059]: (8)
+                    - generic "791 views" [ref=e1060]:
+                      - img [ref=e1061]
+                      - generic [ref=e1064]: "791"
+                  - generic [ref=e1065]:
+                    - button "Add Bookmark" [ref=e1066]:
+                      - img [ref=e1067]
+                    - img [ref=e1070]
+            - generic [ref=e1072]:
+              - 'link "View details for Upsonic/Upsonic: Agent Framework For Fintech and Banks" [ref=e1073] [cursor=pointer]':
+                - /url: /resources/upsonic-upsonic
+                - generic [ref=e1074]: "View details for Upsonic/Upsonic: Agent Framework For Fintech and Banks"
+              - generic [ref=e1075]:
+                - generic [ref=e1076]:
+                  - generic [ref=e1078]: MCP Servers
+                  - generic "Featured Resource" [ref=e1079]:
+                    - img [ref=e1080]
+                - generic [ref=e1082]:
+                  - heading "Upsonic/Upsonic" [level=3] [ref=e1083]
+                  - paragraph [ref=e1084]: Agent Framework For Fintech and Banks
+                - generic [ref=e1085]:
+                  - generic [ref=e1086]:
+                    - 'generic "Rating: 4.5 stars out of 11 reviews" [ref=e1087]':
+                      - generic [ref=e1088]:
+                        - img [ref=e1089]
+                        - generic [ref=e1091]: "4.5"
+                      - generic [ref=e1092]: (11)
+                    - generic "784 views" [ref=e1093]:
+                      - img [ref=e1094]
+                      - generic [ref=e1097]: "784"
+                  - generic [ref=e1098]:
+                    - button "Add Bookmark" [ref=e1099]:
+                      - img [ref=e1100]
+                    - img [ref=e1103]
+            - generic [ref=e1105]:
+              - 'link "View details for D4Vinci/Scrapling: 🕷️ An undetectable, powerful, flexible, high-performance Python library to make Web Scraping Easy and Effortless as it should be!" [ref=e1106] [cursor=pointer]':
+                - /url: /resources/d4vinci-scrapling
+                - generic [ref=e1107]: "View details for D4Vinci/Scrapling: 🕷️ An undetectable, powerful, flexible, high-performance Python library to make Web Scraping Easy and Effortless as it should be!"
+              - generic [ref=e1108]:
+                - generic [ref=e1109]:
+                  - generic [ref=e1111]: MCP Servers
+                  - generic "Featured Resource" [ref=e1112]:
+                    - img [ref=e1113]
+                - generic [ref=e1115]:
+                  - heading "D4Vinci/Scrapling" [level=3] [ref=e1116]
+                  - paragraph [ref=e1117]: 🕷️ An undetectable, powerful, flexible, high-performance Python library to make Web Scraping Easy and Effortless as it should be!
+                - generic [ref=e1118]:
+                  - generic [ref=e1119]:
+                    - 'generic "Rating: 4.3 stars out of 3 reviews" [ref=e1120]':
+                      - generic [ref=e1121]:
+                        - img [ref=e1122]
+                        - generic [ref=e1124]: "4.3"
+                      - generic [ref=e1125]: (3)
+                    - generic "773 views" [ref=e1126]:
+                      - img [ref=e1127]
+                      - generic [ref=e1130]: "773"
+                  - generic [ref=e1131]:
+                    - button "Add Bookmark" [ref=e1132]:
+                      - img [ref=e1133]
+                    - img [ref=e1136]
+            - generic [ref=e1138]:
+              - 'link "View details for jlowin/fastmcp: 🚀 The fast, Pythonic way to build MCP servers and clients" [ref=e1139] [cursor=pointer]':
+                - /url: /resources/jlowin-fastmcp
+                - generic [ref=e1140]: "View details for jlowin/fastmcp: 🚀 The fast, Pythonic way to build MCP servers and clients"
+              - generic [ref=e1141]:
+                - generic [ref=e1142]:
+                  - generic [ref=e1144]: MCP Servers
+                  - generic "Featured Resource" [ref=e1145]:
+                    - img [ref=e1146]
+                - generic [ref=e1148]:
+                  - heading "jlowin/fastmcp" [level=3] [ref=e1149]
+                  - paragraph [ref=e1150]: 🚀 The fast, Pythonic way to build MCP servers and clients
+                - generic [ref=e1151]:
+                  - generic [ref=e1152]:
+                    - 'generic "Rating: 4.1 stars out of 11 reviews" [ref=e1153]':
+                      - generic [ref=e1154]:
+                        - img [ref=e1155]
+                        - generic [ref=e1157]: "4.1"
+                      - generic [ref=e1158]: (11)
+                    - generic "767 views" [ref=e1159]:
+                      - img [ref=e1160]
+                      - generic [ref=e1163]: "767"
+                  - generic [ref=e1164]:
+                    - button "Add Bookmark" [ref=e1165]:
+                      - img [ref=e1166]
+                    - img [ref=e1169]
+            - generic [ref=e1171]:
+              - 'link "View details for jeecgboot/JeecgBoot: 🔥AI low-code platform empowers enterprises to quickly develop low-code solutions and build AI applications. 助力企业快速实现低代码开发和构建AI应用！ AI应用平台涵盖：AI应用、AI模型、AI聊天助手、知识库、AI流程编排、MCP和插件，聊天式业务操作等。 强大代码生成器：实现前后端一键生成，无需手写代码! 显著提升效率节省成本，又不失灵活~" [ref=e1172] [cursor=pointer]':
+                - /url: /resources/jeecgboot-jeecgboot
+                - generic [ref=e1173]: "View details for jeecgboot/JeecgBoot: 🔥AI low-code platform empowers enterprises to quickly develop low-code solutions and build AI applications. 助力企业快速实现低代码开发和构建AI应用！ AI应用平台涵盖：AI应用、AI模型、AI聊天助手、知识库、AI流程编排、MCP和插件，聊天式业务操作等。 强大代码生成器：实现前后端一键生成，无需手写代码! 显著提升效率节省成本，又不失灵活~"
+              - generic [ref=e1174]:
+                - generic [ref=e1175]:
+                  - generic [ref=e1177]: MCP Servers
+                  - generic "Featured Resource" [ref=e1178]:
+                    - img [ref=e1179]
+                - generic [ref=e1181]:
+                  - heading "jeecgboot/JeecgBoot" [level=3] [ref=e1182]
+                  - paragraph [ref=e1183]: 🔥AI low-code platform empowers enterprises to quickly develop low-code solutions and build AI applications. 助力企业快速实现低代码开发和构建AI应用！ AI应用平台涵盖：AI应用、AI模型、AI聊天助手、知识库、AI流程编排、MCP和插件，聊天式业务操作等。 强大代码生成器：实现前后端一键生成，无需手写代码! 显著提升效率节省成本，又不失灵活~
+                - generic [ref=e1184]:
+                  - generic [ref=e1185]:
+                    - 'generic "Rating: 4.8 stars out of 8 reviews" [ref=e1186]':
+                      - generic [ref=e1187]:
+                        - img [ref=e1188]
+                        - generic [ref=e1190]: "4.8"
+                      - generic [ref=e1191]: (8)
+                    - generic "758 views" [ref=e1192]:
+                      - img [ref=e1193]
+                      - generic [ref=e1196]: "758"
+                  - generic [ref=e1197]:
+                    - button "Add Bookmark" [ref=e1198]:
+                      - img [ref=e1199]
+                    - img [ref=e1202]
+            - generic [ref=e1204]:
+              - 'link "View details for lharries/whatsapp-mcp: WhatsApp MCP server" [ref=e1205] [cursor=pointer]':
+                - /url: /resources/lharries-whatsapp-mcp
+                - generic [ref=e1206]: "View details for lharries/whatsapp-mcp: WhatsApp MCP server"
+              - generic [ref=e1207]:
+                - generic [ref=e1208]:
+                  - generic [ref=e1210]: MCP Servers
+                  - generic "Featured Resource" [ref=e1211]:
+                    - img [ref=e1212]
+                - generic [ref=e1214]:
+                  - heading "lharries/whatsapp-mcp" [level=3] [ref=e1215]
+                  - paragraph [ref=e1216]: WhatsApp MCP server
+                - generic [ref=e1217]:
+                  - generic [ref=e1218]:
+                    - 'generic "Rating: 4.4 stars out of 5 reviews" [ref=e1219]':
+                      - generic [ref=e1220]:
+                        - img [ref=e1221]
+                        - generic [ref=e1223]: "4.4"
+                      - generic [ref=e1224]: (5)
+                    - generic "752 views" [ref=e1225]:
+                      - img [ref=e1226]
+                      - generic [ref=e1229]: "752"
+                  - generic [ref=e1230]:
+                    - button "Add Bookmark" [ref=e1231]:
+                      - img [ref=e1232]
+                    - img [ref=e1235]
+            - generic [ref=e1237]:
+              - 'link "View details for netdata/netdata: The fastest path to AI-powered full stack observability, even for lean teams." [ref=e1238] [cursor=pointer]':
+                - /url: /resources/netdata-netdata
+                - generic [ref=e1239]: "View details for netdata/netdata: The fastest path to AI-powered full stack observability, even for lean teams."
+              - generic [ref=e1240]:
+                - generic [ref=e1241]:
+                  - generic [ref=e1243]: MCP Servers
+                  - generic "Featured Resource" [ref=e1244]:
+                    - img [ref=e1245]
+                - generic [ref=e1247]:
+                  - heading "netdata/netdata" [level=3] [ref=e1248]
+                  - paragraph [ref=e1249]: The fastest path to AI-powered full stack observability, even for lean teams.
+                - generic [ref=e1250]:
+                  - generic [ref=e1251]:
+                    - 'generic "Rating: 4.3 stars out of 6 reviews" [ref=e1252]':
+                      - generic [ref=e1253]:
+                        - img [ref=e1254]
+                        - generic [ref=e1256]: "4.3"
+                      - generic [ref=e1257]: (6)
+                    - generic "733 views" [ref=e1258]:
+                      - img [ref=e1259]
+                      - generic [ref=e1262]: "733"
+                  - generic [ref=e1263]:
+                    - button "Add Bookmark" [ref=e1264]:
+                      - img [ref=e1265]
+                    - img [ref=e1268]
+            - generic [ref=e1270]:
+              - 'link "View details for wonderwhy-er/DesktopCommanderMCP: This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities" [ref=e1271] [cursor=pointer]':
+                - /url: /resources/wonderwhy-er-desktopcommandermcp
+                - generic [ref=e1272]: "View details for wonderwhy-er/DesktopCommanderMCP: This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities"
+              - generic [ref=e1273]:
+                - generic [ref=e1274]:
+                  - generic [ref=e1276]: MCP Servers
+                  - generic "Featured Resource" [ref=e1277]:
+                    - img [ref=e1278]
+                - generic [ref=e1280]:
+                  - heading "wonderwhy-er/DesktopCommanderMCP" [level=3] [ref=e1281]
+                  - paragraph [ref=e1282]: This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities
+                - generic [ref=e1283]:
+                  - generic [ref=e1284]:
+                    - 'generic "Rating: 4.5 stars out of 6 reviews" [ref=e1285]':
+                      - generic [ref=e1286]:
+                        - img [ref=e1287]
+                        - generic [ref=e1289]: "4.5"
+                      - generic [ref=e1290]: (6)
+                    - generic "730 views" [ref=e1291]:
+                      - img [ref=e1292]
+                      - generic [ref=e1295]: "730"
+                  - generic [ref=e1296]:
+                    - button "Add Bookmark" [ref=e1297]:
+                      - img [ref=e1298]
+                    - img [ref=e1301]
+            - generic [ref=e1303]:
+              - 'link "View details for mastra-ai/mastra: From the team behind Gatsby, Mastra is a framework for building AI-powered applications and agents with a modern TypeScript stack." [ref=e1304] [cursor=pointer]':
+                - /url: /resources/mastra-ai-mastra
+                - generic [ref=e1305]: "View details for mastra-ai/mastra: From the team behind Gatsby, Mastra is a framework for building AI-powered applications and agents with a modern TypeScript stack."
+              - generic [ref=e1306]:
+                - generic [ref=e1307]:
+                  - generic [ref=e1309]: MCP Servers
+                  - generic "Featured Resource" [ref=e1310]:
+                    - img [ref=e1311]
+                - generic [ref=e1313]:
+                  - heading "mastra-ai/mastra" [level=3] [ref=e1314]
+                  - paragraph [ref=e1315]: From the team behind Gatsby, Mastra is a framework for building AI-powered applications and agents with a modern TypeScript stack.
+                - generic [ref=e1316]:
+                  - generic [ref=e1317]:
+                    - 'generic "Rating: 4.3 stars out of 7 reviews" [ref=e1318]':
+                      - generic [ref=e1319]:
+                        - img [ref=e1320]
+                        - generic [ref=e1322]: "4.3"
+                      - generic [ref=e1323]: (7)
+                    - generic "724 views" [ref=e1324]:
+                      - img [ref=e1325]
+                      - generic [ref=e1328]: "724"
+                  - generic [ref=e1329]:
+                    - button "Add Bookmark" [ref=e1330]:
+                      - img [ref=e1331]
+                    - img [ref=e1334]
+            - generic [ref=e1336]:
+              - 'link "View details for 0xJacky/nginx-ui: Yet another WebUI for Nginx" [ref=e1337] [cursor=pointer]':
+                - /url: /resources/0xjacky-nginx-ui
+                - generic [ref=e1338]: "View details for 0xJacky/nginx-ui: Yet another WebUI for Nginx"
+              - generic [ref=e1339]:
+                - generic [ref=e1340]:
+                  - generic [ref=e1342]: MCP Servers
+                  - generic "Featured Resource" [ref=e1343]:
+                    - img [ref=e1344]
+                - generic [ref=e1346]:
+                  - heading "0xJacky/nginx-ui" [level=3] [ref=e1347]
+                  - paragraph [ref=e1348]: Yet another WebUI for Nginx
+                - generic [ref=e1349]:
+                  - generic [ref=e1350]:
+                    - 'generic "Rating: 4.3 stars out of 4 reviews" [ref=e1351]':
+                      - generic [ref=e1352]:
+                        - img [ref=e1353]
+                        - generic [ref=e1355]: "4.3"
+                      - generic [ref=e1356]: (4)
+                    - generic "723 views" [ref=e1357]:
+                      - img [ref=e1358]
+                      - generic [ref=e1361]: "723"
+                  - generic [ref=e1362]:
+                    - button "Add Bookmark" [ref=e1363]:
+                      - img [ref=e1364]
+                    - img [ref=e1367]
+            - generic [ref=e1369]:
+              - 'link "View details for bytebot-ai/bytebot: Bytebot is a self-hosted AI desktop agent that automates computer tasks through natural language commands, operating within a containerized Linux desktop environment." [ref=e1370] [cursor=pointer]':
+                - /url: /resources/bytebot-ai-bytebot
+                - generic [ref=e1371]: "View details for bytebot-ai/bytebot: Bytebot is a self-hosted AI desktop agent that automates computer tasks through natural language commands, operating within a containerized Linux desktop environment."
+              - generic [ref=e1372]:
+                - generic [ref=e1373]:
+                  - generic [ref=e1375]: MCP Servers
+                  - generic "Featured Resource" [ref=e1376]:
+                    - img [ref=e1377]
+                - generic [ref=e1379]:
+                  - heading "bytebot-ai/bytebot" [level=3] [ref=e1380]
+                  - paragraph [ref=e1381]: Bytebot is a self-hosted AI desktop agent that automates computer tasks through natural language commands, operating within a containerized Linux desktop environment.
+                - generic [ref=e1382]:
+                  - generic [ref=e1383]:
+                    - 'generic "Rating: 4.3 stars out of 4 reviews" [ref=e1384]':
+                      - generic [ref=e1385]:
+                        - img [ref=e1386]
+                        - generic [ref=e1388]: "4.3"
+                      - generic [ref=e1389]: (4)
+                    - generic "723 views" [ref=e1390]:
+                      - img [ref=e1391]
+                      - generic [ref=e1394]: "723"
+                  - generic [ref=e1395]:
+                    - button "Add Bookmark" [ref=e1396]:
+                      - img [ref=e1397]
+                    - img [ref=e1400]
+            - generic [ref=e1402]:
+              - 'link "View details for modelcontextprotocol/registry: A community driven registry service for Model Context Protocol (MCP) servers." [ref=e1403] [cursor=pointer]':
+                - /url: /resources/modelcontextprotocol-registry
+                - generic [ref=e1404]: "View details for modelcontextprotocol/registry: A community driven registry service for Model Context Protocol (MCP) servers."
+              - generic [ref=e1405]:
+                - generic [ref=e1406]:
+                  - generic [ref=e1408]: MCP Servers
+                  - generic "Featured Resource" [ref=e1409]:
+                    - img [ref=e1410]
+                - generic [ref=e1412]:
+                  - heading "modelcontextprotocol/registry" [level=3] [ref=e1413]
+                  - paragraph [ref=e1414]: A community driven registry service for Model Context Protocol (MCP) servers.
+                - generic [ref=e1415]:
+                  - generic [ref=e1416]:
+                    - 'generic "Rating: 4.0 stars out of 4 reviews" [ref=e1417]':
+                      - generic [ref=e1418]:
+                        - img [ref=e1419]
+                        - generic [ref=e1421]: "4.0"
+                      - generic [ref=e1422]: (4)
+                    - generic "718 views" [ref=e1423]:
+                      - img [ref=e1424]
+                      - generic [ref=e1427]: "718"
+                  - generic [ref=e1428]:
+                    - button "Add Bookmark" [ref=e1429]:
+                      - img [ref=e1430]
+                    - img [ref=e1433]
+            - generic [ref=e1435]:
+              - 'link "View details for lobehub/lobe-chat: 🤯 LobeHub - an open-source, modern design AI Agent Workspace. Supports multiple AI providers, Knowledge Base (file upload / RAG ), one click install MCP Marketplace and Artifacts / Thinking. One-click FREE deployment of your private AI Agent application." [ref=e1436] [cursor=pointer]':
+                - /url: /resources/lobehub-lobe-chat
+                - generic [ref=e1437]: "View details for lobehub/lobe-chat: 🤯 LobeHub - an open-source, modern design AI Agent Workspace. Supports multiple AI providers, Knowledge Base (file upload / RAG ), one click install MCP Marketplace and Artifacts / Thinking. One-click FREE deployment of your private AI Agent application."
+              - generic [ref=e1438]:
+                - generic [ref=e1439]:
+                  - generic [ref=e1441]: MCP Servers
+                  - generic "Featured Resource" [ref=e1442]:
+                    - img [ref=e1443]
+                - generic [ref=e1445]:
+                  - heading "lobehub/lobe-chat" [level=3] [ref=e1446]
+                  - paragraph [ref=e1447]: 🤯 LobeHub - an open-source, modern design AI Agent Workspace. Supports multiple AI providers, Knowledge Base (file upload / RAG ), one click install MCP Marketplace and Artifacts / Thinking. One-click FREE deployment of your private AI Agent application.
+                - generic [ref=e1448]:
+                  - generic [ref=e1449]:
+                    - 'generic "Rating: 4.4 stars out of 7 reviews" [ref=e1450]':
+                      - generic [ref=e1451]:
+                        - img [ref=e1452]
+                        - generic [ref=e1454]: "4.4"
+                      - generic [ref=e1455]: (7)
+                    - generic "713 views" [ref=e1456]:
+                      - img [ref=e1457]
+                      - generic [ref=e1460]: "713"
+                  - generic [ref=e1461]:
+                    - button "Add Bookmark" [ref=e1462]:
+                      - img [ref=e1463]
+                    - img [ref=e1466]
+            - generic [ref=e1468]:
+              - 'link "View details for danny-avila/LibreChat: Enhanced ChatGPT Clone: Features Agents, MCP, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active." [ref=e1469] [cursor=pointer]':
+                - /url: /resources/danny-avila-librechat
+                - generic [ref=e1470]: "View details for danny-avila/LibreChat: Enhanced ChatGPT Clone: Features Agents, MCP, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active."
+              - generic [ref=e1471]:
+                - generic [ref=e1472]:
+                  - generic [ref=e1474]: MCP Servers
+                  - generic "Featured Resource" [ref=e1475]:
+                    - img [ref=e1476]
+                - generic [ref=e1478]:
+                  - heading "danny-avila/LibreChat" [level=3] [ref=e1479]
+                  - paragraph [ref=e1480]: "Enhanced ChatGPT Clone: Features Agents, MCP, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active."
+                - generic [ref=e1481]:
+                  - generic [ref=e1482]:
+                    - 'generic "Rating: 5.0 stars out of 3 reviews" [ref=e1483]':
+                      - generic [ref=e1484]:
+                        - img [ref=e1485]
+                        - generic [ref=e1487]: "5.0"
+                      - generic [ref=e1488]: (3)
+                    - generic "704 views" [ref=e1489]:
+                      - img [ref=e1490]
+                      - generic [ref=e1493]: "704"
+                  - generic [ref=e1494]:
+                    - button "Add Bookmark" [ref=e1495]:
+                      - img [ref=e1496]
+                    - img [ref=e1499]
+            - generic [ref=e1501]:
+              - 'link "View details for open-metadata/OpenMetadata: OpenMetadata is a unified metadata platform for data discovery, data observability, and data governance powered by a central metadata repository, in-depth column level lineage, and seamless team collaboration." [ref=e1502] [cursor=pointer]':
+                - /url: /resources/open-metadata-openmetadata
+                - generic [ref=e1503]: "View details for open-metadata/OpenMetadata: OpenMetadata is a unified metadata platform for data discovery, data observability, and data governance powered by a central metadata repository, in-depth column level lineage, and seamless team collaboration."
+              - generic [ref=e1504]:
+                - generic [ref=e1505]:
+                  - generic [ref=e1507]: MCP Servers
+                  - generic "Featured Resource" [ref=e1508]:
+                    - img [ref=e1509]
+                - generic [ref=e1511]:
+                  - heading "open-metadata/OpenMetadata" [level=3] [ref=e1512]
+                  - paragraph [ref=e1513]: OpenMetadata is a unified metadata platform for data discovery, data observability, and data governance powered by a central metadata repository, in-depth column level lineage, and seamless team collaboration.
+                - generic [ref=e1514]:
+                  - generic [ref=e1515]:
+                    - 'generic "Rating: 4.3 stars out of 12 reviews" [ref=e1516]':
+                      - generic [ref=e1517]:
+                        - img [ref=e1518]
+                        - generic [ref=e1520]: "4.3"
+                      - generic [ref=e1521]: (12)
+                    - generic "699 views" [ref=e1522]:
+                      - img [ref=e1523]
+                      - generic [ref=e1526]: "699"
+                  - generic [ref=e1527]:
+                    - button "Add Bookmark" [ref=e1528]:
+                      - img [ref=e1529]
+                    - img [ref=e1532]
+            - generic [ref=e1534]:
+              - 'link "View details for infiniflow/ragflow: RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine that fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs" [ref=e1535] [cursor=pointer]':
+                - /url: /resources/infiniflow-ragflow
+                - generic [ref=e1536]: "View details for infiniflow/ragflow: RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine that fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs"
+              - generic [ref=e1537]:
+                - generic [ref=e1538]:
+                  - generic [ref=e1540]: MCP Servers
+                  - generic "Featured Resource" [ref=e1541]:
+                    - img [ref=e1542]
+                - generic [ref=e1544]:
+                  - heading "infiniflow/ragflow" [level=3] [ref=e1545]
+                  - paragraph [ref=e1546]: RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine that fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs
+                - generic [ref=e1547]:
+                  - generic [ref=e1548]:
+                    - 'generic "Rating: 4.7 stars out of 6 reviews" [ref=e1549]':
+                      - generic [ref=e1550]:
+                        - img [ref=e1551]
+                        - generic [ref=e1553]: "4.7"
+                      - generic [ref=e1554]: (6)
+                    - generic "694 views" [ref=e1555]:
+                      - img [ref=e1556]
+                      - generic [ref=e1559]: "694"
+                  - generic [ref=e1560]:
+                    - button "Add Bookmark" [ref=e1561]:
+                      - img [ref=e1562]
+                    - img [ref=e1565]
+            - generic [ref=e1567]:
+              - 'link "View details for 0x4m4/hexstrike-ai: HexStrike AI MCP Agents is an advanced MCP server that lets AI agents (Claude, GPT, Copilot, etc.) autonomously run 150+ cybersecurity tools for automated pentesting, vulnerability discovery, bug bounty automation, and security research. Seamlessly bridge LLMs with real-world offensive security capabilities." [ref=e1568] [cursor=pointer]':
+                - /url: /resources/0x4m4-hexstrike-ai
+                - generic [ref=e1569]: "View details for 0x4m4/hexstrike-ai: HexStrike AI MCP Agents is an advanced MCP server that lets AI agents (Claude, GPT, Copilot, etc.) autonomously run 150+ cybersecurity tools for automated pentesting, vulnerability discovery, bug bounty automation, and security research. Seamlessly bridge LLMs with real-world offensive security capabilities."
+              - generic [ref=e1570]:
+                - generic [ref=e1571]:
+                  - generic [ref=e1573]: MCP Servers
+                  - generic "Featured Resource" [ref=e1574]:
+                    - img [ref=e1575]
+                - generic [ref=e1577]:
+                  - heading "0x4m4/hexstrike-ai" [level=3] [ref=e1578]
+                  - paragraph [ref=e1579]: HexStrike AI MCP Agents is an advanced MCP server that lets AI agents (Claude, GPT, Copilot, etc.) autonomously run 150+ cybersecurity tools for automated pentesting, vulnerability discovery, bug bounty automation, and security research. Seamlessly bridge LLMs with real-world offensive security capabilities.
+                - generic [ref=e1580]:
+                  - generic [ref=e1581]:
+                    - 'generic "Rating: 4.7 stars out of 7 reviews" [ref=e1582]':
+                      - generic [ref=e1583]:
+                        - img [ref=e1584]
+                        - generic [ref=e1586]: "4.7"
+                      - generic [ref=e1587]: (7)
+                    - generic "666 views" [ref=e1588]:
+                      - img [ref=e1589]
+                      - generic [ref=e1592]: "666"
+                  - generic [ref=e1593]:
+                    - button "Add Bookmark" [ref=e1594]:
+                      - img [ref=e1595]
+                    - img [ref=e1598]
+            - generic [ref=e1600]:
+              - 'link "View details for sansan0/TrendRadar: 🎯 告别信息过载，你的 AI 舆情监控助手与热点筛选工具！聚合多平台热点 + RSS 订阅，支持关键词精准筛选。接入 MCP 架构，赋能 AI 自然语言对话分析、情感洞察与趋势预测。支持 Docker 一键部署，数据本地/云端自持。集成微信/飞书/钉钉/Telegram/邮件/ntfy/bark/slack 等渠道智能推送。⭐" [ref=e1601] [cursor=pointer]':
+                - /url: /resources/sansan0-trendradar
+                - generic [ref=e1602]: "View details for sansan0/TrendRadar: 🎯 告别信息过载，你的 AI 舆情监控助手与热点筛选工具！聚合多平台热点 + RSS 订阅，支持关键词精准筛选。接入 MCP 架构，赋能 AI 自然语言对话分析、情感洞察与趋势预测。支持 Docker 一键部署，数据本地/云端自持。集成微信/飞书/钉钉/Telegram/邮件/ntfy/bark/slack 等渠道智能推送。⭐"
+              - generic [ref=e1603]:
+                - generic [ref=e1604]:
+                  - generic [ref=e1606]: MCP Servers
+                  - generic "Featured Resource" [ref=e1607]:
+                    - img [ref=e1608]
+                - generic [ref=e1610]:
+                  - heading "sansan0/TrendRadar" [level=3] [ref=e1611]
+                  - paragraph [ref=e1612]: 🎯 告别信息过载，你的 AI 舆情监控助手与热点筛选工具！聚合多平台热点 + RSS 订阅，支持关键词精准筛选。接入 MCP 架构，赋能 AI 自然语言对话分析、情感洞察与趋势预测。支持 Docker 一键部署，数据本地/云端自持。集成微信/飞书/钉钉/Telegram/邮件/ntfy/bark/slack 等渠道智能推送。⭐
+                - generic [ref=e1613]:
+                  - generic [ref=e1614]:
+                    - 'generic "Rating: 4.8 stars out of 11 reviews" [ref=e1615]':
+                      - generic [ref=e1616]:
+                        - img [ref=e1617]
+                        - generic [ref=e1619]: "4.8"
+                      - generic [ref=e1620]: (11)
+                    - generic "659 views" [ref=e1621]:
+                      - img [ref=e1622]
+                      - generic [ref=e1625]: "659"
+                  - generic [ref=e1626]:
+                    - button "Add Bookmark" [ref=e1627]:
+                      - img [ref=e1628]
+                    - img [ref=e1631]
+            - generic [ref=e1633]:
+              - 'link "View details for zilliztech/claude-context: Code search MCP for Claude Code. Make entire codebase the context for any coding agent." [ref=e1634] [cursor=pointer]':
+                - /url: /resources/zilliztech-claude-context
+                - generic [ref=e1635]: "View details for zilliztech/claude-context: Code search MCP for Claude Code. Make entire codebase the context for any coding agent."
+              - generic [ref=e1636]:
+                - generic [ref=e1637]:
+                  - generic [ref=e1639]: MCP Servers
+                  - generic "Featured Resource" [ref=e1640]:
+                    - img [ref=e1641]
+                - generic [ref=e1643]:
+                  - heading "zilliztech/claude-context" [level=3] [ref=e1644]
+                  - paragraph [ref=e1645]: Code search MCP for Claude Code. Make entire codebase the context for any coding agent.
+                - generic [ref=e1646]:
+                  - generic [ref=e1647]:
+                    - 'generic "Rating: 4.6 stars out of 8 reviews" [ref=e1648]':
+                      - generic [ref=e1649]:
+                        - img [ref=e1650]
+                        - generic [ref=e1652]: "4.6"
+                      - generic [ref=e1653]: (8)
+                    - generic "617 views" [ref=e1654]:
+                      - img [ref=e1655]
+                      - generic [ref=e1658]: "617"
+                  - generic [ref=e1659]:
+                    - button "Add Bookmark" [ref=e1660]:
+                      - img [ref=e1661]
+                    - img [ref=e1664]
+            - generic [ref=e1666]:
+              - 'link "View details for 78/xiaozhi-esp32: An MCP-based chatbot | 一个基于MCP的聊天机器人" [ref=e1667] [cursor=pointer]':
+                - /url: /resources/78-xiaozhi-esp32
+                - generic [ref=e1668]: "View details for 78/xiaozhi-esp32: An MCP-based chatbot | 一个基于MCP的聊天机器人"
+              - generic [ref=e1669]:
+                - generic [ref=e1670]:
+                  - generic [ref=e1672]: MCP Servers
+                  - generic "Featured Resource" [ref=e1673]:
+                    - img [ref=e1674]
+                - generic [ref=e1676]:
+                  - heading "78/xiaozhi-esp32" [level=3] [ref=e1677]
+                  - paragraph [ref=e1678]: An MCP-based chatbot | 一个基于MCP的聊天机器人
+                - generic [ref=e1679]:
+                  - generic [ref=e1680]:
+                    - 'generic "Rating: 4.5 stars out of 4 reviews" [ref=e1681]':
+                      - generic [ref=e1682]:
+                        - img [ref=e1683]
+                        - generic [ref=e1685]: "4.5"
+                      - generic [ref=e1686]: (4)
+                    - generic "604 views" [ref=e1687]:
+                      - img [ref=e1688]
+                      - generic [ref=e1691]: "604"
+                  - generic [ref=e1692]:
+                    - button "Add Bookmark" [ref=e1693]:
+                      - img [ref=e1694]
+                    - img [ref=e1697]
+            - generic [ref=e1699]:
+              - 'link "View details for ChromeDevTools/chrome-devtools-mcp: Chrome DevTools for coding agents" [ref=e1700] [cursor=pointer]':
+                - /url: /resources/chromedevtools-chrome-devtools-mcp
+                - generic [ref=e1701]: "View details for ChromeDevTools/chrome-devtools-mcp: Chrome DevTools for coding agents"
+              - generic [ref=e1702]:
+                - generic [ref=e1703]:
+                  - generic [ref=e1705]: MCP Servers
+                  - generic "Featured Resource" [ref=e1706]:
+                    - img [ref=e1707]
+                - generic [ref=e1709]:
+                  - heading "ChromeDevTools/chrome-devtools-mcp" [level=3] [ref=e1710]
+                  - paragraph [ref=e1711]: Chrome DevTools for coding agents
+                - generic [ref=e1712]:
+                  - generic [ref=e1713]:
+                    - 'generic "Rating: 4.6 stars out of 7 reviews" [ref=e1714]':
+                      - generic [ref=e1715]:
+                        - img [ref=e1716]
+                        - generic [ref=e1718]: "4.6"
+                      - generic [ref=e1719]: (7)
+                    - generic "602 views" [ref=e1720]:
+                      - img [ref=e1721]
+                      - generic [ref=e1724]: "602"
+                  - generic [ref=e1725]:
+                    - button "Add Bookmark" [ref=e1726]:
+                      - img [ref=e1727]
+                    - img [ref=e1730]
+            - generic [ref=e1732]:
+              - 'link "View details for ValueCell-ai/valuecell: ValueCell is a community-driven, multi-agent platform for financial applications." [ref=e1733] [cursor=pointer]':
+                - /url: /resources/valuecell-ai-valuecell
+                - generic [ref=e1734]: "View details for ValueCell-ai/valuecell: ValueCell is a community-driven, multi-agent platform for financial applications."
+              - generic [ref=e1735]:
+                - generic [ref=e1736]:
+                  - generic [ref=e1738]: MCP Servers
+                  - generic "Featured Resource" [ref=e1739]:
+                    - img [ref=e1740]
+                - generic [ref=e1742]:
+                  - heading "ValueCell-ai/valuecell" [level=3] [ref=e1743]
+                  - paragraph [ref=e1744]: ValueCell is a community-driven, multi-agent platform for financial applications.
+                - generic [ref=e1745]:
+                  - generic [ref=e1746]:
+                    - 'generic "Rating: 4.6 stars out of 9 reviews" [ref=e1747]':
+                      - generic [ref=e1748]:
+                        - img [ref=e1749]
+                        - generic [ref=e1751]: "4.6"
+                      - generic [ref=e1752]: (9)
+                    - generic "593 views" [ref=e1753]:
+                      - img [ref=e1754]
+                      - generic [ref=e1757]: "593"
+                  - generic [ref=e1758]:
+                    - button "Add Bookmark" [ref=e1759]:
+                      - img [ref=e1760]
+                    - img [ref=e1763]
+            - generic [ref=e1765]:
+              - 'link "View details for firecrawl/firecrawl-mcp-server: 🔥 Official Firecrawl MCP Server - Adds powerful web scraping and search to Cursor, Claude and any other LLM clients." [ref=e1766] [cursor=pointer]':
+                - /url: /resources/firecrawl-firecrawl-mcp-server
+                - generic [ref=e1767]: "View details for firecrawl/firecrawl-mcp-server: 🔥 Official Firecrawl MCP Server - Adds powerful web scraping and search to Cursor, Claude and any other LLM clients."
+              - generic [ref=e1768]:
+                - generic [ref=e1769]:
+                  - generic [ref=e1771]: MCP Servers
+                  - generic "Featured Resource" [ref=e1772]:
+                    - img [ref=e1773]
+                - generic [ref=e1775]:
+                  - heading "firecrawl/firecrawl-mcp-server" [level=3] [ref=e1776]
+                  - paragraph [ref=e1777]: 🔥 Official Firecrawl MCP Server - Adds powerful web scraping and search to Cursor, Claude and any other LLM clients.
+                - generic [ref=e1778]:
+                  - generic [ref=e1779]:
+                    - 'generic "Rating: 4.7 stars out of 6 reviews" [ref=e1780]':
+                      - generic [ref=e1781]:
+                        - img [ref=e1782]
+                        - generic [ref=e1784]: "4.7"
+                      - generic [ref=e1785]: (6)
+                    - generic "591 views" [ref=e1786]:
+                      - img [ref=e1787]
+                      - generic [ref=e1790]: "591"
+                  - generic [ref=e1791]:
+                    - button "Add Bookmark" [ref=e1792]:
+                      - img [ref=e1793]
+                    - img [ref=e1796]
+            - generic [ref=e1798]:
+              - 'link "View details for czlonkowski/n8n-mcp: A MCP for Claude Desktop / Claude Code / Windsurf / Cursor to build n8n workflows for you" [ref=e1799] [cursor=pointer]':
+                - /url: /resources/czlonkowski-n8n-mcp
+                - generic [ref=e1800]: "View details for czlonkowski/n8n-mcp: A MCP for Claude Desktop / Claude Code / Windsurf / Cursor to build n8n workflows for you"
+              - generic [ref=e1801]:
+                - generic [ref=e1802]:
+                  - generic [ref=e1804]: MCP Servers
+                  - generic "Featured Resource" [ref=e1805]:
+                    - img [ref=e1806]
+                - generic [ref=e1808]:
+                  - heading "czlonkowski/n8n-mcp" [level=3] [ref=e1809]
+                  - paragraph [ref=e1810]: A MCP for Claude Desktop / Claude Code / Windsurf / Cursor to build n8n workflows for you
+                - generic [ref=e1811]:
+                  - generic [ref=e1812]:
+                    - 'generic "Rating: 4.5 stars out of 8 reviews" [ref=e1813]':
+                      - generic [ref=e1814]:
+                        - img [ref=e1815]
+                        - generic [ref=e1817]: "4.5"
+                      - generic [ref=e1818]: (8)
+                    - generic "579 views" [ref=e1819]:
+                      - img [ref=e1820]
+                      - generic [ref=e1823]: "579"
+                  - generic [ref=e1824]:
+                    - button "Add Bookmark" [ref=e1825]:
+                      - img [ref=e1826]
+                    - img [ref=e1829]
+            - generic [ref=e1831]:
+              - 'link "View details for Mintplex-Labs/anything-llm: The all-in-one Desktop & Docker AI application with built-in RAG, AI agents, No-code agent builder, MCP compatibility, and more." [ref=e1832] [cursor=pointer]':
+                - /url: /resources/mintplex-labs-anything-llm
+                - generic [ref=e1833]: "View details for Mintplex-Labs/anything-llm: The all-in-one Desktop & Docker AI application with built-in RAG, AI agents, No-code agent builder, MCP compatibility, and more."
+              - generic [ref=e1834]:
+                - generic [ref=e1835]:
+                  - generic [ref=e1837]: MCP Servers
+                  - generic "Featured Resource" [ref=e1838]:
+                    - img [ref=e1839]
+                - generic [ref=e1841]:
+                  - heading "Mintplex-Labs/anything-llm" [level=3] [ref=e1842]
+                  - paragraph [ref=e1843]: The all-in-one Desktop & Docker AI application with built-in RAG, AI agents, No-code agent builder, MCP compatibility, and more.
+                - generic [ref=e1844]:
+                  - generic [ref=e1845]:
+                    - 'generic "Rating: 4.7 stars out of 6 reviews" [ref=e1846]':
+                      - generic [ref=e1847]:
+                        - img [ref=e1848]
+                        - generic [ref=e1850]: "4.7"
+                      - generic [ref=e1851]: (6)
+                    - generic "574 views" [ref=e1852]:
+                      - img [ref=e1853]
+                      - generic [ref=e1856]: "574"
+                  - generic [ref=e1857]:
+                    - button "Add Bookmark" [ref=e1858]:
+                      - img [ref=e1859]
+                    - img [ref=e1862]
+            - generic [ref=e1864]:
+              - 'link "View details for Arindam200/awesome-ai-apps: A collection of projects showcasing RAG, agents, workflows, and other AI use cases" [ref=e1865] [cursor=pointer]':
+                - /url: /resources/arindam200-awesome-ai-apps
+                - generic [ref=e1866]: "View details for Arindam200/awesome-ai-apps: A collection of projects showcasing RAG, agents, workflows, and other AI use cases"
+              - generic [ref=e1867]:
+                - generic [ref=e1868]:
+                  - generic [ref=e1870]: MCP Servers
+                  - generic "Featured Resource" [ref=e1871]:
+                    - img [ref=e1872]
+                - generic [ref=e1874]:
+                  - heading "Arindam200/awesome-ai-apps" [level=3] [ref=e1875]
+                  - paragraph [ref=e1876]: A collection of projects showcasing RAG, agents, workflows, and other AI use cases
+                - generic [ref=e1877]:
+                  - generic [ref=e1878]:
+                    - 'generic "Rating: 4.4 stars out of 12 reviews" [ref=e1879]':
+                      - generic [ref=e1880]:
+                        - img [ref=e1881]
+                        - generic [ref=e1883]: "4.4"
+                      - generic [ref=e1884]: (12)
+                    - generic "574 views" [ref=e1885]:
+                      - img [ref=e1886]
+                      - generic [ref=e1889]: "574"
+                  - generic [ref=e1890]:
+                    - button "Add Bookmark" [ref=e1891]:
+                      - img [ref=e1892]
+                    - img [ref=e1895]
+            - generic [ref=e1897]:
+              - 'link "View details for idosal/git-mcp: Put an end to code hallucinations! GitMCP is a free, open-source, remote MCP server for any GitHub project" [ref=e1898] [cursor=pointer]':
+                - /url: /resources/idosal-git-mcp
+                - generic [ref=e1899]: "View details for idosal/git-mcp: Put an end to code hallucinations! GitMCP is a free, open-source, remote MCP server for any GitHub project"
+              - generic [ref=e1900]:
+                - generic [ref=e1901]:
+                  - generic [ref=e1903]: MCP Servers
+                  - generic "Featured Resource" [ref=e1904]:
+                    - img [ref=e1905]
+                - generic [ref=e1907]:
+                  - heading "idosal/git-mcp" [level=3] [ref=e1908]
+                  - paragraph [ref=e1909]: Put an end to code hallucinations! GitMCP is a free, open-source, remote MCP server for any GitHub project
+                - generic [ref=e1910]:
+                  - generic [ref=e1911]:
+                    - 'generic "Rating: 4.7 stars out of 3 reviews" [ref=e1912]':
+                      - generic [ref=e1913]:
+                        - img [ref=e1914]
+                        - generic [ref=e1916]: "4.7"
+                      - generic [ref=e1917]: (3)
+                    - generic "570 views" [ref=e1918]:
+                      - img [ref=e1919]
+                      - generic [ref=e1922]: "570"
+                  - generic [ref=e1923]:
+                    - button "Add Bookmark" [ref=e1924]:
+                      - img [ref=e1925]
+                    - img [ref=e1928]
+            - generic [ref=e1930]:
+              - 'link "View details for qax-os/excelize: Go language library for reading and writing Microsoft Excel™ (XLAM / XLSM / XLSX / XLTM / XLTX) spreadsheets" [ref=e1931] [cursor=pointer]':
+                - /url: /resources/qax-os-excelize
+                - generic [ref=e1932]: "View details for qax-os/excelize: Go language library for reading and writing Microsoft Excel™ (XLAM / XLSM / XLSX / XLTM / XLTX) spreadsheets"
+              - generic [ref=e1933]:
+                - generic [ref=e1934]:
+                  - generic [ref=e1936]: MCP Servers
+                  - generic "Featured Resource" [ref=e1937]:
+                    - img [ref=e1938]
+                - generic [ref=e1940]:
+                  - heading "qax-os/excelize" [level=3] [ref=e1941]
+                  - paragraph [ref=e1942]: Go language library for reading and writing Microsoft Excel™ (XLAM / XLSM / XLSX / XLTM / XLTX) spreadsheets
+                - generic [ref=e1943]:
+                  - generic [ref=e1944]:
+                    - 'generic "Rating: 4.6 stars out of 8 reviews" [ref=e1945]':
+                      - generic [ref=e1946]:
+                        - img [ref=e1947]
+                        - generic [ref=e1949]: "4.6"
+                      - generic [ref=e1950]: (8)
+                    - generic "550 views" [ref=e1951]:
+                      - img [ref=e1952]
+                      - generic [ref=e1955]: "550"
+                  - generic [ref=e1956]:
+                    - button "Add Bookmark" [ref=e1957]:
+                      - img [ref=e1958]
+                    - img [ref=e1961]
+            - generic [ref=e1963]:
+              - 'link "View details for AstrBotDevs/AstrBot: Agentic IM Chatbot infrastructure that integrates lots of IM platforms, LLMs, plugins and AI features. ✨" [ref=e1964] [cursor=pointer]':
+                - /url: /resources/astrbotdevs-astrbot
+                - generic [ref=e1965]: "View details for AstrBotDevs/AstrBot: Agentic IM Chatbot infrastructure that integrates lots of IM platforms, LLMs, plugins and AI features. ✨"
+              - generic [ref=e1966]:
+                - generic [ref=e1967]:
+                  - generic [ref=e1969]: MCP Servers
+                  - generic "Featured Resource" [ref=e1970]:
+                    - img [ref=e1971]
+                - generic [ref=e1973]:
+                  - heading "AstrBotDevs/AstrBot" [level=3] [ref=e1974]
+                  - paragraph [ref=e1975]: Agentic IM Chatbot infrastructure that integrates lots of IM platforms, LLMs, plugins and AI features. ✨
+                - generic [ref=e1976]:
+                  - generic [ref=e1977]:
+                    - 'generic "Rating: 4.3 stars out of 6 reviews" [ref=e1978]':
+                      - generic [ref=e1979]:
+                        - img [ref=e1980]
+                        - generic [ref=e1982]: "4.3"
+                      - generic [ref=e1983]: (6)
+                    - generic "522 views" [ref=e1984]:
+                      - img [ref=e1985]
+                      - generic [ref=e1988]: "522"
+                  - generic [ref=e1989]:
+                    - button "Add Bookmark" [ref=e1990]:
+                      - img [ref=e1991]
+                    - img [ref=e1994]
+            - generic [ref=e1996]:
+              - 'link "View details for Kiln-AI/Kiln: Build, Evaluate, and Optimize AI Systems. Includes evals, RAG, agents, fine-tuning, synthetic data generation, dataset management, MCP, and more." [ref=e1997] [cursor=pointer]':
+                - /url: /resources/kiln-ai-kiln
+                - generic [ref=e1998]: "View details for Kiln-AI/Kiln: Build, Evaluate, and Optimize AI Systems. Includes evals, RAG, agents, fine-tuning, synthetic data generation, dataset management, MCP, and more."
+              - generic [ref=e1999]:
+                - generic [ref=e2000]:
+                  - generic [ref=e2002]: MCP Servers
+                  - generic "Featured Resource" [ref=e2003]:
+                    - img [ref=e2004]
+                - generic [ref=e2006]:
+                  - heading "Kiln-AI/Kiln" [level=3] [ref=e2007]
+                  - paragraph [ref=e2008]: Build, Evaluate, and Optimize AI Systems. Includes evals, RAG, agents, fine-tuning, synthetic data generation, dataset management, MCP, and more.
+                - generic [ref=e2009]:
+                  - generic [ref=e2010]:
+                    - 'generic "Rating: 4.6 stars out of 5 reviews" [ref=e2011]':
+                      - generic [ref=e2012]:
+                        - img [ref=e2013]
+                        - generic [ref=e2015]: "4.6"
+                      - generic [ref=e2016]: (5)
+                    - generic "513 views" [ref=e2017]:
+                      - img [ref=e2018]
+                      - generic [ref=e2021]: "513"
+                  - generic [ref=e2022]:
+                    - button "Add Bookmark" [ref=e2023]:
+                      - img [ref=e2024]
+                    - img [ref=e2027]
+            - generic [ref=e2029]:
+              - 'link "View details for nanbingxyz/5ire: 5ire is a cross-platform desktop AI assistant, MCP client. It compatible with major service providers, supports local knowledge base and tools via model context protocol servers ." [ref=e2030] [cursor=pointer]':
+                - /url: /resources/nanbingxyz-5ire
+                - generic [ref=e2031]: "View details for nanbingxyz/5ire: 5ire is a cross-platform desktop AI assistant, MCP client. It compatible with major service providers, supports local knowledge base and tools via model context protocol servers ."
+              - generic [ref=e2032]:
+                - generic [ref=e2033]:
+                  - generic [ref=e2035]: MCP Servers
+                  - generic "Featured Resource" [ref=e2036]:
+                    - img [ref=e2037]
+                - generic [ref=e2039]:
+                  - heading "nanbingxyz/5ire" [level=3] [ref=e2040]
+                  - paragraph [ref=e2041]: 5ire is a cross-platform desktop AI assistant, MCP client. It compatible with major service providers, supports local knowledge base and tools via model context protocol servers .
+                - generic [ref=e2042]:
+                  - generic [ref=e2043]:
+                    - 'generic "Rating: 4.3 stars out of 3 reviews" [ref=e2044]':
+                      - generic [ref=e2045]:
+                        - img [ref=e2046]
+                        - generic [ref=e2048]: "4.3"
+                      - generic [ref=e2049]: (3)
+                    - generic "499 views" [ref=e2050]:
+                      - img [ref=e2051]
+                      - generic [ref=e2054]: "499"
+                  - generic [ref=e2055]:
+                    - button "Add Bookmark" [ref=e2056]:
+                      - img [ref=e2057]
+                    - img [ref=e2060]
+            - generic [ref=e2062]:
+              - 'link "View details for xpzouying/xiaohongshu-mcp: MCP for xiaohongshu.com" [ref=e2063] [cursor=pointer]':
+                - /url: /resources/xpzouying-xiaohongshu-mcp
+                - generic [ref=e2064]: "View details for xpzouying/xiaohongshu-mcp: MCP for xiaohongshu.com"
+              - generic [ref=e2065]:
+                - generic [ref=e2066]:
+                  - generic [ref=e2068]: MCP Servers
+                  - generic "Featured Resource" [ref=e2069]:
+                    - img [ref=e2070]
+                - generic [ref=e2072]:
+                  - heading "xpzouying/xiaohongshu-mcp" [level=3] [ref=e2073]
+                  - paragraph [ref=e2074]: MCP for xiaohongshu.com
+                - generic [ref=e2075]:
+                  - generic [ref=e2076]:
+                    - 'generic "Rating: 4.6 stars out of 7 reviews" [ref=e2077]':
+                      - generic [ref=e2078]:
+                        - img [ref=e2079]
+                        - generic [ref=e2081]: "4.6"
+                      - generic [ref=e2082]: (7)
+                    - generic "495 views" [ref=e2083]:
+                      - img [ref=e2084]
+                      - generic [ref=e2087]: "495"
+                  - generic [ref=e2088]:
+                    - button "Add Bookmark" [ref=e2089]:
+                      - img [ref=e2090]
+                    - img [ref=e2093]
+            - generic [ref=e2095]:
+              - 'link "View details for langgenius/dify: Production-ready platform for agentic workflow development." [ref=e2096] [cursor=pointer]':
+                - /url: /resources/langgenius-dify
+                - generic [ref=e2097]: "View details for langgenius/dify: Production-ready platform for agentic workflow development."
+              - generic [ref=e2098]:
+                - generic [ref=e2099]:
+                  - generic [ref=e2101]: MCP Servers
+                  - generic "Featured Resource" [ref=e2102]:
+                    - img [ref=e2103]
+                - generic [ref=e2105]:
+                  - heading "langgenius/dify" [level=3] [ref=e2106]
+                  - paragraph [ref=e2107]: Production-ready platform for agentic workflow development.
+                - generic [ref=e2108]:
+                  - generic [ref=e2109]:
+                    - 'generic "Rating: 4.8 stars out of 5 reviews" [ref=e2110]':
+                      - generic [ref=e2111]:
+                        - img [ref=e2112]
+                        - generic [ref=e2114]: "4.8"
+                      - generic [ref=e2115]: (5)
+                    - generic "450 views" [ref=e2116]:
+                      - img [ref=e2117]
+                      - generic [ref=e2120]: "450"
+                  - generic [ref=e2121]:
+                    - button "Add Bookmark" [ref=e2122]:
+                      - img [ref=e2123]
+                    - img [ref=e2126]
+            - generic [ref=e2128]:
+              - 'link "View details for github/github-mcp-server: GitHub''s official MCP Server" [ref=e2129] [cursor=pointer]':
+                - /url: /resources/github-github-mcp-server
+                - generic [ref=e2130]: "View details for github/github-mcp-server: GitHub's official MCP Server"
+              - generic [ref=e2131]:
+                - generic [ref=e2132]:
+                  - generic [ref=e2134]: MCP Servers
+                  - generic "Featured Resource" [ref=e2135]:
+                    - img [ref=e2136]
+                - generic [ref=e2138]:
+                  - heading "github/github-mcp-server" [level=3] [ref=e2139]
+                  - paragraph [ref=e2140]: GitHub's official MCP Server
+                - generic [ref=e2141]:
+                  - generic [ref=e2142]:
+                    - 'generic "Rating: 4.4 stars out of 7 reviews" [ref=e2143]':
+                      - generic [ref=e2144]:
+                        - img [ref=e2145]
+                        - generic [ref=e2147]: "4.4"
+                      - generic [ref=e2148]: (7)
+                    - generic "444 views" [ref=e2149]:
+                      - img [ref=e2150]
+                      - generic [ref=e2153]: "444"
+                  - generic [ref=e2154]:
+                    - button "Add Bookmark" [ref=e2155]:
+                      - img [ref=e2156]
+                    - img [ref=e2159]
+            - generic [ref=e2161]:
+              - 'link "View details for Kong/kong: 🦍 The Cloud-Native Gateway for APIs & AI" [ref=e2162] [cursor=pointer]':
+                - /url: /resources/kong-kong
+                - generic [ref=e2163]: "View details for Kong/kong: 🦍 The Cloud-Native Gateway for APIs & AI"
+              - generic [ref=e2164]:
+                - generic [ref=e2165]:
+                  - generic [ref=e2167]: MCP Servers
+                  - generic "Featured Resource" [ref=e2168]:
+                    - img [ref=e2169]
+                - generic [ref=e2171]:
+                  - heading "Kong/kong" [level=3] [ref=e2172]
+                  - paragraph [ref=e2173]: 🦍 The Cloud-Native Gateway for APIs & AI
+                - generic [ref=e2174]:
+                  - generic [ref=e2175]:
+                    - 'generic "Rating: 4.9 stars out of 7 reviews" [ref=e2176]':
+                      - generic [ref=e2177]:
+                        - img [ref=e2178]
+                        - generic [ref=e2180]: "4.9"
+                      - generic [ref=e2181]: (7)
+                    - generic "436 views" [ref=e2182]:
+                      - img [ref=e2183]
+                      - generic [ref=e2186]: "436"
+                  - generic [ref=e2187]:
+                    - button "Add Bookmark" [ref=e2188]:
+                      - img [ref=e2189]
+                    - img [ref=e2192]
+            - generic [ref=e2194]:
+              - 'link "View details for strands-agents/sdk-python: A model-driven approach to building AI agents in just a few lines of code." [ref=e2195] [cursor=pointer]':
+                - /url: /resources/strands-agents-sdk-python
+                - generic [ref=e2196]: "View details for strands-agents/sdk-python: A model-driven approach to building AI agents in just a few lines of code."
+              - generic [ref=e2197]:
+                - generic [ref=e2198]:
+                  - generic [ref=e2200]: MCP Servers
+                  - generic "Featured Resource" [ref=e2201]:
+                    - img [ref=e2202]
+                - generic [ref=e2204]:
+                  - heading "strands-agents/sdk-python" [level=3] [ref=e2205]
+                  - paragraph [ref=e2206]: A model-driven approach to building AI agents in just a few lines of code.
+                - generic [ref=e2207]:
+                  - generic [ref=e2208]:
+                    - 'generic "Rating: 4.6 stars out of 11 reviews" [ref=e2209]':
+                      - generic [ref=e2210]:
+                        - img [ref=e2211]
+                        - generic [ref=e2213]: "4.6"
+                      - generic [ref=e2214]: (11)
+                    - generic "436 views" [ref=e2215]:
+                      - img [ref=e2216]
+                      - generic [ref=e2219]: "436"
+                  - generic [ref=e2220]:
+                    - button "Add Bookmark" [ref=e2221]:
+                      - img [ref=e2222]
+                    - img [ref=e2225]
+            - generic [ref=e2227]:
+              - 'link "View details for farion1231/cc-switch: A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI." [ref=e2228] [cursor=pointer]':
+                - /url: /resources/farion1231-cc-switch
+                - generic [ref=e2229]: "View details for farion1231/cc-switch: A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI."
+              - generic [ref=e2230]:
+                - generic [ref=e2231]:
+                  - generic [ref=e2233]: MCP Servers
+                  - generic "Featured Resource" [ref=e2234]:
+                    - img [ref=e2235]
+                - generic [ref=e2237]:
+                  - heading "farion1231/cc-switch" [level=3] [ref=e2238]
+                  - paragraph [ref=e2239]: A cross-platform desktop All-in-One assistant tool for Claude Code, Codex & Gemini CLI.
+                - generic [ref=e2240]:
+                  - generic [ref=e2241]:
+                    - 'generic "Rating: 4.7 stars out of 3 reviews" [ref=e2242]':
+                      - generic [ref=e2243]:
+                        - img [ref=e2244]
+                        - generic [ref=e2246]: "4.7"
+                      - generic [ref=e2247]: (3)
+                    - generic "428 views" [ref=e2248]:
+                      - img [ref=e2249]
+                      - generic [ref=e2252]: "428"
+                  - generic [ref=e2253]:
+                    - button "Add Bookmark" [ref=e2254]:
+                      - img [ref=e2255]
+                    - img [ref=e2258]
+            - generic [ref=e2260]:
+              - 'link "View details for n8n-io/n8n: Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations." [ref=e2261] [cursor=pointer]':
+                - /url: /resources/n8n-io-n8n
+                - generic [ref=e2262]: "View details for n8n-io/n8n: Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations."
+              - generic [ref=e2263]:
+                - generic [ref=e2264]:
+                  - generic [ref=e2266]: MCP Servers
+                  - generic "Featured Resource" [ref=e2267]:
+                    - img [ref=e2268]
+                - generic [ref=e2270]:
+                  - heading "n8n-io/n8n" [level=3] [ref=e2271]
+                  - paragraph [ref=e2272]: Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.
+                - generic [ref=e2273]:
+                  - generic [ref=e2274]:
+                    - 'generic "Rating: 4.5 stars out of 8 reviews" [ref=e2275]':
+                      - generic [ref=e2276]:
+                        - img [ref=e2277]
+                        - generic [ref=e2279]: "4.5"
+                      - generic [ref=e2280]: (8)
+                    - generic "409 views" [ref=e2281]:
+                      - img [ref=e2282]
+                      - generic [ref=e2285]: "409"
+                  - generic [ref=e2286]:
+                    - button "Add Bookmark" [ref=e2287]:
+                      - img [ref=e2288]
+                    - img [ref=e2291]
+            - generic [ref=e2293]:
+              - 'link "View details for DearVa/Everywhere: A context-aware AI assistant for your desktop. Ready to respond intelligently, seamlessly integrating multiple LLMs and MCP tools." [ref=e2294] [cursor=pointer]':
+                - /url: /resources/dearva-everywhere
+                - generic [ref=e2295]: "View details for DearVa/Everywhere: A context-aware AI assistant for your desktop. Ready to respond intelligently, seamlessly integrating multiple LLMs and MCP tools."
+              - generic [ref=e2296]:
+                - generic [ref=e2297]:
+                  - generic [ref=e2299]: MCP Servers
+                  - generic "Featured Resource" [ref=e2300]:
+                    - img [ref=e2301]
+                - generic [ref=e2303]:
+                  - heading "DearVa/Everywhere" [level=3] [ref=e2304]
+                  - paragraph [ref=e2305]: A context-aware AI assistant for your desktop. Ready to respond intelligently, seamlessly integrating multiple LLMs and MCP tools.
+                - generic [ref=e2306]:
+                  - generic [ref=e2307]:
+                    - 'generic "Rating: 4.4 stars out of 8 reviews" [ref=e2308]':
+                      - generic [ref=e2309]:
+                        - img [ref=e2310]
+                        - generic [ref=e2312]: "4.4"
+                      - generic [ref=e2313]: (8)
+                    - generic "406 views" [ref=e2314]:
+                      - img [ref=e2315]
+                      - generic [ref=e2318]: "406"
+                  - generic [ref=e2319]:
+                    - button "Add Bookmark" [ref=e2320]:
+                      - img [ref=e2321]
+                    - img [ref=e2324]
+            - generic [ref=e2326]:
+              - 'link "View details for AgentDeskAI/browser-tools-mcp: Monitor browser logs directly from Cursor and other MCP compatible IDEs." [ref=e2327] [cursor=pointer]':
+                - /url: /resources/agentdeskai-browser-tools-mcp
+                - generic [ref=e2328]: "View details for AgentDeskAI/browser-tools-mcp: Monitor browser logs directly from Cursor and other MCP compatible IDEs."
+              - generic [ref=e2329]:
+                - generic [ref=e2330]:
+                  - generic [ref=e2332]: MCP Servers
+                  - generic "Featured Resource" [ref=e2333]:
+                    - img [ref=e2334]
+                - generic [ref=e2336]:
+                  - heading "AgentDeskAI/browser-tools-mcp" [level=3] [ref=e2337]
+                  - paragraph [ref=e2338]: Monitor browser logs directly from Cursor and other MCP compatible IDEs.
+                - generic [ref=e2339]:
+                  - generic [ref=e2340]:
+                    - 'generic "Rating: 4.6 stars out of 5 reviews" [ref=e2341]':
+                      - generic [ref=e2342]:
+                        - img [ref=e2343]
+                        - generic [ref=e2345]: "4.6"
+                      - generic [ref=e2346]: (5)
+                    - generic "397 views" [ref=e2347]:
+                      - img [ref=e2348]
+                      - generic [ref=e2351]: "397"
+                  - generic [ref=e2352]:
+                    - button "Add Bookmark" [ref=e2353]:
+                      - img [ref=e2354]
+                    - img [ref=e2357]
+            - generic [ref=e2359]:
+              - 'link "View details for zerocore-ai/microsandbox: opensource self-hosted sandboxes for ai agents" [ref=e2360] [cursor=pointer]':
+                - /url: /resources/zerocore-ai-microsandbox
+                - generic [ref=e2361]: "View details for zerocore-ai/microsandbox: opensource self-hosted sandboxes for ai agents"
+              - generic [ref=e2362]:
+                - generic [ref=e2363]:
+                  - generic [ref=e2365]: MCP Servers
+                  - generic "Featured Resource" [ref=e2366]:
+                    - img [ref=e2367]
+                - generic [ref=e2369]:
+                  - heading "zerocore-ai/microsandbox" [level=3] [ref=e2370]
+                  - paragraph [ref=e2371]: opensource self-hosted sandboxes for ai agents
+                - generic [ref=e2372]:
+                  - generic [ref=e2373]:
+                    - 'generic "Rating: 4.7 stars out of 7 reviews" [ref=e2374]':
+                      - generic [ref=e2375]:
+                        - img [ref=e2376]
+                        - generic [ref=e2378]: "4.7"
+                      - generic [ref=e2379]: (7)
+                    - generic "389 views" [ref=e2380]:
+                      - img [ref=e2381]
+                      - generic [ref=e2384]: "389"
+                  - generic [ref=e2385]:
+                    - button "Add Bookmark" [ref=e2386]:
+                      - img [ref=e2387]
+                    - img [ref=e2390]
+            - generic [ref=e2392]:
+              - 'link "View details for microsoft/playwright-mcp: Playwright MCP server" [ref=e2393] [cursor=pointer]':
+                - /url: /resources/microsoft-playwright-mcp
+                - generic [ref=e2394]: "View details for microsoft/playwright-mcp: Playwright MCP server"
+              - generic [ref=e2395]:
+                - generic [ref=e2396]:
+                  - generic [ref=e2398]: MCP Servers
+                  - generic "Featured Resource" [ref=e2399]:
+                    - img [ref=e2400]
+                - generic [ref=e2402]:
+                  - heading "microsoft/playwright-mcp" [level=3] [ref=e2403]
+                  - paragraph [ref=e2404]: Playwright MCP server
+                - generic [ref=e2405]:
+                  - generic [ref=e2406]:
+                    - 'generic "Rating: 4.5 stars out of 11 reviews" [ref=e2407]':
+                      - generic [ref=e2408]:
+                        - img [ref=e2409]
+                        - generic [ref=e2411]: "4.5"
+                      - generic [ref=e2412]: (11)
+                    - generic "365 views" [ref=e2413]:
+                      - img [ref=e2414]
+                      - generic [ref=e2417]: "365"
+                  - generic [ref=e2418]:
+                    - button "Add Bookmark" [ref=e2419]:
+                      - img [ref=e2420]
+                    - img [ref=e2423]
+            - generic [ref=e2425]:
+              - 'link "View details for firerpa/lamda: The most powerful Android RPA agent framework, next generation of mobile automation robots." [ref=e2426] [cursor=pointer]':
+                - /url: /resources/firerpa-lamda
+                - generic [ref=e2427]: "View details for firerpa/lamda: The most powerful Android RPA agent framework, next generation of mobile automation robots."
+              - generic [ref=e2428]:
+                - generic [ref=e2429]:
+                  - generic [ref=e2431]: MCP Servers
+                  - generic "Featured Resource" [ref=e2432]:
+                    - img [ref=e2433]
+                - generic [ref=e2435]:
+                  - heading "firerpa/lamda" [level=3] [ref=e2436]
+                  - paragraph [ref=e2437]: The most powerful Android RPA agent framework, next generation of mobile automation robots.
+                - generic [ref=e2438]:
+                  - generic [ref=e2439]:
+                    - 'generic "Rating: 4.5 stars out of 11 reviews" [ref=e2440]':
+                      - generic [ref=e2441]:
+                        - img [ref=e2442]
+                        - generic [ref=e2444]: "4.5"
+                      - generic [ref=e2445]: (11)
+                    - generic "351 views" [ref=e2446]:
+                      - img [ref=e2447]
+                      - generic [ref=e2450]: "351"
+                  - generic [ref=e2451]:
+                    - button "Add Bookmark" [ref=e2452]:
+                      - img [ref=e2453]
+                    - img [ref=e2456]
+            - generic [ref=e2458]:
+              - 'link "View details for labring/FastGPT: FastGPT is a knowledge-based platform built on the LLMs, offers a comprehensive suite of out-of-the-box capabilities such as data processing, RAG retrieval, and visual AI workflow orchestration, letting you easily develop and deploy complex question-answering systems without the need for extensive setup or configuration." [ref=e2459] [cursor=pointer]':
+                - /url: /resources/labring-fastgpt
+                - generic [ref=e2460]: "View details for labring/FastGPT: FastGPT is a knowledge-based platform built on the LLMs, offers a comprehensive suite of out-of-the-box capabilities such as data processing, RAG retrieval, and visual AI workflow orchestration, letting you easily develop and deploy complex question-answering systems without the need for extensive setup or configuration."
+              - generic [ref=e2461]:
+                - generic [ref=e2462]:
+                  - generic [ref=e2464]: MCP Servers
+                  - generic "Featured Resource" [ref=e2465]:
+                    - img [ref=e2466]
+                - generic [ref=e2468]:
+                  - heading "labring/FastGPT" [level=3] [ref=e2469]
+                  - paragraph [ref=e2470]: FastGPT is a knowledge-based platform built on the LLMs, offers a comprehensive suite of out-of-the-box capabilities such as data processing, RAG retrieval, and visual AI workflow orchestration, letting you easily develop and deploy complex question-answering systems without the need for extensive setup or configuration.
+                - generic [ref=e2471]:
+                  - generic [ref=e2472]:
+                    - 'generic "Rating: 4.8 stars out of 4 reviews" [ref=e2473]':
+                      - generic [ref=e2474]:
+                        - img [ref=e2475]
+                        - generic [ref=e2477]: "4.8"
+                      - generic [ref=e2478]: (4)
+                    - generic "343 views" [ref=e2479]:
+                      - img [ref=e2480]
+                      - generic [ref=e2483]: "343"
+                  - generic [ref=e2484]:
+                    - button "Add Bookmark" [ref=e2485]:
+                      - img [ref=e2486]
+                    - img [ref=e2489]
+            - generic [ref=e2491]:
+              - 'link "View details for ageerle/ruoyi-ai: RuoYi AI 是一个全栈式 AI 开发平台，旨在帮助开发者快速构建和部署个性化的 AI 应用。" [ref=e2492] [cursor=pointer]':
+                - /url: /resources/ageerle-ruoyi-ai
+                - generic [ref=e2493]: "View details for ageerle/ruoyi-ai: RuoYi AI 是一个全栈式 AI 开发平台，旨在帮助开发者快速构建和部署个性化的 AI 应用。"
+              - generic [ref=e2494]:
+                - generic [ref=e2495]:
+                  - generic [ref=e2497]: MCP Servers
+                  - generic "Featured Resource" [ref=e2498]:
+                    - img [ref=e2499]
+                - generic [ref=e2501]:
+                  - heading "ageerle/ruoyi-ai" [level=3] [ref=e2502]
+                  - paragraph [ref=e2503]: RuoYi AI 是一个全栈式 AI 开发平台，旨在帮助开发者快速构建和部署个性化的 AI 应用。
+                - generic [ref=e2504]:
+                  - generic [ref=e2505]:
+                    - 'generic "Rating: 4.6 stars out of 11 reviews" [ref=e2506]':
+                      - generic [ref=e2507]:
+                        - img [ref=e2508]
+                        - generic [ref=e2510]: "4.6"
+                      - generic [ref=e2511]: (11)
+                    - generic "333 views" [ref=e2512]:
+                      - img [ref=e2513]
+                      - generic [ref=e2516]: "333"
+                  - generic [ref=e2517]:
+                    - button "Add Bookmark" [ref=e2518]:
+                      - img [ref=e2519]
+                    - img [ref=e2522]
+            - generic [ref=e2524]:
+              - 'link "View details for zhayujie/chatgpt-on-wechat: 基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入，可选择ChatGPT/Claude/DeepSeek/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Kimi/LinkAI，能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企业智能客服。" [ref=e2525] [cursor=pointer]':
+                - /url: /resources/zhayujie-chatgpt-on-wechat
+                - generic [ref=e2526]: "View details for zhayujie/chatgpt-on-wechat: 基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入，可选择ChatGPT/Claude/DeepSeek/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Kimi/LinkAI，能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企业智能客服。"
+              - generic [ref=e2527]:
+                - generic [ref=e2528]:
+                  - generic [ref=e2530]: MCP Servers
+                  - generic "Featured Resource" [ref=e2531]:
+                    - img [ref=e2532]
+                - generic [ref=e2534]:
+                  - heading "zhayujie/chatgpt-on-wechat" [level=3] [ref=e2535]
+                  - paragraph [ref=e2536]: 基于大模型搭建的聊天机器人，同时支持 微信公众号、企业微信应用、飞书、钉钉 等接入，可选择ChatGPT/Claude/DeepSeek/文心一言/讯飞星火/通义千问/ Gemini/GLM-4/Kimi/LinkAI，能处理文本、语音和图片，访问操作系统和互联网，支持基于自有知识库进行定制企业智能客服。
+                - generic [ref=e2537]:
+                  - generic [ref=e2538]:
+                    - 'generic "Rating: 4.5 stars out of 8 reviews" [ref=e2539]':
+                      - generic [ref=e2540]:
+                        - img [ref=e2541]
+                        - generic [ref=e2543]: "4.5"
+                      - generic [ref=e2544]: (8)
+                    - generic "331 views" [ref=e2545]:
+                      - img [ref=e2546]
+                      - generic [ref=e2549]: "331"
+                  - generic [ref=e2550]:
+                    - button "Add Bookmark" [ref=e2551]:
+                      - img [ref=e2552]
+                    - img [ref=e2555]
+            - generic [ref=e2557]:
+              - 'link "View details for ComposioHQ/composio: Composio equips your AI agents & LLMs with 100+ high-quality integrations via function calling" [ref=e2558] [cursor=pointer]':
+                - /url: /resources/composiohq-composio
+                - generic [ref=e2559]: "View details for ComposioHQ/composio: Composio equips your AI agents & LLMs with 100+ high-quality integrations via function calling"
+              - generic [ref=e2560]:
+                - generic [ref=e2561]:
+                  - generic [ref=e2563]: MCP Servers
+                  - generic "Featured Resource" [ref=e2564]:
+                    - img [ref=e2565]
+                - generic [ref=e2567]:
+                  - heading "ComposioHQ/composio" [level=3] [ref=e2568]
+                  - paragraph [ref=e2569]: Composio equips your AI agents & LLMs with 100+ high-quality integrations via function calling
+                - generic [ref=e2570]:
+                  - generic [ref=e2571]:
+                    - 'generic "Rating: 4.5 stars out of 11 reviews" [ref=e2572]':
+                      - generic [ref=e2573]:
+                        - img [ref=e2574]
+                        - generic [ref=e2576]: "4.5"
+                      - generic [ref=e2577]: (11)
+                    - generic "331 views" [ref=e2578]:
+                      - img [ref=e2579]
+                      - generic [ref=e2582]: "331"
+                  - generic [ref=e2583]:
+                    - button "Add Bookmark" [ref=e2584]:
+                      - img [ref=e2585]
+                    - img [ref=e2588]
+            - generic [ref=e2590]:
+              - 'link "View details for wgpsec/ENScan_GO: 一款基于各大企业信息API的工具，解决在遇到的各种针对国内企业信息收集难题。一键收集控股公司ICP备案、APP、小程序、微信公众号等信息聚合导出。支持MCP接入" [ref=e2591] [cursor=pointer]':
+                - /url: /resources/wgpsec-enscan-go
+                - generic [ref=e2592]: "View details for wgpsec/ENScan_GO: 一款基于各大企业信息API的工具，解决在遇到的各种针对国内企业信息收集难题。一键收集控股公司ICP备案、APP、小程序、微信公众号等信息聚合导出。支持MCP接入"
+              - generic [ref=e2593]:
+                - generic [ref=e2594]:
+                  - generic [ref=e2596]: MCP Servers
+                  - generic "Featured Resource" [ref=e2597]:
+                    - img [ref=e2598]
+                - generic [ref=e2600]:
+                  - heading "wgpsec/ENScan_GO" [level=3] [ref=e2601]
+                  - paragraph [ref=e2602]: 一款基于各大企业信息API的工具，解决在遇到的各种针对国内企业信息收集难题。一键收集控股公司ICP备案、APP、小程序、微信公众号等信息聚合导出。支持MCP接入
+                - generic [ref=e2603]:
+                  - generic [ref=e2604]:
+                    - 'generic "Rating: 4.4 stars out of 9 reviews" [ref=e2605]':
+                      - generic [ref=e2606]:
+                        - img [ref=e2607]
+                        - generic [ref=e2609]: "4.4"
+                      - generic [ref=e2610]: (9)
+                    - generic "327 views" [ref=e2611]:
+                      - img [ref=e2612]
+                      - generic [ref=e2615]: "327"
+                  - generic [ref=e2616]:
+                    - button "Add Bookmark" [ref=e2617]:
+                      - img [ref=e2618]
+                    - img [ref=e2621]
+            - generic [ref=e2623]:
+              - 'link "View details for punkpeye/awesome-mcp-servers: A collection of MCP servers." [ref=e2624] [cursor=pointer]':
+                - /url: /resources/punkpeye-awesome-mcp-servers
+                - generic [ref=e2625]: "View details for punkpeye/awesome-mcp-servers: A collection of MCP servers."
+              - generic [ref=e2626]:
+                - generic [ref=e2627]:
+                  - generic [ref=e2629]: MCP Servers
+                  - generic "Featured Resource" [ref=e2630]:
+                    - img [ref=e2631]
+                - generic [ref=e2633]:
+                  - heading "punkpeye/awesome-mcp-servers" [level=3] [ref=e2634]
+                  - paragraph [ref=e2635]: A collection of MCP servers.
+                - generic [ref=e2636]:
+                  - generic [ref=e2637]:
+                    - 'generic "Rating: 4.5 stars out of 6 reviews" [ref=e2638]':
+                      - generic [ref=e2639]:
+                        - img [ref=e2640]
+                        - generic [ref=e2642]: "4.5"
+                      - generic [ref=e2643]: (6)
+                    - generic "311 views" [ref=e2644]:
+                      - img [ref=e2645]
+                      - generic [ref=e2648]: "311"
+                  - generic [ref=e2649]:
+                    - button "Add Bookmark" [ref=e2650]:
+                      - img [ref=e2651]
+                    - img [ref=e2654]
+            - generic [ref=e2656]:
+              - 'link "View details for open-webui/mcpo: A simple, secure MCP-to-OpenAPI proxy server" [ref=e2657] [cursor=pointer]':
+                - /url: /resources/open-webui-mcpo
+                - generic [ref=e2658]: "View details for open-webui/mcpo: A simple, secure MCP-to-OpenAPI proxy server"
+              - generic [ref=e2659]:
+                - generic [ref=e2660]:
+                  - generic [ref=e2662]: MCP Servers
+                  - generic "Featured Resource" [ref=e2663]:
+                    - img [ref=e2664]
+                - generic [ref=e2666]:
+                  - heading "open-webui/mcpo" [level=3] [ref=e2667]
+                  - paragraph [ref=e2668]: A simple, secure MCP-to-OpenAPI proxy server
+                - generic [ref=e2669]:
+                  - generic [ref=e2670]:
+                    - 'generic "Rating: 4.5 stars out of 11 reviews" [ref=e2671]':
+                      - generic [ref=e2672]:
+                        - img [ref=e2673]
+                        - generic [ref=e2675]: "4.5"
+                      - generic [ref=e2676]: (11)
+                    - generic "299 views" [ref=e2677]:
+                      - img [ref=e2678]
+                      - generic [ref=e2681]: "299"
+                  - generic [ref=e2682]:
+                    - button "Add Bookmark" [ref=e2683]:
+                      - img [ref=e2684]
+                    - img [ref=e2687]
+            - generic [ref=e2689]:
+              - 'link "View details for GLips/Figma-Context-MCP: MCP server to provide Figma layout information to AI coding agents like Cursor" [ref=e2690] [cursor=pointer]':
+                - /url: /resources/glips-figma-context-mcp
+                - generic [ref=e2691]: "View details for GLips/Figma-Context-MCP: MCP server to provide Figma layout information to AI coding agents like Cursor"
+              - generic [ref=e2692]:
+                - generic [ref=e2693]:
+                  - generic [ref=e2695]: MCP Servers
+                  - generic "Featured Resource" [ref=e2696]:
+                    - img [ref=e2697]
+                - generic [ref=e2699]:
+                  - heading "GLips/Figma-Context-MCP" [level=3] [ref=e2700]
+                  - paragraph [ref=e2701]: MCP server to provide Figma layout information to AI coding agents like Cursor
+                - generic [ref=e2702]:
+                  - generic [ref=e2703]:
+                    - 'generic "Rating: 4.3 stars out of 12 reviews" [ref=e2704]':
+                      - generic [ref=e2705]:
+                        - img [ref=e2706]
+                        - generic [ref=e2708]: "4.3"
+                      - generic [ref=e2709]: (12)
+                    - generic "293 views" [ref=e2710]:
+                      - img [ref=e2711]
+                      - generic [ref=e2714]: "293"
+                  - generic [ref=e2715]:
+                    - button "Add Bookmark" [ref=e2716]:
+                      - img [ref=e2717]
+                    - img [ref=e2720]
+            - generic [ref=e2722]:
+              - 'link "View details for codexu/note-gen: A cross-platform Markdown AI note-taking software." [ref=e2723] [cursor=pointer]':
+                - /url: /resources/codexu-note-gen
+                - generic [ref=e2724]: "View details for codexu/note-gen: A cross-platform Markdown AI note-taking software."
+              - generic [ref=e2725]:
+                - generic [ref=e2726]:
+                  - generic [ref=e2728]: MCP Servers
+                  - generic "Featured Resource" [ref=e2729]:
+                    - img [ref=e2730]
+                - generic [ref=e2732]:
+                  - heading "codexu/note-gen" [level=3] [ref=e2733]
+                  - paragraph [ref=e2734]: A cross-platform Markdown AI note-taking software.
+                - generic [ref=e2735]:
+                  - generic [ref=e2736]:
+                    - 'generic "Rating: 4.5 stars out of 11 reviews" [ref=e2737]':
+                      - generic [ref=e2738]:
+                        - img [ref=e2739]
+                        - generic [ref=e2741]: "4.5"
+                      - generic [ref=e2742]: (11)
+                    - generic "281 views" [ref=e2743]:
+                      - img [ref=e2744]
+                      - generic [ref=e2747]: "281"
+                  - generic [ref=e2748]:
+                    - button "Add Bookmark" [ref=e2749]:
+                      - img [ref=e2750]
+                    - img [ref=e2753]
+            - generic [ref=e2755]:
+              - 'link "View details for mudler/LocalAI: :robot: The free, Open Source alternative to OpenAI, Claude and others. Self-hosted and local-first. Drop-in replacement for OpenAI, running on consumer-grade hardware. No GPU required. Runs gguf, transformers, diffusers and many more. Features: Generate Text, MCP, Audio, Video, Images, Voice Cloning, Distributed, P2P and decentralized inference" [ref=e2756] [cursor=pointer]':
+                - /url: /resources/mudler-localai
+                - generic [ref=e2757]: "View details for mudler/LocalAI: :robot: The free, Open Source alternative to OpenAI, Claude and others. Self-hosted and local-first. Drop-in replacement for OpenAI, running on consumer-grade hardware. No GPU required. Runs gguf, transformers, diffusers and many more. Features: Generate Text, MCP, Audio, Video, Images, Voice Cloning, Distributed, P2P and decentralized inference"
+              - generic [ref=e2758]:
+                - generic [ref=e2759]:
+                  - generic [ref=e2761]: MCP Servers
+                  - generic "Featured Resource" [ref=e2762]:
+                    - img [ref=e2763]
+                - generic [ref=e2765]:
+                  - heading "mudler/LocalAI" [level=3] [ref=e2766]
+                  - paragraph [ref=e2767]: ":robot: The free, Open Source alternative to OpenAI, Claude and others. Self-hosted and local-first. Drop-in replacement for OpenAI, running on consumer-grade hardware. No GPU required. Runs gguf, transformers, diffusers and many more. Features: Generate Text, MCP, Audio, Video, Images, Voice Cloning, Distributed, P2P and decentralized inference"
+                - generic [ref=e2768]:
+                  - generic [ref=e2769]:
+                    - 'generic "Rating: 4.5 stars out of 8 reviews" [ref=e2770]':
+                      - generic [ref=e2771]:
+                        - img [ref=e2772]
+                        - generic [ref=e2774]: "4.5"
+                      - generic [ref=e2775]: (8)
+                    - generic "280 views" [ref=e2776]:
+                      - img [ref=e2777]
+                      - generic [ref=e2780]: "280"
+                  - generic [ref=e2781]:
+                    - button "Add Bookmark" [ref=e2782]:
+                      - img [ref=e2783]
+                    - img [ref=e2786]
+            - generic [ref=e2788]:
+              - 'link "View details for PDFMathTranslate/PDFMathTranslate: [EMNLP 2025 Demo] PDF scientific paper translation with preserved formats - 基于 AI 完整保留排版的 PDF 文档全文双语翻译，支持 Google/DeepL/Ollama/OpenAI 等服务，提供 CLI/GUI/MCP/Docker/Zotero" [ref=e2789] [cursor=pointer]':
+                - /url: /resources/pdfmathtranslate-pdfmathtranslate
+                - generic [ref=e2790]: "View details for PDFMathTranslate/PDFMathTranslate: [EMNLP 2025 Demo] PDF scientific paper translation with preserved formats - 基于 AI 完整保留排版的 PDF 文档全文双语翻译，支持 Google/DeepL/Ollama/OpenAI 等服务，提供 CLI/GUI/MCP/Docker/Zotero"
+              - generic [ref=e2791]:
+                - generic [ref=e2792]:
+                  - generic [ref=e2794]: MCP Servers
+                  - generic "Featured Resource" [ref=e2795]:
+                    - img [ref=e2796]
+                - generic [ref=e2798]:
+                  - heading "PDFMathTranslate/PDFMathTranslate" [level=3] [ref=e2799]
+                  - paragraph [ref=e2800]: "[EMNLP 2025 Demo] PDF scientific paper translation with preserved formats - 基于 AI 完整保留排版的 PDF 文档全文双语翻译，支持 Google/DeepL/Ollama/OpenAI 等服务，提供 CLI/GUI/MCP/Docker/Zotero"
+                - generic [ref=e2801]:
+                  - generic [ref=e2802]:
+                    - 'generic "Rating: 4.9 stars out of 7 reviews" [ref=e2803]':
+                      - generic [ref=e2804]:
+                        - img [ref=e2805]
+                        - generic [ref=e2807]: "4.9"
+                      - generic [ref=e2808]: (7)
+                    - generic "272 views" [ref=e2809]:
+                      - img [ref=e2810]
+                      - generic [ref=e2813]: "272"
+                  - generic [ref=e2814]:
+                    - button "Add Bookmark" [ref=e2815]:
+                      - img [ref=e2816]
+                    - img [ref=e2819]
+            - generic [ref=e2821]:
+              - 'link "View details for punkpeye/awesome-mcp-clients: A collection of MCP clients." [ref=e2822] [cursor=pointer]':
+                - /url: /resources/punkpeye-awesome-mcp-clients
+                - generic [ref=e2823]: "View details for punkpeye/awesome-mcp-clients: A collection of MCP clients."
+              - generic [ref=e2824]:
+                - generic [ref=e2825]:
+                  - generic [ref=e2827]: MCP Servers
+                  - generic "Featured Resource" [ref=e2828]:
+                    - img [ref=e2829]
+                - generic [ref=e2831]:
+                  - heading "punkpeye/awesome-mcp-clients" [level=3] [ref=e2832]
+                  - paragraph [ref=e2833]: A collection of MCP clients.
+                - generic [ref=e2834]:
+                  - generic [ref=e2835]:
+                    - 'generic "Rating: 4.8 stars out of 8 reviews" [ref=e2836]':
+                      - generic [ref=e2837]:
+                        - img [ref=e2838]
+                        - generic [ref=e2840]: "4.8"
+                      - generic [ref=e2841]: (8)
+                    - generic "266 views" [ref=e2842]:
+                      - img [ref=e2843]
+                      - generic [ref=e2846]: "266"
+                  - generic [ref=e2847]:
+                    - button "Add Bookmark" [ref=e2848]:
+                      - img [ref=e2849]
+                    - img [ref=e2852]
+            - generic [ref=e2854]:
+              - 'link "View details for udecode/plate: Rich-text editor with AI, MCP, and shadcn/ui" [ref=e2855] [cursor=pointer]':
+                - /url: /resources/udecode-plate
+                - generic [ref=e2856]: "View details for udecode/plate: Rich-text editor with AI, MCP, and shadcn/ui"
+              - generic [ref=e2857]:
+                - generic [ref=e2858]:
+                  - generic [ref=e2860]: MCP Servers
+                  - generic "Featured Resource" [ref=e2861]:
+                    - img [ref=e2862]
+                - generic [ref=e2864]:
+                  - heading "udecode/plate" [level=3] [ref=e2865]
+                  - paragraph [ref=e2866]: Rich-text editor with AI, MCP, and shadcn/ui
+                - generic [ref=e2867]:
+                  - generic [ref=e2868]:
+                    - 'generic "Rating: 4.5 stars out of 11 reviews" [ref=e2869]':
+                      - generic [ref=e2870]:
+                        - img [ref=e2871]
+                        - generic [ref=e2873]: "4.5"
+                      - generic [ref=e2874]: (11)
+                    - generic "265 views" [ref=e2875]:
+                      - img [ref=e2876]
+                      - generic [ref=e2879]: "265"
+                  - generic [ref=e2880]:
+                    - button "Add Bookmark" [ref=e2881]:
+                      - img [ref=e2882]
+                    - img [ref=e2885]
+            - generic [ref=e2887]:
+              - 'link "View details for MCP-UI-Org/mcp-ui: UI over MCP. Create next-gen UI experiences with the protocol and SDK!" [ref=e2888] [cursor=pointer]':
+                - /url: /resources/mcp-ui-org-mcp-ui
+                - generic [ref=e2889]: "View details for MCP-UI-Org/mcp-ui: UI over MCP. Create next-gen UI experiences with the protocol and SDK!"
+              - generic [ref=e2890]:
+                - generic [ref=e2891]:
+                  - generic [ref=e2893]: MCP Servers
+                  - generic "Featured Resource" [ref=e2894]:
+                    - img [ref=e2895]
+                - generic [ref=e2897]:
+                  - heading "MCP-UI-Org/mcp-ui" [level=3] [ref=e2898]
+                  - paragraph [ref=e2899]: UI over MCP. Create next-gen UI experiences with the protocol and SDK!
+                - generic [ref=e2900]:
+                  - generic [ref=e2901]:
+                    - 'generic "Rating: 4.5 stars out of 11 reviews" [ref=e2902]':
+                      - generic [ref=e2903]:
+                        - img [ref=e2904]
+                        - generic [ref=e2906]: "4.5"
+                      - generic [ref=e2907]: (11)
+                    - generic "250 views" [ref=e2908]:
+                      - img [ref=e2909]
+                      - generic [ref=e2912]: "250"
+                  - generic [ref=e2913]:
+                    - button "Add Bookmark" [ref=e2914]:
+                      - img [ref=e2915]
+                    - img [ref=e2918]
+            - generic [ref=e2920]:
+              - 'link "View details for alibaba/nacos: an easy-to-use dynamic service discovery, configuration and service management platform for building AI cloud native applications." [ref=e2921] [cursor=pointer]':
+                - /url: /resources/alibaba-nacos
+                - generic [ref=e2922]: "View details for alibaba/nacos: an easy-to-use dynamic service discovery, configuration and service management platform for building AI cloud native applications."
+              - generic [ref=e2923]:
+                - generic [ref=e2924]:
+                  - generic [ref=e2926]: MCP Servers
+                  - generic "Featured Resource" [ref=e2927]:
+                    - img [ref=e2928]
+                - generic [ref=e2930]:
+                  - heading "alibaba/nacos" [level=3] [ref=e2931]
+                  - paragraph [ref=e2932]: an easy-to-use dynamic service discovery, configuration and service management platform for building AI cloud native applications.
+                - generic [ref=e2933]:
+                  - generic [ref=e2934]:
+                    - 'generic "Rating: 4.3 stars out of 11 reviews" [ref=e2935]':
+                      - generic [ref=e2936]:
+                        - img [ref=e2937]
+                        - generic [ref=e2939]: "4.3"
+                      - generic [ref=e2940]: (11)
+                    - generic "246 views" [ref=e2941]:
+                      - img [ref=e2942]
+                      - generic [ref=e2945]: "246"
+                  - generic [ref=e2946]:
+                    - button "Add Bookmark" [ref=e2947]:
+                      - img [ref=e2948]
+                    - img [ref=e2951]
+            - generic [ref=e2953]:
+              - 'link "View details for mickael-kerjean/filestash: :file_folder: What Dropbox should have been if it was based on SFTP, S3, FTP, SMB, NFS, WebDAV, Git, and more" [ref=e2954] [cursor=pointer]':
+                - /url: /resources/mickael-kerjean-filestash
+                - generic [ref=e2955]: "View details for mickael-kerjean/filestash: :file_folder: What Dropbox should have been if it was based on SFTP, S3, FTP, SMB, NFS, WebDAV, Git, and more"
+              - generic [ref=e2956]:
+                - generic [ref=e2957]:
+                  - generic [ref=e2959]: MCP Servers
+                  - generic "Featured Resource" [ref=e2960]:
+                    - img [ref=e2961]
+                - generic [ref=e2963]:
+                  - heading "mickael-kerjean/filestash" [level=3] [ref=e2964]
+                  - paragraph [ref=e2965]: ":file_folder: What Dropbox should have been if it was based on SFTP, S3, FTP, SMB, NFS, WebDAV, Git, and more"
+                - generic [ref=e2966]:
+                  - generic [ref=e2967]:
+                    - 'generic "Rating: 4.5 stars out of 10 reviews" [ref=e2968]':
+                      - generic [ref=e2969]:
+                        - img [ref=e2970]
+                        - generic [ref=e2972]: "4.5"
+                      - generic [ref=e2973]: (10)
+                    - generic "231 views" [ref=e2974]:
+                      - img [ref=e2975]
+                      - generic [ref=e2978]: "231"
+                  - generic [ref=e2979]:
+                    - button "Add Bookmark" [ref=e2980]:
+                      - img [ref=e2981]
+                    - img [ref=e2984]
+            - generic [ref=e2986]:
+              - 'link "View details for block/goose: an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM" [ref=e2987] [cursor=pointer]':
+                - /url: /resources/block-goose
+                - generic [ref=e2988]: "View details for block/goose: an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM"
+              - generic [ref=e2989]:
+                - generic [ref=e2990]:
+                  - generic [ref=e2992]: MCP Servers
+                  - generic "Featured Resource" [ref=e2993]:
+                    - img [ref=e2994]
+                - generic [ref=e2996]:
+                  - heading "block/goose" [level=3] [ref=e2997]
+                  - paragraph [ref=e2998]: an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM
+                - generic [ref=e2999]:
+                  - generic [ref=e3000]:
+                    - 'generic "Rating: 4.8 stars out of 12 reviews" [ref=e3001]':
+                      - generic [ref=e3002]:
+                        - img [ref=e3003]
+                        - generic [ref=e3005]: "4.8"
+                      - generic [ref=e3006]: (12)
+                    - generic "230 views" [ref=e3007]:
+                      - img [ref=e3008]
+                      - generic [ref=e3011]: "230"
+                  - generic [ref=e3012]:
+                    - button "Add Bookmark" [ref=e3013]:
+                      - img [ref=e3014]
+                    - img [ref=e3017]
+            - generic [ref=e3019]:
+              - 'link "View details for assafelovic/gpt-researcher: An LLM agent that conducts deep research (local and web) on any given topic and generates a long report with citations." [ref=e3020] [cursor=pointer]':
+                - /url: /resources/assafelovic-gpt-researcher
+                - generic [ref=e3021]: "View details for assafelovic/gpt-researcher: An LLM agent that conducts deep research (local and web) on any given topic and generates a long report with citations."
+              - generic [ref=e3022]:
+                - generic [ref=e3023]:
+                  - generic [ref=e3025]: MCP Servers
+                  - generic "Featured Resource" [ref=e3026]:
+                    - img [ref=e3027]
+                - generic [ref=e3029]:
+                  - heading "assafelovic/gpt-researcher" [level=3] [ref=e3030]
+                  - paragraph [ref=e3031]: An LLM agent that conducts deep research (local and web) on any given topic and generates a long report with citations.
+                - generic [ref=e3032]:
+                  - generic [ref=e3033]:
+                    - 'generic "Rating: 4.3 stars out of 4 reviews" [ref=e3034]':
+                      - generic [ref=e3035]:
+                        - img [ref=e3036]
+                        - generic [ref=e3038]: "4.3"
+                      - generic [ref=e3039]: (4)
+                    - generic "209 views" [ref=e3040]:
+                      - img [ref=e3041]
+                      - generic [ref=e3044]: "209"
+                  - generic [ref=e3045]:
+                    - button "Add Bookmark" [ref=e3046]:
+                      - img [ref=e3047]
+                    - img [ref=e3050]
+            - generic [ref=e3052]:
+              - 'link "View details for tadata-org/fastapi_mcp: Expose your FastAPI endpoints as Model Context Protocol (MCP) tools, with Auth!" [ref=e3053] [cursor=pointer]':
+                - /url: /resources/tadata-org-fastapi-mcp
+                - generic [ref=e3054]: "View details for tadata-org/fastapi_mcp: Expose your FastAPI endpoints as Model Context Protocol (MCP) tools, with Auth!"
+              - generic [ref=e3055]:
+                - generic [ref=e3056]:
+                  - generic [ref=e3058]: MCP Servers
+                  - generic "Featured Resource" [ref=e3059]:
+                    - img [ref=e3060]
+                - generic [ref=e3062]:
+                  - heading "tadata-org/fastapi_mcp" [level=3] [ref=e3063]
+                  - paragraph [ref=e3064]: Expose your FastAPI endpoints as Model Context Protocol (MCP) tools, with Auth!
+                - generic [ref=e3065]:
+                  - generic [ref=e3066]:
+                    - 'generic "Rating: 4.3 stars out of 6 reviews" [ref=e3067]':
+                      - generic [ref=e3068]:
+                        - img [ref=e3069]
+                        - generic [ref=e3071]: "4.3"
+                      - generic [ref=e3072]: (6)
+                    - generic "197 views" [ref=e3073]:
+                      - img [ref=e3074]
+                      - generic [ref=e3077]: "197"
+                  - generic [ref=e3078]:
+                    - button "Add Bookmark" [ref=e3079]:
+                      - img [ref=e3080]
+                    - img [ref=e3083]
+            - generic [ref=e3085]:
+              - 'link "View details for mindsdb/mindsdb: Federated Query Engine for AI - The only MCP Server you''ll ever need" [ref=e3086] [cursor=pointer]':
+                - /url: /resources/mindsdb-mindsdb
+                - generic [ref=e3087]: "View details for mindsdb/mindsdb: Federated Query Engine for AI - The only MCP Server you'll ever need"
+              - generic [ref=e3088]:
+                - generic [ref=e3089]:
+                  - generic [ref=e3091]: MCP Servers
+                  - generic "Featured Resource" [ref=e3092]:
+                    - img [ref=e3093]
+                - generic [ref=e3095]:
+                  - heading "mindsdb/mindsdb" [level=3] [ref=e3096]
+                  - paragraph [ref=e3097]: Federated Query Engine for AI - The only MCP Server you'll ever need
+                - generic [ref=e3098]:
+                  - generic [ref=e3099]:
+                    - 'generic "Rating: 4.5 stars out of 6 reviews" [ref=e3100]':
+                      - generic [ref=e3101]:
+                        - img [ref=e3102]
+                        - generic [ref=e3104]: "4.5"
+                      - generic [ref=e3105]: (6)
+                    - generic "175 views" [ref=e3106]:
+                      - img [ref=e3107]
+                      - generic [ref=e3110]: "175"
+                  - generic [ref=e3111]:
+                    - button "Add Bookmark" [ref=e3112]:
+                      - img [ref=e3113]
+                    - img [ref=e3116]
+            - generic [ref=e3118]:
+              - 'link "View details for upstash/context7: Context7 MCP Server -- Up-to-date code documentation for LLMs and AI code editors" [ref=e3119] [cursor=pointer]':
+                - /url: /resources/upstash-context7
+                - generic [ref=e3120]: "View details for upstash/context7: Context7 MCP Server -- Up-to-date code documentation for LLMs and AI code editors"
+              - generic [ref=e3121]:
+                - generic [ref=e3122]:
+                  - generic [ref=e3124]: MCP Servers
+                  - generic "Featured Resource" [ref=e3125]:
+                    - img [ref=e3126]
+                - generic [ref=e3128]:
+                  - heading "upstash/context7" [level=3] [ref=e3129]
+                  - paragraph [ref=e3130]: Context7 MCP Server -- Up-to-date code documentation for LLMs and AI code editors
+                - generic [ref=e3131]:
+                  - generic [ref=e3132]:
+                    - 'generic "Rating: 4.5 stars out of 12 reviews" [ref=e3133]':
+                      - generic [ref=e3134]:
+                        - img [ref=e3135]
+                        - generic [ref=e3137]: "4.5"
+                      - generic [ref=e3138]: (12)
+                    - generic "171 views" [ref=e3139]:
+                      - img [ref=e3140]
+                      - generic [ref=e3143]: "171"
+                  - generic [ref=e3144]:
+                    - button "Add Bookmark" [ref=e3145]:
+                      - img [ref=e3146]
+                    - img [ref=e3149]
+            - generic [ref=e3151]:
+              - 'link "View details for go-kratos/kratos: Your ultimate Go microservices framework for the cloud-native era." [ref=e3152] [cursor=pointer]':
+                - /url: /resources/go-kratos-kratos
+                - generic [ref=e3153]: "View details for go-kratos/kratos: Your ultimate Go microservices framework for the cloud-native era."
+              - generic [ref=e3154]:
+                - generic [ref=e3155]:
+                  - generic [ref=e3157]: MCP Servers
+                  - generic "Featured Resource" [ref=e3158]:
+                    - img [ref=e3159]
+                - generic [ref=e3161]:
+                  - heading "go-kratos/kratos" [level=3] [ref=e3162]
+                  - paragraph [ref=e3163]: Your ultimate Go microservices framework for the cloud-native era.
+                - generic [ref=e3164]:
+                  - generic [ref=e3165]:
+                    - 'generic "Rating: 4.4 stars out of 5 reviews" [ref=e3166]':
+                      - generic [ref=e3167]:
+                        - img [ref=e3168]
+                        - generic [ref=e3170]: "4.4"
+                      - generic [ref=e3171]: (5)
+                    - generic "165 views" [ref=e3172]:
+                      - img [ref=e3173]
+                      - generic [ref=e3176]: "165"
+                  - generic [ref=e3177]:
+                    - button "Add Bookmark" [ref=e3178]:
+                      - img [ref=e3179]
+                    - img [ref=e3182]
+            - generic [ref=e3184]:
+              - 'link "View details for microsoft/mcp-for-beginners: This open-source curriculum introduces the fundamentals of Model Context Protocol (MCP) through real-world, cross-language examples in .NET, Java, TypeScript, JavaScript, Rust and Python. Designed for developers, it focuses on practical techniques for building modular, scalable, and secure AI workflows from session setup to service orchestration." [ref=e3185] [cursor=pointer]':
+                - /url: /resources/microsoft-mcp-for-beginners
+                - generic [ref=e3186]: "View details for microsoft/mcp-for-beginners: This open-source curriculum introduces the fundamentals of Model Context Protocol (MCP) through real-world, cross-language examples in .NET, Java, TypeScript, JavaScript, Rust and Python. Designed for developers, it focuses on practical techniques for building modular, scalable, and secure AI workflows from session setup to service orchestration."
+              - generic [ref=e3187]:
+                - generic [ref=e3188]:
+                  - generic [ref=e3190]: MCP Servers
+                  - generic "Featured Resource" [ref=e3191]:
+                    - img [ref=e3192]
+                - generic [ref=e3194]:
+                  - heading "microsoft/mcp-for-beginners" [level=3] [ref=e3195]
+                  - paragraph [ref=e3196]: This open-source curriculum introduces the fundamentals of Model Context Protocol (MCP) through real-world, cross-language examples in .NET, Java, TypeScript, JavaScript, Rust and Python. Designed for developers, it focuses on practical techniques for building modular, scalable, and secure AI workflows from session setup to service orchestration.
+                - generic [ref=e3197]:
+                  - generic [ref=e3198]:
+                    - 'generic "Rating: 4.6 stars out of 5 reviews" [ref=e3199]':
+                      - generic [ref=e3200]:
+                        - img [ref=e3201]
+                        - generic [ref=e3203]: "4.6"
+                      - generic [ref=e3204]: (5)
+                    - generic "162 views" [ref=e3205]:
+                      - img [ref=e3206]
+                      - generic [ref=e3209]: "162"
+                  - generic [ref=e3210]:
+                    - button "Add Bookmark" [ref=e3211]:
+                      - img [ref=e3212]
+                    - img [ref=e3215]
+            - generic [ref=e3217]:
+              - 'link "View details for agentscope-ai/agentscope: AgentScope: Agent-Oriented Programming for Building LLM Applications" [ref=e3218] [cursor=pointer]':
+                - /url: /resources/agentscope-ai-agentscope
+                - generic [ref=e3219]: "View details for agentscope-ai/agentscope: AgentScope: Agent-Oriented Programming for Building LLM Applications"
+              - generic [ref=e3220]:
+                - generic [ref=e3221]:
+                  - generic [ref=e3223]: MCP Servers
+                  - generic "Featured Resource" [ref=e3224]:
+                    - img [ref=e3225]
+                - generic [ref=e3227]:
+                  - heading "agentscope-ai/agentscope" [level=3] [ref=e3228]
+                  - paragraph [ref=e3229]: "AgentScope: Agent-Oriented Programming for Building LLM Applications"
+                - generic [ref=e3230]:
+                  - generic [ref=e3231]:
+                    - 'generic "Rating: 4.9 stars out of 7 reviews" [ref=e3232]':
+                      - generic [ref=e3233]:
+                        - img [ref=e3234]
+                        - generic [ref=e3236]: "4.9"
+                      - generic [ref=e3237]: (7)
+                    - generic "150 views" [ref=e3238]:
+                      - img [ref=e3239]
+                      - generic [ref=e3242]: "150"
+                  - generic [ref=e3243]:
+                    - button "Add Bookmark" [ref=e3244]:
+                      - img [ref=e3245]
+                    - img [ref=e3248]
+            - generic [ref=e3250]:
+              - 'link "View details for lastmile-ai/mcp-agent: Build effective agents using Model Context Protocol and simple workflow patterns" [ref=e3251] [cursor=pointer]':
+                - /url: /resources/lastmile-ai-mcp-agent
+                - generic [ref=e3252]: "View details for lastmile-ai/mcp-agent: Build effective agents using Model Context Protocol and simple workflow patterns"
+              - generic [ref=e3253]:
+                - generic [ref=e3254]:
+                  - generic [ref=e3256]: MCP Servers
+                  - generic "Featured Resource" [ref=e3257]:
+                    - img [ref=e3258]
+                - generic [ref=e3260]:
+                  - heading "lastmile-ai/mcp-agent" [level=3] [ref=e3261]
+                  - paragraph [ref=e3262]: Build effective agents using Model Context Protocol and simple workflow patterns
+                - generic [ref=e3263]:
+                  - generic [ref=e3264]:
+                    - 'generic "Rating: 4.7 stars out of 6 reviews" [ref=e3265]':
+                      - generic [ref=e3266]:
+                        - img [ref=e3267]
+                        - generic [ref=e3269]: "4.7"
+                      - generic [ref=e3270]: (6)
+                    - generic "123 views" [ref=e3271]:
+                      - img [ref=e3272]
+                      - generic [ref=e3275]: "123"
+                  - generic [ref=e3276]:
+                    - button "Add Bookmark" [ref=e3277]:
+                      - img [ref=e3278]
+                    - img [ref=e3281]
+            - generic [ref=e3283]:
+              - 'link "View details for triggerdotdev/trigger.dev: Trigger.dev – build and deploy fully‑managed AI agents and workflows" [ref=e3284] [cursor=pointer]':
+                - /url: /resources/triggerdotdev-trigger-dev
+                - generic [ref=e3285]: "View details for triggerdotdev/trigger.dev: Trigger.dev – build and deploy fully‑managed AI agents and workflows"
+              - generic [ref=e3286]:
+                - generic [ref=e3287]:
+                  - generic [ref=e3289]: MCP Servers
+                  - generic "Featured Resource" [ref=e3290]:
+                    - img [ref=e3291]
+                - generic [ref=e3293]:
+                  - heading "triggerdotdev/trigger.dev" [level=3] [ref=e3294]
+                  - paragraph [ref=e3295]: Trigger.dev – build and deploy fully‑managed AI agents and workflows
+                - generic [ref=e3296]:
+                  - generic [ref=e3297]:
+                    - 'generic "Rating: 4.3 stars out of 3 reviews" [ref=e3298]':
+                      - generic [ref=e3299]:
+                        - img [ref=e3300]
+                        - generic [ref=e3302]: "4.3"
+                      - generic [ref=e3303]: (3)
+                    - generic "122 views" [ref=e3304]:
+                      - img [ref=e3305]
+                      - generic [ref=e3308]: "122"
+                  - generic [ref=e3309]:
+                    - button "Add Bookmark" [ref=e3310]:
+                      - img [ref=e3311]
+                    - img [ref=e3314]
+            - generic [ref=e3316]:
+              - 'link "View details for dtyq/magic: Super Magic. The first open-source all-in-one AI productivity platform (Generalist AI Agent + Workflow Engine + IM + Online collaborative office system)" [ref=e3317] [cursor=pointer]':
+                - /url: /resources/dtyq-magic
+                - generic [ref=e3318]: "View details for dtyq/magic: Super Magic. The first open-source all-in-one AI productivity platform (Generalist AI Agent + Workflow Engine + IM + Online collaborative office system)"
+              - generic [ref=e3319]:
+                - generic [ref=e3320]:
+                  - generic [ref=e3322]: MCP Servers
+                  - generic "Featured Resource" [ref=e3323]:
+                    - img [ref=e3324]
+                - generic [ref=e3326]:
+                  - heading "dtyq/magic" [level=3] [ref=e3327]
+                  - paragraph [ref=e3328]: Super Magic. The first open-source all-in-one AI productivity platform (Generalist AI Agent + Workflow Engine + IM + Online collaborative office system)
+                - generic [ref=e3329]:
+                  - generic [ref=e3330]:
+                    - 'generic "Rating: 4.6 stars out of 12 reviews" [ref=e3331]':
+                      - generic [ref=e3332]:
+                        - img [ref=e3333]
+                        - generic [ref=e3335]: "4.6"
+                      - generic [ref=e3336]: (12)
+                    - generic "120 views" [ref=e3337]:
+                      - img [ref=e3338]
+                      - generic [ref=e3341]: "120"
+                  - generic [ref=e3342]:
+                    - button "Add Bookmark" [ref=e3343]:
+                      - img [ref=e3344]
+                    - img [ref=e3347]
+            - generic [ref=e3349]:
+              - 'link "View details for casibase/casibase: ⚡️AI Cloud OS: Open-source enterprise-level AI knowledge base and MCP (model-context-protocol)/A2A (agent-to-agent) management platform with admin UI, user management and Single-Sign-On⚡️, supports ChatGPT, Claude, Llama, Ollama, HuggingFace, etc., chat bot demo: https://ai.casibase.com, admin UI demo: https://ai-admin.casibase.com" [ref=e3350] [cursor=pointer]':
+                - /url: /resources/casibase-casibase
+                - generic [ref=e3351]: "View details for casibase/casibase: ⚡️AI Cloud OS: Open-source enterprise-level AI knowledge base and MCP (model-context-protocol)/A2A (agent-to-agent) management platform with admin UI, user management and Single-Sign-On⚡️, supports ChatGPT, Claude, Llama, Ollama, HuggingFace, etc., chat bot demo: https://ai.casibase.com, admin UI demo: https://ai-admin.casibase.com"
+              - generic [ref=e3352]:
+                - generic [ref=e3353]:
+                  - generic [ref=e3355]: MCP Servers
+                  - generic "Featured Resource" [ref=e3356]:
+                    - img [ref=e3357]
+                - generic [ref=e3359]:
+                  - heading "casibase/casibase" [level=3] [ref=e3360]
+                  - paragraph [ref=e3361]: "⚡️AI Cloud OS: Open-source enterprise-level AI knowledge base and MCP (model-context-protocol)/A2A (agent-to-agent) management platform with admin UI, user management and Single-Sign-On⚡️, supports ChatGPT, Claude, Llama, Ollama, HuggingFace, etc., chat bot demo: https://ai.casibase.com, admin UI demo: https://ai-admin.casibase.com"
+                - generic [ref=e3362]:
+                  - generic [ref=e3363]:
+                    - 'generic "Rating: 4.6 stars out of 5 reviews" [ref=e3364]':
+                      - generic [ref=e3365]:
+                        - img [ref=e3366]
+                        - generic [ref=e3368]: "4.6"
+                      - generic [ref=e3369]: (5)
+                    - generic "118 views" [ref=e3370]:
+                      - img [ref=e3371]
+                      - generic [ref=e3374]: "118"
+                  - generic [ref=e3375]:
+                    - button "Add Bookmark" [ref=e3376]:
+                      - img [ref=e3377]
+                    - img [ref=e3380]
+            - generic [ref=e3382]:
+              - 'link "View details for PostgreSQL MCP Server: Full read/write access to PostgreSQL databases via MCP. Execute queries, inspect schemas, and manage data." [ref=e3383] [cursor=pointer]':
+                - /url: /resources/postgresql-mcp-server
+                - generic [ref=e3384]: "View details for PostgreSQL MCP Server: Full read/write access to PostgreSQL databases via MCP. Execute queries, inspect schemas, and manage data."
+              - generic [ref=e3385]:
+                - generic [ref=e3386]:
+                  - generic [ref=e3388]: MCP Servers
+                  - generic "Featured Resource" [ref=e3389]:
+                    - img [ref=e3390]
+                - generic [ref=e3392]:
+                  - heading "PostgreSQL MCP Server" [level=3] [ref=e3393]
+                  - paragraph [ref=e3394]: Full read/write access to PostgreSQL databases via MCP. Execute queries, inspect schemas, and manage data.
+                - generic [ref=e3395]:
+                  - generic [ref=e3396]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3397]':
+                      - generic [ref=e3398]:
+                        - img [ref=e3399]
+                        - generic [ref=e3401]: "0.0"
+                      - generic [ref=e3402]: (0)
+                    - generic "0 views" [ref=e3403]:
+                      - img [ref=e3404]
+                      - generic [ref=e3407]: "0"
+                  - generic [ref=e3408]:
+                    - button "Add Bookmark" [ref=e3409]:
+                      - img [ref=e3410]
+                    - img [ref=e3413]
+            - generic [ref=e3415]:
+              - 'link "View details for System Architect Pro: A comprehensive system instructions prompt for designing scalable distributed systems with high availability." [ref=e3416] [cursor=pointer]':
+                - /url: /resources/system-architect-pro
+                - generic [ref=e3417]: "View details for System Architect Pro: A comprehensive system instructions prompt for designing scalable distributed systems with high availability."
+              - generic [ref=e3418]:
+                - generic [ref=e3419]:
+                  - generic [ref=e3421]: Prompts
+                  - generic "Featured Resource" [ref=e3422]:
+                    - img [ref=e3423]
+                - generic [ref=e3425]:
+                  - heading "System Architect Pro" [level=3] [ref=e3426]
+                  - paragraph [ref=e3427]: A comprehensive system instructions prompt for designing scalable distributed systems with high availability.
+                - generic [ref=e3428]:
+                  - generic [ref=e3429]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3430]':
+                      - generic [ref=e3431]:
+                        - img [ref=e3432]
+                        - generic [ref=e3434]: "0.0"
+                      - generic [ref=e3435]: (0)
+                    - generic "0 views" [ref=e3436]:
+                      - img [ref=e3437]
+                      - generic [ref=e3440]: "0"
+                  - generic [ref=e3441]:
+                    - button "Add Bookmark" [ref=e3442]:
+                      - img [ref=e3443]
+                    - img [ref=e3446]
+            - generic [ref=e3448]:
+              - 'link "View details for Next.js 15 App Router Rules: Strict linting and architectural rules for Next.js 15, Turbopack, and Server Actions." [ref=e3449] [cursor=pointer]':
+                - /url: /resources/nextjs-15-app-router-rules
+                - generic [ref=e3450]: "View details for Next.js 15 App Router Rules: Strict linting and architectural rules for Next.js 15, Turbopack, and Server Actions."
+              - generic [ref=e3451]:
+                - generic [ref=e3452]:
+                  - generic [ref=e3454]: Rules
+                  - generic "Featured Resource" [ref=e3455]:
+                    - img [ref=e3456]
+                - generic [ref=e3458]:
+                  - heading "Next.js 15 App Router Rules" [level=3] [ref=e3459]
+                  - paragraph [ref=e3460]: Strict linting and architectural rules for Next.js 15, Turbopack, and Server Actions.
+                - generic [ref=e3461]:
+                  - generic [ref=e3462]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3463]':
+                      - generic [ref=e3464]:
+                        - img [ref=e3465]
+                        - generic [ref=e3467]: "0.0"
+                      - generic [ref=e3468]: (0)
+                    - generic "0 views" [ref=e3469]:
+                      - img [ref=e3470]
+                      - generic [ref=e3473]: "0"
+                  - generic [ref=e3474]:
+                    - button "Add Bookmark" [ref=e3475]:
+                      - img [ref=e3476]
+                    - img [ref=e3479]
+            - generic [ref=e3481]:
+              - 'link "View details for v0.dev UI Bootstrapper: The industry standard prompt for generating responsive React/Tailwind skeletons in seconds using the v0.dev AI engine." [ref=e3482] [cursor=pointer]':
+                - /url: /resources/v0-dev-ui-bootstrapper
+                - generic [ref=e3483]: "View details for v0.dev UI Bootstrapper: The industry standard prompt for generating responsive React/Tailwind skeletons in seconds using the v0.dev AI engine."
+              - generic [ref=e3484]:
+                - generic [ref=e3487]: Prompts
+                - generic [ref=e3488]:
+                  - heading "v0.dev UI Bootstrapper" [level=3] [ref=e3489]
+                  - paragraph [ref=e3490]: The industry standard prompt for generating responsive React/Tailwind skeletons in seconds using the v0.dev AI engine.
+                - generic [ref=e3491]:
+                  - generic [ref=e3492]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3493]':
+                      - generic [ref=e3494]:
+                        - img [ref=e3495]
+                        - generic [ref=e3497]: "0.0"
+                      - generic [ref=e3498]: (0)
+                    - generic "9000 views" [ref=e3499]:
+                      - img [ref=e3500]
+                      - generic [ref=e3503]: 9.0k
+                  - generic [ref=e3504]:
+                    - button "Add Bookmark" [ref=e3505]:
+                      - img [ref=e3506]
+                    - img [ref=e3509]
+            - generic [ref=e3511]:
+              - 'link "View details for ShipFast Next.js SaaS: The industry-standard Next.js SaaS boilerplate in 2026. Includes Auth, Stripe, SEO automation, and OpenAI integration out of the box." [ref=e3512] [cursor=pointer]':
+                - /url: /resources/shipfast-nextjs-saas
+                - generic [ref=e3513]: "View details for ShipFast Next.js SaaS: The industry-standard Next.js SaaS boilerplate in 2026. Includes Auth, Stripe, SEO automation, and OpenAI integration out of the box."
+              - generic [ref=e3514]:
+                - generic [ref=e3517]: Boilerplates
+                - generic [ref=e3518]:
+                  - heading "ShipFast Next.js SaaS" [level=3] [ref=e3519]
+                  - paragraph [ref=e3520]: The industry-standard Next.js SaaS boilerplate in 2026. Includes Auth, Stripe, SEO automation, and OpenAI integration out of the box.
+                - generic [ref=e3521]:
+                  - generic [ref=e3522]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3523]':
+                      - generic [ref=e3524]:
+                        - img [ref=e3525]
+                        - generic [ref=e3527]: "0.0"
+                      - generic [ref=e3528]: (0)
+                    - generic "5500 views" [ref=e3529]:
+                      - img [ref=e3530]
+                      - generic [ref=e3533]: 5.5k
+                  - generic [ref=e3534]:
+                    - button "Add Bookmark" [ref=e3535]:
+                      - img [ref=e3536]
+                    - img [ref=e3539]
+            - generic [ref=e3541]:
+              - 'link "View details for DeepSeek V3 System Prompt: The state-of-the-art system prompt for DeepSeek V3, optimized for logic chain verification and zero-shot code generation." [ref=e3542] [cursor=pointer]':
+                - /url: /resources/deepseek-v3-system-prompt
+                - generic [ref=e3543]: "View details for DeepSeek V3 System Prompt: The state-of-the-art system prompt for DeepSeek V3, optimized for logic chain verification and zero-shot code generation."
+              - generic [ref=e3544]:
+                - generic [ref=e3547]: Prompts
+                - generic [ref=e3548]:
+                  - heading "DeepSeek V3 System Prompt" [level=3] [ref=e3549]
+                  - paragraph [ref=e3550]: The state-of-the-art system prompt for DeepSeek V3, optimized for logic chain verification and zero-shot code generation.
+                - generic [ref=e3551]:
+                  - generic [ref=e3552]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3553]':
+                      - generic [ref=e3554]:
+                        - img [ref=e3555]
+                        - generic [ref=e3557]: "0.0"
+                      - generic [ref=e3558]: (0)
+                    - generic "4500 views" [ref=e3559]:
+                      - img [ref=e3560]
+                      - generic [ref=e3563]: 4.5k
+                  - generic [ref=e3564]:
+                    - button "Add Bookmark" [ref=e3565]:
+                      - img [ref=e3566]
+                    - img [ref=e3569]
+            - generic [ref=e3571]:
+              - 'link "View details for Claude 4.5 Sonnet Code Prompt: Optimized system prompt for Claude 4.5 Sonnet, focusing on architectural patterns and strict TypeScript typing." [ref=e3572] [cursor=pointer]':
+                - /url: /resources/claude-4-5-sonnet-prompt
+                - generic [ref=e3573]: "View details for Claude 4.5 Sonnet Code Prompt: Optimized system prompt for Claude 4.5 Sonnet, focusing on architectural patterns and strict TypeScript typing."
+              - generic [ref=e3574]:
+                - generic [ref=e3577]: Prompts
+                - generic [ref=e3578]:
+                  - heading "Claude 4.5 Sonnet Code Prompt" [level=3] [ref=e3579]
+                  - paragraph [ref=e3580]: Optimized system prompt for Claude 4.5 Sonnet, focusing on architectural patterns and strict TypeScript typing.
+                - generic [ref=e3581]:
+                  - generic [ref=e3582]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3583]':
+                      - generic [ref=e3584]:
+                        - img [ref=e3585]
+                        - generic [ref=e3587]: "0.0"
+                      - generic [ref=e3588]: (0)
+                    - generic "3800 views" [ref=e3589]:
+                      - img [ref=e3590]
+                      - generic [ref=e3593]: 3.8k
+                  - generic [ref=e3594]:
+                    - button "Add Bookmark" [ref=e3595]:
+                      - img [ref=e3596]
+                    - img [ref=e3599]
+            - generic [ref=e3601]:
+              - 'link "View details for OpenAI SaaS Starter Kit: The official-grade Next.js 16 starter for OpenAI applications. Features Vercel AI SDK and streaming response patterns." [ref=e3602] [cursor=pointer]':
+                - /url: /resources/openai-saas-starter-kit
+                - generic [ref=e3603]: "View details for OpenAI SaaS Starter Kit: The official-grade Next.js 16 starter for OpenAI applications. Features Vercel AI SDK and streaming response patterns."
+              - generic [ref=e3604]:
+                - generic [ref=e3607]: Boilerplates
+                - generic [ref=e3608]:
+                  - heading "OpenAI SaaS Starter Kit" [level=3] [ref=e3609]
+                  - paragraph [ref=e3610]: The official-grade Next.js 16 starter for OpenAI applications. Features Vercel AI SDK and streaming response patterns.
+                - generic [ref=e3611]:
+                  - generic [ref=e3612]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3613]':
+                      - generic [ref=e3614]:
+                        - img [ref=e3615]
+                        - generic [ref=e3617]: "0.0"
+                      - generic [ref=e3618]: (0)
+                    - generic "3400 views" [ref=e3619]:
+                      - img [ref=e3620]
+                      - generic [ref=e3623]: 3.4k
+                  - generic [ref=e3624]:
+                    - button "Add Bookmark" [ref=e3625]:
+                      - img [ref=e3626]
+                    - img [ref=e3629]
+            - generic [ref=e3631]:
+              - 'link "View details for Professional Coder Guidelines: A high-authority system rule set for AI coding agents that enforces first-principles thinking and clean code architecture." [ref=e3632] [cursor=pointer]':
+                - /url: /resources/professional-coder-guidelines
+                - generic [ref=e3633]: "View details for Professional Coder Guidelines: A high-authority system rule set for AI coding agents that enforces first-principles thinking and clean code architecture."
+              - generic [ref=e3634]:
+                - generic [ref=e3637]: Rules
+                - generic [ref=e3638]:
+                  - heading "Professional Coder Guidelines" [level=3] [ref=e3639]
+                  - paragraph [ref=e3640]: A high-authority system rule set for AI coding agents that enforces first-principles thinking and clean code architecture.
+                - generic [ref=e3641]:
+                  - generic [ref=e3642]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3643]':
+                      - generic [ref=e3644]:
+                        - img [ref=e3645]
+                        - generic [ref=e3647]: "0.0"
+                      - generic [ref=e3648]: (0)
+                    - generic "2200 views" [ref=e3649]:
+                      - img [ref=e3650]
+                      - generic [ref=e3653]: 2.2k
+                  - generic [ref=e3654]:
+                    - button "Add Bookmark" [ref=e3655]:
+                      - img [ref=e3656]
+                    - img [ref=e3659]
+            - generic [ref=e3661]:
+              - 'link "View details for Awesome CursorRules: A curated collection of .cursorrules templates for every major programming language and framework, optimized for AI coding intelligence." [ref=e3662] [cursor=pointer]':
+                - /url: /resources/awesome-cursorrules
+                - generic [ref=e3663]: "View details for Awesome CursorRules: A curated collection of .cursorrules templates for every major programming language and framework, optimized for AI coding intelligence."
+              - generic [ref=e3664]:
+                - generic [ref=e3667]: Rules
+                - generic [ref=e3668]:
+                  - heading "Awesome CursorRules" [level=3] [ref=e3669]
+                  - paragraph [ref=e3670]: A curated collection of .cursorrules templates for every major programming language and framework, optimized for AI coding intelligence.
+                - generic [ref=e3671]:
+                  - generic [ref=e3672]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3673]':
+                      - generic [ref=e3674]:
+                        - img [ref=e3675]
+                        - generic [ref=e3677]: "0.0"
+                      - generic [ref=e3678]: (0)
+                    - generic "1500 views" [ref=e3679]:
+                      - img [ref=e3680]
+                      - generic [ref=e3683]: 1.5k
+                  - generic [ref=e3684]:
+                    - button "Add Bookmark" [ref=e3685]:
+                      - img [ref=e3686]
+                    - img [ref=e3689]
+            - generic [ref=e3691]:
+              - 'link "View details for RAG Context Engineering Flow: A dedicated workflow for building data-rich AI agents using Context Engineering and Retrieval-Augmented Generation." [ref=e3692] [cursor=pointer]':
+                - /url: /resources/rag-context-engineering
+                - generic [ref=e3693]: "View details for RAG Context Engineering Flow: A dedicated workflow for building data-rich AI agents using Context Engineering and Retrieval-Augmented Generation."
+              - generic [ref=e3694]:
+                - generic [ref=e3697]: Workflows
+                - generic [ref=e3698]:
+                  - heading "RAG Context Engineering Flow" [level=3] [ref=e3699]
+                  - paragraph [ref=e3700]: A dedicated workflow for building data-rich AI agents using Context Engineering and Retrieval-Augmented Generation.
+                - generic [ref=e3701]:
+                  - generic [ref=e3702]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3703]':
+                      - generic [ref=e3704]:
+                        - img [ref=e3705]
+                        - generic [ref=e3707]: "0.0"
+                      - generic [ref=e3708]: (0)
+                    - generic "1400 views" [ref=e3709]:
+                      - img [ref=e3710]
+                      - generic [ref=e3713]: 1.4k
+                  - generic [ref=e3714]:
+                    - button "Add Bookmark" [ref=e3715]:
+                      - img [ref=e3716]
+                    - img [ref=e3719]
+            - generic [ref=e3721]:
+              - 'link "View details for Makerkit Production SaaS: A production-ready AI SaaS starter kit for Next.js. Supports multi-tenancy, sub-organizations, and advanced AI agent workflows." [ref=e3722] [cursor=pointer]':
+                - /url: /resources/makerkit-production-saas
+                - generic [ref=e3723]: "View details for Makerkit Production SaaS: A production-ready AI SaaS starter kit for Next.js. Supports multi-tenancy, sub-organizations, and advanced AI agent workflows."
+              - generic [ref=e3724]:
+                - generic [ref=e3727]: Boilerplates
+                - generic [ref=e3728]:
+                  - heading "Makerkit Production SaaS" [level=3] [ref=e3729]
+                  - paragraph [ref=e3730]: A production-ready AI SaaS starter kit for Next.js. Supports multi-tenancy, sub-organizations, and advanced AI agent workflows.
+                - generic [ref=e3731]:
+                  - generic [ref=e3732]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3733]':
+                      - generic [ref=e3734]:
+                        - img [ref=e3735]
+                        - generic [ref=e3737]: "0.0"
+                      - generic [ref=e3738]: (0)
+                    - generic "1200 views" [ref=e3739]:
+                      - img [ref=e3740]
+                      - generic [ref=e3743]: 1.2k
+                  - generic [ref=e3744]:
+                    - button "Add Bookmark" [ref=e3745]:
+                      - img [ref=e3746]
+                    - img [ref=e3749]
+            - generic [ref=e3751]:
+              - 'link "View details for Cascade Autonomous Feature Cycle: The standard Windsurf workflow for end-to-end feature drafting—from requirement analysis to deployment-ready PRs." [ref=e3752] [cursor=pointer]':
+                - /url: /resources/cascade-autonomous-cycle
+                - generic [ref=e3753]: "View details for Cascade Autonomous Feature Cycle: The standard Windsurf workflow for end-to-end feature drafting—from requirement analysis to deployment-ready PRs."
+              - generic [ref=e3754]:
+                - generic [ref=e3757]: Workflows
+                - generic [ref=e3758]:
+                  - heading "Cascade Autonomous Feature Cycle" [level=3] [ref=e3759]
+                  - paragraph [ref=e3760]: The standard Windsurf workflow for end-to-end feature drafting—from requirement analysis to deployment-ready PRs.
+                - generic [ref=e3761]:
+                  - generic [ref=e3762]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3763]':
+                      - generic [ref=e3764]:
+                        - img [ref=e3765]
+                        - generic [ref=e3767]: "0.0"
+                      - generic [ref=e3768]: (0)
+                    - generic "950 views" [ref=e3769]:
+                      - img [ref=e3770]
+                      - generic [ref=e3773]: "950"
+                  - generic [ref=e3774]:
+                    - button "Add Bookmark" [ref=e3775]:
+                      - img [ref=e3776]
+                    - img [ref=e3779]
+            - generic [ref=e3781]:
+              - 'link "View details for Windsurf Antigravity Rules: Specialized system rules for Windsurf Cascade, designed to enforce modular architecture and memory-efficient AI development." [ref=e3782] [cursor=pointer]':
+                - /url: /resources/windsurf-antigravity-rules
+                - generic [ref=e3783]: "View details for Windsurf Antigravity Rules: Specialized system rules for Windsurf Cascade, designed to enforce modular architecture and memory-efficient AI development."
+              - generic [ref=e3784]:
+                - generic [ref=e3787]: Rules
+                - generic [ref=e3788]:
+                  - heading "Windsurf Antigravity Rules" [level=3] [ref=e3789]
+                  - paragraph [ref=e3790]: Specialized system rules for Windsurf Cascade, designed to enforce modular architecture and memory-efficient AI development.
+                - generic [ref=e3791]:
+                  - generic [ref=e3792]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3793]':
+                      - generic [ref=e3794]:
+                        - img [ref=e3795]
+                        - generic [ref=e3797]: "0.0"
+                      - generic [ref=e3798]: (0)
+                    - generic "800 views" [ref=e3799]:
+                      - img [ref=e3800]
+                      - generic [ref=e3803]: "800"
+                  - generic [ref=e3804]:
+                    - button "Add Bookmark" [ref=e3805]:
+                      - img [ref=e3806]
+                    - img [ref=e3809]
+            - generic [ref=e3811]:
+              - 'link "View details for AI-Assisted CI/CD (Dagger): A modern developer workflow using Dagger and LLMs for predictive CI/CD pipeline management and automated failure resolution." [ref=e3812] [cursor=pointer]':
+                - /url: /resources/ai-assisted-cicd-dagger
+                - generic [ref=e3813]: "View details for AI-Assisted CI/CD (Dagger): A modern developer workflow using Dagger and LLMs for predictive CI/CD pipeline management and automated failure resolution."
+              - generic [ref=e3814]:
+                - generic [ref=e3817]: Workflows
+                - generic [ref=e3818]:
+                  - heading "AI-Assisted CI/CD (Dagger)" [level=3] [ref=e3819]
+                  - paragraph [ref=e3820]: A modern developer workflow using Dagger and LLMs for predictive CI/CD pipeline management and automated failure resolution.
+                - generic [ref=e3821]:
+                  - generic [ref=e3822]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3823]':
+                      - generic [ref=e3824]:
+                        - img [ref=e3825]
+                        - generic [ref=e3827]: "0.0"
+                      - generic [ref=e3828]: (0)
+                    - generic "600 views" [ref=e3829]:
+                      - img [ref=e3830]
+                      - generic [ref=e3833]: "600"
+                  - generic [ref=e3834]:
+                    - button "Add Bookmark" [ref=e3835]:
+                      - img [ref=e3836]
+                    - img [ref=e3839]
+            - generic [ref=e3841]:
+              - 'link "View details for Google Maps MCP: Search for places, get directions, and retrieve location metadata directly within your AI workflow." [ref=e3842] [cursor=pointer]':
+                - /url: /resources/google-maps-mcp
+                - generic [ref=e3843]: "View details for Google Maps MCP: Search for places, get directions, and retrieve location metadata directly within your AI workflow."
+              - generic [ref=e3844]:
+                - generic [ref=e3847]: MCP Servers
+                - generic [ref=e3848]:
+                  - heading "Google Maps MCP" [level=3] [ref=e3849]
+                  - paragraph [ref=e3850]: Search for places, get directions, and retrieve location metadata directly within your AI workflow.
+                - generic [ref=e3851]:
+                  - generic [ref=e3852]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e3853]':
+                      - generic [ref=e3854]:
+                        - img [ref=e3855]
+                        - generic [ref=e3857]: "0.0"
+                      - generic [ref=e3858]: (0)
+                    - generic "0 views" [ref=e3859]:
+                      - img [ref=e3860]
+                      - generic [ref=e3863]: "0"
+                  - generic [ref=e3864]:
+                    - button "Add Bookmark" [ref=e3865]:
+                      - img [ref=e3866]
+                    - img [ref=e3869]
+        - complementary [ref=e3871]:
+          - generic [ref=e3872]:
+            - generic [ref=e3873]:
+              - heading "Community" [level=3] [ref=e3875]
+              - paragraph [ref=e3876]: Join 5,000+ AI engineers building the next generation of agents.
+              - link "Submit Resource" [ref=e3877] [cursor=pointer]:
+                - /url: /submit
+            - generic [ref=e3878]:
+              - heading "Sponsored" [level=3] [ref=e3879]
+              - generic [ref=e3881]: Advertisement Area
+    - contentinfo [ref=e3882]:
+      - generic:
+        - generic:
+          - generic:
+            - generic: "1"
+            - generic: "1"
+            - generic: npm
+            - generic: JWT
+            - generic: git
+            - generic: "0"
+            - generic: )
+            - generic: "0"
+            - generic: "1"
+            - generic: 0x
+            - generic: JSON
+            - generic: api
+            - generic: XML
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+          - generic:
+            - generic: "1"
+            - generic: "NULL"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: =>
+            - generic: "0"
+            - generic: "1"
+            - generic: js
+            - generic: API
+            - generic: let
+            - generic: "1"
+            - generic: "0"
+            - generic: api
+            - generic: api
+            - generic: API
+            - generic: "1"
+            - generic: API
+            - generic: py
+            - generic: "1"
+          - generic:
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: XML
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: let
+            - generic: "0"
+            - generic: api
+            - generic: "0"
+            - generic: "::"
+            - generic: "1"
+            - generic: JSON
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: SSL
+            - generic: "1"
+            - generic: "::"
+          - generic:
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: ==
+            - generic: "1"
+            - generic: XML
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: ">"
+            - generic: let
+            - generic: "["
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: ...
+            - generic: ==
+            - generic: "1"
+            - generic: "!=="
+          - generic:
+            - generic: JSON
+            - generic: "1"
+            - generic: "1"
+            - generic: API
+            - generic: FF
+            - generic: "]"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "NULL"
+            - generic: GPU
+            - generic: "1"
+            - generic: "1"
+            - generic: FF
+            - generic: "0"
+            - generic: "{"
+          - generic:
+            - generic: py
+            - generic: sql
+            - generic: "::"
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: XML
+            - generic: "0"
+            - generic: ML
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: GPT
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: sql
+            - generic: "1"
+            - generic: "1"
+            - generic: =>
+            - generic: "0"
+            - generic: CPU
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+          - generic:
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: API
+            - generic: "TRUE"
+            - generic: "1"
+            - generic: "1"
+            - generic: py
+            - generic: "0"
+            - generic: GPU
+            - generic: "!=="
+            - generic: "1"
+            - generic: fn
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: XML
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: JSON
+            - generic: "0"
+            - generic: JWT
+            - generic: "0"
+            - generic: "0"
+          - generic:
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: git
+            - generic: JWT
+            - generic: ML
+            - generic: api
+            - generic: js
+            - generic: fn
+            - generic: AI
+            - generic: api
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: ==
+            - generic: AI
+            - generic: =>
+            - generic: "0"
+            - generic: "0"
+            - generic: DNS
+            - generic: "1"
+            - generic: SSL
+          - generic:
+            - generic: "&&"
+            - generic: XML
+            - generic: "::"
+            - generic: let
+            - generic: XML
+            - generic: "1"
+            - generic: "0"
+            - generic: CPU
+            - generic: "0"
+            - generic: "0"
+            - generic: "&&"
+            - generic: "0"
+            - generic: FF
+            - generic: api
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: <
+            - generic: ML
+            - generic: "||"
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: ==
+            - generic: FF
+            - generic: "0"
+          - generic:
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "]"
+            - generic: "{"
+            - generic: "1"
+            - generic: "!=="
+            - generic: 0x
+            - generic: api
+            - generic: "1"
+            - generic: (
+            - generic: AI
+            - generic: "0"
+            - generic: "NULL"
+            - generic: "0"
+            - generic: py
+            - generic: git
+            - generic: "0"
+            - generic: "1"
+            - generic: ...
+            - generic: "1"
+          - generic:
+            - generic: "0"
+            - generic: let
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "["
+            - generic: SSL
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: ML
+            - generic: CPU
+            - generic: "1"
+            - generic: "1"
+            - generic: (
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: sql
+            - generic: GPT
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+          - generic:
+            - generic: "0"
+            - generic: DNS
+            - generic: "0"
+            - generic: "1"
+            - generic: JWT
+            - generic: XML
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: GPU
+            - generic: "NULL"
+            - generic: "0"
+            - generic: "0"
+            - generic: sql
+            - generic: FF
+            - generic: "TRUE"
+            - generic: "1"
+            - generic: js
+          - generic:
+            - generic: "0"
+            - generic: "1"
+            - generic: DNS
+            - generic: "1"
+            - generic: "0"
+            - generic: "||"
+            - generic: sql
+            - generic: sql
+            - generic: "0"
+            - generic: "0"
+            - generic: CPU
+            - generic: "1"
+            - generic: API
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: ML
+            - generic: "1"
+            - generic: )
+            - generic: "0"
+          - generic:
+            - generic: "1"
+            - generic: let
+            - generic: "0"
+            - generic: py
+            - generic: "0"
+            - generic: 0x
+            - generic: "{"
+            - generic: "1"
+            - generic: GPT
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: ==
+            - generic: "1"
+            - generic: api
+            - generic: "0"
+            - generic: AI
+          - generic:
+            - generic: "0"
+            - generic: fn
+            - generic: ...
+            - generic: "NULL"
+            - generic: SSL
+            - generic: JWT
+            - generic: "1"
+            - generic: "1"
+            - generic: (
+            - generic: "0"
+            - generic: "0"
+            - generic: GPU
+            - generic: "1"
+            - generic: "0"
+            - generic: "["
+            - generic: API
+            - generic: "1"
+            - generic: =>
+            - generic: "1"
+            - generic: let
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: sql
+            - generic: "0"
+            - generic: "1"
+          - generic:
+            - generic: var
+            - generic: "1"
+            - generic: FF
+            - generic: SSL
+            - generic: "||"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: )
+            - generic: "0"
+            - generic: XML
+            - generic: "1"
+            - generic: "1"
+            - generic: ==
+            - generic: )
+            - generic: "::"
+            - generic: "0"
+            - generic: "!=="
+            - generic: "1"
+          - generic:
+            - generic: js
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "!=="
+            - generic: "1"
+            - generic: "1"
+            - generic: "NULL"
+            - generic: "1"
+            - generic: "1"
+            - generic: py
+            - generic: "!=="
+            - generic: "1"
+            - generic: "TRUE"
+          - generic:
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: git
+            - generic: "0"
+            - generic: let
+            - generic: 0x
+            - generic: "1"
+            - generic: npm
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: 0x
+            - generic: fn
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: "}"
+            - generic: sql
+          - generic:
+            - generic: GPU
+            - generic: <
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: JSON
+            - generic: "1"
+            - generic: fn
+            - generic: py
+            - generic: "1"
+            - generic: py
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: JSON
+            - generic: "0"
+            - generic: npm
+            - generic: npm
+            - generic: "1"
+            - generic: JWT
+            - generic: "1"
+            - generic: 0x
+            - generic: "NULL"
+            - generic: "1"
+            - generic: "0"
+          - generic:
+            - generic: 0x
+            - generic: var
+            - generic: "NULL"
+            - generic: ML
+            - generic: "0"
+            - generic: API
+            - generic: fn
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "!=="
+            - generic: (
+            - generic: JWT
+            - generic: "1"
+            - generic: (
+            - generic: "0"
+            - generic: "0"
+            - generic: JWT
+            - generic: "0"
+            - generic: "TRUE"
+            - generic: "}"
+            - generic: "0"
+            - generic: "0"
+            - generic: py
+            - generic: "&&"
+            - generic: "0"
+          - generic:
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: API
+            - generic: "0"
+            - generic: "0"
+            - generic: AI
+            - generic: npm
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: GPU
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: 0x
+            - generic: "1"
+            - generic: "1"
+            - generic: JWT
+            - generic: ">"
+            - generic: "1"
+          - generic:
+            - generic: "0"
+            - generic: fn
+            - generic: "1"
+            - generic: "0"
+            - generic: ML
+            - generic: "||"
+            - generic: GPT
+            - generic: GPT
+            - generic: api
+            - generic: "1"
+            - generic: "1"
+            - generic: =>
+            - generic: "0"
+            - generic: "0"
+            - generic: "::"
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: "{"
+            - generic: )
+            - generic: <
+          - generic:
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: DNS
+            - generic: =>
+            - generic: "0"
+            - generic: "1"
+            - generic: ...
+            - generic: SSL
+            - generic: "NULL"
+            - generic: "||"
+            - generic: "0"
+            - generic: "0"
+            - generic: "&&"
+            - generic: "0"
+            - generic: GPU
+          - generic:
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: XML
+            - generic: GPU
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: AI
+            - generic: "0"
+            - generic: api
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+          - generic:
+            - generic: "0"
+            - generic: git
+            - generic: "::"
+            - generic: "TRUE"
+            - generic: "1"
+            - generic: let
+            - generic: "0"
+            - generic: let
+            - generic: "1"
+            - generic: "0"
+            - generic: let
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: fn
+            - generic: JWT
+            - generic: py
+            - generic: sql
+            - generic: "0"
+            - generic: ==
+            - generic: let
+            - generic: "}"
+            - generic: FF
+            - generic: DNS
+          - generic:
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: <
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: JWT
+            - generic: =>
+            - generic: npm
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "||"
+            - generic: "0"
+          - generic:
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: JSON
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: JWT
+            - generic: "0"
+            - generic: "]"
+            - generic: "1"
+            - generic: "1"
+            - generic: "||"
+            - generic: "1"
+            - generic: GPU
+            - generic: DNS
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: DNS
+            - generic: "1"
+          - generic:
+            - generic: JSON
+            - generic: "1"
+            - generic: npm
+            - generic: "!=="
+            - generic: "0"
+            - generic: "1"
+            - generic: 0x
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: "0"
+            - generic: DNS
+            - generic: XML
+            - generic: "0"
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: "["
+            - generic: )
+            - generic: FF
+            - generic: "0"
+            - generic: "1"
+            - generic: )
+          - generic:
+            - generic: "0"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: GPU
+            - generic: "0"
+            - generic: ==
+            - generic: "1"
+            - generic: GPT
+            - generic: =>
+            - generic: "1"
+            - generic: py
+            - generic: "1"
+            - generic: "1"
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+          - generic:
+            - generic: "1"
+            - generic: JSON
+            - generic: "0"
+            - generic: GPU
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: "0"
+            - generic: "1"
+            - generic: CPU
+            - generic: SSL
+            - generic: "1"
+            - generic: XML
+            - generic: API
+            - generic: "&&"
+            - generic: "0"
+            - generic: "&&"
+            - generic: "&&"
+            - generic: "1"
+            - generic: "{"
+            - generic: "0"
+            - generic: 0x
+      - generic [ref=e3884]:
+        - generic [ref=e3885]:
+          - link "Antigravity Directory Home" [ref=e3886] [cursor=pointer]:
+            - /url: /
+            - img [ref=e3888]
+            - generic [ref=e3890]: antigravity
+          - generic [ref=e3891]:
+            - paragraph [ref=e3892]: This site is not affiliated with, endorsed by, or sponsored by Google.
+            - paragraph [ref=e3893]: © Invictus International Consulting Services 2026
+        - navigation "Footer Navigation" [ref=e3895]:
+          - link "Resources" [ref=e3896] [cursor=pointer]:
+            - /url: /resources
+          - link "Submit" [ref=e3897] [cursor=pointer]:
+            - /url: /submit
+          - link "Antigravity on GitHub" [ref=e3898] [cursor=pointer]:
+            - /url: https://github.com
+            - text: GitHub
+  - alert [ref=e3899]
+```

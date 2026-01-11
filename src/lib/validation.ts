@@ -11,6 +11,8 @@ import { FilterState } from '@/types/database';
  * Returns validated FilterState or throws error
  */
 export function validateFilterParams(searchParams: URLSearchParams): FilterState {
+  console.log('[validateFilterParams] Raw params:', searchParams.toString());
+  
   // Validate categories
   const categoriesParam = searchParams.get('categories');
   const categories = categoriesParam 
@@ -30,12 +32,15 @@ export function validateFilterParams(searchParams: URLSearchParams): FilterState
   const sortParam = searchParams.get('sort') || FILTERS.DEFAULT_SORT;
   const sort = validateSortOption(sortParam);
   
-  return {
+  const result = {
     categories,
     tags,
     search,
     sort,
   };
+
+  console.log('[validateFilterParams] Validated result:', result);
+  return result;
 }
 
 /**
@@ -144,12 +149,12 @@ export function validateOrigin(request: Request): boolean {
  */
 export function containsSQLInjection(input: string): boolean {
   const sqlPatterns = [
-    /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE)\b)/i,
+    /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE|TRUNCATE)\b)/i,
     /(UNION\s+SELECT)/i,
     /(;\s*DROP)/i,
     /(--)/,
-    /('OR'1'='1)/i,
-    /(\bOR\b\s+\d+\s*=\s*\d+)/i,
+    /(\bOR\b\s+['"]?\d+['"]?\s*=\s*['"]?\d+['"]?)/i,
+    /(\bOR\b\s+['"]?[^'"]+['"]?\s*=\s*['"]?[^'"]+['"]?)/i,
   ];
   
   return sqlPatterns.some(pattern => pattern.test(input));
