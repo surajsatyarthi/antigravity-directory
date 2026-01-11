@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { Star, Eye, ArrowRight } from 'lucide-react';
+import { Star, Eye, ArrowRight, Package } from 'lucide-react';
 import { BookmarkButton } from './BookmarkButton';
+import { MAX_INTEGRATION_ICONS } from '@/constants';
 
 interface ResourceCardProps {
   resource: {
@@ -14,6 +15,7 @@ interface ResourceCardProps {
     ratingCount: number;
     featured: boolean;
     isBookmarked?: boolean;
+    integrations?: string[] | null;
   };
 }
 
@@ -35,6 +37,29 @@ export function ResourceCard({ resource }: ResourceCardProps) {
         {/* Title & Description Column */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-3 mb-2">
+            {/* Integration Icons */}
+            {resource.integrations && resource.integrations.length > 0 && (
+              <div 
+                className="flex items-center gap-1.5"
+                aria-label={`Built with ${resource.integrations.slice(0, MAX_INTEGRATION_ICONS).join(', ')}${resource.integrations.length > MAX_INTEGRATION_ICONS ? ` and ${resource.integrations.length - MAX_INTEGRATION_ICONS} more` : ''}`}
+              >
+                {resource.integrations.slice(0, MAX_INTEGRATION_ICONS).map((integration, idx) => (
+                  <div
+                    key={idx}
+                    className="w-5 h-5 rounded bg-gray-900 border border-gray-800 flex items-center justify-center"
+                    title={integration}
+                  >
+                    <Package className="w-3 h-3 text-gray-500" />
+                  </div>
+                ))}
+                {resource.integrations.length > MAX_INTEGRATION_ICONS && (
+                  <span className="text-[10px] text-gray-500 font-mono">
+                    +{resource.integrations.length - MAX_INTEGRATION_ICONS}
+                  </span>
+                )}
+              </div>
+            )}
+            
             <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-bold text-blue-500 font-mono uppercase tracking-widest">
               {resource.categoryName || 'General'}
             </span>
