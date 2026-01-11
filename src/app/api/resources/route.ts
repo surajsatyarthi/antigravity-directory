@@ -1,0 +1,108 @@
+/**
+ * API Route: GET /api/resources
+ * Returns filtered and sorted resources
+ * 
+ * Query params:
+ * - categories: comma-separated category slugs
+ * - tags: comma-separated tag slugs
+ * - q: search query
+ * - sort: sort option (latest, views, rating, recommended)
+ * - page: page number (default: 1)
+ * - limit: items per page (default: 30, max: 100)
+ */
+
+import { NextRequest, NextResponse } from 'next/server';
+import { getFilteredResources } from '@/lib/queries';
+import { validateAndSanitizeInputs, validateOrigin } from '@/lib/validation';
+import { checkRateLimit } from '@/lib/ratelimit';
+
+export async function GET(request: NextRequest) {
+  try {
+    // 1. Validate origin (CORS)
+    if (!validateOrigin(request)) {
+      return NextResponse.json(
+        { error: 'Forbidden' },
+        { status: 403 }
+      );
+    }
+    
+    // 2. Check rate limit
+    const { success, limit, remaining, reset } = await checkRateLimit(request);
+    
+    if (!success) {
+      return NextResponse.json(
+        { 
+          error: 'Too many requests',
+          limit,
+          remaining,
+          reset: new Date(reset).toISOString(),
+        },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': limit.toString(),
+            'X-RateLimit-Remaining': remaining.toString(),
+            'X-RateLimit-Reset': reset.toString(),
+          },
+        }
+      );
+    }
+    
+    // 3. Validate and sanitize inputs
+    const { searchParams } = new URL(request.url);
+    const { filters, pagination } = validateAndSanitizeInputs(searchParams);
+    
+    // 4. Query database with validated inputs
+    const resources = await getFilteredResources(filters);
+    
+    // 5. Apply pagination
+    const paginatedResources = resources.slice(
+      pagination.offset,
+      pagination.offset + pagination.limit
+    );
+    
+    // 6. Return response with metadata
+    return NextResponse.json({
+      data: paginatedResources,
+      meta: {
+        total: resources.length,
+        page: pagination.page,
+        limit: pagination.limit,
+        totalPages: Math.ceil(resources.length / pagination.limit),
+      },
+    }, {
+      headers: {
+        'X-RateLimit-Limit': limit.toString(),
+        'X-RateLimit-Remaining': remaining.toString(),
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+      },
+    });
+    
+  } catch (error) {
+    console.error('API Error:', error);
+    
+    // Handle specific error types
+    if (error instanceof Error) {
+      if (error.message === 'Invalid input detected') {
+        return NextResponse.json(
+          { error: 'Invalid input' },
+          { status: 400 }
+        );
+      }
+      
+      // Database connection errors
+      if (error.message.includes('ECONNREFUSED')) {
+        return NextResponse.json(
+          { error: 'Service unavailable' },
+          { status: 503 }
+        );
+      }
+    }
+    
+    // Generic error response
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
