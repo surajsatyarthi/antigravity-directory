@@ -77,18 +77,22 @@ export default async function HomePage({
         data-filter-state={JSON.stringify(activeFilters)}
       >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+          {/* Command Center: Row 2 & 3 */}
+          <div className="mb-12 space-y-8">
+            <DirectoryIntelligence />
+            <Testimonials />
+          </div>
+
           {/* Main Layout Rail System */}
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             
             {/* Left Rail: Sticky Filter Sidebar */}
             <aside className="lg:w-[300px] shrink-0">
               <div className="lg:sticky lg:top-24">
-                <DirectoryIntelligence />
                 <FilterSidebar 
                   categories={categoriesWithCounts}
                   tags={tags}
                 />
-                <Testimonials />
               </div>
             </aside>
             
