@@ -52,23 +52,17 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const { filters, pagination } = validateAndSanitizeInputs(searchParams);
     
-    // 4. Query database with validated inputs
-    const resources = await getFilteredResources(filters);
+    // 4. Query database with validated inputs (Limit/Offset handled in getFilteredResources)
+    const { resources: filteredResources, totalCount } = await getFilteredResources(filters, pagination.page, pagination.limit);
     
-    // 5. Apply pagination
-    const paginatedResources = resources.slice(
-      pagination.offset,
-      pagination.offset + pagination.limit
-    );
-    
-    // 6. Return response with metadata
+    // 5. Return response with metadata
     return NextResponse.json({
-      data: paginatedResources,
+      data: filteredResources,
       meta: {
-        total: resources.length,
+        total: totalCount,
         page: pagination.page,
         limit: pagination.limit,
-        totalPages: Math.ceil(resources.length / pagination.limit),
+        totalPages: Math.ceil(totalCount / pagination.limit),
       },
     }, {
       headers: {

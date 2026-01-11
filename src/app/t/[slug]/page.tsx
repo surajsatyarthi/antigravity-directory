@@ -22,6 +22,7 @@ export async function generateMetadata({
       description: resources.description,
       metaTitle: resources.metaTitle,
       metaDesc: resources.metaDesc,
+      isIndexed: resources.isIndexed,
     })
     .from(resources)
     .where(eq(resources.slug, slug))
@@ -35,11 +36,12 @@ export async function generateMetadata({
   return {
     title,
     description,
+    robots: resource.isIndexed ? 'index, follow' : 'noindex, nofollow',
     openGraph: {
       title,
       description,
       type: 'article',
-      url: `/resources/${slug}`,
+      url: `/t/${slug}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -47,7 +49,7 @@ export async function generateMetadata({
       description,
     },
     alternates: {
-      canonical: `/resources/${slug}`,
+      canonical: `/t/${slug}`,
     },
   };
 }
@@ -143,7 +145,7 @@ export default async function ResourceDetailPage({
           "@type": "Answer",
           "text": resource.verified 
             ? `${resource.title} is a verified tool on the Antigravity Directory, meeting our community standards for reliability and UI excellence.`
-            : `${resource.title} is a community-submitted tool. We encourage users to verify its official documentation for details.`
+            : `${resource.title} is a community-submitted tool. We encourage users to verify its original documentation for details.`
         }
       },
       {
@@ -176,8 +178,7 @@ export default async function ResourceDetailPage({
       {
         "@type": "ListItem",
         "position": 3,
-        "name": resource.title,
-        "item": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory'}/resources/${resource.slug}`
+        "item": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory'}/t/${resource.slug}`
       }
     ]
   };
@@ -204,7 +205,7 @@ export default async function ResourceDetailPage({
         <nav className="flex items-center gap-2 text-sm text-gray-500 mb-12 font-mono">
           <Link href="/" className="hover:text-white transition-colors">home</Link>
           <span className="text-gray-800">/</span>
-          <Link href="/resources" className="hover:text-white transition-colors">resources</Link>
+          <Link href="/" className="hover:text-white transition-colors">explore</Link>
           <span className="text-gray-800">/</span>
           <span className="text-gray-300 truncate">{resource.title.toLowerCase()}</span>
         </nav>
@@ -249,15 +250,7 @@ export default async function ResourceDetailPage({
               }}
             />
 
-            <div className="flex justify-center mb-12">
-              <Link 
-                href={`/resources/${slug}/alternatives`}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all font-mono text-xs uppercase tracking-widest font-bold font-mono"
-              >
-                Explore Alternatives
-                <ChevronRight className="w-4 h-4" />
-              </Link>
-            </div>
+
 
             {/* Stats Bar - Monospace */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-900 overflow-hidden border border-gray-900 rounded-2xl mb-12 font-mono text-xs">

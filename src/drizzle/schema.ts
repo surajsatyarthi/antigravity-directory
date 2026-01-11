@@ -94,6 +94,15 @@ export const resources = pgTable('resources', {
   views: integer('views').notNull().default(0),
   copiedCount: integer('copied_count').notNull().default(0),
   
+  // AEO & Staged Indexing
+  isIndexed: boolean('is_indexed').notNull().default(false),
+  indexedAt: timestamp('indexed_at'),
+  
+  // E-E-A-T Moat (Live Metrics)
+  githubStars: integer('github_stars').default(0),
+  githubForks: integer('github_forks').default(0),
+  lastValidatedAt: timestamp('last_validated_at').defaultNow(),
+
   // SEO
   metaTitle: text('meta_title'),
   metaDesc: text('meta_desc'),

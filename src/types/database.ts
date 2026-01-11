@@ -29,7 +29,7 @@ export type CategoryWithCount = Category & {
 export type ResourceWithRelations = Resource & {
   categoryName?: string;
   authorName?: string;
-  averageRating?: number;
+  avgRating?: number;
   ratingCount?: number;
   isBookmarked?: boolean;
 };

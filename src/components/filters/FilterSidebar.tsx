@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { CategoryWithCount, Tag } from '@/types/database';
 import { ANIMATION } from '@/constants';
@@ -14,6 +14,7 @@ interface FilterSidebarProps {
 export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname();
   
   // Read current state from URL (single source of truth)
   const selectedCategories = searchParams.get('categories')?.split(',').filter(Boolean) || [];
@@ -47,7 +48,9 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
       params.delete('categories');
     }
     
-    router.push(`?${params.toString()}`);
+    const target = `${pathname}?${params.toString()}`;
+    console.log('[FilterSidebar] router.push (categories):', target);
+    router.push(target);
   };
   
   const handleTagChange = (tagSlug: string) => {
@@ -65,7 +68,9 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
       params.delete('tags');
     }
     
-    router.push(`?${params.toString()}`);
+    const target = `${pathname}?${params.toString()}`;
+    console.log('[FilterSidebar] router.push (tags):', target);
+    router.push(target);
   };
   
   return (
@@ -76,6 +81,39 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
     >
       <div className="bg-gray-950 border border-gray-900 rounded-3xl p-6 shadow-xl backdrop-blur-sm bg-opacity-80">
         <h2 id="filters-heading" className="text-xl font-bold text-white mb-6 tracking-tight">Filters</h2>
+        
+        {/* AI Focus Areas (Shifting from center) */}
+        <div className="mb-8">
+           <span className="text-[10px] uppercase tracking-[0.2em] text-gray-600 font-bold block mb-4">Focus Areas</span>
+           <div className="flex flex-col gap-2">
+             {[
+               { id: 'process', label: 'AI for Process', icon: '⚡' },
+               { id: 'work', label: 'AI for Work', icon: '💼' },
+               { id: 'service', label: 'AI for Service', icon: '🛠️' }
+             ].map((group) => {
+               const isSelected = searchParams.get('group') === group.id;
+               return (
+                 <button
+                   key={group.id}
+                   onClick={() => {
+                     const params = new URLSearchParams(searchParams);
+                     if (isSelected) params.delete('group');
+                     else params.set('group', group.id);
+                     router.push(`?${params.toString()}`);
+                   }}
+                   className={`flex items-center justify-between px-4 py-3 rounded-xl border text-sm font-bold transition-all ${
+                     isSelected 
+                      ? 'bg-blue-600 border-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.3)]' 
+                      : 'bg-black/40 border-gray-900 text-gray-400 hover:border-gray-800 hover:text-white'
+                   }`}
+                 >
+                   <span>{group.label}</span>
+                   <span className="opacity-50 text-xs">{group.icon}</span>
+                 </button>
+               );
+             })}
+           </div>
+        </div>
         
         {/* Categories Filter (Function) */}
         <div className="mb-8">
@@ -110,7 +148,10 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
                   <input
                     type="checkbox"
                     checked={selectedCategories.includes(category.slug)}
-                    onChange={() => handleCategoryChange(category.slug)}
+                    onChange={() => {
+                      console.log('[FilterSidebar] Checkbox clicked:', category.slug);
+                      handleCategoryChange(category.slug);
+                    }}
                     className="peer w-5 h-5 rounded-md border-gray-800 bg-gray-900/50 text-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black transition-all appearance-none border checked:bg-blue-600 checked:border-blue-500"
                     aria-label={`Filter by ${category.name}, ${category.count} items available`}
                     data-testid={`filter-checkbox-${category.slug}`}

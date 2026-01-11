@@ -95,7 +95,7 @@ export default async function CategoryPage({
       "itemListElement": categoryResources.map((res, index) => ({
         "@type": "ListItem",
         "position": index + 1,
-        "url": `/resources/${res.slug}`,
+        "url": `/t/${res.slug}`,
         "name": res.title
       }))
     }
@@ -121,11 +121,10 @@ export default async function CategoryPage({
                 </h2>
                 <nav className="space-y-1">
                   <Link 
-                    href="/resources" 
-                    className="flex items-center justify-between px-4 py-3 text-sm font-medium text-gray-500 hover:text-white hover:bg-white/[0.02] rounded-xl transition-all group"
+                    href="/" 
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-blue-600 hover:text-white transition-all text-sm group"
                   >
-                    All Tools
-                    <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    Explore All Agents
                   </Link>
                   {allCategories.map((cat) => (
                     <Link

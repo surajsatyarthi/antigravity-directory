@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { db } from '@/lib/db';
 import { resources, categories, users } from '@/drizzle/schema';
-import { sql } from 'drizzle-orm';
+import { sql, desc } from 'drizzle-orm';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory';
@@ -9,11 +9,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 1. Static Routes
   const staticRoutes = [
     '',
-    '/resources',
     '/submit',
     '/dashboard',
     '/privacy',
     '/terms',
+    '/settings',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .from(resources);
 
   const resourceRoutes = allResources.map((res) => ({
-    url: `${baseUrl}/resources/${res.slug}`,
+    url: `${baseUrl}/t/${res.slug}`,
     lastModified: res.updatedAt || new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
@@ -35,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 3. Fetch Alternatives
   const alternativesRoutes = allResources.map((res) => ({
-    url: `${baseUrl}/resources/${res.slug}/alternatives`,
+    url: `${baseUrl}/t/${res.slug}/alternatives`,
     lastModified: res.updatedAt || new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
@@ -66,11 +66,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
   
+  // 6. Fetch Comparisons (Programmatic Moat)
+  // For the sitemap, we generate comparisons for the top 10 most viewed resources
+  const topResources = await db
+    .select({ slug: resources.slug })
+    .from(resources)
+    .orderBy(desc(resources.views))
+    .limit(10);
+
+  const comparisonRoutes: any[] = [];
+  for (let i = 0; i < topResources.length; i++) {
+    for (let j = i + 1; j < topResources.length; j++) {
+      comparisonRoutes.push({
+        url: `${baseUrl}/vs/${topResources[i].slug}-vs-${topResources[j].slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      });
+    }
+  }
+  
   return [
     ...staticRoutes,
     ...resourceRoutes,
     ...alternativesRoutes,
     ...categoryRoutes,
     ...userRoutes,
+    ...comparisonRoutes,
   ];
 }

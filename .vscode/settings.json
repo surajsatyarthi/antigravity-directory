@@ -12,7 +12,14 @@
     "**/coverage/**": true,
     "**/public/**": true,
     "**/ads/**": true,
-    "**/pnpm-lock.yaml": true
+    "**/.pnpm-store/**": true,
+    "**/tests/test-results/**": true,
+    "**/playwright-report/**": true,
+    "**/pnpm-lock.yaml": true,
+    "/Users/surajsatyarthi/Desktop/Antigravity Directory/antigravity-directory/.next/**": true,
+    "/Users/surajsatyarthi/Desktop/Antigravity Directory/antigravity-directory/.gemini/**": true,
+    "/Users/surajsatyarthi/Desktop/Antigravity Directory/antigravity-directory/.cache/**": true,
+    "/Users/surajsatyarthi/Desktop/Antigravity Directory/antigravity-directory/node_modules/**": true
   },
   "search.exclude": {
     "**/node_modules": true,
@@ -23,15 +30,26 @@
     "**/coverage": true,
     "**/public": true,
     "**/ads": true,
-    "**/pnpm-lock.yaml": true
+    "**/tests/test-results": true,
+    "**/playwright-report": true,
+    "**/pnpm-lock.yaml": true,
+    "/Users/surajsatyarthi/Desktop/Antigravity Directory/antigravity-directory/.next": true,
+    "/Users/surajsatyarthi/Desktop/Antigravity Directory/antigravity-directory/.gemini": true
   },
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
     "**/node_modules": true,
-    "**/.next": true
+    "**/.next": true,
+    "**/tests/test-results": true,
+    "**/playwright-report": true
   },
   "antigravity.languageServer.indexExcludedDirectories": [
+    "/Users/surajsatyarthi/Desktop/Antigravity Directory/antigravity-directory/node_modules",
+    "/Users/surajsatyarthi/Desktop/Antigravity Directory/antigravity-directory/.next",
+    "/Users/surajsatyarthi/Desktop/Antigravity Directory/antigravity-directory/.cache",
+    "/Users/surajsatyarthi/Desktop/Antigravity Directory/antigravity-directory/.gemini",
+    "/Users/surajsatyarthi/Desktop/Antigravity Directory/antigravity-directory/.antigravity",
     "node_modules",
     ".next",
     ".git",
@@ -44,14 +62,26 @@
     "coverage",
     "public",
     "ads",
+    "tests/test-results",
+    "playwright-report",
     "pnpm-lock.yaml",
+    "**/.gemini/**",
+    "**/.antigravity/**",
+    "**/tmp/**",
+    "**/temp/**",
+    "**/.cache/**",
     "**/*.png",
     "**/*.jpg",
     "**/*.jpeg",
     "**/*.svg",
     "**/*.ico",
-    "**/*.mp4"
+    "**/*.mp4",
+    "**/*.webm",
+    "**/*.wav",
+    "**/*.mp3"
   ],
-  "typescript.tsserver.maxTsServerMemory": 768,
-  "typescript.disableAutomaticTypeAcquisition": true
+  "typescript.tsserver.maxTsServerMemory": 300,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "git.autorefresh": false,
+  "git.enabled": false
 }

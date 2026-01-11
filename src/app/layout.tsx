@@ -23,6 +23,28 @@ export const metadata: Metadata = {
   description: "The primary source for AI coding rules, MCP servers, and developer workflows.",
   icons: {
     icon: "/favicon.png",
+    apple: "/apple-icon.png",
+  },
+  openGraph: {
+    title: "Antigravity Directory | Google's AI Intelligence Hub",
+    description: "The primary source for AI coding rules, MCP servers, and developer workflows.",
+    url: "https://googleantigravity.directory",
+    siteName: "Antigravity Directory",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Antigravity Directory | Google's AI Intelligence Hub",
+    description: "The primary source for AI coding rules, MCP servers, and developer workflows.",
+    images: ["/twitter-image.png"],
   },
   alternates: {
     canonical: '/',

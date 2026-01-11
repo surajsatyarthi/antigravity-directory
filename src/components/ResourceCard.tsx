@@ -31,13 +31,13 @@ export function ResourceCard({ resource }: ResourceCardProps) {
       {/* Decorative Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
       
-      <Link href={`/resources/${resource.slug}`} className="absolute inset-0 z-10 outline-none">
+      <Link href={`/t/${resource.slug}`} className="absolute inset-0 z-10 outline-none">
         <span className="sr-only">View details for {resource.title}: {resource.description}</span>
       </Link>
       
-      <div className="p-7 flex flex-col h-full relative z-20">
+      <div className="p-5 flex flex-col h-full relative z-20">
         {/* Header Section: Integrations & Badges */}
-        <div className="flex items-center justify-between gap-3 mb-5">
+        <div className="flex items-center justify-between gap-3 mb-4">
           <div className="flex items-center gap-1.5 overflow-hidden">
             {resource.integrations && resource.integrations.length > 0 && (
               <div 
@@ -47,81 +47,81 @@ export function ResourceCard({ resource }: ResourceCardProps) {
                 {resource.integrations.slice(0, MAX_INTEGRATION_ICONS).map((integration, idx) => (
                   <div
                     key={idx}
-                    className="w-7 h-7 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center shrink-0 shadow-sm"
+                    className="w-6 h-6 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center shrink-0 shadow-sm"
                     title={integration}
                   >
-                    <Package className="w-3.5 h-3.5 text-gray-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
+                    <Package className="w-3 h-3 text-gray-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
                   </div>
                 ))}
               </div>
             )}
             
-            <span className="px-2.5 py-1 rounded-md bg-blue-500/10 border border-blue-500/20 text-[10px] font-black text-blue-500 uppercase tracking-widest whitespace-nowrap">
+            <span className="px-2 py-0.5 rounded-md bg-blue-500/10 border border-blue-500/20 text-[9px] font-black text-blue-500 uppercase tracking-widest whitespace-nowrap">
               {resource.categoryName || 'General'}
             </span>
           </div>
 
           {isFeatured && (
             <div 
-              className="shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-yellow-500/10 border border-yellow-500/30"
+              className="shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-yellow-500/10 border border-yellow-500/30"
               aria-label="Featured Resource"
             >
-              <Star className="w-3.5 h-3.5 fill-yellow-500 text-yellow-500" aria-hidden="true" />
+              <Star className="w-3 h-3 fill-yellow-500 text-yellow-500" aria-hidden="true" />
             </div>
           )}
         </div>
         
         {/* Title & Description */}
-        <div className="flex-1 mb-8">
-          <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1 mb-3 tracking-tight">
+        <div className="flex-1 mb-6">
+          <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1 mb-2 tracking-tight">
             {resource.title}
           </h3>
-          <p className="text-[15px] text-gray-400 line-clamp-3 font-medium leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+          <p className="text-[13px] text-gray-400 line-clamp-3 font-medium leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
             {resource.description}
           </p>
         </div>
         
         {/* Footer Section: Stats & Persistence */}
-        <div className="pt-6 border-t border-white/[0.05] flex items-center justify-between mt-auto">
-          <div className="flex items-center gap-5">
+        <div className="pt-4 border-t border-white/[0.05] flex items-center justify-between mt-auto">
+          <div className="flex items-center gap-4">
             {/* Rating */}
             <div 
-              className="flex items-center gap-1.5 group/stat"
+              className="flex items-center gap-1 group/stat"
               aria-label={`Rating: ${Number(resource.avgRating).toFixed(1)} stars out of ${resource.ratingCount} reviews`}
             >
               <div className="flex items-center gap-1 text-yellow-500/90">
-                <Star className="w-3.5 h-3.5 fill-current" aria-hidden="true" />
-                <span className="text-sm font-bold font-mono">
+                <Star className="w-3 h-3 fill-current" aria-hidden="true" />
+                <span className="text-xs font-bold font-mono">
                   {Number(resource.avgRating).toFixed(1)}
                 </span>
               </div>
-              <span className="text-gray-600 text-[11px] font-mono font-bold">
+              <span className="text-gray-600 text-[10px] font-mono font-bold">
                 ({resource.ratingCount})
               </span>
             </div>
 
             {/* Views */}
             <div 
-              className="flex items-center gap-1.5 text-gray-500 group/stat"
+              className="flex items-center gap-1 text-gray-500 group/stat"
               aria-label={`${resource.views} views`}
             >
-              <Eye className="w-4 h-4 text-gray-600" aria-hidden="true" />
-              <span className="text-sm font-bold font-mono text-gray-400">
+              <Eye className="w-3.5 h-3.5 text-gray-600" aria-hidden="true" />
+              <span className="text-xs font-bold font-mono text-gray-400">
                 {resource.views >= 1000 ? `${(resource.views / 1000).toFixed(1)}k` : resource.views}
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 relative z-30">
+          <div className="flex items-center gap-2 relative z-30">
              <BookmarkButton 
               resourceId={resource.id} 
               initialIsBookmarked={!!resource.isBookmarked} 
             />
             <div 
-              className="flex items-center justify-center w-9 h-9 rounded-full bg-gray-950 border border-gray-800 text-gray-500 group-hover:bg-blue-600 group-hover:border-blue-500 group-hover:text-white transition-all shadow-lg"
+              className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-950 border border-gray-800 text-gray-500 group-hover:bg-blue-600 group-hover:border-blue-500 group-hover:text-white transition-all shadow-lg"
               aria-hidden="true"
             >
-              <ArrowRight className="w-4.5 h-4.5" />
+              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
         </div>
