@@ -46,18 +46,23 @@ export async function MarketplaceHeader() {
 
           {session && (
             <div className="flex items-center gap-3 pl-4 border-l border-gray-800">
-              <Link href={username ? `/u/${username}` : '/settings'} className="group">
+              <Link href={username ? `/u/${username}` : '/settings'} className="group" aria-label={`View profile for ${session.user?.name || 'user'}`}>
                 {session.user?.image ? (
-                  <img src={session.user.image} alt={session.user.name || ''} className="w-8 h-8 rounded-full border border-gray-800 group-hover:border-blue-500 transition-colors" />
+                  <img 
+                    src={session.user.image} 
+                    alt="" 
+                    className="w-8 h-8 rounded-full border border-gray-800 group-hover:border-blue-500 transition-colors" 
+                    role="presentation"
+                  />
                 ) : (
                   <div className="w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 group-hover:bg-gray-800 transition-colors">
-                    <User className="w-4 h-4" />
+                    <User className="w-4 h-4" aria-hidden="true" />
                   </div>
                 )}
               </Link>
               <form action={handleSignOut}>
-                <button type="submit" className="p-2 hover:text-red-500 transition-colors" title="Sign Out">
-                  <LogOut className="w-4 h-4" />
+                <button type="submit" className="p-2 hover:text-red-500 transition-colors focus:outline-none focus:text-red-500" title="Sign Out" aria-label="Sign Out">
+                  <LogOut className="w-4 h-4" aria-hidden="true" />
                 </button>
               </form>
             </div>
@@ -65,7 +70,7 @@ export async function MarketplaceHeader() {
 
           {!session && (
             <form action={handleSignIn}>
-              <button type="submit" className="text-gray-500 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest px-2">
+              <button type="submit" className="text-gray-500 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest px-2 focus:outline-none focus:text-blue-500">
                 Sign In
               </button>
             </form>
@@ -73,8 +78,11 @@ export async function MarketplaceHeader() {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button className="md:hidden p-2 text-gray-400">
-          <Menu className="w-6 h-6" />
+        <button 
+          className="md:hidden p-2 text-gray-400 hover:text-white focus:outline-none focus:text-blue-500"
+          aria-label="Open mobile menu"
+        >
+          <Menu className="w-6 h-6" aria-hidden="true" />
         </button>
       </div>
     </header>
