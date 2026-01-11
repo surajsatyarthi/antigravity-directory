@@ -15,6 +15,13 @@
       "when": 1768095694946,
       "tag": "0001_strong_bloodaxe",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1768104411999,
+      "tag": "0002_daffy_dazzler",
+      "breakpoints": true
     }
   ]
 }
