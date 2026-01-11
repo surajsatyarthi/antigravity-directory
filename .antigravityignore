@@ -1,42 +1,26 @@
-# Antigravity Ignore
-# Exclude these directories from language server indexing to prevent CPU overload
-
-# Dependencies (41,954 files, 862MB)
 node_modules/
-
-# Build outputs (212MB)
 .next/
-out/
-build/
-dist/
-
-# Version control
-.git/
-
-# Cache directories
+.vercel/
 .cache/
 .turbo/
-.vercel/
-
-# Test coverage
+build/
+dist/
+out/
+.git/
 coverage/
-
-# Environment files
-.env*
-
-# TypeScript
-*.tsbuildinfo
-
-# Logs
 *.log
-npm-debug.log*
-yarn-debug.log*
-
-# OS files
 .DS_Store
-
-# Temporary files
-*.tmp
-*.temp
-.temp/
 tmp/
+temp/
+public/
+ads/
+pnpm-lock.yaml
+pnpm-workspace.yaml
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.svg
+**/*.ico
+**/*.mp4
+**/*.pdf
+**/*.zip

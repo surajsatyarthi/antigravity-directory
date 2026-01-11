@@ -1,11 +1,56 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Star, Eye, Copy, ExternalLink, ArrowLeft } from 'lucide-react';
+import { Star, Eye, Copy, ExternalLink, ArrowLeft, ChevronRight } from 'lucide-react';
 import { db } from '@/lib/db';
 import { resources, categories, ratings, tags, resourceTags } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
 import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { CitationBlock } from '@/components/CitationBlock';
+import { BadgeGenerator } from '@/components/BadgeGenerator';
 import { Footer } from '@/components/Footer';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const [resource] = await db
+    .select({
+      title: resources.title,
+      description: resources.description,
+      metaTitle: resources.metaTitle,
+      metaDesc: resources.metaDesc,
+    })
+    .from(resources)
+    .where(eq(resources.slug, slug))
+    .limit(1);
+
+  if (!resource) return { title: 'Resource Not Found' };
+
+  const title = resource.metaTitle || resource.title;
+  const description = resource.metaDesc || resource.description;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      url: `/resources/${slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+    alternates: {
+      canonical: `/resources/${slug}`,
+    },
+  };
+}
 
 export default async function ResourceDetailPage({
   params,
@@ -19,11 +64,13 @@ export default async function ResourceDetailPage({
     .select({
       id: resources.id,
       title: resources.title,
+      slug: resources.slug,
       description: resources.description,
       content: resources.content,
       url: resources.url,
       views: resources.views,
       copiedCount: resources.copiedCount,
+      verified: resources.verified,
       categoryName: categories.name,
     })
     .from(resources)
@@ -53,8 +100,103 @@ export default async function ResourceDetailPage({
     .leftJoin(tags, eq(resourceTags.tagId, tags.id))
     .where(eq(resourceTags.resourceId, resource.id));
 
+  const softwareAppJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": resource.title,
+    "description": resource.description,
+    "applicationCategory": resource.categoryName || "AI Tool",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": avgRating.toFixed(1),
+      "reviewCount": resourceRatings.length || 1,
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Antigravity Community"
+    },
+    "operatingSystem": "Web-based",
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": `What is ${resource.title}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": resource.description
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `Is ${resource.title} verified on Antigravity?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": resource.verified 
+            ? `${resource.title} is a verified tool on the Antigravity Directory, meeting our community standards for reliability and UI excellence.`
+            : `${resource.title} is a community-submitted tool. We encourage users to verify its official documentation for details.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `Where can I find alternatives to ${resource.title}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `You can explore top-rated alternatives and similar tools to ${resource.title} in the ${resource.categoryName || 'General'} category on Antigravity Directory.`
+        }
+      }
+    ]
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory'
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": resource.categoryName || "Resources",
+        "item": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory'}/categories/${resource.categoryName?.toLowerCase().replace(/\s+/g, '-')}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": resource.title,
+        "item": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory'}/resources/${resource.slug}`
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
+      {/* JSON-LD Layer (AEO) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <MarketplaceHeader />
 
       <main className="flex-1 container mx-auto px-4 py-12 max-w-4xl">
@@ -93,6 +235,28 @@ export default async function ResourceDetailPage({
                   <ExternalLink className="w-4 h-4" />
                 </a>
               )}
+            </div>
+
+            {/* AEO Citation Block */}
+            <CitationBlock 
+              data={{
+                title: resource.title,
+                description: resource.description,
+                category: resource.categoryName || 'General',
+                verified: resource.verified,
+                rating: avgRating.toFixed(1),
+                views: resource.views.toLocaleString()
+              }}
+            />
+
+            <div className="flex justify-center mb-12">
+              <Link 
+                href={`/resources/${slug}/alternatives`}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all font-mono text-xs uppercase tracking-widest font-bold font-mono"
+              >
+                Explore Alternatives
+                <ChevronRight className="w-4 h-4" />
+              </Link>
             </div>
 
             {/* Stats Bar - Monospace */}
@@ -167,6 +331,11 @@ export default async function ResourceDetailPage({
                 Sign in to verify your vote
               </p>
             </div>
+            {/* Badge Flywheel Section */}
+            <BadgeGenerator 
+              slug={resource.slug} 
+              title={resource.title} 
+            />
           </div>
         </article>
       </main>

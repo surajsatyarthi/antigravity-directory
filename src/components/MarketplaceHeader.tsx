@@ -1,11 +1,22 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
-import { Zap, Plus, Menu, User, LogOut } from 'lucide-react';
+import { Zap, Plus, Menu, User, LogOut, LayoutDashboard } from 'lucide-react';
 import { auth } from '@/auth';
+import { db } from '@/lib/db';
+import { users } from '@/drizzle/schema';
+import { eq } from 'drizzle-orm';
 import { SearchInput } from './SearchInput';
+import { NavLinks } from './NavLinks';
+import { handleSignIn, handleSignOut } from '@/lib/actions/auth';
 
 export async function MarketplaceHeader() {
   const session = await auth();
+  
+  let username = null;
+  if (session?.user?.id) {
+    const user = (await db.select({ username: users.username }).from(users).where(eq(users.id, session.user.id)).limit(1))[0];
+    username = user?.username;
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full bg-black/80 backdrop-blur-md border-b border-gray-800">
@@ -15,7 +26,7 @@ export async function MarketplaceHeader() {
           <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center group-hover:bg-gray-200 transition-colors shadow-[0_0_15px_rgba(255,255,255,0.3)]">
             <Zap className="w-5 h-5 text-black fill-black animate-shimmer" />
           </div>
-          <span className="text-xl font-bold tracking-tighter hidden sm:block font-mono lowercase text-white">
+          <span className="text-xl font-bold tracking-tighter hidden md:block font-mono lowercase text-white">
             antigravity
           </span>
         </Link>
@@ -30,52 +41,36 @@ export async function MarketplaceHeader() {
         </Suspense>
 
         {/* Nav Links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-400">
-          <Link href="/resources" className="hover:text-white transition-colors">
-            Explore
-          </Link>
-          
-          {session ? (
-            <div className="flex items-center gap-6">
-              <Link 
-                href="/submit" 
-                className="flex items-center gap-1.5 px-4 py-2 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-all active:scale-95"
-              >
-                <Plus className="w-4 h-4" />
-                Submit
-              </Link>
-              
-              <div className="flex items-center gap-3 pl-4 border-l border-gray-800">
+        <div className="hidden md:flex items-center gap-6">
+          <NavLinks session={session} username={username} />
+
+          {session && (
+            <div className="flex items-center gap-3 pl-4 border-l border-gray-800">
+              <Link href={username ? `/u/${username}` : '/settings'} className="group">
                 {session.user?.image ? (
-                  <img src={session.user.image} alt={session.user.name || ''} className="w-8 h-8 rounded-full border border-gray-800" />
+                  <img src={session.user.image} alt={session.user.name || ''} className="w-8 h-8 rounded-full border border-gray-800 group-hover:border-blue-500 transition-colors" />
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center text-gray-400">
+                  <div className="w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 group-hover:bg-gray-800 transition-colors">
                     <User className="w-4 h-4" />
                   </div>
                 )}
-                <form action={async () => {
-                  'use server';
-                  const { signOut } = await import('@/auth');
-                  await signOut();
-                }}>
-                  <button type="submit" className="p-2 hover:text-red-500 transition-colors" title="Sign Out">
-                    <LogOut className="w-4 h-4" />
-                  </button>
-                </form>
-              </div>
+              </Link>
+              <form action={handleSignOut}>
+                <button type="submit" className="p-2 hover:text-red-500 transition-colors" title="Sign Out">
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </form>
             </div>
-          ) : (
-            <form action={async () => {
-              'use server';
-              const { signIn } = await import('@/auth');
-              await signIn();
-            }}>
-              <button type="submit" className="hover:text-white transition-colors">
+          )}
+
+          {!session && (
+            <form action={handleSignIn}>
+              <button type="submit" className="text-gray-500 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest px-2">
                 Sign In
               </button>
             </form>
           )}
-        </nav>
+        </div>
 
         {/* Mobile Menu Toggle */}
         <button className="md:hidden p-2 text-gray-400">

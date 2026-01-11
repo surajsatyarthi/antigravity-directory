@@ -23,6 +23,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@layer base {
+  html {
+    @apply antialiased;
+  }
+}
+
+/* Mobile Typography Optimization */
+@media (max-width: 640px) {
+  .discovery-engine-title {
+    font-size: 3rem !important;
+    line-height: 0.9 !important;
+  }
+}
+
 .font-mono {
   font-family:
     var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
@@ -61,7 +75,8 @@ body {
 
 /* Bounce Subtle Animation */
 @keyframes bounce-subtle {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {

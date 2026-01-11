@@ -9,7 +9,10 @@
     "**/.vercel/**": true,
     "**/.turbo/**": true,
     "**/out/**": true,
-    "**/coverage/**": true
+    "**/coverage/**": true,
+    "**/public/**": true,
+    "**/ads/**": true,
+    "**/pnpm-lock.yaml": true
   },
   "search.exclude": {
     "**/node_modules": true,
@@ -17,12 +20,16 @@
     "**/build": true,
     "**/dist": true,
     "**/.git": true,
-    "**/coverage": true
+    "**/coverage": true,
+    "**/public": true,
+    "**/ads": true,
+    "**/pnpm-lock.yaml": true
   },
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
-    "**/node_modules": false
+    "**/node_modules": true,
+    "**/.next": true
   },
   "antigravity.languageServer.indexExcludedDirectories": [
     "node_modules",
@@ -34,8 +41,17 @@
     ".vercel",
     ".turbo",
     "out",
-    "coverage"
+    "coverage",
+    "public",
+    "ads",
+    "pnpm-lock.yaml",
+    "**/*.png",
+    "**/*.jpg",
+    "**/*.jpeg",
+    "**/*.svg",
+    "**/*.ico",
+    "**/*.mp4"
   ],
-  "typescript.tsserver.maxTsServerMemory": 3072,
+  "typescript.tsserver.maxTsServerMemory": 768,
   "typescript.disableAutomaticTypeAcquisition": true
 }

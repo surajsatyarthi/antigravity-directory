@@ -20,7 +20,7 @@ export function SearchInput() {
       }
 
       startTransition(() => {
-        router.push(`/?${params.toString()}`);
+        router.replace(`/?${params.toString()}`, { scroll: false });
       });
     }, 300);
 
