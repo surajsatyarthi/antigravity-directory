@@ -4,6 +4,7 @@ import { auth } from '@/auth';
 import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 import { FilterSidebar } from '@/components/filters/FilterSidebar';
 import { TopFilterBar } from '@/components/filters/TopFilterBar';
+import { FilterPersistenceManager } from '@/components/filters/FilterPersistenceManager';
 import { ResourceCard } from '@/components/ResourceCard';
 import { Footer } from '@/components/Footer';
 import { getCategoriesWithCounts, getAllTags, getFilteredResources } from '@/lib/queries';
@@ -48,6 +49,7 @@ export default async function HomePage({
   return (
     <>
       <MarketplaceHeader />
+      <FilterPersistenceManager />
       
       <main className="min-h-screen bg-black text-white">
         <div className="max-w-[1920px] mx-auto px-6 py-8">
