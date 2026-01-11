@@ -71,6 +71,7 @@ export const categories = pgTable('categories', {
   slug: text('slug').notNull().unique(),
   description: text('description'),
   icon: text('icon'),
+  group: text('group'), // 'process', 'work', 'service' for category pills
   order: integer('order').notNull().default(0),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
@@ -85,6 +86,7 @@ export const resources = pgTable('resources', {
   content: text('content'),
   url: text('url'),
   thumbnail: text('thumbnail'),
+  integrations: text('integrations').array(), // Array of integration names for card header icons
   
   // Metadata
   featured: boolean('featured').notNull().default(false),
