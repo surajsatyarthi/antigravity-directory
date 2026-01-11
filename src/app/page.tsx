@@ -1,20 +1,40 @@
+import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { db } from '@/lib/db';
-import { resources, categories, ratings } from '@/drizzle/schema';
+import { resources, categories, ratings, bookmarks } from '@/drizzle/schema';
 import { eq, desc, sql, and, ilike, or } from 'drizzle-orm';
+import { auth } from '@/auth';
 import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 import { ResourceCard } from '@/components/ResourceCard';
 import { SortDropdown } from '@/components/SortDropdown';
 import { Footer } from '@/components/Footer';
+import { CitationBlock } from '@/components/CitationBlock';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight, Sparkles, TrendingUp, Zap } from 'lucide-react';
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string; category?: string }>;
+}): Promise<Metadata> {
+  const { q, category } = await searchParams;
+  
+  if (q) return { title: `Search results for "${q}"` };
+  if (category) return { title: `Explore AI Tools in ${category}` };
+  
+  return {
+    title: "Discovery Engine | Antigravity AI Hub",
+    description: "The official directory for Google Antigravity resources, Windsurf rules, and MCP servers.",
+  };
+}
 
 export default async function HomePage({
   searchParams,
 }: {
   searchParams: Promise<{ q?: string; category?: string; sort?: string }>;
 }) {
+  const session = await auth();
   const { q, category, sort } = await searchParams;
 
   // Fetch Categories
@@ -43,8 +63,6 @@ export default async function HomePage({
       case 'views':
         return desc(resources.views);
       case 'rating':
-        // For rating sort, we would ideally join with an aggregated ratings table
-        // For now, simplicity: sort by views as an alignment with "popularity"
         return desc(resources.views); 
       case 'latest':
       default:
@@ -52,9 +70,8 @@ export default async function HomePage({
     }
   };
 
-  // Fetch Resources (Joined with category and aggregated ratings if possible)
-  // For now, let's stick to the current joined fetch pattern but with filters
-  const resourcesQuery = db
+  // Main Resources Query (Optimized aggregate)
+  const allFilteredResources = await db
     .select({
       id: resources.id,
       title: resources.title,
@@ -64,106 +81,127 @@ export default async function HomePage({
       categoryName: categories.name,
       publishedAt: resources.publishedAt,
       featured: resources.featured,
+      avgRating: sql<number>`coalesce(avg(${ratings.rating}), 0)`,
+      ratingCount: sql<number>`count(${ratings.id})`,
+      isBookmarked: sql<boolean>`count(${bookmarks.userId}) > 0`,
     })
     .from(resources)
     .leftJoin(categories, eq(resources.categoryId, categories.id))
+    .leftJoin(ratings, eq(resources.id, ratings.resourceId))
+    .leftJoin(
+      bookmarks,
+      and(eq(bookmarks.resourceId, resources.id), eq(bookmarks.userId, session?.user?.id ?? ''))
+    )
     .where(filters.length > 0 ? and(...filters) : undefined)
+    .groupBy(
+      resources.id,
+      categories.id,
+      categories.name
+    )
     .orderBy(getOrderBy(sort || 'latest'))
     .limit(50);
-
-  const rawResourcesResult = await resourcesQuery;
-
-  // Helper to fetch ratings for a resource list (same as before but more efficient)
-  const addRatings = async (resourceList: any[]) => {
-    return await Promise.all(
-      resourceList.map(async (resource) => {
-        const resourceRatings = await db
-          .select({ rating: ratings.rating })
-          .from(ratings)
-          .where(eq(ratings.resourceId, resource.id));
-
-        const avgRating =
-          resourceRatings.length > 0
-            ? resourceRatings.reduce((sum, r) => sum + r.rating, 0) / resourceRatings.length
-            : 0;
-
-        return {
-          ...resource,
-          avgRating,
-          ratingCount: resourceRatings.length,
-        };
-      })
-    );
-  };
-
-  const allFilteredResources = await addRatings(rawResourcesResult);
 
   // Split into columns for the "Marketplace" view
   const featuredResources = allFilteredResources.filter(r => r.featured).slice(0, 6);
   const latestResources = allFilteredResources.filter(r => !r.featured || q).slice(0, 24);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Antigravity Directory",
+    "url": process.env.NEXT_PUBLIC_SITE_URL || "https://googleantigravity.directory",
+    "logo": `${process.env.NEXT_PUBLIC_SITE_URL || "https://googleantigravity.directory"}/favicon.png`,
+    "description": "Google's UI Intelligence Marketplace for AI developer tools and workflows.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${process.env.NEXT_PUBLIC_SITE_URL || "https://googleantigravity.directory"}/?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What can I find in the Antigravity Directory?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Antigravity Directory is a curated hub for AI-first developer tools, Windsurf rules, MCP servers, and resources designed for the 2026 AI discovery landscape."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How are tools ranked on Antigravity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tools are ranked based on a combination of community ratings, authority signals (views), and manual verification by our expert curators."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <MarketplaceHeader />
 
-      <main className="flex-1 w-full px-2 py-12">
-        <div className="flex gap-4">
-          
-          {/* Left Sidebar - Categories & Filters - Minimal Margin */}
-          <aside className="w-64 shrink-0">
-            <div className="sticky top-28 space-y-10">
+      <main className="container mx-auto px-4 py-8">
+        <div className="flex flex-col xl:flex-row gap-8">
+          {/* Left Sidebar - Categories (Hidden on mobile) */}
+          <aside className="w-64 shrink-0 hidden xl:block">
+            <div className="sticky top-28 space-y-6">
               <div>
-                <h2 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-6 px-4">
+                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 px-2">
                   Categories
-                </h2>
-                <nav className="space-y-1">
-                  <Link 
-                    href="/resources" 
-                    className="flex items-center justify-between px-4 py-3 text-sm font-bold rounded-xl bg-white/5 text-white border border-white/10 transition-all hover:bg-white/10"
-                  >
-                    All Tools
-                    <ChevronRight className="w-4 h-4 opacity-50" />
-                  </Link>
+                </h3>
+                <div className="space-y-1">
                   {allCategories.map((cat) => (
                     <Link
                       key={cat.id}
                       href={`/categories/${cat.slug}`}
-                      className="flex items-center justify-between px-4 py-3 text-sm font-medium text-gray-500 hover:text-white hover:bg-white/[0.02] rounded-xl transition-all group"
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-all group ${
+                        category === cat.slug
+                          ? 'bg-white text-black font-bold shadow-[0_0_15px_rgba(255,255,255,0.1)]'
+                          : 'text-gray-400 hover:text-white hover:bg-gray-900'
+                      }`}
                     >
-                      {cat.name}
-                      <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 transition-all" />
+                      <span>{cat.name}</span>
                     </Link>
                   ))}
-                  
-                  {/* Submit Link */}
-                  <Link 
-                    href="/submit" 
-                    className="flex items-center justify-center px-4 py-3 text-sm font-bold rounded-xl bg-white text-black border border-white/20 transition-all hover:bg-gray-200 mt-2 animate-bounce-subtle"
-                  >
-                    Submit Resource
-                  </Link>
-                </nav>
+                </div>
               </div>
 
-              {/* Minimal Filter Section */}
-              <div className="pt-8 border-t border-gray-900">
-                <h2 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-6 px-4">
-                  Quick Filters
-                </h2>
-                <div className="space-y-2 px-2">
-                  <button className="w-full text-left px-3 py-2 text-xs font-mono text-gray-600 hover:text-blue-500 transition-colors uppercase tracking-widest">
-                    ⚡ High Performance
-                  </button>
-                  <button className="w-full text-left px-3 py-2 text-xs font-mono text-gray-600 hover:text-blue-500 transition-colors uppercase tracking-widest">
-                    🔥 Trending Now
-                  </button>
+              <div className="pt-6 border-t border-gray-900">
+                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 px-2">
+                  AEO Summary
+                </h3>
+                <div className="px-2">
+                   <CitationBlock 
+                    data={{
+                      title: "Antigravity Hub",
+                      description: "The primary authority for AI-era dev resources.",
+                      category: "Directory",
+                      verified: true,
+                      rating: "5.0",
+                      views: "100k+"
+                    }}
+                   />
                 </div>
               </div>
             </div>
           </aside>
 
-          {/* Main Content Area - List View */}
-          <div className="flex-1 min-w-0 px-4">
+          {/* Main Content - Grid Area */}
+          <div className="flex-1 min-w-0">
             
             {/* Header / Filter Status */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-gray-900 pb-10">

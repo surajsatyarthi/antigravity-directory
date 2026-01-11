@@ -10,6 +10,9 @@ export const users = pgTable('users', {
   name: text('name'),
   image: text('image'),
   role: text('role').notNull().default('USER'), // 'USER' | 'ADMIN'
+  username: text('username').unique(), // For SEO-friendly slugs
+  bio: text('bio'),
+  website: text('website'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
@@ -151,11 +154,21 @@ export const submissions = pgTable('submissions', {
   userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
 });
 
+// Bookmarks table
+export const bookmarks = pgTable('bookmarks', {
+  userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  resourceId: text('resource_id').notNull().references(() => resources.id, { onDelete: 'cascade' }),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+}, (t) => ({
+  pk: primaryKey({ columns: [t.userId, t.resourceId] }),
+}));
+
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   resources: many(resources),
   ratings: many(ratings),
   submissions: many(submissions),
+  bookmarks: many(bookmarks),
 }));
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
@@ -173,6 +186,7 @@ export const resourcesRelations = relations(resources, ({ one, many }) => ({
   }),
   ratings: many(ratings),
   resourceTags: many(resourceTags),
+  bookmarks: many(bookmarks),
 }));
 
 export const ratingsRelations = relations(ratings, ({ one }) => ({
@@ -205,5 +219,16 @@ export const submissionsRelations = relations(submissions, ({ one }) => ({
   user: one(users, {
     fields: [submissions.userId],
     references: [users.id],
+  }),
+}));
+
+export const bookmarksRelations = relations(bookmarks, ({ one }) => ({
+  user: one(users, {
+    fields: [bookmarks.userId],
+    references: [users.id],
+  }),
+  resource: one(resources, {
+    fields: [bookmarks.resourceId],
+    references: [resources.id],
   }),
 }));

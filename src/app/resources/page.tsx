@@ -1,6 +1,6 @@
 import { db } from '@/lib/db';
 import { resources, categories, ratings } from '@/drizzle/schema';
-import { eq, desc } from 'drizzle-orm';
+import { eq, desc, sql } from 'drizzle-orm';
 import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 import { ResourceCard } from '@/components/ResourceCard';
 import { Footer } from '@/components/Footer';
@@ -14,8 +14,8 @@ export default async function ResourcesPage() {
     .from(categories)
     .orderBy(categories.order);
 
-  // Fetch all resources with categories
-  const allResourcesRaw = await db
+  // Fetch all resources with categories and ratings (Optimized Join)
+  const resourcesWithRatings = await db
     .select({
       id: resources.id,
       title: resources.title,
@@ -24,32 +24,20 @@ export default async function ResourcesPage() {
       views: resources.views,
       categoryName: categories.name,
       publishedAt: resources.publishedAt,
+      featured: resources.featured,
+      avgRating: sql<number>`coalesce(avg(${ratings.rating}), 0)`,
+      ratingCount: sql<number>`count(${ratings.id})`,
     })
     .from(resources)
     .leftJoin(categories, eq(resources.categoryId, categories.id))
+    .leftJoin(ratings, eq(resources.id, ratings.resourceId))
+    .groupBy(
+      resources.id,
+      categories.id,
+      categories.name
+    )
     .orderBy(desc(resources.publishedAt))
     .limit(100);
-
-  // Get ratings for each resource
-  const resourcesWithRatings = await Promise.all(
-    allResourcesRaw.map(async (resource) => {
-      const resourceRatings = await db
-        .select({ rating: ratings.rating })
-        .from(ratings)
-        .where(eq(ratings.resourceId, resource.id));
-
-      const avgRating =
-        resourceRatings.length > 0
-          ? resourceRatings.reduce((sum, r) => sum + r.rating, 0) / resourceRatings.length
-          : 0;
-
-      return {
-        ...resource,
-        avgRating,
-        ratingCount: resourceRatings.length,
-      };
-    })
-  );
 
   return (
     <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
