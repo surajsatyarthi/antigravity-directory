@@ -1,0 +1,11 @@
+[
+  {
+    "title": "Example MCP Server",
+    "description": "A newly discovered MCP server from GitHub",
+    "url": "https://github.com/example/mcp-server",
+    "category": "mcp-servers",
+    "stars": 150,
+    "source": "github-search",
+    "approved": false
+  }
+]
