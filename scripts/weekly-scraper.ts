@@ -117,33 +117,132 @@ async function discoverMode() {
     
     console.log(`\n✅ Updated ${updatedCount} GitHub resources\n`);
     
-    // 2. Discover new content (placeholder - actual scraping would go here)
-    console.log('🔍 Discovering new content sources...\n');
+    // 2. Discover new content from multiple sources
+    console.log('🔍 DISCOVERING NEW CONTENT...\n');
     
-    console.log('📋 Sources to manually check:');
-    console.log('  → https://github.com/modelcontextprotocol/servers (MCP Servers)');
-    console.log('  → https://github.com/punkpeye/awesome-mcp-servers (MCP Servers)');
-    console.log('  → https://vercel.com/templates (Boilerplates)');
-    console.log('  → https://n8n.io/workflows (Workflows)');
-    console.log('  → https://github.com/topics/nextjs-template (Boilerplates)');
-    console.log('  → https://cursor.directory (Rules)\n');
+    // 2A: Search GitHub for new MCP servers
+    console.log('📦 Searching GitHub for MCP Servers...');
+    try {
+      const mcpSearch = await fetch(
+        'https://api.github.com/search/repositories?q=mcp-server+OR+modelcontextprotocol+in:name,description&sort=stars&per_page=20',
+        { headers: { 'User-Agent': 'Antigravity-Directory/1.0' } }
+      );
+      
+      if (mcpSearch.ok) {
+        const mcpData: any = await mcpSearch.json();
+        for (const repo of mcpData.items.slice(0, 10)) {
+          // Check if we already have this URL
+          const existing = await sql`SELECT id FROM resources WHERE url = ${repo.html_url} LIMIT 1`;
+          if (existing.length === 0) {
+            pendingResources.push({
+              title: repo.name.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+              description: repo.description || 'MCP server implementation',
+              url: repo.html_url,
+              category: 'mcp-servers',
+              stars: repo.stargazers_count,
+              source: 'github-api',
+              approved: false
+            });
+            console.log(`  ✨ Found: ${repo.name} (⭐ ${repo.stargazers_count})`);
+          }
+        }
+      }
+    } catch (err) {
+      console.log('  ⚠️  GitHub MCP search failed, skipping...');
+    }
     
-    // Example: Add some discovered items for demonstration
-    // In production, this would be automated scraping
-    const exampleDiscoveries: PendingResource[] = [
-      {
-        title: 'Example MCP Server',
-        description: 'A newly discovered MCP server from GitHub',
-        url: 'https://github.com/example/mcp-server',
-        category: 'mcp-servers',
-        stars: 150,
-        source: 'github-search',
-        approved: false
-      },
-      // Add more as discovered...
-    ];
+    // 2B: Search for new boilerplates and starters
+    console.log('\n🏗️  Searching for new boilerplates...');
+    try {
+      const boilerplateSearch = await fetch(
+        'https://api.github.com/search/repositories?q=nextjs+saas+starter+OR+boilerplate&sort=stars&per_page=20',
+        { headers: { 'User-Agent': 'Antigravity-Directory/1.0' } }
+      );
+      
+      if (boilerplateSearch.ok) {
+        const boilerplateData: any = await boilerplateSearch.json();
+        for (const repo of boilerplateData.items.slice(0, 10)) {
+          const existing = await sql`SELECT id FROM resources WHERE url = ${repo.html_url} LIMIT 1`;
+          if (existing.length === 0 && repo.stargazers_count > 100) {
+            pendingResources.push({
+              title: repo.name.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+              description: repo.description || 'SaaS boilerplate and starter kit',
+              url: repo.html_url,
+              category: 'boilerplates',
+              stars: repo.stargazers_count,
+              source: 'github-api',
+              approved: false
+            });
+            console.log(`  ✨ Found: ${repo.name} (⭐ ${repo.stargazers_count})`);
+          }
+        }
+      }
+    } catch (err) {
+      console.log('  ⚠️  Boilerplate search failed, skipping...');
+    }
     
-    pendingResources.push(...exampleDiscoveries);
+    // 2C: Search for workflow templates
+    console.log('\n🔄 Searching for workflow templates...');
+    try {
+      const workflowSearch = await fetch(
+        'https://api.github.com/search/repositories?q=n8n+workflow+OR+github-actions+template&sort=stars&per_page=15',
+        { headers: { 'User-Agent': 'Antigravity-Directory/1.0' } }
+      );
+      
+      if (workflowSearch.ok) {
+        const workflowData: any = await workflowSearch.json();
+        for (const repo of workflowData.items.slice(0, 8)) {
+          const existing = await sql`SELECT id FROM resources WHERE url = ${repo.html_url} LIMIT 1`;
+          if (existing.length === 0) {
+            pendingResources.push({
+              title: repo.name.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+              description: repo.description || 'Automation workflow template',
+              url: repo.html_url,
+              category: 'workflows',
+              stars: repo.stargazers_count,
+              source: 'github-api',
+              approved: false
+            });
+            console.log(`  ✨ Found: ${repo.name} (⭐ ${repo.stargazers_count})`);
+          }
+        }
+      }
+    } catch (err) {
+      console.log('  ⚠️  Workflow search failed, skipping...');
+    }
+    
+    // 2D: Search for cursor rules
+    console.log('\n📋 Searching for cursor rules...');
+    try {
+      const rulesSearch = await fetch(
+        'https://api.github.com/search/code?q=filename:.cursorrules&per_page=15',
+        { headers: { 'User-Agent': 'Antigravity-Directory/1.0' } }
+      );
+      
+      if (rulesSearch.ok) {
+        const rulesData: any = await rulesSearch.json();
+        for (const item of rulesData.items.slice(0, 8)) {
+          const repoUrl = item.repository.html_url;
+          const existing = await sql`SELECT id FROM resources WHERE url = ${repoUrl} LIMIT 1`;
+          if (existing.length === 0) {
+            pendingResources.push({
+              title: `${item.repository.name} Cursor Rules`,
+              description: item.repository.description || 'Cursor AI rules configuration',
+              url: repoUrl,
+              category: 'rules',
+              stars: 0,
+              source: 'github-code-search',
+              approved: false
+            });
+            console.log(`  ✨ Found: ${item.repository.name} rules`);
+          }
+        }
+      }
+    } catch (err) {
+      console.log('  ⚠️  Rules search failed, skipping...');
+    }
+    
+    console.log(`\n🎯 Discovery complete! Found ${pendingResources.length} new resources\n`);
     
     // 3. Save to pending file
     writeFileSync(PENDING_FILE, JSON.stringify(pendingResources, null, 2));
