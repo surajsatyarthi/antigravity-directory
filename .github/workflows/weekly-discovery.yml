@@ -71,6 +71,7 @@ jobs:
 
       - name: Send email notification
         if: steps.check_pending.outputs.has_pending == 'true'
+        id: send_email
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -80,29 +81,35 @@ jobs:
           subject: '📦 Weekly Content Discovery: ${{ steps.check_pending.outputs.pending_count }} New Resources Found'
           to: ${{ secrets.ADMIN_EMAIL }}
           from: Google Antigravity Directory <noreply@googleantigravity.directory>
-          body: |
-            Hi there! 👋
+          html_body: |
+            <h2>Hi there! 👋</h2>
 
-            The weekly content discovery script has found ${{ steps.check_pending.outputs.pending_count }} new resources for review.
+            <p>The weekly content discovery script has found <strong>${{ steps.check_pending.outputs.pending_count }} new resources</strong> for review.</p>
 
-            📋 REVIEW PENDING RESOURCES:
-            https://github.com/${{ github.repository }}/pull/${{ steps.create_pr.outputs.pull-request-number }}
+            <h3>📋 REVIEW PENDING RESOURCES:</h3>
+            <p><a href="https://github.com/${{ github.repository }}/pull/${{ steps.create_pr.outputs.pull-request-number }}">Click here to view Pull Request #${{ steps.create_pr.outputs.pull-request-number }}</a></p>
 
-            🔎 APPROVE RESOURCES:
-            1. Review the pending-resources.json file in the PR
-            2. Edit the file directly on GitHub
-            3. Set "approved": true for items you want
-            4. Commit changes
-            5. Merge the PR to import automatically
+            <h3>🔎 APPROVE RESOURCES:</h3>
+            <ol>
+              <li>Click the PR link above</li>
+              <li>Review the <code>pending-resources.json</code> file</li>
+              <li>Edit the file directly on GitHub</li>
+              <li>Set <code>"approved": true</code> for items you want</li>
+              <li>Commit changes</li>
+              <li>Merge the PR to import automatically</li>
+            </ol>
 
-            📊 CURRENT STATS:
-            - Total Resources: 499
-            - Indexed Resources: 104
+            <h3>📊 CURRENT STATS:</h3>
+            <ul>
+              <li>Total Resources: 499+</li>
+              <li>Indexed Resources: 104+</li>
+            </ul>
 
-            🔗 QUICK LINKS:
-            - View PR: https://github.com/${{ github.repository }}/pull/${{ steps.create_pr.outputs.pull-request-number }}
-            - Live Site: https://googleantigravity.directory
+            <h3>🔗 QUICK LINKS:</h3>
+            <ul>
+              <li><a href="https://github.com/${{ github.repository }}/pull/${{ steps.create_pr.outputs.pull-request-number }}">View PR #${{ steps.create_pr.outputs.pull-request-number }}</a></li>
+              <li><a href="https://googleantigravity.directory">Live Site</a></li>
+            </ul>
 
-            ---
-            This is an automated message from Google Antigravity Directory.
-          attachments: scripts/pending-resources.json
+            <hr>
+            <p><small>This is an automated message from Google Antigravity Directory.</small></p>
