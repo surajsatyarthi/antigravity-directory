@@ -3,61 +3,61 @@ import { RefreshCw, BarChart3, Search, ShieldCheck } from 'lucide-react';
 
 export const DirectoryIntelligence = () => {
   return (
-    <div className="w-full mb-8">
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+    <div className="w-full mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
         {/* USP 1: Live Metrics */}
-        <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex items-start gap-3 hover:border-emerald-500/30 transition-all group">
+        <div className="bg-[#050505] border border-white/[0.05] rounded-lg p-3 flex items-start gap-2.5 hover:border-white/20 transition-all group">
           <div className="mt-0.5">
-            <RefreshCw className="w-4 h-4 text-emerald-400 animate-spin-slow" />
+            <RefreshCw className="w-3.5 h-3.5 text-gray-400 group-hover:text-emerald-500/80 transition-colors" />
           </div>
           <div>
-            <h4 className="text-[11px] font-black text-white uppercase tracking-wider mb-1">Live Sync</h4>
+            <h4 className="text-[10px] font-black text-white/90 uppercase tracking-widest mb-0.5">Live Sync</h4>
             <p className="text-[10px] text-gray-500 leading-tight">
-              GitHub stars & forks synced every 24h.
+              GitHub metrics synced 24h.
             </p>
           </div>
         </div>
 
         {/* USP 2: Comparisons */}
-        <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex items-start gap-3 hover:border-blue-500/30 transition-all group">
+        <div className="bg-[#050505] border border-white/[0.05] rounded-lg p-3 flex items-start gap-2.5 hover:border-white/20 transition-all group">
           <div className="mt-0.5">
-            <BarChart3 className="w-4 h-4 text-blue-400" />
+            <BarChart3 className="w-3.5 h-3.5 text-gray-400 group-hover:text-blue-500/80 transition-colors" />
           </div>
           <div>
-            <h4 className="text-[11px] font-black text-white uppercase tracking-wider mb-1">VS Engine</h4>
+            <h4 className="text-[10px] font-black text-white/90 uppercase tracking-widest mb-0.5">VS Engine</h4>
             <p className="text-[10px] text-gray-500 leading-tight">
-              Head-to-head technical analysis.
+              Head-to-head analysis.
             </p>
           </div>
         </div>
 
         {/* USP 3: AEO */}
-        <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex items-start gap-3 hover:border-purple-500/30 transition-all group">
+        <div className="bg-[#050505] border border-white/[0.05] rounded-lg p-3 flex items-start gap-2.5 hover:border-white/20 transition-all group">
           <div className="mt-0.5">
-            <Search className="w-4 h-4 text-purple-400" />
+            <Search className="w-3.5 h-3.5 text-gray-400 group-hover:text-purple-500/80 transition-colors" />
           </div>
           <div>
-            <h4 className="text-[11px] font-black text-white uppercase tracking-wider mb-1">AEO Focus</h4>
+            <h4 className="text-[10px] font-black text-white/90 uppercase tracking-widest mb-0.5">AEO Focus</h4>
             <p className="text-[10px] text-gray-500 leading-tight">
-              Citable by SearchGPT & Gemini.
+              Answer Engine optimized.
             </p>
           </div>
         </div>
 
         {/* Status: Operational */}
-        <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col justify-center items-center gap-1 group">
-          <div className="text-[9px] font-black text-gray-600 uppercase tracking-[0.2em]">System Status</div>
+        <div className="bg-[#050505] border border-white/[0.05] rounded-lg p-3 flex flex-col justify-center items-center gap-1 group">
+          <div className="text-[8px] font-black text-gray-600 uppercase tracking-[0.2em]">System Status</div>
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[11px] font-bold text-white uppercase tracking-widest">Operational</span>
+            <span className="w-1 h-1 rounded-full bg-emerald-500/60" />
+            <span className="text-[10px] font-bold text-white/80 uppercase tracking-widest">Operational</span>
           </div>
         </div>
 
         {/* Live Data */}
-        <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 flex flex-col justify-center items-center gap-1 group">
-          <div className="text-[9px] font-black text-gray-600 uppercase tracking-[0.2em]">Data Feed</div>
+        <div className="bg-[#050505] border border-white/[0.05] rounded-lg p-3 flex flex-col justify-center items-center gap-1 group">
+          <div className="text-[8px] font-black text-gray-600 uppercase tracking-[0.2em]">Data Feed</div>
           <div className="flex items-center gap-2">
-            <span className="text-[11px] font-bold text-blue-500 uppercase tracking-widest italic">Live Terminal</span>
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest italic group-hover:text-blue-400/80 transition-colors">Terminal active</span>
           </div>
         </div>
       </div>

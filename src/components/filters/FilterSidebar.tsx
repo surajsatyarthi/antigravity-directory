@@ -75,21 +75,21 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
   
   return (
     <aside 
-      className="w-[280px] lg:w-[300px] sticky top-24 h-fit"
+      className="w-[240px] sticky top-20 h-fit"
       role="complementary"
       aria-label="Filters"
     >
-      <div className="bg-gray-950 border border-gray-900 rounded-3xl p-6 shadow-xl backdrop-blur-sm bg-opacity-80">
-        <h2 id="filters-heading" className="text-xl font-bold text-white mb-6 tracking-tight">Filters</h2>
+      <div className="bg-[#050505] border border-white/[0.05] rounded-lg p-4 transition-all">
+        <h2 id="filters-heading" className="text-[10px] font-black text-white/50 mb-6 tracking-[0.3em] uppercase">Matrix Filters</h2>
         
         {/* AI Focus Areas (Shifting from center) */}
-        <div className="mb-8">
-           <span className="text-[10px] uppercase tracking-[0.2em] text-gray-600 font-bold block mb-4">Focus Areas</span>
-           <div className="flex flex-col gap-2">
+        <div className="mb-6">
+           <span className="text-[9px] uppercase tracking-[0.2em] text-gray-700 font-bold block mb-3">Focus Domains</span>
+           <div className="flex flex-col gap-1.5">
              {[
-               { id: 'process', label: 'AI for Process', icon: '⚡' },
-               { id: 'work', label: 'AI for Work', icon: '💼' },
-               { id: 'service', label: 'AI for Service', icon: '🛠️' }
+               { id: 'process', label: 'Flow', icon: '⚡' },
+               { id: 'work', label: 'Work', icon: '💼' },
+               { id: 'service', label: 'Tools', icon: '🛠️' }
              ].map((group) => {
                const isSelected = searchParams.get('group') === group.id;
                return (
@@ -101,14 +101,14 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
                      else params.set('group', group.id);
                      router.push(`?${params.toString()}`);
                    }}
-                   className={`flex items-center justify-between px-4 py-3 rounded-xl border text-sm font-bold transition-all ${
+                   className={`flex items-center justify-between px-3 py-2 rounded-md border text-[11px] font-bold transition-all ${
                      isSelected 
-                      ? 'bg-blue-600 border-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.3)]' 
-                      : 'bg-black/40 border-gray-900 text-gray-400 hover:border-gray-800 hover:text-white'
+                       ? 'bg-blue-600/10 border-blue-500/30 text-blue-400' 
+                       : 'bg-black/40 border-gray-900/50 text-gray-500 hover:border-gray-800 hover:text-gray-300'
                    }`}
                  >
                    <span>{group.label}</span>
-                   <span className="opacity-50 text-xs">{group.icon}</span>
+                   <span className="opacity-30 text-[10px] grayscale">{group.icon}</span>
                  </button>
                );
              })}
@@ -123,7 +123,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
             aria-expanded={expandedSections.categories}
             aria-controls="categories-panel"
           >
-            <span className="text-sm uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Function</span>
+            <span className="text-[9px] uppercase tracking-[0.2em] text-gray-600 group-hover:text-blue-400">Function Matrix</span>
             {expandedSections.categories ? (
               <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
             ) : (
@@ -133,7 +133,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
           
           <div
             id="categories-panel"
-            className={`space-y-3 transition-all duration-${ANIMATION.ACCORDION_DURATION} ${
+            className={`space-y-1.5 transition-all duration-${ANIMATION.ACCORDION_DURATION} ${
               expandedSections.categories ? 'block' : 'hidden'
             }`}
             role="group"
@@ -142,7 +142,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
             {categories.map((category) => (
               <label
                 key={category.slug}
-                className="flex items-center gap-3 text-sm text-gray-400 hover:text-white cursor-pointer transition-colors group/label"
+                className="flex items-center gap-2.5 text-[11px] text-gray-500 hover:text-white cursor-pointer transition-colors group/label"
               >
                 <div className="relative flex items-center">
                   <input
@@ -152,19 +152,19 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
                       console.log('[FilterSidebar] Checkbox clicked:', category.slug);
                       handleCategoryChange(category.slug);
                     }}
-                    className="peer w-5 h-5 rounded-md border-gray-800 bg-gray-900/50 text-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black transition-all appearance-none border checked:bg-blue-600 checked:border-blue-500"
+                    className="peer w-4 h-4 rounded border-gray-900 bg-gray-950 text-blue-600 focus:ring-1 focus:ring-blue-500/50 focus:ring-offset-1 focus:ring-offset-black transition-all appearance-none border checked:bg-blue-600 checked:border-blue-500"
                     aria-label={`Filter by ${category.name}, ${category.count} items available`}
                     data-testid={`filter-checkbox-${category.slug}`}
                     disabled={category.count === 0}
                   />
-                  <svg className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none left-1 top-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                  <svg className="absolute w-2.5 h-2.5 text-white opacity-0 peer-checked:opacity-100 pointer-events-none left-0.5 top-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </div>
-                <span className={`font-medium group-hover/label:text-blue-400 transition-colors ${category.count === 0 ? 'opacity-30 cursor-not-allowed' : ''}`}>
+                <span className={`group-hover/label:text-blue-400 transition-colors ${category.count === 0 ? 'opacity-20 cursor-not-allowed' : ''}`}>
                   {category.name}
                 </span>
-                <span className="ml-auto text-[10px] font-mono font-bold text-gray-600 group-hover/label:text-blue-500/50 transition-colors">
+                <span className="ml-auto text-[9px] font-mono font-bold text-gray-700 group-hover/label:text-blue-500/50 transition-colors">
                   {category.count}
                 </span>
               </label>
@@ -181,7 +181,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
               aria-expanded={expandedSections.tags}
               aria-controls="tags-panel"
             >
-              <span className="text-sm uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Tags</span>
+              <span className="text-[9px] uppercase tracking-[0.2em] text-gray-600 group-hover:text-blue-400">Tag Fragments</span>
               {expandedSections.tags ? (
                 <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
               ) : (
@@ -191,7 +191,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
             
             <div
               id="tags-panel"
-              className={`space-y-3 transition-all duration-${ANIMATION.ACCORDION_DURATION} ${
+              className={`space-y-1.5 transition-all duration-${ANIMATION.ACCORDION_DURATION} ${
                 expandedSections.tags ? 'block' : 'hidden'
               }`}
               role="group"
@@ -199,22 +199,22 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
               {tags.map((tag) => (
                 <label
                   key={tag.slug}
-                  className="flex items-center gap-3 text-sm text-gray-400 hover:text-white cursor-pointer transition-colors group/label"
+                  className="flex items-center gap-2.5 text-[11px] text-gray-500 hover:text-white cursor-pointer transition-colors group/label"
                 >
                   <div className="relative flex items-center">
                     <input
                       type="checkbox"
                       checked={selectedTags.includes(tag.slug)}
                       onChange={() => handleTagChange(tag.slug)}
-                      className="peer w-5 h-5 rounded-md border-gray-800 bg-gray-900/50 text-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black transition-all appearance-none border checked:bg-blue-600 checked:border-blue-500"
+                      className="peer w-4 h-4 rounded border-gray-900 bg-gray-950 text-blue-600 focus:ring-1 focus:ring-blue-500/50 focus:ring-offset-1 focus:ring-offset-black transition-all appearance-none border checked:bg-blue-600 checked:border-blue-500"
                       aria-label={`Filter by ${tag.name} tag`}
                       data-testid={`filter-checkbox-tag-${tag.slug}`}
                     />
-                    <svg className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none left-1 top-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                    <svg className="absolute w-2.5 h-2.5 text-white opacity-0 peer-checked:opacity-100 pointer-events-none left-0.5 top-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                   </div>
-                  <span className="font-medium group-hover/label:text-blue-400 transition-colors">{tag.name}</span>
+                  <span className="group-hover/label:text-blue-400 transition-colors">{tag.name}</span>
                 </label>
               ))}
             </div>

@@ -76,19 +76,19 @@ export default async function HomePage({
         className="min-h-screen bg-black text-white selection:bg-blue-500/30"
         data-filter-state={JSON.stringify(activeFilters)}
       >
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
           {/* Command Center: Row 2 & 3 */}
-          <div className="mb-12 space-y-8">
+          <div className="mb-8 space-y-6">
             <DirectoryIntelligence />
             <Testimonials />
           </div>
 
           {/* Main Layout Rail System */}
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
             
             {/* Left Rail: Sticky Filter Sidebar */}
-            <aside className="lg:w-[300px] shrink-0">
-              <div className="lg:sticky lg:top-24">
+            <aside className="lg:w-[280px] shrink-0">
+              <div className="lg:sticky lg:top-20">
                 <FilterSidebar 
                   categories={categoriesWithCounts}
                   tags={tags}
@@ -100,13 +100,13 @@ export default async function HomePage({
             <div className="flex-1 min-w-0" id="main-grid">
               <TopFilterBar totalCount={totalCount} />
               
-              <Suspense fallback={<div className="py-20 text-center text-gray-500 font-mono text-sm uppercase tracking-widest animate-pulse">Synchronizing directory...</div>}>
+              <Suspense fallback={<div className="py-20 text-center text-gray-700 font-mono text-[10px] uppercase tracking-widest animate-pulse">Initializing directory...</div>}>
                 <div className="relative">
                   {filteredResources.length > 0 ? (
                     <>
                       <div 
                         id="resource-grid"
-                        className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6 auto-rows-fr"
+                        className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-4 auto-rows-fr"
                         role="region"
                         aria-label="Agent Marketplace Grid"
                       >
@@ -121,20 +121,19 @@ export default async function HomePage({
                       <Pagination totalCount={totalCount} pageSize={pageSize} />
                     </>
                   ) : (
-                    <div className="flex flex-col items-center justify-center py-24 text-center border-2 border-dashed border-gray-900 rounded-3xl bg-gray-950/30">
-                      <div className="w-16 h-16 bg-gray-900 rounded-2xl flex items-center justify-center mb-6">
-                        <Package className="w-8 h-8 text-gray-700" />
+                    <div className="flex flex-col items-center justify-center py-24 text-center border border-white/[0.05] rounded-xl bg-[#030303]">
+                      <div className="w-12 h-12 bg-gray-950 border border-gray-900 rounded flex items-center justify-center mb-6">
+                        <Package className="w-6 h-6 text-gray-700" />
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-2">No tools matching your filters</h3>
-                      <p className="text-gray-500 max-w-sm mb-8 leading-relaxed">
-                        We couldn&apos;t find any resources that match your current selection. 
-                        Try clearing your filters or changing your search query.
+                      <h3 className="text-lg font-bold text-white mb-2 tracking-tight">Access denied or empty set</h3>
+                      <p className="text-[12px] text-gray-600 max-w-xs mb-8 leading-relaxed">
+                        No resources matched the current filter matrix. Reset parameters to re-initialize.
                       </p>
                       <Link
                         href="/"
-                        className="flex items-center justify-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-blue-600 hover:text-white transition-all text-sm group"
+                        className="flex items-center justify-center gap-2 px-5 py-2.5 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-all text-[12px] uppercase tracking-widest"
                       >
-                        Reset All Filters
+                        Clear Matrix
                       </Link>
                     </div>
                   )}
@@ -143,25 +142,25 @@ export default async function HomePage({
             </div>
             
             {/* Right Rail: Ads (Optimized Sticky) */}
-            <aside className="hidden xl:block w-[320px] shrink-0">
-              <div className="sticky top-24 space-y-6">
+            <aside className="hidden xl:block w-[300px] shrink-0">
+              <div className="sticky top-20 space-y-6">
                  {/* Ads Restored */}
-                 <div className="space-y-6">
-                    <h3 className="text-[10px] font-bold text-gray-600 uppercase tracking-[0.2em] mb-4 text-center italic">Sponsored</h3>
+                 <div className="space-y-4">
+                    <h3 className="text-[9px] font-black text-gray-700 uppercase tracking-[0.3em] mb-4 text-center">Sponsored</h3>
                     
                     {/* Ad 1 - Qodo AI */}
                     <a 
                       href="https://qodo.ai" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="block overflow-hidden rounded-[24px] border border-gray-900 hover:border-blue-500/50 transition-all hover:scale-[1.02] active:scale-[0.98] group relative bg-gray-950/50"
+                      className="block overflow-hidden rounded-xl border border-white/[0.05] hover:border-blue-500/30 transition-all hover:scale-[1.01] active:scale-[0.99] group relative bg-[#030303]"
                     >
                       <img
                         src="/ads/1.png"
                         alt="Qodo AI - Code Quality Platform"
-                        className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-all duration-500"
+                        className="w-full h-auto object-cover opacity-60 group-hover:opacity-90 transition-all duration-300"
                       />
-                      <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[8px] font-bold text-white/40 tracking-widest uppercase">Sponsored</span>
+                      <span className="absolute top-2 right-2 px-1.5 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/5 text-[7px] font-black text-white/30 tracking-widest uppercase">Sponsored</span>
                     </a>
 
                     {/* Ad 2 - Supabase */}

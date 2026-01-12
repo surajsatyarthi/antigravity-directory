@@ -78,30 +78,30 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="relative mt-32 overflow-hidden border-t border-gray-900 bg-black py-20" role="contentinfo">
+    <footer className="relative mt-16 overflow-hidden border-t border-white/[0.05] bg-black py-12" role="contentinfo">
       {/* Matrix Waterfall Effect - Decorative Only */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-15" aria-hidden="true">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-10" aria-hidden="true">
         <div ref={matrixRef} className="matrix-background"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4">
+      <div className="relative z-10 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-12 md:flex-row">
           {/* Brand & Disclaimer */}
-          <div className="flex max-w-lg flex-col gap-6 text-center md:text-left">
-            <Link href="/" className="group flex items-center justify-center gap-3 md:justify-start" aria-label="Antigravity Directory Home">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white shadow-[0_0_20px_rgba(255,255,255,0.4)]">
-                <Zap className="animate-shimmer h-6 w-6 fill-black text-black" aria-hidden="true" />
+          <div className="flex max-w-lg flex-col gap-4 text-center md:text-left">
+            <Link href="/" className="group flex items-center justify-center gap-2.5 md:justify-start" aria-label="Antigravity Directory Home">
+              <div className="flex h-8 w-8 items-center justify-center rounded bg-white transition-colors">
+                <Zap className="h-4 w-4 fill-black text-black" aria-hidden="true" />
               </div>
-              <span className="font-mono text-xl font-bold tracking-tighter text-white lowercase">
+              <span className="font-mono text-lg font-bold tracking-tighter text-white lowercase">
                 antigravity
               </span>
             </Link>
-            <div className="space-y-2">
-              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-500 uppercase">
-                This site is not affiliated with, endorsed by, or sponsored by Google.
+            <div className="space-y-1">
+              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-600 uppercase">
+                Product of Invictus International
               </p>
-              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase font-bold">
-                © Invictus International Consulting Services 2026
+              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-700 uppercase font-bold">
+                © 2026 • AI Registry
               </p>
             </div>
           </div>
