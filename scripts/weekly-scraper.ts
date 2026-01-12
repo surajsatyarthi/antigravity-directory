@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 import { resolve } from 'path';
 import { writeFileSync, existsSync, readFileSync } from 'fs';
 
+// Load .env.local if it exists (local dev), otherwise use environment variables (GitHub Actions)
 config({ path: resolve(process.cwd(), '.env.local') });
 
 const sql = postgres(process.env.DATABASE_URL!, { prepare: false });
