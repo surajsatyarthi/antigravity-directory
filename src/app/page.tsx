@@ -147,7 +147,7 @@ export default async function HomePage({
               <div className="sticky top-20 space-y-6">
                  {/* Ads Restored */}
                  <div className="space-y-4">
-                    <h3 className="text-[9px] font-black text-gray-700 uppercase tracking-[0.3em] mb-4 text-center">Sponsored</h3>
+                    <h3 className="text-[9px] font-black text-gray-400 uppercase tracking-[0.3em] mb-4 text-center">Sponsored</h3>
                     
                     {/* Ad 1 - Qodo AI */}
                     <a 
@@ -159,9 +159,9 @@ export default async function HomePage({
                       <img
                         src="/ads/1.png"
                         alt="Qodo AI - Code Quality Platform"
-                        className="w-full h-auto object-cover opacity-60 group-hover:opacity-90 transition-all duration-300"
+                        className="w-full h-auto object-cover opacity-90 transition-all duration-300"
                       />
-                      <span className="absolute top-2 right-2 px-1.5 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/5 text-[7px] font-black text-white/30 tracking-widest uppercase">Sponsored</span>
+                      <span className="absolute top-2 right-2 px-1.5 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/5 text-[7px] font-black text-white/60 tracking-widest uppercase">Sponsored</span>
                     </a>
 
                     {/* Ad 2 - Supabase */}

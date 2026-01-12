@@ -29,11 +29,11 @@ export function ResourceCard({ resource }: ResourceCardProps) {
         ? 'border-yellow-500/20' 
         : 'border-white/[0.05]'
     }`}>
-      <Link href={`/t/${resource.slug}`} className="absolute inset-0 z-10 outline-none">
+      <Link href={`/t/${resource.slug}`} className="absolute inset-0 z-20 outline-none">
         <span className="sr-only">View details for {resource.title}: {resource.description}</span>
       </Link>
       
-      <div className="p-3 flex flex-col h-full relative z-20">
+      <div className="p-3 flex flex-col h-full relative z-10">
         {/* Header Section: Integrations & Badges */}
         <div className="flex items-center justify-between gap-2 mb-2.5">
           <div className="flex items-center gap-1 overflow-hidden">
