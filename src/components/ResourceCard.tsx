@@ -48,13 +48,13 @@ export function ResourceCard({ resource }: ResourceCardProps) {
                     className="w-4 h-4 rounded-md bg-gray-950 border border-gray-900 flex items-center justify-center shrink-0"
                     title={integration}
                   >
-                    <Package className="w-2 h-2 text-gray-600 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
+                    <Package className="w-2 h-2 text-gray-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
                   </div>
                 ))}
               </div>
             )}
             
-            <span className="px-1.5 py-0.5 rounded bg-blue-500/5 border border-blue-500/10 text-[8px] font-black text-blue-500/60 uppercase tracking-widest whitespace-nowrap">
+            <span className="px-1.5 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-[8px] font-black text-blue-400 uppercase tracking-widest whitespace-nowrap">
               {resource.categoryName || 'General'}
             </span>
 
@@ -84,7 +84,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               }`}
               aria-label={resource.badgeType === 'editors_choice' ? "Editor's Choice" : "Featured Resource"}
             >
-              <Star className={`w-2.5 h-2.5 ${resource.badgeType === 'editors_choice' ? 'fill-yellow-500 text-yellow-500' : 'fill-yellow-500/40 text-yellow-500/40'}`} aria-hidden="true" />
+              <Star className={`w-2.5 h-2.5 ${resource.badgeType === 'editors_choice' ? 'fill-yellow-500 text-yellow-500' : 'fill-yellow-500/80 text-yellow-500/80'}`} aria-hidden="true" />
             </div>
           )}
         </div>
@@ -94,7 +94,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
           <h3 className="text-[13px] font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1 mb-1 tracking-tightest">
             {resource.title}
           </h3>
-          <p className="text-[11px] text-gray-500 line-clamp-2 font-medium leading-[1.3] opacity-80 group-hover:opacity-100 transition-opacity">
+          <p className="text-[11px] text-gray-400 line-clamp-2 font-medium leading-[1.3] transition-opacity">
             {resource.description}
           </p>
         </div>
@@ -107,24 +107,24 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               className="flex items-center gap-1 group/stat"
               aria-label={`Rating: ${Number(resource.avgRating).toFixed(1)} stars out of ${resource.ratingCount} reviews`}
             >
-              <div className="flex items-center gap-1 text-yellow-500/40">
+              <div className="flex items-center gap-1 text-yellow-500/80">
                 <Star className="w-2 h-2 fill-current" aria-hidden="true" />
                 <span className="text-[10px] font-bold font-mono">
                   {Number(resource.avgRating).toFixed(1)}
                 </span>
               </div>
-              <span className="text-gray-800 text-[8px] font-mono font-bold">
+              <span className="text-gray-500 text-[8px] font-mono font-bold">
                 ({resource.ratingCount})
               </span>
             </div>
 
             {/* Views */}
             <div 
-              className="flex items-center gap-1 text-gray-700 group/stat"
+              className="flex items-center gap-1 text-gray-500 group/stat"
               aria-label={`${resource.views} views`}
             >
-              <Eye className="w-2.5 h-2.5 text-gray-800" aria-hidden="true" />
-              <span className="text-[10px] font-bold font-mono text-gray-700">
+              <Eye className="w-2.5 h-2.5 text-gray-600" aria-hidden="true" />
+              <span className="text-[10px] font-bold font-mono text-gray-500">
                 {resource.views >= 1000 ? `${(resource.views / 1000).toFixed(1)}k` : resource.views}
               </span>
             </div>
@@ -136,7 +136,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               initialIsBookmarked={!!resource.isBookmarked} 
             />
             <div 
-              className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-950 border border-gray-900 text-gray-700 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
+              className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-950 border border-gray-900 text-gray-400 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
               aria-hidden="true"
             >
               <ArrowRight className="w-3 h-3" />

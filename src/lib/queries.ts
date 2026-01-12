@@ -110,9 +110,16 @@ export async function getFilteredResources(filters: FilterState, page: number = 
       .where(conditions.length > 0 ? and(...conditions) : undefined)
       .groupBy(resources.id, categories.name)
       .orderBy(
-        sql`CASE WHEN ${resources.badgeType} = 'editors_choice' THEN 0 ELSE 1 END`,
-        desc(resources.featured), 
-        desc(resources.views)
+        desc(sql`
+          (CASE 
+            WHEN ${resources.badgeType} = 'editors_choice' THEN 10000 
+            WHEN ${resources.badgeType} = 'trending' THEN 6000
+            WHEN ${resources.badgeType} = 'users_choice' THEN 4000
+            WHEN ${resources.featured} = true THEN 2000
+            ELSE 0 
+          END) + ${resources.views}
+        `),
+        desc(resources.publishedAt)
       )
       .limit(pageSize)
       .offset(offset);
