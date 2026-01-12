@@ -83,6 +83,8 @@ export const resources = pgTable('resources', {
   title: text('title').notNull(),
   slug: text('slug').notNull().unique(),
   description: text('description').notNull(),
+  metaTitle: text('meta_title'),
+  metaDesc: text('meta_description'),
   content: text('content'),
   url: text('url'),
   thumbnail: text('thumbnail'),
@@ -103,9 +105,8 @@ export const resources = pgTable('resources', {
   githubForks: integer('github_forks').default(0),
   lastValidatedAt: timestamp('last_validated_at').defaultNow(),
 
-  // SEO
-  metaTitle: text('meta_title'),
-  metaDesc: text('meta_desc'),
+  // Trust Signals & Badges
+  badgeType: text('badge_type'), // NULL | 'editors_choice' | 'users_choice' | 'trending'
   
   // Timestamps
   publishedAt: timestamp('published_at').notNull().defaultNow(),
