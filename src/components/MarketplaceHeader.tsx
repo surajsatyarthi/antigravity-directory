@@ -22,13 +22,18 @@ export async function MarketplaceHeader() {
     <header className="sticky top-0 z-50 w-full bg-black/90 backdrop-blur-md border-b border-white/[0.05]">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group shrink-0">
-          <div className="w-7 h-7 bg-white rounded flex items-center justify-center group-hover:bg-gray-200 transition-colors">
-            <Zap className="w-4 h-4 text-black fill-black" />
+        <Link href="/" className="flex items-center gap-3 group shrink-0">
+          <div className="w-8 h-8 bg-white rounded flex items-center justify-center group-hover:bg-gray-200 transition-colors animate-logo-shine relative">
+            <Zap className="w-4 h-4 text-black fill-black relative z-10" />
           </div>
-          <span className="text-lg font-bold tracking-tighter hidden md:block font-mono lowercase text-white">
-            antigravity
-          </span>
+          <div className="flex flex-col justify-center -space-y-1">
+            <span className="text-base font-bold tracking-tighter font-mono lowercase text-white leading-none">
+              antigravity
+            </span>
+            <span className="text-[10px] font-bold tracking-[0.2em] font-mono lowercase text-gray-400 leading-none">
+              directory
+            </span>
+          </div>
         </Link>
 
         {/* Search Bar - Center */}
