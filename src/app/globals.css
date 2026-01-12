@@ -83,6 +83,35 @@ body {
   transition: opacity 0.3s ease;
 }
 
+/* Logo Shine Effect - Global Hub */
+@keyframes logo-shine {
+  0% { transform: translateX(-150%) skewX(-25deg); }
+  30%, 100% { transform: translateX(250%) skewX(-25deg); }
+}
+
+.animate-logo-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-logo-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: logo-shine 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 50;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

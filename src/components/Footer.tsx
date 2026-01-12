@@ -88,15 +88,15 @@ export function Footer() {
         <div className="flex flex-col items-center justify-between gap-12 md:flex-row">
           {/* Brand & Disclaimer */}
           <div className="flex max-w-lg flex-col gap-4 text-center md:text-left">
-            <Link href="/" className="group flex items-center justify-center gap-3 md:justify-start" aria-label="Antigravity Directory Home">
-              <div className="flex h-9 w-9 items-center justify-center rounded bg-white transition-colors animate-logo-shine relative">
-                <Zap className="h-5 w-5 fill-black text-black relative z-10" aria-hidden="true" />
+            <Link href="/" className="group flex items-center justify-center gap-3 md:justify-start animate-logo-shine p-1 rounded-sm" aria-label="Antigravity Directory Home">
+              <div className="flex h-9 w-9 items-center justify-center rounded bg-white transition-colors relative overflow-hidden">
+                <Zap className="h-5 w-5 fill-black text-black" aria-hidden="true" />
               </div>
-              <div className="flex flex-col justify-center -space-y-1 text-left">
+              <div className="flex flex-col justify-center text-left">
                 <span className="font-mono text-base font-bold tracking-tighter text-white lowercase leading-none">
                   antigravity
                 </span>
-                <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-gray-400 lowercase leading-none">
+                <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-gray-400 lowercase leading-none mt-1">
                   directory
                 </span>
               </div>
