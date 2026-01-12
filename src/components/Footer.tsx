@@ -88,20 +88,25 @@ export function Footer() {
         <div className="flex flex-col items-center justify-between gap-12 md:flex-row">
           {/* Brand & Disclaimer */}
           <div className="flex max-w-lg flex-col gap-4 text-center md:text-left">
-            <Link href="/" className="group flex items-center justify-center gap-2.5 md:justify-start" aria-label="Antigravity Directory Home">
-              <div className="flex h-8 w-8 items-center justify-center rounded bg-white transition-colors">
-                <Zap className="h-4 w-4 fill-black text-black" aria-hidden="true" />
+            <Link href="/" className="group flex items-center justify-center gap-3 md:justify-start" aria-label="Antigravity Directory Home">
+              <div className="flex h-9 w-9 items-center justify-center rounded bg-white transition-colors animate-logo-shine relative">
+                <Zap className="h-5 w-5 fill-black text-black relative z-10" aria-hidden="true" />
               </div>
-              <span className="font-mono text-lg font-bold tracking-tighter text-white lowercase">
-                antigravity
-              </span>
+              <div className="flex flex-col justify-center -space-y-1 text-left">
+                <span className="font-mono text-base font-bold tracking-tighter text-white lowercase leading-none">
+                  antigravity
+                </span>
+                <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-gray-400 lowercase leading-none">
+                  directory
+                </span>
+              </div>
             </Link>
             <div className="space-y-1">
               <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase">
                 Product of Invictus International
               </p>
-              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase font-bold">
-                © 2026 • AI Registry
+              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-500 uppercase font-bold">
+                © 2026 • We are not associated with Google.
               </p>
             </div>
           </div>
