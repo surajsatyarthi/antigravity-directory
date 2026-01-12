@@ -103,10 +103,10 @@ export function Footer() {
             </Link>
             <div className="space-y-1">
               <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase">
-                Product of Invictus International
+                This site is not affiliated with, endorsed by, or sponsored by Google.
               </p>
-              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-500 uppercase font-bold">
-                © 2026 • We are not associated with Google.
+              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase font-bold">
+                © Invictus International Consulting Services 2026
               </p>
             </div>
           </div>
