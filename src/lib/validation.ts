@@ -6,10 +6,6 @@
 import { FILTERS } from '@/constants';
 import { FilterState } from '@/types/database';
 
-/**
- * Validate and sanitize filter parameters from URL
- * Returns validated FilterState or throws error
- */
 export function validateFilterParams(searchParams: URLSearchParams): FilterState {
   console.log('[validateFilterParams] Raw params:', searchParams.toString());
   
@@ -25,6 +21,12 @@ export function validateFilterParams(searchParams: URLSearchParams): FilterState
     ? tagsParam.split(',').filter(Boolean).map(sanitizeSlug)
     : [];
   
+  // Validate badges
+  const badgesParam = searchParams.get('badges');
+  const badgeTypes = badgesParam
+    ? badgesParam.split(',').filter(Boolean).map(sanitizeSlug)
+    : [];
+  
   // Validate search query
   const search = sanitizeSearchQuery(searchParams.get('q') || '');
   
@@ -37,6 +39,7 @@ export function validateFilterParams(searchParams: URLSearchParams): FilterState
     tags,
     search,
     sort,
+    badgeTypes,
   };
 
   console.log('[validateFilterParams] Validated result:', result);

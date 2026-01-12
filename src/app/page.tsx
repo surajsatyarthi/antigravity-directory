@@ -63,6 +63,7 @@ export default async function HomePage({
   const activeFilters = {
     categories: cleanedFilters.categories,
     tags: cleanedFilters.tags,
+    badgeTypes: cleanedFilters.badgeTypes,
     q: cleanedFilters.search,
     sort: cleanedFilters.sort
   };

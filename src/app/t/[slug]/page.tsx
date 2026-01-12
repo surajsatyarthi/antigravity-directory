@@ -73,6 +73,7 @@ export default async function ResourceDetailPage({
       views: resources.views,
       copiedCount: resources.copiedCount,
       verified: resources.verified,
+      badgeType: resources.badgeType,
       categoryName: categories.name,
     })
     .from(resources)
@@ -143,9 +144,11 @@ export default async function ResourceDetailPage({
         "name": `Is ${resource.title} verified on Antigravity?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": resource.verified 
-            ? `${resource.title} is a verified tool on the Antigravity Directory, meeting our community standards for reliability and UI excellence.`
-            : `${resource.title} is a community-submitted tool. We encourage users to verify its original documentation for details.`
+          "text": resource.badgeType === 'editors_choice'
+            ? `${resource.title} is an Editor's Choice tool on the Antigravity Directory, personally verified for excellence.`
+            : resource.verified 
+              ? `${resource.title} is a verified tool on the Antigravity Directory.`
+              : `${resource.title} is a community-submitted tool. We encourage users to verify its original documentation for details.`
         }
       },
       {
@@ -214,8 +217,25 @@ export default async function ResourceDetailPage({
           <div className="p-8 md:p-16">
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-12">
               <div className="flex-1">
-                <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-white/5 text-blue-500 border border-blue-500/20 mb-6 uppercase tracking-widest font-mono">
-                  {resource.categoryName}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-white/5 text-blue-500 border border-blue-500/20 uppercase tracking-widest font-mono">
+                    {resource.categoryName}
+                  </div>
+                  {resource.badgeType === 'editors_choice' && (
+                    <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 uppercase tracking-widest font-mono">
+                      Editor's Choice
+                    </div>
+                  )}
+                  {resource.badgeType === 'trending' && (
+                    <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20 uppercase tracking-widest font-mono">
+                      Trending
+                    </div>
+                  )}
+                  {resource.badgeType === 'users_choice' && (
+                    <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-widest font-mono">
+                      User's Choice
+                    </div>
+                  )}
                 </div>
                 <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
                   {resource.title}
@@ -225,17 +245,27 @@ export default async function ResourceDetailPage({
                 </p>
               </div>
               
-              {resource.url && (
-                <a
-                  href={resource.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="shrink-0 inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-gray-200 text-black font-bold rounded-2xl shadow-xl transition-all active:scale-95"
-                >
-                  Get Resource
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              )}
+              <div className="flex flex-col gap-3 shrink-0">
+                {resource.url && (
+                  <a
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-200 text-black font-bold rounded-2xl shadow-xl transition-all active:scale-95 text-center min-w-[200px]"
+                  >
+                    Get Resource
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                )}
+                
+                {/* Monetization CTAs */}
+                <button className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white font-bold rounded-xl border border-white/5 transition-all text-xs uppercase tracking-widest">
+                  Claim Listing
+                </button>
+                <button className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 font-bold rounded-xl border border-blue-500/10 transition-all text-xs uppercase tracking-widest">
+                  Promote Tool
+                </button>
+              </div>
             </div>
 
             {/* AEO Citation Block */}

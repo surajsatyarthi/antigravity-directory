@@ -32,6 +32,7 @@ export type ResourceWithRelations = Resource & {
   avgRating?: number;
   ratingCount?: number;
   isBookmarked?: boolean;
+  badgeType?: string | null;
 };
 
 // Filter state types (used by Phase 2, 3, 4)
@@ -40,6 +41,7 @@ export interface FilterState {
   tags: string[];       // Array of tag slugs
   search: string;       // Search query
   sort: 'latest' | 'views' | 'rating' | 'recommended';
+  badgeTypes: string[]; // ['editors_choice', 'users_choice', 'trending']
 }
 
 // URL search params type

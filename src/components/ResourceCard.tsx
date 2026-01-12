@@ -14,6 +14,7 @@ interface ResourceCardProps {
     avgRating: number;
     ratingCount: number;
     featured: boolean;
+    badgeType?: string | null;
     isBookmarked?: boolean;
     integrations?: string[] | null;
   };
@@ -56,14 +57,34 @@ export function ResourceCard({ resource }: ResourceCardProps) {
             <span className="px-1.5 py-0.5 rounded bg-blue-500/5 border border-blue-500/10 text-[8px] font-black text-blue-500/60 uppercase tracking-widest whitespace-nowrap">
               {resource.categoryName || 'General'}
             </span>
+
+            {resource.badgeType === 'editors_choice' && (
+              <span className="px-1.5 py-0.5 rounded bg-yellow-500/10 border border-yellow-500/20 text-[8px] font-black text-yellow-500 uppercase tracking-widest whitespace-nowrap shadow-[0_0_8px_rgba(234,179,8,0.1)]">
+                Editor's Choice
+              </span>
+            )}
+            {resource.badgeType === 'trending' && (
+              <span className="px-1.5 py-0.5 rounded bg-purple-500/10 border border-purple-500/20 text-[8px] font-black text-purple-400 uppercase tracking-widest whitespace-nowrap shadow-[0_0_8px_rgba(168,85,247,0.1)]">
+                Trending
+              </span>
+            )}
+            {resource.badgeType === 'users_choice' && (
+              <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[8px] font-black text-emerald-400 uppercase tracking-widest whitespace-nowrap shadow-[0_0_8px_rgba(16,185,129,0.1)]">
+                User's Choice
+              </span>
+            )}
           </div>
 
-          {isFeatured && (
+          {(isFeatured || resource.badgeType === 'editors_choice') && (
             <div 
-              className="shrink-0 h-4.5 w-4.5 flex items-center justify-center rounded-full bg-yellow-500/5 border border-yellow-500/10"
-              aria-label="Featured Resource"
+              className={`shrink-0 h-4.5 w-4.5 flex items-center justify-center rounded-full border ${
+                resource.badgeType === 'editors_choice' 
+                  ? 'bg-yellow-500/10 border-yellow-500/30' 
+                  : 'bg-yellow-500/5 border-yellow-500/10'
+              }`}
+              aria-label={resource.badgeType === 'editors_choice' ? "Editor's Choice" : "Featured Resource"}
             >
-              <Star className="w-2.5 h-2.5 fill-yellow-500/40 text-yellow-500/40" aria-hidden="true" />
+              <Star className={`w-2.5 h-2.5 ${resource.badgeType === 'editors_choice' ? 'fill-yellow-500 text-yellow-500' : 'fill-yellow-500/40 text-yellow-500/40'}`} aria-hidden="true" />
             </div>
           )}
         </div>

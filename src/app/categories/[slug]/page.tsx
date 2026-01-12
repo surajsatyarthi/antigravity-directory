@@ -70,6 +70,7 @@ export default async function CategoryPage({
       categoryName: categories.name,
       publishedAt: resources.publishedAt,
       featured: resources.featured,
+      badgeType: resources.badgeType,
       avgRating: sql<number>`coalesce(avg(${ratings.rating}), 0)`,
       ratingCount: sql<number>`count(${ratings.id})`,
       isBookmarked: sql<boolean>`count(${bookmarks.userId}) > 0`,

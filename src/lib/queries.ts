@@ -59,6 +59,11 @@ export async function getFilteredResources(filters: FilterState, page: number = 
       }
     }
     
+    // Filter by badge types
+    if (filters.badgeTypes && filters.badgeTypes.length > 0) {
+      conditions.push(inArray(resources.badgeType, filters.badgeTypes));
+    }
+
     // Search in title and description
     if (filters.search) {
       conditions.push(
@@ -93,6 +98,7 @@ export async function getFilteredResources(filters: FilterState, page: number = 
         views: resources.views,
         copiedCount: resources.copiedCount,
         publishedAt: resources.publishedAt,
+        badgeType: resources.badgeType,
         categoryName: categories.name,
         categoryId: resources.categoryId,
         avgRating: sql<number>`COALESCE(AVG(${ratings.rating}), 0)`,
@@ -103,7 +109,11 @@ export async function getFilteredResources(filters: FilterState, page: number = 
       .leftJoin(ratings, eq(resources.id, ratings.resourceId))
       .where(conditions.length > 0 ? and(...conditions) : undefined)
       .groupBy(resources.id, categories.name)
-      .orderBy(desc(resources.featured), desc(resources.views))
+      .orderBy(
+        sql`CASE WHEN ${resources.badgeType} = 'editors_choice' THEN 0 ELSE 1 END`,
+        desc(resources.featured), 
+        desc(resources.views)
+      )
       .limit(pageSize)
       .offset(offset);
 
