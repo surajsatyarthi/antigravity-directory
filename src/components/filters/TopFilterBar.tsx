@@ -68,21 +68,21 @@ export function TopFilterBar({ totalCount }: TopFilterBarProps) {
     <div className="mb-6 flex items-center justify-between">
       {/* Results Counter - Live Region */}
       <div 
-        className="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-xl text-xs font-bold font-mono text-blue-500 uppercase tracking-widest"
+        className="px-3 py-1.5 bg-blue-500/5 border border-blue-500/10 rounded text-[10px] font-black font-mono text-blue-500/80 uppercase tracking-widest"
         role="status"
         aria-live="polite"
         aria-atomic="true"
       >
-        {totalCount} {totalCount === 1 ? 'RESULT' : 'RESULTS'}
+        {totalCount} {totalCount === 1 ? 'UNIT' : 'UNITS'}
       </div>
 
-      <div className="flex items-center gap-4">
-        <label htmlFor="sort-dropdown" className="text-xs font-bold text-gray-500 uppercase tracking-widest hidden sm:inline">Sort:</label>
+      <div className="flex items-center gap-3">
+        <label htmlFor="sort-dropdown" className="text-[10px] font-black text-gray-700 uppercase tracking-widest hidden sm:inline">Sort Mode:</label>
         <select
           id="sort-dropdown"
           value={currentSort}
           onChange={(e) => handleSortChange(e.target.value)}
-          className="px-4 py-3.5 bg-gray-950 border border-gray-900 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 cursor-pointer text-sm font-bold shadow-sm hover:border-gray-800 transition-colors"
+          className="px-3 py-2 bg-[#050505] border border-white/[0.05] rounded text-white/50 focus:outline-none focus:border-blue-500/30 cursor-pointer text-[11px] font-bold hover:border-white/10 transition-colors appearance-none"
           aria-label="Sort resources by"
           data-testid="sort-dropdown"
         >

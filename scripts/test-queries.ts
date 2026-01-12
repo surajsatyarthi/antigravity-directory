@@ -39,8 +39,8 @@ async function runTests() {
       search: '',
       sort: 'recommended'
     });
-    console.log(`Found ${allResources.length} resources`);
-    if (allResources.length >= 0) {
+    console.log(`Found ${allResources.resources.length} resources`);
+    if (allResources.resources.length >= 0) {
       console.log('✅ PASS: getFilteredResources (All) query executed');
     }
 
@@ -54,8 +54,8 @@ async function runTests() {
         search: '',
         sort: 'recommended'
       });
-      console.log(`Found ${filtered.length} resources for category ${targetSlug}`);
-      if (filtered.every(r => r.categoryName)) {
+      console.log(`Found ${filtered.resources.length} resources for category ${targetSlug}`);
+      if (filtered.resources.every(r => r.categoryName)) {
         console.log('✅ PASS: Filtered query returns typed results with relations');
       }
     }

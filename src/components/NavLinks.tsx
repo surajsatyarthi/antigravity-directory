@@ -12,33 +12,33 @@ export function NavLinks({ session, username }: NavLinksProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-widest leading-none">
+    <nav className="hidden md:flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest leading-none">
       <Link 
         href="/" 
         className={`transition-colors py-1 ${
-          pathname === '/' ? 'text-white border-b border-white' : 'text-gray-500 hover:text-white'
+          pathname === '/' ? 'text-white border-b border-white' : 'text-gray-600 hover:text-white'
         }`}
       >
-        Explore
+        Explore Matrix
       </Link>
       
       <Link 
         href="/submit" 
         className={`transition-colors py-1 ${
-          pathname === '/submit' ? 'text-white border-b border-white' : 'text-gray-500 hover:text-white'
+          pathname === '/submit' ? 'text-white border-b border-white' : 'text-gray-600 hover:text-white'
         }`}
       >
-        Submit
+        Ingest Tool
       </Link>
       
       {session && (
         <Link 
           href="/dashboard" 
           className={`transition-colors py-1 ${
-            pathname === '/dashboard' ? 'text-white border-b border-white' : 'text-gray-500 hover:text-white'
+            pathname === '/dashboard' ? 'text-white border-b border-white' : 'text-gray-600 hover:text-white'
           }`}
         >
-          Dashboard
+          Control Panel
         </Link>
       )}
     </nav>
