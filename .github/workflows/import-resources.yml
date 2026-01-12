@@ -1,0 +1,62 @@
+name: Import Approved Resources
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+    paths:
+      - 'scripts/pending-resources.json'
+
+jobs:
+  import:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Import approved resources
+        run: npx tsx scripts/weekly-scraper.ts import
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: Archive pending file
+        run: |
+          mkdir -p scripts/archive
+          mv scripts/pending-resources.json scripts/archive/$(date +%Y-%m-%d)-imported.json
+          git config --global user.name 'Antigravity Bot'
+          git config --global user.email 'bot@googleantigravity.directory'
+          git add scripts/archive/
+          git commit -m "chore: archive imported resources - $(date +%Y-%m-%d)" || echo "Nothing to archive"
+          git push origin main || echo "Nothing to push"
+
+      - name: Send success notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: '✅ Resources Imported Successfully'
+          to: ${{ secrets.ADMIN_EMAIL }}
+          from: Google Antigravity Directory <noreply@googleantigravity.directory>
+          body: |
+            Great news! 🎉
+
+            The approved resources from the weekly discovery have been successfully imported to the database.
+
+            🔗 View Live Site: https://googleantigravity.directory
+
+            The pending resources file has been archived for your records.
+
+            ---
+            This is an automated confirmation from Google Antigravity Directory.
