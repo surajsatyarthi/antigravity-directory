@@ -3,8 +3,29 @@ import { config } from 'dotenv';
 import { resolve } from 'path';
 import { writeFileSync, existsSync, readFileSync } from 'fs';
 
+// Add global error handlers
+process.on('unhandledRejection', (err) => {
+  console.error('❌ Unhandled rejection:', err);
+  process.exit(1);
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('❌ Uncaught exception:', err);
+  process.exit(1);
+});
+
 // Load .env.local if it exists (local dev), otherwise use environment variables (GitHub Actions)
 config({ path: resolve(process.cwd(), '.env.local') });
+
+// Validate DATABASE_URL
+if (!process.env.DATABASE_URL) {
+  console.error('❌ DATABASE_URL environment variable is not set!');
+  console.error('   Please add it to GitHub Secrets or .env.local');
+  process.exit(1);
+}
+
+console.log('✅ DATABASE_URL is set');
+console.log(`📍 Connecting to database...`);
 
 const sql = postgres(process.env.DATABASE_URL!, { prepare: false });
 
