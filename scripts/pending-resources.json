@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Tavily MCP Server",
+    "description": "Search the web with Tavily AI - optimized for LLMs and RAG applications.",
+    "url": "https://github.com/tavily-ai/mcp-server-tavily",
+    "category": "mcp-servers",
+    "stars": 245,
+    "source": "github-search",
+    "approved": false
+  },
+  {
+    "title": "Supabase Next.js SaaS Starter",
+    "description": "The fastest way to build apps with Supabase and Next.js 14. Includes Auth, Stripe, and AI features.",
+    "url": "https://github.com/vercel/nextjs-subscription-payments",
+    "category": "boilerplates",
+    "stars": 5800,
+    "source": "vercel-templates",
+    "approved": false
+  },
+  {
+    "title": "AI-Powered Email Campaign Workflow",
+    "description": "Automatically generate personalized email campaigns using GPT-4 and send via SendGrid.",
+    "url": "https://n8n.io/workflows/1234-ai-email-campaign",
+    "category": "workflows",
+    "stars": 0,
+    "source": "n8n-workflows",
+    "approved": false
+  },
+  {
+    "title": "TypeScript Strict Mode Rules",
+    "description": "Enterprise-grade .cursorrules for TypeScript with strict type checking and best practices.",
+    "url": "https://cursor.directory/rules/typescript-strict",
+    "category": "rules",
+    "stars": 0,
+    "source": "cursor-directory",
+    "approved": false
+  }
+]

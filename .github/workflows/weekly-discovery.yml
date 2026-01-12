@@ -1,0 +1,118 @@
+name: Weekly Content Discovery
+
+on:
+  schedule:
+    # Every Sunday at 9:00 AM UTC (2:30 PM IST)
+    - cron: '0 9 * * 0'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run discovery script
+        run: npx tsx scripts/weekly-scraper.ts discover
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: Check if pending resources exist
+        id: check_pending
+        run: |
+          if [ -f scripts/pending-resources.json ]; then
+            echo "has_pending=true" >> $GITHUB_OUTPUT
+            echo "pending_count=$(jq length scripts/pending-resources.json)" >> $GITHUB_OUTPUT
+          else
+            echo "has_pending=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send email notification
+        if: steps.check_pending.outputs.has_pending == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: '📦 Weekly Content Discovery: ${{ steps.check_pending.outputs.pending_count }} New Resources Found'
+          to: ${{ secrets.ADMIN_EMAIL }}
+          from: Google Antigravity Directory <noreply@googleantigravity.directory>
+          body: |
+            Hi there! 👋
+
+            The weekly content discovery script has found ${{ steps.check_pending.outputs.pending_count }} new resources for review.
+
+            📋 REVIEW PENDING RESOURCES:
+            https://github.com/${{ github.repository }}/blob/scraper-results/scripts/pending-resources.json
+
+            🔎 APPROVE RESOURCES:
+            1. Review the pending-resources.json file in the link above
+            2. Option A: Approve via GitHub
+               - Edit the file in the browser
+               - Set "approved": true for items you want
+               - Commit to the scraper-results branch
+               - The import script will run automatically
+
+            2. Option B: Download and approve locally
+               - Download the file
+               - Set "approved": true for items you want
+               - Run: npx tsx scripts/weekly-scraper.ts import
+
+            📊 CURRENT STATS:
+            - Total Resources: 499
+            - Indexed Resources: 104
+
+            🔗 QUICK LINKS:
+            - View Pending: https://github.com/${{ github.repository }}/blob/scraper-results/scripts/pending-resources.json
+            - Live Site: https://googleantigravity.directory
+
+            ---
+            This is an automated message from Google Antigravity Directory.
+          attachments: scripts/pending-resources.json
+
+      - name: Create scraper-results branch
+        if: steps.check_pending.outputs.has_pending == 'true'
+        run: |
+          git config --global user.name 'Antigravity Bot'
+          git config --global user.email 'bot@googleantigravity.directory'
+          git checkout -b scraper-results-$(date +%Y-%m-%d) || git checkout scraper-results-$(date +%Y-%m-%d)
+          git add scripts/pending-resources.json
+          git commit -m "chore: weekly content discovery - $(date +%Y-%m-%d)"
+          git push origin scraper-results-$(date +%Y-%m-%d) --force
+
+      - name: Create Pull Request
+        if: steps.check_pending.outputs.has_pending == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: scraper-results-$(date +%Y-%m-%d)
+          title: '📦 Weekly Content Discovery - ${{ steps.check_pending.outputs.pending_count }} Resources'
+          body: |
+            ## Weekly Content Discovery
+
+            Found **${{ steps.check_pending.outputs.pending_count }}** new resources for review.
+
+            ### 📋 Review Instructions
+            1. Review `scripts/pending-resources.json`
+            2. Set `"approved": true` for items you want to import
+            3. Commit your changes
+            4. Merge this PR to trigger automatic import
+
+            ### 📊 Discovery Sources
+            - GitHub MCP servers
+            - Vercel templates
+            - n8n workflows
+            - Awesome lists
+
+            ---
+            🤖 This PR was created automatically by the weekly scraper.
