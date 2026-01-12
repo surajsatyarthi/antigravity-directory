@@ -97,10 +97,10 @@ export function Footer() {
               </span>
             </Link>
             <div className="space-y-1">
-              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-600 uppercase">
+              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase">
                 Product of Invictus International
               </p>
-              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-700 uppercase font-bold">
+              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase font-bold">
                 © 2026 • AI Registry
               </p>
             </div>
@@ -111,7 +111,7 @@ export function Footer() {
             <nav className="flex gap-10 font-mono text-[10px] tracking-widest text-gray-400 uppercase" aria-label="Footer Navigation">
                 <Link 
                   href="/" 
-                  className="text-gray-500 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
                   Explore
                 </Link>

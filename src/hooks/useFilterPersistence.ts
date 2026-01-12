@@ -22,10 +22,11 @@ export function useFilterPersistence() {
   // Sync state with URL params
   const categoriesParam = searchParams.get('categories') || '';
   const tagsParam = searchParams.get('tags') || '';
+  const badgesParam = searchParams.get('badges') || '';
   const qParam = searchParams.get('q') || '';
   const sortParam = searchParams.get('sort') || FILTERS.DEFAULT_SORT;
   
-  const hasUrlParams = categoriesParam !== '' || tagsParam !== '' || qParam !== '' || sortParam !== FILTERS.DEFAULT_SORT;
+  const hasUrlParams = categoriesParam !== '' || tagsParam !== '' || badgesParam !== '' || qParam !== '' || sortParam !== FILTERS.DEFAULT_SORT;
 
   // 1. Initial Restoration / Readiness Check
   useEffect(() => {
@@ -46,6 +47,7 @@ export function useFilterPersistence() {
         const restorationParams = new URLSearchParams();
         if (parsed.categories?.length) restorationParams.set('categories', parsed.categories.join(','));
         if (parsed.tags?.length) restorationParams.set('tags', parsed.tags.join(','));
+        if (parsed.badgeTypes?.length) restorationParams.set('badges', parsed.badgeTypes.join(','));
         if (parsed.search) restorationParams.set('q', parsed.search);
         if (parsed.sort) restorationParams.set('sort', parsed.sort);
 
@@ -53,6 +55,7 @@ export function useFilterPersistence() {
         const finalParams = new URLSearchParams();
         if (validated.categories.length) finalParams.set('categories', validated.categories.join(','));
         if (validated.tags.length) finalParams.set('tags', validated.tags.join(','));
+        if (validated.badgeTypes?.length) finalParams.set('badges', validated.badgeTypes.join(','));
         if (validated.search) finalParams.set('q', validated.search);
         if (validated.sort !== FILTERS.DEFAULT_SORT) finalParams.set('sort', validated.sort);
 
@@ -100,11 +103,12 @@ export function useFilterPersistence() {
     const filters = {
       categories: categoriesParam.split(',').filter(Boolean),
       tags: tagsParam.split(',').filter(Boolean),
+      badgeTypes: badgesParam.split(',').filter(Boolean),
       search: qParam,
       sort: sortParam,
     };
 
-    const hasValues = filters.categories.length > 0 || filters.tags.length > 0 || filters.search !== '' || filters.sort !== FILTERS.DEFAULT_SORT;
+    const hasValues = filters.categories.length > 0 || filters.tags.length > 0 || filters.badgeTypes.length > 0 || filters.search !== '' || filters.sort !== FILTERS.DEFAULT_SORT;
     const stateStr = JSON.stringify(filters);
 
     if (hasValues) {
@@ -131,6 +135,7 @@ export function useFilterPersistence() {
           const newParams = new URLSearchParams();
           if (parsed.categories) newParams.set('categories', parsed.categories.join(','));
           if (parsed.tags) newParams.set('tags', parsed.tags.join(','));
+          if (parsed.badgeTypes) newParams.set('badges', parsed.badgeTypes.join(','));
           if (parsed.search) newParams.set('q', parsed.search);
           if (parsed.sort) newParams.set('sort', parsed.sort);
           
