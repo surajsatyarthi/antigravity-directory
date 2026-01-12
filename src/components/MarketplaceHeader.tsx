@@ -62,7 +62,7 @@ export async function MarketplaceHeader() {
                       role="presentation"
                     />
                   ) : (
-                    <div className="w-7 h-7 rounded-full bg-gray-950 flex items-center justify-center text-gray-500 group-hover:bg-gray-900 transition-colors border border-white/[0.05]">
+                    <div className="w-7 h-7 rounded-full bg-gray-950 flex items-center justify-center text-gray-400 group-hover:bg-gray-900 transition-colors border border-white/[0.05]">
                       <User className="w-3.5 h-3.5" aria-hidden="true" />
                     </div>
                   )}
@@ -70,7 +70,7 @@ export async function MarketplaceHeader() {
                 <form action={handleSignOut} className="flex items-center">
                   <button 
                     type="submit" 
-                    className="p-1 hover:text-red-500 transition-colors focus:outline-none focus:text-red-500 text-gray-600 flex items-center" 
+                    className="p-1 hover:text-red-500 transition-colors focus:outline-none focus:text-red-500 text-gray-400 flex items-center" 
                     title="Sign Out" 
                     aria-label="Sign Out"
                   >
@@ -82,7 +82,7 @@ export async function MarketplaceHeader() {
               <form action={handleSignIn} className="flex items-center">
                 <button 
                   type="submit" 
-                  className="text-gray-500 hover:text-white transition-colors uppercase tracking-widest text-[10px] font-bold h-full flex items-center"
+                  className="text-gray-400 hover:text-white transition-colors uppercase tracking-widest text-[10px] font-bold h-full flex items-center"
                 >
                   Sign In
                 </button>

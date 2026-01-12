@@ -16,7 +16,7 @@ export function NavLinks({ session, username }: NavLinksProps) {
       <Link 
         href="/" 
         className={`transition-colors py-1 ${
-          pathname === '/' ? 'text-white border-b border-white' : 'text-gray-600 hover:text-white'
+          pathname === '/' ? 'text-white border-b border-white' : 'text-gray-400 hover:text-white'
         }`}
       >
         Explore Matrix
@@ -25,7 +25,7 @@ export function NavLinks({ session, username }: NavLinksProps) {
       <Link 
         href="/submit" 
         className={`transition-colors py-1 ${
-          pathname === '/submit' ? 'text-white border-b border-white' : 'text-gray-600 hover:text-white'
+          pathname === '/submit' ? 'text-white border-b border-white' : 'text-gray-400 hover:text-white'
         }`}
       >
         Ingest Tool
@@ -35,7 +35,7 @@ export function NavLinks({ session, username }: NavLinksProps) {
         <Link 
           href="/dashboard" 
           className={`transition-colors py-1 ${
-            pathname === '/dashboard' ? 'text-white border-b border-white' : 'text-gray-600 hover:text-white'
+            pathname === '/dashboard' ? 'text-white border-b border-white' : 'text-gray-400 hover:text-white'
           }`}
         >
           Control Panel
