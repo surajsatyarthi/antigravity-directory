@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { submitResource } from '@/app/submit/actions';
 
@@ -138,7 +139,10 @@ export function SubmitForm({ categories }: SubmitFormProps) {
             {isPending ? 'Submitting...' : 'Submit Resource'}
           </button>
           <p className="mt-4 text-center text-xs text-gray-400">
-            By submitting, you agree to our community guidelines.
+            By submitting, you agree to our{' '}
+            <Link href="/terms" className="text-white hover:underline font-bold">
+              community guidelines
+            </Link>.
           </p>
         </div>
       </form>
