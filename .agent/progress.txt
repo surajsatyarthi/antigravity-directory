@@ -10,3 +10,7 @@ Iteration 2: PAY-002 PASSED
 Files changed: src/app/api/payments/paypal/capture/route.ts tests/api/payments-paypal-capture.test.ts
 Learnings: Multi-step database updates (payment + resource) require careful mock setup to verify multiple calls.
 ---
+Iteration 3: PAY-003 PASSED
+Files changed: src/app/api/payments/razorpay/create/route.ts tests/api/payments-razorpay-create.test.ts
+Learnings: Razorpay uses smallest currency unit (paise/cents) – ensure tests and routes handle this consistently.
+---
