@@ -62,6 +62,11 @@ export async function POST(request: NextRequest) {
 - **Solution:** Use `mockReset()` on specific functions or use `mockImplementationOnce` within `it` blocks for total isolation.
 - Always mock the database (`@/lib/db`) and schema (`@/drizzle/schema`) for API tests.
 
+**Verifying Multi-step Updates:**
+
+- When an API route updates multiple tables (e.g., `payments` and `resources`), use `expect(db.update).toHaveBeenCalledTimes(N)` to ensure all steps are executed.
+- Mock returning objects for `db.update().set().where()` to avoid "Cannot read properties of undefined" errors during tests.
+
 ---
 
 **Last Updated:** January 14, 2026
