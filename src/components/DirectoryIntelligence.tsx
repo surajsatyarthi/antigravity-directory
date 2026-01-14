@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { RefreshCw, BarChart3, Search, ShieldCheck } from 'lucide-react';
 
 export const DirectoryIntelligence = () => {
@@ -46,19 +47,20 @@ export const DirectoryIntelligence = () => {
 
         {/* Status: Operational */}
         <div className="bg-[#050505] border border-white/[0.08] rounded-lg p-3 flex flex-col justify-center items-center gap-1">
-          <div className="text-[8px] font-black text-gray-400 uppercase tracking-[0.2em]">System Status</div>
+          <div className="text-[8px] font-black text-gray-400 uppercase tracking-[0.2em]">Authority</div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-            <span className="text-[10px] font-bold text-white uppercase tracking-widest">Operational</span>
+            <span className="text-[10px] font-bold text-white uppercase tracking-widest leading-none">Do-Follow Active</span>
           </div>
         </div>
 
         {/* Live Data */}
-        <div className="bg-[#050505] border border-white/[0.08] rounded-lg p-3 flex flex-col justify-center items-center gap-1">
-          <div className="text-[8px] font-black text-gray-400 uppercase tracking-[0.2em]">Data Feed</div>
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest italic animate-shimmer bg-gradient-to-r from-blue-400 via-white to-blue-400 bg-[length:200%_auto] bg-clip-text text-transparent">Terminal active</span>
-          </div>
+        <div className="bg-[#050505] border border-white/[0.08] rounded-lg p-3 flex flex-col justify-center items-center gap-1 group relative overflow-hidden">
+          <div className="absolute inset-0 bg-emerald-500/5 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+          <div className="text-[8px] font-black text-gray-400 uppercase tracking-[0.2em]">Limited Offer</div>
+          <Link href="/submit" className="flex items-center gap-2">
+            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest italic animate-shimmer bg-gradient-to-r from-emerald-400 via-white to-emerald-400 bg-[length:200%_auto] bg-clip-text text-transparent">Join Founding 50</span>
+          </Link>
         </div>
       </div>
     </div>

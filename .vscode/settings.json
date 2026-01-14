@@ -80,7 +80,8 @@
     "**/*.wav",
     "**/*.mp3"
   ],
-  "typescript.tsserver.maxTsServerMemory": 300,
+  "typescript.tsserver.maxTsServerMemory": 4096,
+  "workbench.extensionHost.maxMemory": 4096,
   "typescript.disableAutomaticTypeAcquisition": true,
   "git.autorefresh": false,
   "git.enabled": false

@@ -73,7 +73,7 @@ export function TopFilterBar({ totalCount }: TopFilterBarProps) {
         aria-live="polite"
         aria-atomic="true"
       >
-        {totalCount} {totalCount === 1 ? 'UNIT' : 'UNITS'}
+        {totalCount} {totalCount === 1 ? 'RESOURCE' : 'RESOURCES'}
       </div>
 
       <div className="flex items-center gap-3">

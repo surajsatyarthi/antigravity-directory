@@ -20,10 +20,10 @@ export default function NotFound() {
           </div>
           
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white uppercase italic leading-none mb-4">
-            Sector Locked
+            Page Not Found
           </h1>
           <p className="text-gray-500 font-mono text-sm uppercase tracking-widest max-w-md mx-auto">
-            The resource you are attempting to access does not exist in the current grid.
+            Sorry, the page you are looking for doesn't exist.
           </p>
         </div>
 
@@ -33,27 +33,18 @@ export default function NotFound() {
             className="group flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-blue-500/20"
           >
             <Home className="w-5 h-5" />
-            Back to Hub
+            Go Home
           </Link>
           <Link 
             href="/resources" 
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 text-white border border-white/10 font-black rounded-2xl hover:bg-white/10 transition-all uppercase tracking-widest text-xs active:scale-95"
           >
             <Search className="w-4 h-4" />
-            Scan Resources
+            Browse Resources
           </Link>
         </div>
 
-        {/* Technical Logs Footer */}
-        <div className="mt-20 flex flex-col gap-2 opacity-20 hover:opacity-100 transition-opacity">
-          <div className="font-mono text-[10px] text-gray-500 uppercase tracking-widest flex items-center gap-3">
-            <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
-            Error Code: 0x404_RESOURCE_NOT_FOUND
-          </div>
-          <div className="font-mono text-[10px] text-gray-400 uppercase tracking-widest">
-            System: Antigravity Discovery Engine v2.0.26
-          </div>
-        </div>
+        {/* End of content */}
       </main>
 
       <Footer />

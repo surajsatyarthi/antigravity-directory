@@ -1,0 +1,158 @@
+{
+  "project": "Antigravity Directory",
+  "feature": "Payment Processing (PayPal + Razorpay)",
+  "stories": [
+    {
+      "id": "PAY-001",
+      "title": "Create PayPal order API route",
+      "size": "small",
+      "priority": 1,
+      "estimated_time": "30 minutes",
+      
+      "acceptance_criteria": [
+        {
+          "given": "A user with valid payment details for featured listing",
+          "when": "POST /api/payments/paypal/create with {amount: 299, currency: 'USD', resourceId: 'xyz'}",
+          "then": "Returns {orderId: string, approvalURL: string}",
+          "and": [
+            "Order stored in database with status PENDING",
+            "Response time < 500ms",
+            "Handles network failures gracefully",
+            "Returns 400 for invalid amounts (0, negative, >10000)"
+          ]
+        }
+      ],
+      
+      "test_requirements": [
+        "Unit test: createPayPalOrder function returns orderId",
+        "Integration test: Full API route /api/payments/paypal/create",
+        "Error test: Invalid amount (0, negative, >10000)",
+        "Error test: Missing currency parameter",
+        "Error test: Missing resourceId",
+        "Error test: PayPal API timeout/failure"
+      ],
+      
+      "security_critical": true,
+      "review_required": true,
+      "visual_regression": false,
+      
+      "dependencies": ["paypal.ts business logic exists"],
+      "passed": false
+    },
+    {
+      "id": "PAY-002",
+      "title": "Create PayPal capture API route",
+      "size": "small",
+      "priority": 2,
+      "estimated_time": "25 minutes",
+      
+      "acceptance_criteria": [
+        {
+          "given": "An approved PayPal order",
+          "when": "POST /api/payments/paypal/capture with {orderId: 'approved-order-id'}",
+          "then": "Captures payment and returns {status: 'COMPLETED', transactionId: string}",
+          "and": [
+            "Updates database: payment_status = SUCCEEDED",
+            "Updates resource: featured = true",
+            "Prevents double-capture attempts",
+            "Handles declined payments gracefully"
+          ]
+        }
+      ],
+      
+      "test_requirements": [
+        "Unit test: capturePayPalOrder function",
+        "Integration test: Full API route",
+        "Error test: Invalid orderId",
+        "Error test: Already captured order",
+        "Error test: Declined payment"
+      ],
+      
+      "security_critical": true,
+      "review_required": true,
+      "visual_regression": false,
+      
+      "dependencies": ["PAY-001", "paypal.ts business logic"],
+      "passed": false
+    },
+    {
+      "id": "PAY-003",
+      "title": "Create Razorpay order API route",
+      "size": "small",
+      "priority": 3,
+      "estimated_time": "30 minutes",
+      
+      "acceptance_criteria": [
+        {
+          "given": "A user with valid payment details (India)",
+          "when": "POST /api/payments/razorpay/create with {amount: 9900, currency: 'INR', resourceId: 'xyz'}",
+          "then": "Returns {orderId: string, orderData: object}",
+          "and": [
+            "Amount converted to paise (9900 rupees = 990000 paise)",
+            "Order stored in database with status PENDING",
+            "Response time < 500ms",
+            "Returns Razorpay order object for frontend"
+          ]
+        }
+      ],
+      
+      "test_requirements": [
+        "Unit test: createRazorpayOrder with currency conversion",
+        "Integration test: Full API route",
+        "Error test: Invalid amount",
+        "Error test: Missing resourceId",
+        "Error test: Razorpay API failure"
+      ],
+      
+      "security_critical": true,
+      "review_required": true,
+      "visual_regression": false,
+      
+      "dependencies": ["razorpay.ts business logic exists"],
+      "passed": false
+    },
+    {
+      "id": "PAY-004",
+      "title": "Create Razorpay verification webhook",
+      "size": "small",
+      "priority": 4,
+      "estimated_time": "30 minutes",
+      
+      "acceptance_criteria": [
+        {
+          "given": "A Razorpay payment webhook callback",
+          "when": "POST /api/payments/razorpay/webhook with signature and payment details",
+          "then": "Verifies HMAC signature and updates payment status",
+          "and": [
+            "Validates signature using RAZORPAY_KEY_SECRET",
+            "Updates database: payment_status = SUCCEEDED if valid",
+            "Updates resource: featured = true if payment successful",
+            "Prevents replay attacks (check payment not already processed)",
+            "Returns 200 if valid, 400 if signature invalid"
+          ]
+        }
+      ],
+      
+      "test_requirements": [
+        "Unit test: HMAC signature verification",
+        "Integration test: Valid webhook payload",
+        "Security test: Invalid signature rejected",
+        "Security test: Replay attack prevented",
+        "Error test: Missing signature"
+      ],
+      
+      "security_critical": true,
+      "review_required": true,
+      "visual_regression": false,
+      
+      "dependencies": ["PAY-003", "razorpay.ts business logic"],
+      "passed": false
+    }
+  ],
+  
+  "total_stories": 4,
+  "completed": 0,
+  "in_progress": 0,
+  
+  "notes": "Start with PayPal routes (PAY-001, PAY-002), then Razorpay. Each story should take 25-30 minutes. Business logic already exists in src/lib/payment/, we're building API routes."
+}

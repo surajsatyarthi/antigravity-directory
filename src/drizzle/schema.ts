@@ -107,6 +107,7 @@ export const resources = pgTable('resources', {
 
   // Trust Signals & Badges
   badgeType: text('badge_type'), // NULL | 'editors_choice' | 'users_choice' | 'trending'
+  status: text('status').notNull().default('LIVE'), // 'LIVE' | 'VETTING'
   
   // Timestamps
   publishedAt: timestamp('published_at').notNull().defaultNow(),
@@ -154,6 +155,11 @@ export const submissions = pgTable('submissions', {
   content: text('content'),
   status: text('status').notNull().default('PENDING'), // 'PENDING' | 'APPROVED' | 'REJECTED'
   
+  // Payment Tracking
+  paymentStatus: text('payment_status').notNull().default('NONE'), // 'NONE' | 'PENDING' | 'PAID'
+  paymentType: text('payment_type').notNull().default('FREE'), // 'FREE' | 'STANDARD' | 'FEATURED'
+  paymentId: text('payment_id'),
+
   // Metadata
   categoryName: text('category_name'),
   tags: text('tags'), // Comma-separated
@@ -166,6 +172,7 @@ export const submissions = pgTable('submissions', {
   userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
 });
 
+
 // Bookmarks table
 export const bookmarks = pgTable('bookmarks', {
   userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
@@ -174,6 +181,51 @@ export const bookmarks = pgTable('bookmarks', {
 }, (t) => ({
   pk: primaryKey({ columns: [t.userId, t.resourceId] }),
 }));
+
+// Tools table (for pSEO/Banu engine)
+export const tools = pgTable('tools', {
+  id: text('id').primaryKey(),
+  name: text('name').notNull(),
+  slug: text('slug').notNull().unique(),
+  description: text('description').notNull(),
+  category: text('category').notNull(), // 'generator' | 'scaffold' | 'optimizer'
+  isVerified: boolean('is_verified').notNull().default(false),
+  searchVolumeSignal: integer('search_volume_signal').default(0),
+  metadata: text('metadata'), // JSON string for tool-specific config
+  website: text('website'), // Tool website URL for enrichment
+  contactEmail: text('contact_email'), // Targeted lead email
+  lastOutreachAt: timestamp('last_outreach_at'), // Tracking to prevent spam
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+// Subscribers table (for Newsletter)
+export const subscribers = pgTable('subscribers', {
+  id: text('id').primaryKey(),
+  email: text('email').notNull().unique(),
+  source: text('source').notNull().default('homepage'), // 'homepage' | 'tool_detail' | 'ad'
+  status: text('status').notNull().default('ACTIVE'), // 'ACTIVE' | 'UNSUBSCRIBED'
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+// Jobs table (for monetization)
+export const jobs = pgTable('jobs', {
+  id: text('id').primaryKey(),
+  companyName: text('company_name').notNull(),
+  companyLogo: text('company_logo'),
+  title: text('title').notNull(),
+  location: text('location').notNull(),
+  workplaceType: text('workplace_type').notNull().default('remote'), // 'remote' | 'hybrid' | 'onsite'
+  salaryRange: text('salary_range'),
+  description: text('description').notNull(),
+  applyUrl: text('apply_url').notNull(),
+  isFeatured: boolean('is_featured').notNull().default(false),
+  publishedAt: timestamp('published_at').notNull().defaultNow(),
+  expiresAt: timestamp('expires_at'),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
 
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
@@ -244,3 +296,5 @@ export const bookmarksRelations = relations(bookmarks, ({ one }) => ({
     references: [resources.id],
   }),
 }));
+
+
