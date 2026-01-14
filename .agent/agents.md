@@ -55,7 +55,12 @@ export async function POST(request: NextRequest) {
 
 ### Common Gotchas
 
-_Will be populated as we encounter and solve issues_
+**Vitest Mock Leakage:**
+
+- Using `vi.mock()` without a factory creates a shared mock object.
+- `vi.resetAllMocks()` only clears the state of the mock, not necessarily the `mockRejectedValue` implementation if it was set globally.
+- **Solution:** Use `mockReset()` on specific functions or use `mockImplementationOnce` within `it` blocks for total isolation.
+- Always mock the database (`@/lib/db`) and schema (`@/drizzle/schema`) for API tests.
 
 ---
 
