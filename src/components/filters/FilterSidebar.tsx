@@ -80,7 +80,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
       aria-label="Filters"
     >
       <div className="bg-[#050505] border border-white/[0.05] rounded-lg p-4 transition-all">
-        <h2 id="filters-heading" className="text-[10px] font-black text-white/80 mb-6 tracking-[0.3em] uppercase">Matrix Filters</h2>
+        <h2 id="filters-heading" className="text-[10px] font-black text-white/80 mb-6 tracking-[0.3em] uppercase">Filters</h2>
         
         {/* AI Focus Areas (Shifting from center) */}
         <div className="mb-6">
@@ -166,7 +166,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
             aria-expanded={expandedSections.categories}
             aria-controls="categories-panel"
           >
-            <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Function Matrix</span>
+            <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Categories</span>
             {expandedSections.categories ? (
               <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
             ) : (
@@ -224,7 +224,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
               aria-expanded={expandedSections.tags}
               aria-controls="tags-panel"
             >
-              <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Tag Fragments</span>
+              <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Tags</span>
               {expandedSections.tags ? (
                 <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
               ) : (

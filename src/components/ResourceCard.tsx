@@ -15,6 +15,7 @@ interface ResourceCardProps {
     ratingCount: number;
     featured: boolean;
     badgeType?: string | null;
+    status?: string;
     isBookmarked?: boolean;
     integrations?: string[] | null;
   };
@@ -26,12 +27,25 @@ export function ResourceCard({ resource }: ResourceCardProps) {
   return (
     <div className={`group relative flex flex-col bg-[#050505] border rounded-lg overflow-hidden hover:border-blue-500/50 hover:bg-white/[0.01] transition-all duration-300 h-full focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
       isFeatured 
-        ? 'border-yellow-500/20' 
+        ? 'border-yellow-500/40 animate-featured-pulse' 
         : 'border-white/[0.05]'
     }`}>
+      {isFeatured && <div className="shimmer-sweep pointer-events-none" />}
+      
       <Link href={`/t/${resource.slug}`} className="absolute inset-0 z-20 outline-none">
         <span className="sr-only">View details for {resource.title}: {resource.description}</span>
       </Link>
+      
+      {/* Featured Ribbon / Badge */}
+      {isFeatured && (
+        <div className="absolute top-0 right-0 z-30 flex items-center gap-1.5 px-2 py-1 bg-yellow-500/10 border-b border-l border-yellow-500/20 rounded-bl-lg backdrop-blur-sm">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-live-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+          </span>
+          <span className="text-[7px] font-black text-yellow-500 uppercase tracking-[0.2em]">Featured</span>
+        </div>
+      )}
       
       <div className="p-3 flex flex-col h-full relative z-10">
         {/* Header Section: Integrations & Badges */}
@@ -72,6 +86,16 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[8px] font-black text-emerald-400 uppercase tracking-widest whitespace-nowrap shadow-[0_0_8px_rgba(16,185,129,0.1)]">
                 User's Choice
               </span>
+            )}
+            
+            {resource.status === 'VETTING' && (
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/5 border border-emerald-500/10 text-[7px] font-black text-emerald-500/80 uppercase tracking-widest whitespace-nowrap bg-clip-text">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                </span>
+                Vetting In Progress
+              </div>
             )}
           </div>
 

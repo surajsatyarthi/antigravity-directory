@@ -4,8 +4,8 @@
  */
 
 import { db } from '@/lib/db';
-import { resources, categories, ratings, resourceTags, tags } from '@/drizzle/schema';
-import { eq, and, or, inArray, ilike, desc, asc, sql } from 'drizzle-orm';
+import { resources, categories, ratings, resourceTags, tags, tools, submissions, users } from '@/drizzle/schema';
+import { eq, and, or, inArray, ilike, desc, asc, sql, count } from 'drizzle-orm';
 import { FilterState, ResourceWithRelations, CategoryWithCount, Tag } from '@/types/database';
 
 /**
@@ -99,6 +99,7 @@ export async function getFilteredResources(filters: FilterState, page: number = 
         copiedCount: resources.copiedCount,
         publishedAt: resources.publishedAt,
         badgeType: resources.badgeType,
+        status: resources.status,
         categoryName: categories.name,
         categoryId: resources.categoryId,
         avgRating: sql<number>`COALESCE(AVG(${ratings.rating}), 0)`,
@@ -112,10 +113,10 @@ export async function getFilteredResources(filters: FilterState, page: number = 
       .orderBy(
         desc(sql`
           (CASE 
-            WHEN ${resources.badgeType} = 'editors_choice' THEN 10000 
-            WHEN ${resources.badgeType} = 'trending' THEN 6000
-            WHEN ${resources.badgeType} = 'users_choice' THEN 4000
-            WHEN ${resources.featured} = true THEN 2000
+            WHEN ${resources.badgeType} = 'editors_choice' THEN 100000 
+            WHEN ${resources.featured} = true THEN 80000
+            WHEN ${resources.badgeType} = 'trending' THEN 60000
+            WHEN ${resources.badgeType} = 'users_choice' THEN 40000
             ELSE 0 
           END) + ${resources.views}
         `),
@@ -250,3 +251,132 @@ export async function validateCategorySlugs(slugs: string[]): Promise<string[]> 
     return result;
   }
 }
+/**
+ * Get top tools for pSEO listing
+ */
+export async function getTopTools() {
+  try {
+    return await db
+      .select()
+      .from(tools)
+      .orderBy(desc(tools.searchVolumeSignal))
+      .limit(12);
+  } catch (error) {
+    console.warn('Database unavailable or empty, returning mock tools');
+    return [
+      { id: '1', name: 'Rule Generator', slug: 'rule-generator', description: 'Create .cursorrules', category: 'generator', searchVolumeSignal: 5000 },
+      { id: '2', name: 'MCP Scaffolding', slug: 'mcp-scaffolding', description: 'Templates for MCP', category: 'scaffold', searchVolumeSignal: 3000 }
+    ];
+  }
+}
+
+/**
+ * Get tool by slug with related resources
+ */
+export async function getToolBySlug(slug: string) {
+  try {
+    const tool = (await db.select().from(tools).where(eq(tools.slug, slug)).limit(1))[0];
+    if (!tool) return null;
+
+    // Get related resources for comparison
+    const relatedResources = await db
+      .select({
+        id: resources.id,
+        title: resources.title,
+        slug: resources.slug,
+        description: resources.description,
+        url: resources.url,
+        thumbnail: resources.thumbnail,
+        categoryName: categories.name,
+        avgRating: sql<number>`COALESCE(AVG(${ratings.rating}), 0)`,
+        ratingCount: sql<number>`COUNT(DISTINCT ${ratings.id})`,
+      })
+      .from(resources)
+      .leftJoin(categories, eq(resources.categoryId, categories.id))
+      .leftJoin(ratings, eq(resources.id, ratings.resourceId))
+      .where(ilike(resources.description, `%${tool.name}%`)) // Simple matching for now
+      .groupBy(resources.id, categories.name)
+      .limit(3);
+
+    return { ...tool, relatedResources };
+  } catch (error) {
+    return null;
+  }
+}
+
+/**
+ * Get data for Owner Dashboard
+ */
+export async function getOwnerDashboardData(userId: string) {
+  try {
+    const stats = await db
+      .select({
+        totalViews: sql<number>`SUM(${resources.views})`,
+        toolCount: sql<number>`COUNT(${resources.id})`,
+      })
+      .from(resources)
+      .where(eq(resources.authorId, userId));
+
+    const authoredTools = await db
+      .select({
+        id: resources.id,
+        title: resources.title,
+        slug: resources.slug,
+        description: resources.description,
+        views: resources.views,
+        status: resources.status,
+        featured: resources.featured,
+        categoryName: categories.name,
+        avgRating: sql<number>`COALESCE(AVG(${ratings.rating}), 0)`,
+        ratingCount: sql<number>`COUNT(DISTINCT ${ratings.id})`,
+      })
+      .from(resources)
+      .leftJoin(categories, eq(resources.categoryId, categories.id))
+      .leftJoin(ratings, eq(resources.id, ratings.resourceId))
+      .where(eq(resources.authorId, userId))
+      .groupBy(resources.id, categories.name)
+      .orderBy(desc(resources.publishedAt));
+
+    return { stats: stats[0], tools: authoredTools };
+  } catch (error) {
+    return { stats: { totalViews: 0, toolCount: 0 }, tools: [] };
+  }
+}
+
+/**
+ * Get data for Admin Dashboard
+ */
+export async function getAdminDashboardData() {
+  try {
+    const totalUsers = Number((await db.execute(sql`SELECT count(*) FROM users`))[0].count || 0);
+    const totalResources = Number((await db.execute(sql`SELECT count(*) FROM resources`))[0].count || 0);
+    const pendingSubmissions = Number((await db.execute(sql`SELECT count(*) FROM submissions WHERE status = 'PENDING'`))[0].count || 0);
+    const vettingResources = Number((await db.execute(sql`SELECT count(*) FROM resources WHERE status = 'VETTING'`))[0].count || 0);
+
+    // Recent Submissions
+    const recentSubmissions = await db
+      .select({
+        id: submissions.id,
+        title: submissions.title,
+        paymentStatus: submissions.paymentStatus,
+        paymentType: submissions.paymentType,
+        createdAt: submissions.createdAt,
+      })
+      .from(submissions)
+      .orderBy(desc(submissions.createdAt))
+      .limit(10);
+
+    return {
+      stats: {
+        totalUsers,
+        totalResources,
+        pendingSubmissions,
+        vettingResources,
+      },
+      recentSubmissions
+    };
+  } catch (error) {
+    return { stats: { totalUsers: 0, totalResources: 0, pendingSubmissions: 0, vettingResources: 0 }, recentSubmissions: [] };
+  }
+}
+

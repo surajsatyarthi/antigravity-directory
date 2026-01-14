@@ -12,6 +12,7 @@ import { Pagination } from '@/components/filters/Pagination';
 import { Footer } from '@/components/Footer';
 import { DirectoryIntelligence } from '@/components/DirectoryIntelligence';
 import { Testimonials } from '@/components/Testimonials';
+import { NewsletterCapture } from '@/components/NewsletterCapture';
 import { getCategoriesWithCounts, getAllTags, getFilteredResources, validateCategorySlugs } from '@/lib/queries';
 import { validateFilterParams } from '@/lib/validation';
 
@@ -26,8 +27,8 @@ export async function generateMetadata({
   if (categories) return { title: `Filtered Resources` };
   
   return {
-    title: "Discovery Engine | Antigravity AI Hub",
-    description: "The primary directory for Google Antigravity resources, Windsurf rules, and MCP servers.",
+    title: "Antigravity Directory",
+    description: "The premier independent directory for Antigravity resources, rules, and MCP servers.",
   };
 }
 
@@ -128,13 +129,13 @@ export default async function HomePage({
                       </div>
                       <h3 className="text-lg font-bold text-white mb-2 tracking-tight">Access denied or empty set</h3>
                       <p className="text-[12px] text-gray-600 max-w-xs mb-8 leading-relaxed">
-                        No resources matched the current filter matrix. Reset parameters to re-initialize.
+                        No resources matched your current filters. Reset them to start over.
                       </p>
                       <Link
                         href="/"
                         className="flex items-center justify-center gap-2 px-5 py-2.5 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-all text-[12px] uppercase tracking-widest"
                       >
-                        Clear Matrix
+                        Clear Filters
                       </Link>
                     </div>
                   )}
@@ -201,6 +202,10 @@ export default async function HomePage({
         </div>
       </main>
       
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        <NewsletterCapture source="homepage" />
+      </div>
+
       <Footer />
     </>
   );

@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { db } from '@/lib/db';
-import { resources, categories, users } from '@/drizzle/schema';
+import { resources, categories, users, tools } from '@/drizzle/schema';
 import { sql, desc } from 'drizzle-orm';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -85,6 +85,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       });
     }
   }
+
+  // 7. Fetch Tools (AI Tools for pSEO)
+  const allTools = await db
+    .select({ slug: tools.slug, updatedAt: tools.updatedAt })
+    .from(tools);
+
+  const toolRoutes = allTools.map((tool) => ({
+    url: `${baseUrl}/tools/${tool.slug}`,
+    lastModified: tool.updatedAt || new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
   
   return [
     ...staticRoutes,
@@ -93,5 +105,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...categoryRoutes,
     ...userRoutes,
     ...comparisonRoutes,
+    ...toolRoutes,
   ];
 }

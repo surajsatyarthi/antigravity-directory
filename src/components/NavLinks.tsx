@@ -19,16 +19,7 @@ export function NavLinks({ session, username }: NavLinksProps) {
           pathname === '/' ? 'text-white border-b border-white' : 'text-gray-400 hover:text-white'
         }`}
       >
-        Explore Matrix
-      </Link>
-      
-      <Link 
-        href="/submit" 
-        className={`transition-colors py-1 ${
-          pathname === '/submit' ? 'text-white border-b border-white' : 'text-gray-400 hover:text-white'
-        }`}
-      >
-        Ingest Tool
+        Explore
       </Link>
       
       {session && (
@@ -38,7 +29,7 @@ export function NavLinks({ session, username }: NavLinksProps) {
             pathname === '/dashboard' ? 'text-white border-b border-white' : 'text-gray-400 hover:text-white'
           }`}
         >
-          Control Panel
+          Dashboard
         </Link>
       )}
     </nav>

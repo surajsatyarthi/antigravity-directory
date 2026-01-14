@@ -22,15 +22,15 @@ export async function MarketplaceHeader() {
     <header className="sticky top-0 z-50 w-full bg-black/90 backdrop-blur-md border-b border-white/[0.05]">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group shrink-0 animate-logo-shine p-1 rounded-sm">
-          <div className="w-8 h-8 bg-white rounded flex items-center justify-center group-hover:bg-gray-200 transition-colors relative overflow-hidden">
-            <Zap className="w-4 h-4 text-black fill-black" />
+        <Link href="/" className="flex items-center gap-3.5 group shrink-0 p-1 rounded-sm">
+          <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center group-hover:bg-gray-100 transition-all duration-300 relative overflow-hidden animate-logo-shine">
+            <Zap className="w-4.5 h-4.5 text-black fill-black relative z-20" />
           </div>
-          <div className="flex flex-col justify-center">
-            <span className="text-base font-bold tracking-tighter font-mono lowercase text-white leading-none">
+          <div className="flex flex-col justify-center py-0.5">
+            <span className="text-[17px] font-black tracking-[-0.03em] font-mono lowercase text-white leading-[1.1] premium-text-glow">
               antigravity
             </span>
-            <span className="text-[10px] font-bold tracking-[0.2em] font-mono lowercase text-gray-400 leading-none mt-0.5">
+            <span className="text-[10px] font-black tracking-[0.3em] font-mono lowercase text-gray-400 leading-none mt-1 pl-0.5 opacity-90">
               directory
             </span>
           </div>
@@ -52,11 +52,21 @@ export async function MarketplaceHeader() {
           </div>
 
           <div className="flex items-center gap-4 pl-6 border-l border-white/[0.05] h-6">
+            {/* Submit Button - STAND OUT */}
+            <Link 
+              href="/submit"
+              className="group relative flex items-center justify-center px-4 py-1.5 bg-white hover:bg-emerald-50 text-black text-[10px] font-black uppercase tracking-[0.15em] rounded-md transition-all active:scale-[0.98] shadow-[0_0_20px_rgba(255,255,255,0.1)] overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/10 to-emerald-500/0 -translate-x-full group-hover:translate-x-full duration-1000 transition-transform" />
+              <Zap className="w-3 h-3 mr-2 animate-pulse" />
+              <span className="relative">Submit Resource</span>
+            </Link>
+
             {session ? (
               <div className="flex items-center gap-3">
                 <Link 
                   href={username ? `/u/${username}` : '/settings'} 
-                  className="group flex items-center" 
+                  className="group flex items-center ml-2" 
                   aria-label={`View profile for ${session.user?.name || 'user'}`}
                 >
                   {session.user?.image ? (

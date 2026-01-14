@@ -13,7 +13,7 @@ export default async function SubmitPage() {
     <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
       <MarketplaceHeader />
 
-      <main className="flex-1 container mx-auto px-4 py-12 max-w-2xl">
+      <main className="flex-1 container mx-auto px-4 py-12 max-w-5xl">
         {/* Back Button */}
         <Link 
           href="/" 
@@ -31,7 +31,7 @@ export default async function SubmitPage() {
             </div>
             <h1 className="text-3xl font-extrabold tracking-tight text-white mb-4">Submit a Resource</h1>
             <p className="text-gray-400 font-medium leading-relaxed">
-              Share your favorite prompts, MCP servers, or rules with the Antigravity ecosystem.
+              Share your favorite prompts, MCP servers, or rules with the community.
             </p>
           </div>
 

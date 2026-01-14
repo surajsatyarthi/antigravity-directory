@@ -18,15 +18,15 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://googleantigravity.directory'),
   title: {
     template: "%s | Antigravity Directory",
-    default: "Antigravity Directory | Google's AI Intelligence Hub",
+    default: "Antigravity Directory",
   },
   description: "The primary source for AI coding rules, MCP servers, and developer workflows.",
   icons: {
     icon: "/favicon.png",
-    apple: "/apple-icon.png",
+    apple: "/favicon.png",
   },
   openGraph: {
-    title: "Antigravity Directory | Google's AI Intelligence Hub",
+    title: "Antigravity Directory",
     description: "The primary source for AI coding rules, MCP servers, and developer workflows.",
     url: "https://googleantigravity.directory",
     siteName: "Antigravity Directory",

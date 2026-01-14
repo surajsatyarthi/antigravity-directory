@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Zap } from 'lucide-react';
+import { NewsletterCapture } from '@/components/NewsletterCapture';
 
 export function Footer() {
   const matrixRef = useRef<HTMLDivElement>(null);
@@ -88,20 +89,23 @@ export function Footer() {
         <div className="flex flex-col items-center justify-between gap-12 md:flex-row">
           {/* Brand & Disclaimer */}
           <div className="flex max-w-lg flex-col gap-4 text-center md:text-left">
-            <Link href="/" className="group flex items-center justify-center gap-3 md:justify-start animate-logo-shine p-1 rounded-sm" aria-label="Antigravity Directory Home">
-              <div className="flex h-9 w-9 items-center justify-center rounded bg-white transition-colors relative overflow-hidden">
-                <Zap className="h-5 w-5 fill-black text-black" aria-hidden="true" />
+            <Link href="/" className="group flex items-center justify-center gap-3.5 md:justify-start p-1 rounded-sm" aria-label="Antigravity Directory Home">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white transition-all duration-300 relative overflow-hidden animate-logo-shine">
+                <Zap className="h-5 h-5 fill-black text-black relative z-20" aria-hidden="true" />
               </div>
-              <div className="flex flex-col justify-center text-left">
-                <span className="font-mono text-base font-bold tracking-tighter text-white lowercase leading-none">
+              <div className="flex flex-col justify-center text-left py-0.5">
+                <span className="font-mono text-[17px] font-black tracking-[-0.03em] text-white lowercase leading-[1.1] premium-text-glow">
                   antigravity
                 </span>
-                <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-gray-400 lowercase leading-none mt-1">
+                <span className="font-mono text-[10px] font-black tracking-[0.3em] text-gray-400 lowercase leading-none mt-1 pl-0.5 opacity-90">
                   directory
                 </span>
               </div>
             </Link>
             <div className="space-y-1">
+              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase">
+                The Antigravity Directory.
+              </p>
               <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase">
                 This site is not affiliated with, endorsed by, or sponsored by Google.
               </p>
@@ -109,6 +113,11 @@ export function Footer() {
                 © Invictus International Consulting Services 2026
               </p>
             </div>
+          </div>
+
+          {/* Newsletter (Footer Hook) */}
+          <div className="w-full max-w-sm">
+            <NewsletterCapture variant="inline" source="footer" />
           </div>
 
           {/* Links */}
@@ -125,13 +134,6 @@ export function Footer() {
                 className="transition-colors hover:text-white focus:outline-none focus:text-blue-500"
               >
                 Submit
-              </Link>
-              <Link
-                href="https://github.com"
-                className="transition-colors hover:text-white focus:outline-none focus:text-blue-500"
-                aria-label="Antigravity on GitHub"
-              >
-                GitHub
               </Link>
             </nav>
           </div>

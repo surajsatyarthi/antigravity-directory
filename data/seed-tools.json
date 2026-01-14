@@ -1,0 +1,352 @@
+[
+  {
+    "name": "Cursor",
+    "description": "AI-first code editor built for pair programming with AI",
+    "website": "https://cursor.sh",
+    "category": "generator",
+    "searchVolumeSignal": 45000
+  },
+  {
+    "name": "v0",
+    "description": "Generate UI with simple text prompts by Vercel",
+    "website": "https://v0.dev",
+    "category": "generator",
+    "searchVolumeSignal": 38000
+  },
+  {
+    "name": "Bolt.new",
+    "description": "Full-stack web development in the browser powered by AI",
+    "website": "https://bolt.new",
+    "category": "generator",
+    "searchVolumeSignal": 32000
+  },
+  {
+    "name": "Replit Agent",
+    "description": "AI that builds and deploys software from natural language",
+    "website": "https://replit.com",
+    "category": "generator",
+    "searchVolumeSignal": 28000
+  },
+  {
+    "name": "GitHub Copilot",
+    "description": "AI pair programmer that helps you write code faster",
+    "website": "https://github.com/copilot",
+    "category": "generator",
+    "searchVolumeSignal": 50000
+  },
+  {
+    "name": "Claude",
+    "description": "AI assistant by Anthropic for analysis and content creation",
+    "website": "https://claude.ai",
+    "category": "optimizer",
+    "searchVolumeSignal": 42000
+  },
+  {
+    "name": "Perplexity",
+    "description": "AI-powered answer engine with citations",
+    "website": "https://perplexity.ai",
+    "category": "optimizer",
+    "searchVolumeSignal": 35000
+  },
+  {
+    "name": "Midjourney",
+    "description": "AI image generation from text prompts",
+    "website": "https://midjourney.com",
+    "category": "generator",
+    "searchVolumeSignal": 48000
+  },
+  {
+    "name": "Stable Diffusion",
+    "description": "Open-source text-to-image AI model",
+    "website": "https://stability.ai",
+    "category": "generator",
+    "searchVolumeSignal": 40000
+  },
+  {
+    "name": "RunwayML",
+    "description": "AI tools for video generation and editing",
+    "website": "https://runwayml.com",
+    "category": "generator",
+    "searchVolumeSignal": 25000
+  },
+  {
+    "name": "ElevenLabs",
+    "description": "AI voice generation and text-to-speech",
+    "website": "https://elevenlabs.io",
+    "category": "generator",
+    "searchVolumeSignal": 30000
+  },
+  {
+    "name": "Jasper",
+    "description": "AI content platform for marketing teams",
+    "website": "https://jasper.ai",
+    "category": "generator",
+    "searchVolumeSignal": 22000
+  },
+  {
+    "name": "Copy.ai",
+    "description": "AI content generator for marketing copy",
+    "website": "https://copy.ai",
+    "category": "generator",
+    "searchVolumeSignal": 20000
+  },
+  {
+    "name": "Notion AI",
+    "description": "AI writing assistant integrated into Notion",
+    "website": "https://notion.so/product/ai",
+    "category": "optimizer",
+    "searchVolumeSignal": 35000
+  },
+  {
+    "name": "Grammarly",
+    "description": "AI-powered writing assistant",
+    "website": "https://grammarly.com",
+    "category": "optimizer",
+    "searchVolumeSignal": 45000
+  },
+  {
+    "name": "Otter.ai",
+    "description": "AI meeting notes and transcription",
+    "website": "https://otter.ai",
+    "category": "optimizer",
+    "searchVolumeSignal": 18000
+  },
+  {
+    "name": "Descript",
+    "description": "AI-powered audio and video editing",
+    "website": "https://descript.com",
+    "category": "generator",
+    "searchVolumeSignal": 15000
+  },
+  {
+    "name": "Loom",
+    "description": "Video messaging with AI summaries",
+    "website": "https://loom.com",
+    "category": "optimizer",
+    "searchVolumeSignal": 25000
+  },
+  {
+    "name": "Beautiful.ai",
+    "description": "AI-powered presentation software",
+    "website": "https://beautiful.ai",
+    "category": "generator",
+    "searchVolumeSignal": 12000
+  },
+  {
+    "name": "Tome",
+    "description": "AI storytelling and presentation tool",
+    "website": "https://tome.app",
+    "category": "generator",
+    "searchVolumeSignal": 14000
+  },
+  {
+    "name": "Gamma",
+    "description": "AI-powered docs and presentations",
+    "website": "https://gamma.app",
+    "category": "generator",
+    "searchVolumeSignal": 16000
+  },
+  {
+    "name": "Fireflies.ai",
+    "description": "AI meeting assistant and note-taker",
+    "website": "https://fireflies.ai",
+    "category": "optimizer",
+    "searchVolumeSignal": 13000
+  },
+  {
+    "name": "Mem",
+    "description": "AI-powered note-taking workspace",
+    "website": "https://mem.ai",
+    "category": "optimizer",
+    "searchVolumeSignal": 8000
+  },
+  {
+    "name": "Lex",
+    "description": "AI-powered writing tool for authors",
+    "website": "https://lex.page",
+    "category": "generator",
+    "searchVolumeSignal": 6000
+  },
+  {
+    "name": "Wordtune",
+    "description": "AI writing companion for rewriting",
+    "website": "https://wordtune.com",
+    "category": "optimizer",
+    "searchVolumeSignal": 10000
+  },
+  {
+    "name": "Compose AI",
+    "description": "AI-powered autocompletion for writing",
+    "website": "https://compose.ai",
+    "category": "optimizer",
+    "searchVolumeSignal": 7000
+  },
+  {
+    "name": "Writesonic",
+    "description": "AI content creation platform",
+    "website": "https://writesonic.com",
+    "category": "generator",
+    "searchVolumeSignal": 11000
+  },
+  {
+    "name": "Rytr",
+    "description": "AI writing assistant for content creation",
+    "website": "https://rytr.me",
+    "category": "generator",
+    "searchVolumeSignal": 9000
+  },
+  {
+    "name": "Shortly AI",
+    "description": "AI writing partner for long-form content",
+    "website": "https://shortlyai.com",
+    "category": "generator",
+    "searchVolumeSignal": 5000
+  },
+  {
+    "name": "Sudowrite",
+    "description": "AI writing tool for creative fiction",
+    "website": "https://sudowrite.com",
+    "category": "generator",
+    "searchVolumeSignal": 8000
+  },
+  {
+    "name": "Tabnine",
+    "description": "AI code completion assistant",
+    "website": "https://tabnine.com",
+    "category": "generator",
+    "searchVolumeSignal": 12000
+  },
+  {
+    "name": "Codeium",
+    "description": "Free AI-powered code completion",
+    "website": "https://codeium.com",
+    "category": "generator",
+    "searchVolumeSignal": 15000
+  },
+  {
+    "name": "Pieces",
+    "description": "AI-powered developer productivity tool",
+    "website": "https://pieces.app",
+    "category": "optimizer",
+    "searchVolumeSignal": 6000
+  },
+  {
+    "name": "Phind",
+    "description": "AI search engine for developers",
+    "website": "https://phind.com",
+    "category": "optimizer",
+    "searchVolumeSignal": 10000
+  },
+  {
+    "name": "Cody",
+    "description": "AI coding assistant by Sourcegraph",
+    "website": "https://sourcegraph.com/cody",
+    "category": "generator",
+    "searchVolumeSignal": 8000
+  },
+  {
+    "name": "Bard",
+    "description": "Google's conversational AI service",
+    "website": "https://bard.google.com",
+    "category": "optimizer",
+    "searchVolumeSignal": 40000
+  },
+  {
+    "name": "Poe",
+    "description": "Platform for interacting with AI chatbots",
+    "website": "https://poe.com",
+    "category": "optimizer",
+    "searchVolumeSignal": 12000
+  },
+  {
+    "name": "Character.AI",
+    "description": "Conversational AI for entertainment",
+    "website": "https://character.ai",
+    "category": "generator",
+    "searchVolumeSignal": 25000
+  },
+  {
+    "name": "Replika",
+    "description": "AI companion chatbot",
+    "website": "https://replika.com",
+    "category": "optimizer",
+    "searchVolumeSignal": 18000
+  },
+  {
+    "name": "Pi",
+    "description": "Personal AI assistant by Inflection",
+    "website": "https://pi.ai",
+    "category": "optimizer",
+    "searchVolumeSignal": 14000
+  },
+  {
+    "name": "LangChain",
+    "description": "Framework for developing LLM applications",
+    "website": "https://langchain.com",
+    "category": "scaffold",
+    "searchVolumeSignal": 20000
+  },
+  {
+    "name": "AutoGPT",
+    "description": "Autonomous AI agent framework",
+    "website": "https://agpt.co",
+    "category": "scaffold",
+    "searchVolumeSignal": 22000
+  },
+  {
+    "name": "BabyAGI",
+    "description": "AI-powered task management system",
+    "website": "https://babyagi.org",
+    "category": "scaffold",
+    "searchVolumeSignal": 8000
+  },
+  {
+    "name": "LlamaIndex",
+    "description": "Data framework for LLM applications",
+    "website": "https://llamaindex.ai",
+    "category": "scaffold",
+    "searchVolumeSignal": 12000
+  },
+  {
+    "name": "Pinecone",
+    "description": "Vector database for AI applications",
+    "website": "https://pinecone.io",
+    "category": "scaffold",
+    "searchVolumeSignal": 10000
+  },
+  {
+    "name": "Weaviate",
+    "description": "Open-source vector search engine",
+    "website": "https://weaviate.io",
+    "category": "scaffold",
+    "searchVolumeSignal": 7000
+  },
+  {
+    "name": "Chroma",
+    "description": "AI-native embedding database",
+    "website": "https://trychroma.com",
+    "category": "scaffold",
+    "searchVolumeSignal": 6000
+  },
+  {
+    "name": "Qdrant",
+    "description": "Vector similarity search engine",
+    "website": "https://qdrant.tech",
+    "category": "scaffold",
+    "searchVolumeSignal": 5000
+  },
+  {
+    "name": "Milvus",
+    "description": "Open-source vector database",
+    "website": "https://milvus.io",
+    "category": "scaffold",
+    "searchVolumeSignal": 6000
+  },
+  {
+    "name": "Anthropic",
+    "description": "AI safety and research company",
+    "website": "https://anthropic.com",
+    "category": "optimizer",
+    "searchVolumeSignal": 15000
+  }
+]
