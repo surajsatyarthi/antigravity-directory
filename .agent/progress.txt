@@ -6,3 +6,7 @@ Iteration 1: PAY-001 PASSED
 Files changed: src/app/api/payments/paypal/create/route.ts tests/api/payments-paypal-create.test.ts
 Learnings: Database and external API mocks must be robust and reset between tests to prevent leaks.
 ---
+Iteration 2: PAY-002 PASSED
+Files changed: src/app/api/payments/paypal/capture/route.ts tests/api/payments-paypal-capture.test.ts
+Learnings: Multi-step database updates (payment + resource) require careful mock setup to verify multiple calls.
+---
