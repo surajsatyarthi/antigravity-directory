@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Zap } from 'lucide-react';
-import { NewsletterCapture } from '@/components/NewsletterCapture';
 
 export function Footer() {
   const matrixRef = useRef<HTMLDivElement>(null);
@@ -103,28 +102,23 @@ export function Footer() {
               </div>
             </Link>
             <div className="space-y-1">
-              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase">
+              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase">
                 The Antigravity Directory.
               </p>
-              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase">
+              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase">
                 This site is not affiliated with, endorsed by, or sponsored by Google.
               </p>
-              <p className="font-mono text-[9px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase font-bold">
+              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase font-bold">
                 © Invictus International Consulting Services 2026
               </p>
             </div>
           </div>
 
-          {/* Newsletter (Footer Hook) */}
-          <div className="w-full max-w-sm">
-            <NewsletterCapture variant="inline" source="footer" />
-          </div>
-
           {/* Links */}
-          <div className="flex flex-col items-center gap-12 md:flex-row">
+          <div className="flex flex-col items-center gap-4">
             <nav className="flex gap-10 font-mono text-[10px] tracking-widest text-gray-400 uppercase" aria-label="Footer Navigation">
-                <Link 
-                  href="/" 
+                <Link
+                  href="/"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   Explore
@@ -134,6 +128,18 @@ export function Footer() {
                 className="transition-colors hover:text-white focus:outline-none focus:text-blue-500"
               >
                 Submit
+              </Link>
+              <Link
+                href="/privacy"
+                className="transition-colors hover:text-white focus:outline-none focus:text-blue-500"
+              >
+                Privacy
+              </Link>
+              <Link
+                href="/terms"
+                className="transition-colors hover:text-white focus:outline-none focus:text-blue-500"
+              >
+                Terms
               </Link>
             </nav>
           </div>

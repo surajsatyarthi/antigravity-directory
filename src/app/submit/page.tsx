@@ -23,20 +23,7 @@ export default async function SubmitPage() {
           back
         </Link>
 
-        <div className="bg-[#0A0A0A] border border-gray-900 rounded-3xl p-8 md:p-12">
-          <div className="mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 text-blue-500 border border-blue-500/20 rounded-full text-[10px] font-bold mb-6 uppercase tracking-widest font-mono">
-              <Sparkles className="w-3 h-3" />
-              community contribution
-            </div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-white mb-4">Submit a Resource</h1>
-            <p className="text-gray-400 font-medium leading-relaxed">
-              Share your favorite prompts, MCP servers, or rules with the community.
-            </p>
-          </div>
-
-          <SubmitForm categories={allCategories} />
-        </div>
+        <SubmitForm categories={allCategories} />
       </main>
 
       <Footer />

@@ -106,9 +106,9 @@ export default async function HomePage({
                 <div className="relative">
                   {filteredResources.length > 0 ? (
                     <>
-                      <div 
+                      <div
                         id="resource-grid"
-                        className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-4 auto-rows-fr"
+                        className="flex flex-col gap-3"
                         role="region"
                         aria-label="Agent Marketplace Grid"
                       >
@@ -142,62 +142,7 @@ export default async function HomePage({
                 </div>
               </Suspense>
             </div>
-            
-            {/* Right Rail: Ads (Optimized Sticky) */}
-            <aside className="hidden xl:block w-[300px] shrink-0">
-              <div className="sticky top-20 space-y-6">
-                 {/* Ads Restored */}
-                 <div className="space-y-4">
-                    <h3 className="text-[9px] font-black text-gray-400 uppercase tracking-[0.3em] mb-4 text-center">Sponsored</h3>
-                    
-                    {/* Ad 1 - Qodo AI */}
-                    <a 
-                      href="https://qodo.ai" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="block overflow-hidden rounded-xl border border-white/[0.05] hover:border-blue-500/30 transition-all hover:scale-[1.01] active:scale-[0.99] group relative bg-[#030303]"
-                    >
-                      <img
-                        src="/ads/1.png"
-                        alt="Qodo AI - Code Quality Platform"
-                        className="w-full h-auto object-cover opacity-90 transition-all duration-300"
-                      />
-                      <span className="absolute top-2 right-2 px-1.5 py-0.5 rounded bg-black/80 backdrop-blur-md border border-white/5 text-[7px] font-black text-white/60 tracking-widest uppercase">Sponsored</span>
-                    </a>
 
-                    {/* Ad 2 - Supabase */}
-                    <a 
-                      href="https://supabase.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="block overflow-hidden rounded-[24px] border border-gray-900 hover:border-emerald-500/50 transition-all hover:scale-[1.02] active:scale-[0.98] group relative bg-gray-950/50"
-                    >
-                      <img
-                        src="/ads/2.png"
-                        alt="Supabase - Build in a weekend"
-                        className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-all duration-500"
-                      />
-                      <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[8px] font-bold text-white/40 tracking-widest uppercase">Partner</span>
-                    </a>
-
-                    {/* Ad 3 - Speechify */}
-                    <a 
-                      href="https://speechify.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="block overflow-hidden rounded-[24px] border border-gray-900 hover:border-orange-500/50 transition-all hover:scale-[1.02] active:scale-[0.98] group relative bg-gray-950/50"
-                    >
-                      <img
-                        src="/ads/Untitled design (1).png"
-                        alt="Speechify - Natural AI Voices"
-                        className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-all duration-500"
-                      />
-                      <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[8px] font-bold text-white/40 tracking-widest uppercase">Featured</span>
-                    </a>
-                 </div>
-              </div>
-            </aside>
-            
           </div>
         </div>
       </main>

@@ -17,15 +17,15 @@ interface SubmitFormProps {
 const FAQS = [
   {
     q: "What are the benefits of listing with Antigravity?",
-    a: "✨ **Massive Exposure**: Access thousands of AI developers. 🔍 **SEO Boost**: Gain a valuable **Do-Follow link** from our high-authority domain. 🎯 **Qualified Leads**: Connect with users actively building agentic systems."
+    a: "✨ <strong>Massive Exposure</strong>: Access thousands of AI developers. 🔍 <strong>SEO Boost</strong>: Gain a valuable <strong>Do-Follow link</strong> from our high-authority domain. 🎯 <strong>Qualified Leads</strong>: Connect with users actively building agentic systems."
   },
   {
     q: "How quickly will my tool be listed?",
-    a: "Launch Promo listings (Standard/Featured) go live within **24-48 hours** after manual vetting. Free listings undergo a standard review period of 7-14 days."
+    a: "Launch Promo listings (Standard/Featured) go live within <strong>24-48 hours</strong> after manual vetting. Free listings undergo a standard review period of 7-14 days."
   },
   {
     q: "How long does my listing remain active?",
-    a: "Your listing is **permanent**. One payment secures your spot in our directory indefinitely, with no recurring fees or expiration dates."
+    a: "Your listing is <strong>permanent</strong>. One payment secures your spot in our directory indefinitely, with no recurring fees or expiration dates."
   },
   {
     q: "Will my tool be removed from the directory?",
@@ -41,6 +41,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
   const [isPending, setIsPending] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [resourceId, setResourceId] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -51,6 +52,9 @@ export function SubmitForm({ categories }: SubmitFormProps) {
       setMessage({ type: 'error', text: 'Please provide at least a Title and Description.' });
       return;
     }
+    // Generate the ID that will be used for both payment and submission
+    const newId = `res_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    setResourceId(newId);
     setIsCheckoutOpen(true);
   }
 
@@ -59,6 +63,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
     setIsPending(true);
     try {
       const formData = new FormData(formRef.current!);
+      formData.set('id', resourceId); // Pass the same ID
       formData.set('paymentStatus', paymentData.status === 'COMPLETED' ? 'PAID' : 'NONE');
       formData.set('paymentType', paymentData.tier || 'FREE');
       formData.set('paymentId', paymentData.id || '');
@@ -75,8 +80,8 @@ export function SubmitForm({ categories }: SubmitFormProps) {
     }
   }
 
-  const inputClasses = "w-full bg-[#0A0A0A] border border-white/5 rounded-xl px-4 py-3.5 text-sm text-white placeholder:text-gray-600 focus:border-emerald-500/50 transition-all outline-none font-medium";
-  const labelClasses = "block text-[10px] uppercase tracking-[0.15em] font-black text-gray-500 mb-1.5 ml-1";
+  const inputClasses = "w-full bg-[#0A0A0A] border border-white/5 rounded-xl px-4 py-3.5 text-base text-white placeholder:text-gray-600 focus:border-emerald-500/50 transition-all outline-none font-medium";
+  const labelClasses = "block text-xs uppercase tracking-[0.15em] font-black text-gray-500 mb-2 ml-1";
 
   return (
     <>
@@ -84,12 +89,12 @@ export function SubmitForm({ categories }: SubmitFormProps) {
         
         {/* Header Section */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest leading-none">
+            <span className="text-xs font-black text-emerald-500 uppercase tracking-widest leading-none">
               Limited: Founding 50 spots remaining
             </span>
           </div>
@@ -102,22 +107,94 @@ export function SubmitForm({ categories }: SubmitFormProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Left Column: Form & Scarcity */}
-          <div className="lg:col-span-7 space-y-8">
+        {/* Benefits & Value Prop - Moved to top */}
+        <div className="space-y-8 max-w-3xl mx-auto mb-16">
+          <div className="bg-[#050505] border border-white/5 rounded-3xl p-8 space-y-10 border-l-emerald-500/20 border-l-2">
+            <h3 className="text-sm font-black text-gray-500 uppercase tracking-widest border-b border-white/5 pb-4">
+              Why Top Tools Launch Here
+            </h3>
+
+            <div className="space-y-8">
+              <div className="flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
+                  <Globe2 className="w-5 h-5 text-emerald-500" />
+                </div>
+                <div>
+                  <h4 className="text-base font-black text-white uppercase tracking-wider mb-2">Massive Exposure</h4>
+                  <p className="text-sm text-gray-500 leading-relaxed font-medium">Reach 2M+ active AI seekers every month looking for tools like yours.</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
+                  <Search className="w-5 h-5 text-blue-500" />
+                </div>
+                <div>
+                  <h4 className="text-base font-black text-white uppercase tracking-wider mb-2">SEO Benchmark (Do-Follow)</h4>
+                  <p className="text-sm text-gray-500 leading-relaxed font-medium">Boost your domain authority with a high-quality, permanent do-follow backlink.</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-5 h-5 text-purple-500" />
+                </div>
+                <div>
+                  <h4 className="text-base font-black text-white uppercase tracking-wider mb-2">Lifetime Value</h4>
+                  <p className="text-sm text-gray-500 leading-relaxed font-medium">One-time payment. Forever visibility. We never remove vetted tools.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-6 border-t border-white/5">
+              <div className="bg-[#080808] rounded-2xl p-6 border border-emerald-500/10">
+                <div className="flex items-center gap-3 mb-3">
+                  <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                  <span className="text-xs font-black text-white uppercase tracking-widest">Growth Guarantee</span>
+                </div>
+                <p className="text-sm text-gray-500 leading-relaxed italic mb-0">
+                  "Since listing on Antigravity, we've seen a 30% increase in high-intent developer trials. The SEO boost alone was worth the entry fee."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-8 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-3xl border border-white/5">
+            <h4 className="text-white font-black uppercase text-sm tracking-widest mb-6">Current Launch Promo</h4>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-400 text-base">Standard Review</span>
+                <span className="text-white font-bold text-xl">$49 <span className="text-gray-600 line-through text-base ml-2">$99</span></span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-400 text-base">Featured Placement</span>
+                <span className="text-emerald-400 font-bold text-xl">$149 <span className="text-gray-600 line-through text-base ml-2">$299</span></span>
+              </div>
+            </div>
+            <div className="mt-6 pt-6 border-t border-white/5">
+              <p className="text-xs text-gray-500 leading-relaxed">
+                Join 10k+ tools already growing. By submitting, you agree to our editorial standards.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-3xl mx-auto space-y-8">
+
+          {/* Form Section */}
+          <div className="space-y-8">
             <div className="bg-[#050505] border border-white/5 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 p-8 opacity-5">
                 <Rocket className="w-32 h-32" />
               </div>
               
               {message && (
-                <div className={`mb-8 p-4 rounded-xl flex items-center gap-3 text-xs font-bold border backdrop-blur-xl ${
-                  message.type === 'success' 
-                    ? 'bg-emerald-500/5 text-emerald-400 border-emerald-500/20' 
+                <div className={`mb-8 p-4 rounded-xl flex items-center gap-3 text-sm font-bold border backdrop-blur-xl ${
+                  message.type === 'success'
+                    ? 'bg-emerald-500/5 text-emerald-400 border-emerald-500/20'
                     : 'bg-red-500/5 text-red-400 border-red-500/20'
                 }`}>
-                  {message.type === 'success' ? <CheckCircle2 className="w-4 h-4 shrink-0" /> : <AlertCircle className="w-4 h-4 shrink-0" />}
+                  {message.type === 'success' ? <CheckCircle2 className="w-5 h-5 shrink-0" /> : <AlertCircle className="w-5 h-5 shrink-0" />}
                   {message.text}
                 </div>
               )}
@@ -151,11 +228,11 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                 </div>
 
                 <div className="pt-4">
-                  <button type="submit" disabled={isPending} className="group w-full py-5 bg-white hover:bg-emerald-50 text-black font-black rounded-xl transition-all active:scale-[0.98] uppercase tracking-[0.2em] text-[10px] flex items-center justify-center gap-3 shadow-xl shadow-white/5">
-                    {isPending ? <div className="w-3 h-3 border-2 border-black/30 border-t-black rounded-full animate-spin" /> : <Zap className="w-3.5 h-3.5" />}
+                  <button type="submit" disabled={isPending} className="group w-full py-5 bg-white hover:bg-emerald-50 text-black font-black rounded-xl transition-all active:scale-[0.98] uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 shadow-xl shadow-white/5">
+                    {isPending ? <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" /> : <Zap className="w-4 h-4" />}
                     <span>{isPending ? 'Validating...' : 'Proceed to Selection'}</span>
                   </button>
-                  <p className="mt-4 text-center text-[10px] text-gray-700 font-bold uppercase tracking-widest">
+                  <p className="mt-4 text-center text-xs text-gray-700 font-bold uppercase tracking-widest">
                     Subject to manual review • Refund guaranteed if rejected
                   </p>
                 </div>
@@ -164,99 +241,27 @@ export function SubmitForm({ categories }: SubmitFormProps) {
 
             {/* FAQs Section */}
             <div className="space-y-4">
-              <h3 className="text-sm font-black text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-emerald-500" />
+              <h3 className="text-base font-black text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+                <BarChart3 className="w-5 h-5 text-emerald-500" />
                 Frequently Asked Questions
               </h3>
               <div className="space-y-2">
                 {FAQS.map((faq, idx) => (
                   <div key={idx} className="bg-[#050505] border border-white/5 rounded-2xl overflow-hidden">
-                    <button 
+                    <button
                       onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                       className="w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors"
                     >
-                      <span className="text-xs font-bold text-gray-300 leading-relaxed">{faq.q}</span>
-                      {openFaq === idx ? <ChevronUp className="w-4 h-4 text-gray-600" /> : <ChevronDown className="w-4 h-4 text-gray-600" />}
+                      <span className="text-sm font-bold text-gray-300 leading-relaxed">{faq.q}</span>
+                      {openFaq === idx ? <ChevronUp className="w-5 h-5 text-gray-600" /> : <ChevronDown className="w-5 h-5 text-gray-600" />}
                     </button>
                     {openFaq === idx && (
                       <div className="px-5 pb-5 animate-in slide-in-from-top-2 duration-300">
-                        <p className="text-[11px] leading-relaxed text-gray-500 font-medium" dangerouslySetInnerHTML={{ __html: faq.a }} />
+                        <p className="text-sm leading-relaxed text-gray-500 font-medium" dangerouslySetInnerHTML={{ __html: faq.a }} />
                       </div>
                     )}
                   </div>
                 ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Benefits & Value Prop */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="bg-[#050505] border border-white/5 rounded-3xl p-8 space-y-10 border-l-emerald-500/20 border-l-2">
-              <h3 className="text-xs font-black text-gray-500 uppercase tracking-widest border-b border-white/5 pb-4">
-                Why Top Tools Launch Here
-              </h3>
-
-              <div className="space-y-8">
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
-                    <Globe2 className="w-5 h-5 text-emerald-500" />
-                  </div>
-                  <div>
-                    <h4 className="text-[13px] font-black text-white uppercase tracking-wider mb-1">Massive Exposure</h4>
-                    <p className="text-[11px] text-gray-500 leading-relaxed font-medium">Reach 2M+ active AI seekers every month looking for tools like yours.</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
-                    <Search className="w-5 h-5 text-blue-500" />
-                  </div>
-                  <div>
-                    <h4 className="text-[13px] font-black text-white uppercase tracking-wider mb-1">SEO Benchmark (Do-Follow)</h4>
-                    <p className="text-[11px] text-gray-500 leading-relaxed font-medium">Boost your domain authority with a high-quality, permanent do-follow backlink.</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0">
-                    <ShieldCheck className="w-5 h-5 text-purple-500" />
-                  </div>
-                  <div>
-                    <h4 className="text-[13px] font-black text-white uppercase tracking-wider mb-1">Lifetime Value</h4>
-                    <p className="text-[11px] text-gray-500 leading-relaxed font-medium">One-time payment. Forever visibility. We never remove vetted tools.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-6 border-t border-white/5">
-                <div className="bg-[#080808] rounded-2xl p-6 border border-emerald-500/10">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                    <span className="text-[10px] font-black text-white uppercase tracking-widest">Growth Guarantee</span>
-                  </div>
-                  <p className="text-[10px] text-gray-500 leading-relaxed italic mb-0">
-                    "Since listing on Antigravity, we've seen a 30% increase in high-intent developer trials. The SEO boost alone was worth the entry fee."
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-8 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-3xl border border-white/5">
-              <h4 className="text-white font-black uppercase text-[10px] tracking-widest mb-4">Current Launch Promo</h4>
-              <div className="space-y-2">
-                <div className="flex justify-between text-[11px]">
-                  <span className="text-gray-400">Standard Review</span>
-                  <span className="text-white font-bold">$49 <span className="text-gray-600 line-through">$99</span></span>
-                </div>
-                <div className="flex justify-between text-[11px]">
-                  <span className="text-gray-400">Featured Placement</span>
-                  <span className="text-emerald-400 font-bold">$149 <span className="text-gray-600 line-through">$299</span></span>
-                </div>
-              </div>
-              <div className="mt-6 pt-6 border-t border-white/5">
-                <p className="text-[9px] text-gray-500 leading-relaxed">
-                  Join 10k+ tools already growing. By submitting, you agree to our editorial standards.
-                </p>
               </div>
             </div>
           </div>
@@ -269,6 +274,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
         onClose={() => setIsCheckoutOpen(false)}
         onSuccess={onPaymentSuccess}
         submissionTitle={(formRef.current?.elements.namedItem('title') as HTMLInputElement)?.value || 'Your Resource'}
+        resourceId={resourceId}
       />
     </>
   );

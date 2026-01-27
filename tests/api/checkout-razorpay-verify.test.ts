@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { POST } from '@/app/api/payments/razorpay/webhook/route';
+import { POST } from '@/app/api/checkout/razorpay/verify/route';
 import { NextRequest } from 'next/server';
 import { db } from '@/lib/db';
 import { payments, resources } from '@/drizzle/schema';
@@ -21,6 +21,10 @@ vi.mock('@/lib/db', () => ({
 vi.mock('@/drizzle/schema', () => ({
   payments: { id: 'payments_id', status: 'payments_status', transactionId: 'transaction_id' },
   resources: { id: 'resources_id', featured: 'featured' }
+}));
+
+vi.mock('@/auth', () => ({
+  auth: vi.fn().mockResolvedValue({ user: { id: 'test-user-id' } })
 }));
 
 describe('POST /api/payments/razorpay/webhook', () => {
@@ -140,7 +144,7 @@ describe('POST /api/payments/razorpay/webhook', () => {
       expect(response.status).toBe(200); // Usually webhooks return 200 even if ignored to stop retries
 
       const data = await response.json();
-      expect(data.message).toContain('already processed');
+      expect(data.message).toContain('Already processed');
       
       // Should NOT update anything
       expect(db.update).not.toHaveBeenCalled();
