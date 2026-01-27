@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 
 export function Analytics() {
   const pathname = usePathname();
@@ -41,6 +42,10 @@ export function Analytics() {
 
   return (
     <>
+      {/* Vercel Analytics */}
+      <VercelAnalytics />
+
+      {/* Google Analytics 4 */}
       {process.env.NEXT_PUBLIC_GA_ID && (
         <>
           <script
