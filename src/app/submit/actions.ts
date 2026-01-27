@@ -1,7 +1,7 @@
 'use server';
 
 import { db } from '@/lib/db';
-import { submissions, resources, categories } from '@/drizzle/schema';
+import { submissions, resources, categories, payments } from '@/drizzle/schema';
 import { v4 as uuidv4 } from 'uuid';
 import { revalidatePath } from 'next/cache';
 import { auth } from '@/auth';
@@ -19,6 +19,10 @@ const submissionSchema = z.object({
 
 export async function submitResource(formData: FormData) {
   const session = await auth();
+  
+  if (!session?.user?.id) {
+    return { error: 'Authentication required. Please sign in to submit a tool.' };
+  }
   
   const rawData = {
     title: formData.get('title') as string,
@@ -59,11 +63,26 @@ export async function submitResource(formData: FormData) {
       paymentStatus: rawData.paymentStatus as any,
       paymentType: rawData.paymentType as any,
       paymentId: rawData.paymentId,
-      userId: session?.user?.id || 'guest-user-id', 
+      userId: session.user.id, 
     });
 
-    // 2. If PAID, insert into resources with VETTING status for immediate visibility
-    if (rawData.paymentStatus === 'PAID') {
+    // 2. Server-side verification of payment
+    let verifiedPaymentStatus = 'NONE';
+    let verifiedPaymentType = 'FREE';
+
+    if (rawData.paymentId) {
+      const paymentRecord = await db.query.payments.findFirst({
+        where: eq(payments.transactionId, rawData.paymentId),
+      });
+
+      if (paymentRecord && paymentRecord.status === 'SUCCEEDED') {
+        verifiedPaymentStatus = 'PAID';
+        verifiedPaymentType = rawData.paymentType === 'FEATURED' ? 'FEATURED' : 'STANDARD';
+      }
+    }
+
+    // 3. If PAID, insert into resources with VETTING status for immediate visibility
+    if (verifiedPaymentStatus === 'PAID') {
       // Find category ID
       const cat = (await db.select({ id: categories.id })
         .from(categories)
@@ -78,10 +97,18 @@ export async function submitResource(formData: FormData) {
         url: validated.data.url || null,
         categoryId: cat?.id || '1', // Fallback to general
         status: 'VETTING',
-        featured: rawData.paymentType === 'FEATURED',
-        badgeType: rawData.paymentType === 'FEATURED' ? 'trending' : null,
+        featured: verifiedPaymentType === 'FEATURED',
+        badgeType: verifiedPaymentType === 'FEATURED' ? 'trending' : null,
       });
     }
+
+    // Update submission record with verified status
+    await db.update(submissions)
+      .set({
+        paymentStatus: verifiedPaymentStatus as any,
+        paymentType: verifiedPaymentType as any,
+      })
+      .where(eq(submissions.id, submissionId));
 
     revalidatePath('/');
     return { success: true };

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { POST } from '@/app/api/payments/paypal/create/route';
+import { POST } from '@/app/api/checkout/create-order/route';
 import { NextRequest } from 'next/server';
 import * as paypalLib from '@/lib/payment/paypal';
 
@@ -13,8 +13,12 @@ vi.mock('@/lib/db', () => ({
 vi.mock('@/drizzle/schema', () => ({
   payments: {}
 }));
+vi.mock('@/auth', () => ({
+  auth: vi.fn().mockResolvedValue({ user: { id: 'test-user-id' } })
+}));
 
 import { db } from '@/lib/db';
+import { auth } from '@/auth';
 
 describe('POST /api/payments/paypal/create', () => {
   beforeEach(() => {

@@ -246,7 +246,7 @@ export default async function ResourceDetailPage({
               </div>
               
               <div className="flex flex-col gap-3 shrink-0">
-                {resource.url && (
+                {resource.url ? (
                   <a
                     href={resource.url}
                     target="_blank"
@@ -256,15 +256,26 @@ export default async function ResourceDetailPage({
                     Get Resource
                     <ExternalLink className="w-4 h-4" />
                   </a>
+                ) : (
+                  <div className="inline-flex flex-col items-center justify-center gap-1 px-8 py-4 bg-gray-900 text-gray-500 font-bold rounded-2xl border border-white/5 text-center min-w-[200px] cursor-not-allowed">
+                    <span className="text-xs">URL Not Available</span>
+                    <span className="text-[10px] font-normal text-gray-600">Contact owner to claim</span>
+                  </div>
                 )}
-                
+
                 {/* Monetization CTAs */}
-                <button className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white font-bold rounded-xl border border-white/5 transition-all text-xs uppercase tracking-widest">
+                <Link
+                  href={`mailto:support@googleantigravity.directory?subject=Claim Listing: ${encodeURIComponent(resource.title)}&body=I would like to claim this listing: ${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.googleantigravity.directory'}/t/${resource.slug}`}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white font-bold rounded-xl border border-white/5 transition-all text-xs uppercase tracking-widest"
+                >
                   Claim Listing
-                </button>
-                <button className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 font-bold rounded-xl border border-blue-500/10 transition-all text-xs uppercase tracking-widest">
+                </Link>
+                <Link
+                  href="/submit"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 font-bold rounded-xl border border-blue-500/10 transition-all text-xs uppercase tracking-widest"
+                >
                   Promote Tool
-                </button>
+                </Link>
               </div>
             </div>
 

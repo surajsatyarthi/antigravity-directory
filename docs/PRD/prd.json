@@ -146,12 +146,12 @@
       "visual_regression": false,
       
       "dependencies": ["PAY-003", "razorpay.ts business logic"],
-      "passed": false
+      "passed": true
     }
   ],
   
   "total_stories": 4,
-  "completed": 3,
+  "completed": 4,
   "in_progress": 0,
   
   "notes": "Start with PayPal routes (PAY-001, PAY-002), then Razorpay. Each story should take 25-30 minutes. Business logic already exists in src/lib/payment/, we're building API routes."

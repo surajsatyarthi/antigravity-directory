@@ -227,12 +227,27 @@ export const jobs = pgTable('jobs', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
+// Payments table for high-integrity transaction tracking
+export const payments = pgTable('payments', {
+  id: text('id').primaryKey(),
+  userId: text('user_id').references(() => users.id, { onDelete: 'set null' }),
+  resourceId: text('resource_id').references(() => resources.id, { onDelete: 'set null' }),
+  amount: integer('amount').notNull(), // Amount in cents/paise
+  currency: text('currency', { length: 3 }).notNull(), // USD, INR, etc.
+  paymentMethod: text('payment_method').notNull(), // 'paypal' | 'razorpay'
+  transactionId: text('transaction_id').notNull().unique(), // External ID
+  status: text('status').notNull().default('PENDING'), // 'PENDING' | 'SUCCEEDED' | 'FAILED'
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   resources: many(resources),
   ratings: many(ratings),
   submissions: many(submissions),
   bookmarks: many(bookmarks),
+  payments: many(payments),
 }));
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
@@ -251,6 +266,7 @@ export const resourcesRelations = relations(resources, ({ one, many }) => ({
   ratings: many(ratings),
   resourceTags: many(resourceTags),
   bookmarks: many(bookmarks),
+  payments: many(payments),
 }));
 
 export const ratingsRelations = relations(ratings, ({ one }) => ({
@@ -293,6 +309,17 @@ export const bookmarksRelations = relations(bookmarks, ({ one }) => ({
   }),
   resource: one(resources, {
     fields: [bookmarks.resourceId],
+    references: [resources.id],
+  }),
+}));
+
+export const paymentsRelations = relations(payments, ({ one }) => ({
+  user: one(users, {
+    fields: [payments.userId],
+    references: [users.id],
+  }),
+  resource: one(resources, {
+    fields: [payments.resourceId],
     references: [resources.id],
   }),
 }));

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { POST } from '@/app/api/payments/paypal/capture/route';
+import { POST } from '@/app/api/checkout/capture-payment/route';
 import { NextRequest } from 'next/server';
 import * as paypalLib from '@/lib/payment/paypal';
 import { db } from '@/lib/db';
@@ -25,6 +25,9 @@ vi.mock('@/lib/db', () => ({
 vi.mock('@/drizzle/schema', () => ({
   payments: { id: 'payments_id', status: 'payments_status' },
   resources: { id: 'resources_id', isFeatured: 'resources_is_featured' }
+}));
+vi.mock('@/auth', () => ({
+  auth: vi.fn().mockResolvedValue({ user: { id: 'test-user-id' } })
 }));
 
 // Mock drizzle-orm

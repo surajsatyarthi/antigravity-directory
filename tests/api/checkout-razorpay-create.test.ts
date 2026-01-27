@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { POST } from '@/app/api/payments/razorpay/create/route';
+import { POST } from '@/app/api/checkout/razorpay/create-order/route';
 import { NextRequest } from 'next/server';
 import * as razorpayLib from '@/lib/payment/razorpay';
 import { db } from '@/lib/db';
@@ -14,6 +14,9 @@ vi.mock('@/lib/db', () => ({
 }));
 vi.mock('@/drizzle/schema', () => ({
   payments: {}
+}));
+vi.mock('@/auth', () => ({
+  auth: vi.fn().mockResolvedValue({ user: { id: 'test-user-id' } })
 }));
 
 describe('POST /api/payments/razorpay/create', () => {

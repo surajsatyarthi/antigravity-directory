@@ -1,57 +1,50 @@
-/**
- * Rate limiting for Phase 3 API routes
- * Prevents DoS attacks and abuse
- */
+import { NextRequest, NextResponse } from 'next/server';
 
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
+interface RateLimitStore {
+  [key: string]: {
+    count: number;
+    resetTime: number;
+  };
+}
 
-// Initialize Redis client
-// For development, we'll use in-memory rate limiting
-// For production, configure Upstash Redis
-const redis = process.env.UPSTASH_REDIS_REST_URL
-  ? new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-    })
-  : undefined;
+const store: RateLimitStore = {};
 
-/**
- * Rate limiter for API routes
- * Allows 10 requests per 10 seconds per IP
- */
-export const ratelimit = redis
-  ? new Ratelimit({
-      redis,
-      limiter: Ratelimit.slidingWindow(10, '10 s'),
-      analytics: true,
-      prefix: '@upstash/ratelimit',
-    })
-  : {
-      // Mock rate limiter for development (always allows)
-      limit: async () => ({ success: true, limit: 10, remaining: 10, reset: Date.now() }),
-    };
-
-/**
- * Get client identifier from request
- * Uses IP address or falls back to 'anonymous'
- */
-export function getClientIdentifier(request: Request): string {
-  // Try to get IP from various headers (depending on hosting)
-  const forwarded = request.headers.get('x-forwarded-for');
-  const realIp = request.headers.get('x-real-ip');
-  const cfConnectingIp = request.headers.get('cf-connecting-ip');
-  
-  const ip = forwarded?.split(',')[0] || realIp || cfConnectingIp || 'anonymous';
-  
-  return ip.trim();
+interface Options {
+  limit: number;
+  windowMs: number;
 }
 
 /**
- * Check rate limit for a request
- * Returns { success: boolean, limit, remaining, reset }
+ * Basic in-memory rate limiter for Edge/Serverless environments.
+ * For production with high traffic, use Redis.
  */
-export async function checkRateLimit(request: Request) {
-  const identifier = getClientIdentifier(request);
-  return await ratelimit.limit(identifier);
+export async function rateLimit(request: NextRequest, options: Options) {
+  const ip = request.headers.get('x-forwarded-for') || 'anonymous';
+  const now = Date.now();
+  const windowMs = options.windowMs;
+  const limit = options.limit;
+
+  if (!store[ip] || now > store[ip].resetTime) {
+    store[ip] = {
+      count: 1,
+      resetTime: now + windowMs,
+    };
+    return null;
+  }
+
+  store[ip].count++;
+
+  if (store[ip].count > limit) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      { 
+        status: 429,
+        headers: {
+          'Retry-After': Math.ceil((store[ip].resetTime - now) / 1000).toString(),
+        }
+      }
+    );
+  }
+
+  return null;
 }

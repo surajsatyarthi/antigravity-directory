@@ -67,6 +67,32 @@ export async function POST(request: NextRequest) {
 - When an API route updates multiple tables (e.g., `payments` and `resources`), use `expect(db.update).toHaveBeenCalledTimes(N)` to ensure all steps are executed.
 - Mock returning objects for `db.update().set().where()` to avoid "Cannot read properties of undefined" errors during tests.
 
+**Webhook Verification:**
+
+- For HMAC verification (Razorpay, Stripe, etc.), use `request.text()` to get the raw body. Verifying against a JSON-serialized version of a parsed body can fail due to whitespace or key-ordering differences.
+
+### **UAQS v2.2 Hardened Guardrails**
+
+**I. The Schema Anchor Rule:**
+
+- **Forget Memory**: Never trust AI memory for DB fields.
+- **Protocol**: Mandatorily `view_file` on `schema.ts` before every DB interaction.
+
+**II. The Physical Tally (Black-Gate):**
+
+- **Kill the Mock Mirage**: TDD is logic; SQL is reality.
+- **Protocol**: Verify code success with a direct SQL check (`SELECT`) or physical file audit (`ls -la`).
+
+**III. Zero Noise Policy:**
+
+- **Signal Integrity**: Lint errors mask real bugs.
+- **Protocol**: All signal noise is a blocker. Verify `npm run lint` is green before merging.
+
+**IV. Defense-First Architecture:**
+
+- **Security Priority**: Functionality < Security.
+- **Protocol**: Every API must be audited for Auth/Validation tags. No anonymous placeholders.
+
 ---
 
-**Last Updated:** January 14, 2026
+**Last Updated:** January 15, 2026

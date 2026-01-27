@@ -14,3 +14,9 @@ Iteration 3: PAY-003 PASSED
 Files changed: src/app/api/payments/razorpay/create/route.ts tests/api/payments-razorpay-create.test.ts
 Learnings: Razorpay uses smallest currency unit (paise/cents) – ensure tests and routes handle this consistently.
 ---
+Iteration 4: PAY-004 PASSED
+Files changed: src/app/api/payments/razorpay/webhook/route.ts tests/api/payments-razorpay-webhook.test.ts
+Learnings: Always verify HMAC signatures using the raw request body (text) rather than parsed JSON for security.
+=== FULL PAYMENT API SUITE PASSED ===
+Total Tests: 27/27
+---

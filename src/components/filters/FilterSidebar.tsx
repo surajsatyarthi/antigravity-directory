@@ -80,11 +80,11 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
       aria-label="Filters"
     >
       <div className="bg-[#050505] border border-white/[0.05] rounded-lg p-4 transition-all">
-        <h2 id="filters-heading" className="text-[10px] font-black text-white/80 mb-6 tracking-[0.3em] uppercase">Filters</h2>
-        
+        <h2 id="filters-heading" className="text-xs font-black text-white/80 mb-6 tracking-[0.3em] uppercase">Filters</h2>
+
         {/* AI Focus Areas (Shifting from center) */}
         <div className="mb-6">
-           <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400 font-bold block mb-3">Focus Domains</span>
+           <span className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-bold block mb-3">Focus Domains</span>
            <div className="flex flex-col gap-1.5">
              {[
                { id: 'process', label: 'Flow', icon: '⚡' },
@@ -101,14 +101,14 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
                      else params.set('group', group.id);
                      router.push(`?${params.toString()}`);
                    }}
-                   className={`flex items-center justify-between px-3 py-2 rounded-md border text-[11px] font-bold transition-all ${
-                     isSelected 
-                       ? 'bg-blue-600/10 border-blue-500/30 text-blue-400' 
+                   className={`flex items-center justify-between px-3 py-2 rounded-md border text-sm font-bold transition-all ${
+                     isSelected
+                       ? 'bg-blue-600/10 border-blue-500/30 text-blue-400'
                        : 'bg-black/40 border-gray-900/50 text-gray-400 hover:border-gray-800 hover:text-gray-200'
                    }`}
                  >
                    <span>{group.label}</span>
-                    <span className="opacity-60 text-[10px] grayscale-0">{group.icon}</span>
+                    <span className="opacity-60 text-xs grayscale-0">{group.icon}</span>
                  </button>
                );
              })}
@@ -117,7 +117,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
 
         {/* Listing Status Badges */}
         <div className="mb-6">
-           <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400 font-bold block mb-3">Listing Status</span>
+           <span className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-bold block mb-3">Listing Status</span>
            <div className="flex flex-col gap-1.5">
              {[
                { id: 'editors_choice', label: "Editor's Choice", color: 'text-yellow-500', bg: 'bg-yellow-500/10', border: 'border-yellow-500/30' },
@@ -126,7 +126,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
              ].map((badge) => {
                const currentBadges = searchParams.get('badges')?.split(',').filter(Boolean) || [];
                const isSelected = currentBadges.includes(badge.id);
-               
+
                return (
                  <button
                    key={badge.id}
@@ -138,15 +138,15 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
                      } else {
                        updated = [...currentBadges, badge.id];
                      }
-                     
+
                      if (updated.length > 0) params.set('badges', updated.join(','));
                      else params.delete('badges');
-                     
+
                      router.push(`?${params.toString()}`);
                    }}
-                    className={`flex items-center justify-between px-3 py-2 rounded-md border text-[11px] font-bold transition-all ${
-                     isSelected 
-                       ? `${badge.bg} ${badge.border} ${badge.color}` 
+                    className={`flex items-center justify-between px-3 py-2 rounded-md border text-sm font-bold transition-all ${
+                     isSelected
+                       ? `${badge.bg} ${badge.border} ${badge.color}`
                        : 'bg-black/40 border-gray-900/50 text-gray-400 hover:border-gray-800 hover:text-gray-200'
                    }`}
                  >
@@ -166,14 +166,14 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
             aria-expanded={expandedSections.categories}
             aria-controls="categories-panel"
           >
-            <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Categories</span>
+            <span className="text-[11px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Categories</span>
             {expandedSections.categories ? (
               <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
             ) : (
               <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
             )}
           </button>
-          
+
           <div
             id="categories-panel"
             className={`space-y-1.5 transition-all duration-${ANIMATION.ACCORDION_DURATION} ${
@@ -185,7 +185,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
             {categories.map((category) => (
               <label
                 key={category.slug}
-                className="flex items-center gap-2.5 text-[11px] text-gray-400 hover:text-white cursor-pointer transition-colors group/label"
+                className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-white cursor-pointer transition-colors group/label"
               >
                 <div className="relative flex items-center">
                   <input
@@ -207,7 +207,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
                 <span className={`group-hover/label:text-blue-400 transition-colors ${category.count === 0 ? 'opacity-20 cursor-not-allowed' : ''}`}>
                   {category.name}
                 </span>
-                <span className="ml-auto text-[9px] font-mono font-bold text-gray-500 group-hover/label:text-blue-500/80 transition-colors">
+                <span className="ml-auto text-[11px] font-mono font-bold text-gray-500 group-hover/label:text-blue-500/80 transition-colors">
                   {category.count}
                 </span>
               </label>
@@ -224,14 +224,14 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
               aria-expanded={expandedSections.tags}
               aria-controls="tags-panel"
             >
-              <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Tags</span>
+              <span className="text-[11px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Tags</span>
               {expandedSections.tags ? (
                 <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
               ) : (
                 <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
               )}
             </button>
-            
+
             <div
               id="tags-panel"
               className={`space-y-1.5 transition-all duration-${ANIMATION.ACCORDION_DURATION} ${
@@ -242,7 +242,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
               {tags.map((tag) => (
                 <label
                   key={tag.slug}
-                  className="flex items-center gap-2.5 text-[11px] text-gray-400 hover:text-white cursor-pointer transition-colors group/label"
+                  className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-white cursor-pointer transition-colors group/label"
                 >
                   <div className="relative flex items-center">
                     <input

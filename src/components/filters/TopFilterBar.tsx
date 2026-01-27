@@ -67,8 +67,8 @@ export function TopFilterBar({ totalCount }: TopFilterBarProps) {
   return (
     <div className="mb-6 flex items-center justify-between">
       {/* Results Counter - Live Region */}
-      <div 
-        className="px-3 py-1.5 bg-blue-500/5 border border-blue-500/10 rounded text-[10px] font-black font-mono text-blue-500/80 uppercase tracking-widest"
+      <div
+        className="px-3 py-1.5 bg-blue-500/5 border border-blue-500/10 rounded text-xs font-black font-mono text-blue-500/80 uppercase tracking-widest"
         role="status"
         aria-live="polite"
         aria-atomic="true"
@@ -77,12 +77,12 @@ export function TopFilterBar({ totalCount }: TopFilterBarProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        <label htmlFor="sort-dropdown" className="text-[10px] font-black text-gray-400 uppercase tracking-widest hidden sm:inline">Sort Mode:</label>
+        <label htmlFor="sort-dropdown" className="text-xs font-black text-gray-400 uppercase tracking-widest hidden sm:inline">Sort Mode:</label>
         <select
           id="sort-dropdown"
           value={currentSort}
           onChange={(e) => handleSortChange(e.target.value)}
-          className="px-3 py-2 bg-[#050505] border border-white/[0.05] rounded text-white/80 focus:outline-none focus:border-blue-500/30 cursor-pointer text-[11px] font-bold hover:border-white/10 transition-colors appearance-none"
+          className="px-3 py-2 bg-[#050505] border border-white/[0.05] rounded text-white/80 focus:outline-none focus:border-blue-500/30 cursor-pointer text-sm font-bold hover:border-white/10 transition-colors appearance-none"
           aria-label="Sort resources by"
           data-testid="sort-dropdown"
         >

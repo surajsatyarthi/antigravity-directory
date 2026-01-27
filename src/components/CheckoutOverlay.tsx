@@ -8,6 +8,7 @@ interface CheckoutOverlayProps {
   onClose: () => void;
   onSuccess: (paymentData: any) => void;
   submissionTitle: string;
+  resourceId: string;
 }
 
 const TIERS = [
@@ -39,7 +40,7 @@ const TIERS = [
   }
 ];
 
-export function CheckoutOverlay({ isOpen, onClose, onSuccess, submissionTitle }: CheckoutOverlayProps) {
+export function CheckoutOverlay({ isOpen, onClose, onSuccess, submissionTitle, resourceId }: CheckoutOverlayProps) {
   const [selectedTier, setSelectedTier] = useState(TIERS[1]); // Default to Standard
   const [isPaypalReady, setIsPaypalReady] = useState(false);
   const [isRazorpayReady, setIsRazorpayReady] = useState(false);
@@ -47,10 +48,19 @@ export function CheckoutOverlay({ isOpen, onClose, onSuccess, submissionTitle }:
   const paypalContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Detect Location
+    // Detect Location with Session Caching
+    const cachedCountry = typeof window !== 'undefined' ? sessionStorage.getItem('checkout_country_code') : null;
+    if (cachedCountry) {
+      setCountryCode(cachedCountry);
+      return;
+    }
+
     fetch('https://ipapi.co/json/')
       .then(res => res.json())
-      .then(data => setCountryCode(data.country_code))
+      .then(data => {
+        setCountryCode(data.country_code);
+        sessionStorage.setItem('checkout_country_code', data.country_code);
+      })
       .catch(() => setCountryCode('US')); // Fallback to US
   }, []);
 
@@ -102,10 +112,15 @@ export function CheckoutOverlay({ isOpen, onClose, onSuccess, submissionTitle }:
               const res = await fetch('/api/checkout/create-order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: selectedTier.price }),
+                body: JSON.stringify({ 
+                  amount: parseFloat(selectedTier.price), 
+                  currency: 'USD',
+                  resourceId 
+                }),
               });
               const order = await res.json();
-              return order.id;
+              if (order.error) throw new Error(order.error);
+              return order.orderId;
             },
             onApprove: async (data: any) => {
               const res = await fetch('/api/checkout/capture-payment', {
@@ -133,12 +148,16 @@ export function CheckoutOverlay({ isOpen, onClose, onSuccess, submissionTitle }:
       const res = await fetch('/api/checkout/razorpay/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: selectedTier.price }),
+        body: JSON.stringify({ 
+          amount: parseFloat(selectedTier.price),
+          currency: 'USD',
+          resourceId
+        }),
       });
       const order = await res.json();
 
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'rzp_live_S3FY5pOzbF56yh',
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: order.amount,
         currency: order.currency,
         name: 'Antigravity Directory',

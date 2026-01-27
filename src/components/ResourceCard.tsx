@@ -23,147 +23,116 @@ interface ResourceCardProps {
 
 export function ResourceCard({ resource }: ResourceCardProps) {
   const isFeatured = resource.featured;
-  
+
   return (
-    <div className={`group relative flex flex-col bg-[#050505] border rounded-lg overflow-hidden hover:border-blue-500/50 hover:bg-white/[0.01] transition-all duration-300 h-full focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
-      isFeatured 
-        ? 'border-yellow-500/40 animate-featured-pulse' 
+    <div className={`group relative flex items-center bg-[#050505] border rounded-lg overflow-hidden hover:border-blue-500/50 hover:bg-white/[0.01] transition-all duration-300 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
+      isFeatured
+        ? 'border-yellow-500/40'
         : 'border-white/[0.05]'
     }`}>
-      {isFeatured && <div className="shimmer-sweep pointer-events-none" />}
-      
+
       <Link href={`/t/${resource.slug}`} className="absolute inset-0 z-20 outline-none">
         <span className="sr-only">View details for {resource.title}: {resource.description}</span>
       </Link>
-      
-      {/* Featured Ribbon / Badge */}
+
+      {/* Featured Ribbon */}
       {isFeatured && (
-        <div className="absolute top-0 right-0 z-30 flex items-center gap-1.5 px-2 py-1 bg-yellow-500/10 border-b border-l border-yellow-500/20 rounded-bl-lg backdrop-blur-sm">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-live-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
-          </span>
+        <div className="absolute top-0 right-0 z-30 flex items-center gap-1.5 px-2 py-1 bg-yellow-500/15 border-b border-l border-yellow-500/30 rounded-bl-lg backdrop-blur-sm">
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
           <span className="text-[7px] font-black text-yellow-500 uppercase tracking-[0.2em]">Featured</span>
         </div>
       )}
-      
-      <div className="p-3 flex flex-col h-full relative z-10">
-        {/* Header Section: Integrations & Badges */}
-        <div className="flex items-center justify-between gap-2 mb-2.5">
-          <div className="flex items-center gap-1 overflow-hidden">
-            {resource.integrations && resource.integrations.length > 0 && (
-              <div 
-                className="flex items-center gap-1 mr-1"
-                aria-label={`Built with: ${resource.integrations.join(', ')}`}
-              >
-                {resource.integrations.slice(0, MAX_INTEGRATION_ICONS).map((integration, idx) => (
-                  <div
-                    key={idx}
-                    className="w-4 h-4 rounded-md bg-gray-950 border border-gray-900 flex items-center justify-center shrink-0"
-                    title={integration}
-                  >
-                    <Package className="w-2 h-2 text-gray-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
-                  </div>
-                ))}
-              </div>
-            )}
-            
-            <span className="px-1.5 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-[8px] font-black text-blue-400 uppercase tracking-widest whitespace-nowrap">
-              {resource.categoryName || 'General'}
-            </span>
 
-            {resource.badgeType === 'editors_choice' && (
-              <span className="px-1.5 py-0.5 rounded bg-yellow-500/10 border border-yellow-500/20 text-[8px] font-black text-yellow-500 uppercase tracking-widest whitespace-nowrap shadow-[0_0_8px_rgba(234,179,8,0.1)]">
-                Editor's Choice
-              </span>
-            )}
-            {resource.badgeType === 'trending' && (
-              <span className="px-1.5 py-0.5 rounded bg-purple-500/10 border border-purple-500/20 text-[8px] font-black text-purple-400 uppercase tracking-widest whitespace-nowrap shadow-[0_0_8px_rgba(168,85,247,0.1)]">
-                Trending
-              </span>
-            )}
-            {resource.badgeType === 'users_choice' && (
-              <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[8px] font-black text-emerald-400 uppercase tracking-widest whitespace-nowrap shadow-[0_0_8px_rgba(16,185,129,0.1)]">
-                User's Choice
-              </span>
-            )}
-            
-            {resource.status === 'VETTING' && (
-              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/5 border border-emerald-500/10 text-[7px] font-black text-emerald-500/80 uppercase tracking-widest whitespace-nowrap bg-clip-text">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                </span>
-                Vetting In Progress
-              </div>
-            )}
-          </div>
-
-          {(isFeatured || resource.badgeType === 'editors_choice') && (
-            <div 
-              className={`shrink-0 h-4.5 w-4.5 flex items-center justify-center rounded-full border ${
-                resource.badgeType === 'editors_choice' 
-                  ? 'bg-yellow-500/10 border-yellow-500/30' 
-                  : 'bg-yellow-500/5 border-yellow-500/10'
-              }`}
-              aria-label={resource.badgeType === 'editors_choice' ? "Editor's Choice" : "Featured Resource"}
+      <div className="flex items-center gap-4 w-full p-4 relative z-10">
+        {/* Left: Badges & Category */}
+        <div className="flex items-center gap-2 shrink-0">
+          {resource.integrations && resource.integrations.length > 0 && (
+            <div
+              className="flex items-center gap-1.5"
+              aria-label={`Built with: ${resource.integrations.join(', ')}`}
             >
-              <Star className={`w-2.5 h-2.5 ${resource.badgeType === 'editors_choice' ? 'fill-yellow-500 text-yellow-500' : 'fill-yellow-500/80 text-yellow-500/80'}`} aria-hidden="true" />
+              {resource.integrations.slice(0, MAX_INTEGRATION_ICONS).map((integration, idx) => (
+                <div
+                  key={idx}
+                  className="w-5 h-5 rounded-md bg-gray-950 border border-gray-900 flex items-center justify-center shrink-0"
+                  title={integration}
+                >
+                  <Package className="w-2.5 h-2.5 text-gray-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
+                </div>
+              ))}
             </div>
           )}
+
+          <span className="px-2 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-[9px] font-black text-blue-400 uppercase tracking-widest whitespace-nowrap">
+            {resource.categoryName || 'General'}
+          </span>
+
+          {resource.badgeType === 'editors_choice' && (
+            <span className="px-2 py-1 rounded bg-yellow-500/10 border border-yellow-500/20 text-[9px] font-black text-yellow-500 uppercase tracking-widest whitespace-nowrap">
+              Editor's
+            </span>
+          )}
+          {resource.badgeType === 'trending' && (
+            <span className="px-2 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-[9px] font-black text-purple-400 uppercase tracking-widest whitespace-nowrap">
+              Trending
+            </span>
+          )}
+          {resource.badgeType === 'users_choice' && (
+            <span className="px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-black text-emerald-400 uppercase tracking-widest whitespace-nowrap">
+              User's
+            </span>
+          )}
         </div>
-        
-        {/* Title & Description */}
-        <div className="flex-1 mb-3">
-          <h3 className="text-[13px] font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1 mb-1 tracking-tightest">
+
+        {/* Middle: Title & Description */}
+        <div className="flex-1 min-w-0">
+          <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors mb-1 tracking-tight leading-tight truncate">
             {resource.title}
           </h3>
-          <p className="text-[11px] text-gray-400 line-clamp-2 font-medium leading-[1.3] transition-opacity">
+          <p className="text-sm text-gray-400 line-clamp-1 font-medium">
             {resource.description}
           </p>
         </div>
-        
-        {/* Footer Section: Stats & Persistence */}
-        <div className="pt-2.5 border-t border-white/[0.03] flex items-center justify-between mt-auto">
-          <div className="flex items-center gap-2.5">
+
+        {/* Right: Stats & Actions */}
+        <div className="flex items-center gap-4 shrink-0">
+          <div className="flex items-center gap-3">
             {/* Rating */}
-            <div 
-              className="flex items-center gap-1 group/stat"
+            <div
+              className="flex items-center gap-1.5"
               aria-label={`Rating: ${Number(resource.avgRating).toFixed(1)} stars out of ${resource.ratingCount} reviews`}
             >
-              <div className="flex items-center gap-1 text-yellow-500/80">
-                <Star className="w-2 h-2 fill-current" aria-hidden="true" />
-                <span className="text-[10px] font-bold font-mono">
-                  {Number(resource.avgRating).toFixed(1)}
-                </span>
-              </div>
-              <span className="text-gray-500 text-[8px] font-mono font-bold">
+              <Star className="w-3.5 h-3.5 fill-yellow-500/90 text-yellow-500/90" aria-hidden="true" />
+              <span className="text-sm font-bold font-mono text-white">
+                {Number(resource.avgRating).toFixed(1)}
+              </span>
+              <span className="text-gray-500 text-xs font-mono font-bold">
                 ({resource.ratingCount})
               </span>
             </div>
 
             {/* Views */}
-            <div 
-              className="flex items-center gap-1 text-gray-500 group/stat"
+            <div
+              className="flex items-center gap-1.5"
               aria-label={`${resource.views} views`}
             >
-              <Eye className="w-2.5 h-2.5 text-gray-600" aria-hidden="true" />
-              <span className="text-[10px] font-bold font-mono text-gray-500">
+              <Eye className="w-3.5 h-3.5 text-gray-600" aria-hidden="true" />
+              <span className="text-sm font-bold font-mono text-gray-500">
                 {resource.views >= 1000 ? `${(resource.views / 1000).toFixed(1)}k` : resource.views}
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 relative z-30">
-             <BookmarkButton 
-              resourceId={resource.id} 
-              initialIsBookmarked={!!resource.isBookmarked} 
+          <div className="flex items-center gap-2 relative z-30">
+            <BookmarkButton
+              resourceId={resource.id}
+              initialIsBookmarked={!!resource.isBookmarked}
             />
-            <div 
-              className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-950 border border-gray-900 text-gray-400 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
+            <div
+              className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-950 border border-gray-900 text-gray-400 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
               aria-hidden="true"
             >
-              <ArrowRight className="w-3 h-3" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </div>
         </div>
