@@ -11,6 +11,7 @@ interface RazorpayOrderParams {
   amount: number; // In rupees
   currency: string;
   receipt?: string;
+  notes?: Record<string, string>;
 }
 
 interface RazorpayOrder {
@@ -38,7 +39,7 @@ const verifiedPayments = new Set<string>();
  * Create a Razorpay order
  */
 export async function createRazorpayOrder(params: RazorpayOrderParams): Promise<RazorpayOrder> {
-  const { amount, currency, receipt } = params;
+  const { amount, currency, receipt, notes } = params;
 
   // Validate amount
   if (amount <= 0) {
@@ -67,6 +68,7 @@ export async function createRazorpayOrder(params: RazorpayOrderParams): Promise<
       amount: amountInPaise,
       currency,
       receipt: receipt || `receipt_${Date.now()}`,
+      ...(notes && { notes }),
     }),
   });
 
