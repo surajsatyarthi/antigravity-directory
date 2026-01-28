@@ -7,6 +7,7 @@ export interface EnrichmentStats {
   enriched: number;
   failed: number;
   skipped: number;
+  creditsUsed: number;
 }
 
 /**
