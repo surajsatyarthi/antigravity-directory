@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, integer, boolean, primaryKey } from 'drizzle-orm/pg-core';
+import { pgTable, text, varchar, timestamp, integer, boolean, primaryKey } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 import type { AdapterAccount } from '@auth/core/adapters';
 
@@ -233,7 +233,7 @@ export const payments = pgTable('payments', {
   userId: text('user_id').references(() => users.id, { onDelete: 'set null' }),
   resourceId: text('resource_id').references(() => resources.id, { onDelete: 'set null' }),
   amount: integer('amount').notNull(), // Amount in cents/paise
-  currency: text('currency', { length: 3 }).notNull(), // USD, INR, etc.
+  currency: varchar('currency', { length: 3 }).notNull(), // USD, INR, etc.
   paymentMethod: text('payment_method').notNull(), // 'paypal' | 'razorpay'
   transactionId: text('transaction_id').notNull().unique(), // External ID
   status: text('status').notNull().default('PENDING'), // 'PENDING' | 'SUCCEEDED' | 'FAILED'
