@@ -13,8 +13,13 @@ interface CapturePayPalOrderRequest {
 export async function POST(request: NextRequest) {
   try {
     // Rate Limit: 10 requests per minute for capture (more lenient as it requires orderId)
-    const ratelimitResponse = await rateLimit(request, { limit: 10, windowMs: 60000 });
-    if (ratelimitResponse) return ratelimitResponse;
+    const rateLimitResult = await rateLimit(request, 10, 60000);
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429, headers: { "Retry-After": Math.ceil((rateLimitResult.reset - Date.now()) / 1000).toString() } }
+      );
+    }
 
     const body: CapturePayPalOrderRequest = await request.json();
     const { orderId } = body;

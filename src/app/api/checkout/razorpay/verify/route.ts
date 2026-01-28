@@ -9,8 +9,13 @@ import { checkRateLimit as rateLimit } from '@/lib/ratelimit';
 export async function POST(request: NextRequest) {
   try {
     // Rate Limit: 10 requests per minute for verification
-    const ratelimitResponse = await rateLimit(request, { limit: 10, windowMs: 60000 });
-    if (ratelimitResponse) return ratelimitResponse;
+    const rateLimitResult = await rateLimit(request, 10, 60000);
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429, headers: { "Retry-After": Math.ceil((rateLimitResult.reset - Date.now()) / 1000).toString() } }
+      );
+    }
 
     const signatureHeader = request.headers.get('x-razorpay-signature');
     const rawBody = await request.text();

@@ -19,8 +19,13 @@ const MAX_AMOUNT = 10000;
 export async function POST(request: NextRequest) {
   try {
     // Rate Limit: 5 requests per minute for order creation
-    const ratelimitResponse = await rateLimit(request, { limit: 5, windowMs: 60000 });
-    if (ratelimitResponse) return ratelimitResponse;
+    const rateLimitResult = await rateLimit(request, 5, 60000);
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429, headers: { "Retry-After": Math.ceil((rateLimitResult.reset - Date.now()) / 1000).toString() } }
+      );
+    }
 
     // Parse request body
     const body: CreatePayPalOrderRequest = await request.json();
