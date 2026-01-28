@@ -4,7 +4,7 @@ import { db } from '@/lib/db';
 import { payments, resources } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
 
-import { rateLimit } from '@/lib/ratelimit';
+import { checkRateLimit as rateLimit } from '@/lib/ratelimit';
 
 interface CapturePayPalOrderRequest {
   orderId: string;

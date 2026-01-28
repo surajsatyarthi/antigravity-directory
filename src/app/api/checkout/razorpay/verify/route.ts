@@ -4,7 +4,7 @@ import { payments, resources } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
 import crypto from 'crypto';
 
-import { rateLimit } from '@/lib/ratelimit';
+import { checkRateLimit as rateLimit } from '@/lib/ratelimit';
 
 export async function POST(request: NextRequest) {
   try {

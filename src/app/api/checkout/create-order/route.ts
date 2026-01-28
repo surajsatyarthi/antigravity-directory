@@ -4,7 +4,7 @@ import { db } from '@/lib/db';
 import { payments } from '@/drizzle/schema';
 import { auth } from '@/auth';
 
-import { rateLimit } from '@/lib/ratelimit';
+import { checkRateLimit as rateLimit } from '@/lib/ratelimit';
 
 interface CreatePayPalOrderRequest {
   amount: number;
