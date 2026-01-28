@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
 interface RateLimitStore {
   [key: string]: {
@@ -9,42 +9,49 @@ interface RateLimitStore {
 
 const store: RateLimitStore = {};
 
-interface Options {
+interface RateLimitResult {
+  success: boolean;
   limit: number;
-  windowMs: number;
+  remaining: number;
+  reset: number;
 }
 
 /**
  * Basic in-memory rate limiter for Edge/Serverless environments.
  * For production with high traffic, use Redis.
+ *
+ * Default: 100 requests per 15 minutes per IP
  */
-export async function rateLimit(request: NextRequest, options: Options) {
+export async function checkRateLimit(
+  request: NextRequest,
+  limit: number = 100,
+  windowMs: number = 15 * 60 * 1000
+): Promise<RateLimitResult> {
   const ip = request.headers.get('x-forwarded-for') || 'anonymous';
   const now = Date.now();
-  const windowMs = options.windowMs;
-  const limit = options.limit;
 
   if (!store[ip] || now > store[ip].resetTime) {
     store[ip] = {
       count: 1,
       resetTime: now + windowMs,
     };
-    return null;
+    return {
+      success: true,
+      limit,
+      remaining: limit - 1,
+      reset: store[ip].resetTime,
+    };
   }
 
   store[ip].count++;
 
-  if (store[ip].count > limit) {
-    return NextResponse.json(
-      { error: 'Too many requests. Please try again later.' },
-      { 
-        status: 429,
-        headers: {
-          'Retry-After': Math.ceil((store[ip].resetTime - now) / 1000).toString(),
-        }
-      }
-    );
-  }
+  const remaining = Math.max(0, limit - store[ip].count);
+  const success = store[ip].count <= limit;
 
-  return null;
+  return {
+    success,
+    limit,
+    remaining,
+    reset: store[ip].resetTime,
+  };
 }
