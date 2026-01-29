@@ -95,7 +95,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="text-xs font-black text-emerald-500 uppercase tracking-widest leading-none">
-              Limited: Founding 50 spots remaining
+              Launch Pricing - Early Adopter Rate
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter mb-4">

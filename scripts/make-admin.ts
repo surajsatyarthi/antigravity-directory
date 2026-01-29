@@ -11,7 +11,7 @@ import { eq } from 'drizzle-orm';
 
 async function makeAdmin() {
   try {
-    console.log('\n🔍 Making csuitebrandagency@gmail.com an admin...\n');
+    console.log('\n🔍 Making directoryantigravity@gmail.com an admin...\n');
     
     const result = await db
       .update(users)
@@ -19,7 +19,7 @@ async function makeAdmin() {
         role: 'ADMIN',
         updatedAt: new Date()
       })
-      .where(eq(users.email, 'csuitebrandagency@gmail.com'))
+      .where(eq(users.email, 'directoryantigravity@gmail.com'))
       .returning();
 
     if (result.length > 0) {

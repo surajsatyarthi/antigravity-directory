@@ -27,8 +27,13 @@ export async function generateMetadata({
   if (categories) return { title: `Filtered Resources` };
   
   return {
-    title: "Antigravity Directory",
-    description: "The premier independent directory for Antigravity resources, rules, and MCP servers.",
+    title: "Google Antigravity Directory - 500+ Curated MCP Servers & AI Tools",
+    description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, prompts, and workflows for Gemini 3-powered agentic development. Free resources for developers.",
+    openGraph: {
+      title: "Google Antigravity Directory - 500+ Curated Resources",
+      description: "The complete resource hub for Google Antigravity IDE. 500+ MCP servers, rules, and prompts.",
+      type: "website"
+    }
   };
 }
 
