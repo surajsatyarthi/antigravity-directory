@@ -30,7 +30,7 @@ Currently, your tool's listing on Antigravity is "Unverified," which means you'r
 2. A Permanent Do-Follow link for your domain authority.
 3. Priority placement in our Weekly Newsletter (15k+ subscribers).
 
-We have an open "Founding 50" slot for your sector. You can claim it and verify your data here:
+We're offering early adopter pricing for verified listings. You can claim your listing and verify your data here:
 ${loginUrl}
 
 Looking forward to seeing ${target.name} in the inner circle.

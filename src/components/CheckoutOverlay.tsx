@@ -25,7 +25,7 @@ const TIERS = [
     name: 'Standard',
     price: '49',
     desc: 'Verified badge and priority review within 24 hours.',
-    features: ['Priority Review (24h)', 'Verified Badge', 'Do-Follow Link (Permanent)', 'Founding 50 Badge'],
+    features: ['Priority Review (24h)', 'Verified Badge', 'Do-Follow Link (Permanent)', 'Early Adopter Badge'],
     color: 'emerald',
     popular: false
   },
