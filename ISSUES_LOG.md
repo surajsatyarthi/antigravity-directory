@@ -26,6 +26,7 @@
 | **P1-3** | `RESOLVED` | `P1`     | Security audit: 8 dangerouslySetInnerHTML  | Antigravity | 6 hrs  | Security Law   |
 | **P1-4** | `RESOLVED` | `P1`     | Add 5 new high-intent comparison pairs     | Antigravity | 24 hrs | Competitor Gap |
 | **P1-5** | `OPEN`     | `P1`     | Implement Live Intelligence metadata badge | Antigravity | 8 hrs  | Strategy Audit |
+| **P1-6** | `RESOLVED` | `P1`     | Enable Supabase RLS policies               | Antigravity | 4 hrs  | Security Risk  |
 
 **Total P1 Effort**: 45 hours (~1.5 sprints)
 
