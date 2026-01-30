@@ -1,137 +1,129 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import Link from 'next/link';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
-import { Footer } from '@/components/Footer';
-import { getComparisonData } from '@/lib/comparison';
-import { Star, GitFork, ShieldCheck, Zap, Globe, Github } from 'lucide-react';
+import { notFound } from 'next/navigation';
+import { Check, X, ArrowLeft, Shield, Zap, Brain, Code } from 'lucide-react';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const [slug1, slug2] = slug.split('-vs-');
+// Data Source (In a real app, this would be a DB or MDX)
+const COMPARISONS = {
+  'cursor-vs-antigravity': {
+    title: "Cursor vs Antigravity",
+    p1: "Cursor",
+    p2: "Antigravity",
+    winner: "Antigravity",
+    summary: "Cursor is a general-purpose AI editor. Antigravity is a specialized 'Reasoning Environment' for Gemini 3. If you want autocomplete, use Cursor. If you want architecture, use Antigravity.",
+    rows: [
+      { feature: "Core Model", p1: "Claude 3.5 Sonnet", p2: "Gemini 3 Pro", p2Win: true, note: "Gemini 3 has 2M token context vs Claude's 200k." },
+      { feature: "Reasoning Depth", p1: "Standard", p2: "Deep Reasoning", p2Win: true, note: "Antigravity forces 'Think before Code' protocols." },
+      { feature: "Context Window", p1: "200k Tokens", p2: "2,000,000 Tokens", p2Win: true, note: "Antigravity holds your entire repo in memory." },
+      { feature: "IDE Integration", p1: "Visual Studio Code Fork", p2: "Protocol Layer", p2Win: false, note: "Cursor wins on native IDE feel. Antigravity is a protocol." },
+      { feature: "Cost", p1: "$20/mo", p2: "Free (Local)", p2Win: true, note: "Antigravity runs on your own API keys." }
+    ]
+  },
+  'nextjs-vs-remix': {
+    title: "Next.js vs Remix",
+    p1: "Remix",
+    p2: "Next.js",
+    winner: "Next.js",
+    summary: "Remix popularized data loaders, but Next.js 15's Server Actions + React Server Components provide a superior primitive for Agentic AI to reason about.",
+    rows: [
+        { feature: "AI Reasoning", p1: "Loaders (Implicit)", p2: "Server Actions (Explicit)", p2Win: true, note: "Agents understand functions better than HTTP loaders." },
+        { feature: "Ecosystem", p1: "Small", p2: "Massive", p2Win: true, note: "More 'Copy-Paste' patterns available for Next.js." },
+        { feature: "Deployment", p1: "Edge/Node", p2: "Vercel Optimized", p2Win: true, note: "Zero-config deployment is crucial for rapid agent iteration." }
+    ]
+  }
+};
+
+type Props = {
+  params: { slug: string }
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const data = COMPARISONS[params.slug as keyof typeof COMPARISONS];
+  if (!data) return { title: 'Comparison Not Found' };
   
-  if (!slug1 || !slug2) return { title: 'Comparison' };
-
-  const { toolA, toolB } = await getComparisonData(slug1, slug2);
-  
-  if (!toolA || !toolB) return { title: 'Comparison Not Found' };
-
-  const title = `${toolA.title} vs ${toolB.title}: Comparison | Antigravity AI Hub`;
-  const description = `Compare ${toolA.title} and ${toolB.title} features, GitHub stars, and user ratings to find the best AI tool for your workflow.`;
-
   return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: 'website',
-    }
+    title: `${data.title} | Antigravity Comparison Engine`,
+    description: data.summary,
   };
 }
 
-export default async function ComparisonPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { slug } = await params;
-  const [slug1, slug2] = slug.split('-vs-');
-  
-  if (!slug1 || !slug2) notFound();
+export default function ComparisonPage({ params }: Props) {
+  const data = COMPARISONS[params.slug as keyof typeof COMPARISONS];
 
-  const { toolA, toolB } = await getComparisonData(slug1, slug2);
-  
-  if (!toolA || !toolB) notFound();
+  if (!data) {
+    notFound();
+  }
 
   return (
-    <div className="min-h-screen bg-black flex flex-col">
-      <MarketplaceHeader />
+    <div className="min-h-screen bg-black text-white selection:bg-emerald-500/30">
       
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-12">
-        <div className="flex flex-col items-center mb-12">
-          <div className="flex items-center gap-8 mb-6">
-            <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white">{toolA.title}</h1>
-            <div className="h-16 w-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-              <span className="text-xl font-black text-blue-500 italic">VS</span>
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-xl border-b border-white/5">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+          <Link href="/vs" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+            Back to Comparisons
+          </Link>
+          <div className="font-bold text-white">Antigravity VS</div>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <div className="pt-32 pb-20 border-b border-white/10">
+        <div className="container mx-auto px-4 text-center">
+            <h1 className="text-5xl md:text-6xl font-black mb-6 tracking-tight">
+                {data.p1} <span className="text-gray-600">vs</span> <span className="text-emerald-400">{data.p2}</span>
+            </h1>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                {data.summary}
+            </p>
+        </div>
+      </div>
+
+      {/* Comparison Table */}
+      <div className="container mx-auto px-4 py-20">
+        <div className="max-w-4xl mx-auto bg-[#0A0A0A] border border-white/10 rounded-3xl overflow-hidden">
+            
+            {/* Table Header */}
+            <div className="grid grid-cols-3 p-6 border-b border-white/10 bg-white/5 font-mono text-sm uppercase tracking-wider text-gray-500">
+                <div className="pl-4">Feature</div>
+                <div className="text-center">{data.p1}</div>
+                <div className="text-center text-emerald-400 font-bold">{data.p2} (You)</div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white">{toolB.title}</h1>
-          </div>
-          <p className="text-gray-400 text-lg max-w-2xl text-center">
-            Detailed head-to-head comparison of two leading {toolA.categoryName} resources in the Antigravity ecosystem.
-          </p>
+
+            {/* Rows */}
+            <div className="divide-y divide-white/5">
+                {data.rows.map((row, idx) => (
+                    <div key={idx} className="grid grid-cols-3 p-6 hover:bg-white/[0.02] transition-colors items-center">
+                        <div className="pl-4 font-bold text-gray-300">
+                            {row.feature}
+                            <div className="text-xs text-gray-600 mt-1 font-normal font-mono">{row.note}</div>
+                        </div>
+                        <div className={`text-center flex flex-col items-center justify-center gap-2 ${!row.p2Win ? 'text-green-400 font-bold' : 'text-gray-500'}`}>
+                           {/* Logic inverted: if p2 win, p1 loses. If p2 lose, p1 wins */}
+                           {!row.p2Win && <Check className="w-5 h-5 mb-1" />}
+                           {row.p1}
+                        </div>
+                        <div className={`text-center flex flex-col items-center justify-center gap-2 ${row.p2Win ? 'text-emerald-400 font-bold' : 'text-gray-500'}`}>
+                            {row.p2Win && <Check className="w-5 h-5 mb-1" />}
+                            {row.p2}
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
-          {/* Comparison Cards */}
-          {[toolA, toolB].map((tool, idx) => (
-            <div key={tool.id} className="bg-white/[0.02] border border-white/10 rounded-3xl p-8 hover:border-blue-500/50 transition-all group">
-              <div className="flex items-center justify-between mb-8">
-                <span className="px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-sm font-bold border border-blue-500/20">
-                  {tool.categoryName}
-                </span>
-                {tool.verified && (
-                  <ShieldCheck className="w-6 h-6 text-blue-500" />
-                )}
-              </div>
-
-              <h2 className="text-3xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">{tool.title}</h2>
-              <p className="text-gray-400 mb-8 leading-relaxed h-24 overflow-hidden italic line-clamp-3">
-                {tool.description}
-              </p>
-
-              <div className="space-y-6">
-                {/* Stats Grid */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                    <div className="flex items-center gap-2 text-gray-400 mb-1 text-xs font-bold uppercase tracking-wider">
-                      <Star className="w-3.5 h-3.5" /> Stars
-                    </div>
-                    <div className="text-xl font-mono text-white">{(tool.githubStars || 0).toLocaleString()}</div>
-                  </div>
-                  <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                    <div className="flex items-center gap-2 text-gray-400 mb-1 text-xs font-bold uppercase tracking-wider">
-                      <Zap className="w-3.5 h-3.5" /> Rating
-                    </div>
-                    <div className="text-xl font-mono text-white">{(Number(tool.avgRating) || 0).toFixed(1)}</div>
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                  <div className="flex items-center gap-2 text-gray-400 mb-1 text-xs font-bold uppercase tracking-wider">
-                    <GitFork className="w-3.5 h-3.5" /> Forks
-                  </div>
-                  <div className="text-xl font-mono text-white">{(tool.githubForks || 0).toLocaleString()}</div>
-                </div>
-              </div>
-
-              <div className="mt-12 flex flex-col gap-4">
-                <Link 
-                  href={`/t/${tool.slug || ''}`}
-                  className="w-full py-4 rounded-2xl bg-white text-black font-black text-center hover:bg-gray-200 transition-all uppercase tracking-widest text-sm"
-                >
-                  View Details
-                </Link>
-                <a 
-                  href={tool.url || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-4 rounded-2xl bg-white/5 text-white border border-white/10 font-black text-center hover:bg-white/10 transition-all flex items-center justify-center gap-2 uppercase tracking-widest text-sm"
-                >
-                  {tool.url?.includes('github.com') ? <Github className="w-4 h-4" /> : <Globe className="w-4 h-4" />}
-                  Open Source
-                </a>
-              </div>
-            </div>
-          ))}
+        {/* CTA */}
+        <div className="mt-20 text-center">
+            <h3 className="text-2xl font-bold mb-6">Ready to upgrade from {data.p1}?</h3>
+            <Link href="/prompts" className="inline-flex items-center justify-center px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl transition-all hover:scale-105 active:scale-95 text-lg">
+                <Zap className="w-5 h-5 mr-2" />
+                Get Antigravity Prompts
+            </Link>
+            <p className="mt-4 text-sm text-gray-500">Instant Access • No Credit Card Required</p>
         </div>
-      </main>
 
-      <Footer />
+      </div>
     </div>
   );
 }
