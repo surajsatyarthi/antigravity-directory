@@ -9,7 +9,6 @@ import { TopFilterBar } from '@/components/filters/TopFilterBar';
 import { FilterPersistenceManager } from '@/components/filters/FilterPersistenceManager';
 import { ResourceCard } from '@/components/ResourceCard';
 import { Pagination } from '@/components/filters/Pagination';
-import { Footer } from '@/components/Footer';
 import { DirectoryIntelligence } from '@/components/DirectoryIntelligence';
 import { Testimonials } from '@/components/Testimonials';
 import { NewsletterCapture } from '@/components/NewsletterCapture';
@@ -155,8 +154,6 @@ export default async function HomePage({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
         <NewsletterCapture source="homepage" />
       </div>
-
-      <Footer />
     </>
   );
 }
