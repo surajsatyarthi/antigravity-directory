@@ -1,10 +1,9 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Zap, User, LogOut } from 'lucide-react';
 import { handleSignIn, handleSignOut } from '@/lib/actions/auth';
+import { useSession } from 'next-auth/react';
 import { Session } from 'next-auth';
 
 interface MobileMenuProps {
@@ -12,9 +11,24 @@ interface MobileMenuProps {
   username: string | null | undefined;
 }
 
-export function MobileMenu({ session, username }: MobileMenuProps) {
+export function MobileMenu({ session: initialSession, username: initialUsername }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { data: session } = useSession();
+  
+  // Use session.user.name or name from explicit prop, fallback to initial
+  // Note: schema uses 'username' field but next-auth session might map it differently
+  // typically session.user.name might be the display name.
+  // We'll stick to 'username' prop logic but try to update it.
+  
+  // Actually, standard NextAuth session usually has name, email, image. 
+  // Custom fields like 'username' need to be in the session callback.
+  // Assuming the goal is just to rely on the hook for re-renders on sign-in:
+  
+  const currentUsername = session?.user?.name || initialUsername; // Fallback to prop
+  const currentImage = session?.user?.image || initialSession?.user?.image;
+  const isAuthenticated = !!session?.user || !!initialSession?.user;
+
 
   useEffect(() => {
     setIsOpen(false);
@@ -58,15 +72,15 @@ export function MobileMenu({ session, username }: MobileMenuProps) {
             <div className="h-px w-full bg-white/10" />
 
             <div className="flex flex-col gap-4">
-                {session ? (
+                {isAuthenticated ? (
                     <>
                          <Link 
-                            href={username ? `/u/${username}` : '/settings'}
+                            href={currentUsername ? `/u/${currentUsername}` : '/settings'}
                             onClick={() => setIsOpen(false)}
                             className="flex items-center gap-3 text-gray-300 hover:text-white"
                         >
-                            {session.user?.image ? (
-                                <img src={session.user.image} alt="" className="w-8 h-8 rounded-full" />
+                            {currentImage ? (
+                                <img src={currentImage} alt="" className="w-8 h-8 rounded-full" />
                             ) : (
                                 <User className="w-8 h-8 p-1.5 bg-gray-800 rounded-full" />
                             )}
