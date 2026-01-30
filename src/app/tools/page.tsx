@@ -1,5 +1,5 @@
 import { MarketplaceHeader } from '@/components/MarketplaceHeader';
-import { Footer } from '@/components/Footer';
+
 import Link from 'next/link';
 import { Wrench, ShieldCheck, BarChart2, Star, Zap } from 'lucide-react';
 import { getTopTools } from '@/lib/queries';
@@ -73,7 +73,7 @@ export default async function ToolsPage() {
           </div>
         </div>
       </main>
-      <Footer />
+
     </>
   );
 }

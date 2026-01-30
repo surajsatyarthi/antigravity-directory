@@ -4,7 +4,7 @@ import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 import { db } from '@/lib/db';
 import { categories } from '@/drizzle/schema';
 import { SubmitForm } from '@/components/SubmitForm';
-import { Footer } from '@/components/Footer';
+
 
 export default async function SubmitPage() {
   const allCategories = await db.select().from(categories).orderBy(categories.order);
@@ -26,7 +26,7 @@ export default async function SubmitPage() {
         <SubmitForm categories={allCategories} />
       </main>
 
-      <Footer />
+
     </div>
   );
 }

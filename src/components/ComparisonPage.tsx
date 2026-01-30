@@ -1,6 +1,6 @@
 import { ComparisonData } from '@/data/comparisons';
 import { MarketplaceHeader } from './MarketplaceHeader';
-import { Footer } from './Footer';
+
 import { Check, X, Trophy, Minus } from 'lucide-react';
 import Link from 'next/link';
 
@@ -103,7 +103,7 @@ export function ComparisonPage({ comparison }: { comparison: ComparisonData }) {
         </div>
       </main>
 
-      <Footer />
+
     </div>
   );
 }
