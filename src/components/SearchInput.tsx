@@ -16,8 +16,9 @@ export function SearchInput() {
   
   // Track if the user has actually typed in THIS component
   const [isInteracted, setIsInteracted] = useState(false);
-  const [query, setQuery] = useState(searchParams.get('q') || '');
-  const lastSyncQuery = useRef(searchParams.get('q') || '');
+  // Initialize empty to prevent hydration mismatch and server de-opt
+  const [query, setQuery] = useState('');
+  const lastSyncQuery = useRef('');
 
   // 1. URL -> State (One-way downstream)
   // Ensures header search matches sidebar search
