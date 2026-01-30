@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { Search, X } from 'lucide-react';
 import { FILTERS, CATEGORY_GROUPS, CATEGORY_GROUP_LABELS } from '@/constants';
 import { MobileFilterDrawer } from './MobileFilterDrawer';
-import { CategoryWithCount, Tag } from '@/types';
+import { CategoryWithCount, Tag } from '@/types/database';
 
 interface TopFilterBarProps {
   totalCount: number;

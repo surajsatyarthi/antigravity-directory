@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { FilterSidebar } from './FilterSidebar';
 import { SlidersHorizontal, X } from 'lucide-react';
-import { CategoryWithCount, Tag } from '@/types';
+import { CategoryWithCount, Tag } from '@/types/database';
 
 interface MobileFilterDrawerProps {
   categories: CategoryWithCount[];
