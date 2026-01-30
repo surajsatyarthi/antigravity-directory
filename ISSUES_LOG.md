@@ -24,7 +24,7 @@
 | **P1-1** | `RESOLVED` | `P1`     | Username stale prop in MobileMenu          | Antigravity | 4 hrs  | Risk #1        |
 | **P1-2** | `RESOLVED` | `P1`     | SearchInput hydration layout shift risk    | Antigravity | 3 hrs  | Risk #3        |
 | **P1-3** | `RESOLVED` | `P1`     | Security audit: 8 dangerouslySetInnerHTML  | Antigravity | 6 hrs  | Security Law   |
-| **P1-4** | `OPEN`     | `P1`     | Add 5 new high-intent comparison pairs     | Antigravity | 24 hrs | Competitor Gap |
+| **P1-4** | `RESOLVED` | `P1`     | Add 5 new high-intent comparison pairs     | Antigravity | 24 hrs | Competitor Gap |
 | **P1-5** | `OPEN`     | `P1`     | Implement Live Intelligence metadata badge | Antigravity | 8 hrs  | Strategy Audit |
 
 **Total P1 Effort**: 45 hours (~1.5 sprints)
