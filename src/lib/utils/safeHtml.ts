@@ -1,9 +1,4 @@
-import DOMPurify from 'dompurify';
-import { JSDOM } from 'jsdom';
-
-// Create a window/document context for server-side sanitization if needed
-const window = new JSDOM('').window;
-const purify = DOMPurify(window as any);
+import DOMPurify from 'isomorphic-dompurify';
 
 /**
  * Sanitizes HTML to prevent XSS attacks
@@ -12,7 +7,7 @@ const purify = DOMPurify(window as any);
  */
 export function safeHtml(dirty: string): string {
   if (typeof dirty !== 'string') return '';
-  return purify.sanitize(dirty, {
+  return DOMPurify.sanitize(dirty, {
     ALLOWED_TAGS: [
       'p', 'br', 'b', 'i', 'em', 'strong', 'a',
       'ul', 'ol', 'li', 'code', 'pre', 'blockquote',
@@ -28,7 +23,7 @@ export function safeHtml(dirty: string): string {
  */
 export function safeMarkdownHtml(dirty: string): string {
   if (typeof dirty !== 'string') return '';
-  return purify.sanitize(dirty, {
+  return DOMPurify.sanitize(dirty, {
     ALLOWED_TAGS: [
       'p', 'br', 'b', 'i', 'em', 'strong', 'a',
       'ul', 'ol', 'li', 'code', 'pre', 'blockquote',
@@ -41,12 +36,5 @@ export function safeMarkdownHtml(dirty: string): string {
   });
 }
 
-/**
- * Sanitizes string for JSON-LD usage to prevent script injection
- * specifically escaping closing script tags
- */
-export function safeJsonLdString(dirty: string): string {
-  if (!dirty) return '';
-  // Encodes < and > to prevent </script> attacks
-  return dirty.replace(/</g, '\\u003c').replace(/>/g, '\\u003e');
-}
+// NOTE: safeJsonLdString has been moved to safeJsonLd.ts 
+// to allow usage in Client Components without pulling in jsdom.

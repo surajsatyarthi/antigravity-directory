@@ -39,8 +39,8 @@ CREATE POLICY "Users Create Submissions" ON submissions FOR INSERT WITH CHECK (a
 CREATE POLICY "Users Manage Bookmarks" ON bookmarks FOR ALL USING (auth.uid()::text = user_id);
 
 -- 5. ACCOUNTS & SESSIONS (Service role only typically, but allowing user read)
-CREATE POLICY "Users Read Own Account" ON accounts FOR SELECT USING (auth.uid()::text = user_id);
-CREATE POLICY "Users Read Own Session" ON sessions FOR SELECT USING (auth.uid()::text = user_id);
+CREATE POLICY "Users Read Own Account" ON accounts FOR SELECT USING (auth.uid()::text = "userId");
+CREATE POLICY "Users Read Own Session" ON sessions FOR SELECT USING (auth.uid()::text = "userId");
 
 -- 6. PAYMENTS (Strictly private)
 CREATE POLICY "Users Read Own Payments" ON payments FOR SELECT USING (auth.uid()::text = user_id);

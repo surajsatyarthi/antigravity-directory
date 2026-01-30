@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { submitResource } from '@/app/submit/actions';
 import { CheckoutOverlay } from './CheckoutOverlay';
+import { safeHtml } from '@/lib/utils/safeHtml';
 
 interface SubmitFormProps {
   categories: { id: string; name: string }[];
@@ -257,7 +258,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                     </button>
                     {openFaq === idx && (
                       <div className="px-5 pb-5 animate-in slide-in-from-top-2 duration-300">
-                        <p className="text-sm leading-relaxed text-gray-500 font-medium" dangerouslySetInnerHTML={{ __html: faq.a }} />
+                        <p className="text-sm leading-relaxed text-gray-500 font-medium" dangerouslySetInnerHTML={{ __html: safeHtml(faq.a) }} />
                       </div>
                     )}
                   </div>

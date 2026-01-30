@@ -9,7 +9,7 @@ import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 import { CitationBlock } from '@/components/CitationBlock';
 import { BadgeGenerator } from '@/components/BadgeGenerator';
 import { Footer } from '@/components/Footer';
-import { safeJsonLdString } from '@/lib/utils/safeHtml';
+import { safeJsonLd } from '@/lib/utils/safeJsonLd';
 
 export async function generateMetadata({
   params,
@@ -107,9 +107,9 @@ export default async function ResourceDetailPage({
   const softwareAppJsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": safeJsonLdString(resource.title),
-    "description": safeJsonLdString(resource.description),
-    "applicationCategory": safeJsonLdString(resource.categoryName || "AI Tool"),
+    "name": resource.title,
+    "description": resource.description,
+    "applicationCategory": resource.categoryName || "AI Tool",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": avgRating.toFixed(1),
@@ -134,30 +134,30 @@ export default async function ResourceDetailPage({
     "mainEntity": [
       {
         "@type": "Question",
-        "name": `What is ${safeJsonLdString(resource.title)}?`,
+        "name": `What is ${resource.title}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": safeJsonLdString(resource.description)
+          "text": resource.description
         }
       },
       {
         "@type": "Question",
-        "name": `Is ${safeJsonLdString(resource.title)} verified on Antigravity?`,
+        "name": `Is ${resource.title} verified on Antigravity?`,
         "acceptedAnswer": {
           "@type": "Answer",
           "text": resource.badgeType === 'editors_choice'
-            ? `${safeJsonLdString(resource.title)} is an Editor's Choice tool on the Antigravity Directory, personally verified for excellence.`
+            ? `${resource.title} is an Editor's Choice tool on the Antigravity Directory, personally verified for excellence.`
             : resource.verified 
-              ? `${safeJsonLdString(resource.title)} is a verified tool on the Antigravity Directory.`
-              : `${safeJsonLdString(resource.title)} is a community-submitted tool. We encourage users to verify its original documentation for details.`
+              ? `${resource.title} is a verified tool on the Antigravity Directory.`
+              : `${resource.title} is a community-submitted tool. We encourage users to verify its original documentation for details.`
         }
       },
       {
         "@type": "Question",
-        "name": `Where can I find alternatives to ${safeJsonLdString(resource.title)}?`,
+        "name": `Where can I find alternatives to ${resource.title}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `You can explore top-rated alternatives and similar tools to ${safeJsonLdString(resource.title)} in the ${safeJsonLdString(resource.categoryName || 'General')} category on Antigravity Directory.`
+          "text": `You can explore top-rated alternatives and similar tools to ${resource.title} in the ${resource.categoryName || 'General'} category on Antigravity Directory.`
         }
       }
     ]
@@ -182,6 +182,7 @@ export default async function ResourceDetailPage({
       {
         "@type": "ListItem",
         "position": 3,
+        "name": resource.title,
         "item": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory'}/t/${resource.slug}`
       }
     ]
@@ -192,15 +193,15 @@ export default async function ResourceDetailPage({
       {/* JSON-LD Layer (AEO) */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(softwareAppJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}
       />
       <MarketplaceHeader />
 

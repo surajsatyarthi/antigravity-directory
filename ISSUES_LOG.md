@@ -25,7 +25,7 @@
 | **P1-2** | `RESOLVED` | `P1`     | SearchInput hydration layout shift risk    | Antigravity | 3 hrs  | Risk #3        |
 | **P1-3** | `RESOLVED` | `P1`     | Security audit: 8 dangerouslySetInnerHTML  | Antigravity | 6 hrs  | Security Law   |
 | **P1-4** | `RESOLVED` | `P1`     | Add 5 new high-intent comparison pairs     | Antigravity | 24 hrs | Competitor Gap |
-| **P1-5** | `OPEN`     | `P1`     | Implement Live Intelligence metadata badge | Antigravity | 8 hrs  | Strategy Audit |
+| **P1-5** | `RESOLVED` | `P1`     | Implement Live Intelligence metadata badge | Antigravity | 8 hrs  | Strategy Audit |
 | **P1-6** | `RESOLVED` | `P1`     | Enable Supabase RLS policies               | Antigravity | 4 hrs  | Security Risk  |
 
 **Total P1 Effort**: 45 hours (~1.5 sprints)
@@ -34,11 +34,11 @@
 
 ## 🔒 RALPH PROTOCOL BREACHES
 
-| Breach ID | Gate     | Description                          | Status | Remediation                                    |
-| :-------- | :------- | :----------------------------------- | :----- | :--------------------------------------------- |
-| **B-001** | Gate 3   | No implementation_plan.md for Drawer | `OPEN` | Create `phase_2_execution_report_mobile_ux.md` |
-| **B-002** | Gate 9   | Missing UI proof screenshots         | `OPEN` | Capture on 3 devices + add to ui_verification  |
-| **B-003** | Gate 9.5 | No production verification log       | `OPEN` | Test on prod URL + timestamped screenshots     |
+| Breach ID | Gate     | Description                          | Status     | Remediation                                      |
+| :-------- | :------- | :----------------------------------- | :--------- | :----------------------------------------------- |
+| **B-001** | Gate 3   | No implementation_plan.md for Drawer | `RESOLVED` | Create `phase_2_execution_report_mobile_ux.md`   |
+| **B-002** | Gate 9   | Missing UI proof screenshots         | `RESOLVED` | See `walkthrough.md` for screenshots             |
+| **B-003** | Gate 9.5 | No production verification log       | `RESOLVED` | See `production_verification_sprint_20260130.md` |
 
 ---
 
@@ -127,12 +127,12 @@ useEffect(() => {
 **Files Requiring Audit** (8 total):
 
 1. ✅ `src/components/Analytics.tsx` - Safe (static GA4)
-2. ⚠️ `src/app/prompts/[slug]/page.tsx` - AUDIT NEEDED
-3. ⚠️ `src/app/google-antigravity/page.tsx` - AUDIT NEEDED
-4. ⚠️ `src/app/t/[slug]/page.tsx` - AUDIT NEEDED
-5. ⚠️ `src/app/u/[username]/page.tsx` - AUDIT NEEDED
-6. ⚠️ `src/app/categories/[slug]/page.tsx` - AUDIT NEEDED
-7. ⚠️ `src/components/SubmitForm.tsx` - AUDIT NEEDED
+2. ✅ `src/app/prompts/[slug]/page.tsx` - Refactored (safeJsonLd)
+3. ✅ `src/app/google-antigravity/page.tsx` - Refactored (safeJsonLd)
+4. ✅ `src/app/t/[slug]/page.tsx` - Refactored (safeJsonLd)
+5. ✅ `src/app/u/[username]/page.tsx` - Refactored (safeJsonLd)
+6. ✅ `src/app/categories/[slug]/page.tsx` - Refactored (safeJsonLd)
+7. ✅ `src/components/SubmitForm.tsx` - Refactored (safeHtml)
 
 **Action Plan**:
 
@@ -189,3 +189,32 @@ useEffect(() => {
 **Status**: 🟡 CONDITIONAL GO - Awaiting P0 Resolution
 **Responsible**: Antigravity Agent
 **Review Frequency**: Weekly during Phase 2
+
+---
+
+## 🚀 FUTURE TASKS & BACKLOG (Phase 3+)
+
+The following items are earmarked for future development and strategic implementation.
+
+| Task Category | Description                                   | Notes                          |
+| :------------ | :-------------------------------------------- | :----------------------------- |
+| **UX/UI**     | Mobile view of items                          | Optimization for small screens |
+| **Bug Fix**   | Filters not working                           | Needs investigation           |
+| **UI Polish** | Newsletter too big                            | Reduce component scale         |
+| **Content**   | Update footer notice                          | Legal/Copyright update         |
+| **Revenue**   | Submit promote advertise                      | Monetization flow              |
+| **Growth**    | Normal email signup                           | Standard lead gen              |
+| **Newsletter**| Newsletter template (2 promoted, 2 organic)   | Ad layout                      |
+| **Social**    | Twitter feed                                  | Integration                    |
+| **Social**    | Reddit rooms                                  | Community integration          |
+| **Social**    | Own Community                                 | Platform build                 |
+| **PR/Social** | As seen on                                    | Social proof section           |
+| **Dashboard** | Personal dashboard                            | User experience                |
+| **Dashboard** | Admin dashboard                               | System management              |
+| **Branding**  | Remove Gemini 3 powered                       | De-branding                    |
+| **Product**   | List resources as per antigravity model       | Research required              |
+| **Product**   | List antigravity for dummy guides             | Research required              |
+| **SEO**       | P seo                                         | Programmatic SEO work          |
+| **Mobile**    | Build app for Android and iOS                 | Native conversion              |
+| **Expansion** | Plugins (Edge, Chrome, Mozilla)               | Browser extensions             |
+| **Strategy**  | Target paying ICP                             | ICP refinement                 |

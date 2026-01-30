@@ -16,7 +16,7 @@ export function BadgeGenerator({ slug, title }: BadgeGeneratorProps) {
   const badgeUrl = `${siteUrl}/api/badges/${slug}`;
   const profileUrl = `${siteUrl}/t/${slug}`;
   
-  const embedCode = `<a href="${profileUrl}" target="_blank"><img src="${badgeUrl}" alt="Featured on Antigravity: ${title}" width="150" height="auto" /></a>`;
+  const embedCode = `<a href="${profileUrl}" target="_blank"><img src="${badgeUrl}" alt="Featured on Antigravity: ${title}" width="200" height="50" /></a>`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(embedCode);
@@ -38,13 +38,26 @@ export function BadgeGenerator({ slug, title }: BadgeGeneratorProps) {
 
       {/* Badge Preview */}
       <div className="flex justify-center mb-8">
-        <div className="px-6 py-3 bg-black border border-gray-800 rounded-xl flex items-center gap-3 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:scale-105 transition-transform cursor-pointer group">
-          <div className="w-6 h-6 bg-white rounded flex items-center justify-center">
-            <Zap className="w-4 h-4 text-black fill-black" />
-          </div>
-          <div className="text-left">
-            <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest leading-none">Featured on</div>
-            <div className="text-xs font-bold text-white font-mono lowercase tracking-tight">Antigravity</div>
+        <div className="w-[200px] h-[50px] relative rounded-lg overflow-hidden group shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:scale-105 transition-transform cursor-pointer">
+          {/* Simulated Dynamic Badge Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-black" />
+          <div className="absolute inset-[1px] rounded-[7px] border border-slate-700 pointer-events-none" />
+          
+          <div className="relative h-full flex items-center px-4 gap-3">
+             <div className="shrink-0 flex items-center justify-center">
+                <svg width="14" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 0L0 10H7L3 16L13 6H6L10 0Z" fill="white"/>
+                </svg>
+             </div>
+             
+             <div className="flex flex-col justify-center text-left">
+                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Featured on Antigravity</span>
+                <span className="text-[13px] font-bold text-white font-sans flex items-center gap-1.5">
+                   <span>👁 1.2k</span>
+                   <span className="text-slate-600">•</span>
+                   <span>★ 4.9</span>
+                </span>
+             </div>
           </div>
         </div>
       </div>
