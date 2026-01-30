@@ -9,6 +9,12 @@ type Props = {
   params: { slug: string }
 };
 
+export async function generateStaticParams() {
+  return Object.values(COMPARISONS).map((comp) => ({
+    slug: comp.id,
+  }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = COMPARISONS[params.slug];
   if (!data) return { title: 'Comparison Not Found' };
