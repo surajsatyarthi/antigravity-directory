@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Terminal, Copy, Command, Sparkles, MessageSquare, Code, ArrowRight } from 'lucide-react';
+import { Terminal, Copy, Command, Sparkles, MessageSquare, Code, ArrowRight, Globe } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: "Gemini 3 Coding Prompts | Antigravity Library",
@@ -13,36 +13,44 @@ export const metadata: Metadata = {
 
 const promptCategories = [
   {
-    id: "refactoring",
-    title: "Refactoring Agents",
-    description: "Prompts to guide Gemini 3 in safely restructuring legacy codebases without breaking functionality.",
-    icon: Code,
-    color: "text-emerald-400",
-    bg: "bg-emerald-400/10",
-  },
-  {
-    id: "testing",
-    title: "Test Generation",
-    description: "System instructions for generating comprehensive unit and integration tests (Jest, Vitest, PyTest).",
-    icon: Command,
+    id: "nextjs-agentic-patterns",
+    title: "Next.js 15 Architecture",
+    description: "Master Next.js 15 with Server Actions, Parallel Routes, and intelligent caching patterns.",
+    icon: Globe,
     color: "text-blue-400",
     bg: "bg-blue-400/10",
   },
   {
-    id: "documentation",
-    title: "Auto-Documentation",
-    description: "Prompts that force the AI to write clear, TSDoc/JSDoc compliant documentation.",
-    icon: MessageSquare,
-    color: "text-pink-400",
-    bg: "bg-pink-400/10",
+    id: "python-fastapi-best-practices",
+    title: "Python FastAPI Excellence",
+    description: "Build high-performance, async Python APIs with Pydantic validation and dependency injection.",
+    icon: Terminal,
+    color: "text-emerald-400",
+    bg: "bg-emerald-400/10",
   },
   {
-    id: "architecture",
-    title: "System Architecture",
-    description: "High-level planning prompts for designing scalable microservices and database schemas.",
-    icon: Terminal,
+    id: "react-typescript-modern",
+    title: "Modern React Patterns",
+    description: "Type-safe React state management, custom hooks, and reliable component patterns.",
+    icon: Code,
+    color: "text-cyan-400",
+    bg: "bg-cyan-400/10",
+  },
+  {
+    id: "docker-containerization",
+    title: "Docker Security",
+    description: "Secure, multi-stage Docker builds for Node.js and Python. Hardening guides included.",
+    icon: Command,
     color: "text-purple-400",
     bg: "bg-purple-400/10",
+  },
+  {
+    id: "typescript-advanced-types",
+    title: "Advanced TypeScript",
+    description: "Leveled-up patterns for generics, conditional types, and utility types.",
+    icon: Sparkles,
+    color: "text-yellow-400",
+    bg: "bg-yellow-400/10",
   }
 ];
 
@@ -68,18 +76,19 @@ export default function PromptsPage() {
 
       {/* Prompts Grid */}
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {promptCategories.map((category) => (
-            <div 
+            <Link 
               key={category.id} 
-              className="group relative p-8 bg-[#0A0A0A] border border-white/10 rounded-3xl hover:border-emerald-500/50 transition-all duration-300"
+              href={`/prompts/${category.id}`}
+              className="group relative p-8 bg-[#0A0A0A] border border-white/10 rounded-3xl hover:border-emerald-500/50 transition-all duration-300 block"
             >
               <div className="flex items-start justify-between mb-8">
                 <div className={`p-4 rounded-2xl ${category.bg}`}>
                   <category.icon className={`w-8 h-8 ${category.color}`} />
                 </div>
-                <div className="px-3 py-1 bg-white/5 rounded-full text-xs font-mono text-gray-500">
-                  Coming Soon
+                <div className="px-3 py-1 bg-white/5 rounded-full text-xs font-mono text-gray-500 group-hover:text-emerald-400 group-hover:bg-emerald-500/10 transition-colors">
+                  View Prompt
                 </div>
               </div>
               
@@ -87,21 +96,20 @@ export default function PromptsPage() {
                 {category.title}
               </h3>
               
-              <p className="text-gray-400 leading-relaxed mb-8">
+              <p className="text-gray-400 leading-relaxed mb-8 min-h-[80px]">
                 {category.description}
               </p>
               
-              <div className="bg-black/50 rounded-xl p-4 border border-white/5 font-mono text-xs text-gray-500 overflow-hidden relative">
-                <div className="absolute top-2 right-2 p-1 hover:bg-white/10 rounded cursor-pointer transition-colors">
-                    <Copy className="w-3 h-3 text-gray-400" />
+              <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                <div className="flex -space-x-2">
+                   <div className="w-8 h-8 rounded-full bg-gray-800 border border-black flex items-center justify-center text-xs">AI</div>
+                   <div className="w-8 h-8 rounded-full bg-gray-700 border border-black flex items-center justify-center text-xs">+2</div>
                 </div>
-                <code>
-                  Thinking Process...<br/>
-                  Analyze the codebase dependency graph...<br/>
-                  Identify circular deviations...
-                </code>
+                <span className="flex items-center gap-1 text-sm font-bold text-white group-hover:translate-x-1 transition-transform">
+                  Use Prompt <ArrowRight className="w-4 h-4" />
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
