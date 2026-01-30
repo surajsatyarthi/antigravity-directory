@@ -11,7 +11,7 @@ interface CheckoutOverlayProps {
   resourceId: string;
 }
 
-const TIERS = [
+const ALL_TIERS = [
   {
     id: 'FREE',
     name: 'Free',
@@ -40,8 +40,22 @@ const TIERS = [
   }
 ];
 
-export function CheckoutOverlay({ isOpen, onClose, onSuccess, submissionTitle, resourceId }: CheckoutOverlayProps) {
-  const [selectedTier, setSelectedTier] = useState(TIERS[1]); // Default to Standard
+const FREE_CATEGORIES = ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'];
+
+interface CheckoutOverlayProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSuccess: (paymentData: any) => void;
+  submissionTitle: string;
+  categoryName: string;
+  resourceId: string;
+}
+
+export function CheckoutOverlay({ isOpen, onClose, onSuccess, submissionTitle, categoryName, resourceId }: CheckoutOverlayProps) {
+  const isFreeCategory = FREE_CATEGORIES.includes(categoryName);
+  const TIERS = isFreeCategory ? ALL_TIERS.filter(t => t.id === 'FREE') : ALL_TIERS;
+
+  const [selectedTier, setSelectedTier] = useState(TIERS[isFreeCategory ? 0 : 1]); // Default to Free if forced, else Standard
   const [isPaypalReady, setIsPaypalReady] = useState(false);
   const [isRazorpayReady, setIsRazorpayReady] = useState(false);
   const [countryCode, setCountryCode] = useState<string | null>(null);
