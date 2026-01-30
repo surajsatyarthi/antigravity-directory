@@ -1,4 +1,5 @@
 import { RefreshCw, BarChart3, Search, ShieldCheck, Zap, Bot, Package } from 'lucide-react';
+import Link from 'next/link';
 
 export const DirectoryIntelligence = () => {
   return (
@@ -13,7 +14,7 @@ export const DirectoryIntelligence = () => {
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mb-4">
-            Google Antigravity <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Directory</span>
+            Antigravity <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Directory</span>
           </h1>
           
           <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">

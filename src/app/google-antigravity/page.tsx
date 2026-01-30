@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { ChevronRight, Star, ShieldCheck, Zap, BookOpen, Cloud, Code2, Terminal } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: "What is Google Antigravity? Complete Guide | Antigravity Directory",
-  description: "The definitive guide to Google Antigravity IDE. Learn how to use Gemini 3 for agentic coding, discover top MCP servers, and access 500+ rules and prompts.",
+  title: "What is Antigravity? Complete Guide | Antigravity Directory",
+  description: "The definitive guide to the Antigravity IDE. Learn how to use Gemini 3 for agentic coding, discover top MCP servers, and access 500+ rules and prompts.",
   openGraph: {
-    title: "Google Antigravity: The Complete Guide",
+    title: "Antigravity: The Complete Guide",
     description: "Master Google Antigravity IDE with our comprehensive guide. Everything you need to know about Gemini 3 agentic development.",
     type: "article",
     url: "https://googleantigravity.directory/google-antigravity",
@@ -77,7 +77,7 @@ export default function GoogleAntigravityPage() {
             <span>The Definitive Guide</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-6">
-            Google Antigravity: <br className="hidden md:block" />
+            Antigravity: <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">The Complete Guide</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10">

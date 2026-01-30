@@ -17,8 +17,8 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://googleantigravity.directory'),
   title: {
-    template: "%s | Google Antigravity Directory",
-    default: "Google Antigravity Directory | MCP Servers, Rules & Prompts",
+    template: "%s | Antigravity Directory",
+    default: "Antigravity Directory | MCP Servers, Rules & Prompts",
   },
   description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
   keywords: ["google antigravity", "antigravity ide", "mcp servers", "antigravity rules", "gemini 3", "ai coding", "agentic development", "antigravity prompts", "mcp directory"],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "Google Antigravity Directory",
+    title: "Antigravity Directory",
     description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
     url: "https://googleantigravity.directory",
     siteName: "Google Antigravity Directory",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Google Antigravity Directory | Google's AI Intelligence Hub",
+    title: "Antigravity Directory | AI Intelligence Hub",
     description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
     images: ["/twitter-image.png"],
   },
@@ -74,6 +74,13 @@ export default function RootLayout({
         <div id="main-content" tabIndex={-1} className="outline-none">
           {children}
         </div>
+        <footer className="py-8 border-t border-white/10 text-center">
+          <p className="text-gray-500 text-sm">
+            Antigravity Directory is an unofficial resource for the agentic coding community.
+            <br />
+            Not affiliated with Google. "Google Antigravity" is a keyword referring to the IDE.
+          </p>
+        </footer>
       </body>
     </html>
   );
