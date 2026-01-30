@@ -4,12 +4,16 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Search, X } from 'lucide-react';
 import { FILTERS, CATEGORY_GROUPS, CATEGORY_GROUP_LABELS } from '@/constants';
+import { MobileFilterDrawer } from './MobileFilterDrawer';
+import { CategoryWithCount, Tag } from '@/types';
 
 interface TopFilterBarProps {
   totalCount: number;
+  categories: CategoryWithCount[];
+  tags: Tag[];
 }
 
-export function TopFilterBar({ totalCount }: TopFilterBarProps) {
+export function TopFilterBar({ totalCount, categories, tags }: TopFilterBarProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   
@@ -77,6 +81,8 @@ export function TopFilterBar({ totalCount }: TopFilterBarProps) {
       </div>
 
       <div className="flex items-center gap-3">
+        <MobileFilterDrawer categories={categories} tags={tags} />
+        
         <label htmlFor="sort-dropdown" className="text-xs font-black text-gray-400 uppercase tracking-widest hidden sm:inline">Sort Mode:</label>
         <select
           id="sort-dropdown"

@@ -9,9 +9,10 @@ import { ANIMATION } from '@/constants';
 interface FilterSidebarProps {
   categories: CategoryWithCount[];
   tags: Tag[];
+  className?: string; // Allow overriding styles (e.g. for mobile drawer)
 }
 
-export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
+export function FilterSidebar({ categories, tags, className = "w-[240px] sticky top-20 h-fit" }: FilterSidebarProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -75,7 +76,7 @@ export function FilterSidebar({ categories, tags }: FilterSidebarProps) {
   
   return (
     <aside 
-      className="w-[240px] sticky top-20 h-fit"
+      className={className}
       role="complementary"
       aria-label="Filters"
     >
