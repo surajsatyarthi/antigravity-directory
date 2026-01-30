@@ -9,6 +9,7 @@ import { Footer } from '@/components/Footer';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { safeJsonLdString } from '@/lib/utils/safeHtml';
 
 export async function generateMetadata({
   params,
@@ -89,15 +90,15 @@ export default async function CategoryPage({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": `Best ${category.name} AI Tools`,
-    "description": category.description,
+    "name": `Best ${safeJsonLdString(category.name)} AI Tools`,
+    "description": safeJsonLdString(category.description || ''),
     "mainEntity": {
       "@type": "ItemList",
       "itemListElement": categoryResources.map((res, index) => ({
         "@type": "ListItem",
         "position": index + 1,
         "url": `/t/${res.slug}`,
-        "name": res.title
+        "name": safeJsonLdString(res.title)
       }))
     }
   };
