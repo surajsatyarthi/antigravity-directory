@@ -37,7 +37,7 @@ export async function MarketplaceHeader() {
         </Link>
 
         {/* Search Bar - Center */}
-        <div className="flex-1 max-w-xl flex items-center">
+        <div className="hidden md:flex flex-1 max-w-xl items-center">
           <Suspense fallback={
             <div className="w-full bg-[#050505] border border-white/[0.05] rounded-full h-9" />
           }>
