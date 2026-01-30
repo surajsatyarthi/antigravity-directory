@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Zap, User, LogOut } from 'lucide-react';
 import { handleSignIn, handleSignOut } from '@/lib/actions/auth';
 import { Session } from 'next-auth';
@@ -13,6 +14,11 @@ interface MobileMenuProps {
 
 export function MobileMenu({ session, username }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <>
