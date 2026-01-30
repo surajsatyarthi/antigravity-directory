@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { notFound } from 'next/navigation';
 import { Copy, Terminal, Check, Zap, ArrowRight, Code2, Globe, Shield, Scale } from 'lucide-react';
 import Link from 'next/link';
+import { safeJsonLd } from '@/lib/utils/safeJsonLd';
 
 // NOTE: In a real app, this would come from a database or MDX files
 const PROMPTS = {
@@ -207,7 +208,7 @@ export default function PromptDetailPage({ params }: { params: { slug: string } 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: safeJsonLd({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": prompt.title,

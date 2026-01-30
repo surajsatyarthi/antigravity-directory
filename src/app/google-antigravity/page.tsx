@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronRight, Star, ShieldCheck, Zap, BookOpen, Cloud, Code2, Terminal } from 'lucide-react';
+import { safeJsonLd } from '@/lib/utils/safeJsonLd';
 
 export const metadata: Metadata = {
   title: "What is Antigravity? Complete Guide | Antigravity Directory",
@@ -65,7 +66,7 @@ export default function GoogleAntigravityPage() {
     <div className="min-h-screen bg-black text-gray-200">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
       
       {/* Hero Section */}
