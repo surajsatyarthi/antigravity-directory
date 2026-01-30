@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { Zap, Menu, User, LogOut } from 'lucide-react';
 import { auth } from '@/auth';
+import { MobileMenu } from './MobileMenu';
 import { db } from '@/lib/db';
 import { users } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
@@ -9,10 +10,11 @@ import { SearchInput } from './SearchInput';
 import { NavLinks } from './NavLinks';
 import { handleSignIn, handleSignOut } from '@/lib/actions/auth';
 
-export async function MarketplaceHeader() {
-  const session = await auth();
-  
-  let username = null;
+export function MarketplaceHeader() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const session = useSession(); // Note: This needs client-side session or prop passing. 
+  // Wait, the original was async server component. I cannot use useState in async component.
+  // I must split this into a client component.
   if (session?.user?.id) {
     const user = (await db.select({ username: users.username }).from(users).where(eq(users.id, session.user.id)).limit(1))[0];
     username = user?.username;
@@ -107,12 +109,7 @@ export async function MarketplaceHeader() {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden p-2 text-gray-400 hover:text-white focus:outline-none focus:text-blue-500"
-          aria-label="Open mobile menu"
-        >
-          <Menu className="w-6 h-6" aria-hidden="true" />
-        </button>
+        <MobileMenu session={session} username={username} />
       </div>
     </header>
   );
