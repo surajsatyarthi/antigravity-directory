@@ -7,37 +7,13 @@ export const metadata: Metadata = {
   description: "Stop guessing. See exactly how Antigravity outperforms Cursor, Windsurf, and other AI editors for specialized agentic workflows.",
 };
 
-const comparisons = [
-  {
-    id: "cursor-vs-antigravity",
-    title: "Cursor vs Antigravity",
-    subtitle: "The Generalist vs The Specialist",
-    winner: "Antigravity",
-    description: "Cursor is great for general coding. Antigravity is built exclusively for Gemini 3 Agentic workflows.",
-    score: "9.8/10",
-    tags: ["Agentic AI", "Gemini 3", "System Prompts"]
-  },
-  {
-    id: "nextjs-vs-remix",
-    title: "Next.js vs Remix",
-    subtitle: "Server Actions vs Loaders",
-    winner: "Next.js",
-    description: "Why we standardized on Next.js 15 for all Antigravity agent patterns.",
-    score: "Win",
-    tags: ["Architecture", "React", "Performance"]
-  },
-  {
-    id: "windsurf-vs-antigravity",
-    title: "Windsurf vs Antigravity",
-    subtitle: "Flow State vs Deep Reasoning",
-    winner: "Antigravity",
-    description: "Windsurf focuses on autocomplete. Antigravity focuses on architectural reasoning and planning.",
-    score: "Win",
-    tags: ["IDE", "Workflow", "Planning"]
-  }
-];
+import { COMPARISONS } from '@/data/comparisons';
+
+// ... metadata ...
 
 export default function VSPage() {
+  const comparisonsList = Object.values(COMPARISONS);
+
   return (
     <div className="min-h-screen bg-black text-white selection:bg-emerald-500/30">
       
@@ -61,7 +37,7 @@ export default function VSPage() {
       {/* Comparisons Grid */}
       <div className="container mx-auto px-4 py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {comparisons.map((item) => (
+          {comparisonsList.map((item) => (
             <Link 
               key={item.id} 
               href={`/vs/${item.id}`}
