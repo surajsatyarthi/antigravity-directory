@@ -136,5 +136,23 @@ export const COMPARISONS: Record<string, ComparisonData> = {
         { feature: "Concurrency", p1: "Sync (Blocking)", p2: "Async (Native)", p2Win: true, note: "Streaming LLM tokens requires async." },
         { feature: "Documentation", p1: "Manual", p2: "Auto (OpenAPI)", p2Win: true, note: "Agents can read OpenAPI specs automatically." }
     ]
+  },
+  'supabase-vs-firebase': {
+    id: "supabase-vs-firebase",
+    title: "Supabase vs Firebase",
+    subtitle: "SQL Power vs NoSQL Lock-in",
+    p1: "Firebase",
+    p2: "Supabase",
+    winner: "Supabase",
+    summary: "Firebase is easy to start but hard to scale (NoSQL hell). Supabase gives you a full Postgres DB, which is essential for Vector Search (pgvector) in AI agents.",
+    description: "Why AI Agents need Postgres (Supabase) over NoSQL (Firebase).",
+    score: "Win",
+    category: "Infrastructure",
+    tags: ["Database", "Vector Search", "Postgres"],
+    rows: [
+        { feature: "Vector Search", p1: "No (External)", p2: "Native (pgvector)", p2Win: true, note: "RAG is impossible without vectors. Supabase has it built-in." },
+        { feature: "Query Power", p1: "Limited (NoSQL)", p2: "Full SQL", p2Win: true, note: "Complex agent queries need SQL joins, not NoSQL scans." },
+        { feature: "Lock-in", p1: "High (Proprietary)", p2: "Zero (Open Source)", p2Win: true, note: "You can self-host Supabase. You cannot self-host Firebase." }
+    ]
   }
 };
