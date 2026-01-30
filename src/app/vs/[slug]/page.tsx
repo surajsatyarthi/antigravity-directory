@@ -6,7 +6,7 @@ import { Check, X, ArrowLeft, Shield, Zap, Brain, Code } from 'lucide-react';
 import { COMPARISONS } from '@/data/comparisons';
 
 type Props = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 };
 
 export async function generateStaticParams() {
@@ -16,8 +16,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const data = COMPARISONS[params.slug];
-  if (!data) return { title: 'Comparison Not Found' };
+  const { slug } = await params;
+  const data = COMPARISONS[slug];
+  if (!data) return { title: 'Comparison Not Found | Antigravity Directory' };
   
   return {
     title: `${data.title} | Antigravity Comparison Engine`,
@@ -25,8 +26,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function ComparisonPage({ params }: Props) {
-  const data = COMPARISONS[params.slug];
+export default async function ComparisonPage({ params }: Props) {
+  const { slug } = await params;
+  const data = COMPARISONS[slug];
 
   if (!data) {
     notFound();
