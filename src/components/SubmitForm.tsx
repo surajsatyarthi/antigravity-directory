@@ -44,6 +44,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [resourceId, setResourceId] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [selectedCategory, setSelectedCategory] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
 
   async function handleShowCheckout(e: React.FormEvent) {
@@ -185,9 +186,6 @@ export function SubmitForm({ categories }: SubmitFormProps) {
           {/* Form Section */}
           <div className="space-y-8">
             <div className="bg-[#050505] border border-white/5 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-5">
-                <Rocket className="w-32 h-32" />
-              </div>
               
               {message && (
                 <div className={`mb-8 p-4 rounded-xl flex items-center gap-3 text-sm font-bold border backdrop-blur-xl ${
@@ -201,37 +199,84 @@ export function SubmitForm({ categories }: SubmitFormProps) {
               )}
 
               <form ref={formRef} onSubmit={handleShowCheckout} className="space-y-6 relative">
+                
+                {/* Category Selection - First as requested */}
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <label htmlFor="categoryName" className={labelClasses}>Category (Select First)</label>
+                    {formRef.current?.elements.namedItem('categoryName') && (
+                      <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${
+                        ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes((formRef.current?.elements.namedItem('categoryName') as HTMLSelectElement).value)
+                          ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+                          : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                      }`}>
+                        {['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes((formRef.current?.elements.namedItem('categoryName') as HTMLSelectElement).value) 
+                          ? '✨ Free Listing' 
+                          : '💎 Paid Listing'}
+                      </span>
+                    )}
+                  </div>
+                  <div className="relative">
+                    <select 
+                      id="categoryName" 
+                      name="categoryName" 
+                      required 
+                      className={`${inputClasses} appearance-none cursor-pointer`}
+                      onChange={(e) => {
+                        // Force re-render to update badges/button
+                        setResourceId(e.target.value); 
+                      }}
+                    >
+                      <option value="">Select Segment...</option>
+                      {categories.map((cat) => {
+                        const isFree = ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(cat.name);
+                        return (
+                          <option key={cat.id} value={cat.name}>
+                            {cat.name} {isFree ? '- FREE' : '- PAID ($49)'}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600 pointer-events-none" />
+                  </div>
+                  <p className="text-[10px] text-gray-500 mt-2 font-medium">
+                    * Prompts, Rules, and Workflows are <span className="text-blue-400 font-bold">FREE</span> to list. Tools & Agents require a one-time fee.
+                  </p>
+                </div>
+
                 <div className="group">
-                  <label htmlFor="title" className={labelClasses}>Tool Name</label>
-                  <input type="text" id="title" name="title" required placeholder="Name of your tool..." className={inputClasses} />
+                  <label htmlFor="title" className={labelClasses}>Resource Name</label>
+                  <input type="text" id="title" name="title" required placeholder="Name of your tool or prompt..." className={inputClasses} />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="categoryName" className={labelClasses}>Category</label>
-                    <div className="relative">
-                      <select id="categoryName" name="categoryName" required className={`${inputClasses} appearance-none cursor-pointer`}>
-                        <option value="">Select Segment</option>
-                        {categories.map((cat) => <option key={cat.id} value={cat.name}>{cat.name}</option>)}
-                      </select>
-                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600 pointer-events-none" />
-                    </div>
+                    <label htmlFor="url" className={labelClasses}>Website / Link</label>
+                    <input type="url" id="url" name="url" required placeholder="https://..." className={inputClasses} />
                   </div>
                   <div>
-                    <label htmlFor="url" className={labelClasses}>Website URL</label>
-                    <input type="url" id="url" name="url" required placeholder="https://yourtool.ai" className={inputClasses} />
+                    {/* Placeholder for future field if needed */}
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="description" className={labelClasses}>Short Description</label>
-                  <textarea id="description" name="description" required rows={2} placeholder="What does your tool do? (Max 200 chars)" className={`${inputClasses} resize-none`} />
+                  <textarea id="description" name="description" required rows={2} placeholder="What does it do? (Max 200 chars)" className={`${inputClasses} resize-none`} />
                 </div>
 
                 <div className="pt-4">
                   <button type="submit" disabled={isPending} className="group w-full py-5 bg-white hover:bg-emerald-50 text-black font-black rounded-xl transition-all active:scale-[0.98] uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 shadow-xl shadow-white/5">
                     {isPending ? <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" /> : <Zap className="w-4 h-4" />}
-                    <span>{isPending ? 'Validating...' : 'Proceed to Selection'}</span>
+                    <span>
+                       {/* This is a hacky way to check value since state refactoring would be larger, but effectively: if free category -> 'Submit Free', else 'Proceed to Payment' */
+                        (() => {
+                          const cat = (document.getElementById('categoryName') as HTMLSelectElement)?.value;
+                           return ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(cat) 
+                            ? 'Submit for Free' 
+                            : 'Proceed to Payment';
+                        })()
+                       }
+                    </span>
                   </button>
                   <p className="mt-4 text-center text-xs text-gray-700 font-bold uppercase tracking-widest">
                     Subject to manual review • Refund guaranteed if rejected
@@ -275,6 +320,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
         onClose={() => setIsCheckoutOpen(false)}
         onSuccess={onPaymentSuccess}
         submissionTitle={(formRef.current?.elements.namedItem('title') as HTMLInputElement)?.value || 'Your Resource'}
+        categoryName={(formRef.current?.elements.namedItem('categoryName') as HTMLSelectElement)?.value || ''}
         resourceId={resourceId}
       />
     </>
