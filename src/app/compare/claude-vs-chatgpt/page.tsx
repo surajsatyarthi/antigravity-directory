@@ -1,8 +1,10 @@
 import { ComparisonPage } from '@/components/ComparisonPage';
-import { comparisons } from '@/data/comparisons';
+import { COMPARISONS } from '@/data/comparisons';
 
 export async function generateMetadata() {
-  const comparison = comparisons.find(c => c.id === 'claude-vs-chatgpt')!;
+  const comparison = COMPARISONS['claude-vs-chatgpt'];
+  if (!comparison) return {};
+  
   return {
     title: 'Claude vs ChatGPT for Coding - Deep Comparison',
     description: comparison.description,
@@ -11,6 +13,8 @@ export async function generateMetadata() {
 }
 
 export default function ClaudeVsChatGPTPage() {
-  const comparison = comparisons.find(c => c.id === 'claude-vs-chatgpt')!;
+  const comparison = COMPARISONS['claude-vs-chatgpt'];
+  if (!comparison) return <div>Comparison not found</div>;
+  
   return <ComparisonPage comparison={comparison} />;
 }
