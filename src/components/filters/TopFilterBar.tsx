@@ -68,6 +68,12 @@ export function TopFilterBar({ totalCount, categories, tags }: TopFilterBarProps
     router.push(`?${params.toString()}`);
   };
   
+  const activeCount = 
+    (searchParams.get('categories')?.split(',').filter(Boolean).length || 0) + 
+    (searchParams.get('tags')?.split(',').filter(Boolean).length || 0) +
+    (searchParams.get('badges')?.split(',').filter(Boolean).length || 0) +
+    (searchParams.get('group') ? 1 : 0);
+
   return (
     <div className="mb-6 flex items-center justify-between">
       {/* Results Counter - Live Region */}
@@ -81,7 +87,7 @@ export function TopFilterBar({ totalCount, categories, tags }: TopFilterBarProps
       </div>
 
       <div className="flex items-center gap-3">
-        <MobileFilterDrawer categories={categories} tags={tags} />
+        <MobileFilterDrawer categories={categories} tags={tags} activeCount={activeCount} />
         
         <label htmlFor="sort-dropdown" className="text-xs font-black text-gray-400 uppercase tracking-widest hidden sm:inline">Sort Mode:</label>
         <select

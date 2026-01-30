@@ -8,24 +8,23 @@ export const DirectoryIntelligence = () => {
       <div className="relative py-16 px-6 md:px-12 mb-8 bg-gradient-to-b from-black to-gray-950 rounded-3xl border border-white/10 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
-            <Bot className="w-3 h-3" />
-            <span>Gemini 3 Powered</span>
-          </div>
+
+          {/* Badge Removed */}
+
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mb-4">
             Antigravity <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Directory</span>
           </h1>
           
           <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-            The Complete Resource Hub for Gemini 3-Powered Agentic Development. 
+            The Complete Resource Hub for Agentic Development. 
             Discover rules, MCP servers, and prompts.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-10">
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10">
               <Bot className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm font-bold text-gray-200">Gemini 3 Powered</span>
+              <span className="text-sm font-bold text-gray-200">Agentic First</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10">
               <Package className="w-4 h-4 text-blue-400" />
