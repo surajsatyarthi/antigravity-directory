@@ -3,42 +3,14 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Check, X, ArrowLeft, Shield, Zap, Brain, Code } from 'lucide-react';
 
-// Data Source (In a real app, this would be a DB or MDX)
-const COMPARISONS = {
-  'cursor-vs-antigravity': {
-    title: "Cursor vs Antigravity",
-    p1: "Cursor",
-    p2: "Antigravity",
-    winner: "Antigravity",
-    summary: "Cursor is a general-purpose AI editor. Antigravity is a specialized 'Reasoning Environment' for Gemini 3. If you want autocomplete, use Cursor. If you want architecture, use Antigravity.",
-    rows: [
-      { feature: "Core Model", p1: "Claude 3.5 Sonnet", p2: "Gemini 3 Pro", p2Win: true, note: "Gemini 3 has 2M token context vs Claude's 200k." },
-      { feature: "Reasoning Depth", p1: "Standard", p2: "Deep Reasoning", p2Win: true, note: "Antigravity forces 'Think before Code' protocols." },
-      { feature: "Context Window", p1: "200k Tokens", p2: "2,000,000 Tokens", p2Win: true, note: "Antigravity holds your entire repo in memory." },
-      { feature: "IDE Integration", p1: "Visual Studio Code Fork", p2: "Protocol Layer", p2Win: false, note: "Cursor wins on native IDE feel. Antigravity is a protocol." },
-      { feature: "Cost", p1: "$20/mo", p2: "Free (Local)", p2Win: true, note: "Antigravity runs on your own API keys." }
-    ]
-  },
-  'nextjs-vs-remix': {
-    title: "Next.js vs Remix",
-    p1: "Remix",
-    p2: "Next.js",
-    winner: "Next.js",
-    summary: "Remix popularized data loaders, but Next.js 15's Server Actions + React Server Components provide a superior primitive for Agentic AI to reason about.",
-    rows: [
-        { feature: "AI Reasoning", p1: "Loaders (Implicit)", p2: "Server Actions (Explicit)", p2Win: true, note: "Agents understand functions better than HTTP loaders." },
-        { feature: "Ecosystem", p1: "Small", p2: "Massive", p2Win: true, note: "More 'Copy-Paste' patterns available for Next.js." },
-        { feature: "Deployment", p1: "Edge/Node", p2: "Vercel Optimized", p2Win: true, note: "Zero-config deployment is crucial for rapid agent iteration." }
-    ]
-  }
-};
+import { COMPARISONS } from '@/data/comparisons';
 
 type Props = {
   params: { slug: string }
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const data = COMPARISONS[params.slug as keyof typeof COMPARISONS];
+  const data = COMPARISONS[params.slug];
   if (!data) return { title: 'Comparison Not Found' };
   
   return {
@@ -48,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function ComparisonPage({ params }: Props) {
-  const data = COMPARISONS[params.slug as keyof typeof COMPARISONS];
+  const data = COMPARISONS[params.slug];
 
   if (!data) {
     notFound();
