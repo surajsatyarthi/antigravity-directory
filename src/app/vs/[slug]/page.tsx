@@ -51,7 +51,7 @@ export default async function ComparisonPage({ params }: Props) {
       {/* Hero */}
       <div className="pt-32 pb-20 border-b border-white/10">
         <div className="container mx-auto px-4 text-center">
-            <h1 className="text-5xl md:text-6xl font-black mb-6 tracking-tight">
+            <h1 className="text-3xl md:text-6xl font-black mb-6 tracking-tight">
                 {data.p1} <span className="text-gray-600">vs</span> <span className="text-emerald-400">{data.p2}</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
@@ -64,8 +64,8 @@ export default async function ComparisonPage({ params }: Props) {
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto bg-[#0A0A0A] border border-white/10 rounded-3xl overflow-hidden">
             
-            {/* Table Header */}
-            <div className="grid grid-cols-3 p-6 border-b border-white/10 bg-white/5 font-mono text-sm uppercase tracking-wider text-gray-500">
+            {/* Table Header (Desktop Only) */}
+            <div className="hidden md:grid grid-cols-3 p-6 border-b border-white/10 bg-white/5 font-mono text-sm uppercase tracking-wider text-gray-500">
                 <div className="pl-4">Feature</div>
                 <div className="text-center">{data.p1}</div>
                 <div className="text-center text-emerald-400 font-bold">{data.p2} (You)</div>
@@ -74,19 +74,29 @@ export default async function ComparisonPage({ params }: Props) {
             {/* Rows */}
             <div className="divide-y divide-white/5">
                 {data.rows.map((row, idx) => (
-                    <div key={idx} className="grid grid-cols-3 p-6 hover:bg-white/[0.02] transition-colors items-center">
-                        <div className="pl-4 font-bold text-gray-300">
+                    <div key={idx} className="flex flex-col md:grid md:grid-cols-3 p-6 hover:bg-white/[0.02] transition-colors items-center gap-4 md:gap-0">
+                        {/* Feature Name */}
+                        <div className="w-full md:w-auto pl-0 md:pl-4 font-bold text-gray-300 text-lg md:text-base border-b md:border-b-0 border-white/5 pb-2 md:pb-0 mb-2 md:mb-0">
                             {row.feature}
-                            <div className="text-xs text-gray-600 mt-1 font-normal font-mono">{row.note}</div>
+                            <div className="text-xs text-gray-500 mt-1 font-normal font-mono">{row.note}</div>
                         </div>
-                        <div className={`text-center flex flex-col items-center justify-center gap-2 ${!row.p2Win ? 'text-green-400 font-bold' : 'text-gray-500'}`}>
-                           {/* Logic inverted: if p2 win, p1 loses. If p2 lose, p1 wins */}
-                           {!row.p2Win && <Check className="w-5 h-5 mb-1" />}
-                           {row.p1}
+
+                        {/* Competitor Value */}
+                        <div className={`w-full md:w-auto text-center flex flex-row md:flex-col items-center justify-between md:justify-center gap-2 ${!row.p2Win ? 'text-green-400 font-bold' : 'text-gray-500'} bg-white/5 md:bg-transparent p-3 md:p-0 rounded-lg md:rounded-none`}>
+                           <span className="md:hidden text-xs uppercase text-gray-600 font-mono">{data.p1}</span>
+                           <div className="flex items-center gap-2">
+                             {!row.p2Win && <Check className="w-4 h-4" />}
+                             {row.p1}
+                           </div>
                         </div>
-                        <div className={`text-center flex flex-col items-center justify-center gap-2 ${row.p2Win ? 'text-emerald-400 font-bold' : 'text-gray-500'}`}>
-                            {row.p2Win && <Check className="w-5 h-5 mb-1" />}
-                            {row.p2}
+
+                        {/* Antigravity Value */}
+                        <div className={`w-full md:w-auto text-center flex flex-row md:flex-col items-center justify-between md:justify-center gap-2 ${row.p2Win ? 'text-emerald-400 font-bold' : 'text-gray-500'} bg-emerald-500/10 md:bg-transparent p-3 md:p-0 rounded-lg md:rounded-none border border-emerald-500/20 md:border-none`}>
+                            <span className="md:hidden text-xs uppercase text-emerald-600 font-mono">Antigravity</span>
+                            <div className="flex items-center gap-2">
+                                {row.p2Win && <Check className="w-4 h-4" />}
+                                {row.p2}
+                            </div>
                         </div>
                     </div>
                 ))}
