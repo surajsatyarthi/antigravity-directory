@@ -104,7 +104,12 @@ export default async function HomePage({
             
             {/* Center Rail: Filter Bar + Resource Grid */}
             <div className="flex-1 min-w-0" id="main-grid">
-              <TopFilterBar totalCount={totalCount} />
+              {/* Mobile Filter Toggle & Sort Bar */}
+              <TopFilterBar 
+                totalCount={totalCount} 
+                categories={categoriesWithCounts}
+                tags={tags}
+              />
               
               <Suspense fallback={<div className="py-20 text-center text-gray-700 font-mono text-[10px] uppercase tracking-widest animate-pulse">Initializing directory...</div>}>
                 <div className="relative">
