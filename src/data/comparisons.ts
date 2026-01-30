@@ -154,5 +154,175 @@ export const COMPARISONS: Record<string, ComparisonData> = {
         { feature: "Query Power", p1: "Limited (NoSQL)", p2: "Full SQL", p2Win: true, note: "Complex agent queries need SQL joins, not NoSQL scans." },
         { feature: "Lock-in", p1: "High (Proprietary)", p2: "Zero (Open Source)", p2Win: true, note: "You can self-host Supabase. You cannot self-host Firebase." }
     ]
+  },
+  'claude-vs-chatgpt': {
+    id: 'claude-vs-chatgpt',
+    title: 'Claude vs ChatGPT for Coding',
+    subtitle: 'Code Generation vs Architectural Reasoning',
+    p1: 'ChatGPT',
+    p2: 'Claude',
+    winner: 'Claude',
+    summary: 'ChatGPT is great for simple scripts and boilerplate. Claude 3.5 Sonnet excels at complex reasoning, large-scale refactors, and maintaining context across massive repositories.',
+    description: 'Agentic perspective comparing Claude and ChatGPT for software development, code generation, and debugging.',
+    score: 'Win',
+    category: 'IDE',
+    tags: ['AI Models', 'Coding Assistant', 'LLM Comparison'],
+    rows: [
+      {
+        feature: 'Code Generation',
+        p1: 'Strong at boilerplate and common patterns. Excellent for standard CRUD, REST APIs, and frontend components.',
+        p2: 'Superior at complex logic and edge cases. Better at understanding context and generating production-ready code with error handling.',
+        p2Win: true,
+        note: 'Claude generates closer-to-production code.'
+      },
+      {
+        feature: 'Debugging & Error Fixing',
+        p1: 'Good at identifying syntax errors and common bugs. Can suggest fixes for standard issues.',
+        p2: 'Exceptional at root cause analysis. Traces errors across files, understands stack traces deeply, suggests architectural fixes.',
+        p2Win: true,
+        note: 'Claude reasons through the error stack.'
+      },
+      {
+        feature: 'Code Explanation',
+        p1: 'Provides clear explanations of code functionality. Good for learning and documentation.',
+        p2: 'Outstanding at explaining "why" not just "what". Breaks down complex algorithms, provides context on design patterns.',
+        p2Win: true,
+        note: 'Claude explains the intent, not just the syntax.'
+      },
+      {
+        feature: 'Refactoring',
+        p1: 'Suggests standard optimizations (e.g., reduce loops, use better data structures).',
+        p2: 'Proposes architectural improvements. Identifies code smells, suggests SOLID principles application, performance bottlenecks.',
+        p2Win: true,
+        note: 'Claude refactors for long-term maintainability.'
+      },
+      {
+        feature: 'Multi-File Context',
+        p1: '128K context (GPT-4 Turbo). Struggles with large codebases beyond token limit.',
+        p2: '200K context window. Maintains coherence across entire repositories, understands cross-file dependencies better.',
+        p2Win: true,
+        note: 'Claude holds more file context in memory.'
+      },
+      {
+        feature: 'API & Ecosystem',
+        p1: 'API access via OpenAI SDK. Massive ecosystem. Advanced Voice Mode.',
+        p2: 'API access via Anthropic SDK. Growing ecosystem. Stronger for coding tasks specifically.',
+        p2Win: false,
+        note: 'OpenAI ecosystem is currently larger.'
+      },
+      {
+        feature: 'Pricing',
+        p1: 'ChatGPT Plus: $20/mo. API: $0.002/1K tokens (GPT-3.5), $0.03/1K (GPT-4).',
+        p2: 'Claude Pro: $20/mo. API: $0.008/1K tokens (Claude 3.5 Sonnet).',
+        p2Win: false,
+        note: 'Pricing structure is similar for Pro plans.'
+      },
+      {
+        feature: 'Speed',
+        p1: 'Fast response times, especially GPT-3.5 Turbo. GPT-4o is very fast.',
+        p2: 'Claude 3.5 Sonnet is comparable to GPT-4o speed. Haiku is extremely fast.',
+        p2Win: false,
+        note: 'Both are highly performant.'
+      },
+      {
+        feature: 'Tool Use',
+        p1: 'Excellent function calling support. Well-integrated with third-party tools.',
+        p2: 'Strong tool use capabilities. Reliable at following complex tool schemas.',
+        p2Win: true,
+        note: 'Claude is slightly more consistent with complex schemas.'
+      },
+      {
+        feature: 'Agentic Workflow',
+        p1: 'Good at single-turn generation. Can lose context in long sessions.',
+        p2: 'Exceptional at agentic workflows. Maintains task context, iterates solutions, asks clarifying questions.',
+        p2Win: true,
+        note: 'Claude is the preferred model for autonomous agents.'
+      }
+    ]
+  },
+  'copilot-vs-cursor': {
+    id: 'copilot-vs-cursor',
+    title: 'GitHub Copilot vs Cursor',
+    subtitle: 'Autocomplete vs Agentic IDE',
+    p1: 'GitHub Copilot',
+    p2: 'Cursor',
+    winner: 'Cursor',
+    summary: 'GitHub Copilot is an excellent autocomplete tool that lives in your sidebar. Cursor is a complete AI-native IDE that understands your entire codebase and can perform autonomous edits.',
+    description: 'Compare GitHub Copilot and Cursor IDE for AI-powered coding assistance, autocomplete, and agentic workflows.',
+    score: 'Win',
+    category: 'IDE',
+    tags: ['Code Editor', 'AI Assistant', 'Productivity'],
+    rows: [
+      {
+        feature: 'Integration',
+        p1: 'VS Code extension + JetBrains plugin. Works inside existing IDE.',
+        p2: 'Standalone VS Code fork. Full IDE control enabling deeper AI integration.',
+        p2Win: true,
+        note: 'Cursor has deeper control over the editor UI.'
+      },
+      {
+        feature: 'Autocomplete',
+        p1: 'Excellent inline suggestions via OpenAI Codex. Fast and accurate.',
+        p2: 'Good autocomplete (Copilot++). Uses custom models. Predictive edits.',
+        p2Win: false,
+        note: 'Copilot is widely considered the gold standard for pure autocomplete.'
+      },
+      {
+        feature: 'Codebase Context',
+        p1: 'Limited to open files. No native full-codebase indexing.',
+        p2: 'Indexes entire codebase (RAG). AI understands cross-file dependencies.',
+        p2Win: true,
+        note: 'Cursor "knows" your project structure.'
+      },
+      {
+        feature: 'Chat Interface',
+        p1: 'Sidebar chat. Can ask about open file.',
+        p2: 'Integrated chat with @-mentions for files, docs, and codebase.',
+        p2Win: true,
+        note: 'Cursor chat is context-aware via @ symbols.'
+      },
+      {
+        feature: 'Agentic Features',
+        p1: 'Autocomplete focused. Limited autonomous editing.',
+        p2: 'Cmd+K for inline AI edits. Composer for multi-file autonomous changes.',
+        p2Win: true,
+        note: 'Cursor Composer is a game changer for multi-file edits.'
+      },
+      {
+        feature: 'Pricing',
+        p1: '$10/mo (individual). Included in GitHub Enterprise.',
+        p2: '$20/mo (Pro). Free tier available.',
+        p2Win: false,
+        note: 'Copilot is cheaper for individuals.'
+      },
+      {
+        feature: 'Speed',
+        p1: 'Very fast autocomplete (<100ms latency).',
+        p2: 'Autocomplete is fast. Chat/Composer depends on model choice.',
+        p2Win: false,
+        note: 'Copilot feels slightly snappier for simple completions.'
+      },
+      {
+        feature: 'Language Support',
+        p1: 'Excellent for Python, JS, TS, Go, Ruby.',
+        p2: 'Supports all VS Code languages. Better at niche ones via context.',
+        p2Win: false,
+        note: 'Both support major languages well.'
+      },
+      {
+        feature: 'Privacy',
+        p1: 'Code sent to OpenAI. Enterprise has privacy guarantees.',
+        p2: 'Code sent to LLM provider. Privacy mode available.',
+        p2Win: false,
+        note: 'Both have strong privacy controls for enterprise.'
+      },
+      {
+        feature: 'Best Use Case',
+        p1: 'Fast autocomplete, minimal disruption.',
+        p2: 'Agentic coding, heavy refactoring, large codebases.',
+        p2Win: true,
+        note: 'Cursor changes how you write code; Copilot helps you write it faster.'
+      }
+    ]
   }
 };
