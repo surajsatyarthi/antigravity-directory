@@ -9,6 +9,7 @@ import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 import { CitationBlock } from '@/components/CitationBlock';
 import { BadgeGenerator } from '@/components/BadgeGenerator';
 import { Footer } from '@/components/Footer';
+import { safeJsonLdString } from '@/lib/utils/safeHtml';
 
 export async function generateMetadata({
   params,
@@ -106,9 +107,9 @@ export default async function ResourceDetailPage({
   const softwareAppJsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": resource.title,
-    "description": resource.description,
-    "applicationCategory": resource.categoryName || "AI Tool",
+    "name": safeJsonLdString(resource.title),
+    "description": safeJsonLdString(resource.description),
+    "applicationCategory": safeJsonLdString(resource.categoryName || "AI Tool"),
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": avgRating.toFixed(1),
@@ -133,30 +134,30 @@ export default async function ResourceDetailPage({
     "mainEntity": [
       {
         "@type": "Question",
-        "name": `What is ${resource.title}?`,
+        "name": `What is ${safeJsonLdString(resource.title)}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": resource.description
+          "text": safeJsonLdString(resource.description)
         }
       },
       {
         "@type": "Question",
-        "name": `Is ${resource.title} verified on Antigravity?`,
+        "name": `Is ${safeJsonLdString(resource.title)} verified on Antigravity?`,
         "acceptedAnswer": {
           "@type": "Answer",
           "text": resource.badgeType === 'editors_choice'
-            ? `${resource.title} is an Editor's Choice tool on the Antigravity Directory, personally verified for excellence.`
+            ? `${safeJsonLdString(resource.title)} is an Editor's Choice tool on the Antigravity Directory, personally verified for excellence.`
             : resource.verified 
-              ? `${resource.title} is a verified tool on the Antigravity Directory.`
-              : `${resource.title} is a community-submitted tool. We encourage users to verify its original documentation for details.`
+              ? `${safeJsonLdString(resource.title)} is a verified tool on the Antigravity Directory.`
+              : `${safeJsonLdString(resource.title)} is a community-submitted tool. We encourage users to verify its original documentation for details.`
         }
       },
       {
         "@type": "Question",
-        "name": `Where can I find alternatives to ${resource.title}?`,
+        "name": `Where can I find alternatives to ${safeJsonLdString(resource.title)}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `You can explore top-rated alternatives and similar tools to ${resource.title} in the ${resource.categoryName || 'General'} category on Antigravity Directory.`
+          "text": `You can explore top-rated alternatives and similar tools to ${safeJsonLdString(resource.title)} in the ${safeJsonLdString(resource.categoryName || 'General')} category on Antigravity Directory.`
         }
       }
     ]

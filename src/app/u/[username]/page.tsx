@@ -8,6 +8,7 @@ import { ProfileHeader } from '@/components/ProfileHeader';
 import { ResourceCard } from '@/components/ResourceCard';
 import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 import { Footer } from '@/components/Footer';
+import { safeJsonLdString } from '@/lib/utils/safeHtml';
 
 export async function generateMetadata({
   params,
@@ -86,8 +87,8 @@ export default async function PublicProfilePage({
     "@type": "ProfilePage",
     "mainEntity": {
       "@type": "Person",
-      "name": user.name || username,
-      "description": user.bio,
+      "name": safeJsonLdString(user.name || username),
+      "description": safeJsonLdString(user.bio || ''),
       "image": user.image,
       "url": `/u/${username}`
     }
