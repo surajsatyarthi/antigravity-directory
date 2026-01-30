@@ -94,7 +94,7 @@ export default async function HomePage({
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
             
             {/* Left Rail: Sticky Filter Sidebar */}
-            <aside className="lg:w-[280px] shrink-0">
+            <aside className="hidden lg:block lg:w-[280px] shrink-0">
               <div className="lg:sticky lg:top-20">
                 <FilterSidebar 
                   categories={categoriesWithCounts}
