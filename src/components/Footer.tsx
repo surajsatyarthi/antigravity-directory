@@ -101,17 +101,6 @@ export function Footer() {
                 </span>
               </div>
             </Link>
-            <div className="space-y-1">
-              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase">
-                The Antigravity Directory.
-              </p>
-              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase">
-                This site is not affiliated with, endorsed by, or sponsored by Google.
-              </p>
-              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase font-bold">
-                © Invictus International Consulting Services 2026
-              </p>
-            </div>
           </div>
 
           {/* Links */}
@@ -143,6 +132,16 @@ export function Footer() {
               </Link>
             </nav>
           </div>
+        </div>
+
+        {/* Bottom Notices */}
+        <div className="mt-16 text-center border-t border-white/5 pt-8 space-y-2">
+             <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-500 uppercase">
+                 Antigravity Directory is an unofficial resource for the agentic coding community.
+             </p>
+             <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-600 uppercase font-bold">
+                © Invictus International Consulting Services 2026
+              </p>
         </div>
       </div>
     </footer>
