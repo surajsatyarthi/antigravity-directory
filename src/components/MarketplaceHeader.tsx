@@ -10,11 +10,10 @@ import { SearchInput } from './SearchInput';
 import { NavLinks } from './NavLinks';
 import { handleSignIn, handleSignOut } from '@/lib/actions/auth';
 
-export function MarketplaceHeader() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const session = useSession(); // Note: This needs client-side session or prop passing. 
-  // Wait, the original was async server component. I cannot use useState in async component.
-  // I must split this into a client component.
+export async function MarketplaceHeader() {
+  const session = await auth();
+  
+  let username = null;
   if (session?.user?.id) {
     const user = (await db.select({ username: users.username }).from(users).where(eq(users.id, session.user.id)).limit(1))[0];
     username = user?.username;
