@@ -8,24 +8,34 @@ import { CategoryWithCount, Tag } from '@/types/database';
 interface MobileFilterDrawerProps {
   categories: CategoryWithCount[];
   tags: Tag[];
+  activeCount?: number;
 }
 
-export function MobileFilterDrawer({ categories, tags }: MobileFilterDrawerProps) {
+export function MobileFilterDrawer({ categories, tags, activeCount = 0 }: MobileFilterDrawerProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="lg:hidden flex items-center gap-2 px-3 py-2 bg-[#0A0A0A] border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:border-white/20 transition-all font-medium"
+        className={`lg:hidden flex items-center gap-2 px-3 py-2 border rounded-lg text-sm font-medium transition-all ${
+          activeCount > 0 
+            ? 'bg-blue-600 border-blue-500 text-white shadow-[0_0_10px_rgba(37,99,235,0.3)]' 
+            : 'bg-[#0A0A0A] border-white/10 text-gray-300 hover:text-white hover:border-white/20'
+        }`}
         aria-label="Open filters"
       >
         <SlidersHorizontal className="w-4 h-4" />
         <span>Filters</span>
+        {activeCount > 0 && (
+          <span className="flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-white text-blue-600 text-[10px] font-bold leading-none">
+            {activeCount}
+          </span>
+        )}
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end isolate">
+        <div className="fixed inset-0 z-[100] flex justify-end isolate">
           {/* Backdrop */}
           <div 
             className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in"

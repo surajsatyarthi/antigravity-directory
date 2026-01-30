@@ -25,7 +25,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
   const isFeatured = resource.featured;
 
   return (
-    <div className={`group relative flex items-center bg-[#050505] border rounded-lg overflow-hidden hover:border-blue-500/50 hover:bg-white/[0.01] transition-all duration-300 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
+    <div className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-[#050505] border rounded-lg overflow-hidden hover:border-blue-500/50 hover:bg-white/[0.01] transition-all duration-300 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
       isFeatured
         ? 'border-yellow-500/40'
         : 'border-white/[0.05]'
@@ -43,9 +43,11 @@ export function ResourceCard({ resource }: ResourceCardProps) {
         </div>
       )}
 
-      <div className="flex items-center gap-4 w-full p-4 relative z-10">
-        {/* Left: Badges & Category */}
-        <div className="flex items-center gap-2 shrink-0">
+      {/* Container for content */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full p-4 relative z-10">
+        
+        {/* Left: Badges & Category (Mobile: Top Row) */}
+        <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto">
           {resource.integrations && resource.integrations.length > 0 && (
             <div
               className="flex items-center gap-1.5"
@@ -67,35 +69,39 @@ export function ResourceCard({ resource }: ResourceCardProps) {
             {resource.categoryName || 'General'}
           </span>
 
-          {resource.badgeType === 'editors_choice' && (
-            <span className="px-2 py-1 rounded bg-yellow-500/10 border border-yellow-500/20 text-[9px] font-black text-yellow-500 uppercase tracking-widest whitespace-nowrap">
-              Editor's
-            </span>
-          )}
-          {resource.badgeType === 'trending' && (
-            <span className="px-2 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-[9px] font-black text-purple-400 uppercase tracking-widest whitespace-nowrap">
-              Trending
-            </span>
-          )}
-          {resource.badgeType === 'users_choice' && (
-            <span className="px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-black text-emerald-400 uppercase tracking-widest whitespace-nowrap">
-              User's
-            </span>
-          )}
+          <div className="flex gap-2 ml-auto sm:ml-0">
+             {resource.badgeType === 'editors_choice' && (
+              <span className="px-2 py-1 rounded bg-yellow-500/10 border border-yellow-500/20 text-[9px] font-black text-yellow-500 uppercase tracking-widest whitespace-nowrap">
+                Editor's
+              </span>
+            )}
+            {resource.badgeType === 'trending' && (
+              <span className="px-2 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-[9px] font-black text-purple-400 uppercase tracking-widest whitespace-nowrap">
+                Trending
+              </span>
+            )}
+            {resource.badgeType === 'users_choice' && (
+              <span className="px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-black text-emerald-400 uppercase tracking-widest whitespace-nowrap">
+                User's
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Middle: Title & Description */}
-        <div className="flex-1 min-w-0">
-          <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors mb-1 tracking-tight leading-tight truncate">
-            {resource.title}
-          </h3>
-          <p className="text-sm text-gray-400 line-clamp-1 font-medium">
+        <div className="flex-1 min-w-0 w-full">
+          <div className="flex justify-between items-start">
+             <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors mb-1 tracking-tight leading-tight truncate pr-8 sm:pr-0">
+              {resource.title}
+            </h3>
+          </div>
+          <p className="text-sm text-gray-400 line-clamp-2 sm:line-clamp-1 font-medium">
             {resource.description}
           </p>
         </div>
 
-        {/* Right: Stats & Actions */}
-        <div className="flex items-center gap-4 shrink-0">
+        {/* Right: Stats & Actions (Mobile: Bottom Row) */}
+        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-white/5 sm:border-0">
           <div className="flex items-center gap-3">
             {/* Rating */}
             <div
