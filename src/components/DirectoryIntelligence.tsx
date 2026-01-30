@@ -37,20 +37,10 @@ export const DirectoryIntelligence = () => {
             </div>
           </div>
 
-          <div className="max-w-xl mx-auto relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity blur" />
-            <div className="relative flex items-center bg-[#0A0A0A] border border-white/10 rounded-xl p-2 shadow-2xl">
-              <Search className="w-5 h-5 text-gray-500 ml-3 mr-3" />
-              <input 
-                type="text" 
-                placeholder="Search methods, MCP servers, rules..." 
-                className="w-full bg-transparent border-none focus:ring-0 text-white placeholder-gray-500 text-sm h-10"
-              />
-              <div className="hidden sm:flex items-center gap-1 px-2 py-1 rounded bg-white/5 border border-white/5">
-                <span className="text-[10px] font-mono text-gray-500">CMD+K</span>
-              </div>
+            {/* Search removed - Use global sticky header search */}
+            <div className="hidden sm:flex items-center justify-center gap-2 text-xs text-gray-500 font-mono mt-8">
+              <span className="bg-white/5 border border-white/10 px-2 py-1 rounded">CMD+K</span> to search anywhere
             </div>
-          </div>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-3">

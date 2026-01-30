@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@/components/Analytics";
+import { Footer } from "@/components/Footer";
 import { Suspense } from "react";
 
 const inter = Inter({
@@ -74,13 +75,7 @@ export default function RootLayout({
         <div id="main-content" tabIndex={-1} className="outline-none">
           {children}
         </div>
-        <footer className="py-8 border-t border-white/10 text-center">
-          <p className="text-gray-500 text-sm">
-            Antigravity Directory is an unofficial resource for the agentic coding community.
-            <br />
-            Not affiliated with Google. "Google Antigravity" is a keyword referring to the IDE.
-          </p>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
