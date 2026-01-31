@@ -58,24 +58,10 @@ export function SearchInput() {
     return () => clearTimeout(delayDebounceFn);
   }, [query, isInteracted, pathname, router, searchParams]);
 
-  // 3. Cmd+K / Ctrl+K Global Shortcut
-  const inputRef = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        inputRef.current?.focus();
-      }
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
   return (
     <div className="flex-1 max-w-2xl relative">
       <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${isPending ? 'text-blue-500 animate-pulse' : 'text-gray-500'}`} />
       <input
-        ref={inputRef}
         type="text"
         value={query}
         onChange={(e) => {
