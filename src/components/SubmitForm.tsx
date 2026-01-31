@@ -203,7 +203,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                 {/* Category Selection - First as requested */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <label htmlFor="categoryName" className={labelClasses}>Category (Select First)</label>
+                    <label htmlFor="categoryName" className={labelClasses}>Category</label>
                     {selectedCategory && (
                       <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${
                         ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory)
