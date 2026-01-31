@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Zap, User, LogOut } from 'lucide-react';
+import { NAV_ITEMS } from '@/config/navigation';
 import { handleSignIn, handleSignOut } from '@/lib/actions/auth';
 import { useSession } from 'next-auth/react';
 import { Session } from 'next-auth';
@@ -57,31 +58,27 @@ export function MobileMenu({ session: initialSession, username: initialUsername 
                 <Link 
                     href="/" 
                     onClick={() => setIsOpen(false)}
-                    className="text-lg font-bold text-gray-300 hover:text-white"
+                    className={`text-lg font-bold hover:text-white ${pathname === '/' ? 'text-white' : 'text-gray-300'}`}
                 >
                     Explore
                 </Link>
-                <Link 
-                    href="/prompts" 
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg font-bold text-gray-300 hover:text-white flex items-center gap-2"
-                >
-                    Prompts <span className="bg-[#fbbf24] text-black text-[10px] px-1.5 rounded-sm">NEW</span>
-                </Link>
-                <Link 
-                    href="/mcp-servers" 
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg font-bold text-gray-300 hover:text-white"
-                >
-                    MCPs
-                </Link>
-                <Link 
-                    href="/advertise" 
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg font-bold text-gray-300 hover:text-white"
-                >
-                    Advertise
-                </Link>
+                
+                {NAV_ITEMS.filter(item => !item.disabled).map(item => {
+                    const isActive = pathname === item.href;
+                    return (
+                        <Link 
+                            key={item.label}
+                            href={item.href}
+                            target={item.external ? "_blank" : undefined}
+                            onClick={() => setIsOpen(false)}
+                            className={`text-lg font-bold hover:text-white flex items-center gap-2 ${isActive ? 'text-white' : 'text-gray-300'}`}
+                        >
+                            {item.label} 
+                            {item.isNew && <span className="bg-[#fbbf24] text-black text-[10px] px-1.5 rounded-sm">NEW</span>}
+                        </Link>
+                    )
+                })}
+
                 <div className="h-px w-full bg-white/5 my-1" />
                 <Link 
                     href="/submit" 

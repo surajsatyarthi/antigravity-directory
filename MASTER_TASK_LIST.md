@@ -10,9 +10,9 @@
 | **3** | **60.0** | **Mobile Menu Route Change Bug Fix (isOpen state)** | ✅ **DONE** | Architect Audit |
 | **4** | **55.0** | **Security Audit: 9 Files with dangerouslySetInnerHTML (XSS)** | ✅ **DONE** | Pre-Launch Audit |
 | **5** | **45.0** | **Search Input Hydration Fix (CLS Risk)** | ✅ **DONE** | Architect Audit |
-| **6** | **40.0** | **Website Menu Navigation State Fix** | 🔴 **TODO** | User Request |
-| **7** | **35.0** | **Create Missing Page: `/download`** | 🔴 **TODO** | Pre-Launch Audit |
-| **8** | **35.0** | **Create Missing Page: `/troubleshooting`** | 🔴 **TODO** | Pre-Launch Audit |
+| **6** | **40.0** | **Website Menu Navigation State Fix** | ✅ **DONE** | User Request |
+| **7** | **35.0** | **Create Missing Page: `/download`** | ✅ **DONE** | Pre-Launch Audit |
+| **8** | **35.0** | **Create Missing Page: `/troubleshooting`** | ✅ **DONE** | Pre-Launch Audit |
 | **9** | **48.0** | **Post on Product Hunt (12:01 AM)** | 🔴 **BLOCKED** | Master Audit |
 | **10** | **9.0** | **Post on Hacker News & Reddit** | 🔴 **BLOCKED** | Master Audit |
 | **11** | **5.0** | **Final Confirmation "Ready for Traffic"** | 🔴 **TODO** | History |
