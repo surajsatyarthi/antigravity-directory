@@ -1,5 +1,6 @@
 import { AlertTriangle, Zap, User, Lock, Activity, Server, HelpCircle } from 'lucide-react';
 import Link from 'next/link';
+import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 
 export const metadata = {
   title: 'Troubleshooting & Support | Antigravity',
@@ -8,7 +9,9 @@ export const metadata = {
 
 export default function TroubleshootingPage() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+    <>
+      <MarketplaceHeader />
+      <div className="min-h-screen bg-[#050505] text-white pt-32 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-6 flex items-center justify-center gap-4">
@@ -21,31 +24,76 @@ export default function TroubleshootingPage() {
         </div>
 
         <div className="space-y-12">
-          {/* Section: Login & Auth */}
+          {/* Section: Connectivity & Access */}
           <section>
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-white border-b border-white/10 pb-4">
               <Lock className="w-6 h-6 text-blue-400" />
-              Login & Authentication
+              Connectivity & Access
             </h2>
             <div className="space-y-4">
               <Details 
-                summary="Login screen is stuck or blank"
+                summary="Agent stuck loading or 'Connection Refused'"
                 content={
                   <ul className="list-disc pl-5 space-y-2 text-gray-300">
-                    <li><strong>Full Restart:</strong> Quit Antigravity completely (check system tray) and relaunch.</li>
-                    <li><strong>Browser Settings:</strong> Ensure Chrome/Edge is your default browser. Disable strict tracking protection temporarily.</li>
-                    <li><strong>Extensions:</strong> Try signing in (if web-based) in Incognito mode to rule out extension interference.</li>
-                    <li><strong>System Time:</strong> Ensure your system clock is synced; mismatched time breaks OAuth tokens.</li>
+                    <li><strong>Clear Site Data:</strong> Don't just reload. Go to DevTools (F12) → Application → Storage → Clear Site Data.</li>
+                    <li><strong>VPN/DNS:</strong> Antigravity can conflict with strict corporate VPNs. Try switching DNS to 8.8.8.8 or disabling VPN temporarily.</li>
+                    <li><strong>Mobile Hotspot:</strong> If on a restricted network (university/office), verify connection via mobile hotspot to rule out firewall blocking.</li>
                   </ul>
                 }
               />
               <Details 
-                summary='"Account Not Authorized" or "Not Eligible"'
+                summary="Account Lockout after Logout"
                 content={
                   <ul className="list-disc pl-5 space-y-2 text-gray-300">
-                    <li>Use a personal <code>@gmail.com</code> account if possible. Workspace accounts may have restrictions.</li>
-                    <li>Verify your region support. VPNs can sometimes cause this error if detected improperly.</li>
-                    <li>If you see this immediately after sign-up, wait 15 minutes and try again.</li>
+                    <li><strong>Incognito Mode:</strong> If you are stuck in a logout loop, try signing in via an Incognito window.</li>
+                    <li><strong>Primary Profile:</strong> Ensure your Google Account is the primary profile in Chrome/Edge to prevent token mismatches.</li>
+                  </ul>
+                }
+              />
+              <Details 
+                summary="'Network Timeout' or 'Failed to Connect' errors"
+                content={
+                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                    <li><strong>Firewall Check:</strong> Corporate firewalls may block WebSocket connections. Contact IT to whitelist <code>*.antigravity.google</code>.</li>
+                    <li><strong>Proxy Settings:</strong> If behind a proxy, ensure HTTP/HTTPS proxy is configured correctly in system settings.</li>
+                    <li><strong>Check Status:</strong> Visit the official status page to rule out global outages.</li>
+                  </ul>
+                }
+              />
+              <Details 
+                summary="'Too many requests' or rate limit errors"
+                content={
+                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                    <li>Free tier has quota limits. Wait 15 minutes or upgrade to Pro for higher limits.</li>
+                    <li>If you're on Pro and still hitting limits, verify your billing status in Account Settings.</li>
+                  </ul>
+                }
+              />
+            </div>
+          </section>
+
+          {/* Section: Security & Safety (NEW) */}
+          <section>
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-white border-b border-white/10 pb-4">
+              <AlertTriangle className="w-6 h-6 text-red-500" />
+              Security & Safety
+            </h2>
+            <div className="space-y-4">
+              <Details 
+                summary="Prevent Unauthorized Code Execution"
+                content={
+                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                    <li><strong>Terminal Policy:</strong> Set "Terminal Auto Execution Policy" to <strong>"Confirm"</strong> (not Auto) in Settings.</li>
+                    <li>This prevents the agent from executing shell commands without your explicit approval, mitigating risks from untrusted inputs.</li>
+                  </ul>
+                }
+              />
+              <Details 
+                summary="Prompt Injection Risks"
+                content={
+                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                    <li><strong>Markdown Rendering:</strong> Be cautious when the agent renders Markdown from untrusted sources. Malicious images/links could trigger data exfiltration.</li>
+                    <li>Avoid processing third-party repositories with sensitive local files in the same workspace.</li>
                   </ul>
                 }
               />
@@ -79,6 +127,24 @@ export default function TroubleshootingPage() {
                   </ul>
                 }
               />
+              <Details 
+                summary="Agent crashes mid-task"
+                content={
+                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                    <li><strong>Memory:</strong> If dealing with large files (&gt;100MB), reduce Context Limit in Settings.</li>
+                    <li><strong>Logs:</strong> Check crash logs in <code>~/.antigravity/logs</code> for specific error traces.</li>
+                  </ul>
+                }
+              />
+              <Details 
+                summary="Multiple agents conflict or interfere"
+                content={
+                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                    <li>Run only one agent per workspace to avoid resource conflicts.</li>
+                    <li>If managing multiple projects, use separate workspace folders.</li>
+                  </ul>
+                }
+              />
             </div>
           </section>
 
@@ -99,26 +165,69 @@ export default function TroubleshootingPage() {
                   </ul>
                 }
               />
+              <Details 
+                summary="UI freezes or becomes unresponsive"
+                content={
+                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                    <li>Force quit and restart the application.</li>
+                    <li>Disable hardware acceleration: Settings → Advanced → Use Hardware Acceleration (toggle off).</li>
+                  </ul>
+                }
+              />
+              <Details 
+                summary="Slow file indexing"
+                content={
+                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                    <li>Exclude large directories (e.g., <code>node_modules</code>, <code>.git</code>) via Settings → File Exclusions.</li>
+                    <li>On Windows, disable antivirus real-time scanning for the workspace folder temporarily.</li>
+                  </ul>
+                }
+              />
+            </div>
+          </section>
+          {/* Section: Model Intelligence (NEW) */}
+          <section>
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-white border-b border-white/10 pb-4">
+              <Zap className="w-6 h-6 text-yellow-400" />
+              Model Intelligence
+            </h2>
+            <div className="space-y-4">
+               <Details 
+                summary="Hallucinations or Low Quality Results"
+                content={
+                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                    <li><strong>Nano Banana Pro:</strong> Switch to this model for high-fidelity code rendering if the default model struggles with syntax.</li>
+                    <li><strong>Gemini 3 Flash:</strong> Use this for low-latency tasks where speed is prioritized over complex reasoning.</li>
+                    <li><strong>Prompt Refinement:</strong> Add explicit constraints ("Use TypeScript", "Follow ESLint rules") to reduce ambiguity.</li>
+                  </ul>
+                }
+              />
+              <Details 
+                summary="Context limit exceeded errors"
+                content={
+                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                    <li>Break large tasks into smaller sub-tasks.</li>
+                    <li>Use <code>@file</code> references instead of pasting entire files into prompts.</li>
+                  </ul>
+                }
+              />
+              <Details 
+                summary="Model switching best practices"
+                content={
+                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
+                    <li>Use <strong>Gemini 3 Flash</strong> for quick edits and refactoring.</li>
+                    <li>Use <strong>Nano Banana Pro</strong> for complex logic or debugging.</li>
+                    <li>Avoid switching mid-conversation; it resets context.</li>
+                  </ul>
+                }
+              />
             </div>
           </section>
         </div>
 
-        <div className="mt-20 p-8 bg-white/5 rounded-2xl border border-white/10 text-center">
-          <h3 className="text-xl font-bold mb-4">Still having trouble?</h3>
-          <p className="text-gray-400 mb-6">
-            Join our community for real-time help from developers and other users.
-          </p>
-          <Link 
-            href="https://discord.gg/antigravity" 
-            target="_blank"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold rounded-lg transition-colors"
-          >
-            <Zap className="w-5 h-5" />
-            Join Discord Support
-          </Link>
-        </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

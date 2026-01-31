@@ -1,4 +1,4 @@
-import { pgTable, text, varchar, timestamp, integer, boolean, primaryKey } from 'drizzle-orm/pg-core';
+import { pgTable, text, varchar, timestamp, integer, boolean, primaryKey, index } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 import type { AdapterAccount } from '@auth/core/adapters';
 
@@ -117,7 +117,11 @@ export const resources = pgTable('resources', {
   // Foreign keys
   categoryId: text('category_id').notNull().references(() => categories.id, { onDelete: 'cascade' }),
   authorId: text('author_id').references(() => users.id, { onDelete: 'set null' }),
-});
+}, (table) => ({
+  categoryIdIdx: index('resources_category_id_idx').on(table.categoryId),
+  authorIdIdx: index('resources_author_id_idx').on(table.authorId),
+  slugIdx: index('resources_slug_idx').on(table.slug),
+}));
 
 // Ratings table
 export const ratings = pgTable('ratings', {
@@ -130,7 +134,10 @@ export const ratings = pgTable('ratings', {
   // Foreign keys
   resourceId: text('resource_id').notNull().references(() => resources.id, { onDelete: 'cascade' }),
   userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
-});
+}, (table) => ({
+  resourceIdIdx: index('ratings_resource_id_idx').on(table.resourceId),
+  userIdIdx: index('ratings_user_id_idx').on(table.userId),
+}));
 
 // Tags table
 export const tags = pgTable('tags', {
@@ -170,7 +177,10 @@ export const submissions = pgTable('submissions', {
   
   // Foreign keys
   userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
-});
+}, (table) => ({
+  userIdIdx: index('submissions_user_id_idx').on(table.userId),
+  statusIdx: index('submissions_status_idx').on(table.status),
+}));
 
 
 // Bookmarks table
@@ -180,6 +190,7 @@ export const bookmarks = pgTable('bookmarks', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
 }, (t) => ({
   pk: primaryKey({ columns: [t.userId, t.resourceId] }),
+  resourceIdIdx: index('bookmarks_resource_id_idx').on(t.resourceId),
 }));
 
 // Tools table (for pSEO/Banu engine)
@@ -239,7 +250,11 @@ export const payments = pgTable('payments', {
   status: text('status').notNull().default('PENDING'), // 'PENDING' | 'SUCCEEDED' | 'FAILED'
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
-});
+}, (table) => ({
+  userIdIdx: index('payments_user_id_idx').on(table.userId),
+  resourceIdIdx: index('payments_resource_id_idx').on(table.resourceId),
+  statusIdx: index('payments_status_idx').on(table.status),
+}));
 
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({

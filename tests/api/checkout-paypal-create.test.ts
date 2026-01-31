@@ -3,6 +3,8 @@ import { POST } from '@/app/api/checkout/create-order/route';
 import { NextRequest } from 'next/server';
 import * as paypalLib from '@/lib/payment/paypal';
 
+import { checkRateLimit } from '@/lib/ratelimit';
+
 // Mock external dependencies
 vi.mock('@/lib/payment/paypal');
 vi.mock('@/lib/db', () => ({
@@ -15,6 +17,9 @@ vi.mock('@/drizzle/schema', () => ({
 }));
 vi.mock('@/auth', () => ({
   auth: vi.fn().mockResolvedValue({ user: { id: 'test-user-id' } })
+}));
+vi.mock('@/lib/ratelimit', () => ({
+  checkRateLimit: vi.fn().mockResolvedValue({ success: true, limit: 100, remaining: 99, reset: 0 })
 }));
 
 import { db } from '@/lib/db';
@@ -31,6 +36,14 @@ describe('POST /api/payments/paypal/create', () => {
     
     // Default PayPal mock implementation
     vi.mocked(paypalLib.createPayPalOrder).mockReset();
+
+    // Default Rate Limit mock
+    vi.mocked(checkRateLimit).mockResolvedValue({ 
+      success: true, 
+      limit: 100, 
+      remaining: 99, 
+      reset: 0 
+    });
   });
 
   // HAPPY PATH: Tests acceptance criterion "Returns {orderId, approvalURL}"

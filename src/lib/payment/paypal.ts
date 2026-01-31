@@ -79,6 +79,11 @@ export async function createPayPalOrder(params: PayPalOrderParams): Promise<PayP
     throw new Error('Invalid amount: must be a positive number');
   }
 
+  const validCurrencies = ['USD', 'EUR', 'GBP', 'AUD', 'CAD'];
+  if (!validCurrencies.includes(currency)) {
+    throw new Error(`Invalid currency: must be one of ${validCurrencies.join(', ')}`);
+  }
+
   try {
     const accessToken = await getPayPalAccessToken();
     const baseUrl = process.env.PAYPAL_MODE === 'live' || process.env.PAYPAL_ENV === 'live'

@@ -46,6 +46,15 @@ export async function createRazorpayOrder(params: RazorpayOrderParams): Promise<
     throw new Error('Invalid amount: must be a positive number');
   }
 
+  if (currency !== 'INR' && currency !== 'USD') {
+     // Razorpay supports more, but for this app maybe just these?
+     // Actually, let's allow a broader set but definitely check for empty.
+  }
+  const validCurrencies = ['INR', 'USD', 'EUR', 'GBP', 'AUD', 'CAD'];
+  if (!validCurrencies.includes(currency)) {
+     throw new Error(`Invalid currency: must be one of ${validCurrencies.join(', ')}`);
+  }
+
   const keyId = process.env.RAZORPAY_KEY_ID;
   const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
