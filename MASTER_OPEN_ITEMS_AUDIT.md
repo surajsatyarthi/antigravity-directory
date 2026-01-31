@@ -1,105 +1,44 @@
-# 📋 MASTER AUDIT: Open & Pending Items
-**Date**: 2026-01-31 (Launch Day)
-**Scope**: "Deep and Wide" Codebase & Strategy Scan
+# 📋 MASTER PROJECT STATUS (SSOT) - RICE Prioritized
 
-## 1. 🚨 IMMEDIATE CRITICAL (Launch Day - Hour 12-24)
+**Date**: 2026-01-31
+**Goal**: Launch in 2 Days + Path to $10k MRR
+**Scoring Formula**: `(Reach * Impact * Confidence) / Effort`
+**Impact Scale**: 3=Critical, 2=High, 1=Medium, 0.5=Low
 
-### Infrastructure & Deploy
-- [ ] **Razorpay Key Missing**: The local environment and Vercel are missing `NEXT_PUBLIC_RAZORPAY_KEY_ID`.
-  - **Impact**: Indian users cannot pay. Payment flow partially broken.
-  - **Action**: Add to Vercel Environment Variables immediately.
-- [ ] **Production Deploy**: `vercel --prod` has been run, but need to **manually verify** the live URL `https://antigravity.directory` (or its alias) specifically for:
-  - `robots.txt` serving correct content.
-  - `sitemap.xml` accessibility.
-  - Static pages for the 50 new seeded tools.
+### 🟢 PENDING / OPEN TASKS (Sorted by RICE Score)
 
-### Launch Marketing
-- [ ] **Product Hunt Post**: Content is ready (`LAUNCH_CONTENT_READY_TO_POST.md`), but needs to be **posted manually** at 12:01 AM PT.
-- [ ] **Hacker News Post**: Scheduled for 8:00 AM PT.
-- [ ] **Twitter/Reddit**: Content drafted, needs posting.
-
----
-
-## 2. ⚠️ SHORT-TERM TECHNICAL (Week 1)
-
-### Codebase TODOs & FIXMEs
-- [ ] **Contact Enrichment** (`src/lib/enrich-contacts.ts`):
-  - `TODO: Implement actual Apollo.io API integration`.
-  - Currently throws error or returns mock data.
-  - **Impact**: We cannot automatically enrich email addresses for new leads yet.
-- [ ] **Search Input Hydration** (`src/components/SearchInput.tsx`):
-  - Identified in `ISSUES_LOG.md` (P1-2). Risk of layout shift on mobile.
-  - **Action**: Wrap client-only state in `useEffect`.
-
-### Security & Protocol
-- [ ] **Security Audit Completion** (P1-3):
-  - `ISSUES_LOG.md` lists 6 files with `dangerouslySetInnerHTML`.
-  - Status: "Refactored/Resolved" in log, but need to strict confirm `dompurify` is active in production build.
-- [ ] **Blueprint Documentation**:
-  - `docs/reports/phase_2_execution_report_mobile_ux.md` was flagged as a retroactive requirement (P0-2). Needs to be finalized if not already.
+| ID | Task | RICE | Reach | Impact | Conf | Effort | Priority | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **IM-2** | **Verify Live URL (robots, sitemap)** | **60.0** | 10 | 3.0 | 100% | 0.5h | CRITICAL | ✅ DONE |
+| **IM-3** | **Post on Product Hunt (12:01 AM)** | **48.0** | 10 | 3.0 | 80% | 0.5h | CRITICAL | ⏳ PENDING |
+| **BL-103** | **Refine Navigation Header** | **20.0** | 10 | 2.0 | 100% | 1.0h | HIGH | ✅ DONE |
+| **WK1-3** | **Fix Search Input Hydration** | **16.0** | 8 | 2.0 | 100% | 1.0h | HIGH | ⏳ PENDING |
+| **IM-4** | **Post on Hacker News & Reddit** | **9.0** | 9 | 2.0 | 50% | 1.0h | CRITICAL | ⏳ PENDING |
+| **WK1-4** | **Verify Security Audit (DOMPurify)** | **8.0** | 10 | 0.8 | 100% | 1.0h | HIGH | ⏳ PENDING |
+| **4.2** | **Build Blog / Insights (`/blog`)** | **4.1** | 9 | 2.0 | 90% | 4.0h | MEDIUM | 🆕 ADDED |
+| **4.3** | **Build Troubleshooting Guide** | **4.0** | 4 | 2.0 | 100% | 2.0h | MEDIUM | 🆕 ADDED |
+| **4.4** | **Build Download Page (`/download`)** | **3.8** | 8 | 1.5 | 100% | 1.0h | MEDIUM | 🆕 ADDED |
+| **WK1-2** | **Create 5 New Comparisons** | **3.2** | 6 | 2.0 | 80% | 3.0h | HIGH | ⏳ PENDING |
+| **BL-6** | **Twitter Feed Integration** | **2.4** | 8 | 1.5 | 80% | 4.0h | LOW | ⏳ PENDING |
+| **3.3** | **Prototype Social Section** | **2.2** | 8 | 1.0 | 80% | 3.0h | LOW | ⏳ PENDING |
+| **WK1-5** | **Submit to 20 Directories** | **2.2** | 5 | 2.0 | 90% | 4.0h | HIGH | ⏳ PENDING |
+| **WK1-1** | **Contact Enrichment (Apollo)** | **1.6** | 4 | 1.0 | 80% | 2.0h | HIGH | ⏳ PENDING |
+| **BL-3** | **Newsletter Template** | **1.2** | 3 | 1.0 | 80% | 2.0h | MID | ⏳ PENDING |
+| **BL-10** | **Programmatic SEO Scale-up** | **0.5** | 8 | 2.0 | 60% | 20h | LOW | ⏳ PENDING |
+| **BL-8** | **Self-Serve Promote Flow** | **0.3** | 2 | 2.0 | 80% | 10h | LOW | ⏳ PENDING |
+| **BL-9** | **Personal User Dashboard** | **0.2** | 3 | 0.5 | 80% | 8.0h | LOW | ⏳ PENDING |
+| **BL-2** | **Admin Dashboard** | **0.1** | 1 | 0.5 | 100% | 8.0h | MID | ⏳ PENDING |
+| **4.1** | **Community Page (`/community`)** | **<0.1** | 1 | 0.5 | 20% | 50h | LOW | 🔴 DEFER |
+| **BL-7** | **Native iOS/Android Apps** | **<0.1** | 2 | 1.0 | 50% | 100h | LOW | ⏳ PENDING |
 
 ---
 
-## 3. 📈 STRATEGIC & GROWTH (Month 1 Roadmap)
+### ✅ COMPLETED TASKS
 
-### Content Expansion
-- [ ] **Comparison Engine**:
-  - Current: 7 comparisons live.
-  - Target: **add 5 high-intent pairs** (Claude vs ChatGPT, Copilot vs Cursor) - (P1-4).
-  - **Why**: These drive high-value, intent-based traffic ($299-$598/mo potential).
-- [ ] **Directory Submissions**:
-  - `LAUNCH_TO_10K_MRR_PLAYBOOK.md` lists 20 directories (BetaList, Launching Next, etc.) to submit to on Day 2-3.
-
-### Monetization Features
-- [ ] **Affiliate Program**:
-  - Roadmap item for Month 4, but foundational work (Stripe Connect setup) can start.
-- [ ] **Job Board**:
-  - `LAUNCH_TO_10K_MRR_PLAYBOOK.md` mentions this as a future $99/post revenue stream. Code scaffolding needed.
-
----
-
-## 4. 🔍 DATA & ANALYTICS
-
-### Missing Metrics
-- [ ] **Apollo.io Integration**: As noted above, missing key for enrichment.
-- [ ] **Analytics Verification**:
-  - Need to confirm GA4 and Vercel Analytics are receiving events from the production environment (specifically `submit_tool` conversion event).
-
----
-**Summary for User**:
-
----
-
-## 5. 💡 USER BACKLOG (Phase 3+)
-*From `ISSUES_LOG.md`*
-
-### Revenue & Leads
-- [ ] **Submit / Promote / Advertise Flow**: Full self-serve monetization.
-- [ ] **Newsletter Template**: Design for 2 promoted + 2 organic slots.
-- [ ] **Normal Email Signup**: Standard lead gen form (without submission).
-
-### Brand & Content
-- [ ] **Remove "Gemini 3 Powered"**: White-label the footer/branding.
-- [ ] **"As Seen On" Section**: Social proof bar (needs PR placements first).
-- [ ] **Footer Notice**: Update legal/copyright text.
-
-### Product Features
-- [ ] **Admin Dashboard**: backend for managing submissions.
-- [ ] **Personal Dashboard**: for users to manage their listings/bookmarks.
-- [ ] **Mobile View Optimization**: Further refinement for small screens.
-- [ ] **Filters Bug**: Investigate reported issue "Filters not working".
-- [ ] **Newsletter Component**: Reduce size/scale (UI Polish).
-
-### Expansion & Social
-- [ ] **Twitter Feed Integration**: Live social updates.
-- [ ] **Reddit Rooms**: Community integration.
-- [ ] **Own Community Platform**: Whitelabel forum/community.
-- [ ] **Native Mobile Apps**: iOS/Android build.
-- [ ] **Browser Extensions**: Chrome/Edge/Mozilla plugins.
-
-### Strategy
-- [ ] **Target Paying ICP**: Refine messaging for enterprise/funded startups.
-- [ ] **Programmatic SEO (pSEO)**: Scale comparison pages.
-- [ ] **List Resources via Antigravity Model**: (Clarify requirements).
-- [ ] **Antigravity for Dummies**: Beginner guides.
-
+| ID | Task | Status | Notes |
+| :--- | :--- | :--- | :--- |
+| **BL-105** | Research `antigravity.codes/download` | ✅ **DONE** | Result: Not Recommended |
+| **BL-104** | Research Social Feed | ✅ **DONE** | Result: Use Twitter Embed |
+| **IM-1** | Razorpay Key Configuration | ✅ **DONE** | Validated Live |
+| **BL-101** | Free Submission Logic | ✅ **DONE** | Live Verified |
+| **BL-102** | Remove "Rocket" Watermark | ✅ **DONE** | Live Verified |
