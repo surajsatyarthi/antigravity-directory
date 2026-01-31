@@ -1,4 +1,4 @@
-# 🦅 THE RALPH PROTOCOL PLAYBOOK (v3.3)
+# 🦅 THE RALPH PROTOCOL PLAYBOOK (v4.0)
 ## The Supreme Constitution for AI-Driven Engineering Excellence
 
 > [!IMPORTANT]
@@ -19,7 +19,8 @@
 7.  **Air-Gap Law**: Write operations only via \`lib/sanity.server.ts\`.
 8.  **Context Law**: All logs/reports must anchor to the current Git HEAD.
 9.  **Semantic Law**: Every commit must contain \`SECURITY-CHECKLIST [#ID]:\`.
-10. **Integrity Law**: All reports must pass the \`validate-phase-report.sh\` script.
+10. **Integrity Law**: All reports must pass the `validate-phase-report.sh` script.
+23. **RFC Law**: No code without an approved Plan that lists "Alternatives Considered".
 
 ---
 
@@ -30,12 +31,12 @@
 - **Gate 2 – Logic Mapping**: Identify all consumers/dependencies of the code being changed. Document minimum 3 external web searches for documentation or similar issues.
 
 ### PHASE 2: Planning
-- **Gate 3 – Blueprint**: Create \`implementation_plan.md\` and obtain EXPLICIT user approval before writing a single line of code.
+- **Gate 3 – Blueprint**: Create `implementation_plan.md` which MUST include an **"Alternatives Considered"** section. Obtain EXPLICIT user approval.
 
 ### PHASE 3: Execution
 - **Gate 4 – Implementation**: Execute approved changes. No scope creep.
 - **Gate 6.5 – Code Verification**: Run \`git diff --cached --quiet\`. If there are no staged changes but the message claims them, the commit is BLOCKED.
-- **Gate 7 – TDD Proof**: Run Vitest and Playwright tests. Local \`pnpm build\` is mandatory.
+- **Gate 7 – TDD Proof**: Run Vitest and Playwright tests. Local `pnpm build` is mandatory. **Bug fixes MUST include a Reproduction Test Case.**
 - **Gate 8 – Sanity Schema Gate**: \`sanity schema validate\` → \`sanity schema deploy\`.
 - **Gate 9 – UI Proof**: Verify in Sanity Studio + capture screenshots.
 
@@ -46,6 +47,7 @@
     3. Physical verification on the live URL.
     4. **MANDATORY**: Screenshot with timestamp and URL visible.
 - **Gate 10 – Watchtower**: 24-hour post-deployment monitoring. Check production at Hour 0, 6, 12, and 24.
+- **Gate 11 – Post-Mortem**: If a P0 breach or production failure occurs, a Blameless Post-Mortem (COE) is mandatory.
 
 ---
 
