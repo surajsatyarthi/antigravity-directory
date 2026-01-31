@@ -38,7 +38,7 @@ export const DirectoryIntelligence = () => {
 
             {/* Search removed - Use global sticky header search */}
             <div className="hidden sm:flex items-center justify-center gap-2 text-xs text-gray-500 font-mono mt-8">
-              <span className="bg-white/5 border border-white/10 px-2 py-1 rounded">CMD+K</span> to search anywhere
+              <span className="bg-white/5 border border-white/10 px-2 py-1 rounded">CMD+K</span> to Search
             </div>
         </div>
       </div>
@@ -51,7 +51,7 @@ export const DirectoryIntelligence = () => {
           <div>
             <h4 className="text-xs font-black text-white uppercase tracking-widest mb-0.5">Live Sync</h4>
             <p className="text-xs text-gray-300 leading-tight">
-              GitHub metrics synced 24h.
+              GitHub Stats: Real-time
             </p>
           </div>
         </div>
