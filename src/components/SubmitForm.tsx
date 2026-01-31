@@ -204,13 +204,13 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label htmlFor="categoryName" className={labelClasses}>Category (Select First)</label>
-                    {formRef.current?.elements.namedItem('categoryName') && (
+                    {selectedCategory && (
                       <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${
-                        ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes((formRef.current?.elements.namedItem('categoryName') as HTMLSelectElement).value)
+                        ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory)
                           ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
                           : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
                       }`}>
-                        {['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes((formRef.current?.elements.namedItem('categoryName') as HTMLSelectElement).value) 
+                        {['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory) 
                           ? '✨ Free Listing' 
                           : '💎 Paid Listing'}
                       </span>
@@ -223,7 +223,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                       required 
                       className={`${inputClasses} appearance-none cursor-pointer`}
                       onChange={(e) => {
-                        // Force re-render to update badges/button
+                        setSelectedCategory(e.target.value);
                         setResourceId(e.target.value); 
                       }}
                     >
@@ -268,10 +268,9 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                   <button type="submit" disabled={isPending} className="group w-full py-5 bg-white hover:bg-emerald-50 text-black font-black rounded-xl transition-all active:scale-[0.98] uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 shadow-xl shadow-white/5">
                     {isPending ? <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" /> : <Zap className="w-4 h-4" />}
                     <span>
-                       {/* This is a hacky way to check value since state refactoring would be larger, but effectively: if free category -> 'Submit Free', else 'Proceed to Payment' */
+                       {/* Use state instead of document.getElementById which fails on server */
                         (() => {
-                          const cat = (document.getElementById('categoryName') as HTMLSelectElement)?.value;
-                           return ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(cat) 
+                           return ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory) 
                             ? 'Submit for Free' 
                             : 'Proceed to Payment';
                         })()
