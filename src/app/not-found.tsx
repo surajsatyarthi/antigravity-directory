@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Home, Search, Eye, Sparkles, Zap } from 'lucide-react';
 import { MarketplaceHeader } from '@/components/MarketplaceHeader';
-import { Footer } from '@/components/Footer';
+
 
 export default function NotFound() {
   return (
@@ -47,7 +47,7 @@ export default function NotFound() {
         {/* End of content */}
       </main>
 
-      <Footer />
+
     </div>
   );
 }
