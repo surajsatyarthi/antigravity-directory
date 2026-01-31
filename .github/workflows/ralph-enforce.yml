@@ -1,10 +1,11 @@
-name: 🦅 Ralph Protocol Enforcer
+name: 🦅 Ralph Protocol Enforcer v4.1
 
 on:
   pull_request:
     branches: [ "main" ]
   push:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   ralph-compliance:
