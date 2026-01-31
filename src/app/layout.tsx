@@ -77,7 +77,9 @@ export default function RootLayout({
           <div id="main-content" tabIndex={-1} className="outline-none">
             {children}
           </div>
-          <Footer />
+          <div data-ralph-trace="global-root">
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>

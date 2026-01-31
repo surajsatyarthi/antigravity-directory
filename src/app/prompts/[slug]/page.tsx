@@ -203,7 +203,7 @@ export default function PromptDetailPage({ params }: { params: { slug: string } 
   };
 
   return (
-    <div className="min-h-screen bg-black text-gray-200">
+    <div className="min-h-screen bg-black text-gray-200" data-ralph-trace="prompt-page-v2">
       {/* JSON-LD for SEO */}
       <script
         type="application/ld+json"
