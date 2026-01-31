@@ -49,11 +49,11 @@ export function PromptDetailView({ prompt }: PromptDetailViewProps) {
           <div className="flex items-center gap-4 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4 text-emerald-500" />
-              <span>Verified by Antigravity</span>
+              <span className="leading-none">Verified by Antigravity</span>
             </div>
             <div className="flex items-center gap-2">
               <Code2 className="w-4 h-4 text-purple-500" />
-              <span>Gemini 3 Optimized</span>
+              <span className="leading-none">Gemini 3 Optimized</span>
             </div>
           </div>
         </div>

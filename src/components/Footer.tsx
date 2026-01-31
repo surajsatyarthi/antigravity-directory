@@ -105,28 +105,28 @@ export function Footer() {
 
           {/* Links */}
           <div className="flex flex-col items-center gap-4">
-            <nav className="flex gap-10 font-mono text-[10px] tracking-widest text-gray-400 uppercase" aria-label="Footer Navigation">
+            <nav className="flex gap-10 font-mono text-xs tracking-widest text-gray-400 uppercase" aria-label="Footer Navigation">
                 <Link
                   href="/"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="p-2 text-gray-400 hover:text-white transition-colors"
                 >
                   Explore
                 </Link>
               <Link
                 href="/submit"
-                className="transition-colors hover:text-white focus:outline-none focus:text-blue-500"
+                className="p-2 transition-colors hover:text-white focus:outline-none focus:text-blue-500"
               >
                 Submit
               </Link>
               <Link
                 href="/privacy"
-                className="transition-colors hover:text-white focus:outline-none focus:text-blue-500"
+                className="p-2 transition-colors hover:text-white focus:outline-none focus:text-blue-500"
               >
                 Privacy
               </Link>
               <Link
                 href="/terms"
-                className="transition-colors hover:text-white focus:outline-none focus:text-blue-500"
+                className="p-2 transition-colors hover:text-white focus:outline-none focus:text-blue-500"
               >
                 Terms
               </Link>
