@@ -278,7 +278,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                     </span>
                   </button>
                   <p className="mt-4 text-center text-xs text-gray-700 font-bold uppercase tracking-widest">
-                    Subject to manual review • Refund guaranteed if rejected
+                    Manually Reviewed • 100% Refund if rejected
                   </p>
                 </div>
               </form>
