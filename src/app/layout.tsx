@@ -25,8 +25,8 @@ export const metadata: Metadata = {
   description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
   keywords: ["google antigravity", "antigravity ide", "mcp servers", "antigravity rules", "gemini 3", "ai coding", "agentic development", "antigravity prompts", "mcp directory"],
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
   },
   openGraph: {
     title: "Antigravity Directory",

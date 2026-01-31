@@ -12,7 +12,7 @@ export function NavLinks({ session, username }: NavLinksProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="hidden md:flex items-center gap-6 text-[11px] font-medium tracking-wide">
+    <nav className="hidden md:flex items-center gap-6 text-[11px] font-medium tracking-wide whitespace-nowrap">
       <Link href="#" className="text-gray-400 hover:text-white transition-colors cursor-not-allowed" title="Coming Soon">Help</Link>
       <Link href="#" className="text-gray-400 hover:text-white transition-colors cursor-not-allowed" title="Coming Soon">Blog</Link>
       <Link href="https://discord.gg/antigravity" target="_blank" className="text-gray-400 hover:text-white transition-colors">Community</Link>

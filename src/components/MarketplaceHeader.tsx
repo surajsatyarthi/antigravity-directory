@@ -52,7 +52,7 @@ export async function MarketplaceHeader() {
             <NavLinks session={session} username={username} />
           </div>
 
-          <div className="flex items-center gap-4 pl-6 border-l border-white/[0.05] h-6">
+          <div className="flex items-center gap-4 pl-4 border-l border-white/[0.05] h-6">
             {/* Submit Button - STAND OUT */}
             <Link 
               href="/submit"
