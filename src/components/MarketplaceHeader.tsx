@@ -56,7 +56,7 @@ export async function MarketplaceHeader() {
             {/* Submit Button - STAND OUT */}
             <Link 
               href="/submit"
-              className="group relative flex items-center justify-center px-4 py-1.5 bg-white hover:bg-emerald-50 text-black text-[10px] font-black uppercase tracking-[0.15em] rounded-md transition-all active:scale-[0.98] shadow-[0_0_20px_rgba(255,255,255,0.1)] overflow-hidden"
+              className="group relative flex items-center justify-center px-4 py-1.5 bg-white hover:bg-emerald-50 text-black text-[10px] font-black uppercase tracking-[0.15em] rounded-md transition-all active:scale-[0.98] shadow-[0_0_20px_rgba(255,255,255,0.1)] overflow-hidden whitespace-nowrap shrink-0"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/10 to-emerald-500/0 -translate-x-full group-hover:translate-x-full duration-1000 transition-transform" />
               <Zap className="w-3 h-3 mr-2 animate-pulse" />
