@@ -8,7 +8,8 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Help', href: '#', disabled: true, title: 'Coming Soon' }, // Disabled first
+  { label: 'Download', href: '/download' },
+  { label: 'Help', href: '/troubleshooting' },
   { label: 'Blog', href: '#', disabled: true, title: 'Coming Soon' },
   { label: 'Community', href: 'https://discord.gg/antigravity', external: true },
   { label: 'Prompts', href: '/prompts', isNew: true },

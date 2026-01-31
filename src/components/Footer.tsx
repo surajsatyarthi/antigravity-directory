@@ -119,6 +119,18 @@ export function Footer() {
                 Submit
               </Link>
               <Link
+                href="/download"
+                className="p-2 transition-colors hover:text-white focus:outline-none focus:text-blue-500"
+              >
+                Download
+              </Link>
+              <Link
+                href="/troubleshooting"
+                className="p-2 transition-colors hover:text-white focus:outline-none focus:text-blue-500"
+              >
+                Help
+              </Link>
+              <Link
                 href="/privacy"
                 className="p-2 transition-colors hover:text-white focus:outline-none focus:text-blue-500"
               >

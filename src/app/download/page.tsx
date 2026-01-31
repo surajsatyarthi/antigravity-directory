@@ -1,5 +1,6 @@
 import { Apple, Monitor, Terminal, Download } from 'lucide-react';
 import Link from 'next/link';
+import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 
 export const metadata = {
   title: 'Download Antigravity',
@@ -8,7 +9,9 @@ export const metadata = {
 
 export default function DownloadPage() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+    <>
+      <MarketplaceHeader />
+      <div className="min-h-screen bg-[#050505] text-white pt-32 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-6">
           Download Antigravity
@@ -95,6 +98,7 @@ export default function DownloadPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
