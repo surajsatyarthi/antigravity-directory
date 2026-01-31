@@ -158,6 +158,13 @@ useEffect(() => {
    - Revenue: $299-$598/mo
    - Effort: 5 hours
 
+### UI/UX Audit (Feb 1 2026) - "Harsh Review"
+- [x] **P1 [SEO]**: Duplicate Title Tags on Prompt Pages `Antigravity Directory | Antigravity Directory`. <!-- id: audit-1 -->
+- [x] **P2 [Header]**: Desktop Search Input is too narrow and placeholder text is illegible. <!-- id: audit-2 -->
+- [x] **P2 [Mobile]**: Hero Heading typography scale is too large (pushes content down). <!-- id: audit-3 -->
+- [x] **P2 [Mobile]**: Footer links (EXPLORE, SUBMIT) have insufficient tap targets (cramped). <!-- id: audit-4 -->
+- [x] **P3 [UI]**: "Verified" and "Gemini Optimized" badges on Prompt Details are vertically misaligned (1-2px). <!-- id: audit-5 -->
+
 2. **GitHub Copilot vs Cursor**
    - Traffic: 300-500/mo
    - Revenue: $299-$498/mo
