@@ -136,8 +136,8 @@ export function Footer() {
 
         {/* Bottom Notices */}
         <div className="mt-16 text-center border-t border-white/5 pt-8 space-y-2">
-             <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase max-w-2xl mx-auto">
-                 Antigravity Directory is an unofficial resource for the agentic coding community.
+             <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase max-w-4xl mx-auto">
+                 Antigravity Directory is an unofficial resource for the agentic coding community. This website is not affiliated with, endorsed by, or associated with Google LLC. "Google" and "Gemini" are trademarks of Google LLC.
              </p>
              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-600 uppercase font-bold">
                 © Invictus International Consulting Services 2026
