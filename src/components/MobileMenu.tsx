@@ -62,13 +62,34 @@ export function MobileMenu({ session: initialSession, username: initialUsername 
                     Explore
                 </Link>
                 <Link 
+                    href="/prompts" 
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-bold text-gray-300 hover:text-white flex items-center gap-2"
+                >
+                    Prompts <span className="bg-[#fbbf24] text-black text-[10px] px-1.5 rounded-sm">NEW</span>
+                </Link>
+                <Link 
+                    href="/mcp-servers" 
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-bold text-gray-300 hover:text-white"
+                >
+                    MCPs
+                </Link>
+                <Link 
+                    href="/advertise" 
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-bold text-gray-300 hover:text-white"
+                >
+                    Advertise
+                </Link>
+                <div className="h-px w-full bg-white/5 my-1" />
+                <Link 
                     href="/submit" 
                     onClick={() => setIsOpen(false)}
                     className="text-lg font-bold text-emerald-400 hover:text-emerald-300"
                 >
                     Submit Resource
                 </Link>
-                {/* Add filters trigger here later? */}
             </nav>
 
             <div className="h-px w-full bg-white/10" />
