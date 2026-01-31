@@ -232,7 +232,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                         const isFree = ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(cat.name);
                         return (
                           <option key={cat.id} value={cat.name}>
-                            {cat.name} {isFree ? '- FREE' : '- PAID ($49)'}
+                            {cat.name} {isFree ? '- FREE' : '- PAID'}
                           </option>
                         );
                       })}
