@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
+import { GoogleAnalytics, sendGAEvent } from '@next/third-parties/google';
 
 export function Analytics() {
   const pathname = usePathname();
@@ -23,8 +24,8 @@ export function Analytics() {
 
     const isAIReferral = aiAgents.some(agent => referrer.includes(agent));
 
-    if (isAIReferral && typeof window.gtag === 'function') {
-      window.gtag('event', 'ai_citation_visit', {
+    if (isAIReferral) {
+      sendGAEvent('event', 'ai_citation_visit', {
         referrer_domain: referrer,
         target_path: pathname,
         is_aeo_optimized: true
@@ -33,11 +34,8 @@ export function Analytics() {
     }
 
     // 2. Standard Pageview tracking for GA4
-    if (typeof window.gtag === 'function' && process.env.NEXT_PUBLIC_GA_ID) {
-      window.gtag('config', process.env.NEXT_PUBLIC_GA_ID, {
-        page_path: pathname + searchParams.toString(),
-      });
-    }
+    // NOTE: @next/third-parties/google handles pageviews automatically on route changes.
+    // Explicit tracking removed to prevent double counting.
   }, [pathname, searchParams]);
 
   return (
@@ -47,33 +45,10 @@ export function Analytics() {
 
       {/* Google Analytics 4 */}
       {process.env.NEXT_PUBLIC_GA_ID && (
-        <>
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-            }}
-          />
-        </>
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       )}
     </>
   );
 }
 
-// Global declaration for TypeScript
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
-  }
-}
+

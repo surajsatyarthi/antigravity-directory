@@ -16,19 +16,18 @@ export function SearchInput() {
   
   // Track if the user has actually typed in THIS component
   const [isInteracted, setIsInteracted] = useState(false);
-  // Initialize empty to prevent hydration mismatch and server de-opt
-  const [query, setQuery] = useState('');
-  const lastSyncQuery = useRef('');
+  // Initialize directly from URL to avoid flash/CLS (Safe because we are inside Suspense)
+  const [query, setQuery] = useState(searchParams.get('q') || '');
+  const lastSyncQuery = useRef(query);
 
-  // 1. URL -> State (One-way downstream)
-  // Ensures header search matches sidebar search
+  // 1. URL -> State (Sync on navigation/popstate)
   useEffect(() => {
     const urlQuery = searchParams.get('q') || '';
     if (urlQuery !== query) {
       setQuery(urlQuery);
-      lastSyncQuery.current = urlQuery; // Don't trigger an upstream sync on downstream update
+      lastSyncQuery.current = urlQuery;
     }
-  }, [searchParams]);
+  }, [searchParams]); // Keep this to handle back/forward buttons
 
   // 2. State -> URL (One-way upstream) with Debounce
   useEffect(() => {
