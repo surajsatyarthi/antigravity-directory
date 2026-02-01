@@ -11,24 +11,16 @@ import { Session } from 'next-auth';
 
 interface MobileMenuProps {
   session: Session | null;
-  username: string | null | undefined;
 }
 
-export function MobileMenu({ session: initialSession, username: initialUsername }: MobileMenuProps) {
+export function MobileMenu({ session: initialSession }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const { data: session } = useSession();
   
-  // Use session.user.name or name from explicit prop, fallback to initial
-  // Note: schema uses 'username' field but next-auth session might map it differently
-  // typically session.user.name might be the display name.
-  // We'll stick to 'username' prop logic but try to update it.
-  
-  // Actually, standard NextAuth session usually has name, email, image. 
-  // Custom fields like 'username' need to be in the session callback.
-  // Assuming the goal is just to rely on the hook for re-renders on sign-in:
-  
-  const currentUsername = session?.user?.name || initialUsername; // Fallback to prop
+  // Get username from live session hook (not stale prop)
+  // session.user.name populated by auth.ts session callback
+  const currentUsername = session?.user?.name;
   const currentImage = session?.user?.image || initialSession?.user?.image;
   const isAuthenticated = !!session?.user || !!initialSession?.user;
 
