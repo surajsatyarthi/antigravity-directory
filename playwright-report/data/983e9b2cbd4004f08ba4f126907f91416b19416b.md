@@ -1,0 +1,871 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e4]:
+    - navigation [ref=e5]:
+      - generic [ref=e6]:
+        - link "Back to Comparisons" [active] [ref=e7] [cursor=pointer]:
+          - /url: /vs
+          - img [ref=e8]
+          - text: Back to Comparisons
+        - generic [ref=e10]: Antigravity VS
+    - generic [ref=e12]:
+      - heading "Netlify vs Vercel" [level=1] [ref=e13]
+      - paragraph [ref=e14]: Netlify pioneered the JAMstack movement and remains strong for static sites. Vercel is laser-focused on Next.js and delivers superior raw performance, especially for dynamic applications with React Server Components.
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - generic [ref=e18]: Feature
+          - generic [ref=e19]: Netlify
+          - generic [ref=e20]: Vercel (You)
+        - generic [ref=e21]:
+          - generic [ref=e22]:
+            - generic [ref=e23]:
+              - text: Performance (TTFB)
+              - generic [ref=e24]: Vercel is 21-39% faster across all regions (2025 benchmarks).
+            - generic [ref=e26]: "Europe: 156ms, North America: 124ms, Asia: 243ms"
+            - generic [ref=e28]:
+              - img [ref=e29]
+              - text: "Europe: 112ms, North America: 89ms, Asia: 201ms"
+          - generic [ref=e31]:
+            - generic [ref=e32]:
+              - text: Build Speed
+              - generic [ref=e33]: Vercel builds are approximately 50% faster.
+            - generic [ref=e35]: 2-3 minutes (avg)
+            - generic [ref=e37]:
+              - img [ref=e38]
+              - text: 1-2 minutes (optimized caching)
+          - generic [ref=e40]:
+            - generic [ref=e41]:
+              - text: Next.js Integration
+              - generic [ref=e42]: Vercel is made by the Next.js team. Zero-config deployment.
+            - generic [ref=e44]: Supported (community-driven)
+            - generic [ref=e46]:
+              - img [ref=e47]
+              - text: Native (first-class SSR, ISR support)
+          - generic [ref=e49]:
+            - generic [ref=e50]:
+              - text: Edge Functions
+              - generic [ref=e51]: Vercel edge functions can handle longer-running tasks.
+            - generic [ref=e53]: Deno-based, 50ms execution limit
+            - generic [ref=e55]:
+              - img [ref=e56]
+              - text: V8 isolates, 9x faster cold starts, 25s start limit
+          - generic [ref=e58]:
+            - generic [ref=e59]:
+              - text: Free Tier
+              - generic [ref=e60]: Netlify reduced free tier to 20 deploys in Sept 2025.
+            - generic [ref=e62]: 100GB bandwidth, 20 deploys/month (credit-based)
+            - generic [ref=e64]:
+              - img [ref=e65]
+              - text: 100GB bandwidth, 1M edge requests, unlimited deploys
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - text: Pricing (Pro)
+              - generic [ref=e69]: Similar pricing; Vercel includes flexible credit system.
+            - generic [ref=e71]:
+              - img [ref=e72]
+              - text: $19/member/month, 1TB bandwidth
+            - generic [ref=e75]: $20/user/month, 1TB bandwidth, $20 credit
+          - generic [ref=e76]:
+            - generic [ref=e77]:
+              - text: JAMstack / Static Sites
+              - generic [ref=e78]: Netlify excels for non-Next.js static sites.
+            - generic [ref=e80]:
+              - img [ref=e81]
+              - text: Excellent (multi-framework support)
+            - generic [ref=e84]: Good (Next.js static export)
+          - generic [ref=e85]:
+            - generic [ref=e86]:
+              - text: Local Dev Parity
+              - generic [ref=e87]: Netlify Dev provides better local development experience.
+            - generic [ref=e89]:
+              - img [ref=e90]
+              - text: Netlify Dev (strong local emulation)
+            - generic [ref=e93]: Vercel CLI (good, but less parity)
+          - generic [ref=e94]:
+            - generic [ref=e95]:
+              - text: Best Use Case
+              - generic [ref=e96]: Vercel wins for Next.js; Netlify for broader framework support.
+            - generic [ref=e98]: Static sites, JAMstack, multi-framework projects
+            - generic [ref=e100]:
+              - img [ref=e101]
+              - text: Next.js apps, dynamic/agentic AI apps, performance-critical sites
+      - generic [ref=e103]:
+        - heading "Ready to upgrade from Netlify?" [level=3] [ref=e104]
+        - link "Get Antigravity Prompts" [ref=e105] [cursor=pointer]:
+          - /url: /prompts
+          - img [ref=e106]
+          - text: Get Antigravity Prompts
+        - paragraph [ref=e108]: Instant Access • No Credit Card Required
+  - contentinfo [ref=e109]:
+    - generic:
+      - generic:
+        - generic:
+          - generic: "1"
+          - generic: SSL
+          - generic: "1"
+          - generic: "1"
+          - generic: GPT
+          - generic: SSL
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: DNS
+          - generic: "&&"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: (
+          - generic: CPU
+          - generic: "}"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: DNS
+          - generic: SSL
+          - generic: GPT
+          - generic: "0"
+          - generic: GPU
+        - generic:
+          - generic: "1"
+          - generic: git
+          - generic: "1"
+          - generic: GPT
+          - generic: "1"
+          - generic: "{"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "!=="
+          - generic: "0"
+          - generic: 0x
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+        - generic:
+          - generic: npm
+          - generic: AI
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: ==
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: API
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: API
+          - generic: (
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: DNS
+        - generic:
+          - generic: "0"
+          - generic: SSL
+          - generic: "0"
+          - generic: DNS
+          - generic: JWT
+          - generic: "0"
+          - generic: js
+          - generic: 0x
+          - generic: "1"
+          - generic: "0"
+          - generic: git
+          - generic: "1"
+          - generic: ">"
+          - generic: "1"
+          - generic: "0"
+          - generic: GPU
+          - generic: "0"
+          - generic: "1"
+          - generic: JWT
+          - generic: FF
+          - generic: AI
+          - generic: "0"
+          - generic: "1"
+          - generic: XML
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: ML
+        - generic:
+          - generic: "1"
+          - generic: "0"
+          - generic: git
+          - generic: "0"
+          - generic: CPU
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: <
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: SSL
+          - generic: api
+          - generic: "0"
+          - generic: ML
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: DNS
+          - generic: "0"
+          - generic: "1"
+        - generic:
+          - generic: "}"
+          - generic: "0"
+          - generic: let
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: (
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "::"
+          - generic: "1"
+          - generic: "0"
+          - generic: ...
+          - generic: )
+          - generic: ==
+          - generic: CPU
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: (
+        - generic:
+          - generic: JSON
+          - generic: "1"
+          - generic: sql
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: <
+          - generic: "0"
+          - generic: "0"
+          - generic: FF
+          - generic: "0"
+          - generic: api
+          - generic: "1"
+          - generic: py
+          - generic: GPT
+          - generic: "1"
+          - generic: "||"
+          - generic: "TRUE"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+        - generic:
+          - generic: (
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "}"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: API
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: ...
+          - generic: "0"
+          - generic: "NULL"
+          - generic: "}"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: XML
+          - generic: 0x
+        - generic:
+          - generic: js
+          - generic: JSON
+          - generic: "&&"
+          - generic: 0x
+          - generic: "0"
+          - generic: "!=="
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: js
+          - generic: "0"
+          - generic: )
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "{"
+        - generic:
+          - generic: "1"
+          - generic: "{"
+          - generic: "::"
+          - generic: API
+          - generic: "1"
+          - generic: let
+          - generic: "1"
+          - generic: ">"
+          - generic: "0"
+          - generic: npm
+          - generic: "0"
+          - generic: "1"
+          - generic: "NULL"
+          - generic: "0"
+          - generic: "1"
+          - generic: (
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: GPT
+          - generic: "0"
+          - generic: CPU
+          - generic: let
+          - generic: "1"
+          - generic: "0"
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: git
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: AI
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: GPU
+          - generic: "1"
+          - generic: "0"
+        - generic:
+          - generic: CPU
+          - generic: "&&"
+          - generic: <
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: FF
+          - generic: ">"
+          - generic: "1"
+          - generic: "1"
+          - generic: AI
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "{"
+          - generic: "&&"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: sql
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: <
+          - generic: "!=="
+          - generic: "1"
+          - generic: var
+        - generic:
+          - generic: "1"
+          - generic: var
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: npm
+          - generic: "0"
+          - generic: GPU
+          - generic: "]"
+          - generic: "1"
+          - generic: "0"
+          - generic: CPU
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: (
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: GPU
+          - generic: let
+          - generic: "1"
+          - generic: XML
+          - generic: "0"
+          - generic: "TRUE"
+          - generic: "1"
+          - generic: "0"
+        - generic:
+          - generic: py
+          - generic: "1"
+          - generic: JSON
+          - generic: "0"
+          - generic: CPU
+          - generic: DNS
+          - generic: API
+          - generic: =>
+          - generic: "0"
+          - generic: CPU
+          - generic: SSL
+          - generic: "0"
+          - generic: ">"
+          - generic: "1"
+          - generic: AI
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: py
+          - generic: JWT
+          - generic: JWT
+          - generic: "1"
+          - generic: ==
+          - generic: git
+          - generic: "1"
+          - generic: <
+          - generic: =>
+          - generic: "1"
+          - generic: let
+          - generic: "TRUE"
+        - generic:
+          - generic: "1"
+          - generic: js
+          - generic: "1"
+          - generic: <
+          - generic: FF
+          - generic: "0"
+          - generic: <
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: =>
+          - generic: =>
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: fn
+          - generic: "0"
+          - generic: "1"
+          - generic: ML
+        - generic:
+          - generic: CPU
+          - generic: let
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "&&"
+          - generic: "1"
+          - generic: sql
+          - generic: =>
+          - generic: git
+          - generic: ...
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "||"
+        - generic:
+          - generic: "1"
+          - generic: CPU
+          - generic: SSL
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "&&"
+          - generic: "0"
+          - generic: 0x
+          - generic: "]"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: XML
+          - generic: "0"
+          - generic: "0"
+          - generic: <
+          - generic: JWT
+          - generic: "["
+          - generic: JWT
+          - generic: "1"
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: api
+          - generic: "1"
+          - generic: API
+          - generic: "&&"
+          - generic: "0"
+          - generic: "{"
+          - generic: "0"
+          - generic: )
+          - generic: "1"
+          - generic: "1"
+          - generic: CPU
+          - generic: "0"
+          - generic: "0"
+          - generic: =>
+          - generic: =>
+          - generic: "0"
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "::"
+          - generic: fn
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: ==
+          - generic: "1"
+          - generic: AI
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: JSON
+          - generic: SSL
+          - generic: "0"
+          - generic: ML
+        - generic:
+          - generic: "1"
+          - generic: API
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: fn
+          - generic: ==
+          - generic: "1"
+          - generic: "["
+          - generic: "1"
+          - generic: "0"
+          - generic: (
+          - generic: "0"
+          - generic: DNS
+          - generic: "0"
+          - generic: "1"
+          - generic: "NULL"
+          - generic: "!=="
+          - generic: GPU
+          - generic: "0"
+          - generic: GPU
+          - generic: "1"
+          - generic: GPT
+          - generic: "0"
+          - generic: "&&"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "NULL"
+        - generic:
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "||"
+          - generic: ...
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+        - generic:
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: fn
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: ML
+          - generic: api
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: AI
+          - generic: GPU
+          - generic: api
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: git
+          - generic: JSON
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: GPT
+          - generic: "&&"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: api
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: JWT
+          - generic: "NULL"
+          - generic: "0"
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "&&"
+          - generic: API
+          - generic: JWT
+          - generic: SSL
+          - generic: )
+          - generic: "1"
+          - generic: "0"
+          - generic: js
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: ...
+          - generic: "0"
+          - generic: ">"
+          - generic: CPU
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+        - generic:
+          - generic: npm
+          - generic: "1"
+          - generic: "1"
+          - generic: "||"
+          - generic: let
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: py
+          - generic: SSL
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: npm
+          - generic: fn
+          - generic: "1"
+          - generic: "0"
+          - generic: ==
+        - generic:
+          - generic: "0"
+          - generic: py
+          - generic: ...
+          - generic: "0"
+          - generic: "0"
+          - generic: npm
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "&&"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "}"
+          - generic: "0"
+          - generic: "!=="
+        - generic:
+          - generic: "0"
+          - generic: api
+          - generic: DNS
+          - generic: "1"
+          - generic: "1"
+          - generic: py
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: py
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: AI
+          - generic: 0x
+          - generic: "&&"
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: CPU
+          - generic: "1"
+          - generic: "1"
+          - generic: SSL
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: CPU
+          - generic: "0"
+          - generic: "1"
+          - generic: py
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "NULL"
+          - generic: py
+          - generic: FF
+        - generic:
+          - generic: "::"
+          - generic: JWT
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: DNS
+          - generic: "{"
+          - generic: "1"
+          - generic: DNS
+          - generic: "1"
+          - generic: "1"
+          - generic: XML
+          - generic: "0"
+          - generic: "1"
+          - generic: AI
+          - generic: var
+          - generic: "1"
+          - generic: "!=="
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: sql
+          - generic: "0"
+          - generic: ==
+          - generic: "1"
+          - generic: SSL
+    - generic [ref=e110]:
+      - generic [ref=e111]:
+        - link "Antigravity Directory Home" [ref=e113] [cursor=pointer]:
+          - /url: /
+          - img [ref=e115]
+          - generic [ref=e117]:
+            - generic [ref=e118]: antigravity
+            - generic [ref=e119]: directory
+        - navigation "Footer Navigation" [ref=e121]:
+          - link "Explore" [ref=e122] [cursor=pointer]:
+            - /url: /
+          - link "Submit" [ref=e123] [cursor=pointer]:
+            - /url: /submit
+          - link "Download" [ref=e124] [cursor=pointer]:
+            - /url: /download
+          - link "Help" [ref=e125] [cursor=pointer]:
+            - /url: /troubleshooting
+          - link "Privacy" [ref=e126] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms" [ref=e127] [cursor=pointer]:
+            - /url: /terms
+      - generic [ref=e128]:
+        - paragraph [ref=e129]: Antigravity Directory is an unofficial resource for the agentic coding community. This website is not affiliated with, endorsed by, or associated with Google LLC. "Google" and "Gemini" are trademarks of Google LLC.
+        - paragraph [ref=e130]: © Invictus International Consulting Services 2026
+  - button "Open Next.js Dev Tools" [ref=e136] [cursor=pointer]:
+    - generic [ref=e139]:
+      - text: Compiling
+      - generic [ref=e140]:
+        - generic [ref=e141]: .
+        - generic [ref=e142]: .
+        - generic [ref=e143]: .
+  - alert [ref=e144]
+```

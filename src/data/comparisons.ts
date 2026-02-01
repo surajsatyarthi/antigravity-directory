@@ -324,5 +324,225 @@ export const COMPARISONS: Record<string, ComparisonData> = {
         note: 'Cursor changes how you write code; Copilot helps you write it faster.'
       }
     ]
+  },
+  'vercel-vs-netlify': {
+    id: 'vercel-vs-netlify',
+    title: 'Vercel vs Netlify',
+    subtitle: 'Next.js Specialist vs JAMstack Generalist',
+    p1: 'Netlify',
+    p2: 'Vercel',
+    winner: 'Vercel',
+    summary: 'Netlify pioneered the JAMstack movement and remains strong for static sites. Vercel is laser-focused on Next.js and delivers superior raw performance, especially for dynamic applications with React Server Components.',
+    description: 'Performance benchmarks show Vercel leads in deployment speed, edge functions, and Next.js optimization.',
+    score: 'Win',
+    category: 'Infrastructure',
+    tags: ['Hosting', 'Edge Functions', 'Next.js'],
+    rows: [
+      {
+        feature: 'Performance (TTFB)',
+        p1: 'Europe: 156ms, North America: 124ms, Asia: 243ms',
+        p2: 'Europe: 112ms, North America: 89ms, Asia: 201ms',
+        p2Win: true,
+        note: 'Vercel is 21-39% faster across all regions (2025 benchmarks).'
+      },
+      {
+        feature: 'Build Speed',
+        p1: '2-3 minutes (avg)',
+        p2: '1-2 minutes (optimized caching)',
+        p2Win: true,
+        note: 'Vercel builds are approximately 50% faster.'
+      },
+      {
+        feature: 'Next.js Integration',
+        p1: 'Supported (community-driven)',
+        p2: 'Native (first-class SSR, ISR support)',
+        p2Win: true,
+        note: 'Vercel is made by the Next.js team. Zero-config deployment.'
+      },
+      {
+        feature: 'Edge Functions',
+        p1: 'Deno-based, 50ms execution limit',
+        p2: 'V8 isolates, 9x faster cold starts, 25s start limit',
+        p2Win: true,
+        note: 'Vercel edge functions can handle longer-running tasks.'
+      },
+      {
+        feature: 'Free Tier',
+        p1: '100GB bandwidth, 20 deploys/month (credit-based)',
+        p2: '100GB bandwidth, 1M edge requests, unlimited deploys',
+        p2Win: true,
+        note: 'Netlify reduced free tier to 20 deploys in Sept 2025.'
+      },
+      {
+        feature: 'Pricing (Pro)',
+        p1: '$19/member/month, 1TB bandwidth',
+        p2: '$20/user/month, 1TB bandwidth, $20 credit',
+        p2Win: false,
+        note: 'Similar pricing; Vercel includes flexible credit system.'
+      },
+      {
+        feature: 'JAMstack / Static Sites',
+        p1: 'Excellent (multi-framework support)',
+        p2: 'Good (Next.js static export)',
+        p2Win: false,
+        note: 'Netlify excels for non-Next.js static sites.'
+      },
+      {
+        feature: 'Local Dev Parity',
+        p1: 'Netlify Dev (strong local emulation)',
+        p2: 'Vercel CLI (good, but less parity)',
+        p2Win: false,
+        note: 'Netlify Dev provides better local development experience.'
+      },
+      {
+        feature: 'Best Use Case',
+        p1: 'Static sites, JAMstack, multi-framework projects',
+        p2: 'Next.js apps, dynamic/agentic AI apps, performance-critical sites',
+        p2Win: true,
+        note: 'Vercel wins for Next.js; Netlify for broader framework support.'
+      }
+    ]
+  },
+  'gemini-3-vs-claude-3.5': {
+    id: 'gemini-3-vs-claude-3.5',
+    title: 'Gemini 3 Pro vs Claude 3.5 Sonnet',
+    subtitle: 'Massive Context vs Agentic Excellence',
+    p1: 'Claude 3.5 Sonnet',
+    p2: 'Gemini 3 Pro',
+    winner: 'Depends',
+    summary: 'Claude 3.5 Sonnet excels at agentic coding workflows and reasoning tasks with a 200K context window. Gemini 3 Pro offers a groundbreaking 2M token context—10x larger—enabling whole-codebase reasoning.',
+    description: 'Claude leads in coding benchmarks (HumanEval 93.7%), but Gemini 3 Pro\'s 2M context window is revolutionary for massive codebases.',
+    score: 'Tie',
+    category: 'IDE',
+    tags: ['AI Models', 'LLM', 'Coding'],
+    rows: [
+      {
+        feature: 'MMLU (Knowledge)',
+        p1: '88.7% (5-shot), 90.4% (5-shot CoT)',
+        p2: '85.7% (0-shot CoT), 89.8% (MMLU-Pro)',
+        p2Win: false,
+        note: 'Claude 3.5 Sonnet leads on general knowledge benchmarks.'
+      },
+      {
+        feature: 'HumanEval (Coding)',
+        p1: '92.0% (0-shot), 93.7% (leaderboard)',
+        p2: '~90.2% (Gemini 1.5 Pro), ~89.6%',
+        p2Win: false,
+        note: 'Claude 3.5 Sonnet is superior for code generation accuracy.'
+      },
+      {
+        feature: 'Context Window',
+        p1: '200,000 tokens',
+        p2: '2,000,000 tokens (10x larger!)',
+        p2Win: true,
+        note: 'Gemini 3 Pro can hold entire monorepos in memory.'
+      },
+      {
+        feature: 'Agentic Workflows',
+        p1: 'Exceptional (industry-leading)',
+        p2: 'Good (76.2% SWE-Bench Verified)',
+        p2Win: false,
+        note: 'Claude 3.5 Sonnet is the preferred model for autonomous agents.'
+      },
+      {
+        feature: 'Pricing (per 1M tokens)',
+        p1: '~$3/M input, $15/M output',
+        p2: '~$7/M input, higher for massive context',
+        p2Win: false,
+        note: 'Claude 3.5 Sonnet is more cost-effective for most use cases.'
+      },
+      {
+        feature: 'Speed',
+        p1: 'Very fast (comparable to GPT-4o)',
+        p2: 'Fast (Gemini 3 Flash is faster variant)',
+        p2Win: false,
+        note: 'Both are highly performant; Claude Haiku is fastest.'
+      },
+      {
+        feature: 'Tool Use',
+        p1: 'Strong, reliable with complex schemas',
+        p2: 'Good, native to Google ecosystem',
+        p2Win: false,
+        note: 'Claude 3.5 Sonnet is slightly more consistent with complex tool schemas.'
+      },
+      {
+        feature: 'Best Use Case',
+        p1: 'Agentic coding, complex reasoning, multi-step tasks',
+        p2: 'Massive codebases (>1M tokens), architecture planning',
+        p2Win: true,
+        note: 'Choose Claude for agility; Gemini 3 for scale.'
+      }
+    ]
+  },
+  'supabase-vs-planetscale': {
+    id: 'supabase-vs-planetscale',
+    title: 'Supabase vs PlanetScale',
+    subtitle: 'Postgres BaaS vs MySQL Scale',
+    p1: 'PlanetScale',
+    p2: 'Supabase',
+    winner: 'Supabase',
+    summary: 'PlanetScale excels at horizontal MySQL scaling with Vitess. Supabase provides a complete Backend-as-a-Service with native pgvector for AI applications, and is "several orders of magnitude cheaper."',
+    description: 'For AI agents needing vector search, Supabase\'s native pgvector integration and BaaS features make it the clear winner.',
+    score: 'Win',
+    category: 'Infrastructure',
+    tags: ['Database', 'Vector Search', 'BaaS'],
+    rows: [
+      {
+        feature: 'Vector Search',
+        p1: 'Proprietary (SPANN/SPFresh, MySQL/InnoDB)',
+        p2: 'Native pgvector (HNSW, L2/cosine distance)',
+        p2Win: true,
+        note: 'Supabase pgvector is more performant than dedicated vector DBs (benchmarks).'
+      },
+      {
+        feature: 'Database Core',
+        p1: 'MySQL + Vitess (horizontal scaling)',
+        p2: 'PostgreSQL (rich SQL features)',
+        p2Win: true,
+        note: 'PostgreSQL has superior query capabilities for complex agent logic.'
+      },
+      {
+        feature: 'Pricing (Entry)',
+        p1: 'No free tier; Scaler Pro: $34/mo',
+        p2: 'Free: 500MB DB, 1GB storage; Pro: $25/mo',
+        p2Win: true,
+        note: 'Supabase is "several orders of magnitude cheaper" (Reddit consensus).'
+      },
+      {
+        feature: 'Backend Services',
+        p1: 'Database only (requires third-party integrations)',
+        p2: 'Full BaaS (auth, storage, real-time, edge functions)',
+        p2Win: true,
+        note: 'Supabase is a complete platform; PlanetScale is database-focused.'
+      },
+      {
+        feature: 'Horizontal Scaling',
+        p1: 'Exceptional (Vitess sharding)',
+        p2: 'Good (vertical + read replicas)',
+        p2Win: false,
+        note: 'PlanetScale is engineered for massive MySQL workloads.'
+      },
+      {
+        feature: 'Schema Changes',
+        p1: 'Non-blocking (Vitess migration)',
+        p2: 'Standard Postgres migrations',
+        p2Win: false,
+        note: 'PlanetScale offers safer, non-blocking schema changes.'
+      },
+      {
+        feature: 'Open Source',
+        p1: 'MySQL (open), Vitess (open)',
+        p2: 'PostgreSQL (open), Supabase (open)',
+        p2Win: true,
+        note: 'Both are open source; Supabase can be self-hosted.'
+      },
+      {
+        feature: 'Best Use Case',
+        p1: 'Massive MySQL workloads, high-scale transactions',
+        p2: 'AI applications, RAG, BaaS projects, vector search',
+        p2Win: true,
+        note: 'Supabase is the go-to for AI agents; PlanetScale for MySQL at scale.'
+      }
+    ]
   }
 };
