@@ -1,0 +1,106 @@
+{
+  "version": "1.0",
+  "description": "Immutable audit trail for Ralph Protocol gate execution",
+  "tasks": {
+    "26": {
+      "id": "26",
+      "name": "Username Stale Prop Fix (Mobile Menu)",
+      "started": "2026-02-01T20:42:17.281Z",
+      "gates": [
+        {
+          "gate": 1,
+          "name": "Gate 1",
+          "timestamp": "2026-02-01T20:43:42.023Z",
+          "artifacts": [],
+          "hash": "1eeab4e2c46082235cd748eeff5896d00bff47b947809403581ba9b504c1a94c"
+        },
+        {
+          "gate": 2,
+          "name": "Gate 2",
+          "timestamp": "2026-02-01T20:44:55.380Z",
+          "artifacts": [],
+          "hash": "256427788614dbd9f73807349bd1460073a9bf17529cc4718d637d7916443ae9",
+          "previousHash": "1eeab4e2c46082235cd748eeff5896d00bff47b947809403581ba9b504c1a94c"
+        },
+        {
+          "gate": 3,
+          "name": "Gate 3",
+          "timestamp": "2026-02-01T20:47:01.261Z",
+          "artifacts": [],
+          "hash": "c9ce47f9953e9046f51535b74ffc74f7585bbd3a14d25d47542a6f3b9a8a851d",
+          "previousHash": "256427788614dbd9f73807349bd1460073a9bf17529cc4718d637d7916443ae9"
+        },
+        {
+          "gate": 4,
+          "name": "Gate 4",
+          "timestamp": "2026-02-01T20:47:03.756Z",
+          "artifacts": [],
+          "hash": "c9056a6c1e91702a9e9c83c2d226fb4e819533565b344eece14bacaf8d2b2149",
+          "previousHash": "c9ce47f9953e9046f51535b74ffc74f7585bbd3a14d25d47542a6f3b9a8a851d"
+        },
+        {
+          "gate": 5,
+          "name": "Gate 5",
+          "timestamp": "2026-02-01T20:47:06.820Z",
+          "artifacts": [],
+          "hash": "c88e75b2a0f2d2c866cdc77032a959cb074097c3670cb52843cf5ae34181165d",
+          "previousHash": "c9056a6c1e91702a9e9c83c2d226fb4e819533565b344eece14bacaf8d2b2149"
+        },
+        {
+          "gate": 6,
+          "name": "Gate 6",
+          "timestamp": "2026-02-01T20:47:09.112Z",
+          "artifacts": [],
+          "hash": "d0a07d019d69ff04d1f7aa6fa985cb8d616e770eba5e9e2d4b407ae2720465f7",
+          "previousHash": "c88e75b2a0f2d2c866cdc77032a959cb074097c3670cb52843cf5ae34181165d"
+        },
+        {
+          "gate": 7,
+          "name": "Gate 7",
+          "timestamp": "2026-02-01T20:49:07.196Z",
+          "artifacts": [],
+          "hash": "77c89b231fd5b1948d2a96f1e07d5bfb7c7a7be26069d89e627ce56ab805e7be",
+          "previousHash": "d0a07d019d69ff04d1f7aa6fa985cb8d616e770eba5e9e2d4b407ae2720465f7"
+        },
+        {
+          "gate": 8,
+          "name": "Gate 8",
+          "timestamp": "2026-02-01T20:49:13.983Z",
+          "artifacts": [],
+          "hash": "621d9f63c69ee76870ad02c7ae795779621e0b5d89a95b68a38fd33ef3f2101e",
+          "previousHash": "77c89b231fd5b1948d2a96f1e07d5bfb7c7a7be26069d89e627ce56ab805e7be"
+        },
+        {
+          "gate": 9,
+          "name": "Gate 9",
+          "timestamp": "2026-02-01T20:49:16.313Z",
+          "artifacts": [],
+          "hash": "1431761cda9bbc8b55c5e2c0b79a0276ca9974ebc2546f063352b0c97461917b",
+          "previousHash": "621d9f63c69ee76870ad02c7ae795779621e0b5d89a95b68a38fd33ef3f2101e"
+        },
+        {
+          "gate": 10,
+          "name": "Gate 10",
+          "timestamp": "2026-02-01T20:49:18.134Z",
+          "artifacts": [],
+          "hash": "b9b66e3681d8ea15cd97c07fcd95366a75d3fdbd99614cabdb6e4ea6a85627a4",
+          "previousHash": "1431761cda9bbc8b55c5e2c0b79a0276ca9974ebc2546f063352b0c97461917b"
+        },
+        {
+          "gate": 11,
+          "name": "Gate 11",
+          "timestamp": "2026-02-01T20:50:12.168Z",
+          "artifacts": [],
+          "hash": "09d361329c80080fe824f398340b94ce071eef4ef874c86a8782bafd56218d3f",
+          "previousHash": "b9b66e3681d8ea15cd97c07fcd95366a75d3fdbd99614cabdb6e4ea6a85627a4"
+        }
+      ]
+    },
+    "27": {
+      "id": "27",
+      "name": "JSON-LD Security Fix",
+      "started": "2026-02-01T20:36:48.022Z",
+      "gates": []
+    }
+  }
+}

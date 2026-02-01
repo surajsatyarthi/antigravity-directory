@@ -3,16 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "format": "prettier --write .",
-    "make-admin": "tsx scripts/make-admin.ts",
+    "lint": "next lint",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage",
-    "test:run": "vitest run"
+    "test:e2e": "playwright test",
+    "ralph": "tsx scripts/ralph-cli.ts",
+    "deploy:production": "bash scripts/deploy-helpers.sh && deploy:production",
+    "deploy:hotfix": "bash scripts/deploy-helpers.sh && deploy:hotfix",
+    "deploy:rollback": "bash scripts/deploy-helpers.sh && deploy:rollback",
+    "drizzle:generate": "drizzle-kit generate",
+    "drizzle:migrate": "tsx drizzle/migrate.ts",
+    "drizzle:studio": "drizzle-kit studio",
+    "drizzle:push": "drizzle-kit push"
   },
   "dependencies": {
     "@auth/core": "^0.34.3",

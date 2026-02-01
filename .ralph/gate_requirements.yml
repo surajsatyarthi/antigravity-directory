@@ -1,0 +1,114 @@
+version: "1.0"
+description: "Required artifacts and validation rules for each Ralph Protocol gate"
+
+gates:
+  1:
+    name: "RFC (Request for Comments)"
+    required_artifacts:
+      - "implementation_plan.md"
+    checklist:
+      - "Problem clearly defined"
+      - "Solution approach documented"
+      - "Alternatives considered"
+      - "User approval obtained"
+
+  2:
+    name: "Deep Research"
+    required_artifacts:
+      - "GATE_2_RESEARCH.md"
+    checklist:
+      - "Codebase analyzed"
+      - "Dependencies identified"
+      - "Edge cases documented"
+      - "Technical constraints noted"
+
+  3:
+    name: "Security Audit"
+    required_artifacts:
+      - "GATE_3_SECURITY_AUDIT.md"
+    checklist:
+      - "XSS vulnerability scan completed"
+      - "SQL injection tests passed"
+      - "CSRF verification done"
+      - "Authentication/authorization reviewed"
+      - "Input validation checked"
+
+  4:
+    name: "Performance Audit"
+    required_artifacts:
+      - "GATE_4_PERFORMANCE_AUDIT.md"
+    checklist:
+      - "Bundle size impact measured"
+      - "Lighthouse score > 90"
+      - "Load time < 3 seconds"
+      - "No performance regressions"
+
+  5:
+    name: "Accessibility Audit"
+    required_artifacts:
+      - "GATE_5_ACCESSIBILITY_AUDIT.md"
+    checklist:
+      - "Screen reader tested"
+      - "Keyboard navigation verified"
+      - "Color contrast checked"
+      - "ARIA labels present"
+
+  6:
+    name: "Schema/Standards Validation"
+    required_artifacts:
+      - "GATE_6_SCHEMA_VALIDATION.md"
+    checklist:
+      - "TypeScript types validated"
+      - "API contracts verified"
+      - "Data schemas correct"
+      - "Standards compliance checked"
+
+  7:
+    name: "TDD Proof (Test-Driven Development)"
+    required_artifacts:
+      - "GATE_7_TDD_PROOF.md"
+    checklist:
+      - "Unit tests written"
+      - "Edge cases covered"
+      - "Test coverage > 80%"
+      - "All tests passing"
+
+  8:
+    name: "Code Review"
+    required_artifacts:
+      - "GATE_8_CODE_REVIEW.md"
+    checklist:
+      - "Self-review completed"
+      - "Code style consistent"
+      - "No code smells"
+      - "Documentation updated"
+
+  9:
+    name: "Deployment Verification"
+    required_artifacts:
+      - "GATE_9_DEPLOYMENT.md"
+    checklist:
+      - "Build passes"
+      - "TypeScript validates"
+      - "No console errors"
+      - "Staging deployment successful"
+
+  10:
+    name: "Production Verification"
+    required_artifacts:
+      - "GATE_10_PRODUCTION.md"
+    checklist:
+      - "Production deployment verified"
+      - "Smoke tests passed"
+      - "Monitoring configured"
+      - "Rollback plan ready"
+
+  11:
+    name: "Documentation & Final Report"
+    required_artifacts:
+      - "walkthrough.md"
+    checklist:
+      - "Changes documented"
+      - "User-facing docs updated"
+      - "MASTER_TASK_LIST updated"
+      - "Walkthrough created"

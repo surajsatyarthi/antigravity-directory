@@ -108,7 +108,7 @@ export async function MarketplaceHeader() {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <MobileMenu session={session} username={username} />
+        <MobileMenu session={session} />
       </div>
     </header>
   );
