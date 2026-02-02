@@ -71,16 +71,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
 
           <div className="flex gap-2 ml-auto sm:ml-0">
             {/* Editors Choice Removed */ }
-            {resource.badgeType === 'trending' && (
-              <span className="px-2 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-[10px] sm:text-[9px] font-black text-purple-400 uppercase tracking-widest whitespace-nowrap">
-                Trending
-              </span>
-            )}
-            {resource.badgeType === 'users_choice' && (
-              <span className="px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-[10px] sm:text-[9px] font-black text-emerald-400 uppercase tracking-widest whitespace-nowrap">
-                User's
-              </span>
-            )}
+            {/* Editors Choice, Trending, and User's Choice Removed */}
           </div>
         </div>
 
