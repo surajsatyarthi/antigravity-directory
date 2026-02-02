@@ -1,0 +1,20 @@
+├ ƒ /categories/[slug]
+├ ƒ /dashboard
+├ ƒ /privacy
+├ ○ /robots.txt
+├ ƒ /settings
+├ ○ /sitemap.xml
+├ ƒ /submit
+├ ƒ /t/[slug]
+├ ƒ /terms
+├ ƒ /tools
+├ ƒ /tools/[slug]
+├ ƒ /u/[username]
+└ ƒ /vs/[slug]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

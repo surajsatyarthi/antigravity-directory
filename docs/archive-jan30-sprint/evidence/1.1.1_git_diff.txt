@@ -1,0 +1,42 @@
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index c537a61..e116df9 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -17,19 +17,20 @@ const mono = JetBrains_Mono({
+ export const metadata: Metadata = {
+   metadataBase: new URL('https://googleantigravity.directory'),
+   title: {
+-    template: "%s | Antigravity Directory",
+-    default: "Antigravity Directory",
++    template: "%s | Google Antigravity Directory",
++    default: "Google Antigravity Directory | MCP Servers, Rules & Prompts",
+   },
+-  description: "The primary source for AI coding rules, MCP servers, and developer workflows.",
++  description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
++  keywords: ["google antigravity", "antigravity ide", "mcp servers", "antigravity rules", "gemini 3", "ai coding", "agentic development", "antigravity prompts", "mcp directory"],
+   icons: {
+     icon: "/favicon.png",
+     apple: "/favicon.png",
+   },
+   openGraph: {
+-    title: "Antigravity Directory",
+-    description: "The primary source for AI coding rules, MCP servers, and developer workflows.",
++    title: "Google Antigravity Directory",
++    description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
+     url: "https://googleantigravity.directory",
+-    siteName: "Antigravity Directory",
++    siteName: "Google Antigravity Directory",
+     images: [
+       {
+         url: "/opengraph-image.png",
+@@ -42,8 +43,8 @@ export const metadata: Metadata = {
+   },
+   twitter: {
+     card: "summary_large_image",
+-    title: "Antigravity Directory | Google's AI Intelligence Hub",
+-    description: "The primary source for AI coding rules, MCP servers, and developer workflows.",
++    title: "Google Antigravity Directory | Google's AI Intelligence Hub",
++    description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
+     images: ["/twitter-image.png"],
+   },
+   alternates: {
