@@ -173,7 +173,10 @@ function gateComplete(gateNumber: number) {
   // TODO: Validate checklist and artifacts
   
   const trail = loadAuditTrail();
-  const taskId = Object.keys(trail.tasks)[0]; // Get current task
+  // Find task with latest start time
+  const taskId = Object.keys(trail.tasks).sort((a, b) => 
+    new Date(trail.tasks[b].started).getTime() - new Date(trail.tasks[a].started).getTime()
+  )[0];
   
   if (!taskId) {
     log(`❌ No active task. Run 'ralph task start' first.`, colors.red);
@@ -217,15 +220,25 @@ function gateComplete(gateNumber: number) {
 
 function verify() {
   const trail = loadAuditTrail();
+  let hasErrors = false;
   
   log('\n' + '='.repeat(50), colors.cyan);
   log('Ralph Protocol Verification', colors.cyan);
   log('='.repeat(50) + '\n', colors.cyan);
 
+  const taskIds = Object.keys(trail.tasks);
+  if (taskIds.length === 0) {
+    log('⚠️  No tasks registered in Ralph Protocol.', colors.yellow);
+    // In strict mode, no tasks might be considered a pass if repo is empty,
+    // but usually we want at least one active task. For now, pass.
+    return;
+  }
+
   for (const [taskId, task] of Object.entries(trail.tasks)) {
     log(`Task #${taskId}: ${task.name}`, colors.blue);
     log(`Started: ${task.started}\n`);
 
+    let taskFailed = false;
     for (let i = 1; i <= 11; i++) {
       const gate = task.gates.find(g => g.gate === i);
       if (gate) {
@@ -233,10 +246,24 @@ function verify() {
         log(`     Timestamp: ${gate.timestamp}`);
       } else {
         log(`  ❌ Gate ${i}: INCOMPLETE`, colors.red);
+        taskFailed = true;
+        hasErrors = true;
       }
     }
 
+    if (taskFailed) {
+      log(`\n⚠️  Task #${taskId} has incomplete gates.`, colors.yellow);
+    }
     log('');
+  }
+
+  if (hasErrors) {
+    log('❌ Verification FAILED: Incomplete gates detected.', colors.red);
+    log('   All tasks must complete Gates 1-11 before merging.', colors.red);
+    process.exit(1);
+  } else {
+    log('✅ Verification PASSED: All tasks fully compliant.', colors.green);
+    process.exit(0);
   }
 }
 

@@ -35,6 +35,33 @@ body {
     font-size: 3rem !important;
     line-height: 0.9 !important;
   }
+  
+  .mobile-readable {
+    font-size: 0.9375rem !important; /* 15px */
+    line-height: 1.5 !important;
+  }
+}
+
+/* Touch Target Utilities (WCAG 2.5.5 Level AAA) */
+@layer utilities {
+  .touch-target {
+    @apply min-w-[44px] min-h-[44px] flex items-center justify-center;
+  }
+  
+  .touch-target-comfortable {
+    @apply min-w-[48px] min-h-[48px] flex items-center justify-center;
+  }
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) {
+  .hover\:scale-105 {
+    transform: scale(1) !important;
+  }
+  
+  .hover\:bg-white\/\[0\.01\] {
+    background-color: transparent !important;
+  }
 }
 
 .font-mono {

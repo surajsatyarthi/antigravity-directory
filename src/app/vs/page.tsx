@@ -35,8 +35,8 @@ export default function VSPage() {
       </div>
 
       {/* Comparisons Grid */}
-      <div className="container mx-auto px-4 py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           {comparisonsList.map((item) => (
             <Link 
               key={item.id} 

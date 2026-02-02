@@ -75,13 +75,13 @@ export default function PromptsPage() {
       </div>
 
       {/* Prompts Grid */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           {promptCategories.map((category) => (
             <Link 
               key={category.id} 
               href={`/prompts/${category.id}`}
-              className="group relative p-8 bg-[#0A0A0A] border border-white/10 rounded-3xl hover:border-emerald-500/50 transition-all duration-300 block"
+              className="group relative p-6 md:p-8 bg-[#0A0A0A] border border-white/10 rounded-3xl hover:border-emerald-500/50 transition-all duration-300 block"
             >
               <div className="flex items-start justify-between mb-8">
                 <div className={`p-4 rounded-2xl ${category.bg}`}>

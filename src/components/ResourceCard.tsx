@@ -35,16 +35,16 @@ export function ResourceCard({ resource }: ResourceCardProps) {
         <span className="sr-only">View details for {resource.title}: {resource.description}</span>
       </Link>
 
-      {/* Featured Ribbon */}
+      {/* Sponsored Ribbon */}
       {isFeatured && (
         <div className="absolute top-0 right-0 z-30 flex items-center gap-1.5 px-2 py-1 bg-yellow-500/15 border-b border-l border-yellow-500/30 rounded-bl-lg backdrop-blur-sm">
           <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
-          <span className="text-[7px] font-black text-yellow-500 uppercase tracking-[0.2em]">Featured</span>
+          <span className="text-[7px] font-black text-yellow-500 uppercase tracking-[0.2em]">Sponsored</span>
         </div>
       )}
 
       {/* Container for content */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full p-4 relative z-10">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full p-5 sm:p-4 relative z-10">
         
         {/* Left: Badges & Category (Mobile: Top Row) */}
         <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto">
@@ -59,29 +59,25 @@ export function ResourceCard({ resource }: ResourceCardProps) {
                   className="w-5 h-5 rounded-md bg-gray-950 border border-gray-900 flex items-center justify-center shrink-0"
                   title={integration}
                 >
-                  <Package className="w-2.5 h-2.5 text-gray-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
+                  <Package className="w-3 h-3 sm:w-2.5 sm:h-2.5 text-gray-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
                 </div>
               ))}
             </div>
           )}
 
-          <span className="px-2 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-[9px] font-black text-blue-400 uppercase tracking-widest whitespace-nowrap">
+          <span className="px-2 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-[10px] sm:text-[9px] font-black text-blue-400 uppercase tracking-widest whitespace-nowrap">
             {resource.categoryName || 'General'}
           </span>
 
           <div className="flex gap-2 ml-auto sm:ml-0">
-             {resource.badgeType === 'editors_choice' && (
-              <span className="px-2 py-1 rounded bg-yellow-500/10 border border-yellow-500/20 text-[9px] font-black text-yellow-500 uppercase tracking-widest whitespace-nowrap">
-                Editor's
-              </span>
-            )}
+            {/* Editors Choice Removed */ }
             {resource.badgeType === 'trending' && (
-              <span className="px-2 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-[9px] font-black text-purple-400 uppercase tracking-widest whitespace-nowrap">
+              <span className="px-2 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-[10px] sm:text-[9px] font-black text-purple-400 uppercase tracking-widest whitespace-nowrap">
                 Trending
               </span>
             )}
             {resource.badgeType === 'users_choice' && (
-              <span className="px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-black text-emerald-400 uppercase tracking-widest whitespace-nowrap">
+              <span className="px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-[10px] sm:text-[9px] font-black text-emerald-400 uppercase tracking-widest whitespace-nowrap">
                 User's
               </span>
             )}
@@ -95,7 +91,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               {resource.title}
             </h3>
           </div>
-          <p className="text-sm text-gray-400 line-clamp-2 sm:line-clamp-1 font-medium">
+          <p className="text-sm text-gray-400 line-clamp-3 sm:line-clamp-1 font-medium">
             {resource.description}
           </p>
         </div>
@@ -108,7 +104,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               className="flex items-center gap-1.5"
               aria-label={`Rating: ${Number(resource.avgRating).toFixed(1)} stars out of ${resource.ratingCount} reviews`}
             >
-              <Star className="w-3.5 h-3.5 fill-yellow-500/90 text-yellow-500/90" aria-hidden="true" />
+              <Star className="w-4 h-4 sm:w-3.5 sm:h-3.5 fill-yellow-500/90 text-yellow-500/90" aria-hidden="true" />
               <span className="text-sm font-bold font-mono text-white">
                 {Number(resource.avgRating).toFixed(1)}
               </span>
@@ -122,7 +118,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               className="flex items-center gap-1.5"
               aria-label={`${resource.views} views`}
             >
-              <Eye className="w-3.5 h-3.5 text-gray-600" aria-hidden="true" />
+              <Eye className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-gray-600" aria-hidden="true" />
               <span className="text-sm font-bold font-mono text-gray-500">
                 {resource.views >= 1000 ? `${(resource.views / 1000).toFixed(1)}k` : resource.views}
               </span>
@@ -135,10 +131,10 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               initialIsBookmarked={!!resource.isBookmarked}
             />
             <div
-              className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-950 border border-gray-900 text-gray-400 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
+              className="flex items-center justify-center w-11 h-11 sm:w-7 sm:h-7 rounded-full bg-gray-950 border border-gray-900 text-gray-400 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
               aria-hidden="true"
             >
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
             </div>
           </div>
         </div>

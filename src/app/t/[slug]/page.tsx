@@ -145,9 +145,7 @@ export default async function ResourceDetailPage({
         "name": `Is ${resource.title} verified on Antigravity?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": resource.badgeType === 'editors_choice'
-            ? `${resource.title} is an Editor's Choice tool on the Antigravity Directory, personally verified for excellence.`
-            : resource.verified 
+          "text": resource.verified 
               ? `${resource.title} is a verified tool on the Antigravity Directory.`
               : `${resource.title} is a community-submitted tool. We encourage users to verify its original documentation for details.`
         }
@@ -223,21 +221,8 @@ export default async function ResourceDetailPage({
                   <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-white/5 text-blue-500 border border-blue-500/20 uppercase tracking-widest font-mono">
                     {resource.categoryName}
                   </div>
-                  {resource.badgeType === 'editors_choice' && (
-                    <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 uppercase tracking-widest font-mono">
-                      Editor's Choice
-                    </div>
-                  )}
-                  {resource.badgeType === 'trending' && (
-                    <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20 uppercase tracking-widest font-mono">
-                      Trending
-                    </div>
-                  )}
-                  {resource.badgeType === 'users_choice' && (
-                    <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-widest font-mono">
-                      User's Choice
-                    </div>
-                  )}
+                  {/* Editors Choice Removed */}
+                  {/* Badges Removed */}
                 </div>
                 <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
                   {resource.title}

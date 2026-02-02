@@ -31,7 +31,7 @@ const ALL_TIERS = [
   },
   {
     id: 'FEATURED',
-    name: 'Featured',
+    name: 'Sponsored',
     price: '149',
     desc: 'Maximum visibility. Top of category and homepage pulse.',
     features: ['Instant Review', 'Top of Category Placement', 'Homepage Pulse Effect', 'Analytics Dashboard', 'Permanent Do-Follow Link'],

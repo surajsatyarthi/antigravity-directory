@@ -8,8 +8,13 @@ import {
   ChevronDown, ChevronUp, Star, Rocket
 } from 'lucide-react';
 import { submitResource } from '@/app/submit/actions';
-import { CheckoutOverlay } from './CheckoutOverlay';
 import { safeHtml } from '@/lib/utils/safeHtml';
+import dynamic from 'next/dynamic';
+
+const CheckoutOverlay = dynamic(() => import('./CheckoutOverlay').then(mod => mod.CheckoutOverlay), {
+  ssr: false,
+  loading: () => null
+});
 
 interface SubmitFormProps {
   categories: { id: string; name: string }[];
@@ -169,7 +174,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                 <span className="text-white font-bold text-xl">$49 <span className="text-gray-600 line-through text-base ml-2">$99</span></span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-base">Featured Placement</span>
+                <span className="text-gray-400 text-base">Sponsored Placement</span>
                 <span className="text-emerald-400 font-bold text-xl">$149 <span className="text-gray-600 line-through text-base ml-2">$299</span></span>
               </div>
             </div>

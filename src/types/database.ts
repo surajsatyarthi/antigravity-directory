@@ -41,7 +41,8 @@ export interface FilterState {
   tags: string[];       // Array of tag slugs
   search: string;       // Search query
   sort: 'latest' | 'views' | 'rating' | 'recommended';
-  badgeTypes: string[]; // ['editors_choice', 'users_choice', 'trending']
+  badgeTypes: string[]; // []
+  isSponsored?: boolean; // Filter by sponsorship status
 }
 
 // URL search params type

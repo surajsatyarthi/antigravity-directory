@@ -36,8 +36,13 @@ jobs:
         env:
           CI: true
 
+      - name: 🦅 Gate 1: Static Analysis (Lint)
+        run: pnpm lint
+
       - name: 🦅 Gate 7: Build Verification (Type Safety)
-        run: pnpm build
+        run: |
+          pnpm tsc --noEmit
+          pnpm build
         
       - name: 🦅 Gate 7: Automated Tests
         run: pnpm test
