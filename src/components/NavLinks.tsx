@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { NAV_ITEMS } from '@/config/navigation';
+import { Dropdown } from './Dropdown';
 
 interface NavLinksProps {
   session: any;
@@ -14,10 +15,14 @@ export function NavLinks({ session, username }: NavLinksProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="hidden md:flex items-center gap-6 text-[11px] font-medium tracking-wide whitespace-nowrap">
+    <nav className="hidden md:flex items-center gap-6 text-[11px] font-medium tracking-wide h-full">
       {NAV_ITEMS.map((item) => {
+        if (item.children) {
+          return <Dropdown key={item.label} item={item} pathname={pathname} />;
+        }
+
         const isActive = pathname === item.href;
-        const baseClass = "transition-colors";
+        const baseClass = "transition-colors whitespace-nowrap";
         const colorClass = item.disabled 
           ? "text-gray-400 cursor-not-allowed hover:text-white" 
           : isActive 

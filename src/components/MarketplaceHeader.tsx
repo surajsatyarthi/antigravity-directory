@@ -53,28 +53,27 @@ export async function MarketplaceHeader() {
           </div>
 
           <div className="flex items-center gap-4 pl-4 border-l border-white/[0.05] h-6">
-            {/* Submit Button - STAND OUT */}
-            <Link 
+            {/* Submit Button */}
+            <Link
               href="/submit"
-              className="group relative flex items-center justify-center px-4 py-1.5 bg-white hover:bg-emerald-50 text-black text-[10px] font-black uppercase tracking-[0.15em] rounded-md transition-all active:scale-[0.98] shadow-[0_0_20px_rgba(255,255,255,0.1)] overflow-hidden whitespace-nowrap shrink-0"
+              className="flex items-center justify-center px-3 py-1 bg-white/95 hover:bg-white text-black text-[10px] font-bold uppercase tracking-[0.1em] rounded-md transition-all whitespace-nowrap"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/10 to-emerald-500/0 -translate-x-full group-hover:translate-x-full duration-1000 transition-transform" />
-              <Zap className="w-3 h-3 mr-2 animate-pulse" />
-              <span className="relative">Submit Resource</span>
+              <Zap className="w-2.5 h-2.5 mr-1.5" />
+              <span>Submit</span>
             </Link>
 
             {session ? (
               <div className="flex items-center gap-3">
-                <Link 
-                  href={username ? `/u/${username}` : '/settings'} 
-                  className="group flex items-center ml-2" 
+                <Link
+                  href={username ? `/u/${username}` : '/settings'}
+                  className="group flex items-center ml-2"
                   aria-label={`View profile for ${session.user?.name || 'user'}`}
                 >
                   {session.user?.image ? (
-                    <img 
-                      src={session.user.image} 
-                      alt="" 
-                      className="w-7 h-7 rounded-full border border-white/[0.05] group-hover:border-blue-500 transition-colors" 
+                    <img
+                      src={session.user.image}
+                      alt=""
+                      className="w-7 h-7 rounded-full border border-white/[0.05] group-hover:border-blue-500 transition-colors"
                       role="presentation"
                     />
                   ) : (
@@ -84,10 +83,10 @@ export async function MarketplaceHeader() {
                   )}
                 </Link>
                 <form action={handleSignOut} className="flex items-center">
-                  <button 
-                    type="submit" 
-                    className="p-1 hover:text-red-500 transition-colors focus:outline-none focus:text-red-500 text-gray-400 flex items-center" 
-                    title="Sign Out" 
+                  <button
+                    type="submit"
+                    className="p-1 hover:text-red-500 transition-colors focus:outline-none focus:text-red-500 text-gray-400 flex items-center"
+                    title="Sign Out"
                     aria-label="Sign Out"
                   >
                     <LogOut className="w-3.5 h-3.5" aria-hidden="true" />
@@ -96,9 +95,9 @@ export async function MarketplaceHeader() {
               </div>
             ) : (
               <form action={handleSignIn} className="flex items-center">
-                <button 
-                  type="submit" 
-                  className="text-gray-400 hover:text-white transition-colors uppercase tracking-widest text-[10px] font-bold h-full flex items-center"
+                <button
+                  type="submit"
+                  className="text-gray-400 hover:text-white transition-colors uppercase tracking-[0.05em] text-[10px] font-bold whitespace-nowrap flex items-center"
                 >
                   Sign In
                 </button>

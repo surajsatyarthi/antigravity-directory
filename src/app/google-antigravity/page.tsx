@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronRight, Star, ShieldCheck, Zap, BookOpen, Cloud, Code2, Terminal } from 'lucide-react';
 import { safeJsonLd } from '@/lib/utils/safeJsonLd';
+import { MarketplaceHeader } from '@/components/MarketplaceHeader';
 
 export const metadata: Metadata = {
   title: "What is Antigravity? Complete Guide | Antigravity Directory",
@@ -63,13 +64,15 @@ export default function GoogleAntigravityPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-gray-200">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
-      />
-      
-      {/* Hero Section */}
+    <>
+      <MarketplaceHeader />
+      <div className="min-h-screen bg-black text-gray-200">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
+        />
+
+        {/* Hero Section */}
       <div className="relative py-20 px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-blue-900/10 opacity-30 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/40 via-black to-black" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -235,6 +238,7 @@ export default function GoogleAntigravityPage() {
 
         </article>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
