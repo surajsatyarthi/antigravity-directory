@@ -41,15 +41,15 @@ describe('InfiniteResourceGrid Zipper Logic', () => {
             featured: false
         }));
 
-    it('injects ads every 8 items', () => {
+    it('injects ads every 8 items', async () => {
         // Create 20 resources (Should have 2 ads: after #8 and #16)
         const resources = generateResources(20);
-        
+
         render(
-            <InfiniteResourceGrid 
-                initialResources={resources as any} 
-                initialTotalCount={100} 
-                initialFilters={{}} 
+            <InfiniteResourceGrid
+                initialResources={resources as any}
+                initialTotalCount={100}
+                initialFilters={{}}
             />
         );
 
