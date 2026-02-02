@@ -39,6 +39,56 @@ import { payments } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
 
 /**
+ * Create a Razorpay order
+ */
+export async function createRazorpayOrder(params: RazorpayOrderParams): Promise<RazorpayOrder> {
+  const { amount, currency, receipt, notes } = params;
+
+  // Validate amount
+  if (amount <= 0) {
+    throw new Error('Invalid amount: must be a positive number');
+  }
+
+  const validCurrencies = ['INR', 'USD', 'EUR', 'GBP', 'AUD', 'CAD'];
+  if (!validCurrencies.includes(currency)) {
+     throw new Error(`Invalid currency: must be one of ${validCurrencies.join(', ')}`);
+  }
+
+  const keyId = process.env.RAZORPAY_KEY_ID;
+  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+  if (!keyId || !keySecret) {
+    throw new Error('Razorpay credentials not configured');
+  }
+
+  const auth = Buffer.from(`${keyId}:${keySecret}`).toString('base64');
+
+  // Convert amount to paise (smallest currency unit)
+  const amountInPaise = Math.round(amount * 100);
+
+  const response = await fetch('https://api.razorpay.com/v1/orders', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Basic ${auth}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      amount: amountInPaise,
+      currency,
+      receipt: receipt || `receipt_${Date.now()}`,
+      ...(notes && { notes }),
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({}));
+    throw new Error(`Failed to create Razorpay order`);
+  }
+
+  return await response.json();
+}
+
+/**
  * Verify Razorpay payment signature
  * 
  * Security-critical: Prevents payment tampering and replay attacks
