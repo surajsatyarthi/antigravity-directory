@@ -6,34 +6,90 @@
 
 ---
 
+## ⚠️ CRITICAL CORRECTIONS (Initial Version Had False Assumptions)
+
+**Assumptions That Were WRONG:**
+- ❌ Analytics Dashboard as paid feature → **NOT IMPLEMENTED** (zero code)
+- ❌ API Access tier ($99/month) → **NOT IMPLEMENTED**
+- ❌ Premium listing features → **NOT IMPLEMENTED**
+- ❌ Job board as launch revenue → **NOT IMPLEMENTED** (table only, no API/UI)
+
+**What's ACTUALLY IMPLEMENTED:**
+- ✅ FREE tier (select categories, no revenue)
+- ✅ STANDARD tier ($49, 24hr review)
+- ✅ FEATURED tier ($149, instant visibility)
+- ✅ Payment processing (Razorpay + PayPal)
+- ✅ Sponsorship page (/advertise) exists BUT no backend payment integration yet
+
+**Key Lesson:**
+Don't promise features you haven't built. Sponsorships and premium analytics should be PHASE 4+, not launch. Launch with what actually works.
+
+---
+
 ## 📊 FINANCIAL MODEL: How to Get $1000 MRR
 
-### Revenue Sources
-1. **Listing Submissions (Primary - 70%)**
-   - Free tier: $0 (volume driver)
-   - Standard: $49 (48hr review)
-   - Featured: $149 (24hr review)
+### Revenue Sources (ACTUALLY IMPLEMENTED)
 
-2. **Sponsorships (Secondary - 25%)**
-   - Category sponsors: $500-1000/month
-   - Homepage banner: $1000-2000/month
+⚠️ **REALITY CHECK:** Only revenue features with actual code implemented below.
 
-3. **Premium Features (Tertiary - 5%)**
-   - API access: $99/month
-   - Advanced analytics: $49/month
+1. **Listing Submissions (Primary Revenue Path)**
+   - **FREE Tier** ($0): Prompts, Cursor Rules, System Prompts, Context Files, Workflows
+     - 7-day review time
+     - Basic directory listing
+     - No special badging
 
-### Target Mix for $1000 MRR
+   - **STANDARD Tier** ($49 USD): Tools, AI Agents, other categories
+     - 24-hour priority review
+     - Verified blue checkmark badge
+     - Do-follow backlink
+     - Payment: Razorpay (India) or PayPal (Global)
+
+   - **FEATURED Tier** ($149 USD): Same categories as STANDARD
+     - Instant visibility (no review queue)
+     - Top-of-category placement badge
+     - Permanent do-follow link
+     - Payment: Razorpay or PayPal
+
+2. **Sponsorships (Secondary - Future, Not Yet Implemented)**
+   - ⚠️ Sponsorship page exists (`/advertise`) but NO backend implementation
+   - Mentioned as option but not wired into payment system
+   - **Defer to Phase 4+ (post-launch)**
+
+3. **Premium Features (NOT IMPLEMENTED - Remove from Plan)**
+   - ❌ Analytics Dashboard: Promised in UI but zero code exists
+   - ❌ API Access: Not built
+   - ❌ Job Board: Database table exists but zero API/UI implementation
+   - **These should NOT be in launch path**
+
+### Target Mix for $1000 MRR (Launch Path)
+
+Since sponsorships aren't implemented yet, focus on SUBMISSIONS ONLY:
+
 ```
-20 Standard submissions × $49 = $980
-OR
-15 Featured submissions × $149 = $2,235
-OR
-1 Sponsor + 10 Standard = $500 + $490 = $990
-OR
-Mixed: 5 Featured + 5 Standard + $150 sponsorship = $745 + $245 + $150 = $1140
+SCENARIO A: Standard Tier Focus
+  35 × $49 = $1,715 ✅ EXCEEDS GOAL
+
+SCENARIO B: Featured Tier Focus
+  10 × $149 = $1,490 ✅ EXCEEDS GOAL
+
+SCENARIO C: Mixed Approach (Most Realistic)
+  25 Standard × $49 = $1,225
+  + 5 Featured × $149 = $745
+  = $1,970 ✅ EXCEEDS GOAL
+
+SCENARIO D: Conservative (Worst Case)
+  40 Standard × $49 = $1,960 ✅ EXCEEDS GOAL
 ```
 
-**Key Insight:** Only need ~20-30 paid submissions/month (from 50K pageviews)
+**Key Insight:** Only need ~25-40 paid submissions/month to hit $1000 MRR
+- From 50K monthly pageviews = ~1000 submissions
+- If 3-5% convert to paid = 30-50 paid submissions
+- All scenarios hit the goal
+
+**IMPORTANT:** This assumes:
+- No sponsorship revenue (not implemented)
+- Pricing stays at $49/$149 (can be adjusted)
+- No premium features revenue (analytics dashboard not built)
 
 ---
 
@@ -212,22 +268,22 @@ Mixed: 5 Featured + 5 Standard + $150 sponsorship = $745 + $245 + $150 = $1140
 - [ ] Create rejection guidelines
 - **Impact:** Maintain trust, reduce refunds
 
-#### 4.2 Launch Premium Features
-- **4.2a:** Premium Listing Options
-  - [ ] Pin to top ($10/month)
-  - [ ] Custom banner ($25/month)
-  - [ ] Featured + Premium ($199/month)
-  - [ ] Analytics dashboard (included)
-  - **Implementation:** 12-16 hours
-  - **Revenue:** +$200-400 MRR
+#### 4.2 Fix Featured Resource Sorting (Promised vs Actual)
+- **4.2a:** Top-of-Category Sorting
+  - [ ] Featured resources should appear first in category pages
+  - [ ] Currently: Database flag exists but not used in sort order
+  - [ ] Fix: Modify `getFilteredResources()` to sort `featured DESC` first
+  - [ ] **Implementation:** 1-2 hours
+  - **Impact:** Better showcase for $149 tier buyers
 
-- **4.2b:** Creator Program
+- **4.2b:** Creator Program (Optional)
   - [ ] Identify top 20 contributors
-  - [ ] Offer 10% revenue share
+  - [ ] Offer 10% revenue share on future Premium Features
   - [ ] Give badges/status
   - [ ] Monthly payouts
   - **Implementation:** 4 hours
   - **Impact:** +10% submissions (more contributors)
+  - **Note:** Defer detailed implementation until after PMF
 
 #### 4.3 Email Strategy
 - [ ] Send "Best Tools This Week" newsletter
@@ -276,21 +332,19 @@ Mixed: 5 Featured + 5 Standard + $150 sponsorship = $745 + $245 + $150 = $1140
 - **Effort:** 15-20 hours
 - **Revenue Impact:** +300-500 MRR
 
-#### 5.3 Integrations & APIs
-- [ ] Build public API for tools
-- [ ] Create API pricing ($99/month)
-- [ ] Document API thoroughly
-- [ ] Build 3 example integrations
-- **Effort:** 40-50 hours
-- **Revenue Impact:** +100-200 MRR
+#### 5.3 Analytics Dashboard (Only if PMF Validated)
+- ⚠️ **DEFER:** Analytics dashboard was promised but not implemented
+- Only build after confirming user demand for detailed metrics
+- Placeholder exists in paid tier messaging but zero backend code
+- **Effort:** 30-40 hours (if built)
+- **Revenue Impact:** +$100-200 MRR
+- **Don't build speculatively**
 
-#### 5.4 Org Building
-- [ ] Create company/org program
-- [ ] Bulk submission discounts
-- [ ] Team dashboards
-- [ ] White-label option
-- **Effort:** 30 hours
-- **Revenue Impact:** +200-400 MRR
+#### 5.4 Job Board (Defer - Not Part of Launch)
+- ⚠️ **DEFER:** Job board schema exists but zero implementation
+- Database table alone doesn't create revenue
+- Only makes sense AFTER reaching PMF with tools
+- **Don't launch with incomplete features**
 
 ---
 
