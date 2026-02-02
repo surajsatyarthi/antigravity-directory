@@ -105,7 +105,8 @@ export async function verifyRazorpayPayment(
 
 /**
  * Clear verified payments cache (for testing)
+ * @deprecated DB-backed verification does not use in-memory cache.
  */
 export function clearVerifiedPaymentsCache(): void {
-  verifiedPayments.clear();
+  // No-op: DB verification is used instead of local cache
 }
