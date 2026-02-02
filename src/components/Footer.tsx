@@ -105,7 +105,7 @@ export function Footer() {
 
           {/* Links */}
           <div className="flex flex-col items-center gap-4">
-            <nav className="flex gap-10 font-mono text-xs tracking-widest text-gray-400 uppercase" aria-label="Footer Navigation">
+            <nav className="flex flex-wrap justify-center gap-x-6 gap-y-4 font-mono text-xs tracking-widest text-gray-400 uppercase px-4" aria-label="Footer Navigation">
                 <Link
                   href="/"
                   className="p-2 text-gray-400 hover:text-white transition-colors"
@@ -154,7 +154,7 @@ export function Footer() {
 
         {/* Bottom Notices */}
         <div className="mt-16 text-center border-t border-white/5 pt-8 space-y-2">
-             <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase max-w-4xl mx-auto">
+             <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase max-w-4xl mx-auto px-4">
                  Antigravity Directory is an unofficial resource for the agentic coding community. This website is not affiliated with, endorsed by, or associated with Google LLC. "Google" and "Gemini" are trademarks of Google LLC.
              </p>
              <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-600 uppercase font-bold">
