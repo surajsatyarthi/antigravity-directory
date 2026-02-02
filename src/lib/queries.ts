@@ -12,7 +12,12 @@ import { FilterState, ResourceWithRelations, CategoryWithCount, Tag } from '@/ty
  * Get filtered resources with all relations
  * Optimized with single query using JOINs and aggregations
  */
-export async function getFilteredResources(filters: FilterState, page: number = 1, pageSize: number = 20): Promise<{ resources: ResourceWithRelations[], totalCount: number }> {
+import { unstable_cache } from 'next/cache';
+
+/**
+ * Internal function for fetching resources (uncached)
+ */
+async function getFilteredResourcesInternal(filters: FilterState, page: number = 1, pageSize: number = 20): Promise<{ resources: ResourceWithRelations[], totalCount: number }> {
   try {
     const conditions = [];
     const offset = (page - 1) * pageSize;
@@ -180,6 +185,18 @@ export async function getFilteredResources(filters: FilterState, page: number = 
     };
   }
 }
+
+/**
+ * Get filtered resources with all relations
+ * CACHED: Wraps internal logic with Next.js Data Cache (5 minutes)
+ */
+export const getFilteredResources = unstable_cache(
+  async (filters: FilterState, page: number = 1, pageSize: number = 20) => {
+    return getFilteredResourcesInternal(filters, page, pageSize);
+  },
+  ['filtered-resources'],
+  { revalidate: 300, tags: ['resources'] }
+);
 
 /**
  * Get all categories with resource counts
