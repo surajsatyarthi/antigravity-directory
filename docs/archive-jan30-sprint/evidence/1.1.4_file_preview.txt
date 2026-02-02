@@ -1,0 +1,20 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { ChevronRight, Star, ShieldCheck, Zap, BookOpen, Cloud, Code2, Terminal } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: "What is Google Antigravity? Complete Guide | Antigravity Directory",
+  description: "The definitive guide to Google Antigravity IDE. Learn how to use Gemini 3 for agentic coding, discover top MCP servers, and access 500+ rules and prompts.",
+  openGraph: {
+    title: "Google Antigravity: The Complete Guide",
+    description: "Master Google Antigravity IDE with our comprehensive guide. Everything you need to know about Gemini 3 agentic development.",
+    type: "article",
+    url: "https://googleantigravity.directory/google-antigravity",
+  }
+};
+
+export default function GoogleAntigravityPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [

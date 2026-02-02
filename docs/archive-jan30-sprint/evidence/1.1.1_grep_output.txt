@@ -1,0 +1,9 @@
+    template: "%s | Google Antigravity Directory",
+    default: "Google Antigravity Directory | MCP Servers, Rules & Prompts",
+  description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
+    title: "Google Antigravity Directory",
+    description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
+    siteName: "Google Antigravity Directory",
+    title: "Google Antigravity Directory | Google's AI Intelligence Hub",
+    description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
+     284 src/app/layout.tsx

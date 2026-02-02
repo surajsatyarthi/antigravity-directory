@@ -1,0 +1,20 @@
+
+▲ Next.js 16.1.1 (Turbopack)
+- Environments: .env.local, .env
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 25.3s
+  Running TypeScript ...
+Failed to compile.
+
+./src/components/DirectoryIntelligence.tsx:108:12
+Type error: Cannot find name 'Link'.
+
+[0m [90m 106 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute inset-0 bg-emerald-500/5 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"[39m [33m/[39m[33m>[39m
+ [90m 107 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]"[39m[33m>[39m[33mLimited[39m [33mOffer[39m[33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+[31m[1m>[22m[39m[90m 108 |[39m           [33m<[39m[33mLink[39m href[33m=[39m[32m"/submit"[39m className[33m=[39m[32m"flex items-center gap-2"[39m[33m>[39m
+ [90m     |[39m            [31m[1m^[22m[39m
+ [90m 109 |[39m             [33m<[39m[33mspan[39m className[33m=[39m[32m"text-xs font-bold text-emerald-400 uppercase tracking-widest italic animate-shimmer bg-gradient-to-r from-emerald-400 via-white to-emerald-400 bg-[length:200%_auto] bg-clip-text text-transparent"[39m[33m>[39m[33mEarly[39m [33mAdopter[39m [33mPricing[39m[33m<[39m[33m/[39m[33mspan[39m[33m>[39m
+ [90m 110 |[39m           [33m<[39m[33m/[39m[33mLink[39m[33m>[39m
+ [90m 111 |[39m         [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+Next.js build worker exited with code: 1 and signal: null
