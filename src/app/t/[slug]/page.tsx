@@ -37,7 +37,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    robots: resource.isIndexed ? 'index, follow' : 'noindex, nofollow',
+    robots: resource.status === 'LIVE' ? 'index, follow' : 'noindex, nofollow',
     openGraph: {
       title,
       description,

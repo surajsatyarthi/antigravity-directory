@@ -12,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         '/api/',
       ],
     },
-    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://antigravity.directory'}/sitemap.xml`,
+    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory'}/sitemap.xml`,
   };
 }
