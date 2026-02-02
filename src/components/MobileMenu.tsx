@@ -55,8 +55,37 @@ export function MobileMenu({ session: initialSession }: MobileMenuProps) {
                     Explore
                 </Link>
                 
-                {NAV_ITEMS.filter(item => !item.disabled).map(item => {
+                {NAV_ITEMS.map(item => {
+                    if (item.disabled) return null;
                     const isActive = pathname === item.href;
+                    
+                    if (item.children) {
+                        return (
+                            <div key={item.label} className="flex flex-col gap-3">
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mt-2 px-1">
+                                    {item.label}
+                                </div>
+                                <div className="flex flex-col gap-3 pl-4 border-l border-white/5">
+                                    {item.children.map(child => {
+                                        const isChildActive = pathname === child.href;
+                                        return (
+                                            <Link 
+                                                key={child.label}
+                                                href={child.href}
+                                                target={child.external ? "_blank" : undefined}
+                                                onClick={() => setIsOpen(false)}
+                                                className={`text-base font-bold hover:text-white flex items-center gap-2 ${isChildActive ? 'text-white' : 'text-gray-400'}`}
+                                            >
+                                                {child.label}
+                                                {child.isNew && <span className="bg-[#fbbf24] text-black text-[9px] px-1 rounded-sm">NEW</span>}
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        );
+                    }
+
                     return (
                         <Link 
                             key={item.label}
