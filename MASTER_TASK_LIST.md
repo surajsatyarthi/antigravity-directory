@@ -16,7 +16,7 @@
 | **9** | **48.0** | **Post on Product Hunt (12:01 AM)** | ⚪ **READY** | Master Audit |
 | **10** | **9.0** | **Post on Hacker News & Reddit** | ⚪ **READY** | Master Audit |
 | **11** | **5.0** | **Final Confirmation "Ready for Traffic"** | ✅ **DONE** | History |
-| **12** | **4.0** | **Enrich Contacts: Implement Apollo API** | 🔴 **TODO** | Codebase (TODO) |
+| **12** | **4.0** | **Enrich Contacts: Implement Apollo API** | ⏸️ **ON HOLD** | Funds |
 | **13** | **3.2** | **`/tools` Dynamic Shell Implementation** | 🔴 **TODO** | Task Tracker |
 | **14** | **3.2** | **Comparison: Claude vs ChatGPT (Agentic)** | ✅ **DONE** | Architect Audit |
 | **15** | **3.0** | **Deploy Top 5 AI Utility Magnets** | ✅ **DONE** | Task Tracker |
