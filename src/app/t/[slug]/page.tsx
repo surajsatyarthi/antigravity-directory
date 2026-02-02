@@ -24,6 +24,7 @@ export async function generateMetadata({
       metaTitle: resources.metaTitle,
       metaDesc: resources.metaDesc,
       isIndexed: resources.isIndexed,
+      status: resources.status,
     })
     .from(resources)
     .where(eq(resources.slug, slug))

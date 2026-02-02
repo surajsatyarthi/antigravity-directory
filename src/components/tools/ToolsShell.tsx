@@ -5,6 +5,8 @@ import { ToolsSidebar } from './ToolsSidebar';
 import { Menu, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { allTools } from '@/lib/tools-config';
 
 export function ToolsShell({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -63,6 +65,33 @@ export function ToolsShell({ children }: { children: React.ReactNode }) {
         <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar">
             <div className="max-w-5xl mx-auto">
                 {children}
+
+                {/* Related Tools Footer */}
+                <div className="mt-20 pt-12 border-t border-white/5">
+                    <h3 className="text-sm font-semibold text-slate-400 mb-6 px-1">More AI Utilities</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        {allTools.filter(t => t.href !== pathname).slice(0, 3).map(tool => {
+                            const Icon = tool.icon;
+                            return (
+                                <Link 
+                                    key={tool.href}
+                                    href={tool.href}
+                                    className="p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/10 transition group"
+                                >
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <div className="p-2 bg-slate-900 rounded-lg group-hover:bg-blue-500/20 group-hover:text-blue-400 transition">
+                                            <Icon className="w-4 h-4 text-slate-400 group-hover:text-blue-400" />
+                                        </div>
+                                        <span className="text-sm font-medium text-slate-200 group-hover:text-white">{tool.name}</span>
+                                    </div>
+                                    <p className="text-xs text-slate-500 line-clamp-2 pl-[3.25rem]">
+                                        {tool.description}
+                                    </p>
+                                </Link>
+                            )
+                        })}
+                    </div>
+                </div>
             </div>
         </div>
       </main>

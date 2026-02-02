@@ -6,9 +6,28 @@ export const metadata = {
   description: 'Convert JSON objects to Python Pydantic v2 models instantly. Supports nested objects, lists, and type inference for AI engineering workflows.',
 };
 
+import { safeJsonLd } from "@/lib/utils/safeJsonLd";
+
 export default function JsonToPydanticPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "JSON to Pydantic Converter",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <div className="space-y-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
+      />
       <div className="border-b border-slate-800 pb-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 bg-amber-900/30 rounded-lg text-amber-500">
