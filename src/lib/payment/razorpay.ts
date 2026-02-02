@@ -33,61 +33,10 @@ interface RazorpayVerificationResult {
 }
 
 // Track verified payments to prevent replay attacks
-const verifiedPayments = new Set<string>();
-
-/**
- * Create a Razorpay order
- */
-export async function createRazorpayOrder(params: RazorpayOrderParams): Promise<RazorpayOrder> {
-  const { amount, currency, receipt, notes } = params;
-
-  // Validate amount
-  if (amount <= 0) {
-    throw new Error('Invalid amount: must be a positive number');
-  }
-
-  if (currency !== 'INR' && currency !== 'USD') {
-     // Razorpay supports more, but for this app maybe just these?
-     // Actually, let's allow a broader set but definitely check for empty.
-  }
-  const validCurrencies = ['INR', 'USD', 'EUR', 'GBP', 'AUD', 'CAD'];
-  if (!validCurrencies.includes(currency)) {
-     throw new Error(`Invalid currency: must be one of ${validCurrencies.join(', ')}`);
-  }
-
-  const keyId = process.env.RAZORPAY_KEY_ID;
-  const keySecret = process.env.RAZORPAY_KEY_SECRET;
-
-  if (!keyId || !keySecret) {
-    throw new Error('Razorpay credentials not configured');
-  }
-
-  const auth = Buffer.from(`${keyId}:${keySecret}`).toString('base64');
-
-  // Convert amount to paise (smallest currency unit)
-  const amountInPaise = Math.round(amount * 100);
-
-  const response = await fetch('https://api.razorpay.com/v1/orders', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Basic ${auth}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      amount: amountInPaise,
-      currency,
-      receipt: receipt || `receipt_${Date.now()}`,
-      ...(notes && { notes }),
-    }),
-  });
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({}));
-    throw new Error(`Failed to create Razorpay order`);
-  }
-
-  return await response.json();
-}
+// SEC-001 CHECK: Use database state instead of in-memory Set
+import { db } from '@/lib/db';
+import { payments } from '@/drizzle/schema';
+import { eq } from 'drizzle-orm';
 
 /**
  * Verify Razorpay payment signature
@@ -108,9 +57,14 @@ export async function verifyRazorpayPayment(
     };
   }
 
-  // Check for replay attack
-  const paymentKey = `${orderId}:${paymentId}`;
-  if (verifiedPayments.has(paymentKey)) {
+  // Check for replay attack using Database
+  const existingPayment = await db
+    .select()
+    .from(payments)
+    .where(eq(payments.transactionId, paymentId))
+    .limit(1);
+
+  if (existingPayment.length > 0 && existingPayment[0].status === 'SUCCEEDED') {
     return {
       verified: false,
       error: 'Payment already verified (potential replay attack)',
@@ -132,8 +86,8 @@ export async function verifyRazorpayPayment(
       );
 
     if (isValid) {
-      // Mark payment as verified
-      verifiedPayments.add(paymentKey);
+      // Note: The caller is responsible for inserting/updating the payment record in the DB
+      // to 'SUCCEEDED' to effectively "mark" it as verified for future checks.
       return { verified: true };
     }
 
