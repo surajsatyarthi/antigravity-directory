@@ -18,7 +18,6 @@ import { unstable_cache } from 'next/cache';
  * Internal function for fetching resources (uncached)
  */
 async function getFilteredResourcesInternal(filters: FilterState, page: number = 1, pageSize: number = 20): Promise<{ resources: ResourceWithRelations[], totalCount: number }> {
-  try {
     const conditions = [];
     const offset = (page - 1) * pageSize;
     
@@ -131,59 +130,6 @@ async function getFilteredResourcesInternal(filters: FilterState, page: number =
       resources: results as unknown as ResourceWithRelations[],
       totalCount
     };
-
-  } catch (error) {
-    console.warn('Database unavailable, returning mock data:', error);
-    // Return mock data for development/testing when DB is down
-    const mockResources = [
-      {
-        id: '1',
-        title: 'Prompt Engineering Guide',
-        slug: 'prompt-engineering-guide',
-        description: 'Comprehensive guide for all AI models.',
-        content: '# Guide Content',
-        url: 'https://example.com/guide',
-        thumbnail: null,
-        categoryId: '1',
-        authorId: null,
-        featured: true,
-        verified: true,
-        views: 1200,
-        copiedCount: 45,
-        publishedAt: new Date(),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        categoryName: 'Prompts',
-        avgRating: 4.8,
-        ratingCount: 156,
-      },
-      {
-        id: '2',
-        title: 'MCP Server Boilerplate',
-        slug: 'mcp-boilerplate',
-        description: 'Get started with Model Context Protocol.',
-        content: '# Boilerplate Content',
-        url: 'https://github.com/example/mcp-boilerplate',
-        thumbnail: null,
-        categoryId: '2',
-        authorId: null,
-        featured: false,
-        verified: true,
-        views: 850,
-        copiedCount: 12,
-        publishedAt: new Date(),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        categoryName: 'Development',
-        avgRating: 4.5,
-        ratingCount: 42,
-      },
-    ];
-    return {
-      resources: mockResources as ResourceWithRelations[],
-      totalCount: mockResources.length
-    };
-  }
 }
 
 /**
@@ -202,7 +148,6 @@ export const getFilteredResources = unstable_cache(
  * Get all categories with resource counts
  */
 export async function getCategoriesWithCounts(): Promise<CategoryWithCount[]> {
-  try {
     return await db
       .select({
         id: categories.id,
@@ -220,27 +165,13 @@ export async function getCategoriesWithCounts(): Promise<CategoryWithCount[]> {
       .leftJoin(resources, eq(categories.id, resources.categoryId))
       .groupBy(categories.id)
       .orderBy(asc(categories.order)) as CategoryWithCount[];
-  } catch (error) {
-    console.warn('Database unavailable, returning mock categories');
-    return [
-      { id: '1', name: 'Prompts', slug: 'prompts', count: 10, group: 'Function' } as any,
-      { id: '2', name: 'Rules', slug: 'rules', count: 5, group: 'Standards' } as any,
-    ];
-  }
 }
 
 /**
  * Get all tags
  */
 export async function getAllTags(): Promise<Tag[]> {
-  try {
     return await db.select().from(tags).orderBy(asc(tags.name));
-  } catch (error) {
-    return [
-      { id: '1', name: 'Next.js', slug: 'nextjs' } as any,
-      { id: '2', name: 'Tailwind', slug: 'tailwind' } as any,
-    ];
-  }
 }
 
 /**
@@ -249,46 +180,29 @@ export async function getAllTags(): Promise<Tag[]> {
 export async function validateCategorySlugs(slugs: string[]): Promise<string[]> {
   console.log('[validateCategorySlugs] Validating:', slugs);
   if (slugs.length === 0) return [];
-  try {
-    const validCategories = await db
-      .select({ slug: categories.slug })
-      .from(categories)
-      .where(inArray(categories.slug, slugs));
-    const result = validCategories.map((c: any) => c.slug);
-    console.log('[validateCategorySlugs] Result:', result);
-    return result;
-  } catch (error) {
-    // If DB is down, assume the slugs from pre-defined mock set are valid
-    const mockSlugs = ['prompts', 'rules'];
-    const result = slugs.filter(s => mockSlugs.includes(s));
-    console.log('[validateCategorySlugs] DB Error. Mock Result:', result);
-    return result;
-  }
+  const validCategories = await db
+    .select({ slug: categories.slug })
+    .from(categories)
+    .where(inArray(categories.slug, slugs));
+  const result = validCategories.map((c: any) => c.slug);
+  console.log('[validateCategorySlugs] Result:', result);
+  return result;
 }
 /**
  * Get top tools for pSEO listing
  */
 export async function getTopTools() {
-  try {
     return await db
       .select()
       .from(tools)
       .orderBy(desc(tools.searchVolumeSignal))
       .limit(12);
-  } catch (error) {
-    console.warn('Database unavailable or empty, returning mock tools');
-    return [
-      { id: '1', name: 'Rule Generator', slug: 'rule-generator', description: 'Create .cursorrules', category: 'generator', searchVolumeSignal: 5000 },
-      { id: '2', name: 'MCP Scaffolding', slug: 'mcp-scaffolding', description: 'Templates for MCP', category: 'scaffold', searchVolumeSignal: 3000 }
-    ];
-  }
 }
 
 /**
  * Get tool by slug with related resources
  */
 export async function getToolBySlug(slug: string) {
-  try {
     const tool = (await db.select().from(tools).where(eq(tools.slug, slug)).limit(1))[0];
     if (!tool) return null;
 
@@ -313,16 +227,12 @@ export async function getToolBySlug(slug: string) {
       .limit(3);
 
     return { ...tool, relatedResources };
-  } catch (error) {
-    return null;
-  }
 }
 
 /**
  * Get data for Owner Dashboard
  */
 export async function getOwnerDashboardData(userId: string) {
-  try {
     const stats = await db
       .select({
         totalViews: sql<number>`SUM(${resources.views})`,
@@ -352,16 +262,12 @@ export async function getOwnerDashboardData(userId: string) {
       .orderBy(desc(resources.publishedAt));
 
     return { stats: stats[0], tools: authoredTools };
-  } catch (error) {
-    return { stats: { totalViews: 0, toolCount: 0 }, tools: [] };
-  }
 }
 
 /**
  * Get data for Admin Dashboard
  */
 export async function getAdminDashboardData() {
-  try {
     const totalUsers = Number((await db.execute(sql`SELECT count(*) FROM users`))[0].count || 0);
     const totalResources = Number((await db.execute(sql`SELECT count(*) FROM resources`))[0].count || 0);
     const pendingSubmissions = Number((await db.execute(sql`SELECT count(*) FROM submissions WHERE status = 'PENDING'`))[0].count || 0);
@@ -389,8 +295,5 @@ export async function getAdminDashboardData() {
       },
       recentSubmissions
     };
-  } catch (error) {
-    return { stats: { totalUsers: 0, totalResources: 0, pendingSubmissions: 0, vettingResources: 0 }, recentSubmissions: [] };
-  }
 }
 
