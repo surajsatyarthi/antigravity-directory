@@ -117,47 +117,7 @@ export function FilterSidebar({ categories, tags, className = "w-[240px] sticky 
         </div>
 
         {/* Listing Status Badges */}
-        <div className="mb-6">
-           <span className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-bold block mb-3">Listing Status</span>
-           <div className="flex flex-col gap-1.5">
-             {[
-               { id: 'editors_choice', label: "Editor's Choice", color: 'text-yellow-500', bg: 'bg-yellow-500/10', border: 'border-yellow-500/30' },
-               { id: 'trending', label: "Trending", color: 'text-purple-400', bg: 'bg-purple-500/10', border: 'border-purple-500/30' },
-               { id: 'users_choice', label: "User's Choice", color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/30' }
-             ].map((badge) => {
-               const currentBadges = searchParams.get('badges')?.split(',').filter(Boolean) || [];
-               const isSelected = currentBadges.includes(badge.id);
-
-               return (
-                 <button
-                   key={badge.id}
-                   onClick={() => {
-                     const params = new URLSearchParams(searchParams);
-                     let updated;
-                     if (isSelected) {
-                       updated = currentBadges.filter(b => b !== badge.id);
-                     } else {
-                       updated = [...currentBadges, badge.id];
-                     }
-
-                     if (updated.length > 0) params.set('badges', updated.join(','));
-                     else params.delete('badges');
-
-                     router.push(`?${params.toString()}`);
-                   }}
-                    className={`flex items-center justify-between px-3 py-2 rounded-md border text-sm font-bold transition-all ${
-                     isSelected
-                       ? `${badge.bg} ${badge.border} ${badge.color}`
-                       : 'bg-black/40 border-gray-900/50 text-gray-400 hover:border-gray-800 hover:text-gray-200'
-                   }`}
-                 >
-                   <span>{badge.label}</span>
-                   {isSelected && <div className={`w-1 h-1 rounded-full ${badge.color.replace('text-', 'bg-')} animate-pulse`} />}
-                 </button>
-               );
-             })}
-           </div>
-        </div>
+        {/* Listing Status Badges Removed */}
         
         {/* Categories Filter (Function) */}
         <div className="mb-8">

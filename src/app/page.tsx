@@ -8,12 +8,21 @@ import { FilterSidebar } from '@/components/filters/FilterSidebar';
 import { TopFilterBar } from '@/components/filters/TopFilterBar';
 import { FilterPersistenceManager } from '@/components/filters/FilterPersistenceManager';
 import { ResourceCard } from '@/components/ResourceCard';
-import { Pagination } from '@/components/filters/Pagination';
+// import { Pagination } from '@/components/filters/Pagination'; // Pagination replaced by Infinite Scroll
+import { InfiniteResourceGrid } from '@/components/InfiniteResourceGrid';
 import { DirectoryIntelligence } from '@/components/DirectoryIntelligence';
-import { Testimonials } from '@/components/Testimonials';
-import { NewsletterCapture } from '@/components/NewsletterCapture';
 import { getCategoriesWithCounts, getAllTags, getFilteredResources, validateCategorySlugs } from '@/lib/queries';
 import { validateFilterParams } from '@/lib/validation';
+import dynamic from 'next/dynamic';
+
+const Testimonials = dynamic(() => import('@/components/Testimonials').then(mod => mod.Testimonials), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-white/5 rounded-xl mb-8" />,
+  ssr: true
+});
+
+const NewsletterCapture = dynamic(() => import('@/components/NewsletterCapture').then(mod => mod.NewsletterCapture), {
+  ssr: true
+});
 
 export async function generateMetadata({
   searchParams,
@@ -114,23 +123,11 @@ export default async function HomePage({
               <Suspense fallback={<div className="py-20 text-center text-gray-700 font-mono text-[10px] uppercase tracking-widest animate-pulse">Initializing directory...</div>}>
                 <div className="relative">
                   {filteredResources.length > 0 ? (
-                    <>
-                      <div
-                        id="resource-grid"
-                        className="flex flex-col gap-3"
-                        role="region"
-                        aria-label="Agent Marketplace Grid"
-                      >
-                        {filteredResources.map((resource) => (
-                          <ResourceCard
-                            key={resource.id}
-                            resource={resource as any}
-                          />
-                        ))}
-                      </div>
-                      
-                      <Pagination totalCount={totalCount} pageSize={pageSize} />
-                    </>
+                    <InfiniteResourceGrid
+                      initialResources={filteredResources}
+                      initialTotalCount={totalCount}
+                      initialFilters={activeFilters}
+                    />
                   ) : (
                     <div className="flex flex-col items-center justify-center py-24 text-center border border-white/[0.05] rounded-xl bg-[#030303]">
                       <div className="w-12 h-12 bg-gray-950 border border-gray-900 rounded flex items-center justify-center mb-6">

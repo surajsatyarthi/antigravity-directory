@@ -42,11 +42,11 @@ export const DirectoryIntelligence = () => {
             </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
         {/* USP 1: Live Metrics */}
-        <div className="bg-[#050505] border border-white/10 rounded-lg p-3.5 flex items-start gap-2.5 transition-all hover:border-white/20">
+        <div className="bg-[#050505] border border-white/10 rounded-lg p-4 md:p-3.5 flex items-start gap-2.5 transition-all hover:border-white/20">
           <div className="mt-0.5">
-            <RefreshCw className="w-4 h-4 text-emerald-500" />
+            <RefreshCw className="w-5 h-5 md:w-4 md:h-4 text-emerald-500" />
           </div>
           <div>
             <h4 className="text-xs font-black text-white uppercase tracking-widest mb-0.5">Live Sync</h4>
@@ -57,9 +57,9 @@ export const DirectoryIntelligence = () => {
         </div>
 
         {/* USP 2: Comparisons */}
-        <div className="bg-[#050505] border border-white/10 rounded-lg p-3.5 flex items-start gap-2.5 transition-all hover:border-white/20">
+        <div className="bg-[#050505] border border-white/10 rounded-lg p-4 md:p-3.5 flex items-start gap-2.5 transition-all hover:border-white/20">
           <div className="mt-0.5">
-            <BarChart3 className="w-4 h-4 text-blue-500" />
+            <BarChart3 className="w-5 h-5 md:w-4 md:h-4 text-blue-500" />
           </div>
           <div>
             <h4 className="text-xs font-black text-white uppercase tracking-widest mb-0.5">VS Engine</h4>
@@ -70,9 +70,9 @@ export const DirectoryIntelligence = () => {
         </div>
 
         {/* USP 3: AEO */}
-        <div className="bg-[#050505] border border-white/10 rounded-lg p-3.5 flex items-start gap-2.5 transition-all hover:border-white/20">
+        <div className="bg-[#050505] border border-white/10 rounded-lg p-4 md:p-3.5 flex items-start gap-2.5 transition-all hover:border-white/20">
           <div className="mt-0.5">
-            <Search className="w-4 h-4 text-purple-500" />
+            <Search className="w-5 h-5 md:w-4 md:h-4 text-purple-500" />
           </div>
           <div>
             <h4 className="text-xs font-black text-white uppercase tracking-widest mb-0.5">AEO Focus</h4>
@@ -83,7 +83,7 @@ export const DirectoryIntelligence = () => {
         </div>
 
         {/* Status: Operational */}
-        <div className="bg-[#050505] border border-white/10 rounded-lg p-3.5 flex flex-col justify-center items-center gap-1 hover:border-white/20 transition-all">
+        <div className="bg-[#050505] border border-white/10 rounded-lg p-4 md:p-3.5 flex flex-col justify-center items-center gap-1 hover:border-white/20 transition-all">
           <div className="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">Authority</div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
@@ -92,7 +92,7 @@ export const DirectoryIntelligence = () => {
         </div>
 
         {/* Live Data */}
-        <div className="bg-[#050505] border border-white/10 rounded-lg p-3.5 flex flex-col justify-center items-center gap-1 group relative overflow-hidden hover:border-white/20 transition-all">
+        <div className="bg-[#050505] border border-white/10 rounded-lg p-4 md:p-3.5 flex flex-col justify-center items-center gap-1 group relative overflow-hidden hover:border-white/20 transition-all">
           <div className="absolute inset-0 bg-emerald-500/5 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           <div className="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">Limited Offer</div>
           <Link href="/submit" className="flex items-center gap-2">

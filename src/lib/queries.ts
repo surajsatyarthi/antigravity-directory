@@ -64,6 +64,11 @@ export async function getFilteredResources(filters: FilterState, page: number = 
       conditions.push(inArray(resources.badgeType, filters.badgeTypes));
     }
 
+    // Filter by sponsorship status (if specified only)
+    if (filters.isSponsored !== undefined) {
+      conditions.push(eq(resources.featured, filters.isSponsored));
+    }
+
     // Search in title and description
     if (filters.search) {
       conditions.push(
@@ -73,7 +78,7 @@ export async function getFilteredResources(filters: FilterState, page: number = 
         )
       );
     }
-    
+
     // Get total count first
     const countResult = await db
       .select({ count: sql<number>`count(distinct ${resources.id})` })
@@ -111,15 +116,7 @@ export async function getFilteredResources(filters: FilterState, page: number = 
       .where(conditions.length > 0 ? and(...conditions) : undefined)
       .groupBy(resources.id, categories.name)
       .orderBy(
-        desc(sql`
-          (CASE 
-            WHEN ${resources.badgeType} = 'editors_choice' THEN 100000 
-            WHEN ${resources.featured} = true THEN 80000
-            WHEN ${resources.badgeType} = 'trending' THEN 60000
-            WHEN ${resources.badgeType} = 'users_choice' THEN 40000
-            ELSE 0 
-          END) + ${resources.views}
-        `),
+        desc(resources.views), // Removed automatic featured boost
         desc(resources.publishedAt)
       )
       .limit(pageSize)

@@ -106,7 +106,7 @@ export const resources = pgTable('resources', {
   lastValidatedAt: timestamp('last_validated_at').defaultNow(),
 
   // Trust Signals & Badges
-  badgeType: text('badge_type'), // NULL | 'editors_choice' | 'users_choice' | 'trending'
+  badgeType: text('badge_type'), // NULL | 'users_choice' | 'trending'
   status: text('status').notNull().default('LIVE'), // 'LIVE' | 'VETTING'
   
   // Timestamps

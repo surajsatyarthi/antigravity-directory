@@ -13,7 +13,12 @@ import {
 } from 'lucide-react';
 import { getOwnerDashboardData, getAdminDashboardData } from '@/lib/queries';
 import { getEdwardProspects } from '@/lib/edward';
-import { EdwardOutreachPanel } from '@/components/EdwardOutreachPanel';
+import dynamic from 'next/dynamic';
+
+const EdwardOutreachPanel = dynamic(() => import('@/components/EdwardOutreachPanel').then(mod => mod.EdwardOutreachPanel), {
+  loading: () => <div className="h-64 w-full animate-pulse bg-white/5 rounded-xl" />,
+  ssr: true
+});
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
 

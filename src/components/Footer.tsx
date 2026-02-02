@@ -112,6 +112,12 @@ export function Footer() {
                 >
                   Explore
                 </Link>
+                <Link
+                  href="/tools"
+                  className="p-2 text-gray-400 hover:text-white transition-colors"
+                >
+                  Free AI Tools
+                </Link>
               <Link
                 href="/submit"
                 className="p-2 transition-colors hover:text-white focus:outline-none focus:text-blue-500"
