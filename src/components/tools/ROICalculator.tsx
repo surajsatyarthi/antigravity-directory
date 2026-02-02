@@ -1,167 +1,182 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { Calculator, ArrowRight, Check } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
-const PROVIDERS = [
-  {
-    name: 'OpenAI',
-    models: [
-      { id: 'gpt-4o', name: 'GPT-4o', input: 5.00, output: 15.00 },
-      { id: 'gpt-4o-mini', name: 'GPT-4o Mini', input: 0.15, output: 0.60 },
-      { id: 'gpt-4-turbo', name: 'GPT-4 Turbo', input: 10.00, output: 30.00 },
-      { id: 'gpt-3.5-turbo', name: 'GPT-3.5 Turbo', input: 0.50, output: 1.50 },
-    ]
-  },
-  {
-    name: 'Anthropic',
-    models: [
-      { id: 'claude-3-5-sonnet', name: 'Claude 3.5 Sonnet', input: 3.00, output: 15.00 },
-      { id: 'claude-3-opus', name: 'Claude 3 Opus', input: 15.00, output: 75.00 },
-      { id: 'claude-3-haiku', name: 'Claude 3 Haiku', input: 0.25, output: 1.25 },
-    ]
-  },
-  {
-    name: 'Google',
-    models: [
-      { id: 'gemini-1.5-pro', name: 'Gemini 1.5 Pro', input: 3.50, output: 10.50 },
-      { id: 'gemini-1.5-flash', name: 'Gemini 1.5 Flash', input: 0.35, output: 1.05 },
-    ]
-  }
+const MODELS = [
+  { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI', inputPrice: 5.00, outputPrice: 15.00, color: '#10a37f' },
+  { id: 'gpt-4o-mini', name: 'GPT-4o Mini', provider: 'OpenAI', inputPrice: 0.15, outputPrice: 0.60, color: '#10a37f' },
+  { id: 'claude-3-5-sonnet', name: 'Claude 3.5 Sonnet', provider: 'Anthropic', inputPrice: 3.00, outputPrice: 15.00, color: '#d97757' },
+  { id: 'claude-3-haiku', name: 'Claude 3 Haiku', provider: 'Anthropic', inputPrice: 0.25, outputPrice: 1.25, color: '#d97757' },
+  { id: 'gemini-1-5-flash', name: 'Gemini 1.5 Flash', provider: 'Google', inputPrice: 0.35, outputPrice: 1.05, color: '#4285F4' },
+  { id: 'gemini-1-5-pro', name: 'Gemini 1.5 Pro', provider: 'Google', inputPrice: 3.50, outputPrice: 10.50, color: '#4285F4' },
+  { id: 'llama-3-70b', name: 'Llama 3 70B', provider: 'Meta (via Groq)', inputPrice: 0.59, outputPrice: 0.79, color: '#0668E1' },
+  { id: 'deepseek-v3', name: 'DeepSeek V3', provider: 'DeepSeek', inputPrice: 0.14, outputPrice: 0.28, color: '#6366f1' },
 ];
 
-export function ROICalculator() {
-  const [avgInputTokens, setAvgInputTokens] = useState(1000);
-  const [avgOutputTokens, setAvgOutputTokens] = useState(500);
-  const [dailyRequests, setDailyRequests] = useState(100);
+export function RoiCalculator() {
+  const [users, setUsers] = useState(100);
+  const [requestsPerDay, setRequestsPerDay] = useState(20);
+  const [inputTokens, setInputTokens] = useState(500);
+  const [outputTokens, setOutputTokens] = useState(200);
+  const [customModel, setCustomModel] = useState({ name: 'Custom', inputPrice: 1.0, outputPrice: 2.0 });
 
-  const comparisons = useMemo(() => {
-    return PROVIDERS.flatMap(provider => 
-      provider.models.map(model => {
-        // Costs are per 1M tokens usually, but we standardizing to $ per 1M for calculation ease?
-        // Wait, standard pricing is per 1M tokens.
-        // My config above uses standard $ per 1M input/output.
-        
-        const monthlyRequests = dailyRequests * 30;
-        const totalInput = (avgInputTokens * monthlyRequests) / 1_000_000;
-        const totalOutput = (avgOutputTokens * monthlyRequests) / 1_000_000;
-        
-        const monthlyCost = (totalInput * model.input) + (totalOutput * model.output);
-        
-        return {
-          provider: provider.name,
-          ...model,
-          monthlyCost
-        };
-      })
-    ).sort((a, b) => a.monthlyCost - b.monthlyCost);
-  }, [avgInputTokens, avgOutputTokens, dailyRequests]);
+  const [data, setData] = useState<any[]>([]);
 
-  const bestValue = comparisons[0];
+  useEffect(() => {
+    const monthlyRequests = users * requestsPerDay * 30;
+    
+    // Calculate costs (Prices are per 1M tokens usually, but standard notation is often per 1M)
+    // NOTE: Prices in MODELS array are per 1M tokens (standard industry pricing)
+    
+    const calculateCost = (model: typeof MODELS[0]) => {
+      const inputCost = (inputTokens / 1_000_000) * model.inputPrice;
+      const outputCost = (outputTokens / 1_000_000) * model.outputPrice;
+      const costPerRequest = inputCost + outputCost;
+      return monthlyRequests * costPerRequest;
+    };
+
+    const newData = MODELS.map(model => ({
+      name: model.name,
+      cost: calculateCost(model),
+      color: model.color,
+      provider: model.provider
+    })).sort((a, b) => a.cost - b.cost);
+
+    setData(newData);
+  }, [users, requestsPerDay, inputTokens, outputTokens]);
+
+  const formatCurrency = (val: number) => {
+    if (val < 1) return `$${val.toFixed(2)}`;
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
+  };
 
   return (
-    <div className="space-y-8">
-      {/* Inputs */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div>
-          <label className="block text-sm font-medium text-slate-300 mb-2">
-            Avg Input Tokens / Req
-          </label>
-          <input
-            type="number"
-            value={avgInputTokens}
-            onChange={(e) => setAvgInputTokens(Number(e.target.value))}
-            className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:ring-2 focus:ring-green-500 outline-none text-white"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-slate-300 mb-2">
-            Avg Output Tokens / Req
-          </label>
-          <input
-            type="number"
-            value={avgOutputTokens}
-            onChange={(e) => setAvgOutputTokens(Number(e.target.value))}
-            className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:ring-2 focus:ring-green-500 outline-none text-white"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-slate-300 mb-2">
-            Requests Per Day
-          </label>
-          <input
-            type="number"
-            value={dailyRequests}
-            onChange={(e) => setDailyRequests(Number(e.target.value))}
-            className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:ring-2 focus:ring-green-500 outline-none text-white"
-          />
-        </div>
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      {/* Controls */}
+      <div className="lg:col-span-4 space-y-6">
+        <Card className="p-6 bg-white/5 border-white/10 space-y-6">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="users-input" className="text-slate-200">Active Users</Label>
+              <Input 
+                id="users-input"
+                type="number" 
+                value={users} 
+                onChange={(e) => setUsers(Number(e.target.value))} 
+                className="bg-black/50 border-white/10" 
+              />
+              <Slider 
+                value={[users]} 
+                max={10000} 
+                step={10} 
+                onValueChange={(val) => setUsers(val[0])} 
+                className="py-2"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-slate-200">Requests per User / Day</Label>
+              <Input 
+                type="number" 
+                value={requestsPerDay} 
+                onChange={(e) => setRequestsPerDay(Number(e.target.value))}
+                className="bg-black/50 border-white/10" 
+              />
+              <Slider 
+                value={[requestsPerDay]} 
+                max={500} 
+                step={1} 
+                onValueChange={(val) => setRequestsPerDay(val[0])}
+                className="py-2"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-slate-200">Avg Input Tokens</Label>
+              <Input 
+                type="number" 
+                value={inputTokens} 
+                onChange={(e) => setInputTokens(Number(e.target.value))}
+                className="bg-black/50 border-white/10" 
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-slate-200">Avg Output Tokens</Label>
+              <Input 
+                type="number" 
+                value={outputTokens} 
+                onChange={(e) => setOutputTokens(Number(e.target.value))}
+                className="bg-black/50 border-white/10" 
+              />
+            </div>
+            
+             <div className="pt-4 border-t border-white/10 text-xs text-slate-500">
+               * Prices per 1M tokens. Updated Feb 2026.
+            </div>
+          </div>
+        </Card>
       </div>
 
-      {/* Best Choice Highlight */}
-      <div className="bg-green-900/10 border border-green-500/20 p-6 rounded-xl flex items-center justify-between">
-        <div>
-          <div className="text-sm font-medium text-green-400 mb-1">
-            Most Cost Effective Option
+      {/* Chart */}
+      <div className="lg:col-span-8 space-y-6">
+        <Card className="p-6 bg-white/5 border-white/10 h-[500px] flex flex-col">
+          <div className="mb-6 flex justify-between items-end">
+             <div>
+                <h3 className="text-lg font-semibold text-white">Monthly Cost Projection</h3>
+                <p className="text-slate-400 text-sm">Based on {users * requestsPerDay * 30} total monthly requests</p>
+             </div>
+             <div className="text-right">
+                <div className="text-sm text-slate-400">Lowest Cost</div>
+                <div className="text-xl font-bold text-green-400">{formatCurrency(data[0]?.cost || 0)}</div>
+                <div className="text-xs text-slate-500">{data[0]?.name}</div>
+             </div>
           </div>
-          <div className="text-2xl font-bold text-white flex items-center gap-2">
-            <span>{bestValue.name}</span>
-            <span className="text-sm font-normal text-slate-400">
-              via {bestValue.provider}
-            </span>
+          
+          <div className="flex-1 w-full min-h-0">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={data} layout="vertical" margin={{ left: 20, right: 50 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#333" horizontal={false} />
+                <XAxis type="number" stroke="#666" tickFormatter={(val) => `$${val}`} />
+                <YAxis dataKey="name" type="category" width={100} stroke="#999" style={{ fontSize: '12px' }} />
+                <Tooltip 
+                  cursor={{fill: 'transparent'}}
+                  contentStyle={{ backgroundColor: '#000', border: '1px solid #333', borderRadius: '8px' }}
+                  itemStyle={{ color: '#fff' }}
+                  formatter={(value: any) => [formatCurrency(value), 'Est. Monthly Cost']}
+                />
+                <Bar dataKey="cost" radius={[0, 4, 4, 0]} barSize={32}>
+                  {data.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
           </div>
-        </div>
-        <div className="text-right">
-          <div className="text-3xl font-bold text-green-400">
-            ${bestValue.monthlyCost.toFixed(2)}
-          </div>
-          <div className="text-xs text-green-300 font-medium">
-            per month
-          </div>
-        </div>
-      </div>
+        </Card>
 
-      {/* Table */}
-      <div className="border border-slate-800 rounded-xl overflow-hidden">
-        <table className="w-full text-sm">
-          <thead className="bg-slate-900/50 text-slate-400 font-medium">
-            <tr>
-              <th className="px-6 py-4 text-left">Model</th>
-              <th className="px-6 py-4 text-left">Provider</th>
-              <th className="px-6 py-4 text-right">Input ($/1M)</th>
-              <th className="px-6 py-4 text-right">Output ($/1M)</th>
-              <th className="px-6 py-4 text-right">Est. Monthly Cost</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-800/50">
-            {comparisons.map((model, idx) => (
-              <tr 
-                key={model.id}
-                className={idx === 0 ? 'bg-green-900/10' : ''}
-              >
-                <td className="px-6 py-4 font-medium text-white flex items-center gap-2">
-                  {model.name}
-                  {idx === 0 && <Check className="w-4 h-4 text-green-500" />}
-                </td>
-                <td className="px-6 py-4 text-slate-400">{model.provider}</td>
-                <td className="px-6 py-4 text-right text-slate-400">
-                  ${model.input.toFixed(2)}
-                </td>
-                <td className="px-6 py-4 text-right text-slate-400">
-                  ${model.output.toFixed(2)}
-                </td>
-                <td className={`px-6 py-4 text-right font-bold ${idx === 0 ? 'text-green-400' : 'text-white'}`}>
-                  ${model.monthlyCost.toFixed(2)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {/* Insight */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+             <Card className="p-4 bg-green-500/10 border-green-500/20">
+                <h4 className="font-semibold text-green-400 mb-1">Budget Option: DeepSeek V3</h4>
+                <p className="text-xs text-slate-300">
+                   At <b>{formatCurrency(data.find(d => d.name === 'DeepSeek V3')?.cost || 0)}/mo</b>, DeepSeek V3 offers the most competitive pricing for high-volume applications while maintaining strong reasoning capabilities.
+                </p>
+             </Card>
+             <Card className="p-4 bg-blue-500/10 border-blue-500/20">
+                <h4 className="font-semibold text-blue-400 mb-1">Smart Choice: Gemini 1.5 Flash</h4>
+                <p className="text-xs text-slate-300">
+                   Google's <b>{formatCurrency(data.find(d => d.name === 'Gemini 1.5 Flash')?.cost || 0)}/mo</b> comes with a massive 1M context window, making it ideal for RAG and document processing.
+                </p>
+             </Card>
+        </div>
       </div>
-      
-      <p className="text-xs text-center text-slate-500 mt-4">
-        * Pricing based on standard "Pay-as-you-go" API rates as of Feb 2026. Does not include Batch API discounts (50% off usually).
-      </p>
     </div>
   );
 }
