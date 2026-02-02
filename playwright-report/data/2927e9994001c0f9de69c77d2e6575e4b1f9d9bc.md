@@ -1,0 +1,897 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e4]:
+    - banner [ref=e5]:
+      - generic [ref=e6]:
+        - link "antigravity directory" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img [ref=e9]
+          - generic [ref=e11]:
+            - generic [ref=e12]: antigravity
+            - generic [ref=e13]: directory
+        - generic [ref=e15]:
+          - img [ref=e16]
+          - textbox "Search prompts, rules, MCPs..." [ref=e19]
+        - generic [ref=e20]:
+          - navigation [ref=e22]:
+            - link "Download" [ref=e23] [cursor=pointer]:
+              - /url: /download
+              - generic [ref=e24]: Download
+            - link "Help" [ref=e25] [cursor=pointer]:
+              - /url: /troubleshooting
+              - generic [ref=e26]: Help
+            - link "Blog" [ref=e27]:
+              - /url: "#"
+              - generic [ref=e28]: Blog
+            - link "Community" [ref=e29] [cursor=pointer]:
+              - /url: https://discord.gg/antigravity
+              - generic [ref=e30]: Community
+            - link "Prompts NEW" [ref=e31] [cursor=pointer]:
+              - /url: /prompts
+              - generic [ref=e32]: Prompts
+              - generic [ref=e33]: NEW
+            - link "Rules" [ref=e34] [cursor=pointer]:
+              - /url: /rules
+              - generic [ref=e35]: Rules
+            - link "Workflows" [ref=e36] [cursor=pointer]:
+              - /url: /workflows
+              - generic [ref=e37]: Workflows
+            - link "Agent Skills" [ref=e38] [cursor=pointer]:
+              - /url: /skills
+              - generic [ref=e39]: Agent Skills
+            - link "MCPs" [ref=e40] [cursor=pointer]:
+              - /url: /mcp-servers
+              - generic [ref=e41]: MCPs
+            - link "Advertise" [ref=e42] [cursor=pointer]:
+              - /url: /advertise
+              - generic [ref=e43]: Advertise
+          - generic [ref=e44]:
+            - link "Submit Resource" [ref=e45] [cursor=pointer]:
+              - /url: /submit
+              - img [ref=e47]
+              - generic [ref=e49]: Submit Resource
+            - button "Sign In" [ref=e51]
+    - generic [ref=e52]:
+      - complementary [ref=e53]:
+        - generic [ref=e54]:
+          - generic [ref=e55]:
+            - heading "AI Developer Tools" [level=2] [ref=e56]
+            - paragraph [ref=e57]: Free utilities for AI engineering
+          - navigation [ref=e58]:
+            - generic [ref=e59]:
+              - heading "Converters" [level=3] [ref=e60]
+              - link "JSON to Pydantic" [ref=e62] [cursor=pointer]:
+                - /url: /tools/json-to-pydantic
+                - img [ref=e63]
+                - generic [ref=e68]: JSON to Pydantic
+            - generic [ref=e69]:
+              - heading "Calculators" [level=3] [ref=e70]
+              - generic [ref=e71]:
+                - link "LLM Pricing (ROI)" [ref=e72] [cursor=pointer]:
+                  - /url: /tools/roi-calculator
+                  - img [ref=e73]
+                  - generic [ref=e75]: LLM Pricing (ROI)
+                - link "TikToken Counter" [ref=e76] [cursor=pointer]:
+                  - /url: /tools/token-counter
+                  - img [ref=e77]
+                  - generic [ref=e82]: TikToken Counter
+            - generic [ref=e83]:
+              - heading "Generators" [level=3] [ref=e84]
+              - generic [ref=e85]:
+                - link "Prompt Optimizer" [ref=e86] [cursor=pointer]:
+                  - /url: /tools/prompt-generator
+                  - img [ref=e87]
+                  - generic [ref=e89]: Prompt Optimizer
+                - link "RAG Visualizer" [ref=e90] [cursor=pointer]:
+                  - /url: /tools/rag-visualizer
+                  - img [ref=e91]
+                  - generic [ref=e96]: RAG Visualizer
+          - generic [ref=e97]:
+            - heading "Building AI Apps?" [level=3] [ref=e98]
+            - paragraph [ref=e99]: Find the best databases, auth, and hosting for your next project.
+            - link "Browse Directory" [ref=e100] [cursor=pointer]:
+              - /url: /
+      - main [ref=e101]:
+        - button "Close Sidebar" [ref=e103]:
+          - img [ref=e104]
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - complementary [ref=e110]:
+              - generic [ref=e111]:
+                - generic [ref=e112]:
+                  - heading "AI Developer Tools" [level=2] [ref=e113]
+                  - paragraph [ref=e114]: Free utilities for AI engineering
+                - navigation [ref=e115]:
+                  - generic [ref=e116]:
+                    - heading "Converters" [level=3] [ref=e117]
+                    - link "JSON to Pydantic" [ref=e119] [cursor=pointer]:
+                      - /url: /tools/json-to-pydantic
+                      - img [ref=e120]
+                      - generic [ref=e125]: JSON to Pydantic
+                  - generic [ref=e126]:
+                    - heading "Calculators" [level=3] [ref=e127]
+                    - generic [ref=e128]:
+                      - link "LLM Pricing (ROI)" [ref=e129] [cursor=pointer]:
+                        - /url: /tools/roi-calculator
+                        - img [ref=e130]
+                        - generic [ref=e132]: LLM Pricing (ROI)
+                      - link "TikToken Counter" [ref=e133] [cursor=pointer]:
+                        - /url: /tools/token-counter
+                        - img [ref=e134]
+                        - generic [ref=e139]: TikToken Counter
+                  - generic [ref=e140]:
+                    - heading "Generators" [level=3] [ref=e141]
+                    - generic [ref=e142]:
+                      - link "Prompt Optimizer" [ref=e143] [cursor=pointer]:
+                        - /url: /tools/prompt-generator
+                        - img [ref=e144]
+                        - generic [ref=e146]: Prompt Optimizer
+                      - link "RAG Visualizer" [ref=e147] [cursor=pointer]:
+                        - /url: /tools/rag-visualizer
+                        - img [ref=e148]
+                        - generic [ref=e153]: RAG Visualizer
+                - generic [ref=e154]:
+                  - heading "Building AI Apps?" [level=3] [ref=e155]
+                  - paragraph [ref=e156]: Find the best databases, auth, and hosting for your next project.
+                  - link "Browse Directory" [ref=e157] [cursor=pointer]:
+                    - /url: /
+            - main [ref=e158]:
+              - button "Close Sidebar" [ref=e160]:
+                - img [ref=e161]
+              - generic [ref=e165]:
+                - generic [ref=e166]:
+                  - generic [ref=e167]:
+                    - img [ref=e169]
+                    - generic [ref=e171]:
+                      - heading "Prompt Optimizer" [level=1] [ref=e172]
+                      - paragraph [ref=e173]: Sanitize and structure your prompts for maximum LLM performance
+                  - generic [ref=e175]:
+                    - generic [ref=e176]:
+                      - generic [ref=e177]:
+                        - heading "Original Prompt" [level=3] [ref=e178]
+                        - button [ref=e179]:
+                          - img [ref=e180]
+                      - textbox "Paste your rough prompt here... (e.g. 'Write a blog post about AI')" [ref=e184]
+                      - button "Optimize with Gemini" [disabled]:
+                        - img
+                        - text: Optimize with Gemini
+                    - generic [ref=e185]:
+                      - heading "Optimized Result" [level=3] [ref=e187]:
+                        - img [ref=e188]
+                        - text: Optimized Result
+                      - textbox "Optimized prompt will appear here..." [ref=e192]
+                      - generic [ref=e193]:
+                        - img [ref=e194]
+                        - paragraph [ref=e196]:
+                          - text: Powered by
+                          - strong [ref=e197]: Gemini 1.5 Flash
+                          - text: (Free Tier). This tool restructures your prompt into Role, Context, Task, and Constraint sections for better LLM adherence.
+                - generic [ref=e198]:
+                  - heading "More AI Utilities" [level=3] [ref=e199]
+                  - generic [ref=e200]:
+                    - link "JSON to Pydantic Convert JSON to Pydantic v2" [ref=e201] [cursor=pointer]:
+                      - /url: /tools/json-to-pydantic
+                      - generic [ref=e202]:
+                        - img [ref=e204]
+                        - generic [ref=e209]: JSON to Pydantic
+                      - paragraph [ref=e210]: Convert JSON to Pydantic v2
+                    - link "LLM Pricing (ROI) Calculate API costs" [ref=e211] [cursor=pointer]:
+                      - /url: /tools/roi-calculator
+                      - generic [ref=e212]:
+                        - img [ref=e214]
+                        - generic [ref=e216]: LLM Pricing (ROI)
+                      - paragraph [ref=e217]: Calculate API costs
+                    - link "TikToken Counter Count tokens for GPT-4" [ref=e218] [cursor=pointer]:
+                      - /url: /tools/token-counter
+                      - generic [ref=e219]:
+                        - img [ref=e221]
+                        - generic [ref=e226]: TikToken Counter
+                      - paragraph [ref=e227]: Count tokens for GPT-4
+          - generic [ref=e228]:
+            - heading "More AI Utilities" [level=3] [ref=e229]
+            - generic [ref=e230]:
+              - link "JSON to Pydantic Convert JSON to Pydantic v2" [ref=e231] [cursor=pointer]:
+                - /url: /tools/json-to-pydantic
+                - generic [ref=e232]:
+                  - img [ref=e234]
+                  - generic [ref=e239]: JSON to Pydantic
+                - paragraph [ref=e240]: Convert JSON to Pydantic v2
+              - link "LLM Pricing (ROI) Calculate API costs" [ref=e241] [cursor=pointer]:
+                - /url: /tools/roi-calculator
+                - generic [ref=e242]:
+                  - img [ref=e244]
+                  - generic [ref=e246]: LLM Pricing (ROI)
+                - paragraph [ref=e247]: Calculate API costs
+              - link "TikToken Counter Count tokens for GPT-4" [ref=e248] [cursor=pointer]:
+                - /url: /tools/token-counter
+                - generic [ref=e249]:
+                  - img [ref=e251]
+                  - generic [ref=e256]: TikToken Counter
+                - paragraph [ref=e257]: Count tokens for GPT-4
+  - contentinfo [ref=e258]:
+    - generic:
+      - generic:
+        - generic:
+          - generic: "0"
+          - generic: ...
+          - generic: "1"
+          - generic: var
+          - generic: sql
+          - generic: CPU
+          - generic: "1"
+          - generic: (
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "{"
+          - generic: SSL
+          - generic: git
+          - generic: "||"
+          - generic: "1"
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: AI
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: ML
+          - generic: ...
+          - generic: =>
+          - generic: "1"
+          - generic: ==
+          - generic: "TRUE"
+          - generic: "{"
+          - generic: "0"
+          - generic: "0"
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "}"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: ML
+          - generic: git
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: CPU
+          - generic: "1"
+          - generic: "0"
+          - generic: CPU
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: GPT
+          - generic: "0"
+          - generic: "0"
+          - generic: "}"
+          - generic: api
+          - generic: "::"
+          - generic: JWT
+          - generic: "!=="
+          - generic: "{"
+          - generic: DNS
+          - generic: "0"
+          - generic: "0"
+          - generic: "&&"
+          - generic: "{"
+          - generic: ML
+          - generic: "1"
+          - generic: "!=="
+        - generic:
+          - generic: "NULL"
+          - generic: "{"
+          - generic: "0"
+          - generic: "}"
+          - generic: "0"
+          - generic: "0"
+          - generic: (
+          - generic: GPT
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: ML
+          - generic: js
+          - generic: "1"
+          - generic: "1"
+          - generic: ...
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: git
+          - generic: "1"
+          - generic: "1"
+          - generic: API
+          - generic: js
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "}"
+          - generic: AI
+          - generic: AI
+          - generic: "1"
+          - generic: ...
+          - generic: ML
+          - generic: "0"
+        - generic:
+          - generic: "!=="
+          - generic: "1"
+          - generic: "1"
+          - generic: "{"
+          - generic: ==
+          - generic: API
+          - generic: py
+          - generic: "1"
+          - generic: "::"
+          - generic: )
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: ">"
+          - generic: AI
+          - generic: "0"
+        - generic:
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: ...
+          - generic: "{"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "["
+          - generic: "!=="
+          - generic: "1"
+          - generic: "{"
+          - generic: "1"
+        - generic:
+          - generic: "0"
+          - generic: "1"
+          - generic: DNS
+          - generic: "0"
+          - generic: "1"
+          - generic: API
+          - generic: (
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: ">"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: npm
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "TRUE"
+          - generic: SSL
+          - generic: SSL
+          - generic: "0"
+          - generic: )
+          - generic: "0"
+          - generic: "1"
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: api
+          - generic: git
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "!=="
+          - generic: GPU
+          - generic: py
+          - generic: "!=="
+          - generic: "!=="
+          - generic: API
+          - generic: )
+          - generic: "0"
+          - generic: XML
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: ML
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: 0x
+          - generic: JSON
+          - generic: sql
+          - generic: fn
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "}"
+          - generic: GPT
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "NULL"
+        - generic:
+          - generic: "0"
+          - generic: "1"
+          - generic: =>
+          - generic: "0"
+          - generic: DNS
+          - generic: fn
+          - generic: "0"
+          - generic: "0"
+          - generic: sql
+          - generic: )
+          - generic: git
+          - generic: "!=="
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+        - generic:
+          - generic: fn
+          - generic: "NULL"
+          - generic: "0"
+          - generic: "1"
+          - generic: JSON
+          - generic: "NULL"
+          - generic: "1"
+          - generic: "1"
+          - generic: "["
+          - generic: py
+          - generic: npm
+          - generic: "}"
+          - generic: git
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "{"
+          - generic: "0"
+          - generic: "1"
+          - generic: AI
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: js
+          - generic: FF
+          - generic: "1"
+          - generic: "1"
+          - generic: api
+          - generic: "1"
+          - generic: fn
+          - generic: "0"
+          - generic: "0"
+          - generic: SSL
+        - generic:
+          - generic: "1"
+          - generic: "["
+          - generic: ML
+          - generic: "0"
+          - generic: JWT
+          - generic: "1"
+          - generic: npm
+          - generic: "0"
+          - generic: API
+          - generic: =>
+          - generic: "1"
+          - generic: "0"
+          - generic: SSL
+          - generic: "0"
+          - generic: JSON
+        - generic:
+          - generic: "0"
+          - generic: ...
+          - generic: git
+          - generic: 0x
+          - generic: "0"
+          - generic: CPU
+          - generic: JWT
+          - generic: git
+          - generic: "0"
+          - generic: <
+          - generic: var
+          - generic: "0"
+          - generic: "1"
+          - generic: npm
+          - generic: SSL
+          - generic: "1"
+          - generic: fn
+        - generic:
+          - generic: "0"
+          - generic: "1"
+          - generic: "&&"
+          - generic: "1"
+          - generic: "0"
+          - generic: "TRUE"
+          - generic: GPU
+          - generic: "1"
+          - generic: sql
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "]"
+          - generic: "0"
+          - generic: (
+        - generic:
+          - generic: "!=="
+          - generic: "&&"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: api
+          - generic: ">"
+          - generic: "1"
+          - generic: "1"
+          - generic: let
+          - generic: DNS
+          - generic: "::"
+          - generic: "1"
+          - generic: "NULL"
+          - generic: "["
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "TRUE"
+          - generic: )
+          - generic: ML
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: 0x
+          - generic: "0"
+        - generic:
+          - generic: ==
+          - generic: "1"
+          - generic: "1"
+          - generic: =>
+          - generic: fn
+          - generic: js
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: <
+          - generic: "1"
+          - generic: "0"
+          - generic: GPT
+          - generic: JSON
+          - generic: "||"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: )
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: JSON
+          - generic: AI
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: 0x
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: JSON
+          - generic: "0"
+          - generic: js
+          - generic: AI
+          - generic: GPU
+        - generic:
+          - generic: "1"
+          - generic: ==
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: <
+          - generic: fn
+          - generic: JWT
+          - generic: "1"
+          - generic: "||"
+          - generic: "NULL"
+          - generic: js
+          - generic: "0"
+          - generic: "0"
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: <
+          - generic: "1"
+          - generic: "||"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "::"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: API
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "TRUE"
+          - generic: "1"
+          - generic: FF
+          - generic: "1"
+          - generic: )
+          - generic: fn
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: api
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: GPT
+          - generic: "NULL"
+          - generic: "0"
+          - generic: =>
+          - generic: "1"
+          - generic: <
+          - generic: "::"
+          - generic: let
+          - generic: "1"
+          - generic: "0"
+          - generic: "["
+          - generic: ==
+          - generic: "1"
+          - generic: sql
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "!=="
+          - generic: "1"
+          - generic: "1"
+          - generic: <
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: fn
+          - generic: "1"
+          - generic: "0"
+        - generic:
+          - generic: "0"
+          - generic: API
+          - generic: (
+          - generic: AI
+          - generic: ==
+          - generic: "0"
+          - generic: "0"
+          - generic: ...
+          - generic: (
+          - generic: "1"
+          - generic: "0"
+          - generic: JSON
+          - generic: "1"
+          - generic: API
+          - generic: (
+          - generic: "TRUE"
+          - generic: "1"
+          - generic: "}"
+          - generic: ML
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: let
+          - generic: js
+          - generic: "0"
+          - generic: FF
+          - generic: "NULL"
+          - generic: api
+          - generic: "{"
+          - generic: "["
+          - generic: ==
+          - generic: GPU
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: =>
+          - generic: "0"
+          - generic: "1"
+        - generic:
+          - generic: "0"
+          - generic: "1"
+          - generic: fn
+          - generic: "1"
+          - generic: "0"
+          - generic: "}"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: sql
+          - generic: "0"
+          - generic: "1"
+          - generic: API
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "{"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+        - generic:
+          - generic: "0"
+          - generic: "||"
+          - generic: "1"
+          - generic: )
+          - generic: "0"
+          - generic: "1"
+          - generic: ...
+          - generic: "0"
+          - generic: fn
+          - generic: "||"
+          - generic: "0"
+          - generic: "1"
+          - generic: "NULL"
+          - generic: "0"
+          - generic: "0"
+        - generic:
+          - generic: "}"
+          - generic: "0"
+          - generic: "1"
+          - generic: JSON
+          - generic: "0"
+          - generic: JSON
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: var
+          - generic: "0"
+          - generic: sql
+          - generic: "0"
+          - generic: "!=="
+          - generic: "||"
+          - generic: fn
+          - generic: "TRUE"
+          - generic: "0"
+          - generic: api
+          - generic: ...
+          - generic: "0"
+          - generic: "1"
+          - generic: AI
+          - generic: "1"
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: api
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "TRUE"
+          - generic: GPU
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: GPT
+          - generic: "0"
+          - generic: "]"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: ...
+          - generic: js
+          - generic: AI
+          - generic: XML
+          - generic: "0"
+    - generic [ref=e259]:
+      - generic [ref=e260]:
+        - link "Antigravity Directory Home" [ref=e262] [cursor=pointer]:
+          - /url: /
+          - img [ref=e264]
+          - generic [ref=e266]:
+            - generic [ref=e267]: antigravity
+            - generic [ref=e268]: directory
+        - navigation "Footer Navigation" [ref=e270]:
+          - link "Explore" [ref=e271] [cursor=pointer]:
+            - /url: /
+          - link "Free AI Tools" [ref=e272] [cursor=pointer]:
+            - /url: /tools
+          - link "Submit" [ref=e273] [cursor=pointer]:
+            - /url: /submit
+          - link "Download" [ref=e274] [cursor=pointer]:
+            - /url: /download
+          - link "Help" [ref=e275] [cursor=pointer]:
+            - /url: /troubleshooting
+          - link "Privacy" [ref=e276] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms" [ref=e277] [cursor=pointer]:
+            - /url: /terms
+      - generic [ref=e278]:
+        - paragraph [ref=e279]: Antigravity Directory is an unofficial resource for the agentic coding community. This website is not affiliated with, endorsed by, or associated with Google LLC. "Google" and "Gemini" are trademarks of Google LLC.
+        - paragraph [ref=e280]: © Invictus International Consulting Services 2026
+  - button "Open Next.js Dev Tools" [ref=e286] [cursor=pointer]:
+    - img [ref=e287]
+  - alert [ref=e290]
+```

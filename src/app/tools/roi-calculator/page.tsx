@@ -1,57 +1,53 @@
-import { ROICalculator } from "@/components/tools/ROICalculator";
-import { Calculator } from "lucide-react";
+import { Calculator } from 'lucide-react';
+import { RoiCalculator } from '@/components/tools/RoiCalculator';
+import { safeJsonLd } from '@/lib/utils';
+import { ToolsShell } from '@/components/tools/ToolsShell';
 
 export const metadata = {
-  title: 'LLM API Pricing Calculator | Antigravity Tools',
-  description: 'Compare API costs for GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Pro. Calculate monthly expenses for your AI application based on token usage.',
+  title: 'LLM Cost & ROI Calculator',
+  description: 'Compare API costs for OpenAI, Anthropic, Gemini, and Llama models. Calculate monthly expenses based on your token usage.',
 };
 
-export default function ROICalculatorPage() {
+const jsonLd = safeJsonLd({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  'name': metadata.title,
+  'description': metadata.description,
+  'applicationCategory': 'BusinessApplication',
+  'operatingSystem': 'All',
+  'offers': {
+    '@type': 'Offer',
+    'price': '0',
+    'priceCurrency': 'USD',
+  },
+});
+
+export default function RoiCalculatorPage() {
   return (
-    <div className="space-y-6">
-      <div className="border-b border-slate-800 pb-6">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-green-900/30 rounded-lg text-green-400">
-            <Calculator className="w-6 h-6" />
-          </div>
-          <h1 className="text-2xl font-bold text-white">
-            LLM API Cost Calculator
-          </h1>
+    <ToolsShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd }}
+      />
+      <div className="flex flex-col gap-6">
+        <div className="flex items-center gap-3">
+            <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20">
+                <Calculator className="w-6 h-6 text-blue-400" />
+            </div>
+            <div>
+                <h1 className="text-3xl font-bold tracking-tighter text-white">
+                LLM Pricing Calculator
+                </h1>
+                <p className="text-slate-400 text-sm">
+                Estimate your monthly API bill across top providers
+                </p>
+            </div>
         </div>
-        <p className="text-slate-400 max-w-2xl">
-          Don't overpay for AI. Compare monthly costs across all major providers (OpenAI, Anthropic, Google) 
-          based on your estimated token volume.
-        </p>
+        
+        <div className="mt-4">
+            <RoiCalculator />
+        </div>
       </div>
-
-      <ROICalculator />
-
-      <section className="mt-12 space-y-8 max-w-4xl border-t border-slate-800 pt-12">
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold text-white">Compare LLM API Pricing (OpenAI vs Anthropic vs Google)</h2>
-          <p className="text-slate-400 leading-relaxed">
-            Choosing the right Large Language Model (LLM) isn't just about intelligence—it's about unit economics. This <strong>AI ROI Calculator</strong> helps engineering teams forecast monthly expenses by comparing the latest API pricing from OpenAI, Anthropic, and Google DeepMind.
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-white">How to Optimise AI Costs</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-            <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
-              <strong className="block text-white mb-2">1. Use Mini/Haiku Models</strong>
-              <p className="text-slate-400">For simple classification or extraction tasks, GPT-4o Mini or Claude 3 Haiku are 30-50x cheaper than their larger counterparts.</p>
-            </div>
-            <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
-              <strong className="block text-white mb-2">2. Batch API</strong>
-              <p className="text-slate-400">If you don't need real-time responses, use the OpenAI Batch API to get a 50% discount on token costs.</p>
-            </div>
-            <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
-              <strong className="block text-white mb-2">3. Cache Common Queries</strong>
-              <p className="text-slate-400">Implement semantic caching (Redis/Vector DB) to avoid re-generating answers for identical user queries.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    </ToolsShell>
   );
 }
