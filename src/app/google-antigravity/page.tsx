@@ -196,7 +196,7 @@ export default function GoogleAntigravityPage() {
                 <p className="text-sm text-gray-500 mt-1">Connect your innovative tools</p>
               </Link>
               <Link href="/" className="group p-4 bg-[#0A0A0A] border border-white/10 rounded-xl hover:border-blue-500/50 transition-all">
-                <h4 className="font-bold text-white group-hover:text-blue-400 transition-colors">Cursor Rules Library</h4>
+                <h4 className="font-bold text-white group-hover:text-blue-400 transition-colors">Antigravity Rules Library</h4>
                 <p className="text-sm text-gray-500 mt-1">Optimize your AI context</p>
               </Link>
               <Link href="/" className="group p-4 bg-[#0A0A0A] border border-white/10 rounded-xl hover:border-blue-500/50 transition-all">
@@ -214,8 +214,8 @@ export default function GoogleAntigravityPage() {
             <h2 className="text-3xl font-bold text-white mb-8">Frequently Asked Questions</h2>
             <div className="space-y-6 not-prose">
               <div className="border-b border-white/10 pb-6">
-                <h3 className="text-xl font-bold text-white mb-2">Is Google Antigravity better than Cursor?</h3>
-                <p className="text-gray-400 leading-relaxed">Antigravity is built specifically for Gemini 3's 2M token context window, allowing for deeper reasoning on larger codebases. While Cursor is excellent, Antigravity excels in full-repository agentic tasks.</p>
+                <h3 className="text-xl font-bold text-white mb-2">How does Antigravity compare to other AI tools?</h3>
+                <p className="text-gray-400 leading-relaxed">Antigravity is built specifically for Gemini 3's 2M token context window, allowing for deeper reasoning on larger codebases. Unlike other tools, Antigravity excels in full-repository agentic tasks with near-zero hallucination.</p>
               </div>
               <div className="border-b border-white/10 pb-6">
                 <h3 className="text-xl font-bold text-white mb-2">Can I use it offline?</h3>

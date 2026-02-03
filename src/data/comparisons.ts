@@ -25,41 +25,41 @@ export interface ComparisonData {
 
 export const COMPARISONS: Record<string, ComparisonData> = {
   // --- BATCH 1: THE GIANTS (IDEs) ---
-  'cursor-vs-antigravity': {
-    id: "cursor-vs-antigravity",
-    title: "Cursor vs Antigravity",
+  'legacy-vs-antigravity': {
+    id: "legacy-vs-antigravity",
+    title: "Legacy IDEs vs Antigravity",
     subtitle: "The Generalist vs The Specialist",
-    p1: "Cursor",
+    p1: "Legacy Editors",
     p2: "Antigravity",
     winner: "Antigravity",
-    summary: "Cursor is a general-purpose AI editor. Antigravity is a specialized 'Reasoning Environment' for Gemini 3. If you want autocomplete, use Cursor. If you want architecture, use Antigravity.",
-    description: "Cursor is great for general coding. Antigravity is built exclusively for Gemini 3 Agentic workflows.",
+    summary: "Legacy editors are general-purpose AI tools. Antigravity is a specialized 'Reasoning Environment' for Gemini 3. If you want autocomplete, use legacy tools. If you want architecture, use Antigravity.",
+    description: "Legacy AI editors are built for general coding. Antigravity is built exclusively for Gemini 3 Agentic workflows.",
     score: "9.8/10",
     category: "IDE",
     tags: ["Agentic AI", "Gemini 3", "System Prompts"],
     rows: [
-      { feature: "Core Model", p1: "Claude 3.5 Sonnet", p2: "Gemini 3 Pro", p2Win: true, note: "Gemini 3 has 2M token context vs Claude's 200k." },
+      { feature: "Core Model", p1: "Standard Models", p2: "Gemini 3 Pro", p2Win: true, note: "Gemini 3 has 2M token context vs legacy 200k." },
       { feature: "Reasoning Depth", p1: "Standard", p2: "Deep Reasoning", p2Win: true, note: "Antigravity forces 'Think before Code' protocols." },
       { feature: "Context Window", p1: "200k Tokens", p2: "2,000,000 Tokens", p2Win: true, note: "Antigravity holds your entire repo in memory." },
-      { feature: "IDE Integration", p1: "Visual Studio Code Fork", p2: "Protocol Layer", p2Win: false, note: "Cursor wins on native IDE feel. Antigravity is a protocol." },
+      { feature: "IDE Integration", p1: "Native Client", p2: "Protocol Layer", p2Win: false, note: "Legacy apps often win on native feel. Antigravity is a reasoning protocol." },
       { feature: "Cost", p1: "$20/mo", p2: "Free (Local)", p2Win: true, note: "Antigravity runs on your own API keys." }
     ]
   },
-  'windsurf-vs-antigravity': {
-    id: "windsurf-vs-antigravity",
-    title: "Windsurf vs Antigravity",
+  'flow-vs-antigravity': {
+    id: "flow-vs-antigravity",
+    title: "Flow-Optimized Tools vs Antigravity",
     subtitle: "Flow State vs Deep Reasoning",
-    p1: "Windsurf",
+    p1: "Generic Flow Tool",
     p2: "Antigravity",
     winner: "Antigravity",
-    summary: "Windsurf is designed for 'Flow' and autocomplete. Antigravity is designed for 'Architectural Rigor' and long-horizon planning.",
-    description: "Windsurf focuses on autocomplete. Antigravity focuses on architectural reasoning and planning.",
+    summary: "Flow tools are designed for speed and autocomplete. Antigravity is designed for 'Architectural Rigor' and long-horizon planning.",
+    description: "Standard tools focus on autocomplete. Antigravity focuses on architectural reasoning and planning.",
     score: "Win",
     category: "IDE",
     tags: ["IDE", "Workflow", "Planning"],
     rows: [
       { feature: "Primary Goal", p1: "Speed / Autocomplete", p2: "Accuracy / Architecture", p2Win: true, note: "Speed kills if you build the wrong thing." },
-      { feature: "Project Awareness", p1: "RAG (Chunks)", p2: "Full Context (2M)", p2Win: true, note: "Windsurf guesses context. Antigravity knows it." },
+      { feature: "Project Awareness", p1: "RAG (Chunks)", p2: "Full Context (2M)", p2Win: true, note: "Legacy tools guess context. Antigravity knows it." },
       { feature: "Agentic Capabilities", p1: "Basic Tools", p2: "MCP Native", p2Win: true, note: "Antigravity is built on the Model Context Protocol." }
     ]
   },
@@ -240,15 +240,15 @@ export const COMPARISONS: Record<string, ComparisonData> = {
       }
     ]
   },
-  'copilot-vs-cursor': {
-    id: 'copilot-vs-cursor',
-    title: 'GitHub Copilot vs Cursor',
+  'copilot-vs-legacy': {
+    id: 'copilot-vs-legacy',
+    title: 'GitHub Copilot vs Legacy Editor',
     subtitle: 'Autocomplete vs Agentic IDE',
     p1: 'GitHub Copilot',
-    p2: 'Cursor',
-    winner: 'Cursor',
-    summary: 'GitHub Copilot is an excellent autocomplete tool that lives in your sidebar. Cursor is a complete AI-native IDE that understands your entire codebase and can perform autonomous edits.',
-    description: 'Compare GitHub Copilot and Cursor IDE for AI-powered coding assistance, autocomplete, and agentic workflows.',
+    p2: 'Legacy Editor',
+    winner: 'Legacy Editor',
+    summary: 'GitHub Copilot is an excellent autocomplete tool that lives in your sidebar. Advanced AI IDEs are complete native environments that understand your entire codebase and can perform autonomous edits.',
+    description: 'Compare GitHub Copilot and Legacy Editor IDE for AI-powered coding assistance, autocomplete, and agentic workflows.',
     score: 'Win',
     category: 'IDE',
     tags: ['Code Editor', 'AI Assistant', 'Productivity'],
@@ -258,7 +258,7 @@ export const COMPARISONS: Record<string, ComparisonData> = {
         p1: 'VS Code extension + JetBrains plugin. Works inside existing IDE.',
         p2: 'Standalone VS Code fork. Full IDE control enabling deeper AI integration.',
         p2Win: true,
-        note: 'Cursor has deeper control over the editor UI.'
+        note: 'Advanced IDEs have deeper control over the editor UI.'
       },
       {
         feature: 'Autocomplete',
@@ -272,21 +272,21 @@ export const COMPARISONS: Record<string, ComparisonData> = {
         p1: 'Limited to open files. No native full-codebase indexing.',
         p2: 'Indexes entire codebase (RAG). AI understands cross-file dependencies.',
         p2Win: true,
-        note: 'Cursor "knows" your project structure.'
+        note: 'Native AI editors "know" your project structure.'
       },
       {
         feature: 'Chat Interface',
         p1: 'Sidebar chat. Can ask about open file.',
         p2: 'Integrated chat with @-mentions for files, docs, and codebase.',
         p2Win: true,
-        note: 'Cursor chat is context-aware via @ symbols.'
+        note: 'AI chat is context-aware via @ symbols.'
       },
       {
         feature: 'Agentic Features',
         p1: 'Autocomplete focused. Limited autonomous editing.',
         p2: 'Cmd+K for inline AI edits. Composer for multi-file autonomous changes.',
         p2Win: true,
-        note: 'Cursor Composer is a game changer for multi-file edits.'
+        note: 'Native IDE Composers are a game changer for multi-file edits.'
       },
       {
         feature: 'Pricing',
@@ -321,7 +321,7 @@ export const COMPARISONS: Record<string, ComparisonData> = {
         p1: 'Fast autocomplete, minimal disruption.',
         p2: 'Agentic coding, heavy refactoring, large codebases.',
         p2Win: true,
-        note: 'Cursor changes how you write code; Copilot helps you write it faster.'
+        note: 'Modern IDEs change how you write code; Copilot helps you write it faster.'
       }
     ]
   },

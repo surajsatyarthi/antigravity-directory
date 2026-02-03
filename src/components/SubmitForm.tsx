@@ -211,11 +211,11 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                     <label htmlFor="categoryName" className={labelClasses}>Category</label>
                     {selectedCategory && (
                       <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${
-                        ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory)
+                        ['Prompts', 'Antigravity Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory)
                           ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
                           : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
                       }`}>
-                        {['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory) 
+                        {['Prompts', 'Antigravity Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory) 
                           ? '✨ Free Listing' 
                           : '💎 Paid Listing'}
                       </span>
@@ -234,7 +234,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                     >
                       <option value="">Select Segment...</option>
                       {categories.map((cat) => {
-                        const isFree = ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(cat.name);
+                        const isFree = ['Prompts', 'Antigravity Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(cat.name);
                         return (
                           <option key={cat.id} value={cat.name}>
                             {cat.name} {isFree ? '- FREE' : '- PAID'}
@@ -275,7 +275,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                     <span>
                        {/* Use state instead of document.getElementById which fails on server */
                         (() => {
-                           return ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory) 
+                           return ['Prompts', 'Antigravity Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory) 
                             ? 'Submit for Free' 
                             : 'Proceed to Payment';
                         })()

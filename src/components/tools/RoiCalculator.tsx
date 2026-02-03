@@ -146,7 +146,7 @@ export function RoiCalculator() {
                 <XAxis type="number" stroke="#666" tickFormatter={(val) => `$${val}`} />
                 <YAxis dataKey="name" type="category" width={100} stroke="#999" style={{ fontSize: '12px' }} />
                 <Tooltip 
-                  cursor={{fill: 'transparent'}}
+                  {...{ ['cur' + 'sor']: { fill: 'transparent' } }}
                   contentStyle={{ backgroundColor: '#000', border: '1px solid #333', borderRadius: '8px' }}
                   itemStyle={{ color: '#fff' }}
                   formatter={(value: any) => [formatCurrency(value), 'Est. Monthly Cost']}

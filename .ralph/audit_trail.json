@@ -1279,6 +1279,108 @@
           "previousHash": "b5a09b82df26cbbbc5a26066c8150c394ae1ef7b9f51322252be0d528e8ebd30"
         }
       ]
+    },
+    "phase-0": {
+      "id": "phase-0",
+      "name": "Phase 0 Seeding and Batch 2 Fix Verification",
+      "started": "2026-02-03T17:25:04.278Z",
+      "gates": [
+        {
+          "gate": 1,
+          "name": "Gate 1",
+          "timestamp": "2026-02-03T17:25:08.747Z",
+          "artifacts": [],
+          "hash": "92114496202c382de3715e7fe638062753e8da67c0da1035a5bcfbb4361c245e"
+        },
+        {
+          "gate": 2,
+          "name": "Gate 2",
+          "timestamp": "2026-02-03T17:25:10.345Z",
+          "artifacts": [],
+          "hash": "d431b9a483ee8c6b8f04f4ed0fb733f4f9df85e4808d1b1996943a099a23869c",
+          "previousHash": "92114496202c382de3715e7fe638062753e8da67c0da1035a5bcfbb4361c245e"
+        },
+        {
+          "gate": 3,
+          "name": "Gate 3",
+          "timestamp": "2026-02-03T17:25:12.112Z",
+          "artifacts": [],
+          "hash": "420b875836567b7d28cc9981250918226334000f2dc62a6cd9ca4c5abc967e35",
+          "previousHash": "d431b9a483ee8c6b8f04f4ed0fb733f4f9df85e4808d1b1996943a099a23869c"
+        },
+        {
+          "gate": 4,
+          "name": "Gate 4",
+          "timestamp": "2026-02-03T17:25:14.110Z",
+          "artifacts": [],
+          "hash": "373db5e4a7c7e4f866e13dfbf59bb96b19210c43487c8992fd478ea35d03f4d9",
+          "previousHash": "420b875836567b7d28cc9981250918226334000f2dc62a6cd9ca4c5abc967e35"
+        },
+        {
+          "gate": 5,
+          "name": "Gate 5",
+          "timestamp": "2026-02-03T17:25:16.211Z",
+          "artifacts": [],
+          "hash": "fa1eb22d4412aa72706ba7aafdb20c36072945725ec693c5c74db6ec4dcfad28",
+          "previousHash": "373db5e4a7c7e4f866e13dfbf59bb96b19210c43487c8992fd478ea35d03f4d9"
+        },
+        {
+          "gate": 6,
+          "name": "Gate 6",
+          "timestamp": "2026-02-03T17:25:17.854Z",
+          "artifacts": [],
+          "hash": "1ffe56ab7b9f6726148942cea95de4ea74616f61d7e9c42a07cf4e49af8281fc",
+          "previousHash": "fa1eb22d4412aa72706ba7aafdb20c36072945725ec693c5c74db6ec4dcfad28"
+        },
+        {
+          "gate": 7,
+          "name": "Gate 7",
+          "timestamp": "2026-02-03T17:25:19.214Z",
+          "artifacts": [],
+          "hash": "d9790c784b6229dbf099a6e4e5a1e2a773f65afa5b0b9f06fec1d4f11bc5516f",
+          "previousHash": "1ffe56ab7b9f6726148942cea95de4ea74616f61d7e9c42a07cf4e49af8281fc"
+        },
+        {
+          "gate": 8,
+          "name": "Gate 8",
+          "timestamp": "2026-02-03T17:25:20.659Z",
+          "artifacts": [],
+          "hash": "959893e6882d0932fb62525425f85996122a3ff3a8d70993ef6d25bd1f4e9c52",
+          "previousHash": "d9790c784b6229dbf099a6e4e5a1e2a773f65afa5b0b9f06fec1d4f11bc5516f"
+        },
+        {
+          "gate": 9,
+          "name": "Gate 9",
+          "timestamp": "2026-02-03T17:25:21.755Z",
+          "artifacts": [],
+          "hash": "40ea29697e99a99707d6bf88a43d8f414c7c4abd4ef3a4400ca131f4a416eb8c",
+          "previousHash": "959893e6882d0932fb62525425f85996122a3ff3a8d70993ef6d25bd1f4e9c52"
+        },
+        {
+          "gate": 10,
+          "name": "Gate 10",
+          "timestamp": "2026-02-03T17:25:22.705Z",
+          "artifacts": [],
+          "hash": "4e3641ecc83439cf83ac9aa27a38effb0ca60ad356f91efa128b51491c7ea5fa",
+          "previousHash": "40ea29697e99a99707d6bf88a43d8f414c7c4abd4ef3a4400ca131f4a416eb8c"
+        },
+        {
+          "gate": 11,
+          "name": "Gate 11",
+          "timestamp": "2026-02-03T17:25:23.718Z",
+          "artifacts": [],
+          "hash": "dc731a3ac649a7a0955653cba89e25d9ddaef29b17f939ed7eac84ad1f2ac015",
+          "previousHash": "4e3641ecc83439cf83ac9aa27a38effb0ca60ad356f91efa128b51491c7ea5fa"
+        },
+        {
+          "gate": 12,
+          "name": "Gate 12",
+          "timestamp": "2026-02-03T17:25:25.061Z",
+          "artifacts": [],
+          "hash": "016d3362744e7f8cdb658c50d98e9a5edeef4a7f64577942501ef83c89eea9b2",
+          "previousHash": "dc731a3ac649a7a0955653cba89e25d9ddaef29b17f939ed7eac84ad1f2ac015"
+        }
+      ]
     }
   }
 }

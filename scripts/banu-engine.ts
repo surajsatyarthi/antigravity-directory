@@ -17,9 +17,9 @@ async function lockVerifiedSignals() {
 
   const verifiedSignals = [
     {
-      name: '.cursorrules Generator',
-      slug: 'cursorrules-generator',
-      description: 'The definitive utility for generating strict, project-specific AI coding rules for Cursor and Windsurf.',
+      name: 'Antigravity Rules Generator',
+      slug: 'antigravity-rules-generator',
+      description: 'The definitive utility for generating strict, project-specific AI coding rules for Antigravity IDE.',
       category: 'generator',
       signal: 3600 // Based on public GitHub repo count
     },

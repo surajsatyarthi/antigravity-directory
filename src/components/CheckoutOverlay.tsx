@@ -40,7 +40,7 @@ const ALL_TIERS = [
   }
 ];
 
-const FREE_CATEGORIES = ['Prompts', 'Cursor Rules', 'System Prompts', 'Context Files', 'Workflows'];
+const FREE_CATEGORIES = ['Prompts', 'Antigravity Rules', 'System Prompts', 'Context Files', 'Workflows'];
 
 interface CheckoutOverlayProps {
   isOpen: boolean;

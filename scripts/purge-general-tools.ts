@@ -5,7 +5,7 @@ require('dotenv').config({ path: path.resolve(process.cwd(), '.env.local') });
 const sql = postgres(process.env.DATABASE_URL, { ssl: 'require' });
 
 const OFFENDING_TOOLS = [
-  "Cursor", "GitHub Copilot", "Tabnine", "Cody", "Replit AI", "Codeium", 
+  "GitHub Copilot", "Tabnine", "Cody", "Replit AI", "Codeium", 
   "Amazon CodeWhisperer", "Continue", "Aider", "Supermaven",
   "OpenAI API", "Anthropic API", "Google Gemini API", "Mistral API", "Cohere", 
   "Perplexity API", "Together AI", "Groq",
@@ -31,7 +31,7 @@ async function purgeTools() {
     `;
 
     console.log(`✅ Successfully deleted ${result.length} tools.`);
-    result.forEach(r => console.log(`   - Deleted: ${r.title}`));
+    result.forEach((r) => console.log(`   - Deleted: ${r.title}`));
 
     if (result.length < OFFENDING_TOOLS.length) {
       console.warn(`⚠️  Warning: Only deleted ${result.length} out of ${OFFENDING_TOOLS.length} targets. Some might not have existed.`);

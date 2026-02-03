@@ -136,7 +136,15 @@ export async function discoverMode() {
 
   logger.info('🔍 DISCOVERY MODE: Finding new content...\n');
   
-  const pendingResources: PendingResource[] = [];
+  let pendingResources: PendingResource[] = [];
+  if (existsSync(PENDING_FILE)) {
+    try {
+      pendingResources = JSON.parse(readFileSync(PENDING_FILE, 'utf-8'));
+      logger.info(`📋 Loaded ${pendingResources.length} existing pending resources`);
+    } catch (e) {
+      logger.warn('⚠️  Could not parse existing pending resources, starting fresh');
+    }
+  }
 
   try {
     // 1. Sync GitHub Stars for existing resources (Skip if targeted run)
@@ -223,41 +231,87 @@ export async function discoverMode() {
     // 2. Discover new content from multiple sources
     logger.info('🔍 DISCOVERING NEW CONTENT...\n');
     
-    // 2A: Search GitHub for new MCP servers
+    // 2A: Search GitHub for new Antigravity & Generic MCP servers
     if (!targetType || targetType === 'mcp') {
-      logger.info('📦 Searching GitHub for MCP Servers...');
-      try {
-        const mcpSearch = await fetch(
-          'https://api.github.com/search/repositories?q=mcp-server+OR+modelcontextprotocol+in:name,description&sort=stars&per_page=20',
-          { 
-            headers: { 
-              'User-Agent': 'Antigravity-Directory/1.0',
-              ...(process.env.GITHUB_TOKEN ? { 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}` } : {})
-            } 
-          }
-        );
+      logger.info('📦 Searching GitHub for MCP Servers (Antigravity + Generic)...');
+      const queries = [
+        'antigravity mcp',
+        'mcp server antigravity',
+        'model-context-protocol antigravity',
+        'topic:mcp-server antigravity',
+        'mcp-server', // Broad search
+        'modelcontextprotocol', // Broad search
+        'topic:mcp-server',
+        'filename:package.json "mcp" "@modelcontextprotocol/sdk"'
+      ];
+
+      const headers: any = { 
+        'User-Agent': 'Antigravity-Directory/1.0',
+        'Accept': 'application/vnd.github.v3+json'
+      };
+      
+      if (process.env.GITHUB_TOKEN) {
+        headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
+      }
+
+      for (const query of queries) {
+        if (pendingResources.length >= 2000) break; // Safety cap
         
-        if (mcpSearch.ok) {
-          const mcpData: any = await mcpSearch.json();
-          for (const repo of mcpData.items.slice(0, 10)) {
-            // Check if we already have this URL
-            const existing = await dbConn`SELECT id FROM resources WHERE url = ${repo.html_url} LIMIT 1`;
-            if (existing.length === 0) {
-              pendingResources.push({
-                title: repo.name.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
-                description: repo.description || 'MCP server implementation',
-                url: repo.html_url,
-                category: 'mcp-servers',
-                stars: repo.stargazers_count,
-                source: 'github-api',
-                approved: false
-              });
-              logger.info(`  ✨ Found: ${repo.name} (⭐ ${repo.stargazers_count})`);
+        logger.info(`  🔍 Query: "${query}"`);
+        const isBroad = !query.includes('antigravity');
+        const maxPages = isBroad ? 10 : 2; // More pages for broad queries
+        
+        for (let page = 1; page <= maxPages; page++) {
+          try {
+            const mcpSearch = await fetch(
+              `https://api.github.com/search/${query.includes('filename:') ? 'code' : 'repositories'}?q=${encodeURIComponent(query)}&sort=stars&per_page=100&page=${page}`,
+              { headers }
+            );
+            
+            if (mcpSearch.ok) {
+              const mcpData: any = await mcpSearch.json();
+              const items = mcpData.items || [];
+              if (items.length === 0) break;
+              
+              logger.info(`    ✨ Page ${page}: Found ${items.length} results`);
+              
+              for (const item of items) {
+                const repo = query.includes('filename:') ? item.repository : item;
+                const repoUrl = repo.html_url;
+                
+                if (pendingResources.some(p => p.url === repoUrl)) continue;
+
+                // Check if we already have this URL in DB
+                const existing = await dbConn`SELECT id FROM resources WHERE url = ${repoUrl} LIMIT 1`;
+                if (existing.length === 0) {
+                  pendingResources.push({
+                    title: repo.name.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+                    description: repo.description || 'MCP server implementation',
+                    url: repoUrl,
+                    category: 'mcp-servers',
+                    stars: repo.stargazers_count || 0,
+                    source: `github-search: ${query} (p${page})`,
+                    approved: false
+                  });
+                }
+              }
+              logger.info(`    ✅ Total so far: ${pendingResources.length}`);
+              if (pendingResources.length >= 2000) break;
+            } else {
+              const errData = await mcpSearch.json();
+              logger.warn(`    ⚠️  Query failed (p${page}): ${errData.message}`);
+              if (mcpSearch.status === 403) {
+                logger.warn('    🚫 Rate limited. Moving to next query...');
+                break; 
+              }
+              break;
             }
+          } catch (err) {
+            logger.warn(`    ⚠️  Error searching for "${query}" (p${page}):`, err);
+            break;
           }
+          await new Promise(r => setTimeout(r, 2000)); // Respect rate limits
         }
-      } catch (err) {
-        logger.warn('  ⚠️  GitHub MCP search failed, skipping...');
       }
     }
     
@@ -298,46 +352,18 @@ export async function discoverMode() {
       }
     }
     
-    // 2C: Search for workflow templates
+    // 2C: Search for Antigravity workflow templates
     if (!targetType || targetType === 'workflows') {
-      logger.info('\n🔄 Searching for workflow templates...');
-      try {
-        const workflowSearch = await fetch(
-          'https://api.github.com/search/repositories?q=n8n+workflow+OR+github-actions+template&sort=stars&per_page=15',
-          { 
-            headers: { 
-              'User-Agent': 'Antigravity-Directory/1.0',
-              ...(process.env.GITHUB_TOKEN ? { 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}` } : {})
-            } 
-          }
-        );
-        
-        if (workflowSearch.ok) {
-          const workflowData: any = await workflowSearch.json();
-          for (const repo of workflowData.items.slice(0, 8)) {
-            const existing = await dbConn`SELECT id FROM resources WHERE url = ${repo.html_url} LIMIT 1`;
-            if (existing.length === 0) {
-              pendingResources.push({
-                title: repo.name.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
-                description: repo.description || 'Automation workflow template',
-                url: repo.html_url,
-                category: 'workflows',
-                stars: repo.stargazers_count,
-                source: 'github-api',
-                approved: false
-              });
-              logger.info(`  ✨ Found: ${repo.name} (⭐ ${repo.stargazers_count})`);
-            }
-          }
-        }
-      } catch (err) {
-        logger.warn('  ⚠️  Workflow search failed, skipping...');
-      }
-    }
-    
-    // 2D: Search for cursor rules
-    if (!targetType || targetType === 'rules') {
-      logger.info('\n📋 Searching for cursor rules...');
+      logger.info('\n🔄 Searching for Antigravity workflow templates...');
+      const workflowQueries = [
+        'path:.agent/workflows',
+        '"workflow" "agent" extension:md',
+        '"workflow" "antigravity" extension:md',
+        'n8n workflow', // Popular agentic workflow tool
+        'lang-graph workflow',
+        'crewai workflow'
+      ];
+
       const headers: any = { 
         'User-Agent': 'Antigravity-Directory/1.0',
         'Accept': 'application/vnd.github.v3+json'
@@ -347,43 +373,120 @@ export async function discoverMode() {
         headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
       }
 
-      try {
-        const rulesSearch = await fetch(
-          'https://api.github.com/search/code?q=filename:.cursorrules&per_page=15',
-          { headers }
-        );
-        
-        if (rulesSearch.ok) {
-          const rulesData: any = await rulesSearch.json();
-          for (const item of rulesData.items.slice(0, 8)) {
-            const repoUrl = item.repository.html_url;
-            const existing = await dbConn`SELECT id FROM resources WHERE url = ${repoUrl} LIMIT 1`;
-            
-            if (existing.length === 0) {
-              // Fetch content
-              logger.info(`  ⬇️  Fetching content for ${item.repository.name}...`);
-              const content = await fetchGithubFileContent(item.url, headers);
+      for (const query of workflowQueries) {
+        logger.info(`  🔍 Query: "${query}"`);
+        try {
+          const workflowSearch = await fetch(
+            `https://api.github.com/search/${query.includes('path:') ? 'code' : 'repositories'}?q=${encodeURIComponent(query)}&sort=stars&per_page=50`,
+            { headers }
+          );
+          
+          if (workflowSearch.ok) {
+            const workflowData: any = await workflowSearch.json();
+            const items = workflowData.items || [];
+            logger.info(`    ✨ Found ${items.length} potential workflows`);
+
+            for (const item of items) {
+              const repo = query.includes('path:') ? item.repository : item;
+              const repoUrl = repo.html_url;
               
-              if (content) {
+              if (pendingResources.some(p => p.url === repoUrl)) continue;
+
+              const existing = await dbConn`SELECT id FROM resources WHERE url = ${repoUrl} LIMIT 1`;
+              if (existing.length === 0) {
                 pendingResources.push({
-                  title: `${item.repository.name} Cursor Rules`,
-                  description: item.repository.description || 'Cursor AI rules configuration',
+                  title: repo.name.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+                  description: repo.description || `Antigravity workflow template from ${repo.name}`,
                   url: repoUrl,
-                  category: 'rules',
-                  stars: 0, 
-                  source: 'github-code-search',
-                  approved: false,
-                  content: content
+                  category: 'workflows',
+                  stars: repo.stargazers_count || 0,
+                  source: `github-search: ${query}`,
+                  approved: false
                 });
-                logger.info(`  ✨ Found & Downloaded: ${item.repository.name} rules`);
-              } else {
-                logger.warn(`  ⚠️  Skipping ${item.repository.name} (No content found)`);
+                logger.info(`    ✅ Found: ${repo.name} workflow`);
               }
             }
           }
+        } catch (err) {
+          logger.warn(`    ⚠️  Workflow search failed for "${query}", skipping...`);
         }
-      } catch (err) {
-        logger.warn('  ⚠️  Rules search failed, skipping...', err);
+        
+        await new Promise(r => setTimeout(r, 2000));
+      }
+    }
+    
+    // 2D: Search for Antigravity rules
+    if (!targetType || targetType === 'rules') {
+      logger.info('\n📋 Searching for Antigravity rules...');
+      const rulesQueries = [
+        'path:.agent/rules filename:*.md',
+        'path:.antigravity filename:rules.md',
+        'filename:rules.md "antigravity"',
+        '"antigravity" "rules" extension:md',
+        'filename:.antigravityignore' // Good indicator of an Antigravity project
+      ];
+
+      const headers: any = { 
+        'User-Agent': 'Antigravity-Directory/1.0',
+        'Accept': 'application/vnd.github.v3+json'
+      };
+      
+      if (process.env.GITHUB_TOKEN) {
+        headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
+      }
+
+      for (const query of rulesQueries) {
+        logger.info(`  🔍 Query: "${query}"`);
+        try {
+          const rulesSearch = await fetch(
+            `https://api.github.com/search/code?q=${encodeURIComponent(query)}&per_page=20`,
+            { headers }
+          );
+          
+          if (rulesSearch.ok) {
+            const rulesData: any = await rulesSearch.json();
+            const items = rulesData.items || [];
+            logger.info(`    ✨ Found ${items.length} potential rule files`);
+
+            for (const item of items) {
+              const repoUrl = item.repository.html_url;
+              
+              // Skip if already found in this run
+              if (pendingResources.some(p => p.url === repoUrl)) continue;
+
+              const existing = await dbConn`SELECT id FROM resources WHERE url = ${repoUrl} LIMIT 1`;
+              
+              if (existing.length === 0) {
+                // Fetch content
+                logger.info(`    ⬇️  Fetching content from ${item.repository.name}...`);
+                const content = await fetchGithubFileContent(item.url, headers);
+                
+                if (content && (content.toLowerCase().includes('antigravity') || content.toLowerCase().includes('agent'))) {
+                  pendingResources.push({
+                    title: `${item.repository.name} Antigravity Rules`,
+                    description: item.repository.description || `Antigravity IDE rules from ${item.path}`,
+                    url: repoUrl,
+                    category: 'rules',
+                    stars: 0, 
+                    source: `github-code-search: ${query}`,
+                    approved: false,
+                    content: content
+                  });
+                  logger.info(`    ✅ Found: ${item.repository.name} rules`);
+                } else {
+                  logger.warn(`    ⚠️  Skipping ${item.repository.name} (Irrelevant content)`);
+                }
+              }
+            }
+          } else {
+            const errData = await rulesSearch.json();
+            logger.warn(`    ⚠️  Query failed: ${errData.message}`);
+          }
+        } catch (err) {
+          logger.warn(`    ⚠️  Error searching for rules with "${query}":`, err);
+        }
+        
+        await new Promise(r => setTimeout(r, 2000));
       }
     }
     
@@ -516,11 +619,11 @@ export async function importMode(db?: any) {
         await processResource(resource, dbConn);
       }
     } else {
-      await dbConn.begin(async (tx: any) => {
-        for (const resource of approved) {
-          await processResource(resource, tx);
-        }
-      });
+      for (const resource of approved) {
+        await processResource(resource, dbConn);
+        // Small delay to prevent overwhelming DB
+        await new Promise(r => setTimeout(r, 100));
+      }
     }
 
   } catch (err) {
