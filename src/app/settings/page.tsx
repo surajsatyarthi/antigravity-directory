@@ -20,6 +20,14 @@ export default async function SettingsPage() {
         username: users.username,
         bio: users.bio,
         website: users.website,
+        location: users.location,
+        tagline: users.tagline,
+        githubUsername: users.githubUsername,
+        twitterHandle: users.twitterHandle,
+        linkedinUrl: users.linkedinUrl,
+        youtubeChannel: users.youtubeChannel,
+        discordUsername: users.discordUsername,
+        profileCompletionScore: users.profileCompletionScore,
       })
       .from(users)
       .where(eq(users.id, session.user.id))

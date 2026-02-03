@@ -12,7 +12,18 @@ export const users = pgTable('users', {
   role: text('role').notNull().default('USER'), // 'USER' | 'ADMIN'
   username: text('username').unique(), // For SEO-friendly slugs
   bio: text('bio'),
+  location: text('location'),
+  tagline: text('tagline'),
   website: text('website'),
+  githubUsername: text('github_username'),
+  twitterHandle: text('twitter_handle'),
+  linkedinUrl: text('linkedin_url'),
+  youtubeChannel: text('youtube_channel'),
+  discordUsername: text('discord_username'),
+  profileCompletionScore: integer('profile_completion_score').default(0),
+  publicProfile: boolean('public_profile').default(true),
+  followersCount: integer('followers_count').default(0),
+  followingCount: integer('following_count').default(0),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
@@ -84,7 +95,7 @@ export const resources = pgTable('resources', {
   slug: text('slug').notNull().unique(),
   description: text('description').notNull(),
   metaTitle: text('meta_title'),
-  metaDesc: text('meta_description'),
+  metaDesc: text('meta_desc'),
   content: text('content'),
   url: text('url'),
   thumbnail: text('thumbnail'),
@@ -180,6 +191,17 @@ export const submissions = pgTable('submissions', {
 }, (table) => ({
   userIdIdx: index('submissions_user_id_idx').on(table.userId),
   statusIdx: index('submissions_status_idx').on(table.status),
+}));
+
+// Follows table
+export const follows = pgTable('follows', {
+  followerId: text('follower_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  followingId: text('following_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  createdAt: timestamp('created_at').defaultNow(),
+}, (table) => ({
+  pk: primaryKey({ columns: [table.followerId, table.followingId] }),
+  followerIdx: index('follows_follower_idx').on(table.followerId),
+  followingIdx: index('follows_following_idx').on(table.followingId),
 }));
 
 

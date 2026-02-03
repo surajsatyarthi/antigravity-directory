@@ -353,6 +353,100 @@
           "previousHash": "42103b97f30aba041750626c9d5f884130b14978a9b5c86e4bf1dbe610aeb60f"
         }
       ]
+    },
+    "44": {
+      "id": "44",
+      "name": "Batch 1 Critical Rework",
+      "started": "2026-02-03T13:25:00.055Z",
+      "gates": [
+        {
+          "gate": 1,
+          "name": "Gate 1",
+          "timestamp": "2026-02-03T13:25:34.445Z",
+          "artifacts": [],
+          "hash": "c7474fc7ab2ac3180ca22335509b122738dc7d9f720443b572f10deb9ea32eca"
+        },
+        {
+          "gate": 2,
+          "name": "Gate 2",
+          "timestamp": "2026-02-03T13:25:35.434Z",
+          "artifacts": [],
+          "hash": "fe010693d3af4f2af0685ff236e96dd3066ab25e58da6ff4793587645eaf3564",
+          "previousHash": "c7474fc7ab2ac3180ca22335509b122738dc7d9f720443b572f10deb9ea32eca"
+        },
+        {
+          "gate": 3,
+          "name": "Gate 3",
+          "timestamp": "2026-02-03T13:25:36.564Z",
+          "artifacts": [],
+          "hash": "6ad769bc89fb9454171f6cdee79eb67158f339f722d7d0a27c16c3ea2f3dfeea",
+          "previousHash": "fe010693d3af4f2af0685ff236e96dd3066ab25e58da6ff4793587645eaf3564"
+        },
+        {
+          "gate": 4,
+          "name": "Gate 4",
+          "timestamp": "2026-02-03T13:25:37.604Z",
+          "artifacts": [],
+          "hash": "a56929bf382615bebf18a61464adc7466002ba7683f61cb83cfed86dcf135843",
+          "previousHash": "6ad769bc89fb9454171f6cdee79eb67158f339f722d7d0a27c16c3ea2f3dfeea"
+        },
+        {
+          "gate": 5,
+          "name": "Gate 5",
+          "timestamp": "2026-02-03T13:25:38.875Z",
+          "artifacts": [],
+          "hash": "337be9392168fbd290387daaac1d2cbed0fe78bd6cf3c61ba64674ef1d6901ac",
+          "previousHash": "a56929bf382615bebf18a61464adc7466002ba7683f61cb83cfed86dcf135843"
+        },
+        {
+          "gate": 6,
+          "name": "Gate 6",
+          "timestamp": "2026-02-03T13:25:40.031Z",
+          "artifacts": [],
+          "hash": "faf82056d593b686583629ca2f592bbc3566b27d81b55a089ac98676693a7861",
+          "previousHash": "337be9392168fbd290387daaac1d2cbed0fe78bd6cf3c61ba64674ef1d6901ac"
+        },
+        {
+          "gate": 7,
+          "name": "Gate 7",
+          "timestamp": "2026-02-03T13:25:41.403Z",
+          "artifacts": [],
+          "hash": "e7c63714123fd6cf2fb2b0c2a38399e2ef48cb052955314cf06fdd69b170ac99",
+          "previousHash": "faf82056d593b686583629ca2f592bbc3566b27d81b55a089ac98676693a7861"
+        },
+        {
+          "gate": 8,
+          "name": "Gate 8",
+          "timestamp": "2026-02-03T13:25:42.404Z",
+          "artifacts": [],
+          "hash": "e4f2130d6fcca3aad71fe80f641450e71da20e815b962ba4d74f2f8c6ef9e94e",
+          "previousHash": "e7c63714123fd6cf2fb2b0c2a38399e2ef48cb052955314cf06fdd69b170ac99"
+        },
+        {
+          "gate": 9,
+          "name": "Gate 9",
+          "timestamp": "2026-02-03T13:25:43.361Z",
+          "artifacts": [],
+          "hash": "bd95c6209f2f6031bef58c27937f5e9d568c56999c22665cd792d69bb5342e16",
+          "previousHash": "e4f2130d6fcca3aad71fe80f641450e71da20e815b962ba4d74f2f8c6ef9e94e"
+        },
+        {
+          "gate": 10,
+          "name": "Gate 10",
+          "timestamp": "2026-02-03T13:25:44.492Z",
+          "artifacts": [],
+          "hash": "1bfe6c15e709d92d956e1c691fa95993fb33a89f9a451fc09314012a7747a414",
+          "previousHash": "bd95c6209f2f6031bef58c27937f5e9d568c56999c22665cd792d69bb5342e16"
+        },
+        {
+          "gate": 11,
+          "name": "Gate 11",
+          "timestamp": "2026-02-03T13:25:45.525Z",
+          "artifacts": [],
+          "hash": "40ff4e634a52b3fd1c7caf265a51b5fd3a7868677252a13162d51ee6b805b4e1",
+          "previousHash": "1bfe6c15e709d92d956e1c691fa95993fb33a89f9a451fc09314012a7747a414"
+        }
+      ]
     }
   }
 }

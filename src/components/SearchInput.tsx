@@ -3,35 +3,36 @@
 import { Search } from 'lucide-react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { useEffect, useState, useTransition, useRef } from 'react';
+import { cn } from '@/lib/utils';
 
 /**
  * SearchInput for the Header.
  * Uses an interaction-based sync to avoid clobbering unrelated URL params.
  */
-export function SearchInput() {
+interface SearchInputProps {
+  variant?: 'default' | 'hero';
+  placeholder?: string;
+}
+
+export function SearchInput({ variant = 'default', placeholder = "Search prompts, rules, MCPs..." }: SearchInputProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
   
-  // Track if the user has actually typed in THIS component
   const [isInteracted, setIsInteracted] = useState(false);
-  // Initialize directly from URL to avoid flash/CLS (Safe because we are inside Suspense)
   const [query, setQuery] = useState(searchParams.get('q') || '');
   const lastSyncQuery = useRef(query);
 
-  // 1. URL -> State (Sync on navigation/popstate)
   useEffect(() => {
     const urlQuery = searchParams.get('q') || '';
     if (urlQuery !== query) {
       setQuery(urlQuery);
       lastSyncQuery.current = urlQuery;
     }
-  }, [searchParams]); // Keep this to handle back/forward buttons
+  }, [searchParams]);
 
-  // 2. State -> URL (One-way upstream) with Debounce
   useEffect(() => {
-    // ONLY sync upwards if the user actually typed something
     if (!isInteracted) return;
     if (query === lastSyncQuery.current) return;
 
@@ -46,7 +47,6 @@ export function SearchInput() {
       }
 
       const target = `${pathname}?${params.toString()}`;
-      console.log('[SearchInput] User-initiated URL update:', target);
       
       lastSyncQuery.current = query;
       startTransition(() => {
@@ -58,8 +58,12 @@ export function SearchInput() {
   }, [query, isInteracted, pathname, router, searchParams]);
 
   return (
-    <div className="flex-1 max-w-3xl relative">
-      <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${isPending ? 'text-blue-500 animate-pulse' : 'text-gray-500'}`} />
+    <div className={cn("flex-1 relative", variant === 'hero' ? "max-w-2xl mx-auto" : "max-w-3xl")}>
+      <Search className={cn(
+        "absolute top-1/2 -translate-y-1/2",
+        variant === 'hero' ? "left-5 w-5 h-5" : "left-3 w-4 h-4",
+        isPending ? 'text-blue-500 animate-pulse' : 'text-gray-500'
+      )} />
       <input
         type="text"
         value={query}
@@ -67,8 +71,13 @@ export function SearchInput() {
           setIsInteracted(true);
           setQuery(e.target.value);
         }}
-        placeholder="Search prompts, rules, MCPs..."
-        className="w-full bg-[#0A0A0A] border border-gray-800 focus:border-white rounded-full pl-10 pr-4 py-2.5 text-sm transition-all text-white placeholder:text-gray-600 outline-none"
+        placeholder={placeholder}
+        className={cn(
+          "w-full bg-[#050505] border border-white/[0.05] focus:border-white transition-all text-white placeholder:text-gray-600 outline-none",
+          variant === 'hero' 
+            ? "pl-14 pr-6 py-5 text-lg rounded-2xl shadow-2xl shadow-blue-500/5" 
+            : "pl-10 pr-4 py-2.5 text-sm rounded-full"
+        )}
       />
     </div>
   );

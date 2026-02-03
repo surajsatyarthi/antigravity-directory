@@ -10,9 +10,9 @@ interface ResourceCardProps {
     slug: string;
     description: string;
     views: number;
-    categoryName: string | null;
-    avgRating: number;
-    ratingCount: number;
+    categoryName?: string | null | undefined;
+    avgRating?: number;
+    ratingCount?: number;
     featured: boolean;
     badgeType?: string | null;
     status?: string;
@@ -25,7 +25,9 @@ export function ResourceCard({ resource }: ResourceCardProps) {
   const isFeatured = resource.featured;
 
   return (
-    <div className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-[#050505] border rounded-lg overflow-hidden hover:border-blue-500/50 hover:bg-white/[0.01] transition-all duration-300 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
+    <div 
+      data-testid="resource-card"
+      className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-[#050505] border rounded-lg overflow-hidden hover:border-blue-500/50 hover:bg-white/[0.01] transition-all duration-300 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
       isFeatured
         ? 'border-yellow-500/40'
         : 'border-white/[0.05]'
@@ -93,14 +95,14 @@ export function ResourceCard({ resource }: ResourceCardProps) {
             {/* Rating */}
             <div
               className="flex items-center gap-1.5"
-              aria-label={`Rating: ${Number(resource.avgRating).toFixed(1)} stars out of ${resource.ratingCount} reviews`}
+              aria-label={`Rating: ${Number(resource.avgRating ?? 0).toFixed(1)} stars out of ${resource.ratingCount ?? 0} reviews`}
             >
               <Star className="w-4 h-4 sm:w-3.5 sm:h-3.5 fill-yellow-500/90 text-yellow-500/90" aria-hidden="true" />
               <span className="text-sm font-bold font-mono text-white">
-                {Number(resource.avgRating).toFixed(1)}
+                {Number(resource.avgRating ?? 0).toFixed(1)}
               </span>
               <span className="text-gray-500 text-xs font-mono font-bold">
-                ({resource.ratingCount})
+                ({resource.ratingCount ?? 0})
               </span>
             </div>
 

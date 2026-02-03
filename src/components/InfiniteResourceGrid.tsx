@@ -120,6 +120,7 @@ export function InfiniteResourceGrid({
       {/* The Mixed List (Resources + Ads) */}
       <div 
         id="resource-grid"
+        data-testid="resource-grid"
         className="flex flex-col gap-3"
         role="region" 
         aria-label="Agent Marketplace Grid"

@@ -31,8 +31,8 @@ test.describe('Homepage - Filter Integration', () => {
     // Wait for page to load
     await page.waitForSelector('[data-testid="resource-card"]');
     
-    // Click filter (Phase 2 component)
-    await page.click('[data-testid="filter-checkbox-prompts"]');
+    // Click filter (Phase 3 component - Category Tabs)
+    await page.click('[data-testid="filter-tab-prompts"]');
     
     // Wait for server response (Phase 3 API)
     await page.waitForLoadState('networkidle');
@@ -47,7 +47,7 @@ test.describe('Homepage - Filter Integration', () => {
 
   test('Phase 2 + Phase 4: Filters persist in localStorage', async ({ page }) => {
     // Select filter
-    await page.click('[data-testid="filter-checkbox-prompts"]');
+    await page.click('[data-testid="filter-tab-prompts"]');
     
     // Check localStorage (Phase 4)
     const localStorage = await page.evaluate(() => 

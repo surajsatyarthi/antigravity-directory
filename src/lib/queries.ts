@@ -145,6 +145,51 @@ export const getFilteredResources = unstable_cache(
 );
 
 /**
+ * Get featured resources (featured = true)
+ */
+export async function getFeaturedResources(categorySlug?: string, limit: number = 6): Promise<ResourceWithRelations[]> {
+    const conditions = [eq(resources.featured, true)];
+    
+    if (categorySlug) {
+      const category = (await db.select({ id: categories.id }).from(categories).where(eq(categories.slug, categorySlug)).limit(1))[0];
+      if (category) {
+        conditions.push(eq(resources.categoryId, category.id));
+      }
+    }
+
+    const results = await db
+      .select({
+        id: resources.id,
+        title: resources.title,
+        slug: resources.slug,
+        description: resources.description,
+        url: resources.url,
+        thumbnail: resources.thumbnail,
+        integrations: resources.integrations,
+        featured: resources.featured,
+        verified: resources.verified,
+        views: resources.views,
+        copiedCount: resources.copiedCount,
+        publishedAt: resources.publishedAt,
+        badgeType: resources.badgeType,
+        status: resources.status,
+        categoryName: categories.name,
+        categoryId: resources.categoryId,
+        avgRating: sql<number>`COALESCE(AVG(${ratings.rating}), 0)`,
+        ratingCount: sql<number>`COUNT(DISTINCT ${ratings.id})`,
+      })
+      .from(resources)
+      .leftJoin(categories, eq(resources.categoryId, categories.id))
+      .leftJoin(ratings, eq(resources.id, ratings.resourceId))
+      .where(and(...conditions))
+      .groupBy(resources.id, categories.name)
+      .orderBy(desc(resources.publishedAt))
+      .limit(limit);
+
+    return results as unknown as ResourceWithRelations[];
+}
+
+/**
  * Get all categories with resource counts
  */
 export async function getCategoriesWithCounts(): Promise<CategoryWithCount[]> {

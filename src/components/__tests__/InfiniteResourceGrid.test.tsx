@@ -12,18 +12,20 @@ vi.mock('@/components/SponsoredCard', () => ({
   SponsoredCard: ({ position }: { position: number }) => <div data-testid="sponsored-card">Ad Slot #{position}</div>
 }));
 
-// Mock Server Action
 vi.mock('@/app/actions/get-resources', () => ({
-  fetchResourcesAction: vi.fn(),
+  fetchResourcesAction: vi.fn(() => Promise.resolve({ resources: [], totalCount: 0 })),
 }));
 
 // Mock IntersectionObserver
-const mockIntersectionObserver = vi.fn();
-mockIntersectionObserver.mockReturnValue({
-  observe: () => null,
-  unobserve: () => null,
-  disconnect: () => null
+const mockIntersectionObserver = vi.fn().mockImplementation(function() {
+  return {
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  };
 });
+
+// @ts-ignore
 window.IntersectionObserver = mockIntersectionObserver;
 
 describe('InfiniteResourceGrid Zipper Logic', () => {

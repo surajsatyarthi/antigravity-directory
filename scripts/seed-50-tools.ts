@@ -1,137 +1,137 @@
-const postgres = require('postgres');
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
-require('dotenv').config({ path: path.resolve(process.cwd(), '.env.local') });
+import postgres from 'postgres';
+import { resolve } from 'path';
+import { v4 as uuidv4 } from 'uuid';
+import { config } from 'dotenv';
 
-const sql = postgres(process.env.DATABASE_URL, { ssl: 'require' });
-
-const TOOLS = [
-  // AI Coding
-  { title: "Cursor", category: "ai-coding", url: "https://cursor.sh", description: "The AI code editor built for pair programming.", verified: true, featured: true, stars: 15000 },
-  { title: "GitHub Copilot", category: "ai-coding", url: "https://github.com/features/copilot", description: "Your AI pair programmer.", verified: true, featured: true, stars: 50000 },
-  { title: "Tabnine", category: "ai-coding", url: "https://tabnine.com", description: "AI assistant for software developers.", verified: true, stars: 8000 },
-  { title: "Cody", category: "ai-coding", url: "https://sourcegraph.com/cody", description: "AI coding assistant by Sourcegraph.", verified: true, stars: 4000 },
-  { title: "Replit AI", category: "ai-coding", url: "https://replit.com/ai", description: "AI built into the Replit IDE.", verified: true, stars: 12000 },
-  { title: "Codeium", category: "ai-coding", url: "https://codeium.com", description: "Free AI code completion and chat.", verified: true, stars: 3000 },
-  { title: "Amazon CodeWhisperer", category: "ai-coding", url: "https://aws.amazon.com/codewhisperer", description: "AI coding companion by AWS.", verified: true, stars: 2000 },
-  { title: "Continue", category: "ai-coding", url: "https://continue.dev", description: "Open source autopilot for VS Code.", verified: true, stars: 6000 },
-  { title: "Aider", category: "ai-coding", url: "https://aider.chat", description: "AI pair programming in your terminal.", verified: true, stars: 9000 },
-  { title: "Supermaven", category: "ai-coding", url: "https://supermaven.com", description: "The fastest copilot.", verified: true, stars: 1000 },
-
-  // LLM APIs
-  { title: "OpenAI API", category: "llm-apis", url: "https://platform.openai.com", description: "Access GPT-4 and other models.", verified: true, featured: true, stars: 100000 },
-  { title: "Anthropic API", category: "llm-apis", url: "https://anthropic.com/api", description: "Access Claude 3 Opus and Sonnet.", verified: true, featured: true, stars: 40000 },
-  { title: "Google Gemini API", category: "llm-apis", url: "https://ai.google.dev", description: "Build with Gemini models.", verified: true, stars: 35000 },
-  { title: "Mistral API", category: "llm-apis", url: "https://mistral.ai", description: "Open and portable generative AI.", verified: true, stars: 25000 },
-  { title: "Cohere", category: "llm-apis", url: "https://cohere.com", description: "Enterprise AI platform.", verified: true, stars: 15000 },
-  { title: "Perplexity API", category: "llm-apis", url: "https://perplexity.ai", description: "Real-time information API.", verified: true, stars: 10000 },
-  { title: "Together AI", category: "llm-apis", url: "https://together.ai", description: "Fastest cloud for open source types.", verified: true, stars: 8000 },
-  { title: "Groq", category: "llm-apis", url: "https://groq.com", description: "Fastest AI inference chip.", verified: true, stars: 12000 },
-
-  // Agents
-  { title: "AutoGPT", category: "agents", url: "https://github.com/Significant-Gravitas/AutoGPT", description: "Autonomous GPT-4 experiment.", verified: true, stars: 160000 },
-  { title: "BabyAGI", category: "agents", url: "https://github.com/yoheinakajima/babyagi", description: "Task management system for AI.", verified: true, stars: 20000 },
-  { title: "LangChain Agents", category: "agents", url: "https://python.langchain.com/docs/modules/agents", description: "Build agents with LangChain.", verified: true, stars: 85000 },
-  { title: "CrewAI", category: "agents", url: "https://crewai.com", description: "Orchestrate role-playing AI agents.", verified: true, featured: true, stars: 18000 },
-  { title: "Microsoft Autogen", category: "agents", url: "https://microsoft.github.io/autogen", description: "Multi-agent conversation framework.", verified: true, stars: 25000 },
-  { title: "MetaGPT", category: "agents", url: "https://github.com/geekan/MetaGPT", description: "Multi-agent framework.", verified: true, stars: 35000 },
-  { title: "ChatDev", category: "agents", url: "https://github.com/OpenBMB/ChatDev", description: "Virtual software company.", verified: true, stars: 22000 },
-  { title: "GPT Engineer", category: "agents", url: "https://gptengineer.app", description: "Build apps with AI.", verified: true, stars: 50000 },
-
-  // Vector DBs
-  { title: "Pinecone", category: "vector-dbs", url: "https://pinecone.io", description: "The vector database for AI.", verified: true, featured: true, stars: 12000 },
-  { title: "Weaviate", category: "vector-dbs", url: "https://weaviate.io", description: "AI-native vector database.", verified: true, stars: 8000 },
-  { title: "Qdrant", category: "vector-dbs", url: "https://qdrant.tech", description: "Vector search engine.", verified: true, stars: 14000 },
-  { title: "Chroma", category: "vector-dbs", url: "https://trychroma.com", description: "Open source embedding database.", verified: true, stars: 11000 },
-  { title: "Milvus", category: "vector-dbs", url: "https://milvus.io", description: "Vector database for scalable similarity search.", verified: true, stars: 26000 },
-  { title: "Supabase Vector", category: "vector-dbs", url: "https://supabase.com/vector", description: "Open source vector database built on Postgres.", verified: true, stars: 65000 },
-
-  // Frameworks
-  { title: "LangChain", category: "frameworks", url: "https://langchain.com", description: "Building applications with LLMs.", verified: true, verified: true, stars: 85000 },
-  { title: "LlamaIndex", category: "frameworks", url: "https://llamaindex.ai", description: "Data framework for LLM apps.", verified: true, stars: 30000 },
-  { title: "Haystack", category: "frameworks", url: "https://haystack.deepset.ai", description: "LLM orchestration framework.", verified: true, stars: 12000 },
-  { title: "Vercel AI SDK", category: "frameworks", url: "https://sdk.vercel.ai", description: "Library for building AI-powered apps.", verified: true, stars: 10000 },
-  { title: "Flowise", category: "frameworks", url: "https://flowiseai.com", description: "Drag & drop LLM flows.", verified: true, stars: 22000 },
-  { title: "LangFlow", category: "frameworks", url: "https://langflow.org", description: "UI for LangChain.", verified: true, stars: 18000 },
-
-  // Deployment
-  { title: "Vercel", category: "deployment", url: "https://vercel.com", description: "Develop. Preview. Ship.", verified: true, stars: 100000 },
-  { title: "Replicate", category: "deployment", url: "https://replicate.com", description: "Run AI with an API.", verified: true, stars: 10000 },
-  { title: "Modal", category: "deployment", url: "https://modal.com", description: "End-to-end cloud for AI.", verified: true, stars: 5000 },
-  { title: "Hugging Face", category: "deployment", url: "https://huggingface.co", description: "The AI community.", verified: true, stars: 120000 },
-  { title: "Railway", category: "deployment", url: "https://railway.app", description: "Deploy code instantly.", verified: true, stars: 8000 },
-  { title: "Render", category: "deployment", url: "https://render.com", description: "Unified cloud to build and run all your apps.", verified: true, stars: 6000 },
-
-  // Monitoring
-  { title: "LangSmith", category: "monitoring", url: "https://smith.langchain.com", description: "Debug, test, and monitor your chains.", verified: true, stars: 5000 },
-  { title: "Helicone", category: "monitoring", url: "https://helicone.ai", description: "Open source LLM observability.", verified: true, stars: 3000 },
-  { title: "Traceloop", category: "monitoring", url: "https://traceloop.com", description: "OpenLLMetry based observability.", verified: true, stars: 1000 },
-  { title: "Arize", category: "monitoring", url: "https://arize.com", description: "ML observability platform.", verified: true, stars: 500 },
-  { title: "Weights & Biases", category: "monitoring", url: "https://wandb.ai", description: "The developer-first MLOps platform.", verified: true, stars: 6000 },
-  { title: "Portkey", category: "monitoring", url: "https://portkey.ai", description: "Control panel for AI apps.", verified: true, stars: 1200 }
+export const TOOLS = [
+  { title: "Supabase", category: "database", url: "https://supabase.com", description: "The open source Firebase alternative.", verified: true, stars: 65000 },
+  { title: "Neon", category: "database", url: "https://neon.tech", description: "Serverless Postgres with cold starts up to 10ms.", verified: true, stars: 12000 },
+  { title: "Pinecone", category: "database", url: "https://pinecone.io", description: "Vector database for AI.", verified: true, stars: 5000 },
+  { title: "Weaviate", category: "database", url: "https://weaviate.io", description: "AI native vector database.", verified: true, stars: 8000 },
+  { title: "PlanetScale", category: "database", url: "https://planetscale.com", description: "MySQL database platform for developers.", verified: true, stars: 15000 },
+  { title: "Upstash", category: "database", url: "https://upstash.com", description: "Serverless Redis and Kafka.", verified: true, stars: 3000 },
+  { title: "Chroma", category: "database", url: "https://trychroma.com", description: "The AI-native open-source embedding database.", verified: true, stars: 10000 },
+  { title: "Milvus", category: "database", url: "https://milvus.io", description: "Vector database for scalable similarity search.", verified: true, stars: 25000 },
+  { title: "Qdrant", category: "database", url: "https://qdrant.tech", description: "Vector database & search engine.", verified: true, stars: 13000 },
+  { title: "SurrealDB", category: "database", url: "https://surrealdb.com", description: "Ultimate cloud-native database.", verified: true, stars: 22000 },
+  { title: "ClickHouse", category: "analytics", url: "https://clickhouse.com", description: "Fast open-source OLAP database.", verified: true, stars: 30000 },
+  { title: "PostHog", category: "analytics", url: "https://posthog.com", description: "Open source product analytics.", verified: true, stars: 18000 },
+  { title: "June", category: "analytics", url: "https://june.so", description: "Product analytics for B2B SaaS.", verified: true, stars: 2000 },
+  { title: "Mixpanel", category: "analytics", url: "https://mixpanel.com", description: "Powerful self-serve product analytics.", verified: true, stars: 5000 },
+  { title: "Amplitude", category: "analytics", url: "https://amplitude.com", description: "The digital analytics platform.", verified: true, stars: 4000 },
+  { title: "LogRocket", category: "analytics", url: "https://logrocket.com", description: "Modern frontend monitoring and product analytics.", verified: true, stars: 1500 },
+  { title: "Segment", category: "analytics", url: "https://segment.com", description: "Customer Data Platform.", verified: true, stars: 10000 },
+  { title: "Heap", category: "analytics", url: "https://heap.io", description: "Digital insights for teams.", verified: true, stars: 1200 },
+  { title: "Umami", category: "analytics", url: "https://umami.is", description: "Self-hosted web analytics.", verified: true, stars: 18000 },
+  { title: "Plausible", category: "analytics", url: "https://plausible.io", description: "Simple, privacy-friendly web analytics.", verified: true, stars: 16000 },
+  { title: "Clerk", category: "auth", url: "https://clerk.com", description: "Authentication and user management.", verified: true, stars: 4500 },
+  { title: "Auth0", category: "auth", url: "https://auth0.com", description: "Authentication, authorization, and single sign-on.", verified: true, stars: 10000 },
+  { title: "BetterAuth", category: "auth", url: "https://better-auth.com", description: "Open source authentication for Node.", verified: true, stars: 3500 },
+  { title: "Lucia", category: "auth", url: "https://lucia-auth.com", description: "Auth library for TypeScript.", verified: true, stars: 8000 },
+  { title: "NextAuth", category: "auth", url: "https://next-auth.js.org", description: "Authentication for Next.js.", verified: true, stars: 20000 },
+  { title: "Logto", category: "auth", url: "https://logto.io", description: "Open-source Auth0 alternative.", verified: true, stars: 6000 },
+  { title: "Kinde", category: "auth", url: "https://kinde.com", description: "Auth for modern dev teams.", verified: true, stars: 1500 },
+  { title: "SuperTokens", category: "auth", url: "https://supertokens.com", description: "Open source alternative to Auth0.", verified: true, stars: 10000 },
+  { title: "Stytch", category: "auth", url: "https://stytch.com", description: "Passkeys and authentication APIs.", verified: true, stars: 1200 },
+  { title: "FusionAuth", category: "auth", url: "https://fusionauth.io", description: "Customer identity and access management.", verified: true, stars: 3000 },
+  { title: "OpenAI", category: "ai", url: "https://openai.com", description: "Leading AI research and deployment company.", verified: true, stars: 100000 },
+  { title: "Anthropic", category: "ai", url: "https://anthropic.com", description: "Safety-first AI company.", verified: true, stars: 50000 },
+  { title: "Mistral", category: "ai", url: "https://mistral.ai", description: "Open weights AI models.", verified: true, stars: 30000 },
+  { title: "Perplexity", category: "ai", url: "https://perplexity.ai", description: "AI-powered search engine.", verified: true, stars: 20000 },
+  { title: "Together AI", category: "ai", url: "https://together.ai", description: "The fastest cloud for generative AI.", verified: true, stars: 15000 },
+  { title: "Anyscale", category: "ai", url: "https://anyscale.com", description: "The Ray platform for AI apps.", verified: true, stars: 25000 },
+  { title: "Groq", category: "ai", url: "https://groq.com", description: "LPU Inference Engine for lightning fast AI.", verified: true, stars: 8000 },
+  { title: "Cohere", category: "ai", url: "https://cohere.com", description: "LLMs for enterprises.", verified: true, stars: 5000 },
+  { title: "DeepSeek", category: "ai", url: "https://deepseek.com", description: "Open source AI models from China.", verified: true, stars: 10000 },
+  { title: "Firecrawl", category: "ai", url: "https://firecrawl.dev", description: "Turn websites into LLM-ready data.", verified: true, stars: 4000 },
+  { title: "Tavily", category: "ai", url: "https://tavily.com", description: "AI search engine for agents.", verified: true, stars: 2000 },
+  { title: "Exa", category: "ai", url: "https://exa.ai", description: "Search engine for AI developers.", verified: true, stars: 1500 },
+  { title: "Jina AI", category: "ai", url: "https://jina.ai", description: "Search foundation for AI.", verified: true, stars: 20000 },
+  { title: "Voyage AI", category: "ai", url: "https://voyageai.com", description: "Custom embeddings for RAG.", verified: true, stars: 1000 },
+  { title: "Deepgram", category: "ai", url: "https://deepgram.com", description: "Fastest speech-to-text API.", verified: true, stars: 2500 },
+  { title: "ElevenLabs", category: "ai", url: "https://elevenlabs.io", description: "Prime AI text-to-speech.", verified: true, stars: 8000 },
+  { title: "Leonardo AI", category: "ai", url: "https://leonardo.ai", description: "Generative AI for creative projects.", verified: true, stars: 5000 },
+  { title: "Runway", category: "ai", url: "https://runwayml.com", description: "AI tools for creative content generation.", verified: true, stars: 12000 },
+  { title: "Pika", category: "ai", url: "https://pika.art", description: "AI video generation platform.", verified: true, stars: 4000 },
+  { title: "Luma AI", category: "ai", url: "https://lumalabs.ai", description: "3D AI for everyone.", verified: true, stars: 6000 }
 ];
 
-async function seedTools() {
-  try {
-    // 1. Fetch Categories for mapping
-    const categories = await sql`SELECT id, slug FROM categories`;
-    const categoryMap = new Map(categories.map(c => [c.slug, c.id]));
+export function validateTool(tool: any) {
+  if (!tool.title) throw new Error(`Missing title for tool: ${JSON.stringify(tool)}`);
+  if (!tool.url) throw new Error(`Missing url for tool: ${JSON.stringify(tool)}`);
+  if (!tool.category) throw new Error(`Missing category for tool: ${JSON.stringify(tool)}`);
+  return true;
+}
 
-    // 2. Fetch Admin User
+export async function seedTools(db?: any) {
+  const sql = db || postgres(process.env.DATABASE_URL!, { 
+    ssl: process.env.DATABASE_SSL !== 'false' ? 'require' : false 
+  });
+
+  try {
+    const categories = await sql`SELECT id, slug FROM categories`;
+    const categoryMap = new Map(categories.map((c: any) => [c.slug, c.id]));
+
     const [admin] = await sql`SELECT id FROM users WHERE role = 'ADMIN' LIMIT 1`;
     const adminId = admin?.id;
 
     if (!adminId) {
-      console.error('❌ No Admin ID found. Run user seed first.');
-      process.exit(1);
+      throw new Error('No Admin ID found. Run user seed first.');
     }
 
     console.log(`📦 Preparing to seed ${TOOLS.length} tools...`);
-    let success = 0;
+    
+    let seededCount = 0;
+    await sql.begin(async (tx: any) => {
+      for (const tool of TOOLS) {
+        validateTool(tool);
+        
+        const categoryId = categoryMap.get(tool.category);
+        if (!categoryId) {
+          console.warn(`⚠️ Skipping "${tool.title}": Category "${tool.category}" not found`);
+          continue;
+        }
 
-    for (const tool of TOOLS) {
-      const categoryId = categoryMap.get(tool.category);
+        const slug = tool.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
-      if (!categoryId) {
-        console.warn(`⚠️ Skipping ${tool.title} (Category ${tool.category} not found)`);
-        continue;
+        // Check if exists
+        const [existing] = await tx`SELECT id FROM resources WHERE slug = ${slug}`;
+        if (existing) {
+          console.log(`⏭️ Skipping "${tool.title}": Already exists`);
+          continue;
+        }
+
+        await tx`
+          INSERT INTO resources (
+            id, title, slug, description, url, category_id, author_id, 
+            verified, featured, github_stars, is_indexed, last_validated_at
+          ) VALUES (
+            ${uuidv4()}, ${tool.title}, ${slug}, ${tool.description}, ${tool.url}, 
+            ${categoryId}, ${adminId}, true, ${(tool.stars || 0) > 10000}, ${tool.stars || 0}, false, NOW()
+          )
+        `;
+        
+        console.log(`✅ Prepared: ${tool.title}`);
+        seededCount++;
       }
+    });
 
-      const slug = tool.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '-' + Math.random().toString(36).substring(2, 5);
+    console.log(`\n🎉 Successfully seeded ${seededCount} tools!`);
+    return seededCount;
 
-      await sql`
-        INSERT INTO resources (
-          id, title, slug, description, url, category_id, author_id, 
-          verified, featured, github_stars, github_forks, is_indexed, last_validated_at, created_at, updated_at
-        ) VALUES (
-          ${uuidv4()}, 
-          ${tool.title}, 
-          ${slug}, 
-          ${tool.description}, 
-          ${tool.url}, 
-          ${categoryId}, 
-          ${adminId},
-          ${tool.verified},
-          ${tool.featured || false},
-          ${tool.stars || 0},
-          0,
-          true,
-          NOW(),
-          NOW(),
-          NOW()
-        )
-      `;
-      success++;
-      console.log(`✅ Seeded: ${tool.title}`);
-    }
-
-    console.log(`\n🎉 Successfully seeded ${success} tools!`);
-
-  } catch (e) {
-    console.error('Seeding failed:', e);
+  } catch (e: any) {
+    console.error('❌ Seeding failed (rolled back):', e.message);
+    throw e;
   } finally {
-    await sql.end();
+    if (!db) await sql.end();
   }
 }
 
-seedTools();
+// Allow running directly
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  config({ path: resolve(process.cwd(), '.env.local') });
+  seedTools().catch(() => process.exit(1));
+}
+
+import { fileURLToPath } from 'url';
+
