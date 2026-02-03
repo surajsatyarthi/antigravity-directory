@@ -55,7 +55,34 @@ interface PendingResource {
 
 const PENDING_FILE = './scripts/pending-resources.json';
 
-async function discoverMode() {
+import pLimit from 'p-limit';
+
+export async function fetchWithRetry(url: string, headers: any, maxRetries = 3) {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      const response = await fetch(url, { headers, signal: AbortSignal.timeout(5000) });
+      if (response.status === 403 || response.status === 429) {
+        const resetHeader = response.headers.get('X-RateLimit-Reset');
+        if (resetHeader) {
+          const resetTime = parseInt(resetHeader) * 1000;
+          const waitTime = Math.max(resetTime - Date.now(), 1000);
+          console.warn(`⚠️ Rate limited. Waiting ${Math.round(waitTime / 1000)}s...`);
+          await new Promise(r => setTimeout(r, waitTime));
+          continue;
+        }
+      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return await response.json();
+    } catch (err: any) {
+      if (i === maxRetries - 1) throw err;
+      const delay = 1000 * Math.pow(2, i);
+      console.warn(`⚠️ Retry ${i + 1}/${maxRetries} for ${url} in ${delay}ms: ${err.message}`);
+      await new Promise(r => setTimeout(r, delay));
+    }
+  }
+}
+
+export async function discoverMode() {
   console.log('🔍 DISCOVERY MODE: Finding new content...\n');
   
   const pendingResources: PendingResource[] = [];
@@ -67,55 +94,70 @@ async function discoverMode() {
       SELECT id, title, url, github_stars 
       FROM resources 
       WHERE url LIKE '%github.com%' 
+      AND (last_validated_at IS NULL OR last_validated_at < NOW() - INTERVAL '24 hours')
       ORDER BY github_stars DESC NULLS LAST
       LIMIT 50
     `;
     
-    let updatedCount = 0;
-    for (const resource of githubResources) {
-      try {
-        const match = resource.url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
-        if (!match) continue;
-        
-        const [, owner, repo] = match;
-        const cleanRepo = repo.split('/')[0].split('#')[0].split('?')[0];
-        
-        const response = await fetch(`https://api.github.com/repos/${owner}/${cleanRepo}`, {
-          headers: { 
-            'User-Agent': 'Antigravity-Directory/1.0',
-            'Accept': 'application/vnd.github.v3+json'
-          }
-        });
-        
-        if (response.ok) {
-          const data: any = await response.json();
-          const oldStars = resource.github_stars || 0;
-          const newStars = data.stargazers_count;
-          const growth = newStars - oldStars;
-          
-          await sql`
-            UPDATE resources 
-            SET 
-              github_stars = ${newStars},
-              github_forks = ${data.forks_count},
-              last_validated_at = NOW()
-            WHERE id = ${resource.id}
-          `;
-          
-          if (growth > 0) {
-            console.log(`  ↗️  ${resource.title}: ${oldStars} → ${newStars} (+${growth} stars)`);
-          }
-          updatedCount++;
-        }
-        
-        // Rate limiting
-        await new Promise(resolve => setTimeout(resolve, 1100));
-      } catch (err) {
-        // Silent fail for individual resources
+    if (githubResources.length > 0) {
+      const limiter = pLimit(5);
+      const headers = { 
+        'User-Agent': 'Antigravity-Directory/1.0',
+        'Accept': 'application/vnd.github.v3+json'
+      };
+
+      const updates = await Promise.all(
+        githubResources.map(resource => 
+          limiter(async () => {
+            try {
+              const match = resource.url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
+              if (!match) return null;
+              
+              const [, owner, repo] = match;
+              const cleanRepo = repo.split('/')[0].split('#')[0].split('?')[0];
+              
+              const data = await fetchWithRetry(`https://api.github.com/repos/${owner}/${cleanRepo}`, headers);
+              
+              const oldStars = resource.github_stars || 0;
+              const newStars = data.stargazers_count;
+              const growth = newStars - oldStars;
+              
+              if (growth > 0) {
+                console.log(`  ↗️  ${resource.title}: ${oldStars} → ${newStars} (+${growth} stars)`);
+              }
+
+              return {
+                id: resource.id,
+                stars: newStars,
+                forks: data.forks_count
+              };
+            } catch (err) {
+              console.error(`❌ Failed to sync ${resource.title}:`, err);
+              return null;
+            }
+          })
+        )
+      );
+
+      const validUpdates = updates.filter(u => u !== null);
+      
+      if (validUpdates.length > 0) {
+        console.log(`\n💾 Batch updating ${validUpdates.length} resources...`);
+        // Batch update using a temporary table or VALUES list
+        await sql`
+          UPDATE resources SET
+            github_stars = data.stars,
+            github_forks = data.forks,
+            last_validated_at = NOW()
+          FROM (VALUES ${validUpdates.map(u => sql`(${u.id}, ${u.stars}, ${u.forks})`)})
+          AS data(id, stars, forks)
+          WHERE resources.id = data.id::uuid
+        `;
+        console.log(`✅ Updated ${validUpdates.length} GitHub resources\n`);
       }
+    } else {
+      console.log('✨ No GitHub resources need syncing today.\n');
     }
-    
-    console.log(`\n✅ Updated ${updatedCount} GitHub resources\n`);
     
     // 2. Discover new content from multiple sources
     console.log('🔍 DISCOVERING NEW CONTENT...\n');
@@ -261,7 +303,7 @@ async function discoverMode() {
   }
 }
 
-async function importMode() {
+export async function importMode() {
   console.log('📥 IMPORT MODE: Adding approved resources...\n');
   
   if (!existsSync(PENDING_FILE)) {
@@ -285,44 +327,47 @@ async function importMode() {
     const adminId = admin?.id || 'default-admin-id';
     
     let importedCount = 0;
-    for (const resource of approved) {
-      const categoryId = categoriesList.find(c => c.slug === resource.category)?.id;
-      
-      if (!categoryId) {
-        console.warn(`⚠️  Category "${resource.category}" not found for: ${resource.title}`);
-        continue;
+    await sql.begin(async (tx: any) => {
+      for (const resource of approved) {
+        const categoryId = categoriesList.find((c: any) => c.slug === resource.category)?.id;
+        
+        if (!categoryId) {
+          console.warn(`⚠️  Category "${resource.category}" not found for: ${resource.title}`);
+          continue;
+        }
+        
+        const slug = resource.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        
+        try {
+          await tx`
+            INSERT INTO resources (
+              id, title, slug, description, url, category_id, author_id, 
+              verified, featured, github_stars, is_indexed, last_validated_at
+            ) VALUES (
+              gen_random_uuid(), 
+              ${resource.title}, 
+              ${slug}, 
+              ${resource.description}, 
+              ${resource.url}, 
+              ${categoryId}, 
+              ${adminId},
+              true,
+              ${(resource.stars || 0) > 5000},
+              ${resource.stars || 0},
+              false,
+              NOW()
+            )
+            ON CONFLICT (slug) DO NOTHING
+          `;
+          console.log(`✅ Imported: ${resource.title}`);
+          importedCount++;
+        } catch (err: any) {
+          console.warn(`⚠️  Failed to import: ${resource.title}`);
+          throw err; // Rollback the whole batch
+        }
       }
-      
-      const slug = resource.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-      
-      try {
-        await sql`
-          INSERT INTO resources (
-            id, title, slug, description, url, category_id, author_id, 
-            verified, featured, github_stars, is_indexed, last_validated_at
-          ) VALUES (
-            gen_random_uuid(), 
-            ${resource.title}, 
-            ${slug}, 
-            ${resource.description}, 
-            ${resource.url}, 
-            ${categoryId}, 
-            ${adminId},
-            true,
-            ${(resource.stars || 0) > 5000},
-            ${resource.stars || 0},
-            false,
-            NOW()
-          )
-          ON CONFLICT (slug) DO NOTHING
-        `;
-        console.log(`✅ Imported: ${resource.title}`);
-        importedCount++;
-      } catch (err) {
-        console.warn(`⚠️  Failed to import: ${resource.title}`);
-      }
-    }
-    
+    });
+
     console.log(`\n🎉 Successfully imported ${importedCount} resources!`);
     console.log('\n💡 TIP: Archive or delete pending-resources.json when done.\n');
     
@@ -335,16 +380,18 @@ async function importMode() {
 }
 
 // Main execution
-const mode = process.argv[2];
+if (require.main === module) {
+  const mode = process.argv[2];
 
-if (mode === 'discover') {
-  discoverMode();
-} else if (mode === 'import') {
-  importMode();
-} else {
-  console.log('📅 Weekly Content Scraper with Approval Workflow\n');
-  console.log('Usage:');
-  console.log('  npx tsx scripts/weekly-scraper.ts discover  # Find new content');
-  console.log('  npx tsx scripts/weekly-scraper.ts import    # Import approved items\n');
-  process.exit(0);
+  if (mode === 'discover') {
+    discoverMode();
+  } else if (mode === 'import') {
+    importMode();
+  } else {
+    console.log('📅 Weekly Content Scraper with Approval Workflow\n');
+    console.log('Usage:');
+    console.log('  npx tsx scripts/weekly-scraper.ts discover  # Find new content');
+    console.log('  npx tsx scripts/weekly-scraper.ts import    # Import approved items\n');
+    process.exit(0);
+  }
 }

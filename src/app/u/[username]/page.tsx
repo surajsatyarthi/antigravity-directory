@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/db';
-import { users, resources, categories, ratings, bookmarks } from '@/drizzle/schema';
+import { users, resources, categories, ratings, bookmarks, follows } from '@/drizzle/schema';
 import { eq, sql, desc, and } from 'drizzle-orm';
 import { auth } from '@/auth';
 import { ProfileHeader } from '@/components/ProfileHeader';
@@ -45,8 +45,33 @@ export default async function PublicProfilePage({
   // 1. Fetch User
   const user = (
     await db
-      .select()
+      .select({
+        id: users.id,
+        name: users.name,
+        username: users.username,
+        image: users.image,
+        bio: users.bio,
+        website: users.website,
+        tagline: users.tagline,
+        location: users.location,
+        githubUsername: users.githubUsername,
+        twitterHandle: users.twitterHandle,
+        linkedinUrl: users.linkedinUrl,
+        youtubeChannel: users.youtubeChannel,
+        discordUsername: users.discordUsername,
+        followersCount: users.followersCount,
+        followingCount: users.followingCount,
+        createdAt: users.createdAt,
+        isFollowing: sql<boolean>`CASE WHEN ${follows.followerId} IS NOT NULL THEN true ELSE false END`,
+      })
       .from(users)
+      .leftJoin(
+        follows,
+        and(
+          eq(follows.followingId, users.id),
+          eq(follows.followerId, viewerId || '00000000-0000-0000-0000-000000000000')
+        )
+      )
       .where(eq(users.username, username))
       .limit(1)
   )[0];
@@ -82,15 +107,27 @@ export default async function PublicProfilePage({
     .groupBy(resources.id, categories.id, categories.name)
     .orderBy(desc(resources.publishedAt));
 
+  const socialLinks = [
+    user.githubUsername ? `https://github.com/${user.githubUsername}` : null,
+    user.twitterHandle ? `https://twitter.com/${user.twitterHandle}` : null,
+    user.linkedinUrl,
+    user.youtubeChannel ? (user.youtubeChannel.startsWith('http') ? user.youtubeChannel : `https://youtube.com/@${user.youtubeChannel}`) : null,
+  ].filter(Boolean) as string[];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     "mainEntity": {
       "@type": "Person",
       "name": user.name || username,
-      "description": user.bio || '',
+      "description": user.tagline || user.bio || '',
       "image": user.image,
-      "url": `/u/${username}`
+      "url": `/u/${username}`,
+      "homeLocation": user.location ? {
+        "@type": "Place",
+        "name": user.location
+      } : undefined,
+      "sameAs": socialLinks.length > 0 ? socialLinks : undefined
     }
   };
 
@@ -103,7 +140,11 @@ export default async function PublicProfilePage({
       <MarketplaceHeader />
 
       <main className="container mx-auto px-4 py-12 flex-1">
-        <ProfileHeader user={user} isOwnProfile={false} />
+        <ProfileHeader 
+          user={user} 
+          isOwnProfile={viewerId === user.id} 
+          initialIsFollowing={user.isFollowing}
+        />
 
         <div className="mt-20">
           <div className="flex items-center gap-3 mb-10">

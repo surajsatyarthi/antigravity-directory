@@ -1,0 +1,1458 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "antigravity directory" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img [ref=e8]
+          - generic [ref=e10]:
+            - generic [ref=e11]: antigravity
+            - generic [ref=e12]: directory
+        - button "Toggle mobile menu" [ref=e13]:
+          - img [ref=e14]
+    - main [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - generic [ref=e18]:
+            - generic [ref=e21]:
+              - heading "Antigravity Directory" [level=1] [ref=e22]
+              - paragraph [ref=e23]: The Complete Resource Hub for Agentic Development. Discover rules, MCP servers, and prompts.
+              - generic [ref=e24]:
+                - generic [ref=e25]:
+                  - img [ref=e26]
+                  - generic [ref=e29]: Agentic First
+                - generic [ref=e30]:
+                  - img [ref=e31]
+                  - generic [ref=e35]: 500+ Resources
+                - generic [ref=e36]:
+                  - img [ref=e37]
+                  - generic [ref=e39]: Updated Daily
+            - generic [ref=e40]:
+              - generic [ref=e41]:
+                - img [ref=e43]
+                - generic [ref=e48]:
+                  - heading "Live Sync" [level=4] [ref=e49]
+                  - paragraph [ref=e50]: "GitHub Stats: Real-time"
+              - generic [ref=e51]:
+                - img [ref=e53]
+                - generic [ref=e55]:
+                  - heading "VS Engine" [level=4] [ref=e56]
+                  - paragraph [ref=e57]: Head-to-head analysis.
+              - generic [ref=e58]:
+                - img [ref=e60]
+                - generic [ref=e63]:
+                  - heading "AEO Focus" [level=4] [ref=e64]
+                  - paragraph [ref=e65]: Answer Engine optimized.
+              - generic [ref=e66]:
+                - generic [ref=e67]: Authority
+                - generic [ref=e70]: Do-Follow Active
+              - generic [ref=e71]:
+                - generic [ref=e73]: Limited Offer
+                - link "Early Adopter Pricing" [ref=e74] [cursor=pointer]:
+                  - /url: /submit
+                  - generic [ref=e75]: Early Adopter Pricing
+          - generic [ref=e76]:
+            - generic [ref=e77]:
+              - heading "Community Feedback" [level=3] [ref=e78]
+              - generic [ref=e79]:
+                - button "Previous testimonials" [ref=e80]:
+                  - img [ref=e81]
+                - button "Next testimonials" [ref=e83]:
+                  - img [ref=e84]
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - generic [ref=e89]:
+                  - generic [ref=e90]:
+                    - generic [ref=e91]:
+                      - generic [ref=e92]:
+                        - img [ref=e93]
+                        - img [ref=e95]
+                        - img [ref=e97]
+                        - img [ref=e99]
+                        - img [ref=e101]
+                      - paragraph [ref=e103]: "\"The best directory for Antigravity resources. The live GitHub metrics make it so easy to find high-quality MCP servers.\""
+                    - generic [ref=e104]:
+                      - generic [ref=e105]: AR
+                      - generic [ref=e106]:
+                        - generic [ref=e107]: Alex Rivera
+                        - generic [ref=e108]: Senior AI Engineer
+                  - generic [ref=e109]:
+                    - generic [ref=e110]:
+                      - generic [ref=e111]:
+                        - img [ref=e112]
+                        - img [ref=e114]
+                        - img [ref=e116]
+                        - img [ref=e118]
+                        - img [ref=e120]
+                      - paragraph [ref=e122]: "\"The comparison engine saved me hours of research. Seeing how blocks vs other MCPs perform head-to-head is a game changer.\""
+                    - generic [ref=e123]:
+                      - generic [ref=e124]: SC
+                      - generic [ref=e125]:
+                        - generic [ref=e126]: Sarah Chen
+                        - generic [ref=e127]: Fullstack Developer
+                  - generic [ref=e128]:
+                    - generic [ref=e129]:
+                      - generic [ref=e130]:
+                        - img [ref=e131]
+                        - img [ref=e133]
+                        - img [ref=e135]
+                        - img [ref=e137]
+                        - img [ref=e139]
+                      - paragraph [ref=e141]: "\"Clean, fast, and extremely high-fidelity. Finally a place that treats AI prompts and rules as first-class assets.\""
+                    - generic [ref=e142]:
+                      - generic [ref=e143]: MT
+                      - generic [ref=e144]:
+                        - generic [ref=e145]: Marcus Thorne
+                        - generic [ref=e146]: Product Designer
+                - generic [ref=e148]:
+                  - generic [ref=e149]:
+                    - generic [ref=e150]:
+                      - generic [ref=e151]:
+                        - img [ref=e152]
+                        - img [ref=e154]
+                        - img [ref=e156]
+                        - img [ref=e158]
+                        - img [ref=e160]
+                      - paragraph [ref=e162]: "\"This directory has become our team's go-to resource. The verified badges and AEO focus make discovery incredibly efficient.\""
+                    - generic [ref=e163]:
+                      - generic [ref=e164]: PP
+                      - generic [ref=e165]:
+                        - generic [ref=e166]: Priya Patel
+                        - generic [ref=e167]: ML Research Lead
+                  - generic [ref=e168]:
+                    - generic [ref=e169]:
+                      - generic [ref=e170]:
+                        - img [ref=e171]
+                        - img [ref=e173]
+                        - img [ref=e175]
+                        - img [ref=e177]
+                        - img [ref=e179]
+                      - paragraph [ref=e181]: "\"Impressive curation quality. Every tool I've found here actually works and solves real problems. The do-follow backlinks are a nice bonus.\""
+                    - generic [ref=e182]:
+                      - generic [ref=e183]: DK
+                      - generic [ref=e184]:
+                        - generic [ref=e185]: David Kim
+                        - generic [ref=e186]: DevOps Engineer
+                  - generic [ref=e187]:
+                    - generic [ref=e188]:
+                      - generic [ref=e189]:
+                        - img [ref=e190]
+                        - img [ref=e192]
+                        - img [ref=e194]
+                        - img [ref=e196]
+                        - img [ref=e198]
+                      - paragraph [ref=e200]: "\"Listed our tool here and saw immediate traction. The 24-48 hour turnaround for featured listings is incredibly fast.\""
+                    - generic [ref=e201]:
+                      - generic [ref=e202]: EV
+                      - generic [ref=e203]:
+                        - generic [ref=e204]: Elena Volkov
+                        - generic [ref=e205]: Startup Founder
+                - generic [ref=e207]:
+                  - generic [ref=e208]:
+                    - generic [ref=e209]:
+                      - generic [ref=e210]:
+                        - img [ref=e211]
+                        - img [ref=e213]
+                        - img [ref=e215]
+                        - img [ref=e217]
+                        - img [ref=e219]
+                      - paragraph [ref=e221]: "\"Finally, a directory that doesn't feel like a link dump. The head-to-head comparisons help us make informed decisions quickly.\""
+                    - generic [ref=e222]:
+                      - generic [ref=e223]: JM
+                      - generic [ref=e224]:
+                        - generic [ref=e225]: James Murphy
+                        - generic [ref=e226]: Tech Lead
+                  - generic [ref=e227]:
+                    - generic [ref=e228]:
+                      - generic [ref=e229]:
+                        - img [ref=e230]
+                        - img [ref=e232]
+                        - img [ref=e234]
+                        - img [ref=e236]
+                        - img [ref=e238]
+                      - paragraph [ref=e240]: "\"The categorization and filtering system is top-notch. I can find exactly what I need in seconds instead of browsing endlessly.\""
+                    - generic [ref=e241]:
+                      - generic [ref=e242]: NS
+                      - generic [ref=e243]:
+                        - generic [ref=e244]: Nina Santos
+                        - generic [ref=e245]: AI Product Manager
+                  - generic [ref=e246]:
+                    - generic [ref=e247]:
+                      - generic [ref=e248]:
+                        - img [ref=e249]
+                        - img [ref=e251]
+                        - img [ref=e253]
+                        - img [ref=e255]
+                        - img [ref=e257]
+                      - paragraph [ref=e259]: "\"Best ROI we've seen from any directory listing. The quality of traffic and the permanent backlink make this a no-brainer for any AI tool.\""
+                    - generic [ref=e260]:
+                      - generic [ref=e261]: TA
+                      - generic [ref=e262]:
+                        - generic [ref=e263]: Tom Anderson
+                        - generic [ref=e264]: CTO
+              - generic [ref=e265]:
+                - button "Go to slide 1" [ref=e266]
+                - button "Go to slide 2" [ref=e267]
+                - button "Go to slide 3" [ref=e268]
+        - generic [ref=e270]:
+          - generic [ref=e271]:
+            - status [ref=e272]: 521 RESOURCES
+            - generic [ref=e273]:
+              - button "Open filters" [ref=e274]:
+                - img [ref=e275]
+                - generic [ref=e276]: Filters
+              - combobox "Sort resources by" [ref=e277] [cursor=pointer]:
+                - option "Recommended" [selected]
+                - option "Latest"
+                - option "Most Viewed"
+                - option "Highest Rated"
+          - region "Agent Marketplace Grid" [ref=e280]:
+            - generic [ref=e281]:
+              - 'link "View details for v0.dev UI Bootstrapper: The industry standard prompt for generating responsive React/Tailwind skeletons in seconds using the v0.dev AI engine." [ref=e282] [cursor=pointer]':
+                - /url: /t/v0-dev-ui-bootstrapper
+                - generic [ref=e283]: "View details for v0.dev UI Bootstrapper: The industry standard prompt for generating responsive React/Tailwind skeletons in seconds using the v0.dev AI engine."
+              - generic [ref=e284]:
+                - generic [ref=e286]: Prompts
+                - generic [ref=e287]:
+                  - heading "v0.dev UI Bootstrapper" [level=3] [ref=e289]
+                  - paragraph [ref=e290]: The industry standard prompt for generating responsive React/Tailwind skeletons in seconds using the v0.dev AI engine.
+                - generic [ref=e291]:
+                  - generic [ref=e292]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e293]':
+                      - img [ref=e294]
+                      - generic [ref=e296]: "0.0"
+                      - generic [ref=e297]: (0)
+                    - generic "9000 views" [ref=e298]:
+                      - img [ref=e299]
+                      - generic [ref=e302]: 9.0k
+                  - generic [ref=e303]:
+                    - button "Add Bookmark" [ref=e304]:
+                      - img [ref=e305]
+                    - img [ref=e308]
+            - generic [ref=e310]:
+              - 'link "View details for ShipFast Next.js SaaS: The industry-standard Next.js SaaS boilerplate in 2026. Includes Auth, Stripe, SEO automation, and OpenAI integration out of the box." [ref=e311] [cursor=pointer]':
+                - /url: /t/shipfast-nextjs-saas
+                - generic [ref=e312]: "View details for ShipFast Next.js SaaS: The industry-standard Next.js SaaS boilerplate in 2026. Includes Auth, Stripe, SEO automation, and OpenAI integration out of the box."
+              - generic [ref=e313]:
+                - generic [ref=e315]: Boilerplates
+                - generic [ref=e316]:
+                  - heading "ShipFast Next.js SaaS" [level=3] [ref=e318]
+                  - paragraph [ref=e319]: The industry-standard Next.js SaaS boilerplate in 2026. Includes Auth, Stripe, SEO automation, and OpenAI integration out of the box.
+                - generic [ref=e320]:
+                  - generic [ref=e321]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e322]':
+                      - img [ref=e323]
+                      - generic [ref=e325]: "0.0"
+                      - generic [ref=e326]: (0)
+                    - generic "5500 views" [ref=e327]:
+                      - img [ref=e328]
+                      - generic [ref=e331]: 5.5k
+                  - generic [ref=e332]:
+                    - button "Add Bookmark" [ref=e333]:
+                      - img [ref=e334]
+                    - img [ref=e337]
+            - generic [ref=e339]:
+              - 'link "View details for DeepSeek V3 System Prompt: The state-of-the-art system prompt for DeepSeek V3, optimized for logic chain verification and zero-shot code generation." [ref=e340] [cursor=pointer]':
+                - /url: /t/deepseek-v3-system-prompt
+                - generic [ref=e341]: "View details for DeepSeek V3 System Prompt: The state-of-the-art system prompt for DeepSeek V3, optimized for logic chain verification and zero-shot code generation."
+              - generic [ref=e342]:
+                - generic [ref=e344]: Prompts
+                - generic [ref=e345]:
+                  - heading "DeepSeek V3 System Prompt" [level=3] [ref=e347]
+                  - paragraph [ref=e348]: The state-of-the-art system prompt for DeepSeek V3, optimized for logic chain verification and zero-shot code generation.
+                - generic [ref=e349]:
+                  - generic [ref=e350]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e351]':
+                      - img [ref=e352]
+                      - generic [ref=e354]: "0.0"
+                      - generic [ref=e355]: (0)
+                    - generic "4500 views" [ref=e356]:
+                      - img [ref=e357]
+                      - generic [ref=e360]: 4.5k
+                  - generic [ref=e361]:
+                    - button "Add Bookmark" [ref=e362]:
+                      - img [ref=e363]
+                    - img [ref=e366]
+            - generic [ref=e368]:
+              - 'link "View details for Claude 4.5 Sonnet Code Prompt: Optimized system prompt for Claude 4.5 Sonnet, focusing on architectural patterns and strict TypeScript typing." [ref=e369] [cursor=pointer]':
+                - /url: /t/claude-4-5-sonnet-prompt
+                - generic [ref=e370]: "View details for Claude 4.5 Sonnet Code Prompt: Optimized system prompt for Claude 4.5 Sonnet, focusing on architectural patterns and strict TypeScript typing."
+              - generic [ref=e371]:
+                - generic [ref=e373]: Prompts
+                - generic [ref=e374]:
+                  - heading "Claude 4.5 Sonnet Code Prompt" [level=3] [ref=e376]
+                  - paragraph [ref=e377]: Optimized system prompt for Claude 4.5 Sonnet, focusing on architectural patterns and strict TypeScript typing.
+                - generic [ref=e378]:
+                  - generic [ref=e379]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e380]':
+                      - img [ref=e381]
+                      - generic [ref=e383]: "0.0"
+                      - generic [ref=e384]: (0)
+                    - generic "3800 views" [ref=e385]:
+                      - img [ref=e386]
+                      - generic [ref=e389]: 3.8k
+                  - generic [ref=e390]:
+                    - button "Add Bookmark" [ref=e391]:
+                      - img [ref=e392]
+                    - img [ref=e395]
+            - generic [ref=e397]:
+              - 'link "View details for OpenAI SaaS Starter Kit: The official-grade Next.js 16 starter for OpenAI applications. Features Vercel AI SDK and streaming response patterns." [ref=e398] [cursor=pointer]':
+                - /url: /t/openai-saas-starter-kit
+                - generic [ref=e399]: "View details for OpenAI SaaS Starter Kit: The official-grade Next.js 16 starter for OpenAI applications. Features Vercel AI SDK and streaming response patterns."
+              - generic [ref=e400]:
+                - generic [ref=e402]: Boilerplates
+                - generic [ref=e403]:
+                  - heading "OpenAI SaaS Starter Kit" [level=3] [ref=e405]
+                  - paragraph [ref=e406]: The official-grade Next.js 16 starter for OpenAI applications. Features Vercel AI SDK and streaming response patterns.
+                - generic [ref=e407]:
+                  - generic [ref=e408]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e409]':
+                      - img [ref=e410]
+                      - generic [ref=e412]: "0.0"
+                      - generic [ref=e413]: (0)
+                    - generic "3400 views" [ref=e414]:
+                      - img [ref=e415]
+                      - generic [ref=e418]: 3.4k
+                  - generic [ref=e419]:
+                    - button "Add Bookmark" [ref=e420]:
+                      - img [ref=e421]
+                    - img [ref=e424]
+            - generic [ref=e426]:
+              - 'link "View details for Professional Coder Guidelines: A high-authority system rule set for AI coding agents that enforces first-principles thinking and clean code architecture." [ref=e427] [cursor=pointer]':
+                - /url: /t/professional-coder-guidelines
+                - generic [ref=e428]: "View details for Professional Coder Guidelines: A high-authority system rule set for AI coding agents that enforces first-principles thinking and clean code architecture."
+              - generic [ref=e429]:
+                - generic [ref=e431]: Rules
+                - generic [ref=e432]:
+                  - heading "Professional Coder Guidelines" [level=3] [ref=e434]
+                  - paragraph [ref=e435]: A high-authority system rule set for AI coding agents that enforces first-principles thinking and clean code architecture.
+                - generic [ref=e436]:
+                  - generic [ref=e437]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e438]':
+                      - img [ref=e439]
+                      - generic [ref=e441]: "0.0"
+                      - generic [ref=e442]: (0)
+                    - generic "2200 views" [ref=e443]:
+                      - img [ref=e444]
+                      - generic [ref=e447]: 2.2k
+                  - generic [ref=e448]:
+                    - button "Add Bookmark" [ref=e449]:
+                      - img [ref=e450]
+                    - img [ref=e453]
+            - generic [ref=e455]:
+              - 'link "View details for Awesome CursorRules: A curated collection of .cursorrules templates for every major programming language and framework, optimized for AI coding intelligence." [ref=e456] [cursor=pointer]':
+                - /url: /t/awesome-cursorrules
+                - generic [ref=e457]: "View details for Awesome CursorRules: A curated collection of .cursorrules templates for every major programming language and framework, optimized for AI coding intelligence."
+              - generic [ref=e458]:
+                - generic [ref=e460]: Rules
+                - generic [ref=e461]:
+                  - heading "Awesome CursorRules" [level=3] [ref=e463]
+                  - paragraph [ref=e464]: A curated collection of .cursorrules templates for every major programming language and framework, optimized for AI coding intelligence.
+                - generic [ref=e465]:
+                  - generic [ref=e466]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e467]':
+                      - img [ref=e468]
+                      - generic [ref=e470]: "0.0"
+                      - generic [ref=e471]: (0)
+                    - generic "1500 views" [ref=e472]:
+                      - img [ref=e473]
+                      - generic [ref=e476]: 1.5k
+                  - generic [ref=e477]:
+                    - button "Add Bookmark" [ref=e478]:
+                      - img [ref=e479]
+                    - img [ref=e482]
+            - generic [ref=e484]:
+              - 'link "View details for RAG Context Engineering Flow: A dedicated workflow for building data-rich AI agents using Context Engineering and Retrieval-Augmented Generation." [ref=e485] [cursor=pointer]':
+                - /url: /t/rag-context-engineering
+                - generic [ref=e486]: "View details for RAG Context Engineering Flow: A dedicated workflow for building data-rich AI agents using Context Engineering and Retrieval-Augmented Generation."
+              - generic [ref=e487]:
+                - generic [ref=e489]: Workflows
+                - generic [ref=e490]:
+                  - heading "RAG Context Engineering Flow" [level=3] [ref=e492]
+                  - paragraph [ref=e493]: A dedicated workflow for building data-rich AI agents using Context Engineering and Retrieval-Augmented Generation.
+                - generic [ref=e494]:
+                  - generic [ref=e495]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e496]':
+                      - img [ref=e497]
+                      - generic [ref=e499]: "0.0"
+                      - generic [ref=e500]: (0)
+                    - generic "1400 views" [ref=e501]:
+                      - img [ref=e502]
+                      - generic [ref=e505]: 1.4k
+                  - generic [ref=e506]:
+                    - button "Add Bookmark" [ref=e507]:
+                      - img [ref=e508]
+                    - img [ref=e511]
+            - generic [ref=e513]:
+              - generic [ref=e515]: "Ad • Slot #1"
+              - generic [ref=e516]:
+                - generic [ref=e519]: AD
+                - generic [ref=e520]:
+                  - heading "Apply for Sponsorship" [level=3] [ref=e521]
+                  - paragraph [ref=e522]: Promote your AI tool in this slot. Reach thousands of agentic developers.
+                - button "Contact Sales" [ref=e524]
+            - generic [ref=e525]:
+              - 'link "View details for Makerkit Production SaaS: A production-ready AI SaaS starter kit for Next.js. Supports multi-tenancy, sub-organizations, and advanced AI agent workflows." [ref=e526] [cursor=pointer]':
+                - /url: /t/makerkit-production-saas
+                - generic [ref=e527]: "View details for Makerkit Production SaaS: A production-ready AI SaaS starter kit for Next.js. Supports multi-tenancy, sub-organizations, and advanced AI agent workflows."
+              - generic [ref=e528]:
+                - generic [ref=e530]: Boilerplates
+                - generic [ref=e531]:
+                  - heading "Makerkit Production SaaS" [level=3] [ref=e533]
+                  - paragraph [ref=e534]: A production-ready AI SaaS starter kit for Next.js. Supports multi-tenancy, sub-organizations, and advanced AI agent workflows.
+                - generic [ref=e535]:
+                  - generic [ref=e536]:
+                    - 'generic "Rating: 0.0 stars out of 0 reviews" [ref=e537]':
+                      - img [ref=e538]
+                      - generic [ref=e540]: "0.0"
+                      - generic [ref=e541]: (0)
+                    - generic "1200 views" [ref=e542]:
+                      - img [ref=e543]
+                      - generic [ref=e546]: 1.2k
+                  - generic [ref=e547]:
+                    - button "Add Bookmark" [ref=e548]:
+                      - img [ref=e549]
+                    - img [ref=e552]
+            - generic [ref=e554]:
+              - 'link "View details for sooperset/mcp-atlassian: MCP server for Atlassian tools (Confluence, Jira)" [ref=e555] [cursor=pointer]':
+                - /url: /t/sooperset-mcp-atlassian
+                - generic [ref=e556]: "View details for sooperset/mcp-atlassian: MCP server for Atlassian tools (Confluence, Jira)"
+              - generic [ref=e559]: Sponsored
+              - generic [ref=e560]:
+                - generic [ref=e562]: MCP Servers
+                - generic [ref=e563]:
+                  - heading "sooperset/mcp-atlassian" [level=3] [ref=e565]
+                  - paragraph [ref=e566]: MCP server for Atlassian tools (Confluence, Jira)
+                - generic [ref=e567]:
+                  - generic [ref=e568]:
+                    - 'generic "Rating: 4.6 stars out of 10 reviews" [ref=e569]':
+                      - img [ref=e570]
+                      - generic [ref=e572]: "4.6"
+                      - generic [ref=e573]: (10)
+                    - generic "1095 views" [ref=e574]:
+                      - img [ref=e575]
+                      - generic [ref=e578]: 1.1k
+                  - generic [ref=e579]:
+                    - button "Add Bookmark" [ref=e580]:
+                      - img [ref=e581]
+                    - img [ref=e584]
+            - generic [ref=e586]:
+              - 'link "View details for ThinkInAIXYZ/deepchat: 🐬DeepChat - A smart assistant that connects powerful AI to your personal world" [ref=e587] [cursor=pointer]':
+                - /url: /t/thinkinaixyz-deepchat
+                - generic [ref=e588]: "View details for ThinkInAIXYZ/deepchat: 🐬DeepChat - A smart assistant that connects powerful AI to your personal world"
+              - generic [ref=e591]: Sponsored
+              - generic [ref=e592]:
+                - generic [ref=e594]: MCP Servers
+                - generic [ref=e595]:
+                  - heading "ThinkInAIXYZ/deepchat" [level=3] [ref=e597]
+                  - paragraph [ref=e598]: 🐬DeepChat - A smart assistant that connects powerful AI to your personal world
+                - generic [ref=e599]:
+                  - generic [ref=e600]:
+                    - 'generic "Rating: 4.7 stars out of 3 reviews" [ref=e601]':
+                      - img [ref=e602]
+                      - generic [ref=e604]: "4.7"
+                      - generic [ref=e605]: (3)
+                    - generic "1082 views" [ref=e606]:
+                      - img [ref=e607]
+                      - generic [ref=e610]: 1.1k
+                  - generic [ref=e611]:
+                    - button "Add Bookmark" [ref=e612]:
+                      - img [ref=e613]
+                    - img [ref=e616]
+            - generic [ref=e618]:
+              - 'link "View details for open-webui/open-webui: User-friendly AI Interface (Supports Ollama, OpenAI API, ...)" [ref=e619] [cursor=pointer]':
+                - /url: /t/open-webui-open-webui
+                - generic [ref=e620]: "View details for open-webui/open-webui: User-friendly AI Interface (Supports Ollama, OpenAI API, ...)"
+              - generic [ref=e623]: Sponsored
+              - generic [ref=e624]:
+                - generic [ref=e626]: MCP Servers
+                - generic [ref=e627]:
+                  - heading "open-webui/open-webui" [level=3] [ref=e629]
+                  - paragraph [ref=e630]: User-friendly AI Interface (Supports Ollama, OpenAI API, ...)
+                - generic [ref=e631]:
+                  - generic [ref=e632]:
+                    - 'generic "Rating: 4.5 stars out of 8 reviews" [ref=e633]':
+                      - img [ref=e634]
+                      - generic [ref=e636]: "4.5"
+                      - generic [ref=e637]: (8)
+                    - generic "1081 views" [ref=e638]:
+                      - img [ref=e639]
+                      - generic [ref=e642]: 1.1k
+                  - generic [ref=e643]:
+                    - button "Add Bookmark" [ref=e644]:
+                      - img [ref=e645]
+                    - img [ref=e648]
+            - generic [ref=e650]:
+              - 'link "View details for aipotheosis-labs/aci: ACI.dev is the open source tool-calling platform that hooks up 600+ tools into any agentic IDE or custom AI agent through direct function calling or a unified MCP server. The birthplace of VibeOps." [ref=e651] [cursor=pointer]':
+                - /url: /t/aipotheosis-labs-aci
+                - generic [ref=e652]: "View details for aipotheosis-labs/aci: ACI.dev is the open source tool-calling platform that hooks up 600+ tools into any agentic IDE or custom AI agent through direct function calling or a unified MCP server. The birthplace of VibeOps."
+              - generic [ref=e655]: Sponsored
+              - generic [ref=e656]:
+                - generic [ref=e658]: MCP Servers
+                - generic [ref=e659]:
+                  - heading "aipotheosis-labs/aci" [level=3] [ref=e661]
+                  - paragraph [ref=e662]: ACI.dev is the open source tool-calling platform that hooks up 600+ tools into any agentic IDE or custom AI agent through direct function calling or a unified MCP server. The birthplace of VibeOps.
+                - generic [ref=e663]:
+                  - generic [ref=e664]:
+                    - 'generic "Rating: 4.7 stars out of 12 reviews" [ref=e665]':
+                      - img [ref=e666]
+                      - generic [ref=e668]: "4.7"
+                      - generic [ref=e669]: (12)
+                    - generic "1075 views" [ref=e670]:
+                      - img [ref=e671]
+                      - generic [ref=e674]: 1.1k
+                  - generic [ref=e675]:
+                    - button "Add Bookmark" [ref=e676]:
+                      - img [ref=e677]
+                    - img [ref=e680]
+            - generic [ref=e682]:
+              - 'link "View details for VoltAgent/voltagent: AI Agent Engineering Platform built on an Open Source TypeScript AI Agent Framework" [ref=e683] [cursor=pointer]':
+                - /url: /t/voltagent-voltagent
+                - generic [ref=e684]: "View details for VoltAgent/voltagent: AI Agent Engineering Platform built on an Open Source TypeScript AI Agent Framework"
+              - generic [ref=e687]: Sponsored
+              - generic [ref=e688]:
+                - generic [ref=e690]: MCP Servers
+                - generic [ref=e691]:
+                  - heading "VoltAgent/voltagent" [level=3] [ref=e693]
+                  - paragraph [ref=e694]: AI Agent Engineering Platform built on an Open Source TypeScript AI Agent Framework
+                - generic [ref=e695]:
+                  - generic [ref=e696]:
+                    - 'generic "Rating: 4.6 stars out of 12 reviews" [ref=e697]':
+                      - img [ref=e698]
+                      - generic [ref=e700]: "4.6"
+                      - generic [ref=e701]: (12)
+                    - generic "1074 views" [ref=e702]:
+                      - img [ref=e703]
+                      - generic [ref=e706]: 1.1k
+                  - generic [ref=e707]:
+                    - button "Add Bookmark" [ref=e708]:
+                      - img [ref=e709]
+                    - img [ref=e712]
+            - generic [ref=e714]:
+              - 'link "View details for googleapis/genai-toolbox: MCP Toolbox for Databases is an open source MCP server for databases." [ref=e715] [cursor=pointer]':
+                - /url: /t/googleapis-genai-toolbox
+                - generic [ref=e716]: "View details for googleapis/genai-toolbox: MCP Toolbox for Databases is an open source MCP server for databases."
+              - generic [ref=e719]: Sponsored
+              - generic [ref=e720]:
+                - generic [ref=e722]: MCP Servers
+                - generic [ref=e723]:
+                  - heading "googleapis/genai-toolbox" [level=3] [ref=e725]
+                  - paragraph [ref=e726]: MCP Toolbox for Databases is an open source MCP server for databases.
+                - generic [ref=e727]:
+                  - generic [ref=e728]:
+                    - 'generic "Rating: 4.3 stars out of 9 reviews" [ref=e729]':
+                      - img [ref=e730]
+                      - generic [ref=e732]: "4.3"
+                      - generic [ref=e733]: (9)
+                    - generic "1072 views" [ref=e734]:
+                      - img [ref=e735]
+                      - generic [ref=e738]: 1.1k
+                  - generic [ref=e739]:
+                    - button "Add Bookmark" [ref=e740]:
+                      - img [ref=e741]
+                    - img [ref=e744]
+            - generic [ref=e746]:
+              - 'link "View details for iflytek/astron-rpa: Agent-ready RPA suite with out-of-the-box automation tools. Built for individuals and enterprises." [ref=e747] [cursor=pointer]':
+                - /url: /t/iflytek-astron-rpa
+                - generic [ref=e748]: "View details for iflytek/astron-rpa: Agent-ready RPA suite with out-of-the-box automation tools. Built for individuals and enterprises."
+              - generic [ref=e751]: Sponsored
+              - generic [ref=e752]:
+                - generic [ref=e754]: MCP Servers
+                - generic [ref=e755]:
+                  - heading "iflytek/astron-rpa" [level=3] [ref=e757]
+                  - paragraph [ref=e758]: Agent-ready RPA suite with out-of-the-box automation tools. Built for individuals and enterprises.
+                - generic [ref=e759]:
+                  - generic [ref=e760]:
+                    - 'generic "Rating: 4.7 stars out of 3 reviews" [ref=e761]':
+                      - img [ref=e762]
+                      - generic [ref=e764]: "4.7"
+                      - generic [ref=e765]: (3)
+                    - generic "1071 views" [ref=e766]:
+                      - img [ref=e767]
+                      - generic [ref=e770]: 1.1k
+                  - generic [ref=e771]:
+                    - button "Add Bookmark" [ref=e772]:
+                      - img [ref=e773]
+                    - img [ref=e776]
+            - generic [ref=e778]:
+              - generic [ref=e780]: "Ad • Slot #2"
+              - generic [ref=e781]:
+                - generic [ref=e784]: AD
+                - generic [ref=e785]:
+                  - heading "Apply for Sponsorship" [level=3] [ref=e786]
+                  - paragraph [ref=e787]: Promote your AI tool in this slot. Reach thousands of agentic developers.
+                - button "Contact Sales" [ref=e789]
+            - generic [ref=e790]:
+              - 'link "View details for ag2ai/ag2: AG2 (formerly AutoGen): The Open-Source AgentOS. Join us at: https://discord.gg/sNGSwQME3x" [ref=e791] [cursor=pointer]':
+                - /url: /t/ag2ai-ag2
+                - generic [ref=e792]: "View details for ag2ai/ag2: AG2 (formerly AutoGen): The Open-Source AgentOS. Join us at: https://discord.gg/sNGSwQME3x"
+              - generic [ref=e795]: Sponsored
+              - generic [ref=e796]:
+                - generic [ref=e798]: MCP Servers
+                - generic [ref=e799]:
+                  - heading "ag2ai/ag2" [level=3] [ref=e801]
+                  - paragraph [ref=e802]: "AG2 (formerly AutoGen): The Open-Source AgentOS. Join us at: https://discord.gg/sNGSwQME3x"
+                - generic [ref=e803]:
+                  - generic [ref=e804]:
+                    - 'generic "Rating: 4.5 stars out of 8 reviews" [ref=e805]':
+                      - img [ref=e806]
+                      - generic [ref=e808]: "4.5"
+                      - generic [ref=e809]: (8)
+                    - generic "1055 views" [ref=e810]:
+                      - img [ref=e811]
+                      - generic [ref=e814]: 1.1k
+                  - generic [ref=e815]:
+                    - button "Add Bookmark" [ref=e816]:
+                      - img [ref=e817]
+                    - img [ref=e820]
+            - generic [ref=e822]:
+              - 'link "View details for Klavis-AI/klavis: Klavis AI (YC X25): MCP integration platforms that let AI agents use tools reliably at any scale" [ref=e823] [cursor=pointer]':
+                - /url: /t/klavis-ai-klavis
+                - generic [ref=e824]: "View details for Klavis-AI/klavis: Klavis AI (YC X25): MCP integration platforms that let AI agents use tools reliably at any scale"
+              - generic [ref=e827]: Sponsored
+              - generic [ref=e828]:
+                - generic [ref=e830]: MCP Servers
+                - generic [ref=e831]:
+                  - heading "Klavis-AI/klavis" [level=3] [ref=e833]
+                  - paragraph [ref=e834]: "Klavis AI (YC X25): MCP integration platforms that let AI agents use tools reliably at any scale"
+                - generic [ref=e835]:
+                  - generic [ref=e836]:
+                    - 'generic "Rating: 4.7 stars out of 3 reviews" [ref=e837]':
+                      - img [ref=e838]
+                      - generic [ref=e840]: "4.7"
+                      - generic [ref=e841]: (3)
+                    - generic "1040 views" [ref=e842]:
+                      - img [ref=e843]
+                      - generic [ref=e846]: 1.0k
+                  - generic [ref=e847]:
+                    - button "Add Bookmark" [ref=e848]:
+                      - img [ref=e849]
+                    - img [ref=e852]
+            - generic [ref=e854]:
+              - 'link "View details for Portkey-AI/gateway: A blazing fast AI Gateway with integrated guardrails. Route to 200+ LLMs, 50+ AI Guardrails with 1 fast & friendly API." [ref=e855] [cursor=pointer]':
+                - /url: /t/portkey-ai-gateway
+                - generic [ref=e856]: "View details for Portkey-AI/gateway: A blazing fast AI Gateway with integrated guardrails. Route to 200+ LLMs, 50+ AI Guardrails with 1 fast & friendly API."
+              - generic [ref=e859]: Sponsored
+              - generic [ref=e860]:
+                - generic [ref=e862]: MCP Servers
+                - generic [ref=e863]:
+                  - heading "Portkey-AI/gateway" [level=3] [ref=e865]
+                  - paragraph [ref=e866]: A blazing fast AI Gateway with integrated guardrails. Route to 200+ LLMs, 50+ AI Guardrails with 1 fast & friendly API.
+                - generic [ref=e867]:
+                  - generic [ref=e868]:
+                    - 'generic "Rating: 4.5 stars out of 6 reviews" [ref=e869]':
+                      - img [ref=e870]
+                      - generic [ref=e872]: "4.5"
+                      - generic [ref=e873]: (6)
+                    - generic "998 views" [ref=e874]:
+                      - img [ref=e875]
+                      - generic [ref=e878]: "998"
+                  - generic [ref=e879]:
+                    - button "Add Bookmark" [ref=e880]:
+                      - img [ref=e881]
+                    - img [ref=e884]
+            - generic [ref=e886]:
+              - 'link "View details for NevaMind-AI/memU: Memory infrastructure for LLMs and AI agents" [ref=e887] [cursor=pointer]':
+                - /url: /t/nevamind-ai-memu
+                - generic [ref=e888]: "View details for NevaMind-AI/memU: Memory infrastructure for LLMs and AI agents"
+              - generic [ref=e891]: Sponsored
+              - generic [ref=e892]:
+                - generic [ref=e894]: MCP Servers
+                - generic [ref=e895]:
+                  - heading "NevaMind-AI/memU" [level=3] [ref=e897]
+                  - paragraph [ref=e898]: Memory infrastructure for LLMs and AI agents
+                - generic [ref=e899]:
+                  - generic [ref=e900]:
+                    - 'generic "Rating: 4.6 stars out of 5 reviews" [ref=e901]':
+                      - img [ref=e902]
+                      - generic [ref=e904]: "4.6"
+                      - generic [ref=e905]: (5)
+                    - generic "974 views" [ref=e906]:
+                      - img [ref=e907]
+                      - generic [ref=e910]: "974"
+                  - generic [ref=e911]:
+                    - button "Add Bookmark" [ref=e912]:
+                      - img [ref=e913]
+                    - img [ref=e916]
+    - generic [ref=e924]:
+      - generic [ref=e925]:
+        - img [ref=e926]
+        - text: Newsletter Signup
+      - heading "Weekly Developer Newsletter" [level=2] [ref=e928]
+      - paragraph [ref=e929]: Get the latest AI tools and resources delivered to your inbox. Unsubscribe anytime.
+      - generic [ref=e931]:
+        - generic [ref=e932]:
+          - img [ref=e933]
+          - textbox "Enter your work email" [ref=e936]
+        - button "Subscribe" [ref=e937]:
+          - text: Subscribe
+          - img [ref=e938]
+      - paragraph [ref=e940]: Get weekly updates. No spam.
+  - contentinfo [ref=e941]:
+    - generic:
+      - generic:
+        - generic:
+          - generic: ">"
+          - generic: "::"
+          - generic: "1"
+          - generic: "}"
+          - generic: "1"
+          - generic: "1"
+          - generic: =>
+          - generic: "}"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: AI
+          - generic: var
+          - generic: "NULL"
+          - generic: "]"
+          - generic: (
+          - generic: API
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: (
+        - generic:
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "]"
+          - generic: "1"
+          - generic: "1"
+          - generic: "]"
+          - generic: ...
+          - generic: =>
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: ML
+          - generic: py
+          - generic: JSON
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+        - generic:
+          - generic: ">"
+          - generic: "0"
+          - generic: XML
+          - generic: var
+          - generic: "1"
+          - generic: FF
+          - generic: "0"
+          - generic: "{"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: git
+          - generic: api
+          - generic: "["
+          - generic: "]"
+          - generic: sql
+          - generic: "0"
+        - generic:
+          - generic: JSON
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "&&"
+          - generic: "1"
+          - generic: "1"
+          - generic: var
+          - generic: "1"
+          - generic: CPU
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: ...
+          - generic: "1"
+          - generic: "0"
+          - generic: "{"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: CPU
+          - generic: "0"
+          - generic: "0"
+        - generic:
+          - generic: FF
+          - generic: "1"
+          - generic: js
+          - generic: CPU
+          - generic: var
+          - generic: )
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "::"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: npm
+          - generic: "1"
+        - generic:
+          - generic: "0"
+          - generic: "]"
+          - generic: 0x
+          - generic: "["
+          - generic: py
+          - generic: js
+          - generic: "0"
+          - generic: =>
+          - generic: "0"
+          - generic: "1"
+          - generic: sql
+          - generic: "1"
+          - generic: var
+          - generic: API
+          - generic: api
+          - generic: "1"
+          - generic: "0"
+          - generic: GPT
+        - generic:
+          - generic: api
+          - generic: "1"
+          - generic: "0"
+          - generic: XML
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: ">"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: 0x
+          - generic: "0"
+          - generic: git
+          - generic: "0"
+          - generic: sql
+          - generic: js
+          - generic: "0"
+          - generic: fn
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: git
+          - generic: "]"
+          - generic: "1"
+          - generic: "0"
+          - generic: sql
+        - generic:
+          - generic: 0x
+          - generic: "0"
+          - generic: "1"
+          - generic: 0x
+          - generic: <
+          - generic: "["
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "TRUE"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: js
+          - generic: XML
+          - generic: npm
+          - generic: "&&"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+        - generic:
+          - generic: "]"
+          - generic: sql
+          - generic: "1"
+          - generic: "::"
+          - generic: "1"
+          - generic: "1"
+          - generic: API
+          - generic: "&&"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "]"
+          - generic: ==
+          - generic: "1"
+          - generic: "0"
+          - generic: let
+        - generic:
+          - generic: var
+          - generic: )
+          - generic: "0"
+          - generic: "0"
+          - generic: "{"
+          - generic: "0"
+          - generic: "1"
+          - generic: GPT
+          - generic: "1"
+          - generic: fn
+          - generic: XML
+          - generic: "1"
+          - generic: "0"
+          - generic: API
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: js
+          - generic: API
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "}"
+          - generic: "1"
+          - generic: ==
+          - generic: "0"
+          - generic: "1"
+        - generic:
+          - generic: SSL
+          - generic: "1"
+          - generic: "0"
+          - generic: "&&"
+          - generic: sql
+          - generic: "{"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: let
+          - generic: "1"
+          - generic: AI
+          - generic: "1"
+          - generic: (
+          - generic: "1"
+          - generic: npm
+          - generic: "0"
+          - generic: "&&"
+          - generic: )
+          - generic: "0"
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: fn
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: py
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "}"
+          - generic: "1"
+          - generic: "1"
+          - generic: GPT
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "::"
+        - generic:
+          - generic: "0"
+          - generic: XML
+          - generic: "1"
+          - generic: api
+          - generic: api
+          - generic: sql
+          - generic: ==
+          - generic: )
+          - generic: =>
+          - generic: "0"
+          - generic: ==
+          - generic: "0"
+          - generic: DNS
+          - generic: "1"
+          - generic: XML
+          - generic: var
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: ...
+          - generic: "||"
+          - generic: "0"
+          - generic: GPU
+          - generic: fn
+          - generic: "1"
+        - generic:
+          - generic: =>
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: GPT
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: git
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: ...
+          - generic: "0"
+          - generic: "1"
+          - generic: "}"
+          - generic: "0"
+        - generic:
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: ML
+          - generic: "{"
+          - generic: "]"
+          - generic: 0x
+          - generic: "1"
+          - generic: "0"
+          - generic: JSON
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+        - generic:
+          - generic: "0"
+          - generic: AI
+          - generic: ">"
+          - generic: XML
+          - generic: "]"
+          - generic: )
+          - generic: fn
+          - generic: "0"
+          - generic: CPU
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: CPU
+          - generic: "||"
+          - generic: let
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "["
+          - generic: "["
+        - generic:
+          - generic: "0"
+          - generic: "{"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: API
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: ML
+          - generic: FF
+          - generic: "0"
+          - generic: js
+          - generic: "1"
+          - generic: api
+          - generic: "||"
+          - generic: "||"
+          - generic: "0"
+          - generic: "0"
+        - generic:
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: XML
+          - generic: DNS
+          - generic: "0"
+          - generic: GPU
+          - generic: "0"
+          - generic: git
+          - generic: "::"
+          - generic: "&&"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: DNS
+          - generic: py
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: JSON
+          - generic: GPU
+          - generic: "1"
+          - generic: API
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "]"
+          - generic: DNS
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "TRUE"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "&&"
+          - generic: "0"
+          - generic: "TRUE"
+          - generic: "0"
+          - generic: "0"
+          - generic: api
+          - generic: "{"
+          - generic: "NULL"
+          - generic: "1"
+          - generic: JSON
+        - generic:
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: )
+          - generic: "0"
+          - generic: JWT
+          - generic: JSON
+          - generic: =>
+          - generic: js
+          - generic: XML
+          - generic: "0"
+          - generic: "0"
+          - generic: FF
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: JWT
+          - generic: "0"
+        - generic:
+          - generic: "0"
+          - generic: sql
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: ==
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "&&"
+          - generic: npm
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: JSON
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: 0x
+          - generic: ">"
+          - generic: "0"
+          - generic: "0"
+          - generic: ML
+          - generic: "1"
+          - generic: (
+          - generic: "0"
+          - generic: "1"
+          - generic: "::"
+          - generic: "0"
+          - generic: let
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: js
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+        - generic:
+          - generic: js
+          - generic: "1"
+          - generic: JSON
+          - generic: "0"
+          - generic: )
+          - generic: "1"
+          - generic: fn
+          - generic: JSON
+          - generic: "0"
+          - generic: fn
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: "}"
+          - generic: "1"
+          - generic: "1"
+          - generic: git
+          - generic: ">"
+        - generic:
+          - generic: XML
+          - generic: "0"
+          - generic: CPU
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "["
+          - generic: "0"
+          - generic: "1"
+          - generic: ==
+          - generic: "{"
+          - generic: "1"
+          - generic: "0"
+          - generic: CPU
+          - generic: "1"
+          - generic: "1"
+          - generic: py
+          - generic: API
+          - generic: FF
+          - generic: GPU
+          - generic: "0"
+          - generic: ">"
+          - generic: "1"
+          - generic: "1"
+          - generic: let
+          - generic: )
+        - generic:
+          - generic: js
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+          - generic: <
+          - generic: "["
+          - generic: "1"
+          - generic: <
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "0"
+        - generic:
+          - generic: "0"
+          - generic: AI
+          - generic: "0"
+          - generic: "0"
+          - generic: py
+          - generic: "0"
+          - generic: "0"
+          - generic: <
+          - generic: ...
+          - generic: "]"
+          - generic: git
+          - generic: "0"
+          - generic: JWT
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: "0"
+          - generic: JSON
+        - generic:
+          - generic: DNS
+          - generic: "{"
+          - generic: npm
+          - generic: JWT
+          - generic: DNS
+          - generic: "1"
+          - generic: "::"
+          - generic: DNS
+          - generic: )
+          - generic: "0"
+          - generic: <
+          - generic: XML
+          - generic: "0"
+          - generic: "::"
+          - generic: "1"
+          - generic: var
+          - generic: "1"
+          - generic: api
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "||"
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: "{"
+          - generic: "1"
+          - generic: "1"
+        - generic:
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: GPU
+          - generic: "!=="
+          - generic: "1"
+          - generic: "1"
+          - generic: FF
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "TRUE"
+          - generic: AI
+          - generic: git
+          - generic: py
+          - generic: "0"
+          - generic: "1"
+          - generic: =>
+          - generic: "0"
+          - generic: "0"
+          - generic: "1"
+          - generic: var
+          - generic: "0"
+          - generic: "1"
+          - generic: ...
+          - generic: "1"
+        - generic:
+          - generic: GPU
+          - generic: JWT
+          - generic: ...
+          - generic: "0"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: "1"
+          - generic: 0x
+          - generic: "0"
+          - generic: API
+          - generic: DNS
+          - generic: js
+          - generic: "1"
+          - generic: "1"
+          - generic: )
+          - generic: "0"
+          - generic: "1"
+          - generic: "TRUE"
+          - generic: "1"
+          - generic: "1"
+          - generic: git
+          - generic: "0"
+          - generic: "1"
+          - generic: 0x
+          - generic: XML
+          - generic: "0"
+          - generic: AI
+        - generic:
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: fn
+          - generic: git
+          - generic: "0"
+          - generic: ==
+          - generic: npm
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "1"
+          - generic: "0"
+          - generic: "0"
+          - generic: GPT
+          - generic: "||"
+          - generic: "1"
+    - generic [ref=e942]:
+      - generic [ref=e943]:
+        - link "Antigravity Directory Home" [ref=e945] [cursor=pointer]:
+          - /url: /
+          - img [ref=e947]
+          - generic [ref=e949]:
+            - generic [ref=e950]: antigravity
+            - generic [ref=e951]: directory
+        - navigation "Footer Navigation" [ref=e953]:
+          - link "Explore" [ref=e954] [cursor=pointer]:
+            - /url: /
+          - link "Free AI Tools" [ref=e955] [cursor=pointer]:
+            - /url: /tools
+          - link "Submit" [ref=e956] [cursor=pointer]:
+            - /url: /submit
+          - link "Download" [ref=e957] [cursor=pointer]:
+            - /url: /download
+          - link "Help" [ref=e958] [cursor=pointer]:
+            - /url: /troubleshooting
+          - link "Privacy" [ref=e959] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms" [ref=e960] [cursor=pointer]:
+            - /url: /terms
+      - generic [ref=e961]:
+        - paragraph [ref=e962]: Antigravity Directory is an unofficial resource for the agentic coding community. This website is not affiliated with, endorsed by, or associated with Google LLC. "Google" and "Gemini" are trademarks of Google LLC.
+        - paragraph [ref=e963]: © Invictus International Consulting Services 2026
+  - alert [ref=e964]
+```

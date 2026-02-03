@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Sarah Chen",
+    "username": "schen_dev",
+    "tagline": "Mojo Systems Architect | AI Kernel Hacker",
+    "bio": "Specializing in extreme performance optimization for LLM inference engines. Formerly an HPC specialist, now building the decentralized compute layer for Antigravity.",
+    "location": "Berlin, Germany",
+    "githubUsername": "schen-mojo",
+    "twitterHandle": "schen_kernels",
+    "profileCompletionScore": 92
+  },
+  {
+    "name": "Marcus Thorne",
+    "username": "mthorne",
+    "tagline": "Prompt Security Auditor | Red Teaming AI",
+    "bio": "Ensuring the integrity of the next intelligence layer. I break models to make them stronger. Focus on prompt injection mitigation and recursive output sanitization.",
+    "location": "San Francisco, USA",
+    "twitterHandle": "mthorne_red",
+    "linkedinUrl": "https://linkedin.com/in/marcus-thorne-ai",
+    "profileCompletionScore": 88
+  },
+  {
+    "name": "Aiko Sato",
+    "username": "aiko_s",
+    "tagline": "MCP Ecosystem Contributor | Tool-Use Specialist",
+    "bio": "Building the bridges between models and real-world APIs. Primary contributor to the Antigravity MCP Server Registry.",
+    "location": "Tokyo, Japan",
+    "githubUsername": "aiko-sato-dev",
+    "profileCompletionScore": 85
+  },
+  {
+    "name": "Liam O'Shea",
+    "username": "oshea_ops",
+    "tagline": "Agentic DevOps | Kubernetes for LLMs",
+    "bio": "Infrastructure is code, and code is for agents. Automating the lifecycle of distributed intelligence clusters. Irish based, globally operational.",
+    "location": "Dublin, Ireland",
+    "githubUsername": "oshea-ops",
+    "profileCompletionScore": 82
+  },
+  {
+    "name": "Rohan Deshmukh",
+    "username": "rohan_ai",
+    "tagline": "MLOps Engineer | Fine-tuning Enthusiast",
+    "bio": "Specializing in LoRA/QLoRA efficiency. Turning massive models into agile tools for specific industry sectors. Based in Mumbai, syncing with the global core.",
+    "location": "Mumbai, India",
+    "githubUsername": "rohan-d-ml",
+    "linkedinUrl": "https://linkedin.com/in/rohan-deshmukh-ai",
+    "profileCompletionScore": 90
+  },
+  {
+    "name": "Elena Volkov",
+    "username": "evolkov_code",
+    "tagline": "UI/UX for Intelligence | Glassmorphism Specialist",
+    "bio": "Designing the interfaces that make AI feel human. Passionate about sleek dark modes, micro-interactions, and premium developer aesthetics.",
+    "location": "Saint Petersburg, Russia",
+    "twitterHandle": "evolkov_design",
+    "profileCompletionScore": 94
+  },
+  {
+    "name": "Jordan Smith",
+    "username": "jsmith_agents",
+    "tagline": "Autonomous Agent Architect | LangGraph Expert",
+    "bio": "Developing self-correcting agent workflows. If it doesn't loop and learn, it isn't an agent. Contributor to various open-source agent frameworks.",
+    "location": "Austin, USA",
+    "githubUsername": "jsmith-agents",
+    "profileCompletionScore": 75
+  }
+]

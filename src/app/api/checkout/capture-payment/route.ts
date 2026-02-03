@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { capturePayPalPayment } from '@/lib/payment/paypal';
 import { db } from '@/lib/db';
-import { payments, resources } from '@/drizzle/schema';
+import { payments, resources, users } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
 
 import { checkRateLimit as rateLimit } from '@/lib/ratelimit';
+import { sendPaymentConfirmation } from '@/lib/email/templates';
 
 interface CapturePayPalOrderRequest {
   orderId: string;
+}
+
+// Helper function to determine tier from amount (in cents/paise)
+function getTierFromAmount(amount: number): 'STANDARD' | 'FEATURED' {
+  // STANDARD: $49 = 4900 cents, FEATURED: $149 = 14900 cents
+  if (amount >= 10000) return 'FEATURED';
+  return 'STANDARD';
 }
 
 export async function POST(request: NextRequest) {
@@ -69,6 +77,33 @@ export async function POST(request: NextRequest) {
             featured: true,
           })
           .where(eq(resources.id, existingPayment.resourceId));
+      }
+
+      // Send payment confirmation email
+      try {
+        const paymentUser = await db.query.users.findFirst({
+          where: eq(users.id, existingPayment.userId || ''),
+        });
+
+        const resource = await db.query.resources.findFirst({
+          where: eq(resources.id, existingPayment.resourceId || ''),
+        });
+
+        if (paymentUser && resource) {
+          const tier = getTierFromAmount(existingPayment.amount);
+          await sendPaymentConfirmation({
+            userEmail: paymentUser.email,
+            userName: paymentUser.name || 'there',
+            resourceTitle: resource.title,
+            amount: existingPayment.amount,
+            currency: existingPayment.currency,
+            transactionId: captureData.id,
+            tier,
+          });
+        }
+      } catch (emailError) {
+        // Log but don't fail the payment flow
+        console.error('Failed to send payment confirmation email:', emailError);
       }
 
       return NextResponse.json({

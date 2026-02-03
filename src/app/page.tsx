@@ -11,7 +11,10 @@ import { ResourceCard } from '@/components/ResourceCard';
 // import { Pagination } from '@/components/filters/Pagination'; // Pagination replaced by Infinite Scroll
 import { InfiniteResourceGrid } from '@/components/InfiniteResourceGrid';
 import { DirectoryIntelligence } from '@/components/DirectoryIntelligence';
-import { getCategoriesWithCounts, getAllTags, getFilteredResources, validateCategorySlugs } from '@/lib/queries';
+import { HeroSearch } from '@/components/HeroSearch';
+import { CategoryTabs } from '@/components/CategoryTabs';
+import { FeaturedSection } from '@/components/FeaturedSection';
+import { getCategoriesWithCounts, getAllTags, getFilteredResources, validateCategorySlugs, getFeaturedResources } from '@/lib/queries';
 import { validateFilterParams } from '@/lib/validation';
 import dynamic from 'next/dynamic';
 
@@ -52,11 +55,9 @@ export default async function HomePage({
 }) {
   const params = await searchParams;
   
-  // Convert searchParams to URLSearchParams for validation
   const urlParams = new URLSearchParams(params as Record<string, string>);
   const filters = validateFilterParams(urlParams);
   
-  // Validate slugs against DB to clean invalid ones
   const validCategorySlugs = await validateCategorySlugs(filters.categories);
   
   const cleanedFilters = {
@@ -67,11 +68,12 @@ export default async function HomePage({
   const page = Number(params.page) || 1;
   const pageSize = 20;
 
-  const [session, categoriesWithCounts, tags, { resources: filteredResources, totalCount }] = await Promise.all([
+  const [session, categoriesWithCounts, tags, { resources: filteredResources, totalCount }, featuredResources] = await Promise.all([
     auth(),
     getCategoriesWithCounts(),
     getAllTags(),
     getFilteredResources(cleanedFilters, page, pageSize),
+    getFeaturedResources(cleanedFilters.categories[0], 6)
   ]);
 
   const activeFilters = {
@@ -82,6 +84,10 @@ export default async function HomePage({
     sort: cleanedFilters.sort
   };
 
+  const activeCategoryName = cleanedFilters.categories.length > 0 
+    ? categoriesWithCounts.find(c => c.slug === cleanedFilters.categories[0])?.name 
+    : undefined;
+
   return (
     <>
       <MarketplaceHeader />
@@ -91,64 +97,71 @@ export default async function HomePage({
         className="min-h-screen bg-black text-white selection:bg-blue-500/30"
         data-filter-state={JSON.stringify(activeFilters)}
       >
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
-          {/* Command Center: Row 2 & 3 */}
-          <div className="mb-8 space-y-6">
+        {/* 1. Hero Section */}
+        {!cleanedFilters.search && cleanedFilters.categories.length === 0 && (
+          <HeroSearch />
+        )}
+
+        {/* 2. Category Tabs */}
+        <CategoryTabs 
+          categories={categoriesWithCounts} 
+          activeCategories={cleanedFilters.categories} 
+        />
+
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+          
+          {/* 3. Featured Section (Surface best content) */}
+          <FeaturedSection 
+            title={activeCategoryName ? `Featured in ${activeCategoryName}` : "Featured Resources"}
+            resources={featuredResources}
+            href={cleanedFilters.categories.length > 0 ? `/categories/${cleanedFilters.categories[0]}` : "/prompts"}
+            categoryName={activeCategoryName}
+          />
+
+          <div className="flex items-center justify-between mb-8 border-b border-white/[0.05] pb-6">
+            <h2 className="text-[17px] font-black tracking-tight text-white flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+              Directory Listings
+            </h2>
+            <TopFilterBar 
+              totalCount={totalCount} 
+              categories={categoriesWithCounts}
+              tags={tags}
+            />
+          </div>
+          
+          <Suspense fallback={<div className="py-20 text-center text-gray-700 font-mono text-[10px] uppercase tracking-widest animate-pulse">Initializing directory...</div>}>
+            <div className="relative">
+              {filteredResources.length > 0 ? (
+                <InfiniteResourceGrid
+                  initialResources={filteredResources}
+                  initialTotalCount={totalCount}
+                  initialFilters={activeFilters}
+                />
+              ) : (
+                <div className="flex flex-col items-center justify-center py-24 text-center border border-white/[0.05] rounded-xl bg-[#030303]">
+                  <div className="w-12 h-12 bg-gray-950 border border-gray-900 rounded flex items-center justify-center mb-6">
+                    <Package className="w-6 h-6 text-gray-700" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2 tracking-tight">Access denied or empty set</h3>
+                  <p className="text-[12px] text-gray-600 max-w-xs mb-8 leading-relaxed">
+                    No resources matched your current filters. Reset them to start over.
+                  </p>
+                  <Link
+                    href="/"
+                    className="flex items-center justify-center gap-2 px-5 py-2.5 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-all text-[12px] uppercase tracking-widest"
+                  >
+                    Clear Filters
+                  </Link>
+                </div>
+              )}
+            </div>
+          </Suspense>
+
+          {/* 4. Knowledge & Proof Sections (Moved to bottom) */}
+          <div className="mt-20 pt-20 border-t border-white/[0.05] space-y-16">
             <DirectoryIntelligence />
             <Testimonials />
-          </div>
-
-          {/* Main Layout Rail System */}
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
-            
-            {/* Left Rail: Sticky Filter Sidebar */}
-            <aside className="hidden lg:block lg:w-[280px] shrink-0">
-              <div className="lg:sticky lg:top-20">
-                <FilterSidebar 
-                  categories={categoriesWithCounts}
-                  tags={tags}
-                />
-              </div>
-            </aside>
-            
-            {/* Center Rail: Filter Bar + Resource Grid */}
-            <div className="flex-1 min-w-0" id="main-grid">
-              {/* Mobile Filter Toggle & Sort Bar */}
-              <TopFilterBar 
-                totalCount={totalCount} 
-                categories={categoriesWithCounts}
-                tags={tags}
-              />
-              
-              <Suspense fallback={<div className="py-20 text-center text-gray-700 font-mono text-[10px] uppercase tracking-widest animate-pulse">Initializing directory...</div>}>
-                <div className="relative">
-                  {filteredResources.length > 0 ? (
-                    <InfiniteResourceGrid
-                      initialResources={filteredResources}
-                      initialTotalCount={totalCount}
-                      initialFilters={activeFilters}
-                    />
-                  ) : (
-                    <div className="flex flex-col items-center justify-center py-24 text-center border border-white/[0.05] rounded-xl bg-[#030303]">
-                      <div className="w-12 h-12 bg-gray-950 border border-gray-900 rounded flex items-center justify-center mb-6">
-                        <Package className="w-6 h-6 text-gray-700" />
-                      </div>
-                      <h3 className="text-lg font-bold text-white mb-2 tracking-tight">Access denied or empty set</h3>
-                      <p className="text-[12px] text-gray-600 max-w-xs mb-8 leading-relaxed">
-                        No resources matched your current filters. Reset them to start over.
-                      </p>
-                      <Link
-                        href="/"
-                        className="flex items-center justify-center gap-2 px-5 py-2.5 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-all text-[12px] uppercase tracking-widest"
-                      >
-                        Clear Filters
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              </Suspense>
-            </div>
-
           </div>
         </div>
       </main>

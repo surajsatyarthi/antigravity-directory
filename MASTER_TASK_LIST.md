@@ -48,10 +48,11 @@
 | **41** | **1.0** | **Mobile View of Items Optimization** | ✅ **DONE** | Issues Log |
 | **42** | **1.0** | **Consolidate Reports into Walkthrough** | ✅ **DONE** | History |
 | **43** | **1.0** | **Antigravity Resource Consumption Optimization** | ✅ **DONE** | History |
-| **44** | **0.5** | **Analytics Dashboard (Admin View)** | 🔴 **TODO** | PRD |
-| **45** | **0.2** | **Personal User Dashboard** | 🔴 **TODO** | Master Audit |
-| **46** | **<0.1** | **Build Community Page (`/community`)** | 🔴 **TODO** | Master Audit |
-| **47** | **<0.1** | **Native iOS/Android Apps** | 🔴 **TODO** | Master Audit |
+| **44** | **1.0** | **Batch 1 Critical Rework (SSL, Tests, Transactions)** | ✅ **DONE** | PM QA Review |
+| **45** | **0.5** | **Analytics Dashboard (Admin View)** | 🔴 **TODO** | PRD |
+| **46** | **0.2** | **Personal User Dashboard** | 🔴 **TODO** | Master Audit |
+| **47** | **<0.1** | **Build Community Page (`/community`)** | 🔴 **TODO** | Master Audit |
+| **48** | **<0.1** | **Native iOS/Android Apps** | 🔴 **TODO** | Master Audit |
 
 ---
 

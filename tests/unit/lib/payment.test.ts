@@ -1,7 +1,27 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { createPayPalOrder, capturePayPalPayment } from '@/lib/payment/paypal';
 import { createRazorpayOrder, verifyRazorpayPayment } from '@/lib/payment/razorpay';
 import { createMockPayPalOrder } from '../../factories';
+
+// Mock DB
+vi.mock('@/lib/db', () => ({
+  db: {
+    select: vi.fn().mockReturnThis(),
+    from: vi.fn().mockReturnThis(),
+    where: vi.fn().mockReturnThis(),
+    limit: vi.fn().mockImplementation(() => Promise.resolve([])),
+  },
+}));
+
+vi.mock('@/drizzle/schema', () => ({
+  payments: {
+    transactionId: 'transactionId',
+  },
+}));
+
+vi.mock('drizzle-orm', () => ({
+  eq: vi.fn(),
+}));
 
 /**
  * CRITICAL BUSINESS LOGIC TEST

@@ -1,10 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { payments, resources } from '@/drizzle/schema';
+import { payments, resources, users } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
 import crypto from 'crypto';
 
 import { checkRateLimit as rateLimit } from '@/lib/ratelimit';
+import { sendPaymentConfirmation } from '@/lib/email/templates';
+
+// Helper function to determine tier from amount (in cents/paise)
+function getTierFromAmount(amount: number): 'STANDARD' | 'FEATURED' {
+  // STANDARD: $49 = 4900 cents, FEATURED: $149 = 14900 cents
+  // Also handle INR: STANDARD ₹4000 = 400000 paise, FEATURED ₹10000 = 1000000 paise
+  if (amount >= 10000 || amount >= 900000) return 'FEATURED';
+  return 'STANDARD';
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -102,6 +111,33 @@ export async function POST(request: NextRequest) {
           featured: true,
         })
         .where(eq(resources.id, paymentRecord.resourceId));
+    }
+
+    // Send payment confirmation email
+    try {
+      const paymentUser = await db.query.users.findFirst({
+        where: eq(users.id, paymentRecord.userId || ''),
+      });
+
+      const resource = await db.query.resources.findFirst({
+        where: eq(resources.id, paymentRecord.resourceId || ''),
+      });
+
+      if (paymentUser && resource) {
+        const tier = getTierFromAmount(paymentRecord.amount);
+        await sendPaymentConfirmation({
+          userEmail: paymentUser.email,
+          userName: paymentUser.name || 'there',
+          resourceTitle: resource.title,
+          amount: paymentRecord.amount,
+          currency: paymentRecord.currency,
+          transactionId: paymentRecord.transactionId,
+          tier,
+        });
+      }
+    } catch (emailError) {
+      // Log but don't fail the payment flow
+      console.error('Failed to send payment confirmation email:', emailError);
     }
 
     return NextResponse.json({ status: 'OK', received: true }, { status: 200 });
