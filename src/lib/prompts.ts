@@ -8,8 +8,8 @@ export interface Prompt {
   updated: string;
   content: string;
   vs: {
-    cursor: string;
-    windsurf: string;
+    standard: string;
+    legacy: string;
   };
 }
 
@@ -44,8 +44,8 @@ Use the App Router standard:
 
 GENERATE CODE ONLY. NO EXPLANATION UNLESS REQUESTED.`,
     vs: {
-      cursor: "Cursor often hallucinates Client Components for Server Actions. Antigravity enforces strict architectural boundaries.",
-      windsurf: "Windsurf struggles with Next.js 15 distinct caching mechanisms. Antigravity includes pre-configured caching rules."
+      standard: "Other editors often hallucinate Client Components for Server Actions. Antigravity enforces strict architectural boundaries.",
+      legacy: "Legacy tools struggle with Next.js 15 distinct caching mechanisms. Antigravity includes pre-configured caching rules."
     }
   },
   'react-typescript-modern': {
@@ -83,8 +83,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 - Create typed context with null checks
 - Use discriminated unions for state`,
     vs: {
-      cursor: "Cursor's TypeScript inference is often too loose (using `any`). Antigravity forces strict typing for long-term maintainability.",
-      windsurf: "Windsurf misses subtle React 19 concurrent features. Antigravity proactively suggests `useActionState` and `useOptimistic`."
+      standard: "Standard AI inference is often too loose. Antigravity forces strict typing for long-term maintainability.",
+      legacy: "Legacy models miss subtle React 19 concurrent features. Antigravity proactively suggests modern best practices."
     }
   },
   'python-fastapi-best-practices': {
@@ -121,8 +121,8 @@ class UserCreate(BaseModel):
 - Apply dependency injection for shared logic
 - Use async database sessions`,
     vs: {
-      cursor: "Cursor struggles with Python's complex async context. Antigravity ensures valid `await` placement in all FastAPI routes.",
-      windsurf: "Windsurf's Pydantic generation is often outdated (v1). Antigravity defaults to Pydantic v2 best practices."
+      standard: "Generic models struggle with Python's complex async context. Antigravity ensures valid await placement in all FastAPI routes.",
+      legacy: "Legacy tools generate outdated Pydantic code. Antigravity defaults to Pydantic v2 best practices."
     }
   },
   'docker-containerization': {
@@ -155,8 +155,8 @@ RUN npm run build
 - Implement proper health checks
 - Use .dockerignore to exclude unnecessary files`,
     vs: {
-      cursor: "Cursor generates bloated Dockerfiles. Antigravity enforces multi-stage builds to reduce image size by up to 90%.",
-      windsurf: "Windsurf often forgets security contexts. Antigravity adds `USER node` and header hardening by default."
+      standard: "Standard generators produce bloated Dockerfiles. Antigravity enforces multi-stage builds to reduce image size by up to 90%.",
+      legacy: "Legacy assistants often forget security contexts. Antigravity adds non-root users and header hardening by default."
     }
   },
   'typescript-advanced-types': {
@@ -186,8 +186,8 @@ type Optional<T> = { [K in keyof T]?: T[K] };
 - Leverage mapped types for object manipulation
 - Document complex types with JSDoc`,
     vs: {
-      cursor: "Cursor gives up on complex generics. Antigravity excels at recursive type definitions and inference.",
-      windsurf: "Windsurf simplifies types to `any` too often. Antigravity maintains strict type safety even in complex utility chains."
+      standard: "Basic assistants give up on complex generics. Antigravity excels at recursive type definitions and inference.",
+      legacy: "Legacy coding tools simplify types to any too often. Antigravity maintains strict type safety even in complex utility chains."
     }
   }
 };

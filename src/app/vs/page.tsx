@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { Swords, ArrowRight, Zap, Check, X } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: "Cursor vs Antigravity | The Honest Comparison Engine",
-  description: "Stop guessing. See exactly how Antigravity outperforms Cursor, Windsurf, and other AI editors for specialized agentic workflows.",
+  title: "Legacy Editor vs Antigravity | The Honest Comparison Engine",
+  description: "Stop guessing. See exactly how Antigravity outperforms Legacy Editor, Flow Tool, and other AI editors for specialized agentic workflows.",
 };
 
 import { COMPARISONS } from '@/data/comparisons';

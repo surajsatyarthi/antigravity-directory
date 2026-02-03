@@ -107,22 +107,22 @@ export function PromptDetailView({ prompt }: PromptDetailViewProps) {
             ) : (
               <div className="p-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="p-6 rounded-xl bg-red-500/5 border border-red-500/20">
-                    <h3 className="text-lg font-bold text-red-200 mb-4 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-red-500" />
-                      VS Cursor
+                  <div className="p-6 rounded-xl bg-gray-500/5 border border-white/10">
+                    <h3 className="text-lg font-bold text-gray-200 mb-4 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-blue-500" />
+                      Standard AI
                     </h3>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                      {prompt.vs.cursor}
+                      {prompt.vs.standard}
                     </p>
                   </div>
-                  <div className="p-6 rounded-xl bg-orange-500/5 border border-orange-500/20">
-                    <h3 className="text-lg font-bold text-orange-200 mb-4 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-orange-500" />
-                      VS Windsurf
+                  <div className="p-6 rounded-xl bg-gray-500/5 border border-white/10">
+                    <h3 className="text-lg font-bold text-gray-200 mb-4 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-purple-500" />
+                      Legacy Tools
                     </h3>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                      {prompt.vs.windsurf}
+                      {prompt.vs.legacy}
                     </p>
                   </div>
                 </div>
@@ -151,7 +151,7 @@ export function PromptDetailView({ prompt }: PromptDetailViewProps) {
               <Terminal className="w-5 h-5" />
             </div>
             <h3 className="font-bold text-white mb-2">2. Paste</h3>
-            <p className="text-sm text-gray-500">Paste directly into your IDE's agent instructions or `.cursorrules` file.</p>
+            <p className="text-sm text-gray-500">Paste directly into your IDE's agent instructions or global rules file.</p>
           </div>
           <div className="p-6 rounded-2xl bg-[#0A0A0A] border border-white/10">
             <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-4">

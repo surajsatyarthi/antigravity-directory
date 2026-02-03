@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Mail, Zap, Loader2, CheckCircle2, ChevronRight, Eye } from 'lucide-react';
 import { triggerEdwardOutreach } from '@/app/dashboard/actions';
 import { OutreachTarget, generateEdwardEmail } from '@/lib/edward-shared';
-import { enrichContactEmails, EnrichmentStats } from '@/lib/enrich-contacts';
+import { enrichContactsForUnverifiedTools, EnrichmentStats } from '@/lib/enrich-contacts';
 
 interface EdwardOutreachPanelProps {
   prospects: OutreachTarget[];
@@ -39,7 +39,7 @@ export function EdwardOutreachPanel({ prospects }: EdwardOutreachPanelProps) {
     setEnrichmentResults(null);
     
     try {
-      const stats = await enrichContactEmails(50);
+      const stats = await enrichContactsForUnverifiedTools(50);
       setEnrichmentResults(stats);
     } catch (error: any) {
       alert(error.message || 'Enrichment failed');

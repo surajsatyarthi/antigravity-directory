@@ -70,7 +70,7 @@ async function seed() {
       featured: true,
       verified: true,
     },
-    // Cursor Rules
+    // Antigravity Rules
     {
       id: uuidv4(),
       title: 'Next.js 15 App Router Rules',

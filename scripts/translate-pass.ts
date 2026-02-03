@@ -31,7 +31,7 @@ const translationMap: Record<string, { title: string; description: string }> = {
   },
   'rule-typescript-it': {
     title: 'TypeScript Standard Rules (IT)',
-    description: 'Production-ready .cursorrules configuration for enterprise TypeScript projects.'
+    description: 'Production-ready Antigravity rules configuration for enterprise TypeScript projects.'
   },
   'prompt-architect-zh': {
     title: 'Smart System Architect Prompt (ZH)',

@@ -2,6 +2,7 @@ import postgres from 'postgres';
 import { resolve } from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import { config } from 'dotenv';
+import { fileURLToPath } from 'url';
 
 export const TOOLS = [
   { title: "Supabase", category: "database", url: "https://supabase.com", description: "The open source Firebase alternative.", verified: true, stars: 65000 },
@@ -178,6 +179,4 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   config({ path: resolve(process.cwd(), '.env.local') });
   seedTools().catch(() => process.exit(1));
 }
-
-import { fileURLToPath } from 'url';
 
