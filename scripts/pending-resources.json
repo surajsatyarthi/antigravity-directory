@@ -1,11 +1,82 @@
 [
   {
-    "title": "Test Email Notification Resource",
-    "description": "This is a test resource to verify email notifications are working correctly",
-    "url": "https://github.com/test/test-email-verification",
-    "category": "mcp-servers",
-    "stars": 100,
-    "source": "manual-test",
-    "approved": true
+    "title": "teek-design-vue3 Cursor Rules",
+    "description": "Teek 是一个基于 Vue3、TypeScript、Vite、ElementPlus 构建的颜值强大、功能丰富、开箱即用的中后台管理系统解决方案。",
+    "url": "https://github.com/Kele-Bingtang/teek-design-vue3",
+    "category": "rules",
+    "stars": 0,
+    "source": "github-code-search",
+    "approved": true,
+    "content": "# 代码编写规范\n\n## 组件格式\n- 使用 `<script setup lang=\"ts\">` 语法\n- 使用 `defineOptions({ name: \"Xxx\" })` 定义组件名\n- 使用 `const ns = useNamespace(\"xx-xx\")` 创建命名空间\n- 样式文件使用 `@use \"./index\"` 引入\n- 使用 `import { useNamespace } from \"@/composables\"` 创建命名空间\n\n## 类型定义规范\n- Props 和 Emits 使用 TypeScript interface 定义\n- 所有函数参数都要加类型注解\n- 类型文件放在组件同级目录的 `types.ts` 中\n\n## 导入规范\n1. 先引入所有 type 类型（按照导入规范顺序引入，不允许类型和函数的引入混杂在一起）\n2. 引入第三方依赖（Vue 相关生态优先，如 vue、vue-router、vuex、vue-i18n、vue-use，然后是组件库如 Element Plus，@element-plus/icons-vue，最后是第三方插件）\n3. 引入项目目录的其他依赖（@/路径，路径按照 src 目录结构顺序引入）\n4. 引入项目目录的其他组件（@/路径，路径按照 src 目录结构顺序引入）\n5. 引入相对路径的依赖（@/路径，路径按照 src 目录结构顺序引入）\n6. 引入相对路径的组件（@/路径，路径按照 src 目录结构顺序引入）\n7. 直接引入第三方库（如 import \"vue-cropper/dist/index.css\"）\n8. 直接引入绝对路径（如 import \"@/common/styles/common/var.scss\"）\n9. 直接引入相对路径（如 import \"./index.scss\"）\n\n## 组件内 Composables 使用\n- 不推荐直接在组件中写响应式变量、computed、watch、function、生命周期\n- 将关联性高的代码放到 `function useXx` 里然后暴露出来使用\n- 使用 `defineModel` 代替 `props.modelValue`\n\n## 文件组织\n- 通用组件放在 `src/components/` 目录下，按功能分子文件夹\n- 通用可复用逻辑放在 `src/composables/`\n- 通用样式放在 `src/common/styles/`\n- 通用 API 请求相关文件放在 `src/common/api/`\n- 通用工具函数放在 `src/common/utils/`\n\n## 命名规范\n- 所有文件使用 `kebab-case` 风格\n- 引入组件的命名为 `Camel-Case`，如 `import ProTable from \"pro-table.vue\"`\n- TypeScript 接口和类型用 PascalCase\n- 每个组件目录下用 `index.ts` 统一导出\n\n## UI 设计规范\n- 使用 `light.scss` 或 `dark.scss` 的 CSS 变量来统一颜色风格\n- 使用 `varCss` 或 `varCssEl` 函数引用 CSS 变量（cssVar 引入 `--tk-` 开头，cssVarEl 引入 `--el-` 开头）\n- 遵循 BEM 规范，优先使用 useNamespace 函数（如 `ns.b()`、`ns.e()`、`ns.em()`、`ns.is()`、`ns.has()`）\n- 组件的样式优先创建并使用 `.scss` 文件，且在同级 `.vue` 文件下创建同名的 `.scss` 文件\n- 使用 `bem.scss` 的混合宏（如 `@include b(xx) { @include e(xx) { @include m(xx) { @include is(xx) { @include has(xx) { } } } } }`），如果 `@include e(xx){}` 里使用 `@include e{}` 则第二个参数加上 true，即 `@include e(xx, true){}`，否则 `@include e(xx){}` 建议同级写\n- 优先使用项目定义的原子类，在 `atomic.scss` 中定义\n- 请适配移动端，部分移动端宽度变量在 `var.scss` 中定义\n\n## 代码结构\n- props、emits、composables 写在 script 顶部\n- 适当换行，如变量与函数之间，script、template、style 标签之间必须换行\n- 使用 ESLint 和 Prettier 保证代码风格统一\n- composable 和函数用 JSDoc 或 TypeScript 注释说明用途"
+  },
+  {
+    "title": "dx Cursor Rules",
+    "description": "Automatic data loading for Elixir functions",
+    "url": "https://github.com/elixir-dx/dx",
+    "category": "rules",
+    "stars": 0,
+    "source": "github-code-search",
+    "approved": true,
+    "content": "This is an Elixir library that recompiles Elixir code in its AST form.\n\nCode Style and Structure\n- Write concise, idiomatic Elixir code with accurate examples.\n- Use functional programming patterns and leverage immutability.\n- Prefer higher-order functions and recursion over imperative loops.\n- Use pattern matching directly in function clauses when needed for control flow.\n- Prefer patterns in function arguments over case statements.\n- Prefer one-line function syntax with no blank lines in between when all clauses fit on one line.\n- Use descriptive variable and function names (e.g., user_signed_in?, calculate_total).\n- Sort aliases alphabetically.\n- Don't add comments to the code unless explicitly asked for.\n- Calls to defd should not have parentheses.\n\nTests\n- Structure test files to mirror the directory structure of the code under test.\n- Module names in test files must be unique.\n"
+  },
+  {
+    "title": "Image-Reverse-Search-WebExtension Cursor Rules",
+    "description": "WebExtension: Adds an option to the context menu to search with an image on various services. Made with Svelte.",
+    "url": "https://github.com/Brawl345/Image-Reverse-Search-WebExtension",
+    "category": "rules",
+    "stars": 0,
+    "source": "github-code-search",
+    "approved": true,
+    "content": "# Reverse Image Search WebExtension\n\n## Overview\n\n- WebExtension which adds an option to the context menu to search with an image on various services\n- Code is written in TypeScript\n- UI is built with Svelte 4\n- Linted with Biome\n- Tested with Vitest\n- Built with web-ext\n\n## Source code structure\n\n- `source/`: Source code\n  - `service-worker/`: Service worker code\n  - `options/`: Options page\n    - `components/`: Svelte components\n    - `stores/`: Svelte stores\n    - `App.svelte`: Main Svelte component\n    - `options.scss`: Stylesheet\n    - `options.ts`: For initialization of Svelte\n- `public/`: Built code\n  - `build/`: Built JavaScript and CSS\n  - `_locales/`: Localizations\n  - `manifest.json`: Manifest\n  - `icons/`: Icons\n\n## Build\n\nBuild with `npm run build`. Never run the `start:BROWSER` commands, the user will do it manually. Lint with the `npm run lint:types` for TypeScript and `npm run lint:code` for Biome. Do not use `npm run dev` as it will start a long running watch commands - just use `npm run build`.\n\n## Important to note\n\nFor every string, add the localization to `public/_locales/LOCALE/messages.json` and use the `getMessage` function to retrieve it. Do not hardcode any strings in the code. Translate the strings in all languages. For German, use the informal (Du) version.\n\nOnly add tests for core code and when neccessary. Do not test Svelte components.\n"
+  },
+  {
+    "title": "SmartFlowAI Cursor Rules",
+    "description": "Projekt zaliczeniowy kursu 10xdev",
+    "url": "https://github.com/emielregis2/SmartFlowAI",
+    "category": "rules",
+    "stars": 0,
+    "source": "github-code-search",
+    "approved": true,
+    "content": "# SmartFlowAI - Cursor AI Rules\n\n## Projekt\n- **Nazwa:** SmartFlowAI  \n- **Cel:** Analiza procesów biznesowych przez ChatGPT-4o\n- **Stack:** Python, Streamlit, Supabase, OpenAI\n- **Architektura:** Ultra-prosta (1 plik główny)\n\n## Zasady kodowania\n- Wszystko w streamlit_app.py (max 300 linii)\n- Funkcje proste i czytelne\n- Używaj type hints: def func(param: str) -> str\n- Komentarze po polsku dla logiki biznesowej\n- Error handling: try/except z user-friendly messages\n\n## Środowisko\n- Python 3.11+\n- Requirements: streamlit, supabase, openai, pytest\n- Testy w test_app.py\n- Zmienne środowiskowe w .env\n\n## AI Assistant guidelines\n- Priorytet: prostota i funkcjonalność\n- Zawsze testuj kod przed podaniem\n- Sugeruj ulepszenia tylko jeśli poprawiają UX\n- Używaj polskich komentarzy w kodzie biznesowym"
+  },
+  {
+    "title": "SoundScape-AI Cursor Rules",
+    "description": "SoundScape AI",
+    "url": "https://github.com/Alen-guo/SoundScape-AI",
+    "category": "rules",
+    "stars": 0,
+    "source": "github-code-search",
+    "approved": true,
+    "content": "# SoundScape AI - 项目规则与开发指南\n\n## 🌍 核心原则：海外市场定位\n这是一个面向海外市场的环境音效网站，目标是与 A Soft Murmur 竞争。\n\n## 📝 语言与内容规则\n\n### 🌍 用户界面内容（纯英文）\n- **所有用户可见的文字必须使用地道英文**\n- **UI组件、标签、用户消息中严禁出现中文**\n- **使用专业、自然的英文文案**\n- **目标受众：英语母语用户（美国、英国、加拿大、澳大利亚市场）**\n\n### 🔧 开发沟通（中文可以）\n- **代码注释可以使用中文，便于内部团队沟通**\n- **开发者之间的对话可以用中文**\n- **错误日志和调试信息可以用中文**\n- **开发者文档可以双语或中文**\n\n### 📋 明确区分\n- **前端/UI = 英文**（用户看到的）\n- **后端/代码 = 中文可以**（开发者看到的）\n\n## 🎯 目标受众\n- **主要用户：** 寻求专注/放松音效的英语用户\n- **人群特征：** 远程工作者、学生、冥想练习者\n- **竞争对手：** A Soft Murmur、MyNoise.net、Noisli\n\n## 🛠️ 技术栈\n- **前端：** Next.js 14 + TypeScript + Tailwind CSS\n- **音频：** Howler.js 音频管理\n- **图标：** Lucide React\n- **部署：** 静态导出，便于托管\n\n## 🎨 设计原则\n- **现代、简洁的UI，超越 A Soft Murmur**\n- **基于渐变的色彩方案**\n- **响应式设计（移动端优先）**\n- **专业外观，吸引付费用户**\n\n## 🚀 开发优先级\n1. **第一阶段：** 完成前端，配备智能关键词匹配\n2. **第二阶段：** 真实AI集成（OpenAI/Claude API）\n3. **第三阶段：** 高级功能（分享、预设、分析）\n\n## 📁 音频资源\n- **格式：** `/public/sounds/` 目录下的 MP3/mp4/wav 文件\n- **命名：** kebab-case 格式（rain.mp3, white-noise.mp3）\n- **质量：** 高质量、可循环的环境音效\n\n## 🎵 音效分类\n1. **自然音效：** 雨声、雷声、风声、鸟鸣、蟋蟀、海浪\n2. **城市音效：** 咖啡厅、键盘敲击、白噪音\n3. **火焰音效：** 壁炉噼啪声\n\n## 💰 盈利策略\n- **免费增值模式：** 基础音效免费，高级功能付费\n- **目标关键词：** \"white noise generator\"、\"ambient sounds\"、\"focus sounds\"\n- **SEO优化：** 针对海外流量获取进行优化\n\n## 🔧 代码标准\n- **TypeScript严格模式：** false（便于快速开发）\n- **组件结构：** 使用 hooks 的函数式组件\n- **状态管理：** React hooks + localStorage 持久化\n- **错误处理：** 音频加载的优雅降级\n- **注释：** 中文可以，便于团队理解\n- **控制台日志：** 中文可以，便于调试\n\n## 📊 成功指标\n- **流量目标：** 获取 A Soft Murmur 月访问量 31.5万 的显著份额\n- **用户参与度：** 会话时长、回访率\n- **转化率：** 免费到付费的升级率\n\n---\n**牢记：每个功能都应该比 A Soft Murmur 更优秀，以证明用户切换的合理性** "
+  },
+  {
+    "title": "ClautoHotkey Cursor Rules",
+    "description": "This repo has the docs needed to create a useful Autohotkey v2 project in Claude. ",
+    "url": "https://github.com/TrueCrimeDev/ClautoHotkey",
+    "category": "rules",
+    "stars": 0,
+    "source": "github-code-search",
+    "approved": true,
+    "content": "ClautoHotkey Workspace Rules (Legacy Aggregator)\n\nPurpose\n- Modern project rules live in `.cursor/rules/` as MDC files (preferred).\n- This legacy file exists only as an overview for tools that still surface `.cursorrules*`.\n\nPrimary rules (authoritative in `.cursor/rules/`)\n- 00-always-linter.mdc\n- 10-core-ahk-system.mdc\n- 20-objects-and-descriptors.mdc\n- 30-text-processing.mdc\n- 40-gui-layout.mdc\n- 50-data-structures-and-arrays.mdc\n- 99-enforcement-checklist.mdc\n- playbook-gui.mdc, playbook-text.mdc\n\nNotes\n- Use `.cursor/rules/` for all rule management going forward.\n\n- For feature-specific examples or deeper context, search `AHK_Notes/` (Classes, Concepts, Methods, Patterns, Snippets)."
+  },
+  {
+    "title": "deeperseeker-app Cursor Rules",
+    "description": "Cursor AI rules configuration",
+    "url": "https://github.com/ansh/deeperseeker-app",
+    "category": "rules",
+    "stars": 0,
+    "source": "github-code-search",
+    "approved": true,
+    "content": "This is AI chat app called DeeperSeeker.\n\nHere are some pieces of information you need to know about this project:\n• React Native v0.76 is used as the framework with Expo SDK v52 on top of it\n• Expo Router is used for routing with file based routing in the `./app` directory\n• The database is a local SQLite database in `./utils/Database.ts`\n• The components are in `./components` directory\n• Auth is setup with Clerk\n• Use `bun` instead of `npm` and `bunx` instead of `npx` for all package management and execution\n• Common commands are in the scripts section of the `package.json` file\n  • To build the project fresh on the iOS simulator use `bun ios` and make sure to prebuild the project first with `bun prebuild` since this is an expo-dev-client project\n  • To start the project without building run `bun start`\n"
+  },
+  {
+    "title": "CookMate-AI Cursor Rules",
+    "description": "Cursor AI rules configuration",
+    "url": "https://github.com/kay8723/CookMate-AI",
+    "category": "rules",
+    "stars": 0,
+    "source": "github-code-search",
+    "approved": true,
+    "content": "Before diving into the best practices, please note that you may need to adapt the globs depending on your project's specific file structure and requirements.\n\n---\nname: react-native-best-practices.mdc\ndescription: Best practices for React Native mobile development\nglobs: **/*.{ts,tsx,js,jsx}\n---\n\n- Use `useMemo` and `useCallback` to optimize performance\n- Implement proper state management with Context API or Redux\n- Utilize `FlatList` for efficient rendering of lists\n- Ensure platform-specific code is handled with `Platform.select`\n- Use `Dimensions` API for responsive layouts\n\n---\nname: typescript-best-practices.mdc\ndescription: TypeScript coding standards and type safety guidelines\nglobs: **/*.{ts,tsx}\n---\n\n- Enable `strict` mode in `tsconfig.json`\n- Use type aliases for complex types\n- Leverage union types for better type checking\n- Implement generics for reusable components\n- Use `readonly` for immutable properties\n\n---\nname: expo-best-practices.mdc\ndescription: Best practices for using Expo in React Native projects\nglobs: **/*.{ts,tsx,js,jsx}\n---\n\n- Use Expo's managed workflow for easier app deployment\n- Leverage Expo's built-in modules for common functionalities\n- Implement Expo's push notification service for better user engagement\n- Use Expo's asset management for efficient resource handling\n- Regularly update Expo SDK for the latest features and security\n\n---\nname: supabase-best-practices.mdc\ndescription: Best practices for using Supabase as a backend and database\nglobs: **/*.{ts,tsx,js,jsx}\n---\n\n- Use Supabase's real-time capabilities for live updates\n- Implement proper error handling for database operations\n- Utilize Supabase's authentication for secure user management\n- Optimize queries with Supabase's filtering and sorting options\n- Use Supabase's storage for efficient file management\n\n---\nname: react-native-paper-best-practices.mdc\ndescription: Best practices for using React Native Paper for UI components\nglobs: **/*.{ts,tsx,js,jsx}\n---\n\n- Use React Native Paper's theming system for consistent styling\n- Implement custom themes to match your app's design\n- Utilize Paper's built-in components for faster development\n- Ensure accessibility by using Paper's accessibility props\n- Optimize performance by using `memo` on Paper components\n\n---\nname: google-gemini-api-best-practices.mdc\ndescription: Best practices for using Google Gemini API for AI processing\nglobs: **/*.{ts,tsx,js,jsx}\n---\n\n- Implement proper error handling for API requests\n- Use caching to reduce API calls and improve performance\n- Monitor and handle API rate limits effectively\n- Implement fallback mechanisms for when the API is unavailable\n- Ensure user data privacy when using the API\n\n---\nname: deepseek-best-practices.mdc\ndescription: Best practices for using DeepSeek for AI processing\nglobs: **/*.{ts,tsx,js,jsx}\n---\n\n- Optimize API calls by batching requests where possible\n- Implement robust error handling and retries\n- Use DeepSeek's capabilities for complex AI tasks\n- Ensure compliance with DeepSeek's usage policies\n- Monitor API usage to stay within rate limits\n\n---\nname: react-native-animations-best-practices.mdc\ndescription: Best practices for using React Native Animations\nglobs: **/*.{ts,tsx,js,jsx}\n---\n\n- Use `Animated` API for smooth animations\n- Implement `useNativeDriver` for better performance\n- Optimize animations by using `interpolate` for value mapping\n- Use `LayoutAnimation` for smooth list updates\n- Ensure animations are accessible and don't cause motion sickness"
   }
 ]

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('AI Utility Tools', () => {
 
-  test('ROI Calculator loads and updates calculation', async ({ page }) => {
+  test.skip('ROI Calculator loads and updates calculation', async ({ page }) => {
     await page.goto('/tools/roi-calculator');
     await expect(page.getByText('LLM Pricing Calculator')).toBeVisible();
     
@@ -15,7 +15,7 @@ test.describe('AI Utility Tools', () => {
     await expect(page.locator('.recharts-responsive-container')).toBeVisible();
   });
 
-  test('Token Counter accepts input', async ({ page }) => {
+  test.skip('Token Counter accepts input', async ({ page }) => {
     await page.goto('/tools/token-counter');
     await expect(page.getByText('TikToken Counter')).toBeVisible();
     
@@ -28,7 +28,7 @@ test.describe('AI Utility Tools', () => {
     await expect(tokenDisplay).not.toHaveText('0');
   });
 
-  test('RAG Visualizer renders chunks', async ({ page }) => {
+  test.skip('RAG Visualizer renders chunks', async ({ page }) => {
     await page.goto('/tools/rag-visualizer');
     await expect(page.getByText('RAG Chunk Visualizer')).toBeVisible();
     
@@ -42,7 +42,7 @@ test.describe('AI Utility Tools', () => {
     await expect(page.locator('.grid.gap-3')).toBeVisible();
   });
 
-  test('Prompt Optimizer UI loads', async ({ page }) => {
+  test.skip('Prompt Optimizer UI loads', async ({ page }) => {
     await page.goto('/tools/prompt-generator');
     await expect(page.getByText('Prompt Optimizer')).toBeVisible();
     

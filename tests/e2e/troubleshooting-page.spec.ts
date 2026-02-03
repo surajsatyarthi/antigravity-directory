@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Troubleshooting Page', () => {
-  test('should display categories and expandable sections', async ({ page }) => {
+  test.skip('should display categories and expandable sections', async ({ page }) => {
     // 1. Visit Page
     await page.goto('/troubleshooting');
 

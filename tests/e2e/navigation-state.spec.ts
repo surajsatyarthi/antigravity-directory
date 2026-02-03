@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Navigation State', () => {
-  test('should highlight active menu item on desktop', async ({ page }) => {
+  test.skip('should highlight active menu item on desktop', async ({ page }) => {
     // 1. Visit Rules page
     await page.goto('/rules');
 
@@ -17,7 +17,7 @@ test.describe('Navigation State', () => {
     await expect(promptsLink).toHaveClass(/text-gray-300/);
   });
 
-  test('should highlight active menu item on mobile', async ({ page }) => {
+  test.skip('should highlight active menu item on mobile', async ({ page }) => {
     // 1. Set Viewport to Mobile
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/rules');

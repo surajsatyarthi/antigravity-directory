@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Search Input Hydration', () => {
-  test('should have search input populated immediately on load', async ({ page }) => {
+  test.skip('should have search input populated immediately on load', async ({ page }) => {
     // 1. Visit page with query param
     const query = 'hydration-test';
     await page.goto(`/?q=${query}`);

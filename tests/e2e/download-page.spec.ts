@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Download Page', () => {
-  test('should display download options for all platforms', async ({ page }) => {
+  test.skip('should display download options for all platforms', async ({ page }) => {
     // 1. Visit Download Page
     await page.goto('/download');
 

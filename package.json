@@ -17,7 +17,8 @@
     "drizzle:generate": "drizzle-kit generate",
     "drizzle:migrate": "tsx src/drizzle/migrate.ts",
     "drizzle:studio": "drizzle-kit studio",
-    "drizzle:push": "drizzle-kit push"
+    "drizzle:push": "drizzle-kit push",
+    "validate:data": "tsx scripts/validate-data.ts"
   },
   "dependencies": {
     "@auth/core": "^0.34.3",

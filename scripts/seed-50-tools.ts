@@ -63,12 +63,58 @@ export function validateTool(tool: any) {
   return true;
 }
 
+// Check for --skip-checks flag
+const skipChecks = process.argv.includes('--skip-checks');
+
+export async function validateEnvironment(sql: any) {
+  if (skipChecks) {
+    console.log('⚠️  Skipping pre-flight checks (--skip-checks set)');
+    return true;
+  }
+
+  console.log('🔍 Running pre-flight checks...');
+  
+  try {
+    // Check 1: Database connection
+    await sql`SELECT 1`;
+    console.log('  ✅ Database connected');
+
+    // Check 2: Admin user exists
+    const [admin] = await sql`SELECT id FROM users WHERE role = 'ADMIN' LIMIT 1`;
+    if (!admin) {
+      console.error('  ❌ Error: No Admin user found. Run "npm run seed:users" first.');
+      return false;
+    }
+    console.log('  ✅ Admin user found');
+
+    // Check 3: Categories exist
+    const [category] = await sql`SELECT id FROM categories LIMIT 1`;
+    if (!category) {
+      console.error('  ❌ Error: No categories found. Run database migrations first.');
+      return false;
+    }
+    console.log('  ✅ Categories exist');
+    
+    return true;
+  } catch (err: any) {
+    console.error('  ❌ Pre-flight check failed:', err.message);
+    return false;
+  }
+}
+
 export async function seedTools(db?: any) {
   const sql = db || postgres(process.env.DATABASE_URL!, { 
     ssl: process.env.DATABASE_SSL !== 'false' ? 'require' : false 
   });
 
   try {
+    if (!db) { // Only run checks if we own the connection (not called from tests with mock)
+        const environmentValid = await validateEnvironment(sql);
+        if (!environmentValid) {
+            throw new Error('Pre-flight checks failed');
+        }
+    }
+
     const categories = await sql`SELECT id, slug FROM categories`;
     const categoryMap = new Map(categories.map((c: any) => [c.slug, c.id]));
 

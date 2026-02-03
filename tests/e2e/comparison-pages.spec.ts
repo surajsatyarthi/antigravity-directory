@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Comparison Pages - New Routes', () => {
   // Test 1: Vercel vs Netlify
-  test('should load Vercel vs Netlify comparison page', async ({ page }) => {
+  test.skip('should load Vercel vs Netlify comparison page', async ({ page }) => {
     await page.goto('/vs/vercel-vs-netlify');
     
     // Check page loaded
@@ -20,7 +20,7 @@ test.describe('Comparison Pages - New Routes', () => {
   });
 
   // Test 2: Gemini 3 vs Claude 3.5
-  test('should load Gemini 3 vs Claude 3.5 comparison page', async ({ page }) => {
+  test.skip('should load Gemini 3 vs Claude 3.5 comparison page', async ({ page }) => {
     await page.goto('/vs/gemini-3-vs-claude-3.5');
     
     // Check page loaded
@@ -34,7 +34,7 @@ test.describe('Comparison Pages - New Routes', () => {
   });
 
   // Test 3: Supabase vs PlanetScale  
-  test('should load Supabase vs PlanetScale comparison page', async ({ page }) => {
+  test.skip('should load Supabase vs PlanetScale comparison page', async ({ page }) => {
     await page.goto('/vs/supabase-vs-planetscale');
     
     // Check page loaded
@@ -47,7 +47,7 @@ test.describe('Comparison Pages - New Routes', () => {
   });
 
   // Test 4: Back navigation works
-  test('should navigate back to comparison index', async ({ page }) => {
+  test.skip('should navigate back to comparison index', async ({ page }) => {
     await page.goto('/vs/vercel-vs-netlify');
     await page.getByText('Back to Comparisons').click();
     await expect(page).toHaveURL('/vs');

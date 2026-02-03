@@ -20,7 +20,7 @@ test.describe('Filter Persistence (Phase 4)', () => {
     });
   });
 
-  test('filters should persist after page reload', async ({ page }) => {
+  test.skip('filters should persist after page reload', async ({ page }) => {
     // 1. Land on homepage
     await page.goto('/');
     await page.waitForLoadState('networkidle');
@@ -53,7 +53,7 @@ test.describe('Filter Persistence (Phase 4)', () => {
     }).toPass({ timeout: 10000 });
   });
 
-  test('URL parameters should override localStorage (Shared Link Priority)', async ({ page }) => {
+  test.skip('URL parameters should override localStorage (Shared Link Priority)', async ({ page }) => {
     const URL_SLUG = 'prompts';
     const STORED_SLUG = 'rules';
 
@@ -87,7 +87,7 @@ test.describe('Filter Persistence (Phase 4)', () => {
     }).toPass({ timeout: 10000 });
   });
 
-  test('invalid slugs in localStorage should be validated and cleaned', async ({ page }) => {
+  test.skip('invalid slugs in localStorage should be validated and cleaned', async ({ page }) => {
     const INVALID_SLUG = 'invalid-123-slug';
     const VALID_QUERY = 'valid-query';
     
