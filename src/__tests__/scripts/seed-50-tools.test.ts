@@ -13,9 +13,7 @@ const { mockSql } = vi.hoisted(() => ({
 
 vi.mock('postgres', () => {
   const m = vi.fn(() => mockSql);
-  // @ts-ignore
-  m.default = m;
-  return m;
+  return { default: m };
 });
 
 // Mock dotenv

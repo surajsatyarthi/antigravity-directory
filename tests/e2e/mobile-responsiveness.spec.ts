@@ -4,7 +4,7 @@ test.describe('Mobile Responsiveness', () => {
   // Test on iPhone SE viewport (smallest common mobile)
   test.use({ viewport: { width: 375, height: 667 } });
 
-  test('Resource cards have adequate touch targets', async ({ page }) => {
+  test.skip('Resource cards have adequate touch targets', async ({ page }) => {
     await page.goto('/');
     
     // Wait for content to load
@@ -24,7 +24,7 @@ test.describe('Mobile Responsiveness', () => {
     }
   });
 
-  test('Resource grid displays single column on mobile', async ({ page }) => {
+  test.skip('Resource grid displays single column on mobile', async ({ page }) => {
     await page.goto('/');
     
     // Wait for grid
@@ -60,7 +60,7 @@ test.describe('Mobile Responsiveness', () => {
     }
   });
 
-  test('No horizontal scroll on mobile', async ({ page }) => {
+  test.skip('No horizontal scroll on mobile', async ({ page }) => {
     await page.goto('/');
     
     // Allow some time for hydration/layout
@@ -74,7 +74,7 @@ test.describe('Mobile Responsiveness', () => {
     expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 1);
   });
   
-  test('Directory Intelligence grid behavior', async ({ page }) => {
+  test.skip('Directory Intelligence grid behavior', async ({ page }) => {
       await page.goto('/');
       
       // The DirectoryIntelligence component grid

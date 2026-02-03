@@ -125,6 +125,9 @@ function gateStart(gateNumber: number) {
     fs.mkdirSync(ARTIFACTS_DIR, { recursive: true });
   }
 
+  // Set current gate immediately to ensure state persistence
+  setCurrentGate(gateNumber);
+
   // Load template
   const templatePath = path.join(RALPH_DIR, 'templates', `GATE_${gateNumber}_*.md`);
   const templates = fs.readdirSync(path.join(RALPH_DIR, 'templates'))
@@ -207,7 +210,7 @@ function gateComplete(gateNumber: number) {
   saveAuditTrail(trail);
 
   // Advance to next gate
-  if (gateNumber < 11) {
+  if (gateNumber < 12) {
     setCurrentGate(gateNumber + 1);
     log(`✓ Gate ${gateNumber} complete`, colors.green);
     log(`✓ Ready to start Gate ${gateNumber + 1}`, colors.green);
@@ -239,7 +242,7 @@ function verify() {
     log(`Started: ${task.started}\n`);
 
     let taskFailed = false;
-    for (let i = 1; i <= 11; i++) {
+    for (let i = 1; i <= 12; i++) {
       const gate = task.gates.find(g => g.gate === i);
       if (gate) {
         log(`  ✅ Gate ${i}: ${gate.name}`, colors.green);
@@ -259,7 +262,7 @@ function verify() {
 
   if (hasErrors) {
     log('❌ Verification FAILED: Incomplete gates detected.', colors.red);
-    log('   All tasks must complete Gates 1-11 before merging.', colors.red);
+    log('   All tasks must complete Gates 1-12 before merging.', colors.red);
     process.exit(1);
   } else {
     log('✅ Verification PASSED: All tasks fully compliant.', colors.green);

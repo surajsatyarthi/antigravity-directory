@@ -1,0 +1,244 @@
+[2026-02-03T14:59:57.092Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T14:59:57.094Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T14:59:57.099Z] [INFO] ⚠️  Skipping pre-flight checks (--skip-checks set) 
+[2026-02-03T14:59:57.099Z] [INFO] 🔍 DISCOVERY MODE: Finding new content...
+ 
+[2026-02-03T14:59:57.101Z] [INFO] ⭐ Syncing GitHub Stars (existing resources)... 
+[2026-02-03T14:59:57.467Z] [WARN] ⚠️  GITHUB_TOKEN not set. Rate limit will be low (60/hr). 
+[2026-02-03T14:59:57.827Z] [WARN] ⚠️ Rate limited. Waiting 2695s... 
+[2026-02-03T14:59:57.834Z] [WARN] ⚠️ Rate limited. Waiting 2695s... 
+[2026-02-03T14:59:57.844Z] [WARN] ⚠️ Rate limited. Waiting 2695s... 
+[2026-02-03T14:59:57.872Z] [WARN] ⚠️ Rate limited. Waiting 2695s... 
+[2026-02-03T14:59:57.874Z] [WARN] ⚠️ Rate limited. Waiting 2695s... 
+[2026-02-03T15:16:10.128Z] [INFO] 🔍 Validating pending resources data... 
+[2026-02-03T15:16:10.133Z] [INFO] 📋 Checking 0 resources... 
+[2026-02-03T15:16:10.133Z] [INFO] ✅ Validation PASSED: No data issues found. 
+[2026-02-03T15:16:13.547Z] [INFO] 🔍 Validating pending resources data... 
+[2026-02-03T15:16:13.549Z] [INFO] 📋 Checking 4 resources... 
+[2026-02-03T15:16:13.550Z] [ERROR] ❌ Validation failed with 3 errors: 
+[2026-02-03T15:16:13.551Z] [ERROR]   - Item #1 (Missing URL): Missing 'url' 
+[2026-02-03T15:16:13.552Z] [ERROR]   - Item #2 (Invalid URL): Invalid URL "not-a-url" 
+[2026-02-03T15:16:13.552Z] [ERROR]   - Item #4 (Duplicate 2): Duplicate URL "https://example.com" 
+[2026-02-03T15:24:59.648Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T15:24:59.651Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T15:24:59.656Z] [WARN] ⚠️  GITHUB_TOKEN not set. Rate limit will be low (60/hr). 
+[2026-02-03T15:24:59.656Z] [INFO] 🔍 Running pre-flight checks... 
+[2026-02-03T15:25:02.570Z] [INFO]   ✅ Database connected 
+[2026-02-03T15:25:02.779Z] [INFO]   ✅ Admin user found 
+[2026-02-03T15:25:02.988Z] [INFO]   ✅ Categories exist 
+[2026-02-03T15:25:02.989Z] [INFO] 🔍 DISCOVERY MODE: Finding new content...
+ 
+[2026-02-03T15:25:02.990Z] [INFO] ⭐ Syncing GitHub Stars (existing resources)... 
+[2026-02-03T15:25:03.193Z] [WARN] ⚠️  GITHUB_TOKEN not set. Rate limit will be low (60/hr). 
+[2026-02-03T15:25:03.586Z] [WARN] ⚠️ Rate limited. Waiting 1189s... 
+[2026-02-03T15:25:03.595Z] [WARN] ⚠️ Rate limited. Waiting 1189s... 
+[2026-02-03T15:25:03.616Z] [WARN] ⚠️ Rate limited. Waiting 1189s... 
+[2026-02-03T15:25:03.634Z] [WARN] ⚠️ Rate limited. Waiting 1189s... 
+[2026-02-03T15:25:03.644Z] [WARN] ⚠️ Rate limited. Waiting 1189s... 
+[2026-02-03T15:26:11.019Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T15:26:11.023Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T15:26:11.027Z] [WARN] ⚠️  GITHUB_TOKEN not set. Rate limit will be low (60/hr). 
+[2026-02-03T15:26:11.028Z] [INFO] 🔍 Running pre-flight checks... 
+[2026-02-03T15:26:11.442Z] [INFO]   ✅ Database connected 
+[2026-02-03T15:26:11.501Z] [INFO]   ✅ Admin user found 
+[2026-02-03T15:26:11.559Z] [INFO]   ✅ Categories exist 
+[2026-02-03T15:26:11.560Z] [INFO] 🔍 DISCOVERY MODE: Finding new content...
+ 
+[2026-02-03T15:26:11.561Z] [INFO] ⭐ Syncing GitHub Stars (SKIPPED for discovery test)... 
+[2026-02-03T15:26:11.561Z] [INFO] 🔍 DISCOVERING NEW CONTENT...
+ 
+[2026-02-03T15:26:11.561Z] [INFO] 📦 Searching GitHub for MCP Servers... 
+[2026-02-03T15:26:13.910Z] [INFO]   ✨ Found: serena (⭐ 19645) 
+[2026-02-03T15:26:13.911Z] [INFO] 
+🏗️  Searching for new boilerplates... 
+[2026-02-03T15:26:15.895Z] [INFO] 
+🔄 Searching for workflow templates... 
+[2026-02-03T15:26:17.751Z] [INFO]   ✨ Found: awesome-n8n (⭐ 166) 
+[2026-02-03T15:26:17.751Z] [INFO] 
+📋 Searching for cursor rules... 
+[2026-02-03T15:26:17.806Z] [INFO] 
+🎯 Discovery complete! Found 2 new resources
+ 
+[2026-02-03T15:26:17.808Z] [INFO] 📄 Saved 2 pending resources to: ./scripts/pending-resources.json 
+[2026-02-03T15:26:17.809Z] [INFO] 
+🔎 NEXT STEPS: 
+[2026-02-03T15:26:17.809Z] [INFO]   1. Review the pending-resources.json file 
+[2026-02-03T15:26:17.809Z] [INFO]   2. Set "approved: true" for items you want to import 
+[2026-02-03T15:26:17.809Z] [INFO]   3. Run: npx tsx scripts/weekly-scraper.ts import
+ 
+[2026-02-03T15:26:49.576Z] [INFO] 🔍 Validating pending resources data... 
+[2026-02-03T15:26:49.671Z] [INFO] 📋 Checking 2 resources... 
+[2026-02-03T15:26:49.672Z] [INFO] ✅ Validation PASSED: No data issues found. 
+[2026-02-03T15:32:44.182Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T15:32:44.185Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T15:32:44.189Z] [INFO] 🔍 Running pre-flight checks... 
+[2026-02-03T15:32:44.548Z] [INFO]   ✅ Database connected 
+[2026-02-03T15:32:44.598Z] [INFO]   ✅ Admin user found 
+[2026-02-03T15:32:44.672Z] [INFO]   ✅ Categories exist 
+[2026-02-03T15:32:44.673Z] [INFO] 🎯 Targeted discovery mode: rules 
+[2026-02-03T15:32:44.674Z] [INFO] 🔍 DISCOVERY MODE: Finding new content...
+ 
+[2026-02-03T15:32:44.674Z] [INFO] ⭐ Skipping GitHub Star sync in targeted mode. 
+[2026-02-03T15:32:44.675Z] [INFO] 🔍 DISCOVERING NEW CONTENT...
+ 
+[2026-02-03T15:32:44.675Z] [INFO] 
+📋 Searching for cursor rules... 
+[2026-02-03T15:32:45.047Z] [INFO] 
+🎯 Discovery complete! Found 0 new resources
+ 
+[2026-02-03T15:32:45.049Z] [INFO] 📄 Saved 0 pending resources to: /Users/surajsatyarthi/Desktop/antigravity-directory/scripts/pending-resources.json 
+[2026-02-03T15:32:45.049Z] [INFO] 
+🔎 NEXT STEPS: 
+[2026-02-03T15:32:45.050Z] [INFO]   1. Review the pending-resources.json file 
+[2026-02-03T15:32:45.050Z] [INFO]   2. Set "approved: true" for items you want to import 
+[2026-02-03T15:32:45.050Z] [INFO]   3. Run: npx tsx scripts/weekly-scraper.ts import
+ 
+[2026-02-03T15:43:43.500Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T15:43:43.503Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T15:43:43.508Z] [INFO] 🔍 Running pre-flight checks... 
+[2026-02-03T15:43:44.083Z] [INFO]   ✅ Database connected 
+[2026-02-03T15:43:44.383Z] [INFO]   ✅ Admin user found 
+[2026-02-03T15:43:44.445Z] [INFO]   ✅ Categories exist 
+[2026-02-03T15:43:44.445Z] [INFO] 🎯 Targeted discovery mode: rules 
+[2026-02-03T15:43:44.446Z] [INFO] 🔍 DISCOVERY MODE: Finding new content...
+ 
+[2026-02-03T15:43:44.447Z] [INFO] ⭐ Skipping GitHub Star sync in targeted mode. 
+[2026-02-03T15:43:44.447Z] [INFO] 🔍 DISCOVERING NEW CONTENT...
+ 
+[2026-02-03T15:43:44.447Z] [INFO] 
+📋 Searching for cursor rules... 
+[2026-02-03T15:43:45.218Z] [INFO] 
+🎯 Discovery complete! Found 0 new resources
+ 
+[2026-02-03T15:43:45.219Z] [INFO] 📄 Saved 0 pending resources to: /Users/surajsatyarthi/Desktop/antigravity-directory/scripts/pending-resources.json 
+[2026-02-03T15:43:45.220Z] [INFO] 
+🔎 NEXT STEPS: 
+[2026-02-03T15:43:45.220Z] [INFO]   1. Review the pending-resources.json file 
+[2026-02-03T15:43:45.220Z] [INFO]   2. Set "approved: true" for items you want to import 
+[2026-02-03T15:43:45.220Z] [INFO]   3. Run: npx tsx scripts/weekly-scraper.ts import
+ 
+[2026-02-03T15:45:44.851Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T15:45:44.855Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T15:45:44.859Z] [INFO] 🔍 Running pre-flight checks... 
+[2026-02-03T15:45:45.323Z] [INFO]   ✅ Database connected 
+[2026-02-03T15:45:45.391Z] [INFO]   ✅ Admin user found 
+[2026-02-03T15:45:45.542Z] [INFO]   ✅ Categories exist 
+[2026-02-03T15:45:45.543Z] [INFO] 🎯 Targeted discovery mode: rules 
+[2026-02-03T15:45:45.544Z] [INFO] 🔍 DISCOVERY MODE: Finding new content...
+ 
+[2026-02-03T15:45:45.544Z] [INFO] ⭐ Skipping GitHub Star sync in targeted mode. 
+[2026-02-03T15:45:45.546Z] [INFO] 🔍 DISCOVERING NEW CONTENT...
+ 
+[2026-02-03T15:45:45.546Z] [INFO] 
+📋 Searching for cursor rules... 
+[2026-02-03T15:45:45.920Z] [INFO] 
+🎯 Discovery complete! Found 0 new resources
+ 
+[2026-02-03T15:45:45.923Z] [INFO] 📄 Saved 0 pending resources to: /Users/surajsatyarthi/Desktop/antigravity-directory/scripts/pending-resources.json 
+[2026-02-03T15:45:45.923Z] [INFO] 
+🔎 NEXT STEPS: 
+[2026-02-03T15:45:45.923Z] [INFO]   1. Review the pending-resources.json file 
+[2026-02-03T15:45:45.923Z] [INFO]   2. Set "approved: true" for items you want to import 
+[2026-02-03T15:45:45.924Z] [INFO]   3. Run: npx tsx scripts/weekly-scraper.ts import
+ 
+[2026-02-03T15:46:43.845Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T15:46:43.848Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T15:46:43.852Z] [INFO] 🔍 Running pre-flight checks... 
+[2026-02-03T15:46:44.216Z] [INFO]   ✅ Database connected 
+[2026-02-03T15:46:44.264Z] [INFO]   ✅ Admin user found 
+[2026-02-03T15:46:44.310Z] [INFO]   ✅ Categories exist 
+[2026-02-03T15:46:44.310Z] [INFO] 🎯 Targeted discovery mode: rules 
+[2026-02-03T15:46:44.312Z] [INFO] 🔍 DISCOVERY MODE: Finding new content...
+ 
+[2026-02-03T15:46:44.313Z] [INFO] ⭐ Skipping GitHub Star sync in targeted mode. 
+[2026-02-03T15:46:44.314Z] [INFO] 🔍 DISCOVERING NEW CONTENT...
+ 
+[2026-02-03T15:46:44.315Z] [INFO] 
+📋 Searching for cursor rules... 
+[2026-02-03T15:46:44.688Z] [INFO] 
+🎯 Discovery complete! Found 0 new resources
+ 
+[2026-02-03T15:46:44.690Z] [INFO] 📄 Saved 0 pending resources to: /Users/surajsatyarthi/Desktop/antigravity-directory/scripts/pending-resources.json 
+[2026-02-03T15:46:44.691Z] [INFO] 
+🔎 NEXT STEPS: 
+[2026-02-03T15:46:44.691Z] [INFO]   1. Review the pending-resources.json file 
+[2026-02-03T15:46:44.691Z] [INFO]   2. Set "approved: true" for items you want to import 
+[2026-02-03T15:46:44.691Z] [INFO]   3. Run: npx tsx scripts/weekly-scraper.ts import
+ 
+[2026-02-03T15:50:19.000Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T15:50:19.005Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T15:50:19.010Z] [INFO] 🔍 Running pre-flight checks... 
+[2026-02-03T15:50:19.351Z] [INFO]   ✅ Database connected 
+[2026-02-03T15:50:19.407Z] [INFO]   ✅ Admin user found 
+[2026-02-03T15:50:19.459Z] [INFO]   ✅ Categories exist 
+[2026-02-03T15:50:19.459Z] [INFO] 🎯 Targeted discovery mode: rules 
+[2026-02-03T15:50:19.461Z] [INFO] 🔍 DISCOVERY MODE: Finding new content...
+ 
+[2026-02-03T15:50:19.462Z] [INFO] ⭐ Skipping GitHub Star sync in targeted mode. 
+[2026-02-03T15:50:19.463Z] [INFO] 🔍 DISCOVERING NEW CONTENT...
+ 
+[2026-02-03T15:50:19.463Z] [INFO] 
+📋 Searching for cursor rules... 
+[2026-02-03T15:50:23.763Z] [INFO]   ⬇️  Fetching content for teek-design-vue3... 
+[2026-02-03T15:50:24.188Z] [INFO]   ✨ Found & Downloaded: teek-design-vue3 rules 
+[2026-02-03T15:50:24.282Z] [INFO]   ⬇️  Fetching content for dx... 
+[2026-02-03T15:50:24.682Z] [INFO]   ✨ Found & Downloaded: dx rules 
+[2026-02-03T15:50:24.772Z] [INFO]   ⬇️  Fetching content for Image-Reverse-Search-WebExtension... 
+[2026-02-03T15:50:25.291Z] [INFO]   ✨ Found & Downloaded: Image-Reverse-Search-WebExtension rules 
+[2026-02-03T15:50:25.383Z] [INFO]   ⬇️  Fetching content for SmartFlowAI... 
+[2026-02-03T15:50:25.764Z] [INFO]   ✨ Found & Downloaded: SmartFlowAI rules 
+[2026-02-03T15:50:25.853Z] [INFO]   ⬇️  Fetching content for SoundScape-AI... 
+[2026-02-03T15:50:26.232Z] [INFO]   ✨ Found & Downloaded: SoundScape-AI rules 
+[2026-02-03T15:50:26.320Z] [INFO]   ⬇️  Fetching content for ClautoHotkey... 
+[2026-02-03T15:50:26.724Z] [INFO]   ✨ Found & Downloaded: ClautoHotkey rules 
+[2026-02-03T15:50:26.814Z] [INFO]   ⬇️  Fetching content for deeperseeker-app... 
+[2026-02-03T15:50:27.141Z] [INFO]   ✨ Found & Downloaded: deeperseeker-app rules 
+[2026-02-03T15:50:27.234Z] [INFO]   ⬇️  Fetching content for CookMate-AI... 
+[2026-02-03T15:50:27.641Z] [INFO]   ✨ Found & Downloaded: CookMate-AI rules 
+[2026-02-03T15:50:27.641Z] [INFO] 
+🎯 Discovery complete! Found 8 new resources
+ 
+[2026-02-03T15:50:27.644Z] [INFO] 📄 Saved 8 pending resources to: /Users/surajsatyarthi/Desktop/antigravity-directory/scripts/pending-resources.json 
+[2026-02-03T15:50:27.644Z] [INFO] 
+🔎 NEXT STEPS: 
+[2026-02-03T15:50:27.645Z] [INFO]   1. Review the pending-resources.json file 
+[2026-02-03T15:50:27.645Z] [INFO]   2. Set "approved: true" for items you want to import 
+[2026-02-03T15:50:27.645Z] [INFO]   3. Run: npx tsx scripts/weekly-scraper.ts import
+ 
+[2026-02-03T15:50:36.410Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T15:50:36.412Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T15:50:36.416Z] [INFO] 📥 IMPORT MODE: Adding approved resources... (DRY RUN)
+ 
+[2026-02-03T15:50:36.417Z] [WARN] ⚠️  No approved resources found. Mark items with "approved: true" first. 
+[2026-02-03T15:50:43.096Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T15:50:43.098Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T15:50:43.102Z] [INFO] 📥 IMPORT MODE: Adding approved resources... (DRY RUN)
+ 
+[2026-02-03T15:50:43.103Z] [WARN] ⚠️  No approved resources found. Mark items with "approved: true" first. 
+[2026-02-03T15:50:51.475Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T15:50:51.477Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T15:50:51.481Z] [INFO] 📥 IMPORT MODE: Adding approved resources... (DRY RUN)
+ 
+[2026-02-03T15:50:51.482Z] [INFO] ✅ Found 8 approved resources to import
+ 
+[2026-02-03T15:50:51.877Z] [INFO]   [DRY-RUN] Would import: "teek-design-vue3 Cursor Rules" -> /rules/teek-design-vue3-cursor-rules 
+[2026-02-03T15:50:51.878Z] [INFO]   [DRY-RUN] Would import: "dx Cursor Rules" -> /rules/dx-cursor-rules 
+[2026-02-03T15:50:51.879Z] [INFO]   [DRY-RUN] Would import: "Image-Reverse-Search-WebExtension Cursor Rules" -> /rules/image-reverse-search-webextension-cursor-rules 
+[2026-02-03T15:50:51.879Z] [INFO]   [DRY-RUN] Would import: "SmartFlowAI Cursor Rules" -> /rules/smartflowai-cursor-rules 
+[2026-02-03T15:50:51.880Z] [INFO]   [DRY-RUN] Would import: "SoundScape-AI Cursor Rules" -> /rules/soundscape-ai-cursor-rules 
+[2026-02-03T15:50:51.881Z] [INFO]   [DRY-RUN] Would import: "ClautoHotkey Cursor Rules" -> /rules/clautohotkey-cursor-rules 
+[2026-02-03T15:50:51.881Z] [INFO]   [DRY-RUN] Would import: "deeperseeker-app Cursor Rules" -> /rules/deeperseeker-app-cursor-rules 
+[2026-02-03T15:50:51.882Z] [INFO]   [DRY-RUN] Would import: "CookMate-AI Cursor Rules" -> /rules/cookmate-ai-cursor-rules 
+[2026-02-03T15:50:51.882Z] [INFO] 
+📊 IMPORT SUMMARY: 
+[2026-02-03T15:50:51.882Z] [INFO]   ✅ Success: 8 
+[2026-02-03T15:50:51.883Z] [INFO]   ⏩ Skipped: 0 
+[2026-02-03T15:50:51.883Z] [INFO]   ❌ Failed:  0 
+[2026-02-03T16:02:39.856Z] [INFO] ✅ DATABASE_URL is set 
+[2026-02-03T16:02:39.860Z] [INFO] 📍 Connecting to database... 
+[2026-02-03T16:02:39.864Z] [INFO] 📅 Weekly Content Scraper with Approval Workflow
+ 
+[2026-02-03T16:02:39.865Z] [INFO] Usage: 
+[2026-02-03T16:02:39.866Z] [INFO]   npx tsx scripts/weekly-scraper.ts discover [--type <mcp|boilerplates|workflows|rules>]  # Find new content 
+[2026-02-03T16:02:39.866Z] [INFO]   npx tsx scripts/weekly-scraper.ts import    # Import approved items
+ 

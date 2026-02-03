@@ -1,14 +1,31 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-import { fetchWithRetry } from '../../../scripts/weekly-scraper';
+vi.mock('../../../scripts/logger', () => {
+    return {
+        logger: {
+            info: vi.fn(),
+            warn: vi.fn(),
+            error: vi.fn(),
+        }
+    };
+});
+
+import { logger } from '../../../scripts/logger';
+const mockLogger = logger;
+
+import { fetchWithRetry, validateEnvironment } from '../../../scripts/weekly-scraper';
 
 describe('weekly-scraper', () => {
-  const mockFetch = vi.fn();
-
   beforeEach(() => {
     vi.clearAllMocks();
     vi.useFakeTimers();
-    vi.stubGlobal('fetch', mockFetch);
+    // Default fetch mock
+    global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        headers: new Headers(),
+        json: async () => ({})
+    });
   });
 
   afterEach(() => {
@@ -16,47 +33,91 @@ describe('weekly-scraper', () => {
     vi.unstubAllGlobals();
   });
 
-  it('fetchWithRetry should use exponential backoff', async () => {
-    mockFetch
-      .mockRejectedValueOnce(new Error('Fail 1'))
-      .mockRejectedValueOnce(new Error('Fail 2'))
-      .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve({ success: true }) });
+  describe('fetchWithRetry', () => {
+    it('should return JSON on success', async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        headers: new Headers(),
+        json: async () => ({ stargazers_count: 100, forks_count: 20 })
+      });
+      
+      const data = await fetchWithRetry('https://api.github.com/repos/test/test', {});
+      expect(data.stargazers_count).toBe(100);
+      expect(fetch).toHaveBeenCalledTimes(1);
+    });
 
-    const fetchPromise = fetchWithRetry('https://api.github.com/repos/test/repo', {});
-    
-    // First retry after 1000ms
-    await vi.advanceTimersByTimeAsync(1000);
-    // Second retry after 2000ms
-    await vi.advanceTimersByTimeAsync(2000);
-    
-    const result = await fetchPromise;
-    expect(result.success).toBe(true);
-    expect(mockFetch).toHaveBeenCalledTimes(3);
+    it('should retry on failure', async () => {
+      global.fetch = vi.fn()
+        .mockRejectedValueOnce(new Error('Network error'))
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          headers: new Headers(),
+          json: async () => ({ success: true })
+        });
+        
+      const promise = fetchWithRetry('https://api.github.com', {}, 3);
+      
+      // Fast-forward timers for retry delay
+      await vi.advanceTimersByTimeAsync(1000); // 1s wait
+      
+      const data = await promise;
+      expect(data).toEqual({ success: true });
+      expect(fetch).toHaveBeenCalledTimes(2);
+      expect(mockLogger.warn).not.toHaveBeenCalled(); // fetchWithRetry only logs if it hits 403 or throws in retry loop
+    });
+
+    it('should handle rate limits (403/429)', async () => {
+      global.fetch = vi.fn()
+        .mockResolvedValueOnce({
+          ok: false,
+          status: 403,
+          headers: new Headers({ 'x-ratelimit-reset': String(Math.floor(Date.now() / 1000) + 2) }), // 2s reset
+          json: async () => ({})
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          headers: new Headers(),
+          json: async () => ({ success: true })
+        });
+
+      const promise = fetchWithRetry('https://api.github.com', {}, 3);
+      
+      await vi.advanceTimersByTimeAsync(2000); // Wait for rate limit reset
+      
+      const data = await promise;
+      expect(data).toEqual({ success: true });
+      expect(fetch).toHaveBeenCalledTimes(2);
+      expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining('Rate limited'));
+    });
   });
 
-  it('fetchWithRetry should handle rate limiting with reset header', async () => {
-    const now = Date.now();
-    const resetTime = Math.floor(now / 1000) + 5; // 5 seconds from now
-    
-    mockFetch
-      .mockResolvedValueOnce({
-        status: 403,
-        headers: new Map([['X-RateLimit-Reset', resetTime.toString()]])
-      })
-      .mockResolvedValueOnce({ ok: true, json: () => Promise.resolve({ success: true }) });
+  describe('validateEnvironment', () => {
+    const mockSql = Object.assign(vi.fn(), {
+      begin: vi.fn(),
+      end: vi.fn()
+    }) as any;
 
-    const fetchPromise = fetchWithRetry('https://api.github.com/repos/test/repo', {});
-    
-    // Wait for the rate limit to reset
-    await vi.advanceTimersByTimeAsync(6000); // 5s + buffer
-    
-    const result = await fetchPromise;
-    expect(result.success).toBe(true);
-    expect(mockFetch).toHaveBeenCalledTimes(2);
-  });
+    it('should return true when all checks pass', async () => {
+      mockSql.mockResolvedValueOnce([1]); // Connection check
+      mockSql.mockResolvedValueOnce([{ id: 'admin-1' }]); // Admin check
+      mockSql.mockResolvedValueOnce([{ count: '10' }]); // Category check - should match categories[0].count
 
-  it('discoverMode should respect concurrency limits', async () => {
-    // This is a more complex test that would require mocking the 'sql' and 'pLimit' modules
-    // but we can at least verify that it calls fetchWithRetry which we already tested.
+      const result = await validateEnvironment(mockSql);
+      expect(result).toBe(true);
+      expect(mockLogger.info).toHaveBeenCalledWith(expect.stringContaining('Database connected'));
+    });
+
+    it('should return false if admin is missing', async () => {
+      mockSql
+        .mockResolvedValueOnce([1]) // Connection
+        .mockResolvedValueOnce([]); // No admin
+
+      const result = await validateEnvironment(mockSql);
+      expect(result).toBe(false);
+      expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining('No ADMIN user found'));
+    });
   });
 });

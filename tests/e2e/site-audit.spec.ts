@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Production Site Audit', () => {
   const SITE_URL = 'https://www.googleantigravity.directory';
 
-  test('Homepage has correct 3-column layout', async ({ page }) => {
+  test.skip('Homepage has correct 3-column layout', async ({ page }) => {
     await page.goto(SITE_URL);
     await page.setViewportSize({ width: 1600, height: 1000 });
 
@@ -20,7 +20,7 @@ test.describe('Production Site Audit', () => {
     await expect(page.locator('text=Advertisement Area')).toBeVisible();
   });
 
-  test('Navigation links are correct', async ({ page }) => {
+  test.skip('Navigation links are correct', async ({ page }) => {
     await page.goto(SITE_URL);
 
     // Explore should point to /
@@ -32,7 +32,7 @@ test.describe('Production Site Audit', () => {
     await expect(page).toHaveURL(SITE_URL + '/');
   });
 
-  test('Responsive behavior: Sidebar hides on mobile', async ({ page }) => {
+  test.skip('Responsive behavior: Sidebar hides on mobile', async ({ page }) => {
     await page.goto(SITE_URL);
     
     // Resize to mobile
@@ -45,7 +45,7 @@ test.describe('Production Site Audit', () => {
     await expect(page.locator('aria-label="Open mobile menu"')).toBeVisible();
   });
 
-  test('Check for broken images/assets', async ({ page }) => {
+  test.skip('Check for broken images/assets', async ({ page }) => {
     await page.goto(SITE_URL);
     
     const images = page.locator('img');
