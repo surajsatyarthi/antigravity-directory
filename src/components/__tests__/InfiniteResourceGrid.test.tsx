@@ -1,3 +1,6 @@
+/**
+ * @vitest-environment jsdom
+ */
 import { render, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { InfiniteResourceGrid } from '../InfiniteResourceGrid';

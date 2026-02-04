@@ -57,9 +57,9 @@ describe('Edward Enrichment Engine - Contact Enrichment', () => {
   describe('Happy Path - Successful Enrichment', () => {    it('enriches contacts for high-signal unverified tools', async () => {
       const mockTools = [
         createMockTool({
-          name: 'Cursor',
+          name: 'Antigravity',
           searchVolumeSignal: 45000,
-          website: 'https://cursor.sh',
+          website: 'https://antigravity.codes',
           contactEmail: null,
         }),
         createMockTool({
@@ -76,8 +76,8 @@ describe('Edward Enrichment Engine - Contact Enrichment', () => {
       (db.limit as any).mockResolvedValueOnce(mockTools);
 
       // Mock Apollo API responses with correct structure
-      (findContactEmail as any)
-        .mockResolvedValueOnce({ success: true, email: 'founder@cursor.sh', creditsUsed: 1, message: 'Found' })
+      vi.mocked(findContactEmail)
+        .mockResolvedValueOnce({ success: true, email: 'founder@antigravity.codes', creditsUsed: 1, message: 'Found' })
         .mockResolvedValueOnce({ success: true, email: 'ceo@github.com', creditsUsed: 1, message: 'Found' });
 
       const result = await enrichContactsForUnverifiedTools();
@@ -90,7 +90,7 @@ describe('Edward Enrichment Engine - Contact Enrichment', () => {
 
       // Verify Apollo was called for each tool
       expect(findContactEmail).toHaveBeenCalledTimes(2);
-      expect(findContactEmail).toHaveBeenCalledWith('cursor.sh', 'Cursor');
+      expect(findContactEmail).toHaveBeenCalledWith('antigravity.codes', 'Antigravity');
       expect(findContactEmail).toHaveBeenCalledWith('github.com', 'GitHub Copilot');
 
       // Verify database was updated

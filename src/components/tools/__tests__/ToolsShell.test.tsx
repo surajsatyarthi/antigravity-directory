@@ -1,3 +1,7 @@
+/**
+ * @vitest-environment jsdom
+ */
+import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom'; // Fix for toBeInTheDocument
 import { ToolsShell } from '@/components/tools/ToolsShell';

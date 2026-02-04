@@ -100,7 +100,7 @@ test.describe('E2E: Tool Pages - SEO Critical', () => {
   test.skip('tool page loads in under 2 seconds', async ({ page }) => {
     const start = Date.now();
     
-    await page.goto('http://localhost:3000/tools/cursor');
+    await page.goto('http://localhost:3000/tools/gemini');
     await expect(page.locator('h1')).toBeVisible();
     
     const loadTime = Date.now() - start;

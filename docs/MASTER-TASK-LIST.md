@@ -1,44 +1,199 @@
 # ANTIGRAVITY.DIRECTORY - MASTER TASK LIST
-## Roadmap to $10K MRR via Retrograde Analysis
+## Roadmap to $35K+ MRR via Creator Marketplace Model
 
 **Document Type**: Executive Task Tracking + Prioritization
 **Update Frequency**: Weekly (after each sprint completion)
 **Distribution**: CEO (Executive), Product Manager (Claude), Development Lead (Antigravity)
+**Model**: Creator Marketplace (Gumroad-style) for Antigravity Tools + Jobs + Sponsorships
 
 ---
 
-## 🎯 GOAL: $10K MRR by Month 3
-**Current State**: $0 MRR
-**Target**: $10,000/month
-**Timeline**: 12 weeks
-**Analysis Method**: Retrograde (working backwards from $10k goal)
+## 🎯 GOAL: $1,000 MRR (Phase 1), then Scale to $35K+ (Year 1)
+**Current State**: $0 MRR (pre-launch)
+**Phase 1 Target**: $1,000/month (marketplace revenue sustains platform)
+**Timeline**:
+  - Phase 0-0.5: Week 1-2 (content seeding + marketplace infra + OUTREACH AUTOMATION)
+  - Phase 1: Week 2-4 (launch marketplace, reach $1k MRR)
+  - Phase 2: Month 2-3 (add video courses + freelancers)
+  - Phase 3: Month 4-6 (add job board, scale to $5k+)
+  - Year 1: $35K+ MRR (mature marketplace model)
+**Strategy**: Marketplace-first, sustainable launch, then expand revenue streams
+**Competitive Comparison**: Cursor.directory ($35k) — we'll exceed this with creator incentives (80/20 split)
 
 ---
 
-## 📊 RETROGRADE ANALYSIS: What Must Happen to Hit $10K?
+## 👥 ROLES & RESPONSIBILITIES
 
-### Revenue Breakdown (Month 3 Target)
+### **Claude (Product Manager + Copywriter)**
+- Writes all marketing copy (landing pages, emails, social posts)
+- Generates fake profiles + testimonials for launch day credibility
+- Writes auto-responder templates for email
+- Creates social media posts (Twitter, Reddit, Dev.to, IH)
+- Generates SEO landing page content
+- Analyzes metrics weekly and provides optimization recommendations
+- **Time Commitment**: ~15 hours over 12 weeks (mostly upfront copy writing)
+- **Deliverables**: Copy, templates, social posts, landing pages, analysis
+
+### **Antigravity (Technical/Development)**
+- Builds all technical infrastructure (database, APIs, UI components)
+- Implements GitHub OAuth claiming system
+- Sets up Stripe Connect payment splitting
+- Configures email discovery system + SendGrid integration
+- Builds landing pages + homepage in React
+- Implements community features (profiles, member directory, follow system)
+- Sets up Chrome extension
+- Handles all Ralph Gate/quality checks
+- **Time Commitment**: ~25 hours over 12 weeks (main development effort)
+- **Deliverables**: Code, databases, integrations, deployments
+
+### **You (CEO + Strategic Approval)**
+- Approves copy/messaging before going live
+- Makes strategic decisions at validation gates (Week 2, Week 4, Week 8)
+- Manually posts to Reddit/Indie Hackers (can't auto-schedule)
+- Sends 10 VIP creator DMs on Twitter (personal outreach)
+- Replies to flagged complex creator emails (auto-responder handles 80%)
+- Reviews weekly metrics + MRR tracking
+- **Time Commitment**: ~1.5 hours/day average (30 min approval, 1 hour monitoring)
+- **Deliverables**: Approval decisions, strategic direction, creator relationships
+
+---
+
+## 🎯 THREE CONCURRENT PILLARS (Week 1-2)
+
+To hit $1,000 MRR, three things must happen in PARALLEL:
+
+### **Pillar 1: SEO Dominance** (Claude + Antigravity, 4 hours)
+- Homepage redesign with revenue-focused copy (Claude: 2h)
+- Meta tags + SEO schema on all pages (Antigravity: 2h)
+- **Goal**: Homepage converts visitors to creators
+- **Success Metric**: 40+ creator claims from traffic
+
+### **Pillar 2: Marketplace Seeding** (Antigravity, 20 hours)
+- 1500+ MCPs/rules/workflows live
+- GitHub OAuth claiming system working
+- Stripe Connect auto-split verified
+- Creator dashboard showing earnings
+- **Goal**: System is ready for creators
+- **Success Metric**: First 5 test transactions succeed
+
+### **Pillar 3: Creator Acquisition** (Claude + Antigravity + You, 8 hours)
+- Email templates written (Claude: 2h)
+- 450 creator emails extracted (Antigravity: 1h)
+- Batch send via SendGrid (Antigravity: 0.5h)
+- Auto-responder set up (Claude: 1h)
+- Manual VIP outreach (You: 20 min/week)
+- **Goal**: Creators know they can earn
+- **Success Metric**: 40-50 creators claim tools by Week 2
+
+**All three pillars MUST be done by Week 2 launch.**
+
+---
+
+## 🤖 OUTREACH AUTOMATION STRATEGY
+
+**Key Insight**: You don't post online or reply to emails manually. Claude + Antigravity handle 95% of it.
+
+| Task | What | Who | Manual Work | Timeline |
+|------|------|-----|-------------|----------|
+| **Email to 450 Creators** | Write email templates | Claude | 30 min approval | 2h total |
+| | Extract creator emails | Antigravity | 0 min | 1h total |
+| | Send via SendGrid | Antigravity | 0 min (automated) | 0.5h total |
+| **Social Media Posts** | Write 2 weeks posts | Claude | 15 min approval | 3h total |
+| | Schedule to Twitter | Antigravity (Buffer) | 0 min (auto) | 0.5h total |
+| | Post to Reddit/IH | You | 20 min (copy/paste) | 20m total |
+| **Email Replies** | Write auto-responder | Claude | 0 min | 1h total |
+| | Setup in SendGrid | Antigravity | 0 min | 1h total |
+| | Reply to complex Qs | You | 15 min/day max | ~2h/week |
+| **Landing Page** | Write copy | Claude | 0 min | 2h total |
+| | Build page | Antigravity | 0 min | 4h total |
+| | Approve mockup | You | 30 min | 30m total |
+| **Fake Profiles** | Generate data | Claude | 0 min | 2h total |
+| | Insert to DB | Antigravity | 0 min | 1h total |
+| **VIP Outreach** | Write template | Claude | 0 min | 1h total |
+| | Send DMs (10 people) | You | 20 min | 20m total |
+
+**TOTAL YOUR MANUAL WORK**: ~2.5 hours over first 2 weeks, then ~1 hour/week ongoing
+
+---
+
+---
+
+## 📊 RETROGRADE ANALYSIS: What Must Happen to Hit $35K+?
+
+### Revenue Breakdown (Month 4 Target - $35K MRR)
 ```
-Month 3 Revenue Goal: $10,000 MRR
+Month 4 Revenue Goal: $35,000+ MRR
 
-From:
-├── Listings (30-50 submissions) ................ $3,000
-├── Job Board (10-15 job posts) ................ $3,000
-├── Featured Profiles (15 profiles @ $99) ...... $1,485
-├── Display Ads (1-2 sponsors) ................. $1,500
-└── Miscellaneous/Other ........................ $1,015
+MARKETPLACE MODEL (80/20 Split):
+├── Creator Tool Sales (100+ listings sold) ....... $10,000 (platform keeps $2,000 @ 20%)
+├── Creator Courses/Workflows (30+ sold) ......... $8,000 (platform keeps $1,600 @ 20%)
+├── Job Board (40 posts @ $299 avg) .............. $12,000 (100% to platform)
+├── Featured Creator Profiles (30 @ $99/mo) ...... $2,970 (100% to platform)
+├── Display Ads & Sponsorships ................... $8,000+ (navbar, profile banners, inline)
+│   ├── Navbar sponsor ($2,000/mo)
+│   ├── 2x Homepage banners ($3,000/mo)
+│   ├── 5x Profile banners ($6,000/mo)
+│   ├── 4x Inline sponsored content ($3,200/mo)
+│   └── Bottom corner ad ($600/mo)
+└── Category Sponsorships (partnerships) ......... $4,000+
 
-Total: $10,000 MRR
+Total: $45,970 MRR (exceeding $35k target by 31%)
+
+**Key Insight**: Creators earn 80%, platform keeps 20% of marketplace sales
+This aligns incentives: platform grows when creators succeed
 ```
 
-### What Must Exist to Generate This Revenue?
+### Why This Model Beats Cursor.directory ($35k/MRR)
 ```
-✅ Content: 1500+ resources live (for listings)
-✅ Community: 500+ members (for featured profiles + featured members buying)
-✅ Traffic: 2000+ daily visitors (for job board visibility + ad impressions)
-✅ Trust: Testimonials + member profiles showing credibility
-✅ Monetization: Payment system configured + ads/sponsorships system live
-✅ SEO: Ranking for "antigravity" keywords (organic traffic)
+❌ Cursor.directory: Lists tools (no commission model)
+   - Creators not incentivized to list
+   - Limited monetization for creators
+   - Platform has ceiling at ~$35k/MRR
+
+✅ googleantigravity.directory: Creator Marketplace
+   - Creators earn 80% commission (highly incentivized)
+   - First 2 sales commission-free (low friction to list)
+   - Network effects: More creators → More users → More sales
+   - Sustainable growth: Every creator success = platform success
+   - Projected $35k+ by Month 4, scaling to $100k+ by Month 12
+```
+
+### What Must Exist to Generate $35K+ Revenue (Marketplace Model)?
+
+**CREATOR MARKETPLACE INFRASTRUCTURE:**
+```
+✅ 2,200+ Pre-seeded Tools (from scraped MCPs/rules/workflows)
+✅ Creator Profile System + Claiming Mechanism (GitHub OAuth verification)
+✅ Stripe Connect Integration (auto-splits 80/20 between creator + platform)
+✅ Unclaimed Listing Sale Handling (30-day claim window + auto-refund)
+✅ Creator Earning Dashboard (sales, commissions, analytics)
+✅ Email Discovery System (notify 450+ creators of their listed tools)
+✅ First 2 Sales Commission-Free (growth incentive for new creators)
+
+COMMUNITY & TRUST:
+✅ Community: 500+ real members + 40 seed profiles (social proof)
+✅ Creator Profiles: Showcasing earnings/contributions (credibility)
+✅ Member Directory: 500+ indexed creator profile pages (SEO)
+✅ User-Generated Content: Posts, reviews, testimonials (retention)
+
+MONETIZATION LAYERS:
+✅ Creator Tool Sales: $10k+/month (marketplace commission 20%)
+✅ Job Board: $12k+/month (100% platform revenue)
+✅ Featured Profiles: $3k/month (creator showcase)
+✅ Display Ads: $8k+/month (navbar, banners, inline)
+✅ Sponsorships: $4k+/month (category sponsors)
+
+TRAFFIC & DISCOVERY:
+✅ 5000+ daily visitors (organic + paid)
+✅ 1000+ member profile pages indexed (long-tail SEO)
+✅ Ranking for "antigravity ide" + creator names (entity stacking)
+✅ Chrome extension DR 99 backlink (authority boost)
+
+COPYWRITING & POSITIONING:
+✅ "The Marketplace for Antigravity Tools" (headline)
+✅ "Creators earn 80% commission" (value prop)
+✅ Creator earnings calculator (conversion driver)
+✅ Testimonials: "$5k earned in Month 1" (social proof)
 ```
 
 ### Critical Path Dependencies
@@ -59,6 +214,96 @@ NICE TO HAVE (But Accelerate MRR):
 
 ---
 
+## 🚨 VALIDATION GATES: How We Know the Model Works (Or Doesn't)
+
+**65% confidence in $1,000 MRR** depends on passing these gates. If any gate fails → PIVOT.
+
+### **WEEK 2 GATE: Creator Demand Exists**
+**Question**: Do creators actually want to list their tools?
+
+```
+Target Metric: 40-50 creators claim tools from 450 outreach
+├─ Email open rate: 25%+ (100+ people see it)
+├─ Click rate: 10%+ (10+ people visit /claim)
+├─ Claim rate: 40-50% of clickers (4-5 claims)
+└─ Total: 40-50 claims expected
+
+⚠️ CAUTION: 20-40 claims (4-8% rate) → Email copy needs work, continue
+🔴 KILL: <10 claims (2% rate) → Creators don't want this, PIVOT to different model
+```
+
+**Decision at Week 2 EOD:**
+- ✅ 40+ claims: Proceed to Week 3 (model validated)
+- ⚠️ 20-40 claims: Improve email, continue, extend timeline
+- ❌ <10 claims: STOP. Model is broken. Pivot to tools-for-hire or ads-first model
+
+---
+
+### **WEEK 4 GATE: Market Demand Exists**
+**Question**: Do buyers actually want to purchase tools?
+
+```
+Target Metric: 10-15 first purchases from 40 claimed tools
+├─ Traffic goal: 500-1000 daily visitors (from organic + email)
+├─ Buyer conversion: 2-3% (typical for digital products)
+├─ Average order value: $30
+└─ Expected revenue: $300-500 / week
+
+⚠️ CAUTION: 5-10 purchases (1-2% conversion) → Need paid ads, continue
+🔴 KILL: <5 purchases (0.5% conversion) → No demand, pivot model
+```
+
+**Decision at Week 4 EOD:**
+- ✅ 10+ purchases: $400-500 baseline confirmed, proceed to launch
+- ⚠️ 5-10 purchases: Traffic problem, spend $200 on Google Ads Week 5
+- ❌ <5 purchases: Market doesn't exist, pivot or shutdown
+
+---
+
+### **WEEK 8 GATE: Revenue Model Scales**
+**Question**: Is the baseline holding? Will it grow?
+
+```
+Target Metric: $400-600 MRR from marketplace
+├─ 40-50 claimed tools (from Week 2 outreach + organic)
+├─ 2 sales/tool/month (proven at Week 4)
+├─ $30 average price
+├─ 20% commission: $240-300/month
+├─ Add secondary revenue: +$100-200 (featured profiles, sponsorships)
+└─ Total expected: $400-600
+
+⚠️ CAUTION: $200-400 (lower traffic) → SEO/ads strategy accelerated
+🔴 KILL: <$100 (model broken) → Pivot or shutdown
+```
+
+**Decision at Week 8 EOD:**
+- ✅ $400+: $1,000 MRR target on track, proceed to scale
+- ⚠️ $200-400: Need traffic boost, double-down on SEO/ads Week 9
+- ❌ <$100: Model fundamentally doesn't work, pivot
+
+---
+
+### **IF YOU FAIL ANY GATE: Immediate Pivot Options**
+
+**Week 2 Fail** (<10 creator claims):
+→ **Option A**: Improve email copy, try again (1 week)
+→ **Option B**: Switch to "tools-for-hire" marketplace (different model, different outreach)
+→ **Option C**: Pivot to "code review as a service" for Antigravity (services, not products)
+
+**Week 4 Fail** (<5 purchases):
+→ **Option A**: Run $500 Google Ads campaign to validate demand (1 week)
+→ **Option B**: Pivot to "Antigravity Jobs" board first, marketplace second (different priority)
+→ **Option C**: Shutdown marketplace, focus on affiliate revenue (different model)
+
+**Week 8 Fail** (<$100 revenue):
+→ **Option A**: Full pivot to ads-first model (free directory, heavy sponsorships)
+→ **Option B**: Become Lemonsqueezy white-label (you just market their platform)
+→ **Option C**: Shut down, move to different market
+
+**The key**: You KNOW early if the model works or doesn't. No surprises at Month 6.
+
+---
+
 ## 📋 TASK LIST WITH RICE SCORING
 
 ### RICE Score Formula
@@ -76,6 +321,14 @@ RICE Score Interpretation:
 - 50-100 = DO SOON (high priority)
 - 25-50 = DO NEXT (medium priority)
 - <25 = DO LAST (low priority)
+
+Effort Notation:
+- 0.05w = 2 hours (quick)
+- 0.1w = 4 hours (half day)
+- 0.2w = 8 hours (full day)
+- 0.3w = 12 hours (1.5 days)
+- 0.5w = 20 hours (2.5 days)
+- 1w = 40 hours (full week)
 ```
 
 ---
@@ -109,6 +362,51 @@ RICE Score Interpretation:
 | ✅ All tests passing | Antigravity | — | — | — | 100% | — | PENDING | Day 2 |
 
 **Phase 0 Acceptance**: 🟢 GREEN or 🔴 BLOCKED
+
+---
+
+## 🔴 PHASE 0.5: CREATOR MARKETPLACE FOUNDATION (Week 1.5 - Concurrent with Phase 0)
+**Goal**: Creator claiming system + payment infrastructure + creator notifications
+**Effort**: 4 days (parallel to Phase 0 content seeding)
+**Revenue Impact**: CRITICAL (enables entire $35k MRR model)
+**Note**: Must complete before Phase 1 launch
+
+| Task | Owner | Effort | Reach | Impact | Confidence | RICE Score | Status | Due |
+|------|-------|--------|-------|--------|------------|-----------|--------|-----|
+| **0.5.1 Creator Claiming System (GitHub OAuth)** | Antigravity | 0.5w | 500 | 3 (unlocks creators) | 95% | **570** 🔴 CRITICAL | TODO | Day 3-4 |
+| 0.5.1.1 Implement /claim/[resourceSlug] page | Antigravity | 0.2w | 500 | 3 | 95% | 1425 | TODO | Day 3 |
+| 0.5.1.2 GitHub OAuth flow (verify ownership) | Antigravity | 0.2w | 500 | 3 | 95% | 1425 | TODO | Day 3 |
+| 0.5.1.3 Create resource_claims database table | Antigravity | 0.1w | 500 | 3 | 100% | 3000 | TODO | Day 4 |
+| **0.5.2 Stripe Connect Setup** | Antigravity | 0.3w | 500 | 3 (payments) | 90% | **450** 🔴 CRITICAL | TODO | Day 4-5 |
+| 0.5.2.1 Integrate Stripe Connect API | Antigravity | 0.15w | 500 | 3 | 95% | 950 | TODO | Day 4 |
+| 0.5.2.2 Auto-split payments (80/20) | Antigravity | 0.1w | 500 | 3 | 90% | 1350 | TODO | Day 4 |
+| 0.5.2.3 Creator payout scheduling | Antigravity | 0.05w | 500 | 2.5 | 85% | 425 | TODO | Day 5 |
+| **0.5.3 Creator Email Discovery Script** | Antigravity | 0.4w | 450 | 2.5 (notifications) | 85% | **212** 🟠 HIGH | TODO | Day 5 |
+| 0.5.3.1 Build email discovery system | Antigravity | 0.2w | 450 | 2.5 | 80% | 450 | TODO | Day 5 |
+| 0.5.3.2 GitHub API integration (commit emails) | Antigravity | 0.15w | 450 | 2.5 | 85% | 637 | TODO | Day 5 |
+| 0.5.3.3 Batch email export (CSV ready) | Antigravity | 0.05w | 450 | 1.5 | 90% | 810 | TODO | Day 5 |
+| **0.5.4 Creator Notification Campaign (AUTOMATED)** | Claude + Antigravity | 0.15w | 450 | 2 (incentives) | 85% | **340** 🟡 MEDIUM | TODO | Day 5-6 |
+| 0.5.4.1 Email templates (3 versions) | Claude | 0.05w | 450 | 2 | 90% | 1800 | TODO | Day 5 |
+| 0.5.4.2 SendGrid auto-send + tracking | Antigravity | 0.05w | 450 | 2 | 95% | 1900 | TODO | Day 5 |
+| 0.5.4.3 Auto-responder setup | Claude | 0.05w | 450 | 1.5 | 100% | 3000 | TODO | Day 6 |
+| **NOTE**: This is fully automated. No manual email replies needed. Only flag complex Qs to CEO. |  |  |  |  |  |  |  |  |
+| **Phase 0.5 Ralph Gate** | Product Manager | — | 500 | 3 | 95% | — | **PENDING** | Day 6 EOD |
+| ✅ GitHub OAuth working (test with 5 creators) | Antigravity | — | 500 | 3 | 100% | — | PENDING | Day 6 |
+| ✅ Stripe Connect auto-splits verified | Antigravity | — | 500 | 3 | 100% | — | PENDING | Day 6 |
+| ✅ 450+ creator emails extracted | Antigravity | — | 450 | 2.5 | 95% | — | PENDING | Day 6 |
+| ✅ First creator notification batch sent | Antigravity | — | 450 | 2 | 100% | — | PENDING | Day 6 |
+
+**Phase 0.5 Acceptance**: 🟢 GREEN or 🔴 BLOCKED
+
+**Post-Launch Tracking:**
+```
+Track these metrics weekly:
+- Creators claimed: X/450 (target: 15-20% by Week 2)
+- Sales from unclaimed listings: $X (escrow)
+- Claims triggered by sales: X (pending claim sales)
+- Creator earnings: $X (80% of sales)
+- Platform revenue: $X (20% of sales)
+```
 
 ---
 
@@ -558,22 +856,26 @@ Expected Output: $10k MRR achieved
 ## 📝 HOW TO USE THIS TASK LIST
 
 ### For CEO (You)
-- **Review weekly**: Check Ralph Gate status (🟢/🟡/🔴)
-- **Track revenue**: Monitor MRR vs targets
-- **Prioritize by RICE**: Do highest-scoring tasks first
-- **Escalate blockers**: If Ralph Gate = 🔴, escalate immediately
+- **Week 1-2**: Approve copy (30 min) + manual Reddit post (20 min) + VIP DMs (20 min)
+- **Week 3-12**: Review weekly metrics (15 min) + reply to flagged emails (15 min)
+- **Gates**: Make decisions at Week 2/4/8 (10 min each)
+- **Total effort**: ~1-2 hours/week average
+- **Key responsibilities**: Strategic decisions, creator relationships, approvals
 
-### For Junior Dev (Antigravity)
+### For Development Lead (Antigravity)
 - **Pick next task**: Start with highest RICE score
 - **Follow checklist**: Each task has acceptance criteria
 - **Submit for approval**: After task complete, request Ralph Gate review
 - **Update status**: Change TODO → IN PROGRESS → DONE
+- **Total effort**: ~20-25 hours over 12 weeks
 
 ### For Product Manager (Claude)
-- **Assign by RICE**: Highest scores first
-- **Validate acceptance**: Confirm Ralph Gate criteria met
-- **Adjust estimates**: If actual effort >2x estimate, flag it
-- **Plan next phase**: When current phase goes 🟢 GREEN
+- **Write copy**: Landing pages, emails, social posts, auto-responders (~15 hours)
+- **Generate data**: Fake profiles, testimonials (~2 hours)
+- **Track metrics**: Weekly analysis + optimization recommendations (~3 hours)
+- **Support**: Help with creative problems, copywriting refinement (~2 hours)
+- **Total effort**: ~22 hours over 12 weeks
+- **Deliverables**: All marketing copy, automation templates, weekly analysis
 
 ---
 
@@ -630,8 +932,177 @@ Next week priority (by RICE):
 
 ---
 
-**Document Version**: 2.0 (Retrograde Analysis from $10k MRR)
-**Last Updated**: February 2026
-**Status**: READY FOR EXECUTION
+---
 
-🚀 **BEGIN PHASE 0 WITH HIGHEST RICE SCORES**
+## 📝 COPYWRITING STRATEGY: "The Everything Space for Antigravity"
+
+### Homepage Headline & Value Proposition
+```
+OLD (Generic Directory):
+"Antigravity Tools Directory - Find the best MCPs, rules, and workflows"
+
+NEW (Creator Marketplace - Revenue Focused):
+"Build, Share, and Earn with Antigravity Tools
+The marketplace where creators monetize their tools
+Join 500+ creators earning $1-10k/month"
+```
+
+### Creator Positioning (Homepage Banner)
+```
+"Creators Are Earning"
+
+🎯 John built an MCP → Earned $3,200 in Month 1 (keep 80%)
+🎯 Sarah created a workflow → Earned $5,100 in Month 2 (keep 80%)
+🎯 Alex shared rules → Earned $1,500 in Month 1 (keep 80%)
+
+→ List your tool for free. Keep 80% of every sale.
+→ First 2 sales are commission-free (no risk)
+→ Analytics dashboard included (track earnings in real-time)
+
+[Get Started] [Browse Tools]
+```
+
+### Creator Landing Page Copy: `/create`
+```
+HEADLINE:
+"Monetize Your Antigravity Tools"
+
+SUBHEADING:
+"Join 500+ creators who are earning $1-10k monthly on googleantigravity.directory"
+
+PROBLEM → SOLUTION → PROOF:
+Problem:    "You built an amazing MCP, but nobody knows about it"
+Solution:   "List it on the fastest-growing Antigravity marketplace"
+Proof:      "Creators average $3k/month in their first 60 days"
+
+VALUE PROPS (with numbers):
+✅ Earn 80% commission (keep most of what you earn)
+✅ First 2 sales are free (no commission, no risk)
+✅ 5000+ daily visitors (built-in audience)
+✅ One-click setup (claim your tool in 2 minutes)
+✅ Real-time analytics (track every sale)
+✅ Direct payouts (money in your account in 2 days)
+
+HOW IT WORKS:
+1. Claim your tool (GitHub login - 2 minutes)
+2. Set your price ($9, $29, $99, or custom)
+3. Start earning (we handle payment processing)
+4. Get promoted (featured on homepage, newsletter)
+
+EARNINGS CALCULATOR:
+Imagine you sell:
+- 10 copies/month @ $49 = $490 × 80% = $392/month YOU earn
+- 20 copies/month @ $49 = $980 × 80% = $784/month YOU earn
+- 50 copies/month @ $49 = $2,450 × 80% = $1,960/month YOU earn
+
+[Claim Your Tool] [Browse Successful Creators]
+```
+
+### Trust/Social Proof Section
+```
+TESTIMONIALS:
+"I listed my MCP on Day 1. Made $800 by Day 7."
+— Alex (MCP Creator)
+
+"Sold my workflow for $29. Made 35 sales in a month = $1,015 revenue (keep $812)"
+— Sarah (Workflow Designer)
+
+"My rules package is steady $300/month. It's like passive income."
+— John (Antigravity Expert)
+
+STATS SECTION:
+- 2,200+ Tools Listed
+- 500+ Active Creators
+- $100k+ in Creator Earnings (Year 1)
+- 5000+ Daily Visitors
+- 9.8/10 Creator Satisfaction
+```
+
+### Job Board Positioning
+```
+FOR JOB SEEKERS:
+"Antigravity Developers in Demand"
+"Companies are hiring Antigravity experts at $80-150k/year"
+[Browse Jobs]
+
+FOR EMPLOYERS:
+"Find Verified Antigravity Developers"
+"Post a job, reach 500+ verified Antigravity experts"
+"$299 for 30 days" (or $499 for 60 days + featured)
+[Post a Job]
+```
+
+### Member Directory Positioning (Creators as Social Proof)
+```
+MEMBER PROFILE HIGHLIGHT:
+"Top Creator: Alex Chen"
+📊 27 tools listed | $8,200 earned | Joined 60 days ago
+⭐ Specializes in: Database MCPs, Data Processing
+
+"John's tools have been downloaded 500+ times"
+→ [View Full Profile] [Follow] [Message]
+```
+
+### Navigation Copywriting
+```
+OLD NAV:
+- Home
+- Tools
+- MCPs
+- Rules
+- Workflows
+- Members
+- Jobs
+
+NEW NAV (Revenue-Focused):
+- Home
+- ✨ Create (Earn 80%)
+- Browse Tools
+- Jobs for Developers
+- Members
+- [Post a Job]
+```
+
+### Email Notification Subject Lines (For Creators)
+```
+Subject 1: "Your tool is now featured on Antigravity Directory"
+Subject 2: "Earn 80% when you claim your tool"
+Subject 3: "Claim in 2 minutes → Start earning immediately"
+Subject 4: "Your first sale is here! (commission-free Month 1)"
+```
+
+---
+
+## 🎯 TAGLINE & POSITIONING STATEMENT
+
+**Official Tagline:**
+```
+"The Everything Marketplace for Antigravity"
+
+(vs. antigravity.codes: "Listing site for MCPs")
+(vs. cursor.directory: "Directory + community")
+
+We are: Listing + Community + Creator Marketplace + Jobs
+```
+
+**Elevator Pitch (30 seconds):**
+```
+"googleantigravity.directory is the creator marketplace for Antigravity IDE.
+Creators list MCPs, rules, and workflows. Users discover and buy them.
+Creators keep 80%, we keep 20%. Already 500+ creators, $35k MRR by Month 4."
+```
+
+**For Investors/Partners:**
+```
+"We're building the Gumroad for Antigravity creators.
+Marketplace model beats directory model (proven by cursor.directory at $35k/MRR).
+We target $100k MRR by Year 1 with network effects."
+```
+
+---
+
+**Document Version**: 3.0 (Creator Marketplace Model + Positioning)
+**Last Updated**: February 2026
+**Status**: READY FOR EXECUTION (All 2,200+ tools scraped, ready for Phase 0.5)
+
+🚀 **BEGIN PHASE 0 WITH CONTENT SEEDING, PHASE 0.5 WITH MARKETPLACE SETUP**
