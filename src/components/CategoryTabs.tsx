@@ -35,7 +35,7 @@ export function CategoryTabs({ categories, activeCategories }: CategoryTabsProps
     return activeCategories.includes(slug);
   };
 
-  const totalAllCount = categories.reduce((acc, cat) => acc + (cat.count || 0), 0);
+  const totalAllCount = categories.reduce((acc, cat) => acc + (Number(cat.count) || 0), 0);
 
   return (
     <div className="border-b border-white/[0.05] bg-black/80 backdrop-blur-md sticky top-14 z-40 w-full overflow-hidden">

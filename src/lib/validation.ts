@@ -34,12 +34,24 @@ export function validateFilterParams(searchParams: URLSearchParams): FilterState
   const sortParam = searchParams.get('sort') || FILTERS.DEFAULT_SORT;
   const sort = validateSortOption(sortParam);
   
-  const result = {
+  // Validate pricing filter (Multi-select)
+  const pricingParam = searchParams.get('pricing');
+  const pricing = pricingParam 
+    ? pricingParam.split(',').filter(p => p === 'free' || p === 'paid')
+    : [];
+
+  // Validate group (Focus Domain - Single-select)
+  const groupParam = searchParams.get('group') || undefined;
+  const group = groupParam ? sanitizeSlug(groupParam) : undefined;
+  
+  const result: FilterState = {
     categories,
     tags,
     search,
     sort,
     badgeTypes,
+    pricing,
+    group,
   };
 
   console.log('[validateFilterParams] Validated result:', result);

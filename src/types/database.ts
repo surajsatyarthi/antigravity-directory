@@ -42,6 +42,8 @@ export interface FilterState {
   search: string;       // Search query
   sort: 'latest' | 'views' | 'rating' | 'recommended';
   badgeTypes: string[]; // []
+  pricing: string[];     // Array of pricing slugs (free, paid, etc)
+  group?: string;       // Focus Domain slug (process, work, service)
   isSponsored?: boolean; // Filter by sponsorship status
 }
 
@@ -51,4 +53,6 @@ export interface SearchParams {
   tags?: string;        // Comma-separated tag slugs
   q?: string;          // Search query
   sort?: string;       // Sort option
+  pricing?: string;    // Comma-separated pricing slugs
+  group?: string;      // Focus Domain slug
 }

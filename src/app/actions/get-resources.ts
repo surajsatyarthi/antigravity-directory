@@ -9,6 +9,7 @@ export type FetchResourcesParams = {
   categories?: string;
   tags?: string;
   sort?: string;
+  pricing?: string;
 };
 
 export async function fetchResourcesAction(params: FetchResourcesParams) {
@@ -19,6 +20,7 @@ export async function fetchResourcesAction(params: FetchResourcesParams) {
     if (params.categories) urlParams.set('categories', params.categories);
     if (params.tags) urlParams.set('tags', params.tags);
     if (params.sort) urlParams.set('sort', params.sort);
+    if (params.pricing) urlParams.set('pricing', params.pricing);
     
     const filters = validateFilterParams(urlParams);
     

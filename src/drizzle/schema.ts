@@ -106,6 +106,7 @@ export const resources = pgTable('resources', {
   verified: boolean('verified').notNull().default(false),
   views: integer('views').notNull().default(0),
   copiedCount: integer('copied_count').notNull().default(0),
+  price: integer('price').notNull().default(0), // Price in cents/paise (0 = Free)
   
   // AEO & Staged Indexing
   isIndexed: boolean('is_indexed').notNull().default(false),

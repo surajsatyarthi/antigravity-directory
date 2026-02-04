@@ -36,10 +36,6 @@ export const DirectoryIntelligence = () => {
             </div>
           </div>
 
-            {/* Search removed - Use global sticky header search */}
-            <div className="hidden sm:flex items-center justify-center gap-2 text-xs text-gray-500 font-mono mt-8">
-              <span className="bg-white/5 border border-white/10 px-2 py-1 rounded">CMD+K</span> to Search
-            </div>
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">

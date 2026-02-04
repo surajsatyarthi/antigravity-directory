@@ -34,6 +34,8 @@ async function getFilteredResourcesInternal(filters: FilterState, page: number =
       if (categoryIds.length > 0) {
         conditions.push(inArray(resources.categoryId, categoryIds));
       } else {
+        // Strict Enforcement: If user selected categories but none are valid/found, 
+        // we must return empty instead of falling back to global search.
         return { resources: [], totalCount: 0 };
       }
     }
@@ -71,6 +73,22 @@ async function getFilteredResourcesInternal(filters: FilterState, page: number =
     // Filter by sponsorship status (if specified only)
     if (filters.isSponsored !== undefined) {
       conditions.push(eq(resources.featured, filters.isSponsored));
+    }
+
+    // Filter by pricing (OR logic within pricing)
+    if (filters.pricing && filters.pricing.length > 0) {
+      const pricingConditions = [];
+      if (filters.pricing.includes('free')) pricingConditions.push(eq(resources.price, 0));
+      if (filters.pricing.includes('paid')) pricingConditions.push(sql`${resources.price} > 0`);
+      
+      if (pricingConditions.length > 0) {
+        conditions.push(or(...pricingConditions));
+      }
+    }
+
+    // Filter by group (Focus Domain - Single Select)
+    if (filters.group) {
+      conditions.push(eq(categories.group, filters.group));
     }
 
     // Search in title and description
@@ -136,13 +154,16 @@ async function getFilteredResourcesInternal(filters: FilterState, page: number =
  * Get filtered resources with all relations
  * CACHED: Wraps internal logic with Next.js Data Cache (5 minutes)
  */
-export const getFilteredResources = unstable_cache(
-  async (filters: FilterState, page: number = 1, pageSize: number = 20) => {
-    return getFilteredResourcesInternal(filters, page, pageSize);
-  },
-  ['filtered-resources'],
-  { revalidate: 300, tags: ['resources'] }
-);
+export async function getFilteredResources(filters: FilterState, page: number = 1, pageSize: number = 20) {
+  return unstable_cache(
+    () => getFilteredResourcesInternal(filters, page, pageSize),
+    ['resources-list', JSON.stringify(filters), page.toString()],
+    { 
+      revalidate: 300, 
+      tags: ['resources']
+    }
+  )();
+}
 
 /**
  * Get featured resources (featured = true)
