@@ -15,6 +15,12 @@ vi.mock('@/lib/db', () => ({
     query: {
       payments: {
         findFirst: vi.fn()
+      },
+      users: {
+        findFirst: vi.fn()
+      },
+      resources: {
+        findFirst: vi.fn()
       }
     },
     select: vi.fn()
@@ -23,8 +29,26 @@ vi.mock('@/lib/db', () => ({
 
 // Mock schema
 vi.mock('@/drizzle/schema', () => ({
-  payments: { id: 'payments_id', status: 'payments_status' },
-  resources: { id: 'resources_id', isFeatured: 'resources_is_featured' }
+  payments: { 
+    id: 'payments_id', 
+    status: 'payments_status',
+    transactionId: 'payments_transaction_id',
+    resourceId: 'payments_resource_id',
+    userId: 'payments_user_id',
+    amount: 'payments_amount',
+    currency: 'payments_currency',
+    updatedAt: 'payments_updated_at'
+  },
+  resources: { 
+    id: 'resources_id', 
+    featured: 'resources_featured',
+    title: 'resources_title'
+  },
+  users: {
+    id: 'users_id',
+    email: 'users_email',
+    name: 'users_name'
+  }
 }));
 vi.mock('@/auth', () => ({
   auth: vi.fn().mockResolvedValue({ user: { id: 'test-user-id' } })
@@ -32,8 +56,8 @@ vi.mock('@/auth', () => ({
 
 // Mock drizzle-orm
 vi.mock('drizzle-orm', () => ({
-  eq: vi.fn(),
-  and: vi.fn()
+  eq: vi.fn((a, b) => ({ operator: 'eq', left: a, right: b })),
+  and: vi.fn((...args) => ({ operator: 'and', args }))
 }));
 
 describe('POST /api/payments/paypal/capture', () => {
@@ -50,7 +74,21 @@ describe('POST /api/payments/paypal/capture', () => {
     vi.mocked(db.query.payments.findFirst).mockResolvedValue({
       id: 'internal-id-123',
       resourceId: 'resource-xyz',
-      status: 'PENDING'
+      userId: 'user-123',
+      status: 'PENDING',
+      amount: 4900,
+      currency: 'USD'
+    } as any);
+
+    vi.mocked(db.query.users.findFirst).mockResolvedValue({
+      id: 'user-123',
+      email: 'test@example.com',
+      name: 'Test User'
+    } as any);
+
+    vi.mocked(db.query.resources.findFirst).mockResolvedValue({
+      id: 'resource-xyz',
+      title: 'Test Resource'
     } as any);
   });
 

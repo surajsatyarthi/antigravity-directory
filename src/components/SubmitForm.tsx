@@ -203,7 +203,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                 </div>
               )}
 
-              <form ref={formRef} onSubmit={handleShowCheckout} className="space-y-6 relative">
+              <form ref={formRef} onSubmit={handleShowCheckout} noValidate className="space-y-6 relative">
                 
                 {/* Category Selection - First as requested */}
                 <div>

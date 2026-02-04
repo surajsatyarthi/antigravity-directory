@@ -4,7 +4,7 @@
  */
 
 import { db } from '@/lib/db';
-import { resources, categories, ratings, resourceTags, tags, tools, submissions, users } from '@/drizzle/schema';
+import { resources, categories, ratings, resourceTags, tags, tools, submissions, users, payments } from '@/drizzle/schema';
 import { eq, and, or, inArray, ilike, desc, asc, sql, count } from 'drizzle-orm';
 import { FilterState, ResourceWithRelations, CategoryWithCount, Tag } from '@/types/database';
 
@@ -340,5 +340,76 @@ export async function getAdminDashboardData() {
       },
       recentSubmissions
     };
+}
+
+/**
+ * Get top creators by earnings (for CreatorProofSection)
+ */
+export async function getTopCreators(limit: number = 4) {
+    const results = await db
+      .select({
+        id: users.id,
+        name: users.name,
+        username: users.username,
+        image: users.image,
+        tagline: users.tagline,
+        totalEarnings: sql<number>`COALESCE(SUM(${payments.amount}), 0) / 100`, // Convert cents to dollars
+        toolsCount: count(resources.id),
+      })
+      .from(users)
+      .leftJoin(payments, eq(users.id, payments.userId))
+      .leftJoin(resources, eq(users.id, resources.authorId))
+      .where(eq(payments.status, 'SUCCEEDED'))
+      .groupBy(users.id)
+      .orderBy(desc(sql`total_earnings`))
+      .limit(limit);
+
+    return results;
+}
+
+/**
+ * Get platform-wide stats (for StatsBar)
+ */
+export async function getPlatformStats() {
+    const [toolsRes, creatorsRes, earningsRes] = await Promise.all([
+      db.select({ count: count() }).from(resources),
+      db.select({ count: count() }).from(users).where(sql`${users.id} IN (SELECT author_id FROM resources)`),
+      db.select({ total: sql<number>`SUM(${payments.amount})` }).from(payments).where(eq(payments.status, 'SUCCEEDED'))
+    ]);
+
+    return {
+      totalTools: Number(toolsRes[0]?.count || 0),
+      totalCreators: Number(creatorsRes[0]?.count || 0),
+      totalEarnings: Math.floor(Number(earningsRes[0]?.total || 0) / 100)
+    };
+}
+
+/**
+ * Get featured tools for a category (for CategoryShowcase)
+ */
+export async function getCategoryTools(categorySlug: string, limit: number = 3) {
+    const category = (await db.select({ id: categories.id }).from(categories).where(eq(categories.slug, categorySlug)).limit(1))[0];
+    if (!category) return [];
+
+    return await db
+      .select({
+        id: resources.id,
+        title: resources.title,
+        slug: resources.slug,
+        description: resources.description,
+        thumbnail: resources.thumbnail,
+        price: sql<number>`29`, // Mock price for now as it's not in schema yet
+        rating: sql<number>`COALESCE(AVG(${ratings.rating}), 5)`,
+        salesCount: sql<number>`COUNT(DISTINCT ${payments.id})`,
+        creatorName: users.name,
+      })
+      .from(resources)
+      .leftJoin(users, eq(resources.authorId, users.id))
+      .leftJoin(ratings, eq(resources.id, ratings.resourceId))
+      .leftJoin(payments, eq(resources.id, payments.resourceId))
+      .where(eq(resources.categoryId, category.id))
+      .groupBy(resources.id, users.name)
+      .orderBy(desc(sql`sales_count`))
+      .limit(limit);
 }
 
