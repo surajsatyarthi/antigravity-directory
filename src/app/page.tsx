@@ -9,12 +9,13 @@ import { CategoryShowcase } from '@/components/CategoryShowcase';
 import { StatsBar } from '@/components/StatsBar';
 import { CTASection } from '@/components/CTASection';
 import { FilterPersistenceManager } from '@/components/filters/FilterPersistenceManager';
+import { FilterSidebar } from '@/components/filters/FilterSidebar';
 import { TopFilterBar } from '@/components/filters/TopFilterBar';
 import { InfiniteResourceGrid } from '@/components/InfiniteResourceGrid';
 import { DirectoryIntelligence } from '@/components/DirectoryIntelligence';
-import { CategoryTabs } from '@/components/CategoryTabs';
 import { FeaturedSection } from '@/components/FeaturedSection';
-import { getCategoriesWithCounts, getAllTags, getFilteredResources, validateCategorySlugs, getFeaturedResources } from '@/lib/queries';
+import { fetchResourcesAction } from '@/app/actions/get-resources';
+import { getCategoriesWithCounts, getAllTags, validateCategorySlugs, getFeaturedResources } from '@/lib/queries';
 import { validateFilterParams } from '@/lib/validation';
 import dynamic from 'next/dynamic';
 
@@ -63,13 +64,23 @@ export default async function HomePage({
   const page = Number(params.page) || 1;
   const pageSize = 20;
 
-  const [session, categoriesWithCounts, tags, { resources: filteredResources, totalCount }, featuredResources] = await Promise.all([
+  const [session, categoriesWithCounts, tags, fetchResult, featuredResources] = await Promise.all([
     auth(),
     getCategoriesWithCounts(),
     getAllTags(),
-    getFilteredResources(cleanedFilters, page, pageSize),
+    fetchResourcesAction({
+      page,
+      search: cleanedFilters.search,
+      categories: cleanedFilters.categories.join(','),
+      tags: cleanedFilters.tags.join(','),
+      sort: cleanedFilters.sort
+    }),
     getFeaturedResources(cleanedFilters.categories[0], 6)
   ]);
+
+  const { resources: filteredResources, totalCount } = fetchResult.success 
+    ? { resources: fetchResult.resources, totalCount: fetchResult.totalCount }
+    : { resources: [], totalCount: 0 };
 
   const activeFilters = {
     categories: cleanedFilters.categories,
@@ -109,55 +120,64 @@ export default async function HomePage({
         {/* 2. Directory Listing Mode */}
         <div className={!isBrowsing ? "mt-24 border-t border-white/[0.05] pt-24" : ""}>
           <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-8">
               <h2 className="text-3xl font-black text-white mb-4 uppercase tracking-[0.2em]">Full Directory</h2>
               <p className="text-gray-400 text-sm font-bold tracking-widest uppercase">Explore all 2,200+ resources</p>
             </div>
 
-            <CategoryTabs 
-              categories={categoriesWithCounts} 
-              activeCategories={cleanedFilters.categories} 
-            />
-
-            <div className="py-8 lg:py-12">
-              {/* 3. Featured Section */}
-              <FeaturedSection 
-                title={activeCategoryName ? `Featured in ${activeCategoryName}` : "Featured Resources"}
-                resources={featuredResources}
-                href={cleanedFilters.categories.length > 0 ? `/categories/${cleanedFilters.categories[0]}` : "/prompts"}
-                categoryName={activeCategoryName}
-              />
-
-              <div className="flex items-center justify-between mb-8 border-b border-white/[0.05] pb-6">
-                <h2 className="text-[17px] font-black tracking-tight text-white flex items-center gap-2 uppercase tracking-widest text-xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                  Listings
-                </h2>
-                <TopFilterBar 
-                  totalCount={totalCount} 
-                  categories={categoriesWithCounts}
-                  tags={tags}
+            <div className="lg:flex lg:gap-12 pb-12">
+              {/* Sidebar: Visible on Desktop - Sticky & Split-Scroll */}
+              <div className="hidden lg:block w-[280px] flex-shrink-0">
+                <FilterSidebar 
+                  categories={categoriesWithCounts} 
+                  tags={tags} 
                 />
               </div>
-              
-              <Suspense fallback={<div className="py-20 text-center text-gray-700 font-mono text-[10px] uppercase tracking-widest animate-pulse">Initializing directory...</div>}>
-                <div className="relative">
-                  {filteredResources.length > 0 ? (
-                    <InfiniteResourceGrid
-                      initialResources={filteredResources}
-                      initialTotalCount={totalCount}
-                      initialFilters={activeFilters}
-                    />
-                  ) : (
-                    <div className="flex flex-col items-center justify-center py-24 text-center border border-white/[0.05] rounded-xl bg-[#030303]">
-                      <h3 className="text-lg font-bold text-white mb-2 tracking-tight">No results matched</h3>
-                      <p className="text-[12px] text-gray-600 max-w-xs mb-8 leading-relaxed">
-                        Try adjusting your filters or search terms.
-                      </p>
-                    </div>
-                  )}
+
+              {/* Grid Column */}
+              <div className="flex-1 min-w-0">
+                {/* 3. Editor's Spotlight */}
+                <FeaturedSection 
+                  title={activeCategoryName ? `Editor's Spotlight: ${activeCategoryName}` : "Editor's Spotlight"}
+                  resources={featuredResources}
+                  href={cleanedFilters.categories.length > 0 ? `/categories/${cleanedFilters.categories[0]}` : "/prompts"}
+                  categoryName={activeCategoryName}
+                />
+                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-2 mb-8 ml-1">
+                  Top-rated & sponsored tools selected by our curators
+                </p>
+
+                <div className="flex items-center justify-between mb-8 border-b border-white/[0.05] pb-6">
+                  <h2 className="text-[11px] font-black tracking-[0.2em] text-gray-500 flex items-center gap-2 uppercase">
+                    <span className="w-1 h-1 rounded-full bg-blue-500/50"></span>
+                    Directory Listings
+                  </h2>
+                  <TopFilterBar 
+                    totalCount={totalCount} 
+                    categories={categoriesWithCounts}
+                    tags={tags}
+                  />
                 </div>
-              </Suspense>
+                
+                <Suspense fallback={<div className="py-20 text-center text-gray-700 font-mono text-[10px] uppercase tracking-widest animate-pulse">Initializing directory...</div>}>
+                  <div className="relative">
+                    {filteredResources.length > 0 ? (
+                      <InfiniteResourceGrid
+                        initialResources={filteredResources}
+                        initialTotalCount={totalCount}
+                        initialFilters={activeFilters}
+                      />
+                    ) : (
+                      <div className="flex flex-col items-center justify-center py-24 text-center border border-white/[0.05] rounded-xl bg-[#030303]">
+                        <h3 className="text-lg font-bold text-white mb-2 tracking-tight">No results matched</h3>
+                        <p className="text-[12px] text-gray-600 max-w-xs mb-8 leading-relaxed">
+                          Try adjusting your filters or search terms.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </Suspense>
+              </div>
             </div>
           </div>
         </div>
