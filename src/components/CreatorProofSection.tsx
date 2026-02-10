@@ -1,121 +1,98 @@
 'use client';
 
-import Link from 'next/link';
+import React from 'react';
 
-interface CreatorCardProps {
-  name: string;
-  role: string;
-  monthlyEarnings: string;
-  toolsCount: number;
-  testimonial: string;
-  imageUrl?: string;
-  username: string;
-}
-
-function CreatorCard({ name, role, monthlyEarnings, toolsCount, testimonial, imageUrl, username }: CreatorCardProps) {
-  return (
-    <div className="p-8 rounded-2xl bg-white/[0.03] border border-white/[0.05] hover:border-white/10 hover:bg-white/[0.05] transition-all group flex flex-col h-full">
-      <div className="flex items-center gap-4 mb-6">
-        {imageUrl ? (
-          <img src={imageUrl} alt={name} className="w-14 h-14 rounded-full border-2 border-white/5" />
-        ) : (
-          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-xl font-bold">
-            {name[0]}
-          </div>
-        )}
-        <div>
-          <h3 className="text-white font-black text-lg">{name}</h3>
-          <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">{role}</p>
-        </div>
-      </div>
-      
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="bg-emerald-500/10 rounded-xl p-3 border border-emerald-500/10">
-          <p className="text-emerald-400 font-black text-lg leading-none">{monthlyEarnings}</p>
-          <p className="text-[10px] text-emerald-500/60 font-bold uppercase tracking-tighter mt-1">per month</p>
-        </div>
-        <div className="bg-blue-500/10 rounded-xl p-3 border border-blue-500/10">
-          <p className="text-blue-400 font-black text-lg leading-none">{toolsCount}</p>
-          <p className="text-[10px] text-blue-500/60 font-bold uppercase tracking-tighter mt-1">tools listed</p>
-        </div>
-      </div>
-
-      <p className="text-gray-400 italic mb-8 flex-grow">"{testimonial}"</p>
-
-      <Link 
-        href={`/u/${username}`}
-        className="w-full py-3 bg-white/5 hover:bg-white/10 text-white text-xs font-bold uppercase tracking-widest rounded-lg border border-white/5 transition-all text-center"
-      >
-        View Profile
-      </Link>
-    </div>
-  );
-}
+const creators = [
+  { 
+    name: 'Alex River', 
+    role: 'Prompt Engineer', 
+    icon: '⚡', 
+    earn: '$12,400', 
+    bio: 'Specializing in high-density prompt chains for software engineering teams.',
+    specialty: 'LLM Architect'
+  },
+  { 
+    name: 'Sarah Chen', 
+    role: 'Workflow Architect', 
+    icon: '🛠️', 
+    earn: '$9,150', 
+    bio: 'Creating cross-platform automation tools for rapid startup scaling.',
+    specialty: 'Automation Pro'
+  },
+  { 
+    name: 'Marcus Bell', 
+    role: 'MCP Developer', 
+    icon: '💼', 
+    earn: '$18,800', 
+    bio: 'Top contributor to the MCP ecosystem with 50+ enterprise integrations.',
+    specialty: 'Integration Lead'
+  },
+];
 
 export function CreatorProofSection() {
-  const creators = [
-    {
-      name: "John",
-      role: "MCP Developer",
-      monthlyEarnings: "$8,200",
-      toolsCount: 27,
-      testimonial: "I listed my MCP on Day 1. Made $800 by Day 7.",
-      username: "john",
-    },
-    {
-      name: "Sarah",
-      role: "Workflow Designer",
-      monthlyEarnings: "$5,100",
-      toolsCount: 12,
-      testimonial: "Sold my workflow for $29. Made 35 sales in a month = $1,015 revenue (keep $812)",
-      username: "sarah",
-    },
-    {
-      name: "Alex",
-      role: "Antigravity Expert",
-      monthlyEarnings: "$1,500",
-      toolsCount: 8,
-      testimonial: "My rules package is steady $300/month. It's like passive income.",
-      username: "alex",
-    },
-  ];
-
   return (
-    <section className="py-24 px-4 bg-black">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">Creators Are Earning</h2>
-          <div className="h-1 w-20 bg-blue-600 mx-auto mb-6" />
-          <p className="text-xl text-gray-400 font-medium">500+ creators earning $1-10k/month</p>
+    <section className="py-32 relative overflow-hidden bg-white/[0.01]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-left mb-20 max-w-2xl">
+          <div className="inline-block w-12 h-1 bg-blue-500 mb-6" />
+          <h2 className="text-sm font-black uppercase tracking-[0.4em] text-blue-500 mb-4">Creator Spotlight</h2>
+          <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-6">
+            Join the World's <br />
+            Most Profitable <br />
+            AI Creators.
+          </h3>
+          <p className="text-gray-500 font-bold uppercase tracking-widest text-[11px] leading-relaxed">
+            Antigravity is the home for the next wave of developer-entrepreneurs. 
+            Build once, list here, and earn for life.
+          </p>
         </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.05] border border-white/[0.05]">
+          {creators.map((c, i) => (
+            <div key={i} className="group relative bg-black p-10 transition-all duration-500 hover:bg-white/[0.02]">
+              <div className="flex items-center justify-between mb-10">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-white/10 flex items-center justify-center text-3xl">
+                  {c.icon}
+                </div>
+                <div className="text-right">
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-600 mb-1">Status</div>
+                  <div className="text-[11px] font-black text-blue-500 uppercase tracking-widest flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                    Verified Creator
+                  </div>
+                </div>
+              </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {creators.map((creator) => (
-            <CreatorCard key={creator.name} {...creator} />
+              <h4 className="text-2xl font-black text-white mb-1 uppercase tracking-tight group-hover:text-blue-400 transition-colors">
+                {c.name}
+              </h4>
+              <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500/50 mb-6">
+                {c.specialty}
+              </div>
+              
+              <p className="text-gray-400 text-sm mb-10 font-medium leading-relaxed min-h-[4rem]">
+                "{c.bio}"
+              </p>
+              
+              <div className="pt-8 border-t border-white/[0.05]">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-600">Total Lifetime Earnings</span>
+                  <span className="text-white font-black text-2xl tracking-tighter group-hover:text-blue-500 transition-colors">
+                    {c.earn}
+                  </span>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
 
-        <div className="mt-16 p-8 rounded-2xl bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-8 md:gap-16">
-            <div className="text-center md:text-left">
-              <p className="text-2xl font-black text-white">2,200+</p>
-              <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Tools Listed</p>
-            </div>
-            <div className="text-center md:text-left">
-              <p className="text-2xl font-black text-white">500+</p>
-              <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Active Creators</p>
-            </div>
-            <div className="text-center md:text-left">
-              <p className="text-2xl font-black text-white">$100k+</p>
-              <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Earned</p>
-            </div>
-          </div>
-          <Link
-            href="/members"
-            className="px-8 py-4 bg-white text-black font-black uppercase tracking-widest rounded-xl hover:bg-gray-200 transition-all"
-          >
-            See All Top Creators →
-          </Link>
+        <div className="mt-20 text-center">
+            <button className="text-[11px] font-black uppercase tracking-[0.4em] text-white hover:text-blue-500 transition-colors flex items-center gap-3 mx-auto group">
+                View All Creator Stories
+                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </button>
         </div>
       </div>
     </section>

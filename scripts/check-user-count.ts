@@ -1,13 +1,13 @@
 
-import { drizzle } from 'drizzle-orm/neon-serverless';
-import { Pool } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 import { users, resources } from '../src/drizzle/schema';
 import { count } from 'drizzle-orm';
 import * as dotenv from 'dotenv';
 
 dotenv.config({ path: '.env.local' });
 
-const client = new Pool({ connectionString: process.env.DATABASE_URL });
+const client = postgres(process.env.DATABASE_URL!, { prepare: false });
 const db = drizzle(client);
 
 async function checkCount() {

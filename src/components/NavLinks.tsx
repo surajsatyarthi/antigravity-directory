@@ -15,7 +15,7 @@ export function NavLinks({ session, username }: NavLinksProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="hidden md:flex items-center gap-6 text-[11px] font-medium tracking-wide h-full">
+    <nav className="hidden md:flex items-center gap-6 text-[11px] font-semibold tracking-wide h-full">
       {NAV_ITEMS.map((item) => {
         if (item.children) {
           return <Dropdown key={item.label} item={item} pathname={pathname} />;
@@ -35,12 +35,9 @@ export function NavLinks({ session, username }: NavLinksProps) {
             href={item.href}
             target={item.external ? "_blank" : undefined}
             title={item.title}
-            className={`flex items-center gap-1.5 ${baseClass} ${colorClass}`}
+            className={`flex items-center gap-1.5 uppercase ${baseClass} ${colorClass}`}
           >
             <span>{item.label}</span>
-            {item.isNew && (
-              <span className="bg-[#fbbf24] text-black text-[9px] font-bold px-1 rounded-sm leading-tight">NEW</span>
-            )}
           </Link>
         );
       })}

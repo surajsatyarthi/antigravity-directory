@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowLeft, Sparkles, Zap } from 'lucide-react';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 import { db } from '@/lib/db';
 import { categories } from '@/drizzle/schema';
 import { SubmitForm } from '@/components/SubmitForm';
@@ -11,7 +11,7 @@ export default async function SubmitPage() {
 
   return (
     <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
-      <MarketplaceHeader />
+      <Header />
 
       <main className="flex-1 container mx-auto px-4 py-12 max-w-5xl">
         {/* Back Button */}

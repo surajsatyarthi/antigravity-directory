@@ -9,59 +9,50 @@ interface Stats {
 }
 
 export function StatsBar() {
-  const [stats, setStats] = useState<Stats>({
-    totalTools: 2200,
-    totalCreators: 500,
-    totalEarnings: 100000,
-  });
-
-  useEffect(() => {
-    // In a real app, fetch from database
-    // For now using mock stats
-  }, []);
+  const stats = [
+    { label: 'Resources', value: '2,200+', icon: '💎' },
+    { label: 'Active Creators', value: '500+', icon: '🦊' },
+    { label: 'Creator Payouts', value: '$50k+', icon: '💰' },
+    { label: 'Monthly Traffic', value: '10k+', icon: '📈' },
+  ];
 
   return (
-    <section className="bg-black py-12 px-4 border-y border-white/[0.05]">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 items-center">
-          <div className="text-center lg:text-left">
-            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em] mb-2">Platform Metrics</p>
-            <h2 className="text-xl font-black text-white tracking-tight uppercase">Live Stats</h2>
-          </div>
-          
-          <div className="h-10 w-px bg-white/10 hidden lg:block mx-auto" />
-
-          <div className="text-center">
-            <p className="text-3xl font-black text-white mb-1">{stats.totalTools.toLocaleString()}+</p>
-            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Tools Listed</p>
-          </div>
-
-          <div className="text-center">
-            <p className="text-3xl font-black text-emerald-400 mb-1">{stats.totalCreators.toLocaleString()}+</p>
-            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Creators Earning</p>
-          </div>
-
-          <div className="text-center">
-            <p className="text-3xl font-black text-blue-400 mb-1">${(stats.totalEarnings / 1000).toFixed(0)}k+</p>
-            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Creator Revenue</p>
-          </div>
+    <div className="bg-black border-y border-white/[0.05] relative z-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/[0.05] border-x border-white/[0.05]">
+          {stats.map((stat, i) => (
+            <div key={i} className="py-10 px-6 text-center group transition-all hover:bg-white/[0.02] cursor-default">
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-4xl font-black text-white mb-2 tracking-tighter group-hover:scale-110 group-hover:text-blue-500 transition-all duration-300">
+                  {stat.value}
+                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 group-hover:text-gray-300 transition-colors">
+                    {stat.label}
+                  </span>
+                  <span className="text-xs grayscale group-hover:grayscale-0 transition-all">{stat.icon}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div className="mt-8 pt-8 border-t border-white/[0.05] flex flex-wrap justify-center gap-12">
+        {/* Confidence Row */}
+        <div className="py-8 border-t border-white/[0.05] flex flex-wrap justify-center gap-12">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">5000+ Daily Visitors</p>
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em]">5000+ Daily Visitors</p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-emerald-500" />
-            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">9.8/10 Satisfaction</p>
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em]">9.1/10 Satisfaction</p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
-            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">80% Commission Payout</p>
+            <div className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em]">80% Commission Payout</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

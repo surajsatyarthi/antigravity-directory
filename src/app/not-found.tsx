@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { Home, Search, Eye, Sparkles, Zap } from 'lucide-react';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
-      <MarketplaceHeader />
+      <Header />
       
       <main className="flex-1 flex flex-col items-center justify-center p-4 text-center">
         <div className="relative mb-12">

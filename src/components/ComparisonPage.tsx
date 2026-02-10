@@ -1,5 +1,5 @@
 import { ComparisonData } from '@/data/comparisons';
-import { MarketplaceHeader } from './MarketplaceHeader';
+import { Header } from './Header';
 
 import { Check, X, Trophy, Minus } from 'lucide-react';
 import Link from 'next/link';
@@ -7,7 +7,7 @@ import Link from 'next/link';
 export function ComparisonPage({ comparison }: { comparison: ComparisonData }) {
   return (
     <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
-      <MarketplaceHeader />
+      <Header />
 
       <main className="flex-1 container mx-auto px-4 py-16 max-w-5xl">
         {/* Header Section */}

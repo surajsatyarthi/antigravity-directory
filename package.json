@@ -18,7 +18,10 @@
     "drizzle:migrate": "tsx src/drizzle/migrate.ts",
     "drizzle:studio": "drizzle-kit studio",
     "drizzle:push": "drizzle-kit push",
-    "validate:data": "tsx scripts/validate-data.ts"
+    "validate:data": "tsx scripts/validate-data.ts",
+    "validate:env": "tsx scripts/validate-env.ts",
+    "validate:env:production": "tsx scripts/validate-env.ts --environment=production",
+    "predev": "npm run validate:env"
   },
   "dependencies": {
     "@auth/core": "^0.34.3",

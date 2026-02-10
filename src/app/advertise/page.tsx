@@ -2,7 +2,7 @@
 import { Metadata } from 'next';
 import { AdvertiseClient } from '@/components/AdvertiseClient';
 import { safeJsonLd } from '@/lib/utils';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
@@ -44,7 +44,7 @@ export default function AdvertisePage() {
         dangerouslySetInnerHTML={{ __html: jsonLd }}
       />
       
-      <MarketplaceHeader />
+      <Header />
 
       <main className="pt-32 pb-24">
         {/* Hero Section */}

@@ -4,7 +4,7 @@ import { eq, and, or, ilike, desc, sql } from 'drizzle-orm';
 import { auth } from '@/auth';
 import { MemberCard } from '@/components/MemberCard';
 import { MemberFilters } from '@/components/MemberFilters';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import type { Metadata } from 'next';
 
@@ -69,7 +69,7 @@ export default async function MembersPage({
 
   return (
     <div className="min-h-screen bg-black flex flex-col">
-      <MarketplaceHeader />
+      <Header />
 
       <main className="container mx-auto px-4 py-16 flex-1">
         <header className="mb-20 text-center max-w-3xl mx-auto">

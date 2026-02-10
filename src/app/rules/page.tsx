@@ -1,4 +1,4 @@
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 import { Shield } from 'lucide-react';
 
 export const metadata = {
@@ -9,7 +9,7 @@ export const metadata = {
 export default function RulesPage() {
   return (
     <>
-      <MarketplaceHeader />
+      <Header />
       <div className="min-h-screen bg-[#050505] text-white pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-8">

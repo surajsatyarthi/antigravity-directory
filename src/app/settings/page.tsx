@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 import { users } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
 import { redirect } from 'next/navigation';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { SettingsForm } from '@/components/SettingsForm';
 
@@ -40,7 +40,7 @@ export default async function SettingsPage() {
 
   return (
     <div className="min-h-screen bg-black flex flex-col">
-      <MarketplaceHeader />
+      <Header />
 
       <main className="container mx-auto px-4 py-12 flex-1">
         <div className="max-w-4xl mx-auto">

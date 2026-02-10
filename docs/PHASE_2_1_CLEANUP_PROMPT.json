@@ -1,0 +1,500 @@
+{
+  "meta": {
+    "title": "Phase 2.1 Homepage Cleanup - Critical UX Issues",
+    "version": "1.0",
+    "date": "2026-02-04",
+    "status": "BLOCKING",
+    "priority": "CRITICAL",
+    "total_effort_hours": 2,
+    "recipient": "Antigravity (AI Developer)",
+    "reviewer": "PM (Claude Code)"
+  },
+  "executive_summary": {
+    "overview": "Phase 2.1 code quality is excellent (Ralph 11/12, FAANG 9/10), but 4 critical UX issues were identified during PM audit. These issues must be fixed before shipping.",
+    "issues_count": 4,
+    "estimated_fix_time_hours": 2,
+    "blocking": true,
+    "approval_status": "BLOCKED until fixes complete"
+  },
+  "issues": [
+    {
+      "id": 1,
+      "title": "Repetitive CTA Messaging",
+      "severity": "CRITICAL",
+      "problem": "Same CTAs appear multiple times on homepage, causing user confusion about primary action",
+      "details": {
+        "hero_section": {
+          "file": "src/components/HeroSection.tsx",
+          "lines": "34-51",
+          "ctas": [
+            "Browse All Tools button",
+            "List Your Resource (Earn 80%) link"
+          ]
+        },
+        "cta_section": {
+          "file": "src/components/CTASection.tsx",
+          "lines": "21-46",
+          "ctas": [
+            "Claim Your Tool button (DUPLICATE of Hero)",
+            "Browse Tools link (DUPLICATE of Hero)",
+            "Post a Job link (SHOULD NOT EXIST)"
+          ]
+        }
+      },
+      "user_impact": "Users see same action twice with different wording = confusion about what to do",
+      "solution": "Remove or completely repurpose CTASection.tsx (don't duplicate hero CTAs)",
+      "effort_minutes": 15
+    },
+    {
+      "id": 2,
+      "title": "Marketplace Buried Below Fold",
+      "severity": "CRITICAL",
+      "problem": "Users must scroll through 5 sections before reaching searchable directory (actual value)",
+      "details": {
+        "current_flow": [
+          "Hero Section (good - marketplace positioning)",
+          "Stats Bar (nice but not essential)",
+          "Creator Proof (nice but not essential)",
+          "How It Works (nice but not essential)",
+          "Category Showcase (redundant - sidebar has categories)",
+          "[4-5 viewport heights of scrolling]",
+          "Full Directory (THE ACTUAL MARKETPLACE)"
+        ],
+        "expected_flow": [
+          "Hero Section (hook)",
+          "[1 viewport height]",
+          "Full Directory (immediate access)"
+        ]
+      },
+      "user_impact": "70% slower time to reach searchable marketplace. User frustration on mobile.",
+      "solution": "Move Directory component to render immediately after Hero (not at bottom of page)",
+      "code_location": "src/app/page.tsx",
+      "effort_minutes": 30
+    },
+    {
+      "id": 3,
+      "title": "Job Board Mentions Everywhere",
+      "severity": "CRITICAL",
+      "problem": "Job board (Phase 2+ feature) mentioned in multiple places, confusing Phase 2.1 scope",
+      "details": {
+        "locations_to_remove": [
+          {
+            "file": "src/components/Header.tsx",
+            "line": 28,
+            "content": "{ label: 'Jobs for Developers', href: '/jobs' }",
+            "action": "REMOVE from navItems array"
+          },
+          {
+            "file": "src/components/Header.tsx",
+            "lines": "70-73",
+            "content": "<Link href=\"/jobs\" className=\"...\">Post a Job</Link>",
+            "action": "REMOVE entire link block from desktop CTAs"
+          },
+          {
+            "file": "src/components/CTASection.tsx",
+            "lines": "38-44",
+            "content": "<Link href=\"/jobs\" className=\"...\"><Briefcase className=\"w-4 h-4\" />Post a Job</Link>",
+            "action": "REMOVE entire link block"
+          },
+          {
+            "file": "src/components/Footer.tsx",
+            "lines": "128-132",
+            "content": "<Link href=\"/jobs\" className=\"...\">Jobs</Link>",
+            "action": "REMOVE entire link block"
+          }
+        ],
+        "verification_commands": [
+          "grep -rn 'href=\"/jobs\"' src/components/ --include='*.tsx'",
+          "grep -rn 'Post a Job' src/components/ --include='*.tsx'",
+          "grep -rn 'Jobs for Developers' src/components/ --include='*.tsx'"
+        ],
+        "expected_result": "All above commands should return: EMPTY (no matches)"
+      },
+      "user_impact": "Users click 'Post a Job' → broken/incomplete experience. Scope confusion.",
+      "solution": "Remove ALL job board references from codebase (should be 0 matches after)",
+      "effort_minutes": 20
+    },
+    {
+      "id": 4,
+      "title": "Header/Footer Consistency",
+      "severity": "MEDIUM",
+      "problem": "Header and Footer imported independently on 20+ pages, creating consistency risk",
+      "details": {
+        "affected_pages": 20,
+        "pages_examples": [
+          "src/app/page.tsx",
+          "src/app/settings/page.tsx",
+          "src/app/submit/page.tsx",
+          "src/app/dashboard/page.tsx",
+          "... and 16+ more"
+        ],
+        "risk": "If Header/Footer changed on one page, others not updated. Inconsistent UX.",
+        "verification_commands": [
+          "grep -rn 'import { Header }' src/app --include='*.tsx'",
+          "grep -rn 'import { Footer }' src/app --include='*.tsx'"
+        ],
+        "expected_result": "Only ONE Header.tsx component variant, only ONE Footer.tsx component variant"
+      },
+      "solution": "Verify all pages use single Header.tsx and Footer.tsx (no custom variants)",
+      "effort_minutes": 15
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": 1,
+      "name": "Remove Repetitive CTAs",
+      "description": "Delete or repurpose CTASection component to eliminate duplicate messaging",
+      "files_to_modify": ["src/components/CTASection.tsx", "src/app/page.tsx"],
+      "steps": [
+        {
+          "step": 1,
+          "action": "Delete CTASection.tsx component",
+          "command": "rm src/components/CTASection.tsx"
+        },
+        {
+          "step": 2,
+          "action": "Remove CTASection import from page.tsx",
+          "file": "src/app/page.tsx",
+          "find": "import { CTASection } from '@/components/CTASection';",
+          "replace": "// REMOVED - CTASection (redundant with Hero CTAs)"
+        },
+        {
+          "step": 3,
+          "action": "Remove CTASection render from page.tsx",
+          "file": "src/app/page.tsx",
+          "find": "{!isBrowsing && <CTASection />}",
+          "replace": "// REMOVED - CTA duplicated in Hero section"
+        },
+        {
+          "step": 4,
+          "action": "Remove Briefcase icon import (no longer needed)",
+          "file": "src/components/Header.tsx",
+          "find": "import { Zap, User, LogOut, Briefcase } from 'lucide-react';",
+          "replace": "import { Zap, User, LogOut } from 'lucide-react';"
+        }
+      ],
+      "verification": {
+        "check_1": "npm run build should pass (0 errors)",
+        "check_2": "pnpm tsc --noEmit should pass (0 errors)",
+        "check_3": "Homepage should have ONE clear CTA path (hero only)"
+      },
+      "effort_minutes": 15,
+      "completed": false
+    },
+    {
+      "task_id": 2,
+      "name": "Reorder Homepage Sections",
+      "description": "Move Directory component to render immediately after Hero (not at bottom)",
+      "files_to_modify": ["src/app/page.tsx"],
+      "current_structure": [
+        "Hero ({!isBrowsing && <HeroSection />})",
+        "StatsBar ({!isBrowsing && <StatsBar />})",
+        "CreatorProof ({!isBrowsing && <CreatorProofSection />})",
+        "HowItWorks ({!isBrowsing && <HowItWorks />})",
+        "CategoryShowcase ({!isBrowsing && <CategoryShowcase />})",
+        "Directory (Main content section)"
+      ],
+      "new_structure": [
+        "Hero ({!isBrowsing && <HeroSection />})",
+        "Directory (Main content - MOVED HERE)",
+        "StatsBar ({!isBrowsing && <StatsBar />})",
+        "CreatorProof ({!isBrowsing && <CreatorProofSection />})",
+        "HowItWorks ({!isBrowsing && <HowItWorks />})",
+        "CategoryShowcase ({!isBrowsing && <CategoryShowcase />})"
+      ],
+      "steps": [
+        {
+          "step": 1,
+          "action": "Find Directory rendering block in page.tsx",
+          "description": "Locate the <div className={!isBrowsing ? 'mt-24...' block"
+        },
+        {
+          "step": 2,
+          "action": "Cut the entire Directory block",
+          "description": "Lines ~120-183 in current page.tsx"
+        },
+        {
+          "step": 3,
+          "action": "Paste after Hero closing tag",
+          "description": "After </> closing HeroSection, insert Directory block"
+        },
+        {
+          "step": 4,
+          "action": "Keep conditional rendering logic",
+          "description": "Keep {!isBrowsing && <Section />} for Stats/CreatorProof/HowItWorks/CategoryShowcase"
+        },
+        {
+          "step": 5,
+          "action": "Test on mobile and desktop",
+          "description": "Verify Directory visible within 1-2 scrolls on all breakpoints"
+        }
+      ],
+      "verification": {
+        "desktop_1024px": "Directory visible immediately after hero (within 1 viewport)",
+        "tablet_768px": "Directory visible with minimal scroll",
+        "mobile_375px": "Directory visible within 2 scrolls",
+        "functionality": "Search/filters still work, conditional rendering intact"
+      },
+      "effort_minutes": 30,
+      "completed": false
+    },
+    {
+      "task_id": 3,
+      "name": "Remove All Job Board References",
+      "description": "Delete job board links from Header, Footer, and CTASection",
+      "files_to_modify": [
+        "src/components/Header.tsx",
+        "src/components/CTASection.tsx",
+        "src/components/Footer.tsx"
+      ],
+      "removals": [
+        {
+          "file": "src/components/Header.tsx",
+          "line": 28,
+          "remove": "{ label: 'Jobs for Developers', href: '/jobs' },",
+          "reason": "Job board is Phase 2+ feature"
+        },
+        {
+          "file": "src/components/Header.tsx",
+          "lines": "70-73",
+          "remove": "<Link href=\"/jobs\" className=\"flex items-center justify-center px-4 py-2 border border-white/10 hover:border-white/20 text-white text-[10px] font-bold uppercase tracking-[0.1em] rounded-md transition-all whitespace-nowrap\">Post a Job</Link>",
+          "reason": "Duplicate CTA + out of scope"
+        },
+        {
+          "file": "src/components/CTASection.tsx",
+          "lines": "38-44",
+          "remove": "<Link href=\"/jobs\" className=\"flex items-center gap-2 px-8 py-5 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl border border-white/5 transition-all\"><Briefcase className=\"w-4 h-4\" />Post a Job</Link>",
+          "reason": "Job board out of scope for Phase 2.1"
+        },
+        {
+          "file": "src/components/Footer.tsx",
+          "lines": "128-132",
+          "remove": "<Link href=\"/jobs\" className=\"p-2 transition-colors hover:text-white\">Jobs</Link>",
+          "reason": "Job board out of scope"
+        }
+      ],
+      "verification_commands": [
+        {
+          "command": "grep -rn 'href=\"/jobs\"' src/components/ --include='*.tsx'",
+          "expected_result": "EMPTY (no matches)",
+          "description": "Verify no /jobs links remain"
+        },
+        {
+          "command": "grep -rn 'Post a Job' src/components/ --include='*.tsx'",
+          "expected_result": "EMPTY (no matches)",
+          "description": "Verify no 'Post a Job' text remains"
+        },
+        {
+          "command": "grep -rn 'Jobs for Developers' src/components/ --include='*.tsx'",
+          "expected_result": "EMPTY (no matches)",
+          "description": "Verify no 'Jobs for Developers' nav item"
+        }
+      ],
+      "effort_minutes": 20,
+      "completed": false
+    },
+    {
+      "task_id": 4,
+      "name": "Verify Header/Footer Consistency",
+      "description": "Ensure Header and Footer are consistent across all pages",
+      "verification_steps": [
+        {
+          "step": 1,
+          "action": "Check for Header variants",
+          "command": "grep -rn 'import.*Header' src/app --include='*.tsx' | grep -v '// ' | sort | uniq",
+          "expected": "Single Header import pattern (no variants like Header2, CustomHeader, etc.)"
+        },
+        {
+          "step": 2,
+          "action": "Check for Footer variants",
+          "command": "grep -rn 'import.*Footer' src/app --include='*.tsx' | grep -v '// ' | sort | uniq",
+          "expected": "Single Footer import pattern (no variants)"
+        },
+        {
+          "step": 3,
+          "action": "Verify all Header imports from same file",
+          "command": "grep -rn \"from '@/components/Header'\" src/app --include='*.tsx'",
+          "expected": "All imports point to src/components/Header.tsx"
+        },
+        {
+          "step": 4,
+          "action": "Verify all Footer imports from same file",
+          "command": "grep -rn \"from '@/components/Footer'\" src/app --include='*.tsx'",
+          "expected": "All imports point to src/components/Footer.tsx"
+        }
+      ],
+      "findings": {
+        "check": "Are all pages using same Header and Footer?",
+        "action_if_yes": "No action needed - consistency verified",
+        "action_if_no": "Consolidate to single Header.tsx and Footer.tsx"
+      },
+      "effort_minutes": 15,
+      "completed": false
+    },
+    {
+      "task_id": 5,
+      "name": "Test & Verify All Changes",
+      "description": "Run comprehensive tests to verify all fixes work correctly",
+      "build_tests": [
+        {
+          "test": "npm run build",
+          "expected_result": "✓ Compiled successfully (0 errors, 0 warnings)",
+          "failure_action": "Check build output, fix errors, retry"
+        },
+        {
+          "test": "pnpm tsc --noEmit",
+          "expected_result": "No output (0 TypeScript errors)",
+          "failure_action": "Fix TypeScript errors, retry"
+        }
+      ],
+      "functional_tests": [
+        {
+          "test": "Visual: Homepage loads without errors",
+          "expected": "Hero visible immediately, no console errors"
+        },
+        {
+          "test": "Visual: Directory visible after hero",
+          "expected": "Directory appears within 1-2 viewport heights"
+        },
+        {
+          "test": "Search: Type in search bar",
+          "expected": "Results appear, marketplace sections hide"
+        },
+        {
+          "test": "Filter: Click category filter",
+          "expected": "Results filtered, marketplace sections hide"
+        },
+        {
+          "test": "Clear: Clear filters",
+          "expected": "Marketplace sections reappear"
+        },
+        {
+          "test": "CTA: Click 'List Your Resource'",
+          "expected": "Navigate to /submit"
+        },
+        {
+          "test": "Search: Look for job board links",
+          "expected": "NO job board links anywhere on page"
+        },
+        {
+          "test": "CTA: Verify no duplicate CTAs",
+          "expected": "Only hero CTAs visible (no CTA section)"
+        }
+      ],
+      "responsive_tests": [
+        {
+          "device": "Mobile (375px)",
+          "tests": [
+            "Hero readable",
+            "Search bar accessible",
+            "Directory visible after 1-2 scrolls",
+            "No horizontal overflow",
+            "Touch targets >= 44px"
+          ]
+        },
+        {
+          "device": "Tablet (768px)",
+          "tests": [
+            "Layout responsive",
+            "Sidebar visible",
+            "Directory grid adjusts",
+            "No broken spacing"
+          ]
+        },
+        {
+          "device": "Desktop (1024px+)",
+          "tests": [
+            "Full layout renders",
+            "Multi-column grids visible",
+            "Hero section optimal",
+            "Directory immediately accessible"
+          ]
+        }
+      ],
+      "final_checklist": [
+        "[ ] npm run build passes (0 errors)",
+        "[ ] pnpm tsc --noEmit passes (0 errors)",
+        "[ ] Console clean (0 errors/warnings)",
+        "[ ] No job board links visible",
+        "[ ] Directory visible 1-2 viewports from hero",
+        "[ ] No duplicate CTAs",
+        "[ ] Search/filter work",
+        "[ ] Mobile responsive (375px, 768px, 1024px)",
+        "[ ] All buttons clickable",
+        "[ ] No broken links"
+      ],
+      "effort_minutes": 30,
+      "completed": false
+    }
+  ],
+  "success_criteria": {
+    "technical": [
+      "npm run build: ✓ Passes (0 errors)",
+      "TypeScript: ✓ 0 errors",
+      "Console: ✓ 0 errors/warnings",
+      "Build time: < 5 minutes"
+    ],
+    "functional": [
+      "Directory visible within 1-2 viewport heights from hero",
+      "No job board links visible anywhere",
+      "No duplicate CTAs (single hero CTA only)",
+      "Search/filter functionality intact",
+      "All internal links working"
+    ],
+    "design": [
+      "Dark theme maintained",
+      "Blue/purple accents consistent",
+      "Responsive at 375px, 768px, 1024px",
+      "Touch targets >= 44px",
+      "Good whitespace preserved"
+    ],
+    "approval_gate": [
+      "All 5 tasks completed",
+      "All tests passing",
+      "No regressions",
+      "Code review approved",
+      "Ready to ship"
+    ]
+  },
+  "timeline": {
+    "task_1_minutes": 15,
+    "task_2_minutes": 30,
+    "task_3_minutes": 20,
+    "task_4_minutes": 15,
+    "task_5_minutes": 30,
+    "total_minutes": 110,
+    "total_hours": 1.83,
+    "deadline": "End of Day (Feb 4, 2026)"
+  },
+  "rollback_plan": {
+    "if_issues_found": "Revert changes and request clarification",
+    "git_commands": [
+      "git status (check current changes)",
+      "git diff (review specific changes)",
+      "git reset --hard (rollback if needed)",
+      "git checkout -- filename (revert specific file)"
+    ]
+  },
+  "approval_flow": {
+    "current_status": "🔴 BLOCKED",
+    "reason": "UX issues identified (repetition, buried marketplace, out-of-scope features)",
+    "next_steps": [
+      "1. Implement all 5 tasks",
+      "2. Run full test suite",
+      "3. Verify all success criteria met",
+      "4. Notify PM (Claude Code)",
+      "5. PM re-verifies build/tests",
+      "6. Final approval issued (or additional fixes requested)"
+    ],
+    "after_approval": "Phase 2.1 can ship, Phase 2.2 gate can proceed (pending Phase 1 metrics)"
+  },
+  "reference_documentation": {
+    "detailed_task_sheet": "/docs/PHASE_2_1_CLEANUP_TASK_SHEET.md",
+    "previous_pm_analysis": "/docs/reports/PM_PROTOCOL_ANALYSIS_PHASE_2_1.md",
+    "developer_guide": "/docs/PHASE_2_1_REVIEW_REPORT.md"
+  },
+  "contact_info": {
+    "reviewer": "PM (Claude Code)",
+    "action": "If questions arise, refer to /docs/PHASE_2_1_CLEANUP_TASK_SHEET.md for detailed explanations"
+  }
+}

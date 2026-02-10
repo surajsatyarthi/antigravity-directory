@@ -125,12 +125,6 @@ export function Footer() {
                 Create Account (Earn 80%)
               </Link>
               <Link
-                href="/jobs"
-                className="p-2 transition-colors hover:text-white"
-              >
-                Jobs
-              </Link>
-              <Link
                 href="/members"
                 className="p-2 transition-colors hover:text-white"
               >

@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 import { users } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
 import { redirect } from 'next/navigation';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ResourceCard } from '@/components/ResourceCard';
 import { 
@@ -38,7 +38,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-black flex flex-col selection:bg-blue-500/30">
-      <MarketplaceHeader />
+      <Header />
 
       <main className="container mx-auto px-4 py-16 flex-1 max-w-7xl">
         {/* Header Section */}

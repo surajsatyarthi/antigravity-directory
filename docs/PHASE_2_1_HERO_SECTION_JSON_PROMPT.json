@@ -1,0 +1,386 @@
+{
+  "meta": {
+    "title": "Phase 2.1 Hero Section Redesign - Rule of 3 Copywriting",
+    "status": "BLOCKING",
+    "priority": "CRITICAL",
+    "recipient": "Antigravity (AI Developer)",
+    "reviewer": "Claude (PM)",
+    "date": "2026-02-05",
+    "timeline": "Complete today (Feb 5)",
+    "deliverable_type": "Hero Section UI + Copy Redesign"
+  },
+
+  "context": {
+    "problem": "Current hero section only emphasizes 'marketplace' with generic messaging. Users don't understand the THREE core value drivers of the site.",
+    "solution": "Redesign hero using 'Rule of 3' copywriting principle. Present all three value propositions clearly in hero so users immediately understand what they get.",
+    "impact": "Users see value instantly → faster conversion → more creator signups → more marketplace activity"
+  },
+
+  "rule_of_three": {
+    "definition": "The Rule of 3 in copywriting states that things are more memorable, satisfying, and effective when presented in groups of three. Examples: 'Life, liberty, and the pursuit of happiness' / 'Stop, look, listen' / 'Fast, cheap, good (pick two)'",
+    "why_it_works": "Three items feel complete. Two feels incomplete. Four feels cluttered. Three is the 'Goldilocks' of persuasive messaging.",
+    "how_we_apply_it": "Present three distinct value propositions (not variations of the same thing) in hero section."
+  },
+
+  "the_three_core_values": {
+    "value_1": {
+      "name": "Marketplace (Browse & Discover)",
+      "what_it_is": "Searchable directory of 2,200+ AI tools, MCPs, workflows, rules",
+      "user_benefit": "Find the exact tools you need quickly",
+      "emoji": "📦",
+      "color": "blue",
+      "cta_text": "Browse 2,200+ Tools"
+    },
+    "value_2": {
+      "name": "Commission (Earn Money)",
+      "what_it_is": "Creators earn 80% commission on every tool/resource they list",
+      "user_benefit": "Turn your creations into recurring revenue",
+      "emoji": "💰",
+      "color": "green",
+      "cta_text": "Start Earning (80% Commission)"
+    },
+    "value_3": {
+      "name": "Community (Connect & Grow)",
+      "what_it_is": "Connect with 500+ creators, share knowledge, collaborate",
+      "user_benefit": "Build your reputation and network with your peers",
+      "emoji": "👥",
+      "color": "purple",
+      "cta_text": "Join 500+ Creators"
+    }
+  },
+
+  "current_hero_problems": [
+    {
+      "issue": "Only mentions marketplace ('Unleash Your Creativity' is too generic)",
+      "impact": "Users don't know they can EARN money or JOIN community",
+      "fix": "Add explicit messaging for earning + community"
+    },
+    {
+      "issue": "Copy doesn't differentiate between Browse vs List actions",
+      "impact": "Users don't see why they should list vs just browse",
+      "fix": "Show 80% commission prominently to motivate creators"
+    },
+    {
+      "issue": "No community angle in hero",
+      "impact": "Users don't see value in joining (just think it's a directory)",
+      "fix": "Show creator count (500+) and community aspect"
+    }
+  ],
+
+  "proposed_hero_redesign": {
+    "layout": "Three-column design matching Rule of 3",
+    "structure": {
+      "headline": {
+        "text": "Unleash Your Creativity on a Creator Marketplace Built for Antigravity",
+        "explanation": "Same headline as before - keeps brand continuity",
+        "size": "h1 (text-6xl to text-8xl)",
+        "color": "white"
+      },
+      "subheadline": {
+        "text": "Browse. Earn. Connect.",
+        "explanation": "Rule of 3 - three actions, three benefits, memorable",
+        "size": "h2 (text-2xl)",
+        "color": "blue-400"
+      },
+      "three_value_cards": {
+        "layout": "3-column grid (responsive: 1 col mobile, 2 cols tablet, 3 cols desktop)",
+        "card_1": {
+          "emoji": "📦",
+          "title": "Browse Tools",
+          "description": "Discover 2,200+ MCPs, workflows, and rules",
+          "stat": "2,200+",
+          "stat_label": "Resources",
+          "button_text": "Browse Now",
+          "button_action": "scroll to Directory OR navigate to /browse"
+        },
+        "card_2": {
+          "emoji": "💰",
+          "title": "Earn 80%",
+          "description": "List your resources and keep most of the revenue",
+          "stat": "80%",
+          "stat_label": "Commission",
+          "button_text": "Start Listing",
+          "button_action": "navigate to /submit"
+        },
+        "card_3": {
+          "emoji": "👥",
+          "title": "Join Community",
+          "description": "Connect with 500+ creators building the future",
+          "stat": "500+",
+          "stat_label": "Creators",
+          "button_text": "View Profiles",
+          "button_action": "navigate to /members"
+        }
+      },
+      "cta_group": {
+        "layout": "Two primary CTAs (same as current hero)",
+        "primary_1": {
+          "text": "Browse All Tools",
+          "style": "bg-white text-black font-bold",
+          "action": "scroll to Directory"
+        },
+        "primary_2": {
+          "text": "List Your Resource (Earn 80%)",
+          "style": "border border-white text-white",
+          "action": "navigate to /submit"
+        }
+      },
+      "search_input": {
+        "placement": "Below CTAs (same as current)",
+        "placeholder": "Search 2,200+ MCPs, Rules, and Workflows...",
+        "explanation": "Keeps existing search functionality"
+      }
+    }
+  },
+
+  "visual_mockup": {
+    "text_representation": [
+      "┌────────────────────────────────────────────────────────┐",
+      "│                    HERO SECTION                        │",
+      "│                                                        │",
+      "│  Unleash Your Creativity on a Creator Marketplace     │",
+      "│  Built for Antigravity                                │",
+      "│                                                        │",
+      "│              Browse. Earn. Connect.                    │",
+      "│                                                        │",
+      "├────────────────────────────────────────────────────────┤",
+      "│                    THREE VALUE CARDS                   │",
+      "├────────────────┬────────────────┬────────────────────┤",
+      "│      📦        │      💰        │        👥          │",
+      "│  Browse Tools  │   Earn 80%     │  Join Community    │",
+      "│                │                │                    │",
+      "│  Discover      │   List your    │  Connect with      │",
+      "│  2,200+ tools  │   resources    │  500+ creators     │",
+      "│                │                │                    │",
+      "│  2,200+        │   80%          │  500+              │",
+      "│  Resources     │   Commission   │  Creators          │",
+      "│                │                │                    │",
+      "│  [Browse Now]  │ [Start Listing]│ [View Profiles]    │",
+      "├────────────────┴────────────────┴────────────────────┤",
+      "│                                                        │",
+      "│            [Browse All Tools]   [List Resource]       │",
+      "│                                                        │",
+      "│      [Search 2,200+ MCPs, Rules, Workflows...]       │",
+      "└────────────────────────────────────────────────────────┘"
+    ]
+  },
+
+  "implementation_details": {
+    "files_to_modify": [
+      {
+        "file": "src/components/HeroSection.tsx",
+        "changes": [
+          "Keep existing headline + subheadline",
+          "Add new 'Three Value Cards' section below subheadline",
+          "Keep existing CTA buttons (Browse + List)",
+          "Keep existing SearchInput component",
+          "Add responsive grid for cards (1 col mobile, 2 cols tablet, 3 cols desktop)"
+        ]
+      }
+    ],
+    "component_structure": {
+      "HeroSection": {
+        "children": [
+          "HeroHeadline (existing)",
+          "HeroSubheadline (existing - update to 'Browse. Earn. Connect.')",
+          "ThreeValueCards (NEW - grid of 3 cards)",
+          "HeroCTAButtons (existing)",
+          "SearchInput (existing)"
+        ]
+      },
+      "ThreeValueCards": {
+        "children": [
+          "ValueCard (Browse)",
+          "ValueCard (Earn)",
+          "ValueCard (Community)"
+        ]
+      },
+      "ValueCard": {
+        "props": {
+          "emoji": "string",
+          "title": "string",
+          "description": "string",
+          "stat": "string",
+          "statLabel": "string",
+          "buttonText": "string",
+          "buttonAction": "function"
+        },
+        "styling": "Card with subtle border, hover effect, centered text"
+      }
+    }
+  },
+
+  "copy_examples": {
+    "headline": "Unleash Your Creativity on a Creator Marketplace Built for Antigravity",
+    "subheadline": "Browse. Earn. Connect.",
+    "card_1_title": "Browse Tools",
+    "card_1_description": "Discover 2,200+ MCPs, workflows, and rules",
+    "card_2_title": "Earn 80%",
+    "card_2_description": "List your resources and keep most of the revenue",
+    "card_3_title": "Join Community",
+    "card_3_description": "Connect with 500+ creators building the future",
+    "note": "Copy is intentionally short (2-3 words per title, 1 sentence per description) to follow copywriting best practice: less is more"
+  },
+
+  "styling_requirements": {
+    "color_scheme": {
+      "background": "black (existing hero background)",
+      "text_primary": "white",
+      "text_secondary": "gray-400",
+      "cards": "dark with subtle white/gray borders",
+      "hover_state": "Slight glow or scale transform on card hover"
+    },
+    "typography": {
+      "headline": "font-black text-6xl md:text-8xl",
+      "subheadline": "font-bold text-2xl text-blue-400",
+      "card_title": "font-bold text-xl",
+      "card_description": "font-normal text-sm text-gray-400",
+      "stat": "font-black text-3xl text-blue-400",
+      "stat_label": "font-bold text-xs text-gray-500"
+    },
+    "responsive": {
+      "mobile_375px": "Cards stack vertically (1 column)",
+      "tablet_768px": "Cards in 2 columns",
+      "desktop_1024px": "Cards in 3 columns"
+    }
+  },
+
+  "acceptance_criteria": [
+    {
+      "item": "Hero headline unchanged ('Unleash Your Creativity...')",
+      "verification": "Visual check - headline still present"
+    },
+    {
+      "item": "Subheadline updated to 'Browse. Earn. Connect.'",
+      "verification": "Visual check - new subheadline visible"
+    },
+    {
+      "item": "Three value cards added below subheadline",
+      "verification": "Three cards visible (📦 Browse, 💰 Earn, 👥 Community)"
+    },
+    {
+      "item": "Each card shows: emoji, title, description, stat, button",
+      "verification": "All elements present on each card"
+    },
+    {
+      "item": "Cards responsive (1 col mobile, 2 tablet, 3 desktop)",
+      "verification": "Test at 375px, 768px, 1024px breakpoints"
+    },
+    {
+      "item": "Browse card links to Directory (scroll)",
+      "verification": "Click [Browse Now] → scrolls to directory"
+    },
+    {
+      "item": "Earn card links to /submit",
+      "verification": "Click [Start Listing] → navigates to submit page"
+    },
+    {
+      "item": "Community card links to /members",
+      "verification": "Click [View Profiles] → navigates to members page"
+    },
+    {
+      "item": "CTA buttons (Browse All Tools + List Resource) unchanged",
+      "verification": "Two primary CTAs still below cards"
+    },
+    {
+      "item": "Search input still functional below CTAs",
+      "verification": "Search bar loads and accepts input"
+    },
+    {
+      "item": "Build passes: npm run build",
+      "verification": "Output: ✅ Compiled successfully"
+    },
+    {
+      "item": "TypeScript passes: pnpm tsc --noEmit",
+      "verification": "Output: (silent, no errors)"
+    },
+    {
+      "item": "No console errors",
+      "verification": "Browser dev tools: Console is clean"
+    },
+    {
+      "item": "Page load <2 seconds",
+      "verification": "Lighthouse score shows <2s load time"
+    }
+  ],
+
+  "why_this_works": {
+    "rule_of_3_benefits": [
+      "Users remember 3 things better than 1 or 4",
+      "Shows breadth of value (Browse + Earn + Community)",
+      "Addresses different user personas (Browsers, Sellers, Community-builders)",
+      "Feels complete and intentional (not incomplete or overwhelming)"
+    ],
+    "conversion_impact": [
+      "Browser users: See 'Browse' option → browse",
+      "Creator users: See 'Earn 80%' prominently → list resources",
+      "Community users: See 'Join 500+ Creators' → sign up",
+      "Each user sees their path clearly"
+    ],
+    "copy_clarity": [
+      "'Browse' = find tools",
+      "'Earn' = make money as creator",
+      "'Connect' = join community",
+      "No ambiguity, no repetition, no generic fluff"
+    ]
+  },
+
+  "pm_validation_checklist": {
+    "ralph_protocol": {
+      "gate_1_build": "npm run build must pass",
+      "gate_2_typescript": "pnpm tsc --noEmit must pass",
+      "gate_3_console": "No console errors/warnings",
+      "gate_4_logic": "Card buttons navigate correctly",
+      "gate_6_performance": "Hero loads <2s",
+      "gate_7_mobile": "Responsive at 375px, 768px, 1024px"
+    },
+    "visual_qa": [
+      "Hero headline still prominent",
+      "Subheadline says 'Browse. Earn. Connect.'",
+      "Three cards displayed clearly",
+      "Stats are visible (2,200+, 80%, 500+)",
+      "Buttons are clickable",
+      "No layout shifts or visual glitches",
+      "Mobile looks good at 375px"
+    ],
+    "user_experience": [
+      "Users understand what site does in 3 seconds",
+      "Users can choose their path (browse, earn, or join)",
+      "Copy is clear, not generic",
+      "CTAs are specific (Browse 2,200+, not just 'Browse')"
+    ]
+  },
+
+  "timeline": {
+    "estimated_effort_hours": 2,
+    "breakdown": {
+      "design_new_component": "0.5 hours",
+      "integrate_three_value_cards": "0.5 hours",
+      "responsive_styling": "0.5 hours",
+      "test_and_verify": "0.5 hours"
+    },
+    "deadline": "Today (Feb 5, 2026) EOD",
+    "review_turnaround": "2 hours (PM will use Gate Report Template)"
+  },
+
+  "next_steps": [
+    "Implement hero redesign per spec above",
+    "Test responsive (375px, 768px, 1024px)",
+    "Run npm run build + pnpm tsc --noEmit",
+    "Submit to REPORT-CENTER.md with:",
+    "  - Screenshot of new hero",
+    "  - Test results (build, typescript, console)",
+    "  - Verification that buttons navigate correctly",
+    "- PM reviews with Gate Report Template",
+    "- Phase 2.1 approved (if all criteria met)"
+  ],
+
+  "questions": {
+    "q1": "Why these three values and not others?",
+    "a1": "These are the core business drivers: 1) Users need tools (marketplace), 2) Creators want revenue (commission), 3) People want community (networking). No other value proposition matters if these three aren't clear."
+  },
+  "q2": "What if users don't click the card buttons?",
+  "a2": "That's fine - the main CTAs (Browse All Tools, List Resource) are still below. Cards provide additional paths and show the three value props clearly. Main CTAs are primary.",
+  "q3": "Isn't this adding more to the page?",
+  "a3": "Yes, but it's REPLACING repetitive content (CTASection below). Net result: Hero gets richer, page overall gets simpler."
+}

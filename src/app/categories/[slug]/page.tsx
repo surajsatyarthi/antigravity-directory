@@ -3,7 +3,7 @@ import { resources, categories, ratings, bookmarks } from '@/drizzle/schema';
 import { eq, desc, sql, and } from 'drizzle-orm';
 import { auth } from '@/auth';
 import { notFound } from 'next/navigation';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 import { ResourceCard } from '@/components/ResourceCard';
 import { Footer } from '@/components/Footer';
 import { ChevronRight } from 'lucide-react';
@@ -109,7 +109,7 @@ export default async function CategoryPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
-      <MarketplaceHeader />
+      <Header />
 
       <main className="flex-1 container mx-auto px-4 py-12 max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-12">

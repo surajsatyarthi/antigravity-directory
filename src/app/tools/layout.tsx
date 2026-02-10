@@ -1,5 +1,5 @@
 import { ToolsShell } from "@/components/tools/ToolsShell";
-import { MarketplaceHeader } from "@/components/MarketplaceHeader";
+import { Header } from "@/components/Header";
 
 export default function ToolsLayout({
   children,
@@ -8,7 +8,7 @@ export default function ToolsLayout({
 }) {
   return (
     <div className="flex flex-col h-screen overflow-hidden">
-      <MarketplaceHeader />
+      <Header />
       <ToolsShell>{children}</ToolsShell>
     </div>
   );

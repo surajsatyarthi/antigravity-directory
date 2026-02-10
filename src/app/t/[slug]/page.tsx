@@ -5,7 +5,7 @@ import { Star, Eye, Copy, ExternalLink, ArrowLeft, ChevronRight } from 'lucide-r
 import { db } from '@/lib/db';
 import { resources, categories, ratings, tags, resourceTags } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 import { CitationBlock } from '@/components/CitationBlock';
 import { BadgeGenerator } from '@/components/BadgeGenerator';
 import { Footer } from '@/components/Footer';
@@ -202,7 +202,7 @@ export default async function ResourceDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}
       />
-      <MarketplaceHeader />
+      <Header />
 
       <main className="flex-1 container mx-auto px-4 py-12 max-w-4xl">
         {/* Breadcrumbs */}

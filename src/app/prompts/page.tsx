@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Terminal, Copy, Command, Sparkles, MessageSquare, Code, ArrowRight, Globe } from 'lucide-react';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 
 export const metadata: Metadata = {
   title: "Gemini 3 Coding Prompts | Antigravity Library",
@@ -58,7 +58,7 @@ const promptCategories = [
 export default function PromptsPage() {
   return (
     <>
-      <MarketplaceHeader />
+      <Header />
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
         <div className="relative py-20 px-6 border-b border-white/10">

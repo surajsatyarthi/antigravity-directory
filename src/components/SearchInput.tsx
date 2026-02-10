@@ -76,7 +76,7 @@ export function SearchInput({ variant = 'default', placeholder = "Search prompts
           "w-full bg-[#050505] border border-white/[0.05] focus:border-white transition-all text-white placeholder:text-gray-600 outline-none",
           variant === 'hero' 
             ? "pl-14 pr-6 py-5 text-lg rounded-2xl shadow-2xl shadow-blue-500/5" 
-            : "pl-10 pr-4 py-2.5 text-sm rounded-full"
+            : "pl-10 pr-4 py-2.5 text-[11px] rounded-full"
         )}
       />
     </div>

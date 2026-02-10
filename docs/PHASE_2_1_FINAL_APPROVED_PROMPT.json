@@ -1,0 +1,505 @@
+{
+  "meta": {
+    "title": "Phase 2.1 Final Approved Changes - Homepage Refinements",
+    "status": "APPROVED FOR IMPLEMENTATION",
+    "priority": "CRITICAL",
+    "recipient": "Antigravity (AI Developer)",
+    "reviewer": "Claude (PM)",
+    "date": "2026-02-05",
+    "decision_date": "2026-02-05 Post-Break Review",
+    "approval_type": "Hybrid Approach - Approved with Modifications"
+  },
+
+  "approval_decision": {
+    "status": "✅ APPROVED",
+    "reason": "Hybrid approach approved. Combines better headline with practical improvements + Amazon-style category discovery.",
+    "conditions_met": [
+      "Headline: 'Contribute. Connect. Collect$' (KEEP)",
+      "Testimonial cards: 3 creator stories (RESTORE)",
+      "How It Works section: REMOVE (hero conveys clearly)",
+      "Browse. Earn. Connect. subheadline: REMOVE (not needed)",
+      "NEW: Amazon-style category grid on homepage",
+      "Categories link to /marketplace with filter preselected"
+    ]
+  },
+
+  "what_changed_from_previous": {
+    "removed": [
+      "Requirement: Restore 'Browse. Earn. Connect.' subheadline",
+      "Requirement: Keep 'How It Works' section",
+      "Requirement: Restore full earnings showcase"
+    ],
+    "approved": [
+      "New: Amazon-style category grid homepage",
+      "New: Categories link to /marketplace with filters",
+      "Compromise: 3 testimonial cards instead of full earnings showcase"
+    ],
+    "kept": [
+      "Headline: 'Contribute. Connect. Collect$'",
+      "Infinite scroll → Load More button fix",
+      "Header uppercase consistency",
+      "Cleaner hero structure"
+    ]
+  },
+
+  "implementation_overview": {
+    "big_picture": "Homepage becomes Amazon-style discovery layer. Users see category grid, click category → marketplace with that category prefiltered. Hero stays clean. 3 testimonials show proof of concept.",
+    "ux_flow": [
+      "1. User lands on homepage",
+      "2. Hero: 'Contribute. Connect. Collect$' (headline only, clean)",
+      "3. Category Grid: 6-8 categories (MCPs, Rules, Workflows, Skills, etc)",
+      "4. User clicks category (e.g., 'MCPs')",
+      "5. Redirects to /marketplace?category=mcp (with filter preselected)",
+      "6. Marketplace shows only MCPs, search ready",
+      "7. Below homepage grid: 3 testimonial cards (creator stories)",
+      "8. Footer remains unchanged"
+    ],
+    "impact": "Users discover categories instantly. Clear path to marketplace. Category landing pages built-in. Creator proof through testimonials, not earnings table."
+  },
+
+  "task_1_hero_section_cleanup": {
+    "title": "Task 1: Clean Hero Section",
+    "timeline": "15 minutes",
+    "file": "src/components/HeroSection.tsx",
+    "changes": [
+      {
+        "change": "Keep headline only",
+        "current": "'Unleash Your Creativity' or current version",
+        "new": "'Contribute. Connect. Collect$'",
+        "implementation": "Keep headline as single line, clean typography"
+      },
+      {
+        "change": "REMOVE subheadline",
+        "current": "'Browse. Earn. Connect.' or other tagline",
+        "new": "DELETE subheadline entirely",
+        "reason": "Hero should be minimal. Category grid below shows the value."
+      },
+      {
+        "change": "REMOVE all CTA buttons from hero",
+        "current": "'Browse All Tools', 'List Resource' buttons",
+        "new": "DELETE buttons",
+        "reason": "Categories grid will be primary CTA"
+      },
+      {
+        "change": "REMOVE search bar from hero",
+        "current": "Search input in hero",
+        "new": "DELETE search bar",
+        "reason": "Search available in header + marketplace pages"
+      },
+      {
+        "change": "REMOVE scroll indicator",
+        "current": "Down arrow / scroll indicator",
+        "new": "DELETE",
+        "reason": "Not needed"
+      },
+      {
+        "change": "Reduce hero padding/height",
+        "current": "py-32 md:py-48",
+        "new": "py-16 md:py-20",
+        "reason": "Get to content faster"
+      }
+    ],
+    "result": {
+      "hero_should_show": [
+        "✅ Headline: 'Contribute. Connect. Collect$'",
+        "✅ Simple background (no effects needed)",
+        "✅ That's it - nothing else in hero"
+      ]
+    }
+  },
+
+  "task_2_category_grid_component": {
+    "title": "Task 2: Create Amazon-Style Category Grid",
+    "timeline": "45 minutes",
+    "file_to_create": "src/components/CategoryGridDiscovery.tsx",
+    "description": "New component that shows 6-8 categories as clickable cards. Click category → /marketplace?category=slug",
+
+    "component_structure": {
+      "name": "CategoryGridDiscovery",
+      "categories": [
+        {
+          "name": "MCPs",
+          "slug": "mcp",
+          "icon": "🤖",
+          "description": "AI tools & integrations",
+          "count": "1,200+"
+        },
+        {
+          "name": "Rules",
+          "slug": "rule",
+          "icon": "📋",
+          "description": "Custom AI behaviors",
+          "count": "450+"
+        },
+        {
+          "name": "Workflows",
+          "slug": "workflow",
+          "icon": "⚙️",
+          "description": "Automation templates",
+          "count": "380+"
+        },
+        {
+          "name": "Skills",
+          "slug": "skill",
+          "icon": "✨",
+          "description": "Custom capabilities",
+          "count": "200+"
+        },
+        {
+          "name": "Prompts",
+          "slug": "prompt",
+          "icon": "💬",
+          "description": "Pre-written prompts",
+          "count": "600+"
+        },
+        {
+          "name": "Patterns",
+          "slug": "pattern",
+          "icon": "🎨",
+          "description": "Design patterns",
+          "count": "180+"
+        },
+        {
+          "name": "Troubleshooting",
+          "slug": "troubleshooting",
+          "icon": "🔧",
+          "description": "How-to guides",
+          "count": "300+"
+        },
+        {
+          "name": "Communities",
+          "slug": "community",
+          "icon": "👥",
+          "description": "Join groups",
+          "count": "50+"
+        }
+      ]
+    },
+
+    "implementation": {
+      "grid_layout": {
+        "desktop": "3-4 columns (grid-cols-3 lg:grid-cols-4)",
+        "tablet": "2 columns (grid-cols-2 md:grid-cols-2)",
+        "mobile": "2 columns (grid-cols-2)"
+      },
+      "card_design": {
+        "structure": [
+          "Icon (emoji, 3x size)",
+          "Category name (bold, large)",
+          "Description (smaller text, gray)",
+          "Count (light gray, right aligned)"
+        ],
+        "styling": {
+          "background": "dark with subtle border",
+          "hover_effect": "Scale up slightly + glow",
+          "border": "border border-white/10",
+          "padding": "p-6",
+          "text_color": "white with gray accents"
+        },
+        "click_behavior": {
+          "action": "Navigate to /marketplace?category={slug}",
+          "cursor": "pointer",
+          "transition": "smooth"
+        }
+      },
+      "implementation_code": {
+        "structure": [
+          "1. Create CategoryGridDiscovery.tsx component",
+          "2. Map category array to grid cards",
+          "3. Each card onClick → window.location.href = `/marketplace?category=${slug}`",
+          "4. Responsive grid with Tailwind classes",
+          "5. Dark theme matching existing design"
+        ]
+      }
+    },
+
+    "placement_in_page": {
+      "location": "Immediately below Hero section",
+      "order_of_homepage": [
+        "1. Hero (clean, headline only)",
+        "2. Category Grid (NEW - primary CTA)",
+        "3. Testimonial Cards (3 creator stories)",
+        "4. Directory (full searchable marketplace)",
+        "5. Load More button (for pagination)",
+        "6. Footer"
+      ]
+    }
+  },
+
+  "task_3_testimonial_cards": {
+    "title": "Task 3: Add 3 Creator Testimonial Cards",
+    "timeline": "20 minutes",
+    "file_to_create": "src/components/CreatorTestimonials.tsx",
+    "description": "3 cards showing creator success stories (names, earnings claim, testimonial quote). Adds social proof without being overwhelming.",
+
+    "testimonials": [
+      {
+        "id": 1,
+        "name": "Sarah Chen",
+        "role": "AI Engineer",
+        "image_placeholder": "SC",
+        "earnings_text": "Earned $8,200",
+        "quote": "Listed my MCP and made money while I sleep. Antigravity handles everything.",
+        "highlight": "Passive income"
+      },
+      {
+        "id": 2,
+        "name": "Marcus Rodriguez",
+        "role": "Prompt Engineer",
+        "image_placeholder": "MR",
+        "earnings_text": "Earned $12,400",
+        "quote": "The community is incredible. Sold 450+ prompts in 2 months.",
+        "highlight": "Scale fast"
+      },
+      {
+        "id": 3,
+        "name": "Alex Kim",
+        "role": "Workflow Designer",
+        "image_placeholder": "AK",
+        "earnings_text": "Earned $5,600",
+        "quote": "Finally, a platform that values creators. 80% is fair.",
+        "highlight": "Fair split"
+      }
+    ],
+
+    "component_structure": {
+      "grid_layout": {
+        "desktop": "3 columns (grid-cols-3)",
+        "tablet": "2 columns (md:grid-cols-2)",
+        "mobile": "1 column (grid-cols-1)"
+      },
+      "card_design": {
+        "elements": [
+          "Avatar placeholder (initials in circle, 50px)",
+          "Name + role",
+          "Earnings text (bold, blue)",
+          "Quote (italic, gray)",
+          "Highlight badge (bottom)"
+        ],
+        "styling": {
+          "background": "Subtle gradient or dark card",
+          "border": "border border-white/10",
+          "padding": "p-5",
+          "text_color": "white with accents"
+        }
+      }
+    },
+
+    "placement": {
+      "location": "Below Category Grid, above full Directory",
+      "section_title": "'Stories from 500+ Creators'",
+      "spacing": "my-12 (12 units margin top/bottom)"
+    },
+
+    "key_points": {
+      "what_it_does": "Shows real creator success without overwhelming. 3 cards = Rule of 3 (memorable). Earnings visible but not pushy.",
+      "what_it_avoids": "- Doesn't list ALL creators (too much)",
+      "- Doesn't remove earnings proof (shows value)",
+      "- Doesn't distract from category grid (primary CTA)"
+    }
+  },
+
+  "task_4_marketplace_link_implementation": {
+    "title": "Task 4: Ensure /marketplace Links Work with Category Filter",
+    "timeline": "15 minutes",
+    "files_to_check": [
+      "src/app/page.tsx",
+      "src/components/CategoryGridDiscovery.tsx",
+      "src/app/marketplace/page.tsx (or /browse/page.tsx)"
+    ],
+    "requirements": [
+      {
+        "requirement": "Category click → /marketplace?category={slug}",
+        "implementation": "onClick={()=>window.location.href=`/marketplace?category=${slug}`}",
+        "verify": "Test clicking 'MCPs' → URL shows ?category=mcp"
+      },
+      {
+        "requirement": "Marketplace page reads query param",
+        "implementation": "const searchParams = useSearchParams(); const category = searchParams.get('category');",
+        "verify": "Marketplace applies category filter on load"
+      },
+      {
+        "requirement": "Filtering works",
+        "implementation": "Directory component filters by category when param present",
+        "verify": "Click 'Rules' → /marketplace?category=rule → only rules show"
+      }
+    ]
+  },
+
+  "task_5_remove_old_sections": {
+    "title": "Task 5: Remove Sections No Longer Needed",
+    "timeline": "10 minutes",
+    "changes": [
+      {
+        "section": "How It Works",
+        "file": "src/app/page.tsx",
+        "action": "REMOVE import + render",
+        "reason": "Hero headline 'Contribute. Connect. Collect$' + Category Grid makes this redundant"
+      },
+      {
+        "section": "StatsBar",
+        "file": "src/app/page.tsx",
+        "action": "REMOVE import + render",
+        "reason": "Category counts show resource availability without separate section"
+      }
+    ]
+  },
+
+  "task_6_update_page_tsx": {
+    "title": "Task 6: Update page.tsx with New Structure",
+    "timeline": "10 minutes",
+    "file": "src/app/page.tsx",
+    "new_render_order": [
+      "1. <Header variant='landing' />",
+      "2. <HeroSection /> (clean headline only)",
+      "3. <CategoryGridDiscovery /> (NEW)",
+      "4. <CreatorTestimonials /> (NEW)",
+      "5. <Directory /> (existing)",
+      "6. <LoadMoreResourceGrid /> (existing or convert from infinite scroll)",
+      "7. <Footer />"
+    ],
+    "imports_to_add": [
+      "import { CategoryGridDiscovery } from '@/components/CategoryGridDiscovery';",
+      "import { CreatorTestimonials } from '@/components/CreatorTestimonials';"
+    ],
+    "imports_to_remove": [
+      "import { HowItWorks } from '@/components/HowItWorks';",
+      "import { StatsBar } from '@/components/StatsBar';"
+    ]
+  },
+
+  "verification_checklist": [
+    {
+      "item": "Hero shows only headline: 'Contribute. Connect. Collect$'",
+      "verification": "Open http://localhost:3000 → hero clean, no CTAs/search/subheadline"
+    },
+    {
+      "item": "Category grid shows 8 cards with icons",
+      "verification": "Visible below hero, responsive at 375/768/1024px"
+    },
+    {
+      "item": "Click any category → /marketplace?category={slug}",
+      "verification": "Click 'MCPs' → URL = /marketplace?category=mcp"
+    },
+    {
+      "item": "Marketplace filters to selected category",
+      "verification": "After redirect, only MCPs visible (not all 2,200)"
+    },
+    {
+      "item": "3 testimonial cards show below category grid",
+      "verification": "Names, earnings, quotes visible"
+    },
+    {
+      "item": "No 'How It Works' section",
+      "verification": "Scroll homepage → no 'How It Works' visible"
+    },
+    {
+      "item": "No StatsBar section",
+      "verification": "Scroll homepage → no stats section visible"
+    },
+    {
+      "item": "Directory visible with Load More button",
+      "verification": "Scroll past testimonials → directory appears with 'LOAD NEXT 20' button"
+    },
+    {
+      "item": "Build passes",
+      "verification": "npm run build ✅"
+    },
+    {
+      "item": "TypeScript 0 errors",
+      "verification": "pnpm tsc --noEmit ✅"
+    },
+    {
+      "item": "Mobile responsive (375px, 768px, 1024px)",
+      "verification": "Test at 3 breakpoints - grid adapts"
+    },
+    {
+      "item": "No console errors",
+      "verification": "Browser dev tools → Console tab clean"
+    }
+  ],
+
+  "acceptance_criteria": [
+    "✅ Hero: Clean, headline only",
+    "✅ Category Grid: 8 categories, clickable, responsive",
+    "✅ Categories link to /marketplace?category={slug}",
+    "✅ Testimonials: 3 cards below category grid",
+    "✅ No 'How It Works' or StatsBar sections",
+    "✅ Directory shows marketplace with filters",
+    "✅ Load More button works (20 items per load)",
+    "✅ Build: npm run build PASS",
+    "✅ TypeScript: pnpm tsc --noEmit PASS",
+    "✅ Console: 0 errors",
+    "✅ Mobile: Responsive 375px/768px/1024px",
+    "✅ Screenshots: Desktop + mobile submitted"
+  ],
+
+  "timeline_summary": {
+    "task_breakdown": [
+      "Task 1: Hero cleanup (15 min)",
+      "Task 2: Category Grid component (45 min)",
+      "Task 3: Testimonial cards (20 min)",
+      "Task 4: Marketplace linking (15 min)",
+      "Task 5: Remove old sections (10 min)",
+      "Task 6: Update page.tsx (10 min)",
+      "Verification + testing (20 min)",
+      "TOTAL: ~2.5 hours"
+    ],
+    "deadline": "Complete by EOD Feb 5 (target 6 PM)",
+    "review_timeline": "2 hours PM review (using Gate Report Template)"
+  },
+
+  "why_this_approach": {
+    "solves_problems": [
+      "✅ Cleaner hero (removes confusion)",
+      "✅ Category discovery (Amazon-style UX)",
+      "✅ Creator proof (3 testimonials, not overwhelming)",
+      "✅ Clear marketplace path (categories → /marketplace?category={slug})",
+      "✅ Streamlined (removes redundant 'How It Works')",
+      "✅ Maintains monetization angle ('Contribute. Connect. Collect$')"
+    ],
+    "user_benefits": [
+      "Users see categories immediately (faster discovery)",
+      "Click category → pre-filtered marketplace (less friction)",
+      "See creator success stories (social proof)",
+      "Clean, fast-loading homepage",
+      "Clear path: Browse → Find → Buy"
+    ],
+    "business_benefits": [
+      "Categories drive traffic to specific marketplace sections",
+      "Testimonials motivate creators to sign up",
+      "Fast page load (fewer sections)",
+      "Better SEO (category landing pages)",
+      "Creator monetization clear in headline"
+    ]
+  },
+
+  "submission_instructions": {
+    "when_complete": [
+      "1. Update REPORT-CENTER.md with deliverables",
+      "2. Take screenshots: desktop hero + mobile",
+      "3. Test all verification checklist items",
+      "4. Run build + TypeScript checks",
+      "5. Submit with evidence"
+    ],
+    "report_template": "Use GATE_REPORT_TEMPLATE.md for PM review"
+  },
+
+  "pm_will_check": {
+    "ralph_gates": [
+      "Build passes ✅",
+      "TypeScript 0 errors ✅",
+      "Console 0 errors ✅",
+      "Logic correct ✅",
+      "Performance <2s ✅",
+      "Mobile responsive ✅"
+    ],
+    "ux_validation": [
+      "Categories visible + clickable ✅",
+      "Links work (category → /marketplace?category) ✅",
+      "Testimonials show proof ✅",
+      "No redundant sections ✅",
+      "Fast load ✅"
+    ]
+  }
+}

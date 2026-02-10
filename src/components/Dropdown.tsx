@@ -44,7 +44,7 @@ export function Dropdown({ item, pathname }: DropdownProps) {
           isOpen || hasActiveChild ? 'text-white' : 'text-gray-300 hover:text-white'
         }`}
       >
-        <span>{item.label}</span>
+        <span className="uppercase">{item.label}</span>
         <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
@@ -63,7 +63,7 @@ export function Dropdown({ item, pathname }: DropdownProps) {
                       isChildActive ? 'text-white bg-white/[0.05]' : 'text-gray-400 hover:text-white'
                     }`}
                   >
-                    <span>{child.label}</span>
+                    <span className="uppercase">{child.label}</span>
                     {child.isNew && (
                       <span className="bg-[#fbbf24] text-black text-[9px] font-bold px-1 rounded-sm leading-tight ml-2">NEW</span>
                     )}

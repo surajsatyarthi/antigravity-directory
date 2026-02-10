@@ -1,4 +1,4 @@
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -42,7 +42,7 @@ export default async function ToolDetailPage({
 
   return (
     <>
-      <MarketplaceHeader />
+      <Header />
       <main className="min-h-screen bg-black text-white selection:bg-blue-500/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
           {/* Breadcrumb & Signal */}

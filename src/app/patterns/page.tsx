@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Code2, Cpu, Globe, Database, Shield, Zap, ArrowRight, Layout, Server, Layers } from 'lucide-react';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 
 export const metadata: Metadata = {
   title: "Antigravity Design Patterns | Architecture for Agentic AI",
@@ -72,7 +72,7 @@ const patterns = [
 export default function PatternsPage() {
   return (
     <>
-      <MarketplaceHeader />
+      <Header />
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
       <div className="relative py-20 px-6 border-b border-white/10">

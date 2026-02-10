@@ -6,7 +6,7 @@ import { eq, sql, desc, and } from 'drizzle-orm';
 import { auth } from '@/auth';
 import { ProfileHeader } from '@/components/ProfileHeader';
 import { ResourceCard } from '@/components/ResourceCard';
-import { MarketplaceHeader } from '@/components/MarketplaceHeader';
+import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { safeJsonLd } from '@/lib/utils/safeJsonLd';
 
@@ -137,7 +137,7 @@ export default async function PublicProfilePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
-      <MarketplaceHeader />
+      <Header />
 
       <main className="container mx-auto px-4 py-12 flex-1">
         <ProfileHeader 
