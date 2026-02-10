@@ -592,6 +592,32 @@ Evidence: File paths, URLs, screenshots
 
 ---
 
+## 🎯 RICE PRIORITIZATION
+
+**Analysis**: See `docs/05-reports/RICE_SCORING_ANALYSIS.md` for full scoring breakdown
+
+**Top 5 Priorities** (by RICE score):
+1. **[ENTRY-002]** Install Playwright - RICE: 4,000 ⭐
+2. **[ENTRY-003]** E2E Homepage Tests - RICE: 3,600
+3. **[ENTRY-015]** Ralph Protocol Gates - RICE: 3,600 🚨 **FIX LINT ERROR FIRST**
+4. **[ENTRY-016]** Prod Deployment Prep - RICE: 3,200
+5. **[ENTRY-004]** E2E Browsing Tests - RICE: 2,880
+
+**Recommended Execution Order**:
+1. Fix ENTRY-015 (lint error - blocking commits) - 2h
+2. ENTRY-002 (Playwright setup) - 3h
+3. ENTRY-003, 004, 005 (Core E2E tests) - 6h
+4. ENTRY-008, 009, 010 (Payment/Claiming) - 22.5h
+5. ENTRY-011, 012 (Creator UI) - 5h
+6. ENTRY-013, 014 (Polish/QA) - 12h
+7. ENTRY-015, 016, 017 (Deployment) - 10h
+
+**Total MVP Effort**: 61.5 hours (7.7 days at 8h/day)
+
+**Critical Blocker**: ENTRY-015 (lint error) must be fixed first - currently blocks all commits
+
+---
+
 ## 🔮 FUTURE TASKS (Post-MVP)
 
 ### [ENTRY-999] TASK | DEFERRED | 2026-02-11T11:35:00Z | PM | -
