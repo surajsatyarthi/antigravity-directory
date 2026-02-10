@@ -65,6 +65,7 @@ docs/
 **Purpose**: Technical guides, checklists, how-tos
 
 **Contains**:
+- `SECRETS_REFERENCE.md` ⭐ - All API keys/secrets/env vars guide
 - `FILE-STRUCTURE-GUIDE.md` - Codebase structure
 - `IMPLEMENTATION-GUIDE.md` - Development guidelines
 - `SECURITY_CHECKLIST.md` - Security requirements
@@ -72,7 +73,7 @@ docs/
 - `QUICK-START-CHECKLIST.md` - Onboarding guide
 - `state-management.md` - State management patterns
 
-**Who Uses**: Coder (Antigravity), PM
+**Who Uses**: Coder (Antigravity), PM, CEO (maintains actual secrets)
 **Update Frequency**: As needed (when patterns change)
 
 ---
@@ -267,6 +268,12 @@ last_updated: 2026-02-11
 
 ## 🔍 HOW TO FIND DOCUMENTS
 
+### Looking for API Keys/Secrets/Environment Variables?
+→ `docs/03-implementation/SECRETS_REFERENCE.md` ⭐
+
+### Looking for Documentation Rules?
+→ `docs/DOCUMENTATION_RULES.md` ⭐
+
 ### Looking for Business Rules?
 → `docs/01-business/MARKETPLACE_MODEL_SPEC.md`
 
@@ -299,6 +306,8 @@ last_updated: 2026-02-11
 |------|----------|
 | **Current MVP tasks** | `PROJECT_LEDGER.md` (root) ⭐ |
 | **How to use ledger** | `LEDGER_GUIDE.md` (root) |
+| **All API keys/secrets** | `docs/03-implementation/SECRETS_REFERENCE.md` ⭐ |
+| **Doc maintenance rules** | `docs/DOCUMENTATION_RULES.md` ⭐ |
 | **Business model** | `docs/01-business/MARKETPLACE_MODEL_SPEC.md` |
 | **MVP status** | `docs/02-strategy/MVP_LAUNCH_READINESS_REPORT.md` |
 | **Post-MVP plans** | `docs/02-strategy/POST_MVP_DEFERRED.md` |
@@ -315,12 +324,16 @@ last_updated: 2026-02-11
 
 ## ✅ BEST PRACTICES
 
-1. **Create PRDs in ledger first** → Then detailed PRD in `04-prds/`
-2. **Link ledger entries** → Reference `[ENTRY-XXX]` in all docs
-3. **Use tags** → Makes filtering/searching easier
-4. **Follow naming conventions** → Consistency matters
-5. **Archive completed work** → Keep active docs clean
-6. **Update this README** → When adding new folders/patterns
+1. **Follow documentation rules** → See `DOCUMENTATION_RULES.md` for all rules ⭐
+2. **Create PRDs in ledger first** → Then detailed PRD in `04-prds/`
+3. **Link ledger entries** → Reference `[ENTRY-XXX]` in all docs
+4. **Use required tags** → Every doc needs frontmatter tags (mandatory)
+5. **Follow naming conventions** → PRD_FEATURE_NAME.md, PHASE_X_PLAN_YYYY-MM-DD.md
+6. **Archive completed work** → Never delete, move to `docs/archive/` with notice
+7. **No files in root** → Only PROJECT_LEDGER.md, LEDGER_GUIDE.md, README.md allowed
+8. **Check for secrets** → See `SECRETS_REFERENCE.md` before asking CEO ⭐
+9. **One source of truth** → No duplicate docs, update existing instead
+10. **Update this README** → When adding new folders/patterns
 
 ---
 
@@ -349,6 +362,15 @@ last_updated: 2026-02-11
 
 ---
 
-**Version**: 1.0
+## 📝 CHANGE LOG
+
+| Date | Change | By |
+|------|--------|-----|
+| 2026-02-11 | Created comprehensive docs structure guide | PM |
+| 2026-02-11 | Added SECRETS_REFERENCE.md and DOCUMENTATION_RULES.md | PM |
+
+---
+
+**Version**: 1.1
 **Last Updated**: 2026-02-11
 **Maintained By**: PM (Claude Code)
