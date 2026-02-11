@@ -32,23 +32,6 @@ export function InfiniteResourceGrid({
   // Observer for infinite scroll
   const observerTarget = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasMore && !loading) {
-          loadMore();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
-    }
-
-    return () => observer.disconnect();
-  }, [hasMore, loading, page]);
-
   const loadMore = async () => {
     setLoading(true);
     const nextPage = page + 1;
@@ -74,6 +57,24 @@ export function InfiniteResourceGrid({
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore && !loading) {
+          loadMore();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
+    }
+
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasMore, loading, page]);
 
   // ZIPPER LOGIC: Inject Ads with Rotation
   // We memorize this so it doesn't recalculate on every render unless resources change

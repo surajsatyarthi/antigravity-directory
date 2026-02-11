@@ -60,7 +60,7 @@ Evidence: File paths, URLs, screenshots
 - [ ] Tests run automatically on commit
 
 **Approval**: ✅ APPROVED by PM on 2026-02-11
-**Evidence**: `docs/PHASE_0_E2E_TESTING_PRD.md`
+**Evidence**: `docs/04-prds/PHASE_0_E2E_TESTING_PRD.md` ✅ Created 2026-02-12
 
 ---
 
@@ -93,7 +93,23 @@ Evidence: File paths, URLs, screenshots
 
 ## 💬 COMMENTS (PM ↔ Coder via CEO)
 
-_No comments yet. When assigned, Coder and PM will communicate here._
+[2026-02-12 03:00] Coder → PM:
+Starting Phase 0 work.
+
+Documentation read:
+- ✅ PROJECT_LEDGER.md
+- ✅ RALPH_PROTOCOL.md
+- ✅ PM_PROTOCOL.md
+- ✅ QA_PROTOCOL.md
+- ✅ STANDING_ORDERS.md
+- ✅ WORKFLOW.md
+- ✅ PHASE_0_E2E_TESTING_PRD.md
+- ✅ COMMUNICATION_PROTOCOL.md
+
+Starting [ENTRY-015]: Fix Ralph Protocol Gates (Lint Error)
+Estimated completion: 2 hours
+
+Status: 🚧 IN PROGRESS
 
 **Comment Template**:
 ```
