@@ -91,6 +91,18 @@ Evidence: File paths, URLs, screenshots
 
 ---
 
+## 💬 COMMENTS (PM ↔ Coder via CEO)
+
+_No comments yet. When assigned, Coder and PM will communicate here._
+
+**Comment Template**:
+```
+[YYYY-MM-DD HH:MM] [PM/Coder] → [Coder/PM]:
+Your message here...
+```
+
+---
+
 ### [ENTRY-003] TASK | PENDING | 2026-02-11T10:20:00Z | Antigravity | -
 **Title**: Task 0.2.1 - E2E Tests for Homepage & Search
 **Parent**: [ENTRY-001]
@@ -506,6 +518,24 @@ Evidence: File paths, URLs, screenshots
 **Due Date**: TBD
 **Git Hash**: TBD
 **Evidence**: Gate check logs, screenshots
+
+---
+
+## 💬 COMMENTS (PM ↔ Coder via CEO)
+
+[2026-02-11 18:00] PM → Coder:
+🚨 **CRITICAL PRIORITY** - This task is BLOCKING all git commits.
+
+Current issue: `npm run lint` fails with error "Invalid project directory provided"
+Impact: Pre-commit hook blocks ALL commits (even docs-only)
+RICE Score: 3,600 (tied for 2nd highest)
+
+**Must fix BEFORE** any other tasks can proceed.
+
+Please investigate Next.js lint configuration and fix the path error.
+Reference: SECRETS_REFERENCE.md for environment setup if needed.
+
+Notify CEO when starting work and when completed with git commit hash.
 
 ---
 

@@ -306,6 +306,7 @@ last_updated: 2026-02-11
 |------|----------|
 | **Current MVP tasks** | `PROJECT_LEDGER.md` (root) ⭐ |
 | **How to use ledger** | `LEDGER_GUIDE.md` (root) |
+| **PM ↔ Coder communication** | `docs/COMMUNICATION_PROTOCOL.md` ⭐ |
 | **All API keys/secrets** | `docs/03-implementation/SECRETS_REFERENCE.md` ⭐ |
 | **Doc maintenance rules** | `docs/DOCUMENTATION_RULES.md` ⭐ |
 | **Business model** | `docs/01-business/MARKETPLACE_MODEL_SPEC.md` |

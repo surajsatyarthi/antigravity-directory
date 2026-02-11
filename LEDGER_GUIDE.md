@@ -247,6 +247,94 @@ Evidence: Meeting notes, review comments
 
 ---
 
+## 💬 COMMUNICATION WORKFLOW (PM ↔ Coder via CEO)
+
+### How It Works
+
+**PM and Coder CANNOT communicate directly** - CEO acts as notification layer only.
+
+**Communication Method**: Both edit PROJECT_LEDGER.md directly, adding COMMENTS under specific entries.
+
+### Step-by-Step Process
+
+#### When PM Needs to Communicate with Coder:
+
+1. **PM opens PROJECT_LEDGER.md**
+2. **PM finds the relevant entry** (e.g., ENTRY-015)
+3. **PM scrolls to COMMENTS section** under that entry
+4. **PM adds comment with timestamp**:
+   ```
+   [2026-02-11 18:30] PM → Coder:
+   Please prioritize this task. See RICE_SCORING_ANALYSIS.md - RICE score: 3,600.
+   ```
+5. **PM saves and commits** ledger
+6. **PM notifies CEO**: "I updated ledger with comments for ENTRY-015"
+7. **CEO notifies Coder**: "Check ledger for updates"
+
+#### When Coder Needs to Communicate with PM:
+
+1. **Coder opens PROJECT_LEDGER.md**
+2. **Coder finds the relevant entry** (e.g., ENTRY-015)
+3. **Coder scrolls to COMMENTS section** under that entry
+4. **Coder adds comment with timestamp**:
+   ```
+   [2026-02-11 20:00] Coder → PM:
+   ✅ Task completed. Lint error fixed.
+   Git commit: abc123f
+   Evidence: Screenshot at docs/evidence/lint-fixed.png
+   ```
+5. **Coder saves and commits** ledger
+6. **Coder notifies CEO**: "I updated ledger for ENTRY-015, task complete"
+7. **CEO notifies PM**: "Check ledger for updates"
+
+### Comment Format (MANDATORY)
+
+```
+[YYYY-MM-DD HH:MM] [PM/Coder] → [Coder/PM]:
+Your message here.
+Can be multiple lines.
+```
+
+**Example**:
+```
+[2026-02-11 14:30] PM → Coder:
+This is BLOCKING all commits. Please fix ASAP.
+RICE Score: 3,600 (2nd highest priority).
+
+[2026-02-11 16:00] Coder → PM:
+Starting work now. Will report back in 2 hours.
+
+[2026-02-11 18:15] Coder → PM:
+✅ COMPLETED. Git hash: a1b2c3d
+Evidence: docs/evidence/entry-015-proof.png
+
+[2026-02-11 18:30] PM → Coder:
+✅ APPROVED. Verified lint passing. Moving to COMPLETED.
+Next task: ENTRY-002 (Install Playwright). Check ledger.
+```
+
+### What CEO Does (Simple)
+
+**CEO does NOT**:
+- ❌ Copy-paste messages
+- ❌ Edit ledger content
+- ❌ Make decisions
+
+**CEO only**:
+- ✅ Notifies PM: "Check ledger for updates"
+- ✅ Notifies Coder: "Check ledger for updates"
+- ✅ That's it!
+
+### Benefits
+
+✅ **Single source of truth** - All communication tied to specific tasks
+✅ **Audit trail** - Every message timestamped and version-controlled
+✅ **Context preserved** - Anyone can see full conversation history per task
+✅ **No separate files** - Everything in PROJECT_LEDGER.md
+✅ **CEO workload minimal** - Just notification, no data entry
+
+---
+
 ## 📝 HOW TO ADD AN ENTRY
 
 ### PM Adding a PRD
