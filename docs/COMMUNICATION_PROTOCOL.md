@@ -319,48 +319,123 @@ Done.
 
 ---
 
-## 📊 CEO NOTIFICATION TEMPLATES
+## 📊 CEO NOTIFICATION TEMPLATES & SHAREABLE PROMPTS
 
-To make CEO's job easier, here are copy-paste templates:
+### 🚨 MANDATORY SHAREABLE PROMPT FORMAT
+
+**Every message from PM or Coder to CEO MUST end with this section:**
+
+```markdown
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to [PM/Coder]:
+
+"[Clear, concise message that CEO copies directly to the other party]"
+```
+
+**Why**: CEO should never have to parse long messages. Just copy the text in the box and send it.
+
+**Examples below show the NEW MANDATORY FORMAT.**
+
+---
 
 ### When PM Updates Ledger:
 ```
-PM → CEO: "I updated ledger [ENTRY-XXX] with [assignment/approval/clarification]. Please notify Coder."
+PM → CEO: "I updated ledger [ENTRY-XXX] with [assignment/approval/clarification].
 
-CEO → Coder: "Check PROJECT_LEDGER.md - [new task/approval/response] for ENTRY-XXX"
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to Coder:
+
+"Check PROJECT_LEDGER.md - [new task/approval/response] for ENTRY-XXX"
 ```
 
 ### When Coder Updates Ledger:
 ```
-Coder → CEO: "I updated ledger [ENTRY-XXX] - [completed/question/blocked]. Please notify PM."
+Coder → CEO: "I updated ledger [ENTRY-XXX] - [completed/question/blocked].
 
-CEO → PM: "Check PROJECT_LEDGER.md - Coder [completed/has question on/blocked by] ENTRY-XXX"
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to PM:
+
+"Check PROJECT_LEDGER.md - Coder [completed/has question on/blocked by] ENTRY-XXX"
 ```
 
-### Example Conversations
+### Example Conversations (WITH SHAREABLE PROMPTS)
 
 **Task Assignment**:
 ```
-PM → CEO: "I updated ledger ENTRY-015 with task assignment. Please notify Coder."
-CEO → Coder: "Check PROJECT_LEDGER.md - new task assigned (ENTRY-015)"
+PM → CEO: "I updated ledger ENTRY-015 with task assignment.
+
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to Coder:
+
+"Check PROJECT_LEDGER.md - new task assigned (ENTRY-015)"
 ```
 
 **Task Completion**:
 ```
-Coder → CEO: "I updated ledger ENTRY-015 - task completed. Please notify PM."
-CEO → PM: "Check PROJECT_LEDGER.md - Coder completed ENTRY-015"
+Coder → CEO: "I updated ledger ENTRY-015 - task completed.
+
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to PM:
+
+"Check PROJECT_LEDGER.md - Coder completed ENTRY-015 (git: e96c995). Ready for review."
 ```
 
 **Clarification Needed**:
 ```
-Coder → CEO: "I updated ledger ENTRY-008 - need clarification, BLOCKED. Please notify PM."
-CEO → PM: "Check PROJECT_LEDGER.md - Coder has question on ENTRY-008 (BLOCKED)"
+Coder → CEO: "I updated ledger ENTRY-008 - need clarification, BLOCKED.
+
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to PM:
+
+"ENTRY-008 BLOCKED - Coder needs clarification on payment split calculation. Check PROJECT_LEDGER.md comments."
 ```
 
 **Clarification Provided**:
 ```
-PM → CEO: "I updated ledger ENTRY-008 with clarification, unblocked. Please notify Coder."
-CEO → Coder: "Check PROJECT_LEDGER.md - ENTRY-008 clarification provided, unblocked"
+PM → CEO: "I updated ledger ENTRY-008 with clarification, unblocked.
+
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to Coder:
+
+"ENTRY-008 UNBLOCKED - Payment split clarification provided in PROJECT_LEDGER.md. You can proceed."
+```
+
+**Work Approved**:
+```
+PM → CEO: "I reviewed and approved ENTRY-015.
+
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to Coder:
+
+"ENTRY-015 APPROVED ✅ - Work passes all gates. Proceed to ENTRY-002 (Install Playwright). Check PROJECT_LEDGER.md for details."
+```
+
+**Work Rejected**:
+```
+PM → CEO: "I reviewed ENTRY-015 - REJECTED due to quality issues.
+
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to Coder:
+
+"ENTRY-015 REJECTED ❌ - Fix build errors (see PROJECT_LEDGER.md comments). Resubmit after fixes."
 ```
 
 ---
@@ -418,6 +493,7 @@ CEO → Coder: "Check PROJECT_LEDGER.md - ENTRY-008 clarification provided, unbl
 4. ✅ Be specific about deliverables and acceptance criteria
 5. ✅ Validate work thoroughly before approving
 6. ✅ Update ledger statistics after each completion
+7. ✅ **MANDATORY**: End every CEO message with "📋 SHAREABLE PROMPT FOR CEO" section
 
 ### For Coder (Antigravity):
 1. ✅ Update status immediately when starting work
@@ -426,6 +502,7 @@ CEO → Coder: "Check PROJECT_LEDGER.md - ENTRY-008 clarification provided, unbl
 4. ✅ Ask questions early if requirements unclear
 5. ✅ Mark tasks BLOCKED immediately (don't waste time)
 6. ✅ Reference specific files/lines in comments
+7. ✅ **MANDATORY**: End every CEO message with "📋 SHAREABLE PROMPT FOR CEO" section
 
 ### For CEO:
 1. ✅ Check messages 2-3 times per day minimum
