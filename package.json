@@ -21,11 +21,16 @@
     "validate:data": "tsx scripts/validate-data.ts",
     "validate:env": "tsx scripts/validate-env.ts",
     "validate:env:production": "tsx scripts/validate-env.ts --environment=production",
-    "predev": "npm run validate:env"
+    "predev": "npm run validate:env",
+    "verify:pm-gates": "node scripts/verify-pm-gates.js",
+    "verify:ralph-gates": "node scripts/verify-ralph-gates.js",
+    "verify:pm-documentation": "node scripts/verify-pm-documentation.js",
+    "verify:circular": "npm run verify:pm-gates && npm run verify:ralph-gates && npm run verify:pm-documentation"
   },
   "dependencies": {
     "@auth/core": "^0.34.3",
     "@auth/drizzle-adapter": "^1.11.1",
+    "@dotenvx/dotenvx": "^1.52.0",
     "@google/generative-ai": "^0.24.1",
     "@neondatabase/serverless": "^1.0.2",
     "@next/third-parties": "^16.1.6",
@@ -64,7 +69,7 @@
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "^9.39.2",
     "@next/eslint-plugin-next": "^16.1.6",
-    "@playwright/test": "^1.57.0",
+    "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",

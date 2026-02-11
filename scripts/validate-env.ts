@@ -254,7 +254,7 @@ async function validateEnvironment(
     const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
 
     // Test Redis connectivity
-    if (redisUrl) {
+    if (redisUrl && !redisUrl.includes('mock-redis')) {
       console.log('Testing Upstash Redis connectivity...');
       const redisTest = await testUrlConnectivity(redisUrl);
       if (redisTest.success) {
@@ -264,6 +264,8 @@ async function validateEnvironment(
         console.log(`   Error: ${redisTest.error}\n`);
         connectivityIssues.push(`Redis URL unreachable: ${redisTest.error}`);
       }
+    } else {
+        console.log(`ℹ️  Skipping Redis connectivity check for mock URL: ${redisUrl}\n`);
     }
   } else if (skipConnectivity) {
     console.log('\n⏭️  Step 2/3: Skipped (--skip-connectivity flag)\n');

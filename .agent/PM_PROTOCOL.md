@@ -1,10 +1,16 @@
-# 🎯 PM PROTOCOL v1.0
+# 🎯 PM PROTOCOL v3.0 (ACCOUNTABILITY EDITION)
 ## Strategic Business Gates for FAANG-Standard Product Development
 
-**Version:** 1.0
-**Effective Date:** 2026-02-09
+**Version:** 3.0 (Major Update - 2026-02-12)
+**Effective Date:** 2026-02-12
 **Status:** ACTIVE
 **Owner:** CEO / PM
+
+**🚨 NEW v3.0 ACCOUNTABILITY (CEO Final Warning 2026-02-12):**
+- PM is **personally accountable** for project success/failure
+- PM **MUST audit codebase** before making ANY recommendations
+- PM **MUST update all docs** after approving ANY work
+- **Violation = PM removed from project** (non-negotiable)
 
 ---
 
@@ -13,6 +19,8 @@
 The PM Protocol ensures **strategic correctness, business alignment, and growth velocity**. A task can pass all 12 Ralph gates (perfect code) but fail PM Protocol and still be rejected.
 
 **Key Principle:** Strategic misalignment wastes more resources than code bugs.
+
+**NEW v3.0 Principle:** PM making recommendations without codebase audit wastes MORE resources than strategic misalignment.
 
 ---
 
@@ -114,7 +122,53 @@ The PM Protocol ensures **strategic correctness, business alignment, and growth 
 
 ---
 
-## PM ASSESSMENT TEMPLATE
+### Gate 8: PM Documentation Accountability 📝 (NEW v3.0 - 2026-02-12)
+**Question:** "Has PM updated ALL documentation to reflect reality?"
+
+**🚨 MANDATORY AFTER APPROVING ANY CODER WORK:**
+
+| Checkpoint | Required | Consequence if Skipped |
+|------------|----------|----------------------|
+| PROJECT_LEDGER.md updated with completion | ✅ MANDATORY | Ledger out of sync → rework |
+| PRD updated if scope changed | ✅ MANDATORY | Specs wrong → wrong builds |
+| MASTER-TASK-LIST.md updated | ✅ MANDATORY | Task list inaccurate |
+| Related docs updated | ✅ MANDATORY | Documentation rot |
+| Codebase audit performed BEFORE recommendations | ✅ MANDATORY | Recommend building existing features |
+| Payment provider verification (Razorpay for India, NOT Stripe!) | ✅ MANDATORY | Wrong tech stack |
+
+**NEW PM Workflow (Non-Negotiable):**
+
+```
+1. Coder submits work
+2. PM performs codebase audit (if making new recommendations)
+3. PM reviews with GATE_REPORT_TEMPLATE.md
+4. IF APPROVED:
+   a. Update PROJECT_LEDGER.md (mark complete, add git hash)
+   b. Update PRD (if scope changed)
+   c. Update MASTER-TASK-LIST.md (mark done)
+   d. Update related docs (README, etc.)
+   e. THEN notify CEO of approval
+5. IF REJECTED:
+   a. Document reason in ledger
+   b. Provide actionable feedback
+   c. THEN notify CEO of rejection
+```
+
+**Enforcement:**
+- PM cannot approve next task until current task docs are updated
+- CEO will verify doc updates before assigning next work
+- **Violation = PM removed from project** (final warning given 2026-02-12)
+
+**Rationale:**
+- 2026-02-12 incident: PM didn't know PayPal/Razorpay existed (65% of MVP built, ledger said 0%)
+- PM recommended building Stripe (blocked in India) when Razorpay already working
+- PM recommended building payment system that was 95% complete
+- **Root cause**: PM didn't audit codebase, didn't keep ledger updated
+- **Impact**: CEO wasted time, rework planned for existing features
+
+---
+
+## PM ASSESSMENT TEMPLATE (v3.0 - Updated 2026-02-12)
 
 ```markdown
 # PM Protocol Assessment - [TASK_NAME]
@@ -122,6 +176,18 @@ The PM Protocol ensures **strategic correctness, business alignment, and growth 
 **Task ID:** [ID]
 **Date:** [DATE]
 **PM:** [NAME]
+
+## 🚨 PRE-ASSESSMENT CHECKLIST (NEW v3.0)
+**BEFORE making ANY recommendations:**
+- [ ] Audited codebase with Glob/Grep/Read tools
+- [ ] Verified what's ACTUALLY built vs ledger claims
+- [ ] Checked payment integrations (PayPal? Razorpay? NOT Stripe for India!)
+- [ ] Verified tech stack compatibility
+- [ ] Read related PRDs and implementation files
+
+**If making recommendations without audit = VIOLATION (PM removed)**
+
+---
 
 ## Gate 1: Strategic Alignment ⚔️
 - Product: [Product Name]
@@ -160,15 +226,34 @@ The PM Protocol ensures **strategic correctness, business alignment, and growth 
 - Pricing validated: [Yes / No]
 - **Status:** ✅ PASS / ⚠️ CONDITIONAL / ❌ FAIL
 
+## Gate 8: PM Documentation Accountability 📝 (NEW v3.0)
+**MANDATORY AFTER APPROVAL:**
+- [ ] PROJECT_LEDGER.md updated with completion status
+- [ ] PRD updated (if scope changed)
+- [ ] MASTER-TASK-LIST.md updated
+- [ ] Related docs updated (README, guides, etc.)
+- [ ] Git hash recorded in ledger
+- **Status:** ✅ COMPLETE / ❌ INCOMPLETE
+
+**⚠️ WARNING**: Cannot approve next task until current task docs updated
+
 ---
 
 ## OVERALL DECISION
-- [ ] ✅ APPROVED — Proceed to Ralph Protocol
-- [ ] ⚠️ CONDITIONAL — Foundation layer, track metrics
+- [ ] ✅ APPROVED — Proceed to Ralph Protocol + **MUST complete Gate 8 doc updates**
+- [ ] ⚠️ CONDITIONAL — Foundation layer, track metrics + **MUST complete Gate 8 doc updates**
 - [ ] 🚫 REJECTED — Strategic misalignment
 
 **PM Signature:** _______________
 **Date:** _______________
+
+**Gate 8 Completion (MANDATORY for APPROVED/CONDITIONAL):**
+- [ ] Ledger updated: [Yes/No]
+- [ ] PRD updated: [Yes/No/N/A]
+- [ ] Task list updated: [Yes/No]
+- [ ] Docs updated: [Yes/No/N/A]
+- **Completed by:** _______________
+- **Verified by CEO:** _______________
 ```
 
 ---

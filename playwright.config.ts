@@ -1,4 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+import path from 'path';
+
+// Read from .env.test.local
+dotenv.config({ path: path.resolve(__dirname, '.env.test.local') });
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -11,6 +16,7 @@ export default defineConfig({
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
+    video: 'on-first-retry',
   },
 
   projects: [
@@ -18,12 +24,20 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
   ],
 
   webServer: {
-    command: 'pnpm dev',
+    command: 'npm run dev',
     url: 'http://localhost:3000',
-    timeout: 120000,
     reuseExistingServer: !process.env.CI,
+    timeout: 120 * 1000,
   },
 });

@@ -22,6 +22,36 @@ Immutable, timestamped record of:
 
 ---
 
+## 🔄 CIRCULAR ENFORCEMENT (Added 2026-02-12)
+
+**Problem Solved**: PM had no mechanical enforcement (only self-discipline, which failed)
+**Solution**: Coder and PM verify each other's work before task transitions
+
+### Task Lifecycle State Machine
+
+Every task must progress through these states:
+
+| State | Owner | Required Artifacts | Verified By | Command |
+|-------|-------|-------------------|-------------|---------|
+| **PENDING** | PM | Task created in ledger | CEO | Manual |
+| **RESEARCHED** | PM | `audit-gate-0-TASK_ID.log` | Coder | `npm run verify:pm-gates` |
+| **PLANNED** | PM | `implementation-plan-TASK_ID.md` (approved) | Coder | `npm run verify:pm-gates` |
+| **READY** | Coder | PM verification passed | PM | Manual |
+| **IN_PROGRESS** | Coder | Development started | PM | Manual |
+| **CODE_COMPLETE** | Coder | Code + tests passing | PM | `npm run verify:ralph-gates` |
+| **DOCUMENTED** | PM | Completion report + docs updated | Coder | `npm run verify:pm-documentation` |
+| **DONE** | Both | All verified | CEO | Manual |
+
+### Enforcement Rules
+
+1. **Coder blocks PM** if missing research/plan → Coder comments "🚫 BLOCKED" in ledger
+2. **PM blocks Coder** if quality gates fail → PM comments "🚫 BLOCKED" in ledger
+3. **Coder blocks next task** if PM didn't document previous task → Comments "🚫 BLOCKED - Gate 8"
+
+**Documentation**: See [docs/CIRCULAR_ENFORCEMENT.md](docs/CIRCULAR_ENFORCEMENT.md)
+
+---
+
 ## 📋 LEDGER ENTRIES
 
 ### ENTRY FORMAT
@@ -127,8 +157,21 @@ Next: [ENTRY-002] Install Playwright & Configure
 
 **Comment Template**:
 ```
-[YYYY-MM-DD HH:MM] [PM/Coder] → [Coder/PM]:
-Your message here...
+[2026-02-12 HH:MM] Coder → PM:
+Starting [ENTRY-002]: Install Playwright & Configure
+
+Documentation read:
+- ✅ PHASE_0_E2E_TESTING_PRD.md
+- ✅ PROJECT_LEDGER.md
+
+Plan:
+1. Install Playwright dependencies
+2. Configure `playwright.config.ts` for Chromium, Firefox, WebKit
+3. Create `docker-compose.yml` for Orb Stack
+4. Implement test helpers
+5. Write sample test
+
+Current Status: 🚧 IN PROGRESS
 ```
 
 ---

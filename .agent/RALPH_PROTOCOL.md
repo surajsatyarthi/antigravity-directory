@@ -123,29 +123,46 @@ evidence_based: true            # Every gate requires proof
 
 ## THE 12 QUALITY GATES
 
-### PHASE 1: ASSESSMENT
+### PHASE 1: ASSESSMENT (SEQUENTIAL - MUST COMPLETE BEFORE CODING)
 
-| Gate | Name | Time | Requirements |
-|------|------|------|--------------|
-| **G1** | Physical Audit & State | 1-2h | Verify current code/production via direct observation |
-| **G2** | Logic Mapping & Research | 2-3h | 3+ web searches, dependency analysis, edge cases |
+| Gate | Name | Time | Requirements | Enforcement |
+|------|------|------|--------------|-------------|
+| **G1** | Physical Audit & State | 1-2h | Verify current code/production via direct observation | Pre-dev hook blocks without audit |
+| **G2** | Logic Mapping & Research | 2-3h | **3+ web searches MANDATORY**, dependency analysis, edge cases | Pre-commit hook blocks without `audit-gate-0-*.log` |
 
-### PHASE 2: PLANNING
+**🚨 CRITICAL CHANGE (2026-02-12):**
+- G1 and G2 are **BLOCKING gates** - cannot proceed to G3/G4 without completion
+- `npm run dev` BLOCKED until `audit-gate-0-TASK_ID.log` exists
+- Pre-commit hook REJECTS commits without audit log
+- **NO CODE BEFORE RESEARCH** - This is mechanically enforced, not optional
 
-| Gate | Name | Time | Requirements |
-|------|------|------|--------------|
-| **G3** | Blueprint & RFC | 1-2h | Implementation plan with "Alternatives Considered", CEO approval |
+### PHASE 2: PLANNING (MUST COMPLETE BEFORE CODING)
 
-### PHASE 3: EXECUTION
+| Gate | Name | Time | Requirements | Enforcement |
+|------|------|------|--------------|-------------|
+| **G3** | Blueprint & RFC | 1-2h | Implementation plan with "Alternatives Considered", CEO/PM approval | Pre-commit hook checks for approval signature |
 
-| Gate | Name | Time | Requirements |
-|------|------|------|--------------|
-| **G4** | Implementation | Varies | Execute approved plan, no scope creep |
-| **G5** | Security Audit | 30m | FAANG P0 scanner (12 checks) |
-| **G6** | Performance Audit | 30m | Lighthouse 90+, bundle size check |
-| **G7** | Code Quality & Build | 10m | lint, typecheck, build pass |
-| **G8** | TDD Proof | 2-4h | Unit + E2E tests, 80%+ coverage |
-| **G9** | Accessibility Audit | 1h | Axe scan, keyboard nav, ARIA labels |
+**🚨 CRITICAL CHANGE (2026-02-12):**
+- G3 is a **BLOCKING gate** - cannot proceed to G4 without PM/CEO approval
+- Plan must be approved in PROJECT_LEDGER.md before any implementation
+- Pre-commit hook checks for approval signature in plan file
+- **NO CODE BEFORE PLAN APPROVAL** - This is mechanically enforced
+
+### PHASE 3: EXECUTION (ONLY AFTER G1, G2, G3 COMPLETE)
+
+| Gate | Name | Time | Requirements | When to Run |
+|------|------|------|--------------|-------------|
+| **G4** | Implementation | Varies | Execute approved plan, no scope creep | AFTER G1+G2+G3 complete |
+| **G5** | Security Audit | 30m | FAANG P0 scanner (12 checks) | DURING implementation |
+| **G6** | Performance Audit | 30m | Lighthouse 90+, bundle size check | DURING implementation |
+| **G7** | Code Quality & Build | 10m | lint, typecheck, build pass | BEFORE commit |
+| **G8** | TDD Proof | 2-4h | Unit + E2E tests, 80%+ coverage | WITH implementation |
+| **G9** | Accessibility Audit | 1h | Axe scan, keyboard nav, ARIA labels | DURING implementation |
+
+**🚨 CRITICAL CHANGE (2026-02-12):**
+- G4-G9 can ONLY run AFTER G1, G2, G3 are complete
+- Attempting to code before research = pre-dev hook blocks `npm run dev`
+- Attempting to commit before plan approval = pre-commit hook rejects
 
 ### PHASE 4: VERIFICATION
 
@@ -253,34 +270,78 @@ evidence_based: true            # Every gate requires proof
 
 ## ENFORCEMENT MECHANISMS
 
-### Pre-commit Hook (v6.5 Enhanced)
+### Pre-dev Hook (NEW 2026-02-12)
+```bash
+# .git/hooks/pre-dev (runs before npm run dev)
+#!/bin/bash
+
+echo "🔍 Ralph Protocol: Checking research gates..."
+
+# Extract task ID from branch or environment
+TASK_ID=$(git branch --show-current | grep -oE 'ENTRY-[0-9]+' || echo "unknown")
+
+# Check Gate 2: Research audit required
+if ! ls audit-gate-0-${TASK_ID}.log 1> /dev/null 2>&1; then
+  echo ""
+  echo "❌ BLOCKED: Cannot start development without research"
+  echo ""
+  echo "Required: Complete Gate 2 (Logic Mapping & Research)"
+  echo "  - Create: audit-gate-0-${TASK_ID}.log"
+  echo "  - Must contain: 3+ web search results"
+  echo "  - Must contain: Dependency analysis"
+  echo "  - Must contain: Edge cases identified"
+  echo ""
+  echo "Fix: Complete research BEFORE coding"
+  exit 1
+fi
+
+echo "✅ Research gate passed"
+```
+
+### Pre-commit Hook (v6.6 Enhanced - 2026-02-12)
 ```bash
 # .git/hooks/pre-commit
 #!/bin/bash
 
-# NEW v6.5: Check environment validation
+# Extract task ID
+TASK_ID=$(git branch --show-current | grep -oE 'ENTRY-[0-9]+' || echo "unknown")
+
+# Check environment validation
 if ! test -f ".env-validated.log"; then
   echo "❌ BLOCKED: Environment not validated"
   echo "Fix: Run 'npm run validate:env' first"
   exit 1
 fi
 
-# Check Gate 0 audit exists
-if ! test -f "audit-gate-0-*.log"; then
-  echo "❌ BLOCKED: No Gate 0 audit log"
+# Check Gate 2: Research audit exists (CRITICAL)
+if ! ls audit-gate-0-${TASK_ID}.log 1> /dev/null 2>&1; then
+  echo "❌ BLOCKED: No research audit log found"
+  echo "Required: audit-gate-0-${TASK_ID}.log"
+  echo "Fix: You MUST complete Gate 2 research BEFORE coding"
   exit 1
 fi
 
-# Check plan approval
-if ! grep -q "APPROVED" implementation_plan.md; then
-  echo "❌ BLOCKED: Plan not approved"
+# Check Gate 3: Plan approval exists (CRITICAL)
+if ! ls implementation-plan-${TASK_ID}.md 1> /dev/null 2>&1; then
+  echo "❌ BLOCKED: No implementation plan found"
+  echo "Required: implementation-plan-${TASK_ID}.md"
+  echo "Fix: You MUST get plan approved BEFORE coding"
   exit 1
 fi
 
-# Check build
+# Verify plan has approval signature
+if ! grep -q "APPROVED" implementation-plan-${TASK_ID}.md; then
+  echo "❌ BLOCKED: Plan not approved by PM/CEO"
+  echo "Fix: Get approval signature in plan file"
+  exit 1
+fi
+
+# Check build gates
 npm run build || exit 1
 npm run lint || exit 1
 npm run test || exit 1
+
+echo "✅ All Ralph gates passed - commit allowed"
 ```
 
 ### CI/CD Pipeline
