@@ -122,6 +122,10 @@ export const resources = pgTable('resources', {
   badgeType: text('badge_type'), // NULL | 'users_choice' | 'trending'
   status: text('status').notNull().default('LIVE'), // 'LIVE' | 'VETTING'
   
+  // Claiming System (ENTRY-009)
+  claimedAt: timestamp('claimed_at', { mode: 'date' }),
+  claimedVia: text('claimed_via'), // 'github_oauth'
+
   // Timestamps
   publishedAt: timestamp('published_at').notNull().defaultNow(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
@@ -135,6 +139,17 @@ export const resources = pgTable('resources', {
   authorIdIdx: index('resources_author_id_idx').on(table.authorId),
   slugIdx: index('resources_slug_idx').on(table.slug),
 }));
+
+// Resource Claims table (ENTRY-009)
+export const resourceClaims = pgTable('resource_claims', {
+  id: text('id').primaryKey(),
+  resourceId: text('resource_id').notNull().references(() => resources.id).unique(), // One claim per resource
+  userId: text('user_id').notNull().references(() => users.id),
+  githubUsername: text('github_username').notNull(),
+  githubRepoUrl: text('github_repo_url').notNull(),
+  verificationMethod: text('verification_method').notNull(), // 'github_oauth'
+  claimedAt: timestamp('claimed_at').defaultNow(),
+});
 
 // Ratings table
 export const ratings = pgTable('ratings', {

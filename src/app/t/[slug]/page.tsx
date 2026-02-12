@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Star, Eye, Copy, ExternalLink, ArrowLeft, ChevronRight } from 'lucide-react';
 import { db } from '@/lib/db';
-import { resources, categories, ratings, tags, resourceTags, purchases, userResourceAccess } from '@/drizzle/schema';
+import { resources, categories, ratings, tags, resourceTags, purchases, userResourceAccess, users } from '@/drizzle/schema';
 import { eq, and, sql } from 'drizzle-orm';
 import { Header } from '@/components/Header';
 import { CitationBlock } from '@/components/CitationBlock';
@@ -12,6 +12,7 @@ import { Footer } from '@/components/Footer';
 import { safeJsonLd } from '@/lib/utils/safeJsonLd';
 import { auth } from '@/auth';
 import { BuyButton } from '@/components/BuyButton';
+import { ClaimButton } from '@/components/ClaimButton'; // Added
 import { Lock } from 'lucide-react';
 
 export async function generateMetadata({
@@ -83,9 +84,15 @@ export default async function ResourceDetailPage({
       price: resources.price,
       currency: resources.currency,
       authorId: resources.authorId,
+      authorName: users.name, // Added
+      authorUsername: users.username, // Added
+      authorImage: users.image, // Added
+      authorGithub: users.githubUsername, // Added
+      claimedAt: resources.claimedAt, // Added
     })
     .from(resources)
     .leftJoin(categories, eq(resources.categoryId, categories.id))
+    .leftJoin(users, eq(resources.authorId, users.id)) // Added join
     .where(eq(resources.slug, slug))
     .limit(1);
 
@@ -291,12 +298,18 @@ export default async function ResourceDetailPage({
                 )}
 
                 {/* Monetization CTAs */}
-                <Link
-                  href={`mailto:support@googleantigravity.directory?subject=Claim Listing: ${encodeURIComponent(resource.title)}&body=I would like to claim this listing: ${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.googleantigravity.directory'}/t/${resource.slug}`}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white font-bold rounded-xl border border-white/5 transition-all text-xs uppercase tracking-widest"
-                >
-                  Claim Listing
-                </Link>
+                {/* Claim Button (ENTRY-009) */}
+                <div className="w-full flex justify-center">
+                  <ClaimButton 
+                    resourceId={resource.id}
+                    initialClaimed={!!resource.authorId}
+                    initialClaimedBy={resource.authorId ? {
+                      name: resource.authorName,
+                      username: resource.authorUsername || resource.authorGithub,
+                      image: resource.authorImage
+                    } : null}
+                  />
+                </div>
                 <Link
                   href="/submit"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 font-bold rounded-xl border border-blue-500/10 transition-all text-xs uppercase tracking-widest"
