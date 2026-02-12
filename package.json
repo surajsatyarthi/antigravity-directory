@@ -25,7 +25,9 @@
     "verify:pm-gates": "node scripts/verify-pm-gates.js",
     "verify:ralph-gates": "node scripts/verify-ralph-gates.js",
     "verify:pm-documentation": "node scripts/verify-pm-documentation.js",
-    "verify:circular": "npm run verify:pm-gates && npm run verify:ralph-gates && npm run verify:pm-documentation"
+    "verify:circular": "npm run verify:pm-gates && npm run verify:ralph-gates && npm run verify:pm-documentation",
+    "sync:protocols": "node scripts/sync-protocols.js",
+    "sync:protocols:init": "node scripts/sync-protocols.js --init"
   },
   "dependencies": {
     "@auth/core": "^0.34.3",
