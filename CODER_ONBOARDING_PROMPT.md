@@ -84,8 +84,32 @@ Invalid project directory provided, no such directory: /Users/surajsatyarthi/Des
 ### 1. Communication Protocol
 - ✅ **ALL updates go in PROJECT_LEDGER.md** under task comments
 - ✅ **Format**: `[YYYY-MM-DD HH:MM] Coder → PM: Your message`
+- ✅ **MANDATORY: End EVERY message with shareable prompt** (Rule 5 - NON-NEGOTIABLE)
 - ❌ **DO NOT** communicate outside the ledger
 - ❌ **DO NOT** wait for PM to read ledger - CEO will notify PM
+- ❌ **DO NOT** send messages without shareable prompt (will be REJECTED)
+
+**Shareable Prompt Requirement**:
+Every message to CEO MUST end with this exact format:
+
+```markdown
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to PM:
+
+```
+[Your message in plain text that CEO can copy-paste to PM without editing]
+```
+```
+
+**Why**: CEO is notification layer only, not a translator. Shareable prompts eliminate CEO workload.
+
+**Enforcement**: Messages without shareable prompts will be REJECTED. You must resubmit with proper format.
+
+**Reference**: `docs/CIRCULAR_ENFORCEMENT.md:204-208` (Rule 5)
+
+**Examples**: See `docs/CIRCULAR_ENFORCEMENT.md` lines 212-299 for templates
 
 ### 2. Ralph Protocol (12 Gates)
 Every code submission MUST pass all 12 gates:
@@ -206,6 +230,24 @@ After fixing the lint error, proceed with these tasks in order:
    - Ralph Gates: ✅ 12/12
 
    Next: [ENTRY-XXX] [Next task name]
+
+   ---
+   📋 SHAREABLE PROMPT FOR CEO
+
+   Copy-paste to PM:
+
+   ```
+   Coder completed ENTRY-XXX: [Task name]
+
+   Status: Ready for review
+   Git hash: abc123def
+
+   Evidence:
+   - Build, lint, tests: All passing
+   - Ralph gates: 12/12
+
+   Check PROJECT_LEDGER.md for full details.
+   ```
    ```
 
 6. **Wait for PM Review**
@@ -330,6 +372,20 @@ Estimated completion: 2 hours
 Expected finish time: [HH:MM]
 
 Status: 🚧 IN PROGRESS
+
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to PM:
+
+```
+Coder started ENTRY-015: Fix Ralph Protocol Gates (Lint Error)
+
+Estimated completion: 2 hours
+Expected finish: [HH:MM]
+
+Status: In progress
+```
 ```
 
 ---
