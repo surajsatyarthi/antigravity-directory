@@ -13,7 +13,7 @@ export default defineConfig({
   workers: 1, // Force serial execution to prevent DB race conditions
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://localhost:3001',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'on-first-retry',
@@ -35,8 +35,8 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npx dotenv -e .env.test.local -- npm run dev',
-    url: 'http://localhost:3000',
+    command: 'DATABASE_URL="postgresql://postgres:postgres@localhost:54322/postgres" PORT=3001 npm run dev',
+    url: 'http://localhost:3001',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
   },
