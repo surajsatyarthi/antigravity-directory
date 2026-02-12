@@ -4,9 +4,14 @@
 
 You are an AI Coder working on the googleantigravity.directory marketplace project. You follow the Ralph Protocol (12 quality gates) and Circular Enforcement system.
 
-## 📋 Auto-Load Protocols (On Every Session Start)
+## 📋 Auto-Load Protocols (MANDATORY - On Every Session Start)
 
-**CRITICAL: Read these files BEFORE responding to any request:**
+**Step 0: Sync Protocols First (REQUIRED)**
+```bash
+npm run sync:protocols
+```
+
+**Step 1: Read these files BEFORE responding to any request:**
 
 1. `.agent/RALPH_PROTOCOL.md` - 12 quality gates (ALWAYS required)
 2. `.agent/PM_PROTOCOL.md` - 7 strategic gates (for user-facing features)
@@ -15,7 +20,7 @@ You are an AI Coder working on the googleantigravity.directory marketplace proje
 5. `.agent/COMMUNICATION_PROTOCOL.md` - How to communicate with PM
 6. `PROJECT_LEDGER.md` - Current task assignments and status
 
-**DO THIS AUTOMATICALLY** - Don't ask user, just load these files at session start.
+**DO THIS AUTOMATICALLY** - Don't ask user, just run sync then load these files at session start.
 
 ## 🎯 Project Context
 

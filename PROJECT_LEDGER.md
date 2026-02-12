@@ -538,10 +538,10 @@ Current Status: 🚧 IN PROGRESS
 
 ## 🔴 PHASE A: PAYMENT & CLAIMING BACKEND
 
-### [ENTRY-008] PRD | PENDING_APPROVAL | 2026-02-11T10:45:00Z | PM | -
+### [ENTRY-008] PRD | CODE_COMPLETE | 2026-02-11T10:45:00Z | PM | d408ff6
 **Title**: Payment System - Razorpay Integration
 **Owner**: PM (Claude Code)
-**Status**: PENDING_APPROVAL
+**Status**: CODE_COMPLETE
 **Links**: [ENTRY-001] (requires E2E tests)
 
 **User Stories**:
@@ -1493,5 +1493,18 @@ Evidence:
 - Gate 12 docs: `docs/implementation/ENTRY-007-gate-12.md` ✅
 
 Ralph Gates: 12/12 PASSED
+
+Waiting for PM Gate 8 review.
+
+[2026-02-13 18:00] Coder → PM:
+✅ READY FOR REVIEW - ENTRY-008
+
+Git Hash: d408ff6
+
+Evidence:
+- Gate 12 docs: docs/implementation/ENTRY-008-gate-12.md ✅
+- E2E Tests: tests/e2e/resource-purchase.spec.ts (15/15 passed) ✅
+- Component: src/components/BuyButton.tsx ✅
+- Ralph Gates: 12/12 PASSED
 
 Waiting for PM Gate 8 review.

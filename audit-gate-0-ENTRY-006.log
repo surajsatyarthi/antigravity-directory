@@ -1,0 +1,12 @@
+# Audit Log for [ENTRY-006]
+Date: 2026-02-13
+
+## Research
+Source: https://playwright.dev/docs/auth (Authentication Fixtures)
+Source: https://next-auth.js.org/configuration/nextjs (NextAuth.js Config)
+Source: https://supabase.com/docs/guides/auth/row-level-security (Supabase RLS)
+
+## Analysis
+- Investigated Playwright fixture strategies for Auth.js
+- Investigated Supabase RLS policy application order
+- Analyzed Next.js middleware for auth redirection

@@ -3,13 +3,16 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Star, Eye, Copy, ExternalLink, ArrowLeft, ChevronRight } from 'lucide-react';
 import { db } from '@/lib/db';
-import { resources, categories, ratings, tags, resourceTags } from '@/drizzle/schema';
-import { eq } from 'drizzle-orm';
+import { resources, categories, ratings, tags, resourceTags, purchases, userResourceAccess } from '@/drizzle/schema';
+import { eq, and, sql } from 'drizzle-orm';
 import { Header } from '@/components/Header';
 import { CitationBlock } from '@/components/CitationBlock';
 import { BadgeGenerator } from '@/components/BadgeGenerator';
 import { Footer } from '@/components/Footer';
 import { safeJsonLd } from '@/lib/utils/safeJsonLd';
+import { auth } from '@/auth';
+import { BuyButton } from '@/components/BuyButton';
+import { Lock } from 'lucide-react';
 
 export async function generateMetadata({
   params,
@@ -62,7 +65,7 @@ export default async function ResourceDetailPage({
   params: { slug: string };
 }) {
   const { slug } = await params;
-
+  
   // Fetch resource with category
   const [resource] = await db
     .select({
@@ -77,6 +80,9 @@ export default async function ResourceDetailPage({
       verified: resources.verified,
       badgeType: resources.badgeType,
       categoryName: categories.name,
+      price: resources.price,
+      currency: resources.currency,
+      authorId: resources.authorId,
     })
     .from(resources)
     .leftJoin(categories, eq(resources.categoryId, categories.id))
@@ -104,6 +110,39 @@ export default async function ResourceDetailPage({
     .from(resourceTags)
     .leftJoin(tags, eq(resourceTags.tagId, tags.id))
     .where(eq(resourceTags.resourceId, resource.id));
+
+  const session = await auth();
+  let hasAccess = false;
+  
+  // Free resources are accessible to all
+  if (!resource.price || resource.price === 0) {
+    hasAccess = true;
+  } else if (session?.user?.id) {
+     // Check if user is author
+     if (resource.authorId === session.user.id) {
+       hasAccess = true;
+     } else {
+       // Check if user purchased
+       const accessRecord = await db.query.userResourceAccess.findFirst({
+         where: and(
+           eq(userResourceAccess.userId, session.user.id),
+           eq(userResourceAccess.resourceId, resource.id)
+         )
+       });
+       if (accessRecord) hasAccess = true;
+     }
+  }
+
+  // Calculate earnings for social proof
+  let resourceEarnings = 0;
+  if (resource.price && resource.price > 0) {
+    const earningsResult = await db
+      .select({ total: sql<number>`SUM(${purchases.creatorEarnings})` })
+      .from(purchases)
+      .where(eq(purchases.resourceId, resource.id));
+      
+    resourceEarnings = earningsResult[0]?.total || 0;
+  }
 
   const softwareAppJsonLd = {
     "@context": "https://schema.org",
@@ -264,6 +303,26 @@ export default async function ResourceDetailPage({
                 >
                   Promote Tool
                 </Link>
+
+                {/* Buy Button for Paid Resources */}
+                {resource.price > 0 && !hasAccess && (
+                   <div className="mt-4 p-4 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-blue-500/10 border border-emerald-500/20">
+                      <div className="mb-3 text-center">
+                        <span className="text-xs font-bold text-emerald-400 tracking-widest uppercase">
+                          Premium Resource
+                        </span>
+                        <div className="text-[10px] text-gray-500 font-mono mt-1">
+                          Creator earned ${(resourceEarnings / 100).toLocaleString()}
+                        </div>
+                      </div>
+                      <BuyButton 
+                        price={resource.price}
+                        currency={resource.currency || 'USD'}
+                        resourceId={resource.id}
+                        resourceName={resource.title}
+                      />
+                   </div>
+                )}
               </div>
             </div>
 
@@ -309,16 +368,44 @@ export default async function ResourceDetailPage({
               <div className="mb-12">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold tracking-tight text-white font-mono uppercase tracking-widest text-sm text-gray-500">Resource Content</h2>
-                  <button className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all">
-                    <Copy className="w-4 h-4" />
-                    Copy Code
-                  </button>
+                  {hasAccess && (
+                    <button className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all">
+                      <Copy className="w-4 h-4" />
+                      Copy Code
+                    </button>
+                  )}
                 </div>
-                <div className="relative group">
-                  <pre className="whitespace-pre-wrap font-mono text-sm bg-black p-8 rounded-2xl border border-gray-900 text-gray-300 overflow-x-auto max-h-[600px] leading-relaxed">
-                    {resource.content}
-                  </pre>
-                </div>
+                
+                {hasAccess ? (
+                  <div className="relative group">
+                    <pre className="whitespace-pre-wrap font-mono text-sm bg-black p-8 rounded-2xl border border-gray-900 text-gray-300 overflow-x-auto max-h-[600px] leading-relaxed">
+                      {resource.content}
+                    </pre>
+                  </div>
+                ) : (
+                  <div className="relative rounded-2xl border border-gray-900 bg-black overflow-hidden">
+                    <div className="p-8 filter blur-sm select-none opacity-30">
+                      <pre className="whitespace-pre-wrap font-mono text-sm text-gray-300">
+                        {resource.content.slice(0, 300)}...
+                        {/* Fake content to simulate length */}
+                        {'\n\n[Content Hidden]\n[Content Hidden]\n[Content Hidden]'}
+                      </pre>
+                    </div>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black via-black/80 to-transparent z-10">
+                      <Lock className="w-8 h-8 text-white mb-4" />
+                      <h3 className="text-xl font-bold text-white mb-2">Premium Content</h3>
+                      <p className="text-gray-400 text-sm mb-6 max-w-xs text-center">
+                        Purchase this resource to access the full source code and documentation.
+                      </p>
+                      <BuyButton 
+                        price={resource.price}
+                        currency={resource.currency || 'USD'}
+                        resourceId={resource.id}
+                        resourceName={resource.title}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 

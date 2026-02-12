@@ -107,6 +107,7 @@ export const resources = pgTable('resources', {
   views: integer('views').notNull().default(0),
   copiedCount: integer('copied_count').notNull().default(0),
   price: integer('price').notNull().default(0), // Price in cents/paise (0 = Free)
+  currency: text('currency').default('USD'),
   
   // AEO & Staged Indexing
   isIndexed: boolean('is_indexed').notNull().default(false),
@@ -279,6 +280,44 @@ export const payments = pgTable('payments', {
   statusIdx: index('payments_status_idx').on(table.status),
 }));
 
+// Purchases table (New for 80/20 split system)
+export const purchases = pgTable('purchases', {
+  id: text('id').primaryKey(),
+  resourceId: text('resource_id').notNull().references(() => resources.id),
+  buyerId: text('buyer_id').notNull().references(() => users.id),
+  creatorId: text('creator_id').notNull().references(() => users.id),
+  amountTotal: integer('amount_total').notNull(),
+  creatorEarnings: integer('creator_earnings').notNull(), // 80%
+  platformFee: integer('platform_fee').notNull(), // 20%
+  currency: text('currency').notNull(),
+  paymentMethod: text('payment_method').notNull(), // 'razorpay' | 'paypal'
+  paymentId: text('payment_id').notNull().unique(),
+  orderId: text('order_id'),
+  status: text('status').default('pending'),
+  createdAt: timestamp('created_at').defaultNow(),
+  completedAt: timestamp('completed_at'),
+});
+
+// Creator Earnings table
+export const creatorEarnings = pgTable('creator_earnings', {
+  userId: text('user_id').primaryKey().references(() => users.id),
+  totalEarnings: integer('total_earnings').default(0),
+  salesCount: integer('sales_count').default(0),
+  lastSaleAt: timestamp('last_sale_at'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+// User Resource Access table
+export const userResourceAccess = pgTable('user_resource_access', {
+  userId: text('user_id').notNull().references(() => users.id),
+  resourceId: text('resource_id').notNull().references(() => resources.id),
+  purchaseId: text('purchase_id').references(() => purchases.id),
+  grantedAt: timestamp('granted_at').defaultNow(),
+}, (t) => ({
+  pk: primaryKey({ columns: [t.userId, t.resourceId] }),
+}));
+
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   resources: many(resources),
@@ -359,6 +398,43 @@ export const paymentsRelations = relations(payments, ({ one }) => ({
   resource: one(resources, {
     fields: [payments.resourceId],
     references: [resources.id],
+  }),
+}));
+
+export const purchasesRelations = relations(purchases, ({ one }) => ({
+  resource: one(resources, {
+    fields: [purchases.resourceId],
+    references: [resources.id],
+  }),
+  buyer: one(users, {
+    fields: [purchases.buyerId],
+    references: [users.id],
+  }),
+  creator: one(users, {
+    fields: [purchases.creatorId],
+    references: [users.id],
+  }),
+}));
+
+export const userResourceAccessRelations = relations(userResourceAccess, ({ one }) => ({
+  user: one(users, {
+    fields: [userResourceAccess.userId],
+    references: [users.id],
+  }),
+  resource: one(resources, {
+    fields: [userResourceAccess.resourceId],
+    references: [resources.id],
+  }),
+  purchase: one(purchases, {
+    fields: [userResourceAccess.purchaseId],
+    references: [purchases.id],
+  }),
+}));
+
+export const creatorEarningsRelations = relations(creatorEarnings, ({ one }) => ({
+  user: one(users, {
+    fields: [creatorEarnings.userId],
+    references: [users.id],
   }),
 }));
 

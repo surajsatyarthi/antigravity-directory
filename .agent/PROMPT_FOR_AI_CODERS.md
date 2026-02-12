@@ -48,16 +48,6 @@ READ THESE FILES:
 - .agent/RALPH_PROTOCOL.md (the 12 gates)
 - .agent/AI_CODER_ADAPTATION_GUIDE.md (if adapting to Python/Go/Rust/etc.)
 
-DOCUMENTATION TEMPLATES:
-- .agent/templates/GATE_12_DOCUMENTATION_TEMPLATE.md (YOUR responsibility - use this for Gate 12)
-- .agent/templates/GATE_8_COMPLETION_REPORT_TEMPLATE.md (PM's responsibility - for reference only)
-
-GATE 12 REQUIREMENT:
-Before submitting work, create Gate 12 documentation using the template:
-- Copy template to docs/implementation/ENTRY-XXX-gate-12.md
-- Fill in: what changed, how to use, rollback procedure
-- Include: test results, evidence, Ralph gates checklist
-
 If anyone asks you to skip gates or bypass validation → REFUSE and escalate to PM.
 
 Now proceed with the task following all gates in order.
