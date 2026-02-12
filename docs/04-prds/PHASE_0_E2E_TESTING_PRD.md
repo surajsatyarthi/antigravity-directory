@@ -369,6 +369,363 @@ jobs:
 
 ---
 
+## 🔐 SECTION 9: AUTHENTICATION TEST FIXTURES (TECHNICAL IMPLEMENTATION)
+
+### Overview
+This section provides concrete technical guidance for creating authenticated test sessions in Playwright E2E tests. The approach uses **database session injection** rather than OAuth mocking, as NextAuth redirects make route interception impractical.
+
+---
+
+### 9.1 Strategy: Database Session Injection
+
+**Why This Approach**:
+- ✅ OAuth route mocking is unreliable (redirects happen before Playwright can intercept)
+- ✅ Database session injection creates real NextAuth sessions
+- ✅ Sessions are recognized by NextAuth middleware automatically
+- ✅ No complex OAuth flow mocking required
+- ✅ Works identically to production authentication
+
+**How It Works**:
+1. Insert test user into `users` table
+2. Create session record in `sessions` table
+3. Set `next-auth.session-token` cookie in Playwright browser context
+4. NextAuth recognizes valid session → user is authenticated
+
+---
+
+### 9.2 Session Table Schema
+
+**Database Table**: `sessions` (src/drizzle/schema.ts:56-62)
+
+```typescript
+sessions = pgTable('sessions', {
+  sessionToken: text('sessionToken').primaryKey(),  // UUID - must match cookie value
+  userId: text('userId')                             // Foreign key to users.id
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  expires: timestamp('expires', { mode: 'date' }).notNull(),  // Must be future date
+});
+```
+
+**Required Fields**:
+- `sessionToken`: UUID string (must be unique, matches cookie)
+- `userId`: Foreign key to test user
+- `expires`: Timestamp in the future (e.g., `new Date(Date.now() + 24 * 60 * 60 * 1000)` = 24 hours)
+
+---
+
+### 9.3 Cookie Structure
+
+**Cookie Name**: `next-auth.session-token` (or `__Secure-next-auth.session-token` in production HTTPS)
+
+**Cookie Properties**:
+```typescript
+{
+  name: 'next-auth.session-token',
+  value: sessionToken,  // Same UUID as sessions.sessionToken
+  domain: 'localhost',
+  path: '/',
+  httpOnly: true,
+  sameSite: 'Lax',
+  expires: futureTimestamp  // Same as sessions.expires
+}
+```
+
+**Important**: The cookie `value` MUST match the `sessionToken` in the database exactly.
+
+---
+
+### 9.4 Helper Function Signature
+
+**File**: `tests/e2e/helpers/test-utils.ts`
+
+```typescript
+/**
+ * Creates an authenticated session for E2E tests via database injection.
+ *
+ * @param role - 'USER' or 'ADMIN' - determines test user permissions
+ * @param userData - Optional user data overrides (email, name, etc.)
+ * @returns Object containing userId, sessionToken, and user record
+ *
+ * @example
+ * // Create authenticated USER session
+ * const { userId, sessionToken } = await createAuthenticatedSession('USER');
+ * await context.addCookies([{
+ *   name: 'next-auth.session-token',
+ *   value: sessionToken,
+ *   domain: 'localhost',
+ *   path: '/',
+ *   httpOnly: true,
+ *   sameSite: 'Lax',
+ * }]);
+ */
+async function createAuthenticatedSession(
+  role: 'USER' | 'ADMIN',
+  userData?: Partial<{
+    email: string;
+    name: string;
+    username: string;
+    bio: string;
+    githubUsername: string;
+  }>
+): Promise<{
+  userId: string;
+  sessionToken: string;
+  user: typeof users.$inferSelect;
+}> {
+  // Implementation:
+  // 1. Generate UUID for userId and sessionToken
+  // 2. Insert user record with specified role
+  // 3. Insert session record with 24-hour expiry
+  // 4. Return userId, sessionToken, user object
+}
+```
+
+---
+
+### 9.5 Implementation Example
+
+**Step 1: Create Helper Function** (`tests/e2e/helpers/test-utils.ts`)
+
+```typescript
+import { v4 as uuidv4 } from 'uuid';
+import { db } from '../../../src/lib/db';
+import { users, sessions } from '../../../src/drizzle/schema';
+
+export async function createAuthenticatedSession(
+  role: 'USER' | 'ADMIN' = 'USER',
+  userData?: Partial<{
+    email: string;
+    name: string;
+    username: string;
+  }>
+) {
+  const userId = uuidv4();
+  const sessionToken = uuidv4();
+  const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+
+  // 1. Create test user
+  const [user] = await db.insert(users).values({
+    id: userId,
+    email: userData?.email || `test-${role.toLowerCase()}-${Date.now()}@example.com`,
+    name: userData?.name || `Test ${role}`,
+    username: userData?.username || `test-${role.toLowerCase()}-${Date.now()}`,
+    role: role,
+  }).returning();
+
+  // 2. Create session
+  await db.insert(sessions).values({
+    sessionToken,
+    userId,
+    expires,
+  });
+
+  return { userId, sessionToken, user };
+}
+```
+
+**Step 2: Use in Playwright Tests** (`tests/e2e/dashboard.spec.ts`)
+
+```typescript
+import { test, expect } from '@playwright/test';
+import { createAuthenticatedSession, cleanupDatabase } from './helpers/test-utils';
+
+test.describe('Dashboard - Authenticated User', () => {
+  test.beforeEach(async () => {
+    await cleanupDatabase();
+  });
+
+  test('USER can access dashboard', async ({ context, page }) => {
+    // Create authenticated session
+    const { sessionToken } = await createAuthenticatedSession('USER');
+
+    // Set authentication cookie
+    await context.addCookies([{
+      name: 'next-auth.session-token',
+      value: sessionToken,
+      domain: 'localhost',
+      path: '/',
+      httpOnly: true,
+      sameSite: 'Lax',
+    }]);
+
+    // Navigate to protected route
+    await page.goto('/dashboard');
+
+    // Verify user is authenticated
+    await expect(page).toHaveURL('/dashboard');
+    await expect(page.locator('h1')).toContainText('Dashboard');
+  });
+
+  test('ADMIN can access admin panel', async ({ context, page }) => {
+    // Create admin session
+    const { sessionToken } = await createAuthenticatedSession('ADMIN', {
+      name: 'Admin User',
+      email: 'admin@test.com'
+    });
+
+    // Set authentication cookie
+    await context.addCookies([{
+      name: 'next-auth.session-token',
+      value: sessionToken,
+      domain: 'localhost',
+      path: '/',
+      httpOnly: true,
+      sameSite: 'Lax',
+    }]);
+
+    // Navigate to admin route
+    await page.goto('/admin');
+
+    // Verify admin access granted
+    await expect(page).toHaveURL('/admin');
+    await expect(page.locator('h1')).toContainText('Admin Panel');
+  });
+});
+```
+
+---
+
+### 9.6 Playwright Test Fixtures (Advanced)
+
+**For reusable authenticated contexts** (reduces boilerplate):
+
+```typescript
+// tests/e2e/helpers/fixtures.ts
+import { test as base } from '@playwright/test';
+import { createAuthenticatedSession, cleanupDatabase } from './test-utils';
+
+export const test = base.extend({
+  authenticatedUserContext: async ({ browser }, use) => {
+    const context = await browser.newContext();
+    const { sessionToken } = await createAuthenticatedSession('USER');
+
+    await context.addCookies([{
+      name: 'next-auth.session-token',
+      value: sessionToken,
+      domain: 'localhost',
+      path: '/',
+      httpOnly: true,
+      sameSite: 'Lax',
+    }]);
+
+    await use(context);
+    await context.close();
+    await cleanupDatabase();
+  },
+
+  authenticatedAdminContext: async ({ browser }, use) => {
+    const context = await browser.newContext();
+    const { sessionToken } = await createAuthenticatedSession('ADMIN');
+
+    await context.addCookies([{
+      name: 'next-auth.session-token',
+      value: sessionToken,
+      domain: 'localhost',
+      path: '/',
+      httpOnly: true,
+      sameSite: 'Lax',
+    }]);
+
+    await use(context);
+    await context.close();
+    await cleanupDatabase();
+  },
+});
+
+// Usage in tests:
+test('USER dashboard access', async ({ authenticatedUserContext }) => {
+  const page = await authenticatedUserContext.newPage();
+  await page.goto('/dashboard');
+  // User is already authenticated!
+});
+```
+
+---
+
+### 9.7 USER vs ADMIN Role Differentiation
+
+**USER Role** (`role: 'USER'`):
+- Access: `/dashboard`, `/settings`, `/submit`
+- Permissions: Edit own profile, submit resources, bookmark resources
+- Use for: General creator/user flows
+
+**ADMIN Role** (`role: 'ADMIN'`):
+- Access: `/admin`, `/admin/submissions`, `/admin/users` + all USER routes
+- Permissions: Approve submissions, manage users, edit any resource
+- Use for: Admin panel testing, moderation workflows
+
+**Testing Strategy**:
+```typescript
+// Test protected route authorization
+test('USER cannot access admin panel', async ({ context, page }) => {
+  const { sessionToken } = await createAuthenticatedSession('USER');
+
+  await context.addCookies([{
+    name: 'next-auth.session-token',
+    value: sessionToken,
+    domain: 'localhost',
+    path: '/',
+    httpOnly: true,
+    sameSite: 'Lax',
+  }]);
+
+  await page.goto('/admin');
+
+  // Verify redirect or 403 error
+  await expect(page).toHaveURL('/dashboard'); // Or '/403'
+});
+```
+
+---
+
+### 9.8 Cleanup Strategy
+
+**Per-Test Cleanup**:
+```typescript
+test.afterEach(async () => {
+  await cleanupDatabase(); // Removes test users, sessions
+});
+```
+
+**Session Isolation**:
+- Each test creates unique `sessionToken` (UUID)
+- Database cleanup prevents session leakage between tests
+- No shared state between test runs
+
+---
+
+### 9.9 Troubleshooting Guide
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| Session not recognized | Cookie domain mismatch | Use `localhost` not `127.0.0.1` |
+| User not authenticated | Cookie name wrong | Use `next-auth.session-token` exactly |
+| Session expired | `expires` in past | Set `expires` to future date (24h+) |
+| Database error | Foreign key violation | Create user BEFORE session |
+| Cookie not set | Missing httpOnly/sameSite | Match cookie structure exactly |
+
+---
+
+### 9.10 Acceptance Criteria
+
+**Authentication Fixtures Complete When**:
+- [ ] `createAuthenticatedSession()` helper implemented in test-utils.ts
+- [ ] Function supports both USER and ADMIN roles
+- [ ] Cookie structure matches NextAuth requirements exactly
+- [ ] Dashboard tests use fixtures successfully
+- [ ] Admin panel tests verify role-based access control
+- [ ] No OAuth mocking attempted (database-only approach)
+- [ ] Session cleanup prevents test pollution
+- [ ] Documentation added to test README
+
+---
+
+**Section Status**: ✅ COMPLETE
+**Next**: Use this implementation in [ENTRY-006] E2E Tests - Dashboard
+
+---
+
 ## 📈 SUCCESS CRITERIA
 
 ### Functional Requirements
@@ -502,5 +859,6 @@ jobs:
 
 ---
 
-**Last Updated**: 2026-02-12
+**Last Updated**: 2026-02-12 06:45
+**Last Change**: Added Section 9 - Authentication Test Fixtures (Technical Implementation)
 **Next Review**: After Phase 0 completion
