@@ -10,12 +10,12 @@
  *   npm run sync:protocols -- --init # First-time setup (clone repo)
  *
  * How it works:
- *   1. Clones/pulls from GitHub repo (antigravity-protocols)
+ *   1. Clones/pulls from GitHub repo (ralph-protocols)
  *   2. Copies all files from cloned repo to .agent folder
  *   3. Preserves local .gitignore for .agent folder
  *
  * Prerequisites:
- *   - GitHub repo created: https://github.com/YOUR_USERNAME/antigravity-protocols
+ *   - GitHub repo created: https://github.com/YOUR_USERNAME/ralph-protocols
  *   - Local protocol folder pushed to GitHub
  */
 
@@ -25,7 +25,7 @@ const path = require('path');
 
 // Configuration
 const CONFIG = {
-  GITHUB_REPO: 'https://github.com/YOUR_USERNAME/antigravity-protocols.git', // ⚠️ UPDATE THIS
+  GITHUB_REPO: 'https://github.com/YOUR_USERNAME/ralph-protocols.git', // ⚠️ UPDATE THIS
   LOCAL_CACHE_DIR: path.join(__dirname, '..', '.protocol-cache'),
   TARGET_DIR: path.join(__dirname, '..', '.agent'),
 };
@@ -61,10 +61,10 @@ function validateGitHubRepo() {
     log('❌ Error: GitHub repository URL not configured', 'red');
     log('', 'reset');
     log('Please update scripts/sync-protocols.js:', 'yellow');
-    log('  GITHUB_REPO: "https://github.com/YOUR_USERNAME/antigravity-protocols.git"', 'yellow');
+    log('  GITHUB_REPO: "https://github.com/YOUR_USERNAME/ralph-protocols.git"', 'yellow');
     log('', 'reset');
     log('Steps to set up:', 'cyan');
-    log('  1. Create GitHub repo: antigravity-protocols', 'cyan');
+    log('  1. Create GitHub repo: ralph-protocols', 'cyan');
     log('  2. Push /Users/surajsatyarthi/Desktop/Projects/protocol to GitHub', 'cyan');
     log('  3. Update GITHUB_REPO in this script', 'cyan');
     log('  4. Run: npm run sync:protocols -- --init', 'cyan');

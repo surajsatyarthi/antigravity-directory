@@ -32,7 +32,7 @@ This system allows you to maintain ONE central protocol repository on GitHub and
 ### 1.1 Create New Repository
 
 1. Go to: https://github.com/new
-2. Repository name: `antigravity-protocols`
+2. Repository name: `ralph-protocols`
 3. Description: `Centralized quality protocols for Antigravity projects`
 4. Visibility: **Private** (recommended) or Public
 5. **DO NOT** initialize with README, .gitignore, or license
@@ -42,7 +42,7 @@ This system allows you to maintain ONE central protocol repository on GitHub and
 
 After creation, copy the HTTPS URL:
 ```
-https://github.com/YOUR_USERNAME/antigravity-protocols.git
+https://github.com/YOUR_USERNAME/ralph-protocols.git
 ```
 
 ---
@@ -55,7 +55,7 @@ The protocol folder is already initialized as a Git repository. Now push it to G
 cd /Users/surajsatyarthi/Desktop/Projects/protocol
 
 # Add GitHub remote
-git remote add origin https://github.com/YOUR_USERNAME/antigravity-protocols.git
+git remote add origin https://github.com/YOUR_USERNAME/ralph-protocols.git
 
 # Push to GitHub
 git push -u origin main
@@ -73,12 +73,12 @@ Edit: `scripts/sync-protocols.js`
 
 **Line 24** - Change:
 ```javascript
-GITHUB_REPO: 'https://github.com/YOUR_USERNAME/antigravity-protocols.git', // ⚠️ UPDATE THIS
+GITHUB_REPO: 'https://github.com/YOUR_USERNAME/ralph-protocols.git', // ⚠️ UPDATE THIS
 ```
 
 **To**:
 ```javascript
-GITHUB_REPO: 'https://github.com/YOUR_ACTUAL_USERNAME/antigravity-protocols.git',
+GITHUB_REPO: 'https://github.com/YOUR_ACTUAL_USERNAME/ralph-protocols.git',
 ```
 
 ### 3.2 Save the File
@@ -159,7 +159,7 @@ git commit -m "feat: add protocol sync system
 - Update .gitignore to exclude synced folders
 - Add setup documentation
 
-Protocols now synced from: https://github.com/YOUR_USERNAME/antigravity-protocols
+Protocols now synced from: https://github.com/YOUR_USERNAME/ralph-protocols
 
 Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ```
@@ -219,7 +219,7 @@ ls -la .agent
 git add package.json scripts/sync-protocols.js .gitignore
 git commit -m "feat: add protocol sync system
 
-Protocols synced from: https://github.com/YOUR_USERNAME/antigravity-protocols
+Protocols synced from: https://github.com/YOUR_USERNAME/ralph-protocols
 
 Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
 ```
@@ -237,7 +237,7 @@ Repeat steps 6.1-6.5 for each remaining project.
 When you need to update a protocol:
 
 **Option A: Edit in GitHub**
-1. Go to: https://github.com/YOUR_USERNAME/antigravity-protocols
+1. Go to: https://github.com/YOUR_USERNAME/ralph-protocols
 2. Edit file directly on GitHub
 3. Commit changes
 4. Run sync in each project (see below)
@@ -335,10 +335,10 @@ jobs:
 **Fix**:
 ```bash
 # Verify repo exists
-curl -I https://github.com/YOUR_USERNAME/antigravity-protocols
+curl -I https://github.com/YOUR_USERNAME/ralph-protocols
 
 # Update URL in scripts/sync-protocols.js
-# For private repos, use SSH instead: git@github.com:YOUR_USERNAME/antigravity-protocols.git
+# For private repos, use SSH instead: git@github.com:YOUR_USERNAME/ralph-protocols.git
 ```
 
 ### Error: "fatal: not a git repository"
@@ -350,7 +350,7 @@ cd /Users/surajsatyarthi/Desktop/Projects/protocol
 git init
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/YOUR_USERNAME/antigravity-protocols.git
+git remote add origin https://github.com/YOUR_USERNAME/ralph-protocols.git
 git push -u origin main
 ```
 
@@ -380,7 +380,7 @@ npm run sync:protocols:init
 
 **After completing setup, verify**:
 
-- [ ] GitHub repo created: `antigravity-protocols`
+- [ ] GitHub repo created: `ralph-protocols`
 - [ ] Protocol folder pushed to GitHub (verify files visible on GitHub)
 - [ ] Antigravity project: `npm run sync:protocols:init` runs successfully
 - [ ] Antigravity project: `.agent` folder populated with all protocols
