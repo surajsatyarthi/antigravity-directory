@@ -20,7 +20,38 @@
 
 ---
 
-## SECTION 2: BEFORE STARTING ANY TASK
+## SECTION 2: COMMUNICATION REQUIREMENTS (RULE 5)
+
+### 2A. Shareable Prompts (MANDATORY)
+**EVERY message to CEO must end with shareable prompt section:**
+
+```markdown
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to PM:
+
+```
+[Your message that CEO can copy-paste to PM without editing]
+```
+```
+
+### 2B. Why This Matters
+- CEO is notification layer, not translator
+- Shareable prompts eliminate CEO workload
+- Messages without shareable prompts = **REJECTED**
+
+### 2C. Enforcement
+- You must resubmit if shareable prompt missing
+- Zero tolerance, no exceptions
+- Reference: `docs/CIRCULAR_ENFORCEMENT.md:204-208`
+
+### 2D. Examples
+See `docs/CIRCULAR_ENFORCEMENT.md` lines 212-299 for templates
+
+---
+
+## SECTION 3: BEFORE STARTING ANY TASK
 
 ### 2A. Verify PM Approval
 ```markdown
@@ -37,14 +68,14 @@ Before writing ANY code:
 
 ---
 
-## SECTION 3: DURING IMPLEMENTATION
+## SECTION 4: DURING IMPLEMENTATION
 
-### 3A. Stay in Scope
+### 4A. Stay in Scope
 - Only implement what's in the approved plan
 - No "while I'm here" improvements
 - Scope creep = automatic rejection
 
-### 3B. Commit Standards
+### 4B. Commit Standards
 ```bash
 # Good commit message
 feat: add PDF import (Plan: PLAN-FIN-001, Task: FIN-TASK-001)
@@ -53,7 +84,7 @@ feat: add PDF import (Plan: PLAN-FIN-001, Task: FIN-TASK-001)
 fix stuff
 ```
 
-### 3C. Build Before Commit
+### 4C. Build Before Commit
 ```bash
 npm run build   # Must pass
 npm run lint    # Must pass
@@ -62,9 +93,9 @@ npm run test    # Must pass (80%+ coverage)
 
 ---
 
-## SECTION 4: EVIDENCE COLLECTION
+## SECTION 5: EVIDENCE COLLECTION
 
-### 4A. Required Artifacts (Per Task)
+### 5A. Required Artifacts (Per Task)
 ```
 docs/evidence/block-{TASK_ID}/
 ├── gates.txt              # All gate outputs
@@ -74,7 +105,7 @@ docs/evidence/block-{TASK_ID}/
 └── screenshots/           # Visual proof
 ```
 
-### 4B. Evidence Rules
+### 5B. Evidence Rules
 - All evidence must be FRESH (not copied from old tasks)
 - Screenshots must have visible timestamps
 - Gate outputs must show current date

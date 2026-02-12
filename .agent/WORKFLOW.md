@@ -162,7 +162,32 @@
 | Evidence fake | QA Gate 1 | Back to coder |
 | Scope creep | QA Gate 4 | Back to coder |
 | Regression | QA Gate 5 | Back to coder |
+| No shareable prompt | Communication Rule 5 | Message rejected |
+
+---
+
+## COMMUNICATION REQUIREMENTS (RULE 5)
+
+**EVERY message to CEO must end with shareable prompt:**
+
+```markdown
+---
+📋 SHAREABLE PROMPT FOR CEO
+
+Copy-paste to PM:
+
+```
+[Message CEO can copy-paste without editing]
+```
+```
+
+**Why:** CEO is notification layer, not translator
+
+**Enforcement:** Messages without shareable prompts = REJECTED
+
+**Reference:** `docs/CIRCULAR_ENFORCEMENT.md:204-208`
 
 ---
 
 **Created:** 2026-02-09
+**Updated:** 2026-02-12 (Added Rule 5 communication requirements)

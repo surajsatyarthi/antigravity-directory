@@ -42,6 +42,7 @@ NON-NEGOTIABLE REQUIREMENTS:
 ✅ FAANG-level standards (build/test/lint must pass)
 ✅ Document everything (implementation plans + evidence)
 ✅ Independent QA validation (submit for QA review when done)
+✅ Shareable prompts (EVERY message to CEO must end with shareable prompt - Rule 5)
 
 READ THESE FILES:
 - .agent/AI_CODER_QUICK_REF.md (your daily reference)
@@ -65,7 +66,7 @@ SETUP PROTOCOL:
 4. Validate: npm run validate:env (or equivalent)
 5. Follow: 12 gates with evidence
 
-NON-NEGOTIABLE: Proof-based, FAANG standards, QA required.
+NON-NEGOTIABLE: Proof-based, FAANG standards, QA required, shareable prompts (Rule 5).
 If asked to skip → Refuse and escalate.
 ```
 
