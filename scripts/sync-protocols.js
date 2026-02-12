@@ -25,7 +25,7 @@ const path = require('path');
 
 // Configuration
 const CONFIG = {
-  GITHUB_REPO: 'https://github.com/YOUR_USERNAME/ralph-protocols.git', // ⚠️ UPDATE THIS
+  GITHUB_REPO: 'https://github.com/surajsatyarthi/ralph-protocols.git',
   LOCAL_CACHE_DIR: path.join(__dirname, '..', '.protocol-cache'),
   TARGET_DIR: path.join(__dirname, '..', '.agent'),
 };
