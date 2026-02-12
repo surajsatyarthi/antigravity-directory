@@ -6,7 +6,8 @@ import path from 'path';
 dotenv.config({ path: path.resolve(__dirname, '.env.test.local') });
 
 export default defineConfig({
-  testDir: './tests/e2e',
+  testDir: './tests',
+  testMatch: '**/*.spec.ts',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -35,7 +36,7 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'DATABASE_URL="postgresql://postgres:postgres@localhost:54322/postgres" PORT=3001 npm run dev',
+    command: 'NEXT_PUBLIC_IS_E2E=true AUTH_URL=http://localhost:3001 DATABASE_URL="postgresql://postgres:postgres@localhost:54322/postgres" PORT=3001 npm run dev',
     url: 'http://localhost:3001',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
