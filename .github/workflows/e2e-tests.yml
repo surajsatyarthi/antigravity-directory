@@ -1,0 +1,73 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  e2e-tests:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium --with-deps
+
+      - name: Install Supabase CLI
+        run: npm install -g supabase
+
+      - name: Start Supabase
+        # Exclude unnecessary services to save resources and time
+        run: supabase start -x realtime,storage,edge-functions,studio,imgproxy,pg_meta,logflare,inbucket
+
+      - name: Setup Environment Variables
+        run: |
+          # Create .env.test.local with necessary variables
+          echo "DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres" >> .env.test.local
+          
+          # Get Supabase details and parse with jq (installed by default on ubuntu-latest)
+          SUPABASE_STATUS=$(supabase status -o json)
+          ANON_KEY=$(echo $SUPABASE_STATUS | jq -r .anon_key)
+          API_URL=$(echo $SUPABASE_STATUS | jq -r .api_url)
+          
+          echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL" >> .env.test.local
+          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY" >> .env.test.local
+          
+          # Generate a random secret for Auth
+          echo "AUTH_SECRET=test-secret-$(openssl rand -hex 16)" >> .env.test.local
+          
+          # Output for debugging (mask secrets in real scenario, but this is a test env)
+          echo "Environment variables set."
+
+      - name: Setup Test Database
+        run: pnpm test:setup
+        env:
+          # Ensure this matches the one in .env.test.local
+          DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:54322/postgres
+
+      - name: Run Playwright tests
+        run: pnpm test:e2e --project=chromium
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
