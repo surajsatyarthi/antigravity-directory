@@ -109,7 +109,25 @@ export default async function HomePage({
         {/* 2. Category Discovery Grid */}
         <CategoryGridDiscovery />
 
-        {/* 3. Creator Testimonials */}
+        {/* 3. Featured Resources (Seeded Data) */}
+        {featuredResources.length > 0 && (
+          <FeaturedSection 
+            title="Featured Resources"
+            resources={featuredResources} 
+            href="/browse?sort=trending"
+          />
+        )}
+
+        {/* 4. Directory Grid / Search Results */}
+        <section id="directory" className="py-12 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+             <LoadMoreResourceGrid 
+                initialResources={filteredResources}
+                initialTotalCount={totalCount}
+                initialFilters={activeFilters}
+             />
+        </section>
+
+        {/* 5. Creator Testimonials */}
         <CreatorTestimonials />
 
         {/* 4. Newsletter */}

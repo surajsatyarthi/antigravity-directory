@@ -10,6 +10,7 @@
     "test": "vitest",
     "test:e2e": "playwright test",
     "test:all": "pnpm test && pnpm test:e2e",
+    "test:setup": "tsx scripts/setup-test-db.ts",
     "ralph": "tsx scripts/ralph-cli.ts",
     "deploy:production": "bash scripts/deploy-helpers.sh && deploy:production",
     "deploy:hotfix": "bash scripts/deploy-helpers.sh && deploy:hotfix",
@@ -27,7 +28,11 @@
     "verify:pm-documentation": "node scripts/verify-pm-documentation.js",
     "verify:circular": "npm run verify:pm-gates && npm run verify:ralph-gates && npm run verify:pm-documentation",
     "sync:protocols": "node scripts/sync-protocols.js",
-    "sync:protocols:init": "node scripts/sync-protocols.js --init"
+    "sync:protocols:init": "node scripts/sync-protocols.js --init",
+    "push:protocols": "node scripts/push-protocols.js",
+    "install:protocol-hooks": "node scripts/install-protocol-hooks.js",
+    "watch:protocols": "node scripts/watch-protocols.js",
+    "postinstall": "npm run sync:protocols --silent || true"
   },
   "dependencies": {
     "@auth/core": "^0.34.3",

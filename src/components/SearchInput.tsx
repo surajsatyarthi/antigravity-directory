@@ -30,7 +30,7 @@ export function SearchInput({ variant = 'default', placeholder = "Search prompts
       setQuery(urlQuery);
       lastSyncQuery.current = urlQuery;
     }
-  }, [searchParams]);
+  }, [searchParams, query]);
 
   useEffect(() => {
     if (!isInteracted) return;

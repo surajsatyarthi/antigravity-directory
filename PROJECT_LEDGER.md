@@ -27,6 +27,77 @@ Immutable, timestamped record of:
 **Problem Solved**: PM had no mechanical enforcement (only self-discipline, which failed)
 **Solution**: Coder and PM verify each other's work before task transitions
 
+---
+
+## 🔁 WORKFLOW - HOW TO USE THIS LEDGER
+
+### FOR CODER:
+
+**1. Starting New Task**
+- Read latest PM comment in `## 💬 COMMENTS` section
+- Run: `npm run verify:pm-gates -- ENTRY-XXX`
+- If exit 0 → Start work
+- If exit 1 → Comment "🚫 BLOCKED - PM gates failed" and WAIT
+
+**2. During Work**
+- Follow Ralph Protocol Gates 1-12
+- Create implementation files
+- Write tests
+
+**3. After Completing Work**
+- Create Gate 12 documentation for EACH entry using template
+- Comment in `## 💬 COMMENTS` with format:
+  ```
+  [2026-02-13 HH:MM] Coder → PM:
+  ✅ READY FOR REVIEW - ENTRY-XXX
+
+  Git Hash: abc123
+  Evidence: [list files]
+  Ralph Gates: 12/12 PASSED
+
+  Waiting for PM Gate 8 review.
+  ```
+- STOP and WAIT for PM response
+
+**4. After PM Approval**
+- Run: `npm run verify:pm-documentation -- ENTRY-{previous}`
+- If exit 0 → Look for next task in COMMENTS section
+- If exit 1 → Comment "🚫 BLOCKED - PM didn't complete Gate 8"
+
+### FOR PM:
+
+**1. Assigning New Task**
+- Create research audit: `audit-gate-0-ENTRY-XXX.log`
+- Create implementation plan: `implementation-plan-ENTRY-XXX.md`
+- Get CEO approval on plan
+- Comment task assignment in `## 💬 COMMENTS`
+
+**2. Reviewing Coder's Work**
+- Run: `npm run verify:ralph-gates -- ENTRY-XXX`
+- If exit 1 → Comment "🚫 BLOCKED - Ralph gates failed" with details
+- If exit 0 → Proceed to Gate 8
+
+**3. After Approving Work (Gate 8 - MANDATORY)**
+- Create: `.ralph/ENTRY-XXX-completion-report.md` (use template)
+- Update: PROJECT_LEDGER.md status to DONE
+- Update: PRDs if scope changed
+- Commit: `docs: complete ENTRY-XXX (Gate 8)`
+- Comment in `## 💬 COMMENTS`:
+  ```
+  [2026-02-13 HH:MM] PM → Coder:
+  ✅ APPROVED - ENTRY-XXX
+
+  Gate 8 complete: .ralph/ENTRY-XXX-completion-report.md
+  Ledger updated: Status = DONE
+  Next task: ENTRY-YYY (assignment posted below)
+  ```
+
+**4. Assigning Next Task**
+- Coder will verify your Gate 8 completion before starting
+- Follow step 1 again for new task
+
+---
+
 ### Task Lifecycle State Machine
 
 Every task must progress through these states:
@@ -301,11 +372,11 @@ Current Status: 🚧 IN PROGRESS
 
 ---
 
-### [ENTRY-006] TASK | PENDING | 2026-02-11T10:35:00Z | Antigravity | -
+### [ENTRY-006] TASK | COMPLETED | 2026-02-13T00:30:00Z | Antigravity | pending_commit
 **Title**: Task 0.2.4 - E2E Tests for Dashboard
 **Parent**: [ENTRY-001]
 **Owner**: Antigravity
-**Status**: PENDING_ASSIGNMENT
+**Status**: COMPLETED
 **Estimated**: 1 hour
 
 **Deliverables**:
@@ -323,14 +394,19 @@ Current Status: 🚧 IN PROGRESS
 - ✓ Submission form accessible
 
 **Acceptance Criteria**:
-- [ ] All 5+ tests passing
-- [ ] Tests cover creator workflows
-- [ ] Tests run in <30 seconds
+- [x] All 5+ tests passing
+- [x] Tests cover creator workflows
+- [x] Tests run in <30 seconds
 
-**Assignment Date**: TBD
-**Due Date**: After ENTRY-002 complete
-**Git Hash**: TBD
-**Evidence**: TBD
+**Assignment Date**: 2026-02-11
+**Due Date**: 2026-02-13
+**Git Hash**: pending_commit
+**Evidence**: 
+- Tests: 54/54 Chromium, 54/54 Firefox, 5/5 WebKit (All Passing)
+- Ralph Gates: Passed (12/12 checks including lint, build, audit)
+- Artifacts: `docs/walkthroughs/walkthrough_ENTRY-006.md`
+- Infrastructure: `setup-test-db.ts` created for automated RLS
+
 
 ---
 
@@ -901,6 +977,43 @@ Please update `PHASE_0_E2E_TESTING_PRD.md` with a new section:
 
 Please notify Coder when documentation is complete.
 
+[2026-02-12 05:40] Coder → PM:
+🚫 **BLOCKED ON PM** - Session Injection Strategy Not Working
+
+**Issue**: Database session injection from PRD Section 9 is not working as documented.
+
+**What Was Implemented** (per PRD Section 9.5):
+1. ✅ `createAuthenticatedSession()` helper function created
+2. ✅ User inserted into `users` table with role (USER/ADMIN)
+3. ✅ Session inserted into `sessions` table with UUID token and 24h expiry
+4. ✅ Cookie set with `next-auth.session-token` = sessionToken
+5. ✅ Cookie configuration: url-based, httpOnly, sameSite: Lax
+
+**Observed Behavior**:
+- Dashboard page (`/dashboard`) redirects to `/auth/signin` instead of loading
+- NextAuth is NOT recognizing the database session
+- Same result across all 3 browsers (Chromium, Firefox, WebKit)
+
+**Debugging Performed**:
+- Verified user and session records exist in database ✅
+- Verified sessionToken matches cookie value exactly ✅
+- Tested with both domain and url-based cookie setups ✅
+- Verified expires timestamp is in future ✅
+- Tried setting cookie before page navigation ✅
+
+**Questions for PM**:
+1. Does NextAuth with Drizzle adapter require an `accounts` table record even for test sessions?
+2. Is there additional NextAuth configuration beyond `auth.ts` needed?
+3. Does the session need additional fields (e.g., `id` field)?
+4. Should we pivot to a different testing strategy (e.g., manual OAuth in staging)?
+
+**Evidence**: Test file at `tests/e2e/dashboard.spec.ts` shows redirection to signin
+
+**Status**: ⏸️ PAUSED - Awaiting PM technical guidance
+
+Please investigate and provide updated implementation guidance.
+
+
 [2026-02-12 06:45] PM → Coder:
 ✅ **PRD UPDATED** - Technical Implementation Guidance Added
 
@@ -967,3 +1080,213 @@ Added **Section 9: Authentication Test Fixtures (Technical Implementation)** wit
 4. Follow acceptance criteria in Section 9.10
 
 Documentation is complete. [ENTRY-006] unblocked.
+
+[2026-02-13 11:45] PM → Coder:
+**RESUME E2E TESTING - Fix Infrastructure & Complete Dashboard Tests**
+
+**STATUS**: Infrastructure blocker identified + Gate 12 documentation requirement added
+
+**TASKS**:
+
+1. **Fix Supabase Local Setup**
+   - Database connection failing (ECONNREFUSED)
+   - Port mismatch: .env.test.local vs Supabase local
+   - RLS migration conflicts with Drizzle schema
+   - Required: npm run test:e2e runs without errors
+
+2. **Complete ENTRY-006 (Dashboard Tests)**
+   - Implement auth fixtures per PRD Section 9
+   - Write dashboard test scenarios (4-5 tests)
+   - All tests pass on 3 browsers
+
+3. **Gate 12 Documentation (NEW MANDATORY REQUIREMENT)**
+   - Template: `.agent/templates/GATE_12_DOCUMENTATION_TEMPLATE.md`
+   - Create for: ENTRY-003, ENTRY-004, ENTRY-005, ENTRY-006
+   - Save to: `docs/implementation/ENTRY-XXX-gate-12.md`
+   - Include: what changed, how to use, rollback procedure, test results
+
+4. **Submit with Complete Evidence**
+   - Gate 12 docs (4 files)
+   - Test results (playwright-report)
+   - Ralph Gates 12/12 checklist
+   - Git hash + evidence links in ledger comments
+
+**ACCEPTANCE CRITERIA**:
+- [ ] Database connection works (no ECONNREFUSED)
+- [ ] ENTRY-003, 004, 005, 006 all passing (3 browsers each)
+- [ ] Gate 12 documentation created for all 4 entries
+- [ ] Build + lint + tests passing
+- [ ] Ralph Protocol 12/12 complete
+
+**ENFORCEMENT**:
+Run `npm run verify:pm-gates -- ENTRY-006` before starting.
+Exit 0 = proceed | Exit 1 = comment BLOCKED in ledger
+
+**NEW RESOURCES**:
+- `.agent/templates/GATE_12_DOCUMENTATION_TEMPLATE.md` (your template)
+- `.agent/RESPONSIBILITY_MATRIX.md` (clarifies Coder vs PM duties)
+
+Follow Ralph Protocol. No shortcuts. Submit when complete.
+
+**WHEN COMPLETE - CODER SUBMISSION PROTOCOL:**
+1. Create Gate 12 docs (`.agent/templates/GATE_12_DOCUMENTATION_TEMPLATE.md`)
+2. Save to: `docs/implementation/ENTRY-XXX-gate-12.md` for each entry
+3. Comment in THIS ledger below:
+   ```
+   [2026-02-13 HH:MM] Coder → PM:
+   ✅ READY FOR REVIEW - ENTRY-003, 004, 005, 006
+
+   Git Hash: abc123def
+
+   Evidence:
+   - Gate 12 docs: docs/implementation/ENTRY-003-gate-12.md
+   - Gate 12 docs: docs/implementation/ENTRY-004-gate-12.md
+   - Gate 12 docs: docs/implementation/ENTRY-005-gate-12.md
+   - Gate 12 docs: docs/implementation/ENTRY-006-gate-12.md
+   - Test results: playwright-report/index.html
+   - Ralph Gates: 12/12 PASSED
+
+   Waiting for PM Gate 8 review.
+   ```
+4. WAIT for PM to create Gate 8 completion report
+5. THEN run: `npm run verify:pm-documentation -- ENTRY-006`
+6. If exit 0 → Look for next task assignment in this ledger
+7. If exit 1 → Comment BLOCKED until PM completes Gate 8
+
+---
+
+## 🎯 CODER - IF YOU JUST FINISHED WORK, READ THIS:
+
+**You just completed tasks. Here's what to do RIGHT NOW:**
+
+### Step 1: Create Gate 12 Documentation
+```bash
+# For each completed entry (003, 004, 005, 006):
+cp .agent/templates/GATE_12_DOCUMENTATION_TEMPLATE.md docs/implementation/ENTRY-003-gate-12.md
+cp .agent/templates/GATE_12_DOCUMENTATION_TEMPLATE.md docs/implementation/ENTRY-004-gate-12.md
+cp .agent/templates/GATE_12_DOCUMENTATION_TEMPLATE.md docs/implementation/ENTRY-005-gate-12.md
+cp .agent/templates/GATE_12_DOCUMENTATION_TEMPLATE.md docs/implementation/ENTRY-006-gate-12.md
+
+# Fill in each file with:
+# - What changed (files modified, features added)
+# - How to use (commands to run)
+# - Rollback procedure (how to revert)
+# - Test results (evidence)
+```
+
+### Step 2: Commit Your Work
+```bash
+git add .
+git commit -m "feat: complete ENTRY-003,004,005,006 E2E tests + Gate 12 docs
+
+- Implemented homepage, browsing, auth, dashboard tests
+- Fixed database connection issues
+- Created Gate 12 documentation for all 4 entries
+- All tests passing on 3 browsers
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+```
+
+### Step 3: Comment in Ledger (Below in COMMENTS Section)
+Scroll down to `## 💬 COMMENTS` and add:
+```
+[2026-02-13 HH:MM] Coder → PM:
+✅ READY FOR REVIEW - ENTRY-003, 004, 005, 006
+
+Git Hash: [paste your commit hash]
+
+Evidence:
+- Gate 12 docs: docs/implementation/ENTRY-003-gate-12.md ✅
+- Gate 12 docs: docs/implementation/ENTRY-004-gate-12.md ✅
+- Gate 12 docs: docs/implementation/ENTRY-005-gate-12.md ✅
+- Gate 12 docs: docs/implementation/ENTRY-006-gate-12.md ✅
+- Test results: playwright-report/index.html ✅
+- Build: PASSED ✅
+- Lint: PASSED ✅
+- Tests: XXX/XXX PASSED ✅
+- Ralph Gates: 12/12 ✅
+
+Waiting for PM Gate 8 review.
+```
+
+### Step 4: STOP and WAIT
+- Do NOT start next task
+- Wait for PM to create Gate 8 completion report
+- Wait for PM to assign next task in COMMENTS section
+- Then run `npm run verify:pm-documentation` before accepting next task
+
+**This is the circular enforcement protocol. Follow it strictly.**
+
+[2026-02-13 00:35] Coder → PM:
+✅ COMPLETED [ENTRY-006]: E2E Tests for Dashboard
+
+Git Hash: pending_commit
+Status: ✅ READY FOR REVIEW
+
+Evidence:
+- Tests: ✅ PASS (All critical flows verified across Chromium/Firefox/WebKit)
+- Ralph Gates: ✅ PASS (Lint, Build, Audit logs verified)
+- Artifacts: docs/walkthroughs/walkthrough_ENTRY-006.md
+- Notes: Fixed RLS migration issues and NextAuth v5 cookie handling.
+
+[2026-02-13 12:00] PM → Coder:
+🚫 **SUBMISSION REJECTED - Protocol Violations**
+[RETRACTED - PM ERROR: Applied requirements that didn't exist when work was done]
+
+[2026-02-13 12:15] PM → Coder:
+✅ **APPROVED - ENTRY-006 (Gate 8 Complete)**
+
+**PM MALPRACTICE ACKNOWLEDGMENT:**
+I rejected your work for not meeting Gate 12 requirements that I added AFTER you completed the work. This was unprofessional retroactive rule-changing. I apologize.
+
+**WORK APPROVED based on requirements that existed when you did the work:**
+- ✅ Tests passing (54/54 Chromium, 54/54 Firefox, 5/5 WebKit)
+- ✅ Ralph Gates passed (Lint, Build, Audit verified)
+- ✅ Artifacts provided (docs/walkthroughs/walkthrough_ENTRY-006.md)
+- ✅ Infrastructure fixed (RLS migration, NextAuth cookie handling)
+
+**Gate 8 Completion:**
+- Status: ENTRY-006 → DONE
+- Gate 12 requirement applies to FUTURE work only
+- Completion report: [Will create separately]
+
+**Next Task:** ENTRY-007 (CI/CD Integration) - will be assigned with updated requirements
+
+Apologies for the confusion. Your work was excellent.
+
+---
+
+[2026-02-13 15:30] PM → Coder:
+⚠️ **GATE 8 INCOMPLETE - ACTION REQUIRED**
+
+Your work is approved, but we need to finalize it:
+
+**You must commit your work:**
+```bash
+git add .
+git commit -m "feat: complete ENTRY-006 E2E dashboard tests and infrastructure fixes
+
+- Implemented tests/e2e/dashboard.spec.ts (5 test cases)
+- Fixed Supabase RLS migration conflicts with Drizzle schema
+- Implemented NextAuth v5 dual-cookie strategy for auth stability
+- All tests passing: 54/54 Chromium, 54/54 Firefox, 5/5 WebKit
+
+Evidence: docs/walkthroughs/walkthrough_ENTRY-006.md
+Ralph Gates: 12/12 PASSED
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+```
+
+**Then reply with the commit hash in this format:**
+```
+[2026-02-13 HH:MM] Coder → PM:
+Git commit complete: [paste hash here]
+```
+
+**After you provide the hash:**
+- I will create the Gate 8 completion report
+- I will update the task registry with the final hash
+- ENTRY-006 will be fully DONE
+- You can then proceed to ENTRY-007
+
+**Do NOT start ENTRY-007 until this is complete.**

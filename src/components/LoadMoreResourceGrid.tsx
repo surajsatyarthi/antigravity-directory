@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { ResourceCard } from '@/components/ResourceCard';
 import { SponsoredCard } from '@/components/SponsoredCard';
 import { fetchResourcesAction, type FetchResourcesParams } from '@/app/actions/get-resources';
@@ -28,6 +28,14 @@ export function LoadMoreResourceGrid({
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(initialResources.length < initialTotalCount);
+
+  // Sync state with props when filters change (key forcing or effect)
+  useEffect(() => {
+    setResources(initialResources);
+    setTotalCount(initialTotalCount);
+    setHasMore(initialResources.length < initialTotalCount);
+    setPage(1);
+  }, [initialResources, initialTotalCount]);
 
   const loadMore = async () => {
     setLoading(true);

@@ -18,7 +18,8 @@ import { unstable_cache } from 'next/cache';
  * Internal function for fetching resources (uncached)
  */
 async function getFilteredResourcesInternal(filters: FilterState, page: number = 1, pageSize: number = 20): Promise<{ resources: ResourceWithRelations[], totalCount: number }> {
-    const conditions = [];
+    // Default: Only show LIVE resources
+    const conditions = [eq(resources.status, 'LIVE')];
     const offset = (page - 1) * pageSize;
     
     // Filter by categories (OR logic within categories)
@@ -82,7 +83,8 @@ async function getFilteredResourcesInternal(filters: FilterState, page: number =
       if (filters.pricing.includes('paid')) pricingConditions.push(sql`${resources.price} > 0`);
       
       if (pricingConditions.length > 0) {
-        conditions.push(or(...pricingConditions));
+        const pricingOr = or(...pricingConditions);
+        if (pricingOr) conditions.push(pricingOr);
       }
     }
 
@@ -93,12 +95,11 @@ async function getFilteredResourcesInternal(filters: FilterState, page: number =
 
     // Search in title and description
     if (filters.search) {
-      conditions.push(
-        or(
+      const searchOr = or(
           ilike(resources.title, `%${filters.search}%`),
           ilike(resources.description, `%${filters.search}%`)
-        )
       );
+      if (searchOr) conditions.push(searchOr);
     }
 
     // Get total count first
@@ -157,7 +158,7 @@ async function getFilteredResourcesInternal(filters: FilterState, page: number =
 export async function getFilteredResources(filters: FilterState, page: number = 1, pageSize: number = 20) {
   return unstable_cache(
     () => getFilteredResourcesInternal(filters, page, pageSize),
-    ['resources-list', JSON.stringify(filters), page.toString()],
+    ['resources-list-v2', JSON.stringify(filters), page.toString()],
     { 
       revalidate: 300, 
       tags: ['resources']
@@ -169,7 +170,10 @@ export async function getFilteredResources(filters: FilterState, page: number = 
  * Get featured resources (featured = true)
  */
 export async function getFeaturedResources(categorySlug?: string, limit: number = 6): Promise<ResourceWithRelations[]> {
-    const conditions = [eq(resources.featured, true)];
+    const conditions = [
+        eq(resources.featured, true),
+        eq(resources.status, 'LIVE')
+    ];
     
     if (categorySlug) {
       const category = (await db.select({ id: categories.id }).from(categories).where(eq(categories.slug, categorySlug)).limit(1))[0];

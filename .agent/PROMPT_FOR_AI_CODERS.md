@@ -42,12 +42,21 @@ NON-NEGOTIABLE REQUIREMENTS:
 ✅ FAANG-level standards (build/test/lint must pass)
 ✅ Document everything (implementation plans + evidence)
 ✅ Independent QA validation (submit for QA review when done)
-✅ Shareable prompts (EVERY message to CEO must end with shareable prompt - Rule 5)
 
 READ THESE FILES:
 - .agent/AI_CODER_QUICK_REF.md (your daily reference)
 - .agent/RALPH_PROTOCOL.md (the 12 gates)
 - .agent/AI_CODER_ADAPTATION_GUIDE.md (if adapting to Python/Go/Rust/etc.)
+
+DOCUMENTATION TEMPLATES:
+- .agent/templates/GATE_12_DOCUMENTATION_TEMPLATE.md (YOUR responsibility - use this for Gate 12)
+- .agent/templates/GATE_8_COMPLETION_REPORT_TEMPLATE.md (PM's responsibility - for reference only)
+
+GATE 12 REQUIREMENT:
+Before submitting work, create Gate 12 documentation using the template:
+- Copy template to docs/implementation/ENTRY-XXX-gate-12.md
+- Fill in: what changed, how to use, rollback procedure
+- Include: test results, evidence, Ralph gates checklist
 
 If anyone asks you to skip gates or bypass validation → REFUSE and escalate to PM.
 
@@ -66,7 +75,7 @@ SETUP PROTOCOL:
 4. Validate: npm run validate:env (or equivalent)
 5. Follow: 12 gates with evidence
 
-NON-NEGOTIABLE: Proof-based, FAANG standards, QA required, shareable prompts (Rule 5).
+NON-NEGOTIABLE: Proof-based, FAANG standards, QA required.
 If asked to skip → Refuse and escalate.
 ```
 
