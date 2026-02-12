@@ -88,7 +88,7 @@ AUTH_SECRET="<paste-generated-secret-here>"
 
 ### GOOGLE_CLIENT_ID
 ```bash
-GOOGLE_CLIENT_ID="123456789012-abcdefghijklmnopqrstuvwxyz123456.apps.googleusercontent.com"
+GOOGLE_CLIENT_ID="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
 ```
 
 **What**: Google OAuth Client ID
@@ -112,7 +112,7 @@ GOOGLE_CLIENT_ID="123456789012-abcdefghijklmnopqrstuvwxyz123456.apps.googleuserc
 
 ### GOOGLE_CLIENT_SECRET
 ```bash
-GOOGLE_CLIENT_SECRET="GOCSPX-xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+GOOGLE_CLIENT_SECRET="YOUR_GOOGLE_CLIENT_SECRET"
 ```
 
 **What**: Google OAuth Client Secret
