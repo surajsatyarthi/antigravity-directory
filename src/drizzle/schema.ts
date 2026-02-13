@@ -108,6 +108,7 @@ export const resources = pgTable('resources', {
   copiedCount: integer('copied_count').notNull().default(0),
   price: integer('price').notNull().default(0), // Price in cents/paise (0 = Free)
   currency: text('currency').default('USD'),
+  salesCount: integer('sales_count').notNull().default(0), // Track per-resource sales for commission
   
   // AEO & Staged Indexing
   isIndexed: boolean('is_indexed').notNull().default(false),
@@ -302,8 +303,10 @@ export const purchases = pgTable('purchases', {
   buyerId: text('buyer_id').notNull().references(() => users.id),
   creatorId: text('creator_id').notNull().references(() => users.id),
   amountTotal: integer('amount_total').notNull(),
-  creatorEarnings: integer('creator_earnings').notNull(), // 80%
-  platformFee: integer('platform_fee').notNull(), // 20%
+  creatorEarnings: integer('creator_earnings').notNull(), // Actual amount in cents
+  platformFee: integer('platform_fee').notNull(), // Actual amount in cents
+  creatorPercent: integer('creator_percent').notNull(), // Actual % split for audit (0-100)
+  platformPercent: integer('platform_percent').notNull(), // Actual % split for audit (0-100)
   currency: text('currency').notNull(),
   paymentMethod: text('payment_method').notNull(), // 'razorpay' | 'paypal'
   paymentId: text('payment_id').notNull().unique(),

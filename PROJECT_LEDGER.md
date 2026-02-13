@@ -613,101 +613,111 @@ Status: DONE
 
 ---
 
-### [ENTRY-010] PRD | PENDING_APPROVAL | 2026-02-11T10:55:00Z | PM | -
-**Title**: Creator Earnings Dashboard
+### [ENTRY-010] PRD | APPROVED | 2026-02-13T18:50:00Z | PM | -
+**Title**: Creator Earnings Dashboard (BETA BLOCKER)
 **Owner**: PM (Claude Code)
-**Status**: PENDING_APPROVAL
-**Links**: [ENTRY-008] (depends on payment system)
-
-**User Stories**:
-1. As a creator, I want to see my total earnings
-2. As a creator, I want to see my sales history
-3. As a creator, I want to request payouts
+**Status**: APPROVED (assign AFTER ENTRY-012)
+**Links**: [ENTRY-008] (payment system), [ENTRY-012] (pricing UI - dependency)
 
 **Requirements**:
-- Earnings overview card (total, pending, sales count)
-- Sales history table (resource, price, date, buyer)
-- Earnings chart (optional - line/bar chart)
-- Payout request button
-- Email notification on new sale
+- Earnings overview card (total, sales count, first 2 vs subsequent breakdown)
+- Sales history table (resource, price, date, buyer, commission %)
+- Payout request modal (minimum $10)
+- Email notifications (creator + admin on payout request)
+- Real-time earnings updates
 
 **Acceptance Criteria**:
-- [ ] Total earnings displayed correctly (80% of sales)
+- [ ] Total earnings displayed correctly (100% for first 2, 80% after)
+- [ ] Sales breakdown: "First 2 sales (100%)" vs "Sales 3+ (80%)"
 - [ ] Pending payout amount shown
-- [ ] Sales history paginated
-- [ ] Payout request creates database record
-- [ ] Charts update in real-time
+- [ ] Sales history paginated (50 per page)
+- [ ] Payout request: minimum $10 enforced
+- [ ] E2E tests: 6/6 scenarios pass
+- [ ] Build + lint + tests pass
 
 **Technical Spec**:
-- Components: `EarningsCard.tsx`, `SalesTable.tsx`, `EarningsChart.tsx`
-- Queries: `getCreatorEarnings()`, `getCreatorSales()`
+- Components: `EarningsOverview.tsx`, `SalesHistory.tsx`, `PayoutRequestModal.tsx`
+- API routes: `/api/creator/earnings`, `/api/creator/sales`, `/api/creator/payout/request`
+- Database: New table `payout_requests`
 - Dashboard: `/dashboard/page.tsx` (add earnings section)
+- Tests: `tests/e2e/creator-dashboard.spec.ts`
 
-**Approval**: PENDING (awaiting PM review)
-**Evidence**: To be created as `docs/PRD_EARNINGS_DASHBOARD.md`
+**Approval**: ✅ APPROVED by PM on 2026-02-13
+**Evidence**: `docs/04-prds/ENTRY-010_CREATOR_EARNINGS_DASHBOARD_PRD.md`
+**Estimated**: 6-8 hours
+**Note**: Assign to coder AFTER ENTRY-012 is complete
 
 ---
 
 ## 🟡 PHASE B: CREATOR DASHBOARD & UI
 
-### [ENTRY-011] PRD | PENDING_APPROVAL | 2026-02-11T11:00:00Z | PM | -
-**Title**: Claim Button & UI Flow
-**Owner**: PM (Claude Code)
-**Status**: PENDING_APPROVAL
-**Links**: [ENTRY-009] (implements claiming PRD)
+### [ENTRY-011] PRD | APPROVED | 2026-02-13T19:15:00Z | PM | -
+**Title**: Claim Button & UI Flow Polish
+**Owner**: PM (Claude Code) → Coder (Antigravity)
+**Status**: APPROVED
+**Links**: [ENTRY-009] (claiming backend), [ENTRY-010] (earnings dashboard - dependency)
 
 **Requirements**:
-- ClaimButton component
-- Claim checkout page
-- Claimed resource badge
-- Login redirect if unauthenticated
-- Success/error states
+- Enhanced ClaimButton component (visual polish)
+- Improved claim modal/dialog flow
+- Success toast notifications
+- Comprehensive error states (4 scenarios)
+- Mobile-responsive claim CTA
+- Terms checkbox with TOS link
 
 **Acceptance Criteria**:
-- [ ] Claim button shows only on unclaimed resources
-- [ ] Button opens claim modal
-- [ ] Modal shows resource preview
-- [ ] Payment/OAuth options visible
-- [ ] Success shows confirmation
-- [ ] Error shows helpful message
+- [ ] Visual polish: Professional design, clear CTA
+- [ ] User flow: Button → Modal → Success (3-step)
+- [ ] Error handling: 4 error scenarios with clear messages
+- [ ] Mobile responsive: Works 375px to 1920px
+- [ ] Accessibility: Keyboard nav, ARIA labels, focus management
+- [ ] E2E tests: 8/8 scenarios pass
+- [ ] Build + lint + tests pass
 
 **Technical Spec**:
-- Components: `ClaimButton.tsx`
-- Pages: `/claim/[resourceId]/page.tsx`
-- Modals: Claim confirmation, success, error
+- Components: Enhanced `ClaimButton.tsx`, new `ClaimModal.tsx`
+- Toast: `sonner` library integration
+- Resource page: Update badge styling, add mobile CTA
+- Tests: `tests/e2e/claim-ui-flow.spec.ts`
 
-**Approval**: PENDING
-**Evidence**: To be created as `docs/PRD_CLAIM_UI.md`
+**Approval**: ✅ APPROVED by PM on 2026-02-13
+**Evidence**: `docs/04-prds/ENTRY-011_CLAIM_BUTTON_UI_PRD.md`
+**Estimated**: 2-3 hours
+**Note**: Assign to coder AFTER ENTRY-010 complete
 
 ---
 
-### [ENTRY-012] PRD | PENDING_APPROVAL | 2026-02-11T11:05:00Z | PM | -
-**Title**: Resource Pricing UI
-**Owner**: PM (Claude Code)
-**Status**: PENDING_APPROVAL
-**Links**: [ENTRY-008] (requires payment system)
+### [ENTRY-012] PRD | APPROVED | 2026-02-13T18:30:00Z | PM | -
+**Title**: Resource Pricing UI (BETA BLOCKER)
+**Owner**: PM (Claude Code) → Coder (Antigravity)
+**Status**: APPROVED → ASSIGNED
+**Links**: [ENTRY-008] (payment system), [ENTRY-009] (claiming system)
 
 **Requirements**:
-- Price setting interface (creator dashboard)
-- Free/Paid toggle
-- Price input field
-- Buy button on resource pages
-- Price display on resource cards
+- Price setting interface (claimed resources only)
+- Enable/disable monetization toggle
+- Price input ($0-$999) + currency (USD/INR)
+- Dynamic commission preview (first 2 sales free, then 80/20)
+- Validation: only claimed resources can be priced
+- Database: verify `salesCount` field exists
 
 **Acceptance Criteria**:
-- [ ] Creators can toggle Free/Paid
-- [ ] Creators can set price ($0-$999)
-- [ ] Buy button shows on paid resources
-- [ ] Free resources show "Download Free"
-- [ ] Price updates immediately
+- [ ] Pricing UI only visible for claimed resources (`claimedAt !== null`)
+- [ ] First 2 sales commission = 0%, Sales 3+ = 20%
+- [ ] Price validation: 0-999 range
+- [ ] Purchase flow calculates dynamic commission based on `salesCount`
+- [ ] E2E tests: 6/6 scenarios pass
+- [ ] Build + lint + tests pass
 
 **Technical Spec**:
-- Components: `BuyButton.tsx`, `PriceEditor.tsx`
-- Pages: `/dashboard/resources/[id]/edit/page.tsx`
-- API: `/api/resources/[id]/pricing`
+- Component: `ResourcePricingForm.tsx`
+- API: Update `/api/resources/[id]/purchase/route.ts` with commission logic
+- Database: Migration for `salesCount` field (if missing)
+- Tests: `tests/e2e/resource-pricing.spec.ts`
 
-**Approval**: PENDING
-**Evidence**: To be created as `docs/PRD_PRICING_UI.md`
+**Approval**: ✅ APPROVED by PM on 2026-02-13
+**Evidence**: `docs/04-prds/ENTRY-012_RESOURCE_PRICING_UI_PRD.md`
+**Estimated**: 4-6 hours
 
 ---
 
@@ -795,6 +805,62 @@ Status: DONE
 
 ---
 
+### [ENTRY-018] TASK | PENDING | 2026-02-13T19:00:00Z | PM | -
+**Title**: Legal Compliance - DMCA & Terms of Service
+**Owner**: PM (Claude Code)
+**Status**: PENDING_ASSIGNMENT
+**Estimated**: 3-4 hours
+**Links**: [MARKETPLACE_MODEL_SPEC.md](docs/01-business/MARKETPLACE_MODEL_SPEC.md), [UNCLAIMED_RESOURCES_LEGAL_ANALYSIS.md](docs/01-business/UNCLAIMED_RESOURCES_LEGAL_ANALYSIS.md)
+
+**Deliverables**:
+1. **`/dmca` Takedown Page** - Public-facing DMCA notice submission form and policy
+2. **DMCA Agent Registration Guide** - Step-by-step instructions for Copyright Office registration
+3. **Terms of Service Updates** - IP warranty clauses for resource claiming
+
+**Content Requirements**:
+
+**1. `/dmca` Page (`src/app/dmca/page.tsx`):**
+- DMCA policy explanation
+- Takedown notice requirements (17 USC §512(c)(3))
+- Submission form (email to dmca@googleantigravity.directory)
+- Counter-notification process
+- Repeat infringer policy (3 strikes)
+- Response timeline (24-48 hours)
+
+**2. DMCA Agent Registration Guide (`docs/06-legal/DMCA_AGENT_REGISTRATION.md`):**
+- US Copyright Office registration steps
+- Required information (agent name, address, contact)
+- Filing fee details ($6 per service provider)
+- Renewal requirements (every 3 years)
+- Template for designation form
+
+**3. Terms of Service Updates (`docs/06-legal/TOS_IP_WARRANTIES.md`):**
+- Ownership warranty clause
+- IP infringement indemnification
+- Platform rights to remove content
+- Repeat infringer termination policy
+- User acknowledgment of DMCA process
+
+**Acceptance Criteria**:
+- [ ] `/dmca` page created and accessible
+- [ ] DMCA agent registration guide complete
+- [ ] TOS IP warranty clauses drafted
+- [ ] Footer link added to DMCA page
+- [ ] All legal language reviewed (plain English, enforceable)
+- [ ] Evidence: Screenshots of `/dmca` page
+
+**Legal References**:
+- 17 USC §512(c) - DMCA Safe Harbor
+- [MARKETPLACE_MODEL_SPEC.md](docs/01-business/MARKETPLACE_MODEL_SPEC.md) (lines 364-378)
+- [UNCLAIMED_RESOURCES_LEGAL_ANALYSIS.md](docs/01-business/UNCLAIMED_RESOURCES_LEGAL_ANALYSIS.md)
+
+**Assignment Date**: After ENTRY-015 complete
+**Due Date**: Before ENTRY-016 (deployment prep)
+**Git Hash**: TBD
+**Evidence**: TBD
+
+---
+
 ## 💬 COMMENTS (PM ↔ Coder via CEO)
 
 [2026-02-11 18:00] PM → Coder:
@@ -871,18 +937,18 @@ Notify CEO when starting work and when completed with git commit hash.
 
 ## 📊 LEDGER STATISTICS
 
-**Total Entries**: 17
+**Total Entries**: 18
 **PRDs**: 6
-**Tasks**: 11
+**Tasks**: 12
 **QA Reports**: 0 (pending)
 **PM Decisions**: 0 (pending)
 
 **Status Breakdown**:
-- ✅ APPROVED: 1
-- ⏳ PENDING_APPROVAL: 5
+- ✅ APPROVED: 2 (ENTRY-010, ENTRY-012)
+- ⏳ PENDING_APPROVAL: 1 (ENTRY-011)
 - 📋 PENDING_ASSIGNMENT: 11
-- 🚧 IN_PROGRESS: 0
-- ✅ COMPLETED: 0
+- 🚧 IN_PROGRESS: 1 (ENTRY-012)
+- ✅ DONE: 3 (ENTRY-006, ENTRY-007, ENTRY-008, ENTRY-009)
 - ❌ BLOCKED: 0
 
 **Phase Progress**:
@@ -1621,3 +1687,58 @@ Waiting for PM Gate 8 review.
 - Documentation: Complete and verified
 
 Status: DONE
+
+---
+
+[2026-02-13 18:45] @PM → @Coder:
+
+🚀 **TASK ASSIGNED: ENTRY-012 - Resource Pricing UI (BETA BLOCKER)**
+
+**PRD**: `docs/04-prds/ENTRY-012_RESOURCE_PRICING_UI_PRD.md`
+
+**Objective**: Enable creators to set prices on claimed resources with dynamic commission (first 2 sales free, then 80/20 split)
+
+**Critical Requirements**:
+1. **Verification-first**: Only claimed resources can be monetized (`claimedAt !== null`)
+2. **Dynamic commission**: Sales 1-2 = 0% platform fee, Sales 3+ = 20% platform fee
+3. **Database**: Verify `salesCount` field exists in `resources` table
+4. **Pricing UI**: Only visible for claimed resources
+5. **Commission calculation**: Update purchase flow to use `salesCount`
+
+**Deliverables**:
+1. `ResourcePricingForm.tsx` - Pricing settings component
+2. Update `/api/resources/[id]/purchase/route.ts` - Add dynamic commission logic
+3. Database migration - Add `salesCount` field if missing
+4. `tests/e2e/resource-pricing.spec.ts` - 6 E2E test scenarios
+5. Gate 12 docs: `docs/implementation/ENTRY-012-gate-12.md`
+
+**Acceptance Criteria**:
+- [ ] Database: `salesCount` field exists on `resources` table
+- [ ] UI: Pricing form only visible for claimed resources
+- [ ] Logic: First 2 sales = 0% commission, Sales 3+ = 20% commission
+- [ ] Tests: 6/6 E2E tests pass (3 browsers)
+- [ ] Build: `npm run build` succeeds
+- [ ] Ralph Gates: 12/12 PASSED
+
+**Estimated Time**: 4-6 hours
+
+**References**:
+- Business model: `docs/01-business/MARKETPLACE_MODEL_SPEC.md`
+- ENTRY-008 payment flow: `src/app/api/resources/[id]/purchase/route.ts`
+- ENTRY-009 claiming: `src/app/api/resources/[id]/claim/route.ts`
+
+**Start Command**:
+```bash
+npm run verify:pm-gates -- ENTRY-012
+# If exit 0 → Start work
+# If exit 1 → Comment BLOCKED in ledger
+```
+
+**When Done**:
+1. Commit your work with hash
+2. Create Gate 12 docs
+3. Comment: "✅ READY FOR REVIEW - ENTRY-012"
+4. Include: Git hash, evidence links, Ralph gates status
+5. WAIT for PM Gate 8 review
+
+Ready to start?

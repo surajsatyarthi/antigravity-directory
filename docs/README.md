@@ -38,13 +38,15 @@ docs/
 **Purpose**: Business model, marketplace specifications, revenue strategy
 
 **Contains**:
-- `MARKETPLACE_MODEL_SPEC.md` ⭐ Single source of truth for business model
+- `MARKETPLACE_MODEL_SPEC.md` ⭐ Single source of truth (first 2 sales free, 80/20 split)
+- `COMPETITIVE_ANALYSIS_2026.md` ⭐ Market validation (cursor.directory $35k/month, NEVER research again)
+- `UNCLAIMED_RESOURCES_LEGAL_ANALYSIS.md` ⭐ Legal protection (DMCA safe harbor, verification-first)
 - `COPYWRITING_STRATEGY.md` - Messaging guidelines
 - `CREATOR-DATA-REFERENCE.md` - Creator database reference
-- `MARKETPLACE_ANALYSIS_RESULTS.md` - Competitive analysis
 
-**Who Uses**: CEO, PM, Marketing
-**Update Frequency**: Rarely (only when business model changes)
+**Who Uses**: CEO, PM, Marketing, Legal
+**Update Frequency**: Updated 2026-02-13 (business model finalized, market validated)
+**Status**: ✅ COMPLETE - All research done, ready to launch
 
 ---
 

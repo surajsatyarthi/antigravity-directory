@@ -12,7 +12,8 @@ import { Footer } from '@/components/Footer';
 import { safeJsonLd } from '@/lib/utils/safeJsonLd';
 import { auth } from '@/auth';
 import { BuyButton } from '@/components/BuyButton';
-import { ClaimButton } from '@/components/ClaimButton'; // Added
+import { ClaimButton } from '@/components/ClaimButton';
+import { ResourcePricingForm } from '@/components/ResourcePricingForm';
 import { Lock } from 'lucide-react';
 
 export async function generateMetadata({
@@ -310,6 +311,17 @@ export default async function ResourceDetailPage({
                     } : null}
                   />
                 </div>
+                
+                {/* Resource Pricing Form - Only for Authors/Claimers */}
+                {session?.user?.id && resource.authorId === session.user.id && (
+                  <ResourcePricingForm
+                    resourceId={resource.id}
+                    initialPrice={resource.price}
+                    initialCurrency={resource.currency || 'USD'}
+                    claimedAt={resource.claimedAt}
+                  />
+                )}
+                
                 <Link
                   href="/submit"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 font-bold rounded-xl border border-blue-500/10 transition-all text-xs uppercase tracking-widest"

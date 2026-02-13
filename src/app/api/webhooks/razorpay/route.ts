@@ -63,6 +63,11 @@ export async function POST(request: NextRequest) {
         })
         .where(eq(purchases.id, purchase.id));
 
+      // Increment resource sales count (atomic)
+      await db.update(resources)
+        .set({ salesCount: sql`${resources.salesCount} + 1`, updatedAt: new Date() })
+        .where(eq(resources.id, purchase.resourceId));
+
       // 80/20 Split: Update creator earnings
       // Upsert creator earnings
       await db.insert(creatorEarnings)

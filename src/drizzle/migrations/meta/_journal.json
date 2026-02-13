@@ -43,6 +43,13 @@
       "when": 1770935954097,
       "tag": "0005_next_black_tarantula",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1770943789196,
+      "tag": "0006_slow_robbie_robertson",
+      "breakpoints": true
     }
   ]
 }
