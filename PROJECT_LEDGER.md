@@ -1592,7 +1592,7 @@ Waiting for PM Gate 8 review.
 
 ✅ ENTRY-009 UPDATED SUBMISSION (HYBRID STRATEGY COMPLETE)
 
-**Git Hash**: [pending]
+**Git Hash**: 87679ce
 
 **Status**: ✅ READY FOR REVIEW
 
@@ -1600,7 +1600,7 @@ Waiting for PM Gate 8 review.
 - **Test Results**: 12/12 PASSED (100% Pass Rate)
     - Integration: 6/6 (API Auth & Cleanup fixed)
     - E2E: 6/6 (Badge visibility fixed)
-- **Gate 12 Docs**: docs/walkthroughs/walkthrough_ENTRY-009.md (Created)
+- **Gate 12 Docs**: docs/implementation/ENTRY-009-gate-12.md (Created)
 - **Manual Verification**: docs/manual_verification.md (Created)
 
 **Changes Made**:

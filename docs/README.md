@@ -1,8 +1,9 @@
 # 📁 DOCUMENTATION STRUCTURE
 ## Organized Folder System for Antigravity Directory
 
-**Last Updated**: 2026-02-11
+**Last Updated**: 2026-02-13
 **Maintained By**: PM (Claude Code)
+**Status**: Pre-Launch (Beta Pending - Need ENTRY-012 + ENTRY-010)
 
 ---
 
@@ -372,6 +373,34 @@ last_updated: 2026-02-11
 
 ---
 
-**Version**: 1.1
-**Last Updated**: 2026-02-11
+**Version**: 1.2
+**Last Updated**: 2026-02-13
 **Maintained By**: PM (Claude Code)
+
+---
+
+## 🎯 CRITICAL: BETA LAUNCH BLOCKERS
+
+**Site Status**: ✅ LIVE at https://www.googleantigravity.directory
+
+**What's Working**:
+- ✅ Resource claiming via GitHub OAuth (ENTRY-009)
+- ✅ Payment processing via Razorpay + PayPal (ENTRY-008)
+- ✅ E2E tests for purchase flow (15/15 passed)
+
+**What's Missing (BLOCKING BETA)**:
+1. ❌ **ENTRY-012**: Resource Pricing UI (4-6 hours)
+   - Creators can't set prices yet (no UI)
+   - Blocks monetization entirely
+2. ❌ **ENTRY-010**: Creator Earnings Dashboard (6-8 hours)
+   - Creators can't see earnings/sales
+   - No payout request flow
+
+**Estimated Time to Beta Ready**: 10-14 hours (2 focused days)
+
+**Legal Nice-to-Have** (not blocking):
+- ⚠️ DMCA agent registration
+- ⚠️ `/dmca` takedown page
+- ⚠️ Terms of Service updates
+
+See [UNCLAIMED_RESOURCES_LEGAL_ANALYSIS.md](./01-business/UNCLAIMED_RESOURCES_LEGAL_ANALYSIS.md) for full legal analysis.
