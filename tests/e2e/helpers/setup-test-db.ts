@@ -6,6 +6,7 @@ import {
   purchases,
   resourceClaims,
   payoutRequests,
+  sessions,
 } from '../../../src/drizzle/schema';
 import { v4 as uuidv4 } from 'uuid';
 import { BrowserContext } from '@playwright/test';
@@ -263,21 +264,35 @@ export async function cleanupTestDatabase() {
   await db.delete(resourceClaims);
   await db.delete(resources);
   await db.delete(categories);
+  await db.delete(sessions); // Clear sessions before users
   await db.delete(users);
 }
 
 /**
  * Create authenticated session for Playwright tests
+ * Ensures user exists in DB with correct role
  */
 export async function createAuthenticatedSession(
   context: BrowserContext,
-  options: { userId: string; userEmail: string }
+  options: { userId: string; userEmail: string; role?: 'USER' | 'ADMIN' }
 ) {
   const sessionToken = uuidv4();
   const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
-  // Import sessions table
-  const { sessions } = await import('../../../src/drizzle/schema');
+  // Ensure user exists with the correct role (Upsert)
+  await db
+    .insert(users)
+    .values({
+      id: options.userId,
+      email: options.userEmail,
+      name: options.role === 'ADMIN' ? 'Admin User' : 'Test User',
+      username: options.userId, // simple username
+      role: options.role || 'USER',
+    })
+    .onConflictDoUpdate({
+      target: users.id,
+      set: { role: options.role || 'USER' },
+    });
 
   // Create session in database
   await db.insert(sessions).values({
@@ -286,20 +301,31 @@ export async function createAuthenticatedSession(
     expires,
   });
 
+  console.log("Running createAuthenticatedSession with URL fix");
+
   // Set session cookie in browser context
-  // Use authjs.session-token for Next-Auth v5
+  // Set potentially alternative cookie names to ensure compatibility
   await context.addCookies([
     {
       name: 'authjs.session-token',
       value: sessionToken,
-      domain: 'localhost',
-      path: '/',
+      url: 'http://localhost:3001',
+      expires: Math.floor(expires.getTime() / 1000),
+      httpOnly: true,
+      secure: false, 
+      sameSite: 'Lax',
+    },
+    {
+      name: 'next-auth.session-token',
+      value: sessionToken,
+      url: 'http://localhost:3001',
       expires: Math.floor(expires.getTime() / 1000),
       httpOnly: true,
       secure: false,
       sameSite: 'Lax',
-    },
+    }
   ]);
 
   return sessionToken;
 }
+

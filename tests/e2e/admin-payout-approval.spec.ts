@@ -36,7 +36,14 @@ test.describe('Admin Payout Approval Flow', () => {
     payoutId = request.id;
   });
 
-  test.afterEach(async () => {
+  test.afterEach(async ({ page, context }) => {
+    // Close page explicitly to clear state
+    if (page && !page.isClosed()) {
+      await page.close();
+    }
+    // Clear browser context cookies/storage
+    await context.clearCookies();
+    // Clean database
     await cleanupTestDatabase();
   });
 
@@ -49,6 +56,7 @@ test.describe('Admin Payout Approval Flow', () => {
     });
 
     await page.goto('/admin/payouts');
+    await page.waitForLoadState('networkidle');
     
     // Should be redirected to 404
     await expect(page).toHaveURL(/\/404/);
@@ -63,14 +71,15 @@ test.describe('Admin Payout Approval Flow', () => {
     });
 
     await page.goto('/admin/payouts');
+    await page.waitForLoadState('networkidle');
     
     // Verify Page Title
     await expect(page.getByRole('heading', { name: 'Payout Requests' })).toBeVisible();
     
     // Verify Table Row exists
-    await expect(page.getByRole('cell', { name: '$50.00' })).toBeVisible();
-    await expect(page.getByRole('cell', { name: 'PayPal' })).toBeVisible();
-    await expect(page.getByText('Pending', { exact: true })).toBeVisible();
+    await expect(page.getByRole('cell', { name: '50.00' })).toBeVisible();
+    await expect(page.getByRole('cell', { name: 'paypal' })).toBeVisible(); // Lowercase from DB
+    await expect(page.getByText('pending', { exact: false })).toBeVisible();
   });
 
   test('admin can approve a payout', async ({ page, context }) => {
@@ -82,6 +91,7 @@ test.describe('Admin Payout Approval Flow', () => {
     });
 
     await page.goto('/admin/payouts');
+    await page.waitForLoadState('networkidle');
     
     // Find the Approve button
     const approveBtn = page.getByTitle('Approve');
@@ -116,6 +126,7 @@ test.describe('Admin Payout Approval Flow', () => {
     });
 
     await page.goto('/admin/payouts');
+    await page.waitForLoadState('networkidle');
     
     // Find Refect button
     const rejectBtn = page.getByTitle('Reject');

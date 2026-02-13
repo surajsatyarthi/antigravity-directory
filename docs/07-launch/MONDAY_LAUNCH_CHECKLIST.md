@@ -35,7 +35,46 @@
 
 ---
 
-### 2. ENTRY-018: Legal Compliance (DMCA + Terms of Service)
+### 2. ENTRY-020: Fix "Get Resource" vs "Buy" Button Confusion
+**Status**: NOT STARTED
+**Estimated**: 1-2 hours
+**Priority**: 🔴 BLOCKING (UX clarity)
+
+**Why Critical**: Resource detail page shows BOTH "Get Resource" (free GitHub link) AND "Buy" button, causing confusion: "Why pay if I can get it free?"
+
+**Deliverables**:
+- [ ] If `price > 0`: Hide "Get Resource" button, show only "Buy for $X"
+- [ ] If `price = 0`: Show "Get Resource" button only
+- [ ] Update button copy to clarify value ("Buy Full Access" vs "Get GitHub Repo")
+- [ ] E2E test for paid vs free resource display
+
+**Depends On**: None
+**Blocks**: Launch (users won't understand what they're buying)
+
+---
+
+### 3. ENTRY-021: Submit Form Copy Fixes
+**Status**: NOT STARTED
+**Estimated**: 1 hour
+**Priority**: 🔴 BLOCKING (Business model alignment)
+
+**Why Critical**: Submit form references ARCHIVED paid tiers ($49/$149) and contradicts current FREE submission model.
+
+**Deliverables**:
+- [ ] Change "Launch Pricing" badge to "Free Listings - Claim & Monetize"
+- [ ] Update FAQ #1: Remove "Standard/Featured" tier references
+- [ ] Update FAQ #5: Change "Why do you charge" to "Why require GitHub verification"
+- [ ] Add marketplace pricing explainer section (80/20 split, first 2 sales free)
+- [ ] Add "Monetize Your Work" value prop card
+
+**Depends On**: None
+**Blocks**: Launch (users confused about submission cost)
+
+**Reference**: [docs/07-launch/SUBMIT_FORM_COPY_FIXES.md](./SUBMIT_FORM_COPY_FIXES.md)
+
+---
+
+### 4. ENTRY-018: Legal Compliance (DMCA + Terms of Service)
 **Status**: NOT STARTED
 **Estimated**: 3-4 hours
 **Priority**: 🔴 BLOCKING (Legal requirement)
@@ -58,7 +97,7 @@
 
 ---
 
-### 3. E2E Test FK Constraint Fix
+### 5. E2E Test FK Constraint Fix
 **Status**: NOT STARTED
 **Estimated**: 1-2 hours
 **Priority**: 🟡 HIGH (Technical debt)
@@ -81,7 +120,7 @@
 
 ---
 
-### 4. Environment Validation (Production)
+### 6. Environment Validation (Production)
 **Status**: NOT STARTED
 **Estimated**: 15 minutes
 **Priority**: 🔴 BLOCKING
@@ -104,7 +143,7 @@ npm run validate:env:production
 
 ---
 
-### 5. Database Migrations (Production)
+### 7. Database Migrations (Production)
 **Status**: NEEDS VERIFICATION
 **Estimated**: 5 minutes
 **Priority**: 🔴 BLOCKING
@@ -127,7 +166,7 @@ npm run drizzle:migrate
 
 ## 🟢 POLISH & UX (SHOULD DO BEFORE LAUNCH)
 
-### 6. Homepage UX Refinements (ENTRY-013)
+### 8. Homepage UX Refinements (ENTRY-013)
 **Status**: PENDING
 **Estimated**: 2 hours
 **Priority**: 🟡 HIGH (First impression)
@@ -144,7 +183,7 @@ npm run drizzle:migrate
 
 ---
 
-### 7. Error Page Polish (404, 500)
+### 9. Error Page Polish (404, 500)
 **Status**: NOT STARTED
 **Estimated**: 1 hour
 **Priority**: 🟡 MEDIUM
@@ -159,7 +198,7 @@ npm run drizzle:migrate
 
 ---
 
-### 8. Loading States & Skeletons
+### 10. Loading States & Skeletons
 **Status**: NOT STARTED
 **Estimated**: 1.5 hours
 **Priority**: 🟡 MEDIUM
@@ -177,7 +216,7 @@ npm run drizzle:migrate
 
 ---
 
-### 9. Email Notification System (CRITICAL - NOT NICE-TO-HAVE!)
+### 11. Email Notification System (CRITICAL - NOT NICE-TO-HAVE!)
 **Status**: PARTIAL (payout emails in ENTRY-019)
 **Estimated**: 2 hours
 **Priority**: 🔴 BLOCKING (User communication)
@@ -203,7 +242,7 @@ npm run drizzle:migrate
 
 ## 🔵 NICE-TO-HAVE (CAN DEFER POST-LAUNCH)
 
-### 10. Analytics Setup (Plausible/PostHog)
+### 12. Analytics Setup (Plausible/PostHog)
 **Status**: NOT STARTED
 **Estimated**: 30 minutes
 **Priority**: 🟢 LOW
@@ -218,22 +257,7 @@ npm run drizzle:migrate
 
 ---
 
-### 11. Analytics Setup (Plausible/PostHog)
-**Status**: NOT STARTED
-**Estimated**: 30 minutes
-**Priority**: 🟢 LOW
-
-**Why Defer**: Can add on Day 2 of launch. Not blocking.
-
-**What to Track**:
-- Page views
-- Claim button clicks
-- Purchase conversions
-- Creator signups
-
----
-
-### 12. Admin Dashboard Enhancements
+### 13. Admin Dashboard Enhancements
 **Status**: NOT STARTED
 **Estimated**: 3-4 hours
 **Priority**: 🟢 LOW
@@ -253,11 +277,13 @@ npm run drizzle:migrate
 
 ### Saturday (Feb 15) - 10 hours
 
-**Morning (4 hours)**:
+**Morning (5 hours)**:
 - [ ] **ENTRY-019**: Admin Payout Dashboard (2-3 hours) - Coder
+- [ ] **ENTRY-020**: Fix Get Resource vs Buy button (1-2 hours) - Coder
 - [ ] **ENTRY-018 Research**: PM creates Gate 2 audit (1 hour) - PM
 
-**Afternoon (3 hours)**:
+**Afternoon (4 hours)**:
+- [ ] **ENTRY-021**: Submit Form Copy Fixes (1 hour) - Coder
 - [ ] **ENTRY-018 Plan**: PM creates implementation plan (1 hour) - PM
 - [ ] **CEO Review**: Approve ENTRY-018 plan (15 min) - CEO
 - [ ] **ENTRY-018 Implementation**: Coder builds DMCA + TOS pages (2-3 hours) - Coder
@@ -266,7 +292,7 @@ npm run drizzle:migrate
 - [ ] **E2E Test Fix**: FK constraint cleanup (1-2 hours) - Coder
 - [ ] **Email Notifications**: Purchase + Sale emails (2 hours) - Coder
 
-**End of Day**: ENTRY-019 + ENTRY-018 + E2E tests + Email notifications complete ✅
+**End of Day**: ENTRY-019 + ENTRY-020 + ENTRY-021 + ENTRY-018 + E2E tests + Email notifications complete ✅
 
 ---
 
@@ -357,16 +383,19 @@ After Monday launch, focus shifts to:
 Launch is ready when:
 1. ✅ All 5 beta blockers complete (already done)
 2. ✅ ENTRY-019 complete (admin payouts + payout emails)
-3. ✅ ENTRY-018 complete (legal compliance - DMCA + TOS)
-4. ✅ E2E tests passing (FK constraint fixed)
-5. ✅ Email notifications working (purchase + sale)
-6. ✅ Production environment validated
-7. ✅ All database migrations applied
-8. ✅ Homepage UX polished (ENTRY-013)
-9. ✅ Error pages polished (404, 500)
-10. ✅ Loading states added (skeletons)
-11. ✅ No console errors on key pages
-12. ✅ Mobile responsive (375px+)
+3. ✅ ENTRY-020 complete (Get Resource vs Buy button clarity)
+4. ✅ ENTRY-021 complete (Submit form copy matches business model)
+5. ✅ ENTRY-018 complete (legal compliance - DMCA + TOS)
+6. ✅ E2E tests passing (FK constraint fixed)
+7. ✅ Email notifications working (purchase + sale)
+8. ✅ Production environment validated
+9. ✅ All database migrations applied
+10. ✅ Homepage UX polished (ENTRY-013)
+11. ✅ Error pages polished (404, 500)
+12. ✅ Loading states added (skeletons)
+13. ✅ No console errors on key pages
+14. ✅ Mobile responsive (375px+)
+15. ✅ All website copy matches current business model (80/20, first 2 free)
 
 **Quality Bar**: Zero known bugs blocking user flows (claim, purchase, payout) + Users properly notified via email
 

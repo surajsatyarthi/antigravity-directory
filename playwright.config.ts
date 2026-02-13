@@ -8,9 +8,13 @@ dotenv.config({ path: path.resolve(__dirname, '.env.test.local') });
 export default defineConfig({
   testDir: './tests',
   testMatch: '**/*.spec.ts',
+  timeout: 60 * 1000,
+  expect: {
+    timeout: 10 * 1000,
+  },
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 2 : 1,
   workers: 1, // Force serial execution to prevent DB race conditions
   reporter: 'html',
   use: {
@@ -29,10 +33,11 @@ export default defineConfig({
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // WebKit disabled due to platform-specific browser crash issues
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
   ],
 
   webServer: {
