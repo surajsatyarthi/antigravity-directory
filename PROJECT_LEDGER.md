@@ -613,11 +613,11 @@ Status: DONE
 
 ---
 
-### [ENTRY-010] PRD | APPROVED | 2026-02-13T18:50:00Z | PM | -
-**Title**: Creator Earnings Dashboard (BETA BLOCKER)
-**Owner**: PM (Claude Code)
-**Status**: APPROVED (assign AFTER ENTRY-012)
-**Links**: [ENTRY-008] (payment system), [ENTRY-012] (pricing UI - dependency)
+### [ENTRY-010] PRD | ASSIGNED | 2026-02-13T19:46:00Z | PM | -
+**Title**: Creator Earnings Dashboard (FINAL BETA BLOCKER)
+**Owner**: PM (Claude Code) → Coder (Antigravity)
+**Status**: ✅ APPROVED → 🚧 ASSIGNED
+**Links**: [ENTRY-008] (payment system), [ENTRY-012] (pricing UI - dependency - DONE)
 
 **Requirements**:
 - Earnings overview card (total, sales count, first 2 vs subsequent breakdown)
@@ -687,10 +687,10 @@ Status: DONE
 
 ---
 
-### [ENTRY-012] PRD | APPROVED | 2026-02-13T18:30:00Z | PM | -
+### [ENTRY-012] PRD | DONE | 2026-02-13T18:30:00Z | PM | a04893a
 **Title**: Resource Pricing UI (BETA BLOCKER)
 **Owner**: PM (Claude Code) → Coder (Antigravity)
-**Status**: APPROVED → ASSIGNED
+**Status**: ✅ DONE
 **Links**: [ENTRY-008] (payment system), [ENTRY-009] (claiming system)
 
 **Requirements**:
@@ -717,7 +717,9 @@ Status: DONE
 
 **Approval**: ✅ APPROVED by PM on 2026-02-13
 **Evidence**: `docs/04-prds/ENTRY-012_RESOURCE_PRICING_UI_PRD.md`
-**Estimated**: 4-6 hours
+**Gate 12**: `docs/03-implementation/gate-12/ENTRY-012-gate-12.md`
+**Completion**: 2026-02-13 19:45
+**Actual Time**: ~6 hours (within estimate)
 
 ---
 
@@ -861,6 +863,72 @@ Status: DONE
 
 ---
 
+### [ENTRY-019] TASK | PENDING | 2026-02-13T20:27:00Z | PM | -
+**Title**: Admin Payout Approval Dashboard
+**Owner**: PM (Claude Code) → Coder (Antigravity)
+**Status**: PENDING_ASSIGNMENT
+**Estimated**: 2-3 hours
+**Links**: [ENTRY-010] (creator earnings dashboard - dependency)
+
+**Deliverables**:
+1. **Admin Payout Review Page** - `/admin/payouts` (protected route, admin-only)
+2. **API Route** - `PATCH /api/admin/payouts/[id]` to approve/reject requests
+3. **Email Notifications** - Notify creator on approval/rejection
+4. **E2E Tests** - 4 test scenarios
+
+**Requirements**:
+- Admin-only route protection (middleware)
+- Table showing pending payout requests:
+  - Creator username
+  - Amount ($)
+  - Payment method (Razorpay/PayPal)
+  - Account details
+  - Requested date
+  - Actions: Approve / Reject buttons
+- Approve action:
+  - Update `payout_requests.status` to 'completed'
+  - Set `processed_at` timestamp
+  - Send email to creator: "Your payout of $X has been approved"
+- Reject action:
+  - Update `payout_requests.status` to 'rejected'
+  - Set `processed_at` timestamp
+  - Send email to creator: "Your payout request was rejected. Reason: [admin note]"
+- Filter tabs: Pending / Completed / Rejected
+
+**Acceptance Criteria**:
+- [ ] Admin route protected (non-admin users get 403)
+- [ ] Table displays all pending requests
+- [ ] Approve button updates status to 'completed'
+- [ ] Reject button updates status to 'rejected'
+- [ ] Email sent to creator on approval/rejection
+- [ ] Filter tabs work correctly
+- [ ] E2E tests: 4/4 scenarios pass
+- [ ] Build + lint + tests pass
+
+**Technical Spec**:
+- Page: `src/app/admin/payouts/page.tsx`
+- API: `src/app/api/admin/payouts/[id]/route.ts` (PATCH method)
+- Middleware: `src/middleware.ts` (add admin role check)
+- Components: `AdminPayoutTable.tsx`, `ApproveRejectButtons.tsx`
+- Tests: `tests/e2e/admin-payouts.spec.ts`
+
+**E2E Test Scenarios**:
+1. Non-admin user gets 403 on `/admin/payouts`
+2. Admin can view pending payout requests
+3. Admin can approve payout (status → completed, email sent)
+4. Admin can reject payout (status → rejected, email sent)
+
+**Dependencies**:
+- ENTRY-010 must be complete (creates `payout_requests` table)
+- Admin role field in `users` table (assume exists or add migration)
+
+**Assignment Date**: After ENTRY-011 complete
+**Due Date**: Before ENTRY-013
+**Git Hash**: TBD
+**Evidence**: TBD
+
+---
+
 ## 💬 COMMENTS (PM ↔ Coder via CEO)
 
 [2026-02-11 18:00] PM → Coder:
@@ -937,18 +1005,17 @@ Notify CEO when starting work and when completed with git commit hash.
 
 ## 📊 LEDGER STATISTICS
 
-**Total Entries**: 18
+**Total Entries**: 19
 **PRDs**: 6
-**Tasks**: 12
+**Tasks**: 13
 **QA Reports**: 0 (pending)
 **PM Decisions**: 0 (pending)
 
 **Status Breakdown**:
-- ✅ APPROVED: 2 (ENTRY-010, ENTRY-012)
-- ⏳ PENDING_APPROVAL: 1 (ENTRY-011)
-- 📋 PENDING_ASSIGNMENT: 11
-- 🚧 IN_PROGRESS: 1 (ENTRY-012)
-- ✅ DONE: 3 (ENTRY-006, ENTRY-007, ENTRY-008, ENTRY-009)
+- ✅ APPROVED: 2 (ENTRY-011, ENTRY-012)
+- 🚧 ASSIGNED: 1 (ENTRY-010)
+- 📋 PENDING_ASSIGNMENT: 12
+- ✅ DONE: 4 (ENTRY-006, ENTRY-007, ENTRY-008, ENTRY-009, ENTRY-012)
 - ❌ BLOCKED: 0
 
 **Phase Progress**:
@@ -1697,6 +1764,230 @@ Status: DONE
 **PRD**: `docs/04-prds/ENTRY-012_RESOURCE_PRICING_UI_PRD.md`
 
 **Objective**: Enable creators to set prices on claimed resources with dynamic commission (first 2 sales free, then 80/20 split)
+
+---
+
+[2026-02-13 19:45] @PM → @Coder:
+
+✅ **ENTRY-012 APPROVED - GATE 8 COMPLETE**
+
+**Gate 8 Review Results**:
+- Ralph Protocol: 12/12 PASSED ⭐⭐⭐⭐⭐
+- Build: 0 errors ✅
+- Lint: 0 errors ✅
+- Business Logic: Verified 100%/0% → 80%/20% split ✅
+- Database: Migration applied, atomic `salesCount` ✅
+- Security: Auth checks, rate limits, validation ✅
+- Documentation: Comprehensive Gate 12 doc ✅
+
+**Git Hash**: a04893a
+
+**Quality Score**: 5/5 (EXCEPTIONAL)
+- Clean implementation
+- Atomic operations prevent race conditions
+- Audit trail with stored percentages
+- Type-safe TypeScript
+- Comprehensive E2E tests (6 scenarios)
+
+**Status**: ENTRY-012 → ✅ DONE
+
+**Beta Progress**: 1/2 blockers complete! Only ENTRY-010 remaining.
+
+---
+
+[2026-02-13 19:46] @PM → @Coder:
+
+🚀 **TASK ASSIGNED: ENTRY-010 - Creator Earnings Dashboard (FINAL BETA BLOCKER)**
+
+**PRD**: `docs/04-prds/ENTRY-010_CREATOR_EARNINGS_DASHBOARD_PRD.md`
+
+**Objective**: Enable creators to view earnings, sales history, and request payouts
+
+**Critical Requirements**:
+1. **Earnings Overview Card**:
+   - Total earnings (with 100% vs 80% breakdown)
+   - Sales count (First 2 vs Sales 3+)
+   - Pending payout amount
+   - Real-time updates
+
+2. **Sales History Table**:
+   - Resource name + link
+   - Sale date
+   - Price
+   - Buyer username
+   - Commission % (100% or 80%)
+   - Paginated (50 per page)
+
+3. **Payout Request Modal**:
+   - Minimum $10 threshold
+   - Payment method selection (Razorpay/PayPal)
+   - Account details form
+   - Email notifications (creator + admin)
+
+**Deliverables**:
+1. Components:
+   - `EarningsOverview.tsx` - Dashboard summary card
+   - `SalesHistory.tsx` - Paginated sales table
+   - `PayoutRequestModal.tsx` - Payout request form
+2. API Routes:
+   - `GET /api/creator/earnings` - Fetch earnings summary
+   - `GET /api/creator/sales` - Fetch sales history (paginated)
+   - `POST /api/creator/payout/request` - Submit payout request
+3. Database:
+   - New table: `payout_requests` (see PRD for schema)
+   - Migration: Create table + indexes
+4. Dashboard Integration:
+   - Update `/dashboard/page.tsx` with earnings section
+   - Add navigation tab/link
+5. E2E Tests:
+   - `tests/e2e/creator-dashboard.spec.ts`
+   - 6 test scenarios (see PRD section 7)
+6. Gate 12 Documentation:
+   - `docs/03-implementation/gate-12/ENTRY-010-gate-12.md`
+
+**Acceptance Criteria**:
+- [ ] Total earnings calculated correctly (100% for first 2, 80% after)
+- [ ] Sales breakdown: "First 2 sales (100%)" vs "Sales 3+ (80%)"
+- [ ] Pending payout amount shown
+- [ ] Sales history paginated (50 per page)
+- [ ] Payout request: minimum $10 enforced
+- [ ] Email sent on payout request (creator + admin)
+- [ ] E2E tests: 6/6 scenarios pass
+- [ ] Build + lint + tests pass
+- [ ] Ralph Protocol: 12/12 gates pass
+
+**Technical Spec**:
+- **Database Schema** (payout_requests):
+  ```sql
+  CREATE TABLE payout_requests (
+    id UUID PRIMARY KEY,
+    creator_id UUID REFERENCES users(id),
+    amount INTEGER NOT NULL, -- cents
+    currency VARCHAR(3),
+    payment_method VARCHAR(50), -- 'razorpay' | 'paypal'
+    account_details TEXT,
+    status VARCHAR(20), -- 'pending' | 'processing' | 'completed' | 'rejected'
+    requested_at TIMESTAMP DEFAULT NOW(),
+    processed_at TIMESTAMP
+  );
+  ```
+- **Earnings Calculation**:
+  ```typescript
+  // Aggregate from purchases table
+  const firstTwoEarnings = sum(creatorEarnings WHERE salesCount < 2)
+  const subsequentEarnings = sum(creatorEarnings WHERE salesCount >= 2)
+  const totalEarnings = firstTwoEarnings + subsequentEarnings
+  const pendingPayout = totalEarnings - sum(payouts WHERE status='completed')
+  ```
+
+**References**:
+- Business model: `docs/01-business/MARKETPLACE_MODEL_SPEC.md`
+- ENTRY-008 payment flow: `src/app/api/resources/[id]/purchase/route.ts`
+- ENTRY-012 pricing: `src/components/ResourcePricingForm.tsx`
+
+**Estimated Time**: 6-8 hours
+
+**Start Command**:
+```bash
+npm run verify:pm-gates -- ENTRY-010
+# If exit 0 → Start work
+# If exit 1 → Comment BLOCKED in ledger
+```
+
+**When Done**:
+1. Commit your work with hash
+2. Create Gate 12 docs: `docs/03-implementation/gate-12/ENTRY-010-gate-12.md`
+3. Comment: "✅ READY FOR REVIEW - ENTRY-010"
+4. Include: Git hash, evidence links, Ralph gates status
+5. WAIT for PM Gate 8 review
+
+**This is the FINAL beta blocker. After this, we're beta ready! 🚀**
+
+Ready to start?
+
+---
+
+[2026-02-13 20:18] @Coder → @PM:
+
+🚫 **ENTRY-010 BLOCKED - PM GATE VERIFICATION FAILED**
+
+Verification command: `npm run verify:pm-gates -- ENTRY-010`
+Exit code: 1 (FAILED)
+
+**Missing PM Artifacts:**
+- ❌ `audit-gate-0-ENTRY-010.log` (Gate 2 - Research Audit)
+- ❌ `implementation-plan-ENTRY-010.md` (Gate 3 - Implementation Plan)
+
+**Status**: Standing by, waiting for PM to complete required pre-work.
+
+---
+
+[2026-02-13 20:20] @PM → @CEO:
+
+✅ **PM ARTIFACTS CREATED - READY FOR CEO APPROVAL**
+
+I have completed the missing PM pre-work for ENTRY-010:
+
+**1. Research Audit (Gate 2)**: `docs/06-plans/audit-gate-0-ENTRY-010.log`
+   - 3 web searches on creator earnings dashboards (Stripe, Patreon, Gumroad)
+   - Payout system best practices (minimum thresholds, payment methods)
+   - Commission tracking patterns (validated our "first 2 sales free" model)
+   - Key finding: Atlassian Marketplace 2026 offers 0% fee for first $1M revenue (validates our approach)
+
+**2. Implementation Plan (Gate 3)**: `docs/06-plans/implementation-plan-ENTRY-010.md`
+   - 3 components: EarningsOverview, SalesHistory, PayoutRequestModal
+   - 3 API routes: earnings, sales history, payout request
+   - Database schema: `payout_requests` table with indexes
+   - **5 alternatives considered** with rationale for each decision
+   - 6 E2E test scenarios
+   - Security & validation strategy
+   - Rollback procedure
+
+**Approval Required:**
+Please review both artifacts and approve the implementation plan. Once approved, I will notify the coder to re-run verification and proceed with implementation.
+
+**Files to Review:**
+- [Research Audit](docs/06-plans/audit-gate-0-ENTRY-010.log)
+- [Implementation Plan](docs/06-plans/implementation-plan-ENTRY-010.md)
+
+Waiting for your approval.
+
+---
+
+[2026-02-13 20:25] @CEO → @PM:
+
+✅ APPROVED - Implementation plan for ENTRY-010
+Decision: Separate ENTRY-019 for admin payout dashboard (2-3 hours)
+
+---
+
+[2026-02-13 20:26] @PM → @Coder:
+
+🎉 **ENTRY-010 BLOCKER RESOLVED - READY TO START**
+
+CEO has approved the implementation plan. All PM artifacts are now complete:
+- ✅ Research Audit: `docs/06-plans/audit-gate-0-ENTRY-010.log`
+- ✅ Implementation Plan: `docs/06-plans/implementation-plan-ENTRY-010.md`
+- ✅ CEO Signature: APPROVED (2026-02-13)
+
+**Action Required:**
+Re-run the verification command:
+```bash
+npm run verify:pm-gates -- ENTRY-010
+```
+
+Expected result: EXIT CODE 0 (PASS)
+
+Once verification passes, proceed with 6-8 hour implementation as specified in the plan.
+
+**Note on Admin Approvals:**
+- Admin payout approvals will be handled via direct database updates until ENTRY-019 is complete
+- This is acceptable for MVP - focus on creator-side functionality first
+- ENTRY-019 (admin dashboard) will be assigned after ENTRY-011
+
+Ready to implement!
+
+---
 
 **Critical Requirements**:
 1. **Verification-first**: Only claimed resources can be monetized (`claimedAt !== null`)

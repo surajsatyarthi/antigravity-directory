@@ -449,9 +449,35 @@ export const userResourceAccessRelations = relations(userResourceAccess, ({ one 
   }),
 }));
 
+// Payout Requests table (ENTRY-010)
+export const payoutRequests = pgTable('payout_requests', {
+  id: text('id').primaryKey(),
+  creatorId: text('creator_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  amount: integer('amount').notNull(), // cents
+  currency: varchar('currency', { length: 3 }).notNull().default('USD'),
+  paymentMethod: text('payment_method').notNull(), // 'razorpay' | 'paypal'
+  accountDetails: text('account_details').notNull(),
+  status: text('status').notNull().default('pending'), // 'pending' | 'processing' | 'completed' | 'rejected'
+  requestedAt: timestamp('requested_at').notNull().defaultNow(),
+  processedAt: timestamp('processed_at'),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+}, (table) => ({
+  creatorIdIdx: index('payout_requests_creator_id_idx').on(table.creatorId),
+  statusIdx: index('payout_requests_status_idx').on(table.status),
+  requestedAtIdx: index('payout_requests_requested_at_idx').on(table.requestedAt),
+}));
+
 export const creatorEarningsRelations = relations(creatorEarnings, ({ one }) => ({
   user: one(users, {
     fields: [creatorEarnings.userId],
+    references: [users.id],
+  }),
+}));
+
+export const payoutRequestsRelations = relations(payoutRequests, ({ one }) => ({
+  creator: one(users, {
+    fields: [payoutRequests.creatorId],
     references: [users.id],
   }),
 }));

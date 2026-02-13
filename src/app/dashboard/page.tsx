@@ -21,6 +21,8 @@ const EdwardOutreachPanel = dynamic(() => import('@/components/EdwardOutreachPan
 });
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
+import { EarningsOverview } from '@/components/dashboard/EarningsOverview';
+import { SalesHistory } from '@/components/dashboard/SalesHistory';
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -174,6 +176,27 @@ export default async function DashboardPage() {
                 </div>
               ))}
             </div>
+
+            {/* Earnings Section (ENTRY-010) - Only show if user has claimed resources */}
+            {ownerData.tools.length > 0 && (
+              <div>
+                <div className="flex items-center justify-between mb-10">
+                  <h2 className="text-2xl font-black tracking-tighter text-white uppercase italic flex items-center gap-3">
+                    <div className="w-1.5 h-6 bg-emerald-600 rounded-full" /> Your Earnings
+                  </h2>
+                </div>
+                <div className="space-y-6 mb-12">
+                  {/* Earnings Overview Cards */}
+                  <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+                    <EarningsOverview />
+                  </div>
+                  {/* Sales History Table */}
+                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+                    <SalesHistory />
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* My Tools Section */}
             <div>
