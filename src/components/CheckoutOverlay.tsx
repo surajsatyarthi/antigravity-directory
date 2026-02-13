@@ -153,7 +153,13 @@ export function CheckoutOverlay({ isOpen, onClose, onSuccess, submissionTitle, c
 
       renderButtons();
     }
-  }, [isPaypalReady, selectedTier, isOpen]);
+  }, [
+    isPaypalReady, 
+    selectedTier, 
+    isOpen, 
+    onSuccess, 
+    resourceId
+  ]);
 
   const handleRazorpayPayment = async () => {
     if (!(window as any).Razorpay) return;

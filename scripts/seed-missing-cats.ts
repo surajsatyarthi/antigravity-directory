@@ -3,7 +3,8 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 require('dotenv').config({ path: path.resolve(process.cwd(), '.env.local') });
 
-const sql = postgres(process.env.DATABASE_URL, { ssl: 'require' });
+const isTestDb = process.env.DATABASE_URL?.includes('localhost') || process.env.DATABASE_URL?.includes('127.0.0.1');
+const sql = postgres(process.env.DATABASE_URL, { ssl: isTestDb ? false : 'require' });
 
 const MISSING_CATS = [
   { slug: 'ai-coding', name: 'AI Coding', description: 'Coding assistants and IDE extensions.', order: 6 },

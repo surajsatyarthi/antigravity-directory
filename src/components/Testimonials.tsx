@@ -68,19 +68,19 @@ export const Testimonials = () => {
   const itemsPerPage = 3;
   const totalSlides = Math.ceil(TESTIMONIALS.length / itemsPerPage);
 
-  const nextSlide = () => {
+  const nextSlide = React.useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev + 1) % totalSlides);
     setTimeout(() => setIsTransitioning(false), 600);
-  };
+  }, [isTransitioning, totalSlides]);
 
-  const prevSlide = () => {
+  const prevSlide = React.useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
     setTimeout(() => setIsTransitioning(false), 600);
-  };
+  }, [isTransitioning, totalSlides]);
 
   // Auto-scroll every 5 seconds
   useEffect(() => {
@@ -91,7 +91,7 @@ export const Testimonials = () => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, isAutoPlaying]);
+  }, [currentIndex, isAutoPlaying, nextSlide]);
 
   return (
     <div className="w-full mb-10">

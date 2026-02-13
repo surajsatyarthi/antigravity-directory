@@ -12,7 +12,7 @@ export default defineConfig({
   expect: {
     timeout: 10 * 1000,
   },
-  fullyParallel: true,
+  fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,
   workers: 1, // Force serial execution to prevent DB race conditions
@@ -41,9 +41,9 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'NEXT_PUBLIC_IS_E2E=true AUTH_URL=http://localhost:3001 DATABASE_URL="postgresql://postgres:postgres@localhost:54322/postgres" PORT=3001 npm run dev',
+    command: 'NEXT_PUBLIC_IS_E2E=true AUTH_URL=http://localhost:3001 DATABASE_URL="postgresql://postgres:postgres@localhost:54322/postgres" PORT=3001 npx next dev',
     url: 'http://localhost:3001',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false, // Force fresh server for environment variables
     timeout: 120 * 1000,
   },
 });

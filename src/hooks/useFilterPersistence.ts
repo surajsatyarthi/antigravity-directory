@@ -81,7 +81,7 @@ export function useFilterPersistence() {
     }
     
     setIsReady(true);
-  }, []); 
+  }, [hasUrlParams, pathname, router, isReady]); 
 
   // 2. Handshake: Monitor window.location directly
   useEffect(() => {
@@ -128,7 +128,7 @@ export function useFilterPersistence() {
       localStorage.removeItem(FILTERS.STORAGE_KEY);
       lastSyncedState.current = null;
     }
-  }, [categoriesParam, tagsParam, qParam, sortParam, isReady, searchParams.size]);
+  }, [categoriesParam, tagsParam, qParam, sortParam, isReady, searchParams.size, badgesParam, pricingParam, groupParam]);
 
   // 4. Tab Sync
   useEffect(() => {

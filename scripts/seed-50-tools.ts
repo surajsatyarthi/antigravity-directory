@@ -105,7 +105,7 @@ export async function validateEnvironment(sql: any) {
 
 export async function seedTools(db?: any) {
   const sql = db || postgres(process.env.DATABASE_URL!, { 
-    ssl: process.env.DATABASE_SSL !== 'false' ? 'require' : false 
+    ssl: (process.env.DATABASE_SSL === 'false' || process.env.DATABASE_URL?.includes('localhost')) ? false : 'require' 
   });
 
   try {

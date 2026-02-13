@@ -252,16 +252,17 @@ export async function setupLowEarningsDatabase() {
  */
 export async function cleanupTestDatabase() {
   // Delete in dependency order (child tables first)
-  // Use try-catch for payout_requests since it might not exist yet
   try {
+    const { resourceClaims, creatorEarnings, userResourceAccess, payoutRequests } = await import('../../../src/drizzle/schema');
     await db.delete(payoutRequests);
+    await db.delete(resourceClaims);
+    await db.delete(userResourceAccess);
+    await db.delete(creatorEarnings);
   } catch (error) {
-    // Table might not exist yet, that's okay
-    console.log('Note: payout_requests table does not exist (expected for first run)');
+    console.log('Cleanup minor error (ignoring):', error);
   }
   
   await db.delete(purchases);
-  await db.delete(resourceClaims);
   await db.delete(resources);
   await db.delete(categories);
   await db.delete(sessions); // Clear sessions before users

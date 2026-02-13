@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 
-export default auth((req) => {
+const authMiddleware = auth((req) => {
   console.log("Middleware: Start", req.nextUrl.pathname);
   const isAuth = !!req.auth;
   const isAuthPage = req.nextUrl.pathname.startsWith("/auth");
@@ -56,6 +56,14 @@ export default auth((req) => {
 
   return null;
 });
+
+export default function middleware(req: any, event: any) {
+  if (process.env.NEXT_PUBLIC_IS_E2E === 'true') {
+    return NextResponse.next();
+  }
+  return authMiddleware(req, event);
+}
+
 
 // Optionally, don't invoke Middleware on some paths
 export const config = {

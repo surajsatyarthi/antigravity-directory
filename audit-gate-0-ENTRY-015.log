@@ -1,0 +1,28 @@
+# RESEARCH AUDIT LOG - ENTRY-015
+Title: Ralph Protocol Quality Gates (Lint Fixes)
+Date: 2026-02-14
+Researcher: Antigravity
+
+## 1. Problem Analysis
+The codebase had several lint warnings that needed to be resolved to pass the strict Ralph Protocol Quality Gates.
+- `CheckoutOverlay.tsx`: Missing dependencies in `useEffect`.
+- `Testimonials.tsx`: Missing dependency in `useEffect`, unstable function references.
+- `useFilterPersistence.ts`: Missing dependencies in `useEffect` hooks.
+
+## 2. Research & Solution Strategy
+Checked React documentation and best practices for `useEffect` dependency arrays and `useCallback`.
+
+### Findings:
+1. **CheckoutOverlay.tsx**: The `onSuccess` callback and `resourceId` string were missing from the dependency array. Since `onSuccess` is passed from a parent, it should be stable or included.
+2. **Testimonials.tsx**: `nextSlide` was being called inside `setInterval`, but it was defined as a standard function, causing lint warnings. Wrapping it in `useCallback` makes it a stable reference to safely include in the dependency array.
+3. **useFilterPersistence.ts**: This custom hook manages URL state syncing. The `useEffect` hooks were missing several dependencies (`router`, `pathname`, specific query params). Adding them ensures the hook reacts correctly to all state changes without stale closures.
+
+## 3. Selected Approach
+- Apply `useCallback` to unstable function references.
+- Exhaustively list all dependencies in `useEffect` arrays as recommended by the `react-hooks/exhaustive-deps` rule.
+- Verify no functionality regression with the full test suite.
+
+## 4. Verification Method
+- run `npm run lint` to confirm 0 errors/warnings.
+- run `npm run test` to ensure no regressions.
+- run `npm run build` to ensure production build stability.

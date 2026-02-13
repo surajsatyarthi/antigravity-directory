@@ -156,6 +156,11 @@ async function getFilteredResourcesInternal(filters: FilterState, page: number =
  * CACHED: Wraps internal logic with Next.js Data Cache (5 minutes)
  */
 export async function getFilteredResources(filters: FilterState, page: number = 1, pageSize: number = 20) {
+  // Bypass cache in E2E testing to ensure fresh seed data
+  if (process.env.NEXT_PUBLIC_IS_E2E === 'true') {
+     return getFilteredResourcesInternal(filters, page, pageSize);
+  }
+
   return unstable_cache(
     () => getFilteredResourcesInternal(filters, page, pageSize),
     ['resources-list-v2', JSON.stringify(filters), page.toString()],

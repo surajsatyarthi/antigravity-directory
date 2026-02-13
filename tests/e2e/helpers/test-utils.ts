@@ -24,6 +24,13 @@ export async function cleanupDatabase() {
     await db.delete(purchases);
   } catch (e) { /* ignore */ }
 
+  try {
+    const { resourceClaims, creatorEarnings, userResourceAccess } = await import('../../../src/drizzle/schema');
+    await db.delete(resourceClaims);
+    await db.delete(userResourceAccess);
+    await db.delete(creatorEarnings);
+  } catch (e) { console.error('Cleanup Error:', e); }
+
   await db.delete(resourceTags);
   await db.delete(ratings);
   await db.delete(bookmarks);

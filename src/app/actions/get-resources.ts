@@ -47,6 +47,11 @@ export async function fetchResourcesAction(params: FetchResourcesParams) {
       ORGANIC_RATIO
     );
 
+    console.log(`[fetchResourcesAction] Filtered: sponsored=${sponsoredResults.length}, organic=${organicResults.length}, totalOrganic=${totalOrganic}`);
+    if (organicResults.length > 0) {
+        console.log('[fetchResourcesAction] First organic:', organicResults[0].title);
+    }
+
     // C. Interleave Logic (Amazon-style: Top Slot + Distributed)
     const interleavedResources = [];
     const sponsoredQueue = [...sponsoredResults];

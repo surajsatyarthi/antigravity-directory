@@ -2,7 +2,8 @@ import { test, expect } from '@playwright/test';
 import { db } from '../../src/lib/db';
 import { resources, users, categories, purchases, resourceClaims } from '../../src/drizzle/schema';
 import { v4 as uuidv4 } from 'uuid';
-import { cleanupDatabase, createAuthenticatedSession } from './helpers/test-utils';
+import { cleanupDatabase } from './helpers/test-utils';
+import { createAuthenticatedSession } from './helpers/setup-test-db';
 import { eq } from 'drizzle-orm';
 
 test.describe('Resource Pricing UI', () => {
@@ -103,8 +104,8 @@ test.describe('Resource Pricing UI', () => {
     await expect(page.getByRole('heading', { name: 'Claimed Resource', level: 1 })).toBeVisible();
     
     // Should show pricing form
-    await expect(page.getByText('Resource Pricing')).toBeVisible();
-    await expect(page.getByText('Enable Paid Access')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Resource Pricing' }).first()).toBeVisible();
+    await expect(page.getByText('Enable Paid Access').first()).toBeVisible();
     
     // Should show commission preview
     await expect(page.getByText(/First 2 sales: 100%/)).toBeVisible();
