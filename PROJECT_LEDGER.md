@@ -472,7 +472,7 @@ Current Status: 🚧 IN PROGRESS
 **Title**: Task 0.2.4 - E2E Tests for Dashboard
 **Parent**: [ENTRY-001]
 **Owner**: Antigravity
-**Status**: DONE
+Status: DONE
 **Estimated**: 1 hour
 
 **Deliverables**:
@@ -510,7 +510,7 @@ Current Status: 🚧 IN PROGRESS
 **Title**: Task 0.3.1 - CI/CD Integration for E2E Tests
 **Parent**: [ENTRY-001]
 **Owner**: Antigravity
-**Status**: DONE
+Status: DONE
 **Estimated**: 1 hour
 
 **Deliverables**:
@@ -1620,4 +1620,4 @@ Waiting for PM Gate 8 review.
 - Tests: 12/12 PASSED (Integration + E2E)
 - Documentation: Complete and verified
 
-**Status**: ✅ DONE
+Status: DONE
