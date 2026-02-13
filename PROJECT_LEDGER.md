@@ -2222,3 +2222,184 @@ Resuming focus on beta blockers (ENTRY-010, ENTRY-011).
 Awaiting CEO decision on launch timing.
 
 ---
+
+[2026-02-13 23:10] @PM → @Coder:
+
+## PROMPT FOR CODER - ENTRY-019 ASSIGNMENT
+
+**Task**: ENTRY-019 - Admin Payout Approval Dashboard
+**Status**: READY TO START ✅
+**Estimated Time**: 2-3 hours
+**Priority**: POST-BETA (but ready to implement)
+
+---
+
+### ✅ PM GATES VERIFIED
+
+```bash
+npm run verify:pm-gates -- ENTRY-019
+# Exit code: 0 (ALL GATES PASSED)
+```
+
+**Gate Artifacts**:
+- ✅ Research audit: `audit-gate-0-ENTRY-019.log` (3 web searches)
+- ✅ Implementation plan: `docs/06-plans/implementation-plan-ENTRY-019.md`  
+- ✅ CEO approval: Signed on 2026-02-13
+- ✅ Previous task (ENTRY-011): Gate 12 docs complete
+
+---
+
+### 📋 TASK OVERVIEW
+
+Build admin dashboard page for approving/rejecting creator payout requests.
+
+**Deliverables**:
+1. `/admin/payouts` page (admin-only route)
+2. `PATCH /api/admin/payouts/[id]` API endpoint
+3. Email notifications (approve/reject)
+4. E2E tests (4 scenarios)
+
+**Acceptance Criteria** (from PRD):
+- [ ] Admin-only route protection (`/admin/*` middleware)
+- [ ] Table shows pending payout requests with key details
+- [ ] Approve button updates status to 'approved'
+- [ ] Reject button requires reason (text input)
+- [ ] Email sent on approve/reject
+- [ ] E2E tests: 4/4 scenarios pass
+- [ ] Build + lint + tests pass
+
+---
+
+### 🔧 IMPLEMENTATION PLAN
+
+**Step 1**: Route Protection (15 min)
+- Update `src/middleware.ts` to protect `/admin/*` routes
+- Check session for `isAdmin` flag
+- Redirect non-admins to `/404`
+
+**Step 2**: Admin Payout Page (45 min)
+- Create `src/app/admin/payouts/page.tsx`
+- Table component showing pending requests:
+  - Creator username
+  - Amount ($)
+  - Payment method (Razorpay/PayPal)
+  - Account details (last 4 digits only)
+  - Requested date
+  - Actions: Approve / Reject buttons
+
+**Step 3**: API Endpoints (30 min)
+- Create `src/app/api/admin/payouts/[id]/route.ts`
+- `PATCH /api/admin/payouts/:id` handler:
+  - Validate admin session
+  - Check payout exists and is pending
+  - Update status to 'approved' or 'rejected'
+  - Store admin_id and processed_at timestamp
+  - If rejected, store rejection reason
+  - Return updated payout object
+
+**Step 4**: Email Notifications (30 min)
+- Install Resend: `npm install resend`
+- Create email templates:
+  - `src/lib/email-templates/payout-approved.tsx`
+  - `src/lib/email-templates/payout-rejected.tsx`
+- Send email after status update (non-blocking)
+
+**Step 5**: E2E Tests (20 min)
+- Create `tests/e2e/admin-payout-approval.spec.ts`
+- Test scenarios:
+  1. Admin can view pending payouts
+  2. Admin can approve payout (status updates + email sent)
+  3. Admin can reject payout with reason
+  4. Non-admin redirected from `/admin/payouts`
+
+---
+
+### 📂 FILES TO CREATE
+
+```
+src/app/admin/payouts/page.tsx           # Admin payout queue UI
+src/app/api/admin/payouts/[id]/route.ts  # Approve/reject API
+src/lib/email-templates/payout-approved.tsx  # Approval email
+src/lib/email-templates/payout-rejected.tsx  # Rejection email  
+tests/e2e/admin-payout-approval.spec.ts      # E2E tests
+```
+
+### 📝 FILES TO MODIFY
+
+```
+src/middleware.ts                         # Add /admin/* protection
+.env.local                                # Add RESEND_API_KEY
+```
+
+---
+
+### 🔗 REFERENCES
+
+**Business Logic**:
+- [MARKETPLACE_MODEL_SPEC.md](docs/01-business/MARKETPLACE_MODEL_SPEC.md) - Payout workflow
+- [ENTRY-010 Gate 12](docs/03-implementation/gate-12/ENTRY-010-gate-12.md) - Creator payout request flow
+
+**Database Schema**:
+- Table: `payout_requests` (already exists, created in ENTRY-010)
+- Fields: id, user_id, amount, status, payment_method, account_details (JSONB), requested_at, processed_at, admin_id, rejection_reason
+
+**API Patterns**:
+- Admin auth: `src/app/api/admin/*` (check session.user.isAdmin)
+- Email sending: Use Resend transactional email service
+
+---
+
+### 🚦 START COMMAND
+
+```bash
+npm run verify:pm-gates -- ENTRY-019
+# If exit 0 → Start work
+# If exit 1 → Comment BLOCKED in ledger
+```
+
+**When Done**:
+1. Commit your work with hash
+2. Create Gate 12 docs: `docs/03-implementation/gate-12/ENTRY-019-gate-12.md`
+3. Comment: "✅ READY FOR REVIEW - ENTRY-019"
+4. Include: Git hash, evidence links, Ralph gates status
+5. WAIT for PM Gate 8 review
+
+---
+
+Ready to start? 🚀
+
+
+[2026-02-13 23:30] @CEO → @PM:
+
+🚨 **LAUNCH PLAN REVISED - EMAIL NOTIFICATIONS ARE CRITICAL**
+
+User correctly identified that email notifications are NOT nice-to-have, but CRITICAL for launch. Updated launch checklist accordingly.
+
+**CRITICAL PATH (MUST DO BEFORE MONDAY LAUNCH)**:
+1. ✅ ENTRY-019: Admin Payout Dashboard (2-3h) - ASSIGNED TO CODER
+2. ⏳ ENTRY-018: Legal Compliance - DMCA + TOS (3-4h) - PM artifacts needed
+3. ⏳ E2E Test FK Constraint Fix (1-2h)
+4. ⏳ Email Notifications: Purchase + Sale (2h) - CRITICAL!
+5. ⏳ Environment Validation (15min)
+6. ⏳ Database Migrations Verification (5min)
+7. ⏳ Homepage UX Refinements (2h)
+8. ⏳ Error Page Polish (1h)
+9. ⏳ Loading States/Skeletons (1.5h)
+
+**Total Work**: ~15-17 hours (fits in weekend sprint)
+
+**POST-LAUNCH (Not blocking)**:
+- SEO meta tags (can add incrementally)
+- Analytics setup (Day 2)
+- Admin dashboard enhancements (batch approvals, etc.)
+- Welcome emails (optional, can defer)
+
+**Launch Checklist**: `docs/07-launch/MONDAY_LAUNCH_CHECKLIST.md`
+
+**Weekend Plan**:
+- Saturday (10h): ENTRY-019 + ENTRY-018 + E2E fix + Email notifications
+- Sunday (6h): UX polish + Error pages + Loading states + Deploy
+
+**Monday**: LAUNCH 🚀
+
+---

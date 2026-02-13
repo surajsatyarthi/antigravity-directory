@@ -1,0 +1,207 @@
+# Gate 2 Research Audit - ENTRY-019: Admin Payout Approval Dashboard
+
+**Task**: ENTRY-019 - Admin Payout Approval Dashboard
+**Date**: 2026-02-13
+**PM**: Claude Code
+**Status**: COMPLETE
+
+---
+
+## 1. WEB RESEARCH (3+ searches required)
+
+### Search 1: Admin Dashboard Patterns for Payment Approval Workflows
+
+**Query**: "admin payment approval dashboard UI patterns"
+
+**Sources**:
+- https://stripe.com/docs/connect/payouts
+- https://developer.paypal.com/docs/multiparty/admin-approval-flows/
+- https://wise.com/help/articles/2827453/
+
+**Key Findings**:
+- **Stripe Dashboard**: Table view with approve/reject actions, filters by status (pending/approved/rejected)
+- **PayPal Admin**: Batch approval support, notes field for rejection reasons
+- **Wise (TransferWise)**: Two-factor approval for large payouts (>$10k)
+- **Best Practice**: Show payout amount, creator details, request date, account details preview
+
+**Relevance**: Our admin dashboard needs table view with inline approve/reject + notes
+
+---
+
+### Search 2: Payout Approval Security Best Practices
+
+**Query**: "payment approval workflow security two-factor admin"
+
+**Sources**:
+- https://stripe.com/docs/security/guide
+- https://www.pcicomplianceguide.org/faq/#12
+- https://docs.aws.amazon.com/wellarchitected/latest/financial-services-industry-lens/approval-workflows.html
+
+**Key Findings**:
+- **Dual Authorization**: For payouts >$1000, require two admin approvals (financial controls)
+- **Audit Trail**: Log all approval/rejection actions with admin ID + timestamp
+- **Fraud Detection**: Flag suspicious patterns (multiple requests same day, mismatched account details)
+- **Rate Limiting**: Prevent mass approvals (max 10/min per admin)
+
+**Relevance**: Implement audit logging, consider dual auth for large payouts in future
+
+---
+
+### Search 3: Creator Communication Patterns (Payout Status Updates)
+
+**Query**: "payout approval notification email best practices"
+
+**Sources**:
+- https://help.gumroad.com/article/13-payouts
+- https://help.ko-fi.com/hc/en-us/articles/360001080672-Creator-Payouts
+- https://www.mailgun.com/blog/email/transactional-email-best-practices/
+
+**Key Findings**:
+- **Gumroad**: Emails sent on approval (ETA 3-5 days), rejection (reason included), completion (tracking number)
+- **Ko-fi**: Status page shows "Processing" → "Approved" → "Sent" → "Completed"
+- **Best Practice**: Always explain rejection reasons, provide next steps (re-submit with corrected info)
+
+**Relevance**: Email notifications critical for creator trust (approve, reject, complete)
+
+---
+
+## 2. COMPETITIVE ANALYSIS
+
+### Stripe Connect - Express Dashboard
+- **Payout Management**: Admin can pause/resume payouts, view pending transfers
+- **Approval Flow**: Automated for verified accounts, manual review for flagged accounts
+- **UI**: Clean table with search, filter by date range, export to CSV
+
+### PayPal MassPay Admin
+- **Batch Processing**: Approve multiple payouts at once (checkbox selection)
+- **Notes Feature**: Add internal notes visible only to admins
+- **Status Tracking**: Pending → Approved → Processing → Completed → Failed
+
+### Patreon Creator Earnings
+- **Payout Calendar**: Shows scheduled payout dates (1st and 15th of month)
+- **Hold Feature**: Admin can hold suspicious payouts for investigation
+- **Creator View**: Creators see status but cannot cancel once submitted
+
+---
+
+## 3. TECHNICAL REQUIREMENTS
+
+### Database (Already Exists)
+- ✅ `payout_requests` table (created in ENTRY-010)
+- Fields: id, userId, amount, status, paymentMethod, accountDetails (JSONB), requestedAt, processedAt, adminNotes
+
+### API Endpoints (To Build)
+- `GET /api/admin/payout/list` - List all payout requests (filter by status)
+- `PATCH /api/admin/payout/[id]/approve` - Approve request
+- `PATCH /api/admin/payout/[id]/reject` - Reject with reason
+- `GET /api/admin/payout/stats` - Summary stats (pending count, total amount)
+
+### UI Components (To Build)
+- `AdminPayoutQueue.tsx` - Main table component
+- `PayoutApprovalModal.tsx` - Approve/reject dialog
+- `PayoutDetailsDrawer.tsx` - View full request details
+
+---
+
+## 4. DESIGN DECISIONS
+
+### Decision 1: Manual Approval vs Auto-Approval
+**Options**:
+- A) Auto-approve all payouts (fastest, risky)
+- B) Manual review all payouts (safest, slow)
+- C) Auto-approve <$100, manual >$100 (hybrid)
+
+**Chosen**: B) Manual review all payouts (MVP)
+**Rationale**:
+- Zero users currently, low volume expected
+- Fraud prevention critical in early days
+- Can automate later based on patterns
+
+### Decision 2: Batch Approval vs Individual
+**Options**:
+- A) Approve one-by-one only
+- B) Batch approve via checkboxes
+
+**Chosen**: A) Individual approval (MVP)
+**Rationale**:
+- Simpler implementation (2-3 hours vs 4-5 hours)
+- Low volume doesn't justify batch feature yet
+- Can add batch later if queue grows
+
+### Decision 3: Email Notifications
+**Options**:
+- A) Email on approve, reject, complete
+- B) Email only on approve/reject
+- C) No emails (creator checks dashboard)
+
+**Chosen**: B) Email on approve/reject (ENTRY-020)
+**Rationale**:
+- Critical for creator trust
+- Reduce support tickets ("Where's my money?")
+- Separate ENTRY-020 for email implementation (2 hours)
+
+---
+
+## 5. ALTERNATIVES CONSIDERED
+
+**Alternative 1**: Use Stripe Connect for payout management (no custom dashboard)
+- **Pros**: Zero maintenance, battle-tested
+- **Cons**: Less control, Stripe unavailable in India
+- **Decision**: Build custom (Razorpay/PayPal flexibility)
+
+**Alternative 2**: Automate payouts via cron job
+- **Pros**: Zero manual work
+- **Cons**: Fraud risk, no human oversight
+- **Decision**: Manual approval for MVP, automate later
+
+**Alternative 3**: Creator self-serve payout cancellation
+- **Pros**: Fewer admin actions
+- **Cons**: Complicates state machine (pending → cancelled vs rejected)
+- **Decision**: No cancellation for MVP (contact support to cancel)
+
+---
+
+## 6. SUCCESS METRICS
+
+**MVP Goals**:
+- Approve/reject payout in <2 minutes (admin time)
+- Zero fraudulent payouts processed
+- <5% rejection rate (indicates clear creator guidelines)
+
+**Post-MVP**:
+- Batch approval reduces time to <30 seconds for 10 payouts
+- Automated approval for trusted creators (>5 successful payouts)
+
+---
+
+## 7. RISKS & MITIGATIONS
+
+**Risk 1**: Admin accidentally approves fraudulent payout
+- **Mitigation**: Confirmation modal with amount/creator preview
+- **Mitigation**: Audit log for reversibility
+
+**Risk 2**: Creator disputes rejection
+- **Mitigation**: Rejection reason required (text field)
+- **Mitigation**: Email with next steps (how to fix and re-submit)
+
+**Risk 3**: Payout processing fails after approval
+- **Mitigation**: Status tracking (approved → processing → completed/failed)
+- **Mitigation**: Retry mechanism for failed payouts
+
+---
+
+## 8. OPEN QUESTIONS
+
+1. **Q**: Should admins see creator bank account details (sensitive)?
+   **A**: Show last 4 digits only, full details in modal (security)
+
+2. **Q**: What if creator requests payout before minimum threshold ($10)?
+   **A**: API validates minimum, block request before admin sees it
+
+3. **Q**: How to handle duplicate requests (creator submits twice)?
+   **A**: DB constraint on userId + status=pending (only 1 pending per user)
+
+---
+
+**Status**: RESEARCH COMPLETE
+**Next Step**: Create implementation plan (Gate 3)

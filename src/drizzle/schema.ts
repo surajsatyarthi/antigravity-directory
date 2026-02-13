@@ -458,6 +458,11 @@ export const payoutRequests = pgTable('payout_requests', {
   paymentMethod: text('payment_method').notNull(), // 'razorpay' | 'paypal'
   accountDetails: text('account_details').notNull(),
   status: text('status').notNull().default('pending'), // 'pending' | 'processing' | 'completed' | 'rejected'
+  
+  // Admin Action Tracking (ENTRY-019)
+  adminId: text('admin_id').references(() => users.id),
+  rejectionReason: text('rejection_reason'),
+
   requestedAt: timestamp('requested_at').notNull().defaultNow(),
   processedAt: timestamp('processed_at'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
@@ -466,6 +471,7 @@ export const payoutRequests = pgTable('payout_requests', {
   creatorIdIdx: index('payout_requests_creator_id_idx').on(table.creatorId),
   statusIdx: index('payout_requests_status_idx').on(table.status),
   requestedAtIdx: index('payout_requests_requested_at_idx').on(table.requestedAt),
+  adminIdIdx: index('payout_requests_admin_id_idx').on(table.adminId),
 }));
 
 export const creatorEarningsRelations = relations(creatorEarnings, ({ one }) => ({
