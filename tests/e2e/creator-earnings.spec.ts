@@ -1,15 +1,21 @@
 import { test, expect } from '@playwright/test';
-import { setupTestDatabase, cleanupTestDatabase } from './helpers/setup-test-db';
+import { setupTestDatabase, cleanupTestDatabase, setupLowEarningsDatabase, createAuthenticatedSession } from './helpers/setup-test-db';
 
 test.describe('Creator Earnings Dashboard', () => {
   let testUserId: string;
   let testResourceId: string;
 
-  test.beforeEach(async () => {
-    // Setup test database with creator and resource
+  test.beforeEach(async ({ context }) => {
+    // Setup test database with creator and purchases
     const setup = await setupTestDatabase();
     testUserId = setup.userId;
     testResourceId = setup.resourceId;
+    
+    // Create authenticated session for the creator
+    await createAuthenticatedSession(context, {
+      userId: testUserId,
+      userEmail: 'creator@test.com',
+    });
   });
 
   test.afterEach(async () => {
@@ -22,11 +28,11 @@ test.describe('Creator Earnings Dashboard', () => {
     
     await page.goto('/dashboard');
     
-    // Verify earnings section is visible
-    await expect(page.getByText('Your Earnings')).toBeVisible();
+    // Verify earnings section is visible using specific heading selector
+    await expect(page.getByRole('heading', { name: /your earnings/i, level: 2 })).toBeVisible();
     
     // Verify total earnings card
-    await expect(page.getByText('Total Earnings')).toBeVisible();
+    await expect(page.getByText('Total Earnings', { exact: true })).toBeVisible();
     
     // Verify commission breakdown
     await expect(page.getByText('First 2 sales (100%):')).toBeVisible();
@@ -42,32 +48,43 @@ test.describe('Creator Earnings Dashboard', () => {
     
     await page.goto('/dashboard');
     
-    // Verify sales history table  exists
-    await expect(page.getByText('Sales History')).toBeVisible();
+    // Verify sales history table exists (use heading to distinguish from table itself or other text)
+    await expect(page.getByRole('heading', { name: /sales history/i })).toBeVisible();
     
-    // Verify table headers
-    await expect(page.getByText('Resource')).toBeVisible();
-    await expect(page.getByText('Date')).toBeVisible();
-    await expect(page.getByText('Price')).toBeVisible();
-    await expect(page.getByText('Buyer')).toBeVisible();
-    await expect(page.getByText('Commission')).toBeVisible();
-    await expect(page.getByText('Your Earnings')).toBeVisible();
+    // Verify table headers (scoped to the table)
+    const table = page.locator('table');
+    await expect(table.getByRole('columnheader', { name: 'Resource' })).toBeVisible();
+    await expect(table.getByRole('columnheader', { name: 'Date' })).toBeVisible();
+    await expect(table.getByRole('columnheader', { name: 'Price' })).toBeVisible();
+    await expect(table.getByRole('columnheader', { name: 'Buyer' })).toBeVisible();
+    await expect(table.getByRole('columnheader', { name: 'Commission' })).toBeVisible();
+    await expect(table.getByRole('columnheader', { name: 'Your Earnings' })).toBeVisible();
     
     // Test pagination (if > 50 sales)
-    // await expect(page.getByText('Next')).toBeVisible();
-    // await page.getByText('Next').click();
-    // await expect(page.getByText('Page 2')).toBeVisible();
+    // await expect(page.getByRole('button', { name: 'Next' })).toBeVisible();
   });
 
-  test('payout button disabled when balance < $10', async ({ page }) => {
-    // Create purchase with earnings < $10
-    // TODO: Create test purchase with $5 earnings
+  test('payout button disabled when balance < $10', async ({ page, context }) => {
+   // Setup database with low earnings (< $10)
+    await cleanupTestDatabase();
+    const lowSetup = await setupLowEarningsDatabase();
+    
+    // Authenticate as creator
+    await createAuthenticatedSession(context, {
+      userId: lowSetup.userId,
+      userEmail: 'creator@test.com',
+    });
     
     await page.goto('/dashboard');
     
-    // Find and verify payout button is disabled
-    const payoutButton = page.getByRole('button', { name: /request payout|minimum \$10/i });
-    await expect(payoutButton).toBeDisabled({timeout: 10000});
+    // Wait for earnings section to load
+    await page.waitForTimeout(2000);
+    
+    // Verify disabled button state for low earnings
+    // Button text changes when disabled: "Minimum $10 required"
+    const disabledButton = page.getByRole('button', { name: /minimum \$10 required/i });
+    await expect(disabledButton).toBeVisible();
+    await expect(disabledButton).toBeDisabled();
   });
 
   test('payout request modal opens and validates input', async ({ page }) => {
@@ -84,16 +101,23 @@ test.describe('Creator Earnings Dashboard', () => {
     await expect(payoutButton).toBeEnabled({timeout: 10000});
     await payoutButton.click();
     
-    // Verify modal opens
-    await expect(page.getByText('Request Payout')).toBeVisible();
-    await expect(page.getByText('Payout Amount')).toBeVisible();
+    // Verify modal opens (use dialog role for scoping)
+    const modal = page.getByRole('dialog');
+    await expect(modal).toBeVisible();
+    await expect(modal.getByRole('heading', { name: /request payout/i })).toBeVisible();
+    await expect(modal.getByText('Payout Amount')).toBeVisible();
     
     // Test validation: try submitting without payment method
-    const submitButton = page.getByRole('button', { name: /submit request/i });
+    // Fill account details (required field) to bypass HTML5 validation
+    // so that the custom payment method validation (which shows toast) can run
+    await modal.getByPlaceholder(/enter your/i).fill('test-account-details');
+
+    const submitButton = modal.getByRole('button', { name: /submit request/i });
     await submitButton.click();
     
     // Should show error (toast or inline validation)
-    await expect(page.getByText(/select a payment method/i)).toBeVisible({timeout: 3000});
+    // Use .first() in case of multiple matches (e.g. aria-live region + visible toast)
+    await expect(page.getByText(/select a payment method/i).first()).toBeVisible({timeout: 5000});
   });
 
   test('payout request submits successfully', async ({ page }) => {
@@ -108,19 +132,26 @@ test.describe('Creator Earnings Dashboard', () => {
     await payoutButton.click();
     
     // Fill payout form
-    await page.getByRole('combobox').click();
-    await page.getByText('PayPal (International)').click();
-    await page.getByPlaceholder(/email/i).fill('creator@example.com');
+    const modal = page.getByRole('dialog');
+    // Select payment method - handle Select component specific behavior
+    // Open the select dropdown
+    await modal.locator('button[role="combobox"]').click();
+    // Click the option
+    await page.getByRole('option', { name: /paypal/i }).click();
+    
+    await modal.getByPlaceholder(/email/i).fill('creator@example.com');
+    // Add account details if needed for other methods, or verify validation
     
     // Submit
-    const submitButton = page.getByRole('button', { name: /submit request/i });
+    const submitButton = modal.getByRole('button', { name: /submit request/i });
     await submitButton.click();
     
     // Verify success message
-    await expect(page.getByText(/payout request submitted/i)).toBeVisible({timeout: 5000});
+    // Use .first() to handle potential duplicates (toast + aria-live)
+    await expect(page.getByText(/payout request submitted/i).first()).toBeVisible({timeout: 5000});
     
     // Verify modal closes
-    await expect(page.getByText('Request Payout')).not.toBeVisible({timeout: 3000});
+    await expect(modal).not.toBeVisible({timeout: 3000});
   });
 
   test('commission badges show correct percentages', async ({ page }) => {
@@ -130,8 +161,10 @@ test.describe('Creator Earnings Dashboard', () => {
     await page.goto('/dashboard');
     
     // Verify sales history table has commission badges
-    await expect(page.locator('[class*="badge"]').filter({ hasText: '100%' })).toBeVisible({timeout: 10000});
+    // Target the text "100%" inside the table
+    const table = page.locator('table');
+    await expect(table.getByText('100%').first()).toBeVisible({timeout: 10000});
     // For 80% sales:
-    // await expect(page.locator('[class*="badge"]').filter({ hasText: '80%' })).toBeVisible();
+    // await expect(table.getByText('80%').first()).toBeVisible();
   });
 });

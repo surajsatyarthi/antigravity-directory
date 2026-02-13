@@ -4,6 +4,7 @@ import "./globals.css";
 import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import { Providers } from "@/components/Providers";
+import { Toaster } from "@/components/ui/toaster";
 import { Suspense } from "react";
 
 const inter = Inter({
@@ -65,6 +66,11 @@ export const metadata: Metadata = {
   },
 };
 
+// ... (imports)
+import { Toaster as SonnerToaster } from "sonner";
+
+// ...
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -89,6 +95,8 @@ export default function RootLayout({
             {children}
           </div>
           <Footer />
+          <Toaster />
+          <SonnerToaster position="top-center" richColors />
         </Providers>
       </body>
     </html>

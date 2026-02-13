@@ -13,6 +13,17 @@ export { expect };
 
 export async function cleanupDatabase() {
   // Delete in order of dependencies (child first, then parent)
+  // Use try-catch for tables that might not exist in all envs yet
+  try {
+    const { payoutRequests } = await import('../../../src/drizzle/schema');
+    await db.delete(payoutRequests);
+  } catch (e) { /* ignore */ }
+  
+  try {
+    const { purchases } = await import('../../../src/drizzle/schema');
+    await db.delete(purchases);
+  } catch (e) { /* ignore */ }
+
   await db.delete(resourceTags);
   await db.delete(ratings);
   await db.delete(bookmarks);

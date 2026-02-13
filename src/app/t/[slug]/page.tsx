@@ -251,7 +251,7 @@ export default async function ResourceDetailPage({
       />
       <Header />
 
-      <main className="flex-1 container mx-auto px-4 py-12 max-w-4xl">
+      <main className="flex-1 container mx-auto px-4 py-12 pb-24 md:pb-12 max-w-4xl">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-sm text-gray-500 mb-12 font-mono">
           <Link href="/" className="hover:text-white transition-colors">home</Link>
@@ -303,6 +303,8 @@ export default async function ResourceDetailPage({
                 <div className="w-full flex justify-center">
                   <ClaimButton 
                     resourceId={resource.id}
+                    resourceName={resource.title}
+                    resourceUrl={resource.url || ""}
                     initialClaimed={!!resource.authorId}
                     initialClaimedBy={resource.authorId ? {
                       name: resource.authorName,

@@ -24,17 +24,20 @@ const checks = {
   researchAudit: {
     passed: false,
     file: `audit-gate-0-${taskId}.log`,
-    description: 'Research audit with 3+ web searches (Gate 2)'
+    description: 'Research audit with 3+ web searches (Gate 2)',
+    alternatives: [`docs/06-plans/audit-gate-0-${taskId}.log`]
   },
   implementationPlan: {
     passed: false,
     file: `implementation-plan-${taskId}.md`,
-    description: 'Implementation plan with alternatives (Gate 3)'
+    description: 'Implementation plan with alternatives (Gate 3)',
+    alternatives: [`docs/06-plans/implementation-plan-${taskId}.md`]
   },
   planApproved: {
     passed: false,
     file: `implementation-plan-${taskId}.md`,
-    description: 'Plan has CEO/PM approval signature'
+    description: 'Plan has CEO/PM approval signature',
+    alternatives: [`docs/06-plans/implementation-plan-${taskId}.md`]
   },
   previousTaskDocumented: {
     passed: true, // Default true, only check if previous task exists
@@ -43,21 +46,36 @@ const checks = {
   }
 };
 
+function findFile(check) {
+    if (fs.existsSync(check.file)) return check.file;
+    if (check.alternatives) {
+        for (const alt of check.alternatives) {
+            if (fs.existsSync(alt)) return alt;
+        }
+    }
+    return null;
+}
+
 // Check 1: Research audit exists
-if (fs.existsSync(checks.researchAudit.file)) {
-  const auditContent = fs.readFileSync(checks.researchAudit.file, 'utf8');
+const auditFile = findFile(checks.researchAudit);
+if (auditFile) {
+  checks.researchAudit.file = auditFile;
+  const auditContent = fs.readFileSync(auditFile, 'utf8');
   // Verify it contains web searches (look for URLs or "Search:")
   const hasWebSearches = auditContent.includes('http') || auditContent.includes('Search:');
   checks.researchAudit.passed = hasWebSearches;
 }
 
 // Check 2: Implementation plan exists
-checks.implementationPlan.passed = fs.existsSync(checks.implementationPlan.file);
+const planFile = findFile(checks.implementationPlan);
+checks.implementationPlan.passed = !!planFile;
+if (planFile) checks.implementationPlan.file = planFile;
 
 // Check 3: Plan has approval signature
 if (checks.implementationPlan.passed) {
   const plan = fs.readFileSync(checks.implementationPlan.file, 'utf8');
   checks.planApproved.passed = plan.includes('APPROVED') || plan.includes('✅ CEO APPROVAL');
+  checks.planApproved.file = checks.implementationPlan.file;
 }
 
 // Check 4: Previous task documented (Gate 8)
