@@ -1,15 +1,23 @@
 import { Resend } from 'resend';
 
-// Initialize Resend with API key from environment variables
-// Default to a mock if key is missing/invalid to prevent crashes in dev
-const resendApiKey = process.env.RESEND_API_KEY;
-const resend = resendApiKey && resendApiKey.startsWith('re_') 
-  ? new Resend(resendApiKey) 
-  : null;
+// Lazy initialization to ensure env vars are loaded
+let resend: Resend | null = null;
 
-// NOTE: Using onboarding@resend.dev until googleantigravity.directory DNS verification completes
-// TODO: Switch to 'Antigravity Directory <payouts@googleantigravity.directory>' after domain verification
-const FROM_EMAIL = 'Antigravity Directory <onboarding@resend.dev>';
+function getResendClient(): Resend | null {
+  if (resend) return resend;
+  
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey || !apiKey.startsWith('re_')) {
+    console.warn('⚠️  RESEND_API_KEY missing or invalid');
+    return null;
+  }
+  
+  resend = new Resend(apiKey);
+  return resend;
+}
+
+// Using verified domain: googleantigravity.directory
+const FROM_EMAIL = 'Antigravity Directory <payouts@googleantigravity.directory>';
 const SUPPORT_EMAIL = 'support@googleantigravity.directory';
 const DASHBOARD_URL = 'https://www.googleantigravity.directory/dashboard';
 
@@ -77,8 +85,9 @@ function getEmailTemplate(content: string): string {
  * Send an email notification when a payout is approved
  */
 export async function sendPayoutApprovedEmail(to: string, amountCents: number) {
+  const resend = getResendClient();
   if (!resend) {
-    console.warn('Resend API key missing or invalid. Skipping email send.');
+    console.warn('⚠️  Resend not configured. Skipping payout approved email.');
     return;
   }
 
@@ -163,8 +172,9 @@ export async function sendPayoutApprovedEmail(to: string, amountCents: number) {
  * Send an email notification when a payout is rejected
  */
 export async function sendPayoutRejectedEmail(to: string, amountCents: number, reason: string) {
+  const resend = getResendClient();
   if (!resend) {
-    console.warn('Resend API key missing or invalid. Skipping email send.');
+    console.warn('⚠️  Resend not configured. Skipping payout rejected email.');
     return;
   }
 
