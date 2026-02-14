@@ -1,0 +1,64 @@
+name: Sync Protocols to Downstream Repos
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/gate-enforcement.yml'
+      - 'scripts/gates/**'
+      - 'package.json.defaults'
+
+jobs:
+  sync-repos:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: 
+          - antigravity-directory
+          - bmn-site
+          - finance-tracker
+          - task_tracker
+          - c-suite-magazine
+    steps:
+      - name: Checkout Central Protocols
+        uses: actions/checkout@v4
+        with:
+          path: central
+
+      - name: Checkout Target Repo
+        uses: actions/checkout@v4
+        with:
+          repository: surajsatyarthi/${{ matrix.repo }}
+          token: ${{ secrets.GH_PAT_SYNC }}
+          path: target
+
+      - name: Copy Protocol Files
+        run: |
+          echo "🔄 Syncing protocols to ${{ matrix.repo }}..."
+          
+          # 1. Gate Enforcement Workflow
+          mkdir -p target/.github/workflows
+          cp central/.github/workflows/gate-enforcement.yml target/.github/workflows/
+          
+          # 2. Gate Scripts
+          mkdir -p target/scripts/gates
+          cp -r central/scripts/gates/* target/scripts/gates/
+          
+          # 3. Documentation (Optional)
+          mkdir -p target/docs/protocols
+          cp central/docs/protocols/* target/docs/protocols/ 2>/dev/null || true
+
+      - name: Commit and Push Changes
+        cd target
+        run: |
+          git config user.name "Protocol Sync Bot"
+          git config user.email "bot@antigravity.ai"
+          
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "chore(protocol): Auto-sync latest gates from ralph-protocols"
+            git push origin main
+            echo "✅ Pushed updates to ${{ matrix.repo }}"
+          else
+            echo "✨ No changes detected"
+          fi
