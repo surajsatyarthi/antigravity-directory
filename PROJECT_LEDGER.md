@@ -982,20 +982,102 @@ Status: DONE
 
 ---
 
-### [ENTRY-021] TASK | PENDING | 2026-02-14T01:47:00Z | Antigravity | -
-**Title**: Baseline Screenshot Capture (FAANG-ify Phase 1)
+### [ENTRY-021] TASK | URGENT | 2026-02-14T06:35:00Z | Antigravity | -
+**Title**: 🚨 PRODUCTION HOTFIX - GitHub OAuth & UI Transparency
+**Owner**: Antigravity (Coder)
+**Status**: ASSIGNED - CRITICAL P0
+**Estimated**: 30-60 minutes
+**Priority**: 🔴 IMMEDIATE (Production outage)
+
+**Incident**: INCIDENT-001 - GitHub OAuth completely broken in production
+**Root Cause**: Missing `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` in Vercel
+**Impact**: 100% of users unable to claim resources (core feature down)
+
+**Strategic Direction** (PM-provided):
+
+**Phase 1: Fix OAuth Configuration** (15 min)
+1. Create GitHub OAuth App:
+   - URL: https://github.com/settings/developers
+   - Application name: "Antigravity Directory"
+   - Homepage URL: `https://www.googleantigravity.directory`
+   - Callback URL: `https://www.googleantigravity.directory/api/auth/callback/github`
+2. Add credentials to `.env.local`:
+   ```
+   GITHUB_CLIENT_ID=<your_client_id>
+   GITHUB_CLIENT_SECRET=<your_client_secret>
+   ```
+3. Add to Vercel production:
+   ```bash
+   vercel env add GITHUB_CLIENT_ID production
+   vercel env add GITHUB_CLIENT_SECRET production
+   ```
+
+**Phase 2: Fix UI Transparency Issues** (10 min)
+1. Identify all UI transparency problems (screenshot first)
+2. Fix CSS/styling issues
+3. Test on Chrome, Firefox, Safari
+
+**Phase 3: Add Real OAuth Integration Test** (15 min)
+1. Create `tests/integration/oauth-real.spec.ts`
+2. Test GitHub button → verify redirect URL contains valid client_id
+3. **NO MOCKS** - must test actual OAuth configuration
+4. Should **FAIL** if `GITHUB_CLIENT_ID` is undefined
+
+**Phase 4: Create Environment Validation Script** (10 min)
+1. Create `scripts/validate-env-parity.ts`
+2. Compare `.env.local` vs Vercel environment variables
+3. List missing critical variables
+4. Add to deployment checklist
+
+**Phase 5: Deploy & Verify** (10 min)
+1. Deploy hotfix: `vercel --prod`
+2. Run production smoke test:
+   - [ ] Visit https://www.googleantigravity.directory
+   - [ ] Click "Claim this Resource" on any unclaimed resource
+   - [ ] Verify GitHub OAuth redirect (should have valid client_id)
+   - [ ] Complete claim flow end-to-end
+   - [ ] Verify UI transparency issues fixed
+3. Monitor production logs for 30 minutes
+4. Document results in INCIDENT-001
+
+**Acceptance Criteria**:
+- [x] GitHub OAuth app created
+- [ ] Credentials added to .env.local and Vercel
+- [ ] Production deployment successful
+- [ ] GitHub claim flow works end-to-end on production
+- [ ] UI transparency issues fixed
+- [ ] Real OAuth integration test added (no mocks)
+- [ ] Environment validation script created
+- [ ] Production smoke test passes
+- [ ] Zero errors in production logs (30 min)
+
+**Assignment Date**: 2026-02-14T06:35:00Z (IMMEDIATE)
+**Due Date**: 2026-02-14T07:30:00Z (60 min SLA)
+**Git Hash**: TBD
+**Evidence**:
+- Incident doc: `docs/08-incidents/INCIDENT-001-GITHUB-OAUTH-FAILURE.md`
+- Production URL verification
+- Smoke test results
+- Environment validation script
+
+**Related Documents**:
+- INCIDENT-001: `docs/08-incidents/INCIDENT-001-GITHUB-OAUTH-FAILURE.md`
+- Updated Gate 8 Checklist (PM will create)
+- Production Verification Playbook (PM will create)
+
+---
+
+### [ENTRY-030] TASK | DEFERRED | 2026-02-14T01:47:00Z | Antigravity | -
+**Title**: Baseline Screenshot Capture (FAANG-ify Phase 1) - DEFERRED
 **Owner**: Antigravity
-**Status**: PENDING_ASSIGNMENT
+**Status**: DEFERRED (superseded by ENTRY-021 hotfix)
 **Estimated**: 30 minutes
 
-**Deliverables**:
-1. tests/visual/baselines/ directory
-2. 5+ screenshots at different viewports
-3. scripts/capture-baselines.ts (Playwright)
-4. docs/testing/VISUAL_REGRESSION.md
+**Note**: This task was originally ENTRY-021 but was replaced by production hotfix.
+Will be rescheduled post-hotfix.
 
-**Assignment Date**: After ENTRY-020
-**Due Date**: Same day
+**Assignment Date**: After ENTRY-021 hotfix complete
+**Due Date**: TBD
 **Git Hash**: TBD
 **Evidence**: TBD
 
@@ -1269,7 +1351,8 @@ Notify CEO when starting work and when completed with git commit hash.
 - ✅ DONE: 14 (ENTRY-006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 019)
 - 🔄 DUPLICATE: 4 (ENTRY-002, 003, 004, 005 → absorbed into ENTRY-006)
 - ⏸️ ON_HOLD: 1 (ENTRY-018 - Legal compliance, post-launch)
-- 📋 PENDING: 9 (ENTRY-020 through 029)
+- 🚨 CRITICAL: 1 (ENTRY-021 - Production hotfix P0)
+- 📋 PENDING: 9 (ENTRY-020, 022-029, 030)
 - ❌ BLOCKED: 0
 
 **Phase Progress**:
@@ -1283,7 +1366,7 @@ Notify CEO when starting work and when completed with git commit hash.
 - Phase G (Post-Launch): 🔄 IN PROGRESS (ENTRY-019 done, 020-029 pending)
 
 **Overall MVP Progress**: 🎉 100% COMPLETE - 🚀 PRODUCTION LIVE!
-**Platform Status**: ✅ Beta testing ready (awaiting first 10 users)
+**Platform Status**: 🔴 PRODUCTION OUTAGE - ENTRY-021 hotfix in progress (GitHub OAuth broken)
 
 ---
 
