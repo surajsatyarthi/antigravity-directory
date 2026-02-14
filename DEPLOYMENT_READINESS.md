@@ -138,3 +138,21 @@
 **Timestamp**: 2026-02-14T10:35:00Z
 
 **Next Step**: Execute ENTRY-017 (Production Deployment)
+
+---
+
+## 📖 DEPLOYMENT GUIDE
+
+**Full deployment instructions**: [docs/07-launch/ENTRY-017_DEPLOYMENT_GUIDE.md](docs/07-launch/ENTRY-017_DEPLOYMENT_GUIDE.md)
+
+**Quick Start**:
+1. Verify pre-deployment checks (5 mins)
+2. Deploy to Vercel (10 mins)
+3. Configure production env vars (15 mins)
+4. Run database migrations (5 mins)
+5. Setup DNS & SSL (10 mins)
+6. Configure payment providers (15 mins)
+7. Run smoke tests (20 mins)
+8. Monitor logs (30 mins)
+
+**Total Time**: 2-3 hours
