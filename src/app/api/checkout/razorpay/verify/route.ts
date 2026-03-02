@@ -3,9 +3,10 @@ import { db } from '@/lib/db';
 import { payments, resources, users } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
 import crypto from 'crypto';
-
 import { checkRateLimit as rateLimit } from '@/lib/ratelimit';
 import { sendPaymentConfirmation } from '@/lib/email/templates';
+
+export const dynamic = 'force-dynamic';
 
 // Helper function to determine tier from amount (in cents/paise)
 function getTierFromAmount(amount: number): 'STANDARD' | 'FEATURED' {

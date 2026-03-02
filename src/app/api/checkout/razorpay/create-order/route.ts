@@ -3,8 +3,9 @@ import { createRazorpayOrder } from '@/lib/payment/razorpay';
 import { db } from '@/lib/db';
 import { payments } from '@/drizzle/schema';
 import { auth } from '@/auth';
-
 import { checkRateLimit as rateLimit } from '@/lib/ratelimit';
+
+export const dynamic = 'force-dynamic';
 
 interface CreateRazorpayOrderRequest {
   amount: number;
