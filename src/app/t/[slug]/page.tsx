@@ -253,12 +253,12 @@ export default async function ResourceDetailPage({
 
       <main className="flex-1 container mx-auto px-4 py-12 pb-24 md:pb-12 max-w-4xl">
         {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-sm text-gray-500 mb-12 font-mono">
-          <Link href="/" className="hover:text-white transition-colors">home</Link>
-          <span className="text-gray-800">/</span>
-          <Link href="/" className="hover:text-white transition-colors">explore</Link>
-          <span className="text-gray-800">/</span>
-          <span className="text-gray-300 truncate">{resource.title.toLowerCase()}</span>
+        <nav className="flex items-center gap-2 text-sm text-slate-400 mb-12 font-mono">
+          <Link href="/" className="hover:text-slate-900 transition-colors">home</Link>
+          <span className="text-slate-200">/</span>
+          <Link href="/" className="hover:text-slate-900 transition-colors">explore</Link>
+          <span className="text-slate-200">/</span>
+          <span className="text-slate-500 truncate">{resource.title.toLowerCase()}</span>
         </nav>
 
         <article className="border border-slate-200 rounded-3xl overflow-hidden bg-white shadow-sm">
@@ -326,7 +326,7 @@ export default async function ResourceDetailPage({
                 
                 <Link
                   href="/submit"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 font-bold rounded-xl border border-blue-500/10 transition-all text-xs uppercase tracking-widest"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-50 hover:bg-blue-100 text-blue-600 font-bold rounded-xl border border-blue-100 transition-all text-xs uppercase tracking-widest"
                 >
                   Promote Tool
                 </Link>

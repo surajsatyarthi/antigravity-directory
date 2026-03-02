@@ -38,25 +38,42 @@ export function BadgeGenerator({ slug, title }: BadgeGeneratorProps) {
 
       {/* Badge Preview */}
       <div className="flex justify-center mb-8">
-        <div className="w-[200px] h-[50px] relative rounded-lg overflow-hidden group shadow-md hover:scale-105 transition-transform cursor-pointer">
-          {/* Simulated Dynamic Badge Background */}
+        <div className="w-[200px] h-[58px] relative rounded-xl overflow-hidden group shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:scale-[1.02] transition-all cursor-pointer border border-slate-100">
+          {/* Subtle Glassmorphism / Gradient Background */}
           <div className="absolute inset-0 bg-white" />
-          <div className="absolute inset-[1px] rounded-[7px] border border-slate-200 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-slate-50 opacity-0 group-hover:opacity-100 transition-opacity" />
           
-          <div className="relative h-full flex items-center px-4 gap-3 bg-white">
-             <div className="shrink-0 flex items-center justify-center">
-                <svg width="14" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10 0L0 10H7L3 16L13 6H6L10 0Z" fill="black"/>
-                </svg>
+          <div className="relative h-full flex items-center px-4 gap-3.5">
+             {/* Dynamic Icon with Glow */}
+             <div className="shrink-0 relative">
+                <div className="absolute inset-0 bg-blue-500/20 blur-md rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative w-9 h-9 flex items-center justify-center bg-slate-900 rounded-lg shadow-lg group-hover:bg-blue-600 transition-colors">
+                  <Zap className="w-4.5 h-4.5 text-white fill-white/20" />
+                </div>
              </div>
              
              <div className="flex flex-col justify-center text-left">
-                <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">Featured on Antigravity</span>
-                <span className="text-[13px] font-bold text-slate-900 font-sans flex items-center gap-1.5">
-                   <span>👁 1.2k</span>
-                   <span className="text-slate-300">•</span>
-                   <span>★ 4.9</span>
-                </span>
+                <div className="flex items-center gap-1 mb-0.5">
+                  <span className="text-[8px] font-black text-slate-400 uppercase tracking-[0.15em] leading-none">Featured on</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[12px] font-black text-slate-900 tracking-tight flex items-center gap-1">
+                    Antigravity
+                    <svg viewBox="0 0 24 24" className="w-3 h-3 text-blue-500 fill-current" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 mt-1">
+                  <div className="flex items-center gap-1 text-[9px] font-bold text-slate-500">
+                    <span className="w-1 h-1 bg-slate-300 rounded-full" />
+                    <span>1.2k views</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-[9px] font-bold text-slate-500">
+                    <span className="w-1 h-1 bg-slate-300 rounded-full" />
+                    <span>4.9 ★</span>
+                  </div>
+                </div>
              </div>
           </div>
         </div>
