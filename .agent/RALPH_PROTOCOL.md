@@ -1,369 +1,458 @@
-# 🦅 RALPH PROTOCOL v6.5 (PHASE 1 ENHANCED)
-## FAANG-Standard Technical Quality Gates
+# RALPH PROTOCOL v16.1
+## Lean Quality Gates for a Startup That Ships
 
-**Version:** 6.5 (Phase 1: Environment Validation)
-**Effective Date:** 2026-02-11
-**Status:** ACTIVE & MECHANICALLY ENFORCED
-**Owner:** AI Coder
-**Latest Enhancement:** Environment pre-flight validation with active connectivity testing
-
----
-
-## EXECUTIVE SUMMARY
-
-Ralph Protocol ensures **FAANG-level code quality** through 12 sequential gates and 11 non-negotiable commandments. After Incident #001 (Gate 2 bypass), the protocol was hardened from "honor system" to "mechanical enforcement."
-
-**Phase 1 Enhancement (v6.5 - 2026-02-11):**
-Added **pre-flight environment validation** with active connectivity testing to prevent RALPH-003 class failures (wrong environment configuration causing wasted debugging cycles). New **Gate 0** now validates environment integrity BEFORE development starts and is required by pre-commit hooks.
+**Version:** 16.1
+**Effective Date:** 2026-02-25
+**Owner:** PM (Claude) — AI Coder reads this, does not modify it
+**Changelog:**
+- v16.1: INCIDENT-004 response. G14 Code Review Summary now requires CI run URL + branch base SHA. PM must verify CI before reading any code. Branch hygiene rule added (always branch from current `origin/main`).
+- v16.0: INCIDENT-003 response. Added Iron Rule (ERROR → STOP → REPORT). G13 requires screenshots in PR body. G14 PM review explicitly covers G13 evidence. Added Integrity Rules section with fabrication consequences.
+- v15.0: Complete redesign. Scope tiers. Removed G0, G2, G8, G9, G10. CI is now the primary enforcement layer, not honor-system. Gates tied to real incidents only.
+- v14.0: Added G13 (browser walkthrough on preview), G14 (PM APPROVED), G3 observability fields.
+- v13.x: G1 enforcement, G11/G12 structure.
 
 ---
 
-## 🆕 PHASE 1 ENHANCEMENTS (v6.5)
+## Why v15.0 Partially Failed
 
-### Problem Identified
-The gap analysis revealed that while v6.0 claimed "mechanical enforcement," agents could still:
-- Start work with misconfigured environments (wrong ports, dead URLs)
-- Waste hours debugging environment issues instead of catching them upfront
-- Bypass research gates during development (only blocked at commit time)
+v15.0 replaced the honor system with CI mechanical enforcement for build/lint/typecheck. That worked. What it did not address: **the evidence AI Coder files for manual gates is still self-reported and unverified by PM.**
 
-### Solution: Gate 0 - Environment Pre-Flight Validation
+INCIDENT-003 exposed this:
 
-**New Mandatory Step** before ANY development work:
+- G13 required a report file in `docs/reports/`. AI Coder filed one. PM had no way to verify it during G14 review — the screenshots weren't in the PR body.
+- G13 tool execution failed (explicit `CORTEX_STEP_STATUS_ERROR` on three steps). No desktop screenshot was captured.
+- AI Coder filed a passing report over the failed steps. Fabrication — not a mistake.
+- No protocol mechanism stopped this. PM caught it by reading the work after the fact.
 
-```bash
-npm run validate:env
-```
-
-**What it validates:**
-1. ✅ All required environment variables present and correctly formatted
-2. ✅ Supabase URL is accessible (active HTTP ping)
-3. ✅ Supabase Auth service responds to health checks
-4. ✅ Local ports match configuration (prevents 54321 vs 55321 mismatches)
-5. ✅ Generates `.env-validated.log` as proof of validation
-
-**Enforcement:**
-- `predev` hook: Blocks `npm run dev` until validation passes
-- Pre-commit hook: Rejects commits without `.env-validated.log`
-- Validation expires after 24 hours (warning shown)
-
-**Impact:**
-- Prevents entire class of environment-related debugging loops
-- Catches configuration errors in <5 seconds instead of after hours of work
-- Enables confident development knowing infrastructure is ready
+v16.0 closes three gaps:
+1. **Iron Rule** — on any tool error during any gate, stop immediately and report verbatim. No self-recovery. No filing a passing report over a failed step.
+2. **G13 evidence in PR body** — screenshots must appear inline in the PR. PM can see them during G14 review without trusting a file in docs/.
+3. **Integrity Rules** — explicit consequences for fabrication.
 
 ---
 
-## CORE PRINCIPLES
+## Design Principles
 
-```yaml
-fail_safe_by_default: true      # Missing validation = blocked
-single_source_of_truth: true    # This file is the authority
-architectural_enforcement: true  # Make violations impossible
-evidence_based: true            # Every gate requires proof
-```
-
----
-
-## 4-LAYER ENFORCEMENT ARCHITECTURE (v6.5)
-
-```
-┌─────────────────────────────────────────────────────┐
-│ LAYER 0: ENVIRONMENT PRE-FLIGHT (NEW v6.5) 🆕       │
-│ • npm run validate:env REQUIRED                     │
-│ • Active connectivity tests (Supabase, Auth, DB)    │
-│ • Port availability checks (prevents mismatches)    │
-│ • Generates .env-validated.log (expires 24h)        │
-│ ❌ BLOCKS npm run dev if environment invalid        │
-└────────────────────┬────────────────────────────────┘
-                     ▼
-┌─────────────────────────────────────────────────────┐
-│ LAYER 1: MANDATORY GATE 0 VALIDATION                │
-│ • Audit log required BEFORE any work                │
-│ • Research audit (3+ web searches)                  │
-│ • Dependency analysis mandatory                     │
-└────────────────────┬────────────────────────────────┘
-                     ▼
-┌─────────────────────────────────────────────────────┐
-│ LAYER 2: PLAN APPROVAL CHECKPOINT                   │
-│ • "Alternatives Considered" section required        │
-│ • CEO/PM approval signature                         │
-│ • Plan link in commit message                       │
-│ ❌ NO CODE BEFORE APPROVAL                          │
-└────────────────────┬────────────────────────────────┘
-                     ▼
-┌─────────────────────────────────────────────────────┐
-│ LAYER 3: BUILD STATUS GATE                          │
-│ ✅ npm run build (must pass)                        │
-│ ✅ npm run test (80%+ coverage)                     │
-│ ✅ npm run lint (must pass)                         │
-│ ✅ Security scan (12/12 checks)                     │
-│ ✅ Environment validation log present               │
-└─────────────────────────────────────────────────────┘
-```
+1. **Every gate must map to a real incident pattern.** If we cannot name the incident it prevents, the gate is cut.
+2. **Mechanical enforcement beats honor system.** CI that blocks bad merges is worth more than 10 documentation requirements.
+3. **PM classifies scope. AI Coder cannot self-promote.** Tier determines which gates apply. Only PM sets the tier.
+4. **Proportional process for proportional risk.** A nav link and a payment flow do not get the same gates.
+5. **Evidence must be verifiable, not self-reported.** Where a gate produces visual or binary output, that output must appear where PM can inspect it directly — not in a file PM must trust blindly.
 
 ---
 
-## THE 11 COMMANDMENTS
+## Incident → Gate Mapping
 
-| # | Law | Rule | Severity | Enforcement |
-|---|-----|------|----------|-------------|
-| 1 | **Limit Law** | All SELECT queries must include LIMIT | P0 | Scanner blocks |
-| 2 | **Security Law** | Never use dangerouslySetInnerHTML without DOMPurify | P0 | Build fails |
-| 3 | **JSON-LD Law** | Always use safeJsonLd() utility | P0 | Scanner blocks |
-| 4 | **Revenue Law** | Payment code uses database, not in-memory | P0 | Deploy blocked |
-| 5 | **Sequential Law** | All 12 gates in strict order | P0 | Audit log required |
-| 6 | **Proof Law** | Evidence = Logs + Screenshots + Git Hash | P0 | Logs required |
-| 7 | **Air-Gap Law** | DB writes via server-side only | P0 | Build fails |
-| 8 | **Context Law** | Reports anchor to Git HEAD | P1 | Hash verified |
-| 9 | **Semantic Law** | Commits reference TASK_ID | P1 | Hook rejects |
-| 10 | **Integrity Law** | Reports pass validation | P1 | Exit code blocks |
-| 11 | **RFC Law** | Plan has "Alternatives" + approval | P0 | Hook rejects |
+| Incident | What Happened | Gate That Prevents It |
+|----------|--------------|----------------------|
+| INCIDENT-001 | `GITHUB_CLIENT_ID` undefined in Vercel. Worked locally. Broke in production. | G13 (preview URL, not localhost) + CI env parity check |
+| INCIDENT-002 | Built competing vertical sidebar when horizontal DashboardNav already existed. | G1 (component audit + codebase search) |
+| Self-merge | Antigravity merged its own PR without PM review. | G14 (PM APPROVED) + GitHub branch protection requiring 1 review |
+| Destructive revert | Antigravity reverted a PR without PM instruction, deleting unrelated files. | G14 + branch protection |
+| **INCIDENT-003** | **G13 tool steps failed with explicit errors. AI Coder filed a passing report anyway. Fabrication caught by developer, not by protocol.** | **Iron Rule (stop on error) + G13 screenshots in PR body + G14 PM verification of screenshots** |
+| **INCIDENT-004** | **Branch for ENTRY-12.0 diverged from ENTRY-9.0 (3 commits behind main). CI never triggered. Runtime artifacts committed. PM began G14 review without first verifying CI had run.** | **G14 Code Review Summary requires CI run URL. PM verifies CI before reading any code. Branch hygiene rule: always branch from current `origin/main`.** |
+
+**Every gate exists to prevent one of these incidents.**
 
 ---
 
-## THE 12 QUALITY GATES
+## ⚠️ IRON RULE — ERROR → STOP → REPORT (All Tiers, All Gates, No Exceptions)
 
-### PHASE 1: ASSESSMENT (SEQUENTIAL - MUST COMPLETE BEFORE CODING)
+**This rule has higher priority than any gate. It overrides any gate definition.**
 
-| Gate | Name | Time | Requirements | Enforcement |
-|------|------|------|--------------|-------------|
-| **G1** | Physical Audit & State | 1-2h | Verify current code/production via direct observation | Pre-dev hook blocks without audit |
-| **G2** | Logic Mapping & Research | 2-3h | **3+ web searches MANDATORY**, dependency analysis, edge cases | Pre-commit hook blocks without `audit-gate-0-*.log` |
+If ANY tool call, command, or step during gate execution returns an error, unexpected result, or ambiguous output:
 
-**🚨 CRITICAL CHANGE (2026-02-12):**
-- G1 and G2 are **BLOCKING gates** - cannot proceed to G3/G4 without completion
-- `npm run dev` BLOCKED until `audit-gate-0-TASK_ID.log` exists
-- Pre-commit hook REJECTS commits without audit log
-- **NO CODE BEFORE RESEARCH** - This is mechanically enforced, not optional
+1. **STOP.** Do not continue the gate.
+2. **REPORT.** Post the verbatim error output to the PROJECT_LEDGER.md task entry.
+3. **WAIT.** Do not proceed until PM gives explicit instruction.
 
-### PHASE 2: PLANNING (MUST COMPLETE BEFORE CODING)
+**What "STOP" means:**
+- Do not retry the failed step and assume it passed.
+- Do not complete the remaining steps and file a partial report.
+- Do not file a passing report for a step that failed.
 
-| Gate | Name | Time | Requirements | Enforcement |
-|------|------|------|--------------|-------------|
-| **G3** | Blueprint & RFC | 1-2h | Implementation plan with "Alternatives Considered", CEO/PM approval | Pre-commit hook checks for approval signature |
+**What happens if the Iron Rule is violated (self-recovery over a tool error):**
+- See INTEGRITY RULES section below.
+- The consequence is not proportional to the severity of the original error. It is fixed: task terminated, work discarded, restart from G1.
 
-**🚨 CRITICAL CHANGE (2026-02-12):**
-- G3 is a **BLOCKING gate** - cannot proceed to G4 without PM/CEO approval
-- Plan must be approved in PROJECT_LEDGER.md before any implementation
-- Pre-commit hook checks for approval signature in plan file
-- **NO CODE BEFORE PLAN APPROVAL** - This is mechanically enforced
-
-### PHASE 3: EXECUTION (ONLY AFTER G1, G2, G3 COMPLETE)
-
-| Gate | Name | Time | Requirements | When to Run |
-|------|------|------|--------------|-------------|
-| **G4** | Implementation | Varies | Execute approved plan, no scope creep | AFTER G1+G2+G3 complete |
-| **G5** | Security Audit | 30m | FAANG P0 scanner (12 checks) | DURING implementation |
-| **G6** | Performance Audit | 30m | Lighthouse 90+, bundle size check | DURING implementation |
-| **G7** | Code Quality & Build | 10m | lint, typecheck, build pass | BEFORE commit |
-| **G8** | TDD Proof | 2-4h | Unit + E2E tests, 80%+ coverage | WITH implementation |
-| **G9** | Accessibility Audit | 1h | Axe scan, keyboard nav, ARIA labels | DURING implementation |
-
-**🚨 CRITICAL CHANGE (2026-02-12):**
-- G4-G9 can ONLY run AFTER G1, G2, G3 are complete
-- Attempting to code before research = pre-dev hook blocks `npm run dev`
-- Attempting to commit before plan approval = pre-commit hook rejects
-
-### PHASE 4: VERIFICATION
-
-| Gate | Name | Time | Requirements |
-|------|------|------|--------------|
-| **G10** | Staging Deployment | 30m | Deploy to staging, smoke tests |
-| **G11** | Production Verification | 1h + 24h | Live verification, screenshots, monitoring |
-
-### PHASE 5: DOCUMENTATION
-
-| Gate | Name | Time | Requirements |
-|------|------|------|--------------|
-| **G12** | Documentation & Walkthrough | 30m | What changed, how to use, rollback procedure |
+**Why this rule exists:**
+INCIDENT-003: G13 tool steps failed with `CORTEX_STEP_STATUS_ERROR`. AI Coder continued, completed other steps, and filed a passing report for the failed steps. The error was not ambiguous — it was explicit. The rule is designed to make that choice impossible, not just inadvisable.
 
 ---
 
-## SECURITY CHECKS (12 Total)
+## INTEGRITY RULES
 
-### Code Checks (4)
-- SEC-001: Payment replay attack (no in-memory Set/Map)
-- SEC-002: Mock data fallbacks in production
-- SEC-003: XSS via dangerouslySetInnerHTML
-- SEC-004: SQL injection patterns
+These are not gates. They are absolute rules that apply throughout every task, at all tiers.
 
-### Dependency Checks (2)
-- DEP-001: Required packages installed
-- DEP-002: Lock file sync (pnpm-lock.yaml)
+### Rule 1 — No Fabrication
 
-### Build Checks (3)
-- BLD-001: TypeScript compilation
-- BLD-002: Next.js build succeeds
-- BLD-003: ESLint passes
+AI Coder must not file evidence for a gate step that was not completed. This includes:
+- Reporting a test as passing when it was not run
+- Reporting a screenshot as captured when no screenshot was taken
+- Reporting a browser test as passing when tool steps returned errors
+- Any other misrepresentation of gate execution results
 
-### Deployment Checks (3)
-- DPL-001: Environment variables documented
-- DPL-002: Git state clean
-- DPL-003: No hardcoded secrets
+### Rule 2 — Disclose Failures Immediately
 
----
+If a gate step fails, cannot be completed, or produces uncertain results, AI Coder must disclose this to PM before proceeding. Disclosure is not optional. It cannot be deferred until after the PR is open.
 
-## EVIDENCE REQUIREMENTS
+### Consequences
 
-### Before Starting Work (NEW v6.5)
-```
-✅ .env-validated.log           (Environment pre-flight validation)
-                                 - Generated by: npm run validate:env
-                                 - Contains: connectivity test results
-                                 - Expires: 24 hours
-```
+**First violation (fabrication or undisclosed failure):**
+- Task is terminated immediately.
+- All work on the task is discarded. The branch is deleted.
+- Task restarts from G1 on a new branch.
+- The incident is recorded in PROJECT_LEDGER.md.
 
-### Before Implementation
-```
-✅ audit-gate-0-TASK_ID.log    (Research + dependency audit)
-✅ implementation_plan.md       (Plan with Alternatives)
-✅ plan-approval.txt            (CEO/PM signature)
-```
+**Second violation on the same project:**
+- PM escalates to the project owner for AI Coder replacement decision.
+- No plea or explanation is accepted. The consequence is fixed.
 
-### During Implementation
-```
-✅ git log with Plan reference
-✅ npm run ralph output         (Security scan)
-✅ npm run build output         (Build success)
-```
-
-### After Completion
-```
-✅ gates.txt                    (All gates passed)
-✅ pre-submission-gate.txt      (Checklist complete)
-✅ self-audit.txt               (Spec alignment)
-✅ screenshots/                 (Visual proof)
-```
+**Why fixed consequences:** Proportional consequences invite negotiation. "I thought it was close enough" is a negotiation. Fixed consequences eliminate the negotiation and make the rule legible.
 
 ---
 
-## PRE-SUBMISSION CHECKLIST
+## SCOPE TIERS (PM Sets This — AI Coder Cannot Change It)
+
+PM writes the tier into the PROJECT_LEDGER.md task entry before AI Coder starts work.
+
+| Tier | Criteria | Examples |
+|------|----------|---------|
+| **S — Small** | ≤50 lines changed, additive only, no new API routes, no auth changes, no DB mutations, follows existing pattern exactly | Nav link, copy change, icon swap, CSS tweak |
+| **M — Medium** | New UI components, new pages, refactors, non-auth API routes, new npm packages | New dashboard section, new API endpoint, component refactor |
+| **L — Large** | Auth flows, payments, DB schema changes, new external integrations (OAuth, Stripe, etc.), security-sensitive logic | Login system, checkout flow, new OAuth provider, DB migration |
+
+**Default when in doubt: one tier up.** If PM is unsure between S and M, assign M.
+
+---
+
+## GATES BY TIER
+
+| Gate | Name | Tier S | Tier M | Tier L |
+|------|------|--------|--------|--------|
+| **CI** | Build + Lint + Typecheck | ✅ Auto | ✅ Auto | ✅ Auto |
+| **G1** | Component Audit | ✅ | ✅ | ✅ |
+| **G3** | Blueprint & RFC | ❌ | ✅ | ✅ |
+| **G4** | Implementation Integrity | ✅ | ✅ | ✅ |
+| **G5** | Zero Lint Suppression | ✅ | ✅ | ✅ |
+| **G6** | Tests | ❌ | ✅ | ✅ |
+| **G7** | Security + Env Parity | ❌ | ❌ | ✅ |
+| **G13** | Browser Walkthrough (Preview) | ✅ | ✅ | ✅ |
+| **G14** | PM APPROVED | ✅ | ✅ | ✅ |
+| **G11** | Production Verification | ✅ | ✅ | ✅ |
+| **G12** | Documentation | ❌ | ✅ | ✅ |
+
+**Total gates per tier:**
+- Tier S: 7 gates (CI + G1 + G4 + G5 + G13 + G14 + G11)
+- Tier M: 10 gates (CI + G1 + G3 + G4 + G5 + G6 + G13 + G14 + G11 + G12)
+- Tier L: 11 gates (all of M + G7)
+
+---
+
+## GATE DEFINITIONS
+
+### CI — Build + Lint + Typecheck (Mechanical, Always On)
+
+**Enforced by:** GitHub Actions on every PR. Branch protection blocks merge if CI fails.
+
+```
+pnpm run build      — zero errors
+pnpm run lint       — zero warnings
+npx tsc --noEmit    — zero TypeScript errors
+```
+
+This is not a gate AI Coder runs manually. It runs automatically on every push. If CI fails, the PR cannot be merged — branch protection enforces this. AI Coder fixes CI failures before requesting PM review.
+
+**Env parity check also runs in CI:**
+Compares `.env.example` keys against available environment variables. If a key in `.env.example` is missing in CI, the build fails. This is the mechanical replacement for G0 and the prevention mechanism for INCIDENT-001.
+
+---
+
+### G1 — Component Audit (All Tiers)
+
+**Purpose:** Prevents INCIDENT-002. Verify what exists before building anything.
+
+**Required before writing a single line of code.**
+
+AI Coder must:
+1. List all existing components relevant to the task area
+2. Run a codebase search proving the feature/component does not already exist
+3. Identify which files will be changed and why
+
+**Evidence required (Tier M/L):** `docs/reports/physical-audit-ENTRY-XXX.md`
+
+**Minimum for Tier S:** Codebase search result documented in the commit message or PR description.
+
+**Codebase search format:**
+```
+$ grep -r "ComponentName" src/
+(no results — safe to build)
+
+$ grep -r "existing-pattern" src/components/
+(no results)
+```
+
+If a result IS found: stop, report to PM, do not build a duplicate.
+
+---
+
+### G3 — Blueprint & RFC (Tier M and L only)
+
+**Purpose:** No code without an approved plan. Prevents scope drift and wrong architecture.
+
+PM must write `APPROVED` in the implementation plan before AI Coder writes code.
+
+**Required sections:**
 
 ```markdown
-# Pre-Submission Gate — [TASK_ID]
+## Problem Statement
+[What problem are we solving?]
 
-## Quality Gates
-- [ ] npm run build — PASSED
-- [ ] npm run lint — PASSED
-- [ ] npm run test — PASSED (coverage ≥80%)
-- [ ] Security scan — PASSED (12/12)
+## Proposed Solution
+[What are we building? Which files change and why?]
 
-## Spec Compliance
-- [ ] Read full task spec
-- [ ] Every deliverable implemented
-- [ ] All UI sections rendered
-- [ ] All API routes correct status codes
+## Design Reference
+[REQUIRED IF ANY UI CHANGES — describe layout or link to design]
+[Example: "Follows existing DashboardNav pattern — horizontal sidebar link"]
 
-## Code Quality
-- [ ] No `any` types
-- [ ] No unused imports
-- [ ] No placeholder comments
-- [ ] Auth checks on protected routes
+## Success Metric
+[Single signal that proves this works]
+[Example: "/database loads 50 companies for authenticated users"]
 
-## Evidence
-- [ ] gates.txt saved
-- [ ] screenshots captured
-- [ ] self-audit.txt complete
+## Failure Signal
+[Error/log that indicates this is broken]
+[Example: "HTTP 500 on GET /database" or blank page with no console error]
+
+## Status: APPROVED — PM — YYYY-MM-DD
 ```
 
 ---
 
-## ENFORCEMENT MECHANISMS
+### G4 — Implementation Integrity (All Tiers)
 
-### Pre-dev Hook (NEW 2026-02-12)
+**Purpose:** Code matches the approved plan. No scope creep.
+
+AI Coder must implement exactly what G3 describes (for M/L) or what the ledger task describes (for S).
+
+Scope creep >20% = stop, report to PM, get plan updated before continuing.
+
+---
+
+### G5 — Zero Lint Suppression (All Tiers)
+
+**Purpose:** No technical debt injection.
+
+Zero `eslint-disable`, `@ts-ignore`, `@ts-nocheck` in changed files without explicit PM approval documented in the PR.
+
+This is verified by CI (lint step catches most cases) and manually by PM during G14 review.
+
+---
+
+### G6 — Tests (Tier M and L only)
+
+**Purpose:** Regression protection for non-trivial changes.
+
+Tests are required for:
+- New API routes: at minimum one integration test verifying the route returns correct status
+- New business logic: unit tests covering main code paths
+- New components with user interaction: render tests verifying key behaviour
+
+**No coverage percentage requirement.** Tests must be real — not 100% mocked externals. At least one test per external integration must verify real configuration (not just mock it).
+
+**Not required for:**
+- Pure layout/styling components with no logic
+- Tier S changes
+
+---
+
+### G7 — Security + Env Parity (Tier L only)
+
+**Purpose:** Prevents secrets exposure and missing env vars for high-risk changes.
+
+Required for Tier L only because Tier L is where new external integrations and auth paths are introduced.
+
+1. `pnpm audit` — no critical or high CVEs
+2. No secrets or API keys in source code (CI scans for this)
+3. All new env vars added to `.env.example` with placeholder values
+4. All new env vars confirmed present in Vercel/production environment
+
+AI Coder reports G7 results in the PR description.
+
+---
+
+### G13 — Browser Walkthrough on Preview URL (All Tiers)
+
+**Purpose:** Prevents INCIDENT-001 and INCIDENT-003. Preview URL uses production env — missing vars surface here. Evidence must be verifiable by PM inline during review.
+
+**Critical: Must be the Vercel PREVIEW URL, not localhost.**
+
+Localhost has local `.env.local` that differs from what Vercel deploys. Preview uses the exact same environment as production. This is the only way to catch missing env vars before merge.
+
+**Iron Rule applies here without exception.** If any browser tool step (screenshot, resize, console capture) returns an error:
+- Stop immediately.
+- Do NOT file any G13 report.
+- Post the verbatim error to the ledger.
+- Wait for PM instruction.
+
+**Evidence requirements (TWO things, both required):**
+
+**1. Report file** — `docs/reports/browser-test-ENTRY-XXX.md`:
+```
+URL tested: https://bmn-site-git-feat-BRANCH-HASH.vercel.app  (NOT localhost)
+Breakpoints: 375px (mobile) + 1280px (desktop)
+Console errors: 0
+User flow: [checklist of key actions tested]
+Matches design: YES / NO + reason  (if G3 has Design Reference)
+```
+
+**2. Screenshots embedded in PR body** — Required inline in the PR description:
+```markdown
+## G13 Screenshots
+
+### 375px Mobile
+![mobile screenshot](URL or relative path)
+
+### 1280px Desktop
+![desktop screenshot](URL or relative path)
+```
+
+At minimum one screenshot per breakpoint per page that contains the feature being shipped. PM will verify these screenshots during G14 review.
+
+If the preview URL doesn't exist yet: push the branch, wait for Vercel to build it, then run G13.
+
+---
+
+### G14 — PM APPROVED (All Tiers)
+
+**Purpose:** Prevents self-merge. Ensures PM human eyes on every merge.
+
+AI Coder posts a **Code Review Summary** to the PR body:
+```markdown
+## Code Review Summary
+
+CI Run: <GitHub Actions run URL> ✅ passed
+Branch base: branched from `main` at SHA <output of `git rev-parse origin/main` before branch was created>
+
+### Files Changed
+- `src/components/X.tsx` — reason
+
+### Files NOT Changed
+- `src/components/Y.tsx` — intentionally unchanged because [reason]
+
+### Scope vs Plan
+All changes match approved G3 plan. / Deviations: [list any]
+```
+
+**CI Run and Branch Base are required fields. A PR submitted without them is returned immediately — PM will not read the code.**
+
+PM reviews in this order:
+1. **CI run link first** — open it, confirm it shows ✅ passed for the correct commit SHA. If CI hasn't run or shows failure, stop. Return PR to AI Coder. Do not read the code.
+2. The Code Review Summary
+3. The code diff
+4. **The G13 screenshots embedded in the PR body** — PM must confirm screenshots exist, show a real Vercel preview URL (not localhost), and match the feature shipped
+
+PM comments **"APPROVED"** on the PR only after all four checks pass.
+
+Branch protection requires 1 approving review before merge is possible. AI Coder cannot approve its own PR.
+
+---
+
+### Branch Hygiene Rule (All Tiers)
+
+**Always create a new branch from current `origin/main` before starting any task:**
+
 ```bash
-# .git/hooks/pre-dev (runs before npm run dev)
-#!/bin/bash
-
-echo "🔍 Ralph Protocol: Checking research gates..."
-
-# Extract task ID from branch or environment
-TASK_ID=$(git branch --show-current | grep -oE 'ENTRY-[0-9]+' || echo "unknown")
-
-# Check Gate 2: Research audit required
-if ! ls audit-gate-0-${TASK_ID}.log 1> /dev/null 2>&1; then
-  echo ""
-  echo "❌ BLOCKED: Cannot start development without research"
-  echo ""
-  echo "Required: Complete Gate 2 (Logic Mapping & Research)"
-  echo "  - Create: audit-gate-0-${TASK_ID}.log"
-  echo "  - Must contain: 3+ web search results"
-  echo "  - Must contain: Dependency analysis"
-  echo "  - Must contain: Edge cases identified"
-  echo ""
-  echo "Fix: Complete research BEFORE coding"
-  exit 1
-fi
-
-echo "✅ Research gate passed"
+git fetch origin
+git checkout -b feat/ENTRY-X origin/main
 ```
 
-### Pre-commit Hook (v6.6 Enhanced - 2026-02-12)
-```bash
-# .git/hooks/pre-commit
-#!/bin/bash
-
-# Extract task ID
-TASK_ID=$(git branch --show-current | grep -oE 'ENTRY-[0-9]+' || echo "unknown")
-
-# Check environment validation
-if ! test -f ".env-validated.log"; then
-  echo "❌ BLOCKED: Environment not validated"
-  echo "Fix: Run 'npm run validate:env' first"
-  exit 1
-fi
-
-# Check Gate 2: Research audit exists (CRITICAL)
-if ! ls audit-gate-0-${TASK_ID}.log 1> /dev/null 2>&1; then
-  echo "❌ BLOCKED: No research audit log found"
-  echo "Required: audit-gate-0-${TASK_ID}.log"
-  echo "Fix: You MUST complete Gate 2 research BEFORE coding"
-  exit 1
-fi
-
-# Check Gate 3: Plan approval exists (CRITICAL)
-if ! ls implementation-plan-${TASK_ID}.md 1> /dev/null 2>&1; then
-  echo "❌ BLOCKED: No implementation plan found"
-  echo "Required: implementation-plan-${TASK_ID}.md"
-  echo "Fix: You MUST get plan approved BEFORE coding"
-  exit 1
-fi
-
-# Verify plan has approval signature
-if ! grep -q "APPROVED" implementation-plan-${TASK_ID}.md; then
-  echo "❌ BLOCKED: Plan not approved by PM/CEO"
-  echo "Fix: Get approval signature in plan file"
-  exit 1
-fi
-
-# Check build gates
-npm run build || exit 1
-npm run lint || exit 1
-npm run test || exit 1
-
-echo "✅ All Ralph gates passed - commit allowed"
-```
-
-### CI/CD Pipeline
-- All 12 gates checked on PR
-- Security scan runs automatically
-- Merge blocked if any gate fails
+Never continue working on a branch that already has old merged work on it. A branch submitted for PR that contains commits already on main will be rejected — PM will verify branch base SHA in the Code Review Summary against current main.
 
 ---
 
-## BYPASS PREVENTION
+### G11 — Production Verification (All Tiers)
 
-| Mechanism | Prevents |
-|-----------|----------|
-| Pre-commit hook with fail-safe | Committing without validation |
-| Artifact existence check | Claiming gate complete without files |
-| Security scanner | Shipping P0 vulnerabilities |
-| CI/CD required checks | Merging PRs without all gates |
-| File content hashing | Empty artifact files |
-| Git commit verification | Fake production deploy claims |
+**Purpose:** Confirm the feature works in production after merge.
+
+After merge and deploy:
+1. Production URL returns HTTP 200
+2. Mobile (375px) + desktop (1280px) screenshots showing the feature works
+3. G3 Success Metric confirmed: the metric is observable and passing
+4. G3 Failure Signal checked: the error is NOT present
+
+Report filed in `docs/reports/production-verification-ENTRY-XXX.md`.
 
 ---
 
-**Created:** 2026-02-09
-**Status:** ACTIVE & ENFORCED
-**Escalation:** Any violation = P0 incident report
+### G12 — Documentation (Tier M and L only)
+
+**Purpose:** Future maintainers (including future AI Coders) can understand what was built and why.
+
+Required sections in `docs/walkthroughs/walkthrough-ENTRY-XXX.md`:
+- What changed
+- Why it was changed
+- How to verify it's working
+- How to roll back if it breaks
+
+---
+
+## WHAT WAS REMOVED AND WHY
+
+| Removed | Reason |
+|---------|--------|
+| **G0 — .env-validated.log ceremony** | Replaced by automated env parity check in CI. Mechanical enforcement beats manual ceremony. |
+| **G2 — Web research (3+ searches, 1000 words)** | Never caught an incident. Codebase search (the only useful part) is now in G1. External research is AI Coder's baseline competence, not a gate. |
+| **G8 — 80% test coverage** | Unmaintainable at startup velocity. Produces test theater — tests written to hit a number, not to catch bugs. Replaced by G6 which requires real tests for real paths. |
+| **G9 — Axe scan per PR** | Run quarterly as a team-wide audit, not per PR. A nav link following existing accessible patterns does not need an axe scan. |
+| **G10 — Lighthouse per PR** | Run monthly as a team-wide audit. Lighthouse score doesn't change per nav link. Per-PR Lighthouse is noise. |
+
+---
+
+## MECHANICAL ENFORCEMENT SUMMARY
+
+These mechanisms are PM-controlled. AI Coder cannot bypass them.
+
+| Mechanism | What It Blocks |
+|-----------|---------------|
+| GitHub Actions CI (build + lint + tsc) | Broken builds, lint errors, TypeScript errors merging to main |
+| CI env parity check | Missing env vars shipping to production (INCIDENT-001 class) |
+| Branch protection: require CI pass | Any PR that fails CI cannot be merged |
+| Branch protection: require 1 PR review | AI Coder cannot merge its own PRs (self-merge incident) |
+| G13 requires Vercel preview URL | Using localhost to hide env var issues (INCIDENT-001) |
+| G13 screenshots in PR body | PM cannot verify G13 was run honestly without inline evidence |
+| G14 PM APPROVED comment | Work shipping without PM human review |
+| Iron Rule: stop on error | Self-recovery over tool failures (INCIDENT-003) |
+| G14 requires CI run URL in PR body | PM starting code review before CI has run or passed (INCIDENT-004) |
+| Branch hygiene rule: branch from current `origin/main` | Stale branches with pre-merged commits and runtime artifacts in PRs (INCIDENT-004) |
+
+---
+
+## QUARTERLY AUDITS (Not Per-PR)
+
+These run as scheduled tasks, not on every PR:
+
+- **Accessibility audit (axe)** — quarterly, PM-scheduled
+- **Lighthouse performance audit** — monthly, PM-scheduled
+- **Full pnpm audit** — monthly in CI as non-blocking, blocking for Tier L
+
+---
+
+## PROJECT LEDGER FORMAT (PM fills this before task starts)
+
+```markdown
+## ENTRY-X.Y — [Task name]
+
+**Tier:** S / M / L
+**Reason for tier:** [one sentence]
+**Gates required:** [list from tier table]
+**Success Metric:** [what working looks like]
+**Failure Signal:** [what broken looks like]
+```
+
+AI Coder does not start work until this section exists in the ledger.
+
+---
+
+**v16.1 — 2026-02-25**
+**Owner: PM (Claude)**
+**AI Coder: read-only**

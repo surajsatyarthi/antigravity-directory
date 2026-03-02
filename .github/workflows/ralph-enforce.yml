@@ -1,52 +1,108 @@
-name: 🦅 Ralph Protocol Enforcer v4.1
+name: Ralph Protocol v16.1 — CI Enforcement
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
   push:
-    branches: [ "main" ]
-  workflow_dispatch:
+    branches: [main]
 
 jobs:
-  ralph-compliance:
-    name: 🛡️ Ralph Protocol Compliance
+  ci:
+    name: Build + Lint + Typecheck
     runs-on: ubuntu-latest
-    
+
+    env:
+      # Placeholder values for CI build — real values live in Vercel only.
+      # Every key here must also exist in .env.example (env parity rule).
+      # If a key is in .env.example but missing here, the parity check fails.
+      # This is the mechanical fix for INCIDENT-001 (missing env var in production).
+      DATABASE_URL: "postgresql://test:test@localhost:5432/test"
+      AUTH_SECRET: "ci-placeholder-secret-must-be-32-chars-long"
+      NEXTAUTH_URL: "http://localhost:3000"
+      GOOGLE_CLIENT_ID: "ci-placeholder-google-client-id"
+      GOOGLE_CLIENT_SECRET: "ci-placeholder-google-client-secret"
+      GITHUB_CLIENT_ID: "ci-placeholder-github-client-id"
+      GITHUB_CLIENT_SECRET: "ci-placeholder-github-client-secret"
+      GITHUB_TOKEN: "ci-placeholder-github-token"
+      NEXT_PUBLIC_RAZORPAY_KEY_ID: "rzp_test_placeholder"
+      RAZORPAY_KEY_SECRET: "ci-placeholder-razorpay-secret"
+      RAZORPAY_WEBHOOK_SECRET: "ci-placeholder-razorpay-webhook"
+      NEXT_PUBLIC_PAYPAL_CLIENT_ID: "ci-placeholder-paypal-client-id"
+      PAYPAL_CLIENT_SECRET: "ci-placeholder-paypal-secret"
+      PAYPAL_MODE: "sandbox"
+      GOOGLE_GENERATIVE_AI_API_KEY: "ci-placeholder-gemini-key"
+      RESEND_API_KEY: "re_placeholder"
+      UPSTASH_REDIS_REST_URL: "https://placeholder.upstash.io"
+      UPSTASH_REDIS_REST_TOKEN: "ci-placeholder-upstash-token"
+      NEXT_PUBLIC_GA_ID: "G-PLACEHOLDER"
+      SENTRY_DSN: "https://placeholder@sentry.io/0"
+      NEXT_PUBLIC_SENTRY_DSN: "https://placeholder@sentry.io/0"
+      SENTRY_AUTH_TOKEN: "ci-placeholder-sentry-token"
+      NEXT_PUBLIC_SITE_URL: "http://localhost:3000"
+
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
           version: 9
-          
-      - name: Use Node.js 20
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
-          
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-        
-      - name: 🦅 Gate 6: Proof Validation
-        run: |
-          if [ -f "scripts/validate-proof.sh" ]; then
-            chmod +x scripts/validate-proof.sh
-            ./scripts/validate-proof.sh
-          else
-            echo "Proof validation script not found, skipping..."
-          fi
-        env:
-          CI: true
+          cache: pnpm
 
-      - name: 🦅 Gate 1: Static Analysis (Lint)
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # ENV PARITY CHECK
+      # Every key in .env.example must be present in this CI job's env block above.
+      # A missing key here means: it works locally (you have .env.local) but breaks
+      # in Vercel (env var was never added). This is the mechanical fix for INCIDENT-001.
+      - name: Env parity check
+        run: |
+          echo "Checking .env.example keys against CI environment..."
+          MISSING=0
+          while IFS= read -r line; do
+            [[ "$line" =~ ^#.*$ || -z "$line" ]] && continue
+            KEY=$(echo "$line" | cut -d= -f1 | tr -d ' ')
+            [[ -z "$KEY" ]] && continue
+            if [[ -z "${!KEY+x}" ]]; then
+              echo "MISSING: $KEY is in .env.example but not set in CI env block"
+              MISSING=$((MISSING + 1))
+            fi
+          done < .env.example
+          if [ $MISSING -gt 0 ]; then
+            echo ""
+            echo "FAIL: $MISSING env var(s) in .env.example have no CI placeholder."
+            echo "Fix: add them to the 'env:' block in .github/workflows/ralph-enforce.yml"
+            exit 1
+          fi
+          echo "OK: All .env.example keys present in CI."
+
+      - name: Lint
         run: pnpm lint
 
-      - name: 🦅 Gate 7: Build Verification (Type Safety)
+      - name: Typecheck
+        run: pnpm tsc --noEmit
+
+      - name: Build
+        run: pnpm build
+
+      # SECRETS SCAN — catch hardcoded live credentials before they reach main
+      - name: Secrets scan
         run: |
-          pnpm tsc --noEmit
-          pnpm build
-        
-      - name: 🦅 Gate 7: Automated Tests
-        run: pnpm test
+          FOUND=0
+          if grep -r "sk_live_\|pk_live_" src/ --include="*.ts" --include="*.tsx" -l 2>/dev/null; then
+            echo "FAIL: Live Stripe key in source"
+            FOUND=$((FOUND + 1))
+          fi
+          if grep -r "rzp_live_" src/ --include="*.ts" --include="*.tsx" -l 2>/dev/null; then
+            echo "FAIL: Live Razorpay key in source"
+            FOUND=$((FOUND + 1))
+          fi
+          [ $FOUND -gt 0 ] && exit 1
+          echo "OK: No hardcoded secrets found."
