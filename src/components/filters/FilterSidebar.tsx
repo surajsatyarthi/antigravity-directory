@@ -83,20 +83,20 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
       role="complementary"
       aria-label="Filters"
     >
-      <div className="bg-[#050505] border border-white/[0.05] rounded-lg p-4 transition-all">
-        <h2 id="filters-heading" className="text-xs font-black text-white/80 mb-6 tracking-[0.3em] uppercase">Filters</h2>
+      <div className="bg-white border border-slate-200 rounded-lg p-4 transition-all shadow-sm">
+        <h2 id="filters-heading" className="text-xs font-black text-slate-900 mb-6 tracking-[0.3em] uppercase">Filters</h2>
         
         {/* Pricing Section */}
         <div className="mb-8">
           <button
             onClick={() => toggleSection('pricing')}
-            className="flex items-center justify-between w-full text-left mb-3 text-white hover:text-blue-400 font-bold transition-colors focus:outline-none rounded-lg group"
+            className="flex items-center justify-between w-full text-left mb-3 text-slate-900 hover:text-blue-600 font-bold transition-colors focus:outline-none rounded-lg group"
           >
-            <span className="text-[11px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Pricing</span>
+            <span className="text-[11px] uppercase tracking-[0.2em] text-slate-500 group-hover:text-blue-600">Pricing</span>
             {expandedSections.pricing ? (
-              <ChevronDown className="w-4 h-4 text-gray-500" />
+              <ChevronDown className="w-4 h-4 text-slate-400" />
             ) : (
-              <ChevronRight className="w-4 h-4 text-gray-500" />
+              <ChevronRight className="w-4 h-4 text-slate-400" />
             )}
           </button>
 
@@ -111,7 +111,7 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
               return (
                 <label
                   key={option.id}
-                  className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-white cursor-pointer transition-colors group/label"
+                  className="flex items-center gap-2.5 text-sm text-slate-500 hover:text-slate-900 cursor-pointer transition-colors group/label"
                 >
                   <div className="relative flex items-center">
                     <input
@@ -128,13 +128,13 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
                         
                         router.push(`${pathname}?${params.toString()}`);
                       }}
-                      className="peer w-4 h-4 rounded border-gray-900 bg-gray-950 text-blue-600 focus:ring-1 focus:ring-blue-500/50 focus:ring-offset-1 focus:ring-offset-black transition-all appearance-none border checked:bg-blue-600 checked:border-blue-500"
+                      className="peer w-4 h-4 rounded border-slate-300 bg-white text-blue-600 focus:ring-1 focus:ring-blue-500/50 focus:ring-offset-1 focus:ring-offset-white transition-all appearance-none border checked:bg-blue-600 checked:border-blue-600"
                     />
                     <svg className="absolute w-2.5 h-2.5 text-white opacity-0 peer-checked:opacity-100 pointer-events-none left-0.5 top-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                   </div>
-                  <span className="group-hover/label:text-blue-400 transition-colors">{option.label}</span>
+                  <span className="group-hover/label:text-blue-600 transition-colors">{option.label}</span>
                 </label>
               );
             })}
@@ -143,7 +143,7 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
 
         {/* AI Focus Areas (Shifting from center) */}
         <div className="mb-6">
-           <span className="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-bold block mb-3">Focus Domains</span>
+           <span className="text-[11px] uppercase tracking-[0.2em] text-slate-500 font-bold block mb-3">Focus Domains</span>
            <div className="flex flex-col gap-1.5">
              {[
                { id: 'process', label: 'Flow', icon: '⚡' },
@@ -162,12 +162,12 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
                    }}
                    className={`flex items-center justify-between px-3 py-2 rounded-md border text-sm font-bold transition-all ${
                      isSelected
-                       ? 'bg-blue-600/10 border-blue-500/30 text-blue-400'
-                       : 'bg-black/40 border-gray-900/50 text-gray-400 hover:border-gray-800 hover:text-gray-200'
+                       ? 'bg-blue-50 border-blue-200 text-blue-600'
+                       : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300 hover:text-slate-900'
                    }`}
                  >
                    <div className="flex items-center gap-2">
-                     <div className={`w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]' : 'bg-transparent border border-gray-600'}`} />
+                     <div className={`w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-blue-600 shadow-sm' : 'bg-transparent border border-slate-300'}`} />
                      <span>{group.label}</span>
                    </div>
                     <span className="opacity-60 text-xs grayscale-0">{group.icon}</span>
@@ -184,15 +184,15 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
         <div className="mb-8">
           <button
             onClick={() => toggleSection('categories')}
-            className="flex items-center justify-between w-full text-left mb-3 text-white hover:text-blue-400 font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-4 focus:ring-offset-black rounded-lg group"
+            className="flex items-center justify-between w-full text-left mb-3 text-slate-900 hover:text-blue-600 font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-4 focus:ring-offset-white rounded-lg group"
             aria-expanded={expandedSections.categories}
             aria-controls="categories-panel"
           >
-            <span className="text-[11px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Categories</span>
+            <span className="text-[11px] uppercase tracking-[0.2em] text-slate-500 group-hover:text-blue-600">Categories</span>
             {expandedSections.categories ? (
-              <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
+              <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-blue-600" />
             ) : (
-              <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
+              <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600" />
             )}
           </button>
 
@@ -207,7 +207,7 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
             {categories.map((category) => (
               <label
                 key={category.slug}
-                className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-white cursor-pointer transition-colors group/label"
+                className="flex items-center gap-2.5 text-sm text-slate-500 hover:text-slate-900 cursor-pointer transition-colors group/label"
               >
                 <div className="relative flex items-center">
                   <input
@@ -217,7 +217,7 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
                       console.log('[FilterSidebar] Checkbox clicked:', category.slug);
                       handleCategoryChange(category.slug);
                     }}
-                    className="peer w-4 h-4 rounded border-gray-900 bg-gray-950 text-blue-600 focus:ring-1 focus:ring-blue-500/50 focus:ring-offset-1 focus:ring-offset-black transition-all appearance-none border checked:bg-blue-600 checked:border-blue-500"
+                    className="peer w-4 h-4 rounded border-slate-300 bg-white text-blue-600 focus:ring-1 focus:ring-blue-500/50 focus:ring-offset-1 focus:ring-offset-white transition-all appearance-none border checked:bg-blue-600 checked:border-blue-600"
                     aria-label={`Filter by ${category.name}, ${category.count} items available`}
                     data-testid={`filter-checkbox-${category.slug}`}
                     disabled={category.count === 0}
@@ -226,10 +226,10 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </div>
-                <span className={`group-hover/label:text-blue-400 transition-colors ${category.count === 0 ? 'opacity-20 cursor-not-allowed' : ''}`}>
+                <span className={`group-hover/label:text-blue-600 transition-colors ${category.count === 0 ? 'opacity-20 cursor-not-allowed' : ''}`}>
                   {category.name}
                 </span>
-                <span className="ml-auto text-[11px] font-mono font-bold text-gray-500 group-hover/label:text-blue-500/80 transition-colors">
+                <span className="ml-auto text-[11px] font-mono font-bold text-slate-400 group-hover/label:text-blue-500/80 transition-colors">
                   {category.count}
                 </span>
               </label>
@@ -242,15 +242,15 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
           <div>
             <button
               onClick={() => toggleSection('tags')}
-              className="flex items-center justify-between w-full text-left mb-3 text-white hover:text-blue-400 font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-4 focus:ring-offset-black rounded-lg group"
+              className="flex items-center justify-between w-full text-left mb-3 text-slate-900 hover:text-blue-600 font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-4 focus:ring-offset-white rounded-lg group"
               aria-expanded={expandedSections.tags}
               aria-controls="tags-panel"
             >
-              <span className="text-[11px] uppercase tracking-[0.2em] text-gray-400 group-hover:text-blue-400">Tags</span>
+              <span className="text-[11px] uppercase tracking-[0.2em] text-slate-500 group-hover:text-blue-600">Tags</span>
               {expandedSections.tags ? (
-                <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
+                <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-blue-600" />
               ) : (
-                <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-blue-400" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600" />
               )}
             </button>
 
@@ -264,14 +264,14 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
               {tags.map((tag) => (
                 <label
                   key={tag.slug}
-                  className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-white cursor-pointer transition-colors group/label"
+                  className="flex items-center gap-2.5 text-sm text-slate-500 hover:text-slate-900 cursor-pointer transition-colors group/label"
                 >
                   <div className="relative flex items-center">
                     <input
                       type="checkbox"
                       checked={selectedTags.includes(tag.slug)}
                       onChange={() => handleTagChange(tag.slug)}
-                      className="peer w-4 h-4 rounded border-gray-900 bg-gray-950 text-blue-600 focus:ring-1 focus:ring-blue-500/50 focus:ring-offset-1 focus:ring-offset-black transition-all appearance-none border checked:bg-blue-600 checked:border-blue-500"
+                      className="peer w-4 h-4 rounded border-slate-300 bg-white text-blue-600 focus:ring-1 focus:ring-blue-500/50 focus:ring-offset-1 focus:ring-offset-white transition-all appearance-none border checked:bg-blue-600 checked:border-blue-600"
                       aria-label={`Filter by ${tag.name} tag`}
                       data-testid={`filter-checkbox-tag-${tag.slug}`}
                     />
@@ -279,7 +279,7 @@ export function FilterSidebar({ categories, tags, className = "w-full lg:sticky 
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                   </div>
-                  <span className="group-hover/label:text-blue-400 transition-colors">{tag.name}</span>
+                  <span className="group-hover/label:text-blue-600 transition-colors">{tag.name}</span>
                 </label>
               ))}
             </div>

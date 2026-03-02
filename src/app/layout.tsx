@@ -77,9 +77,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
-        className={`${inter.variable} ${mono.variable} font-sans antialiased bg-black text-white selection:bg-blue-500/30`}
+        className={`${inter.variable} ${mono.variable} font-sans antialiased bg-slate-50 text-slate-900 selection:bg-blue-500/20`}
       >
         <Providers>
           <a 

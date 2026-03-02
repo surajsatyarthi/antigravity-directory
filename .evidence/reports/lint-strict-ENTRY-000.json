@@ -1,0 +1,19 @@
+{
+  "entry": "ENTRY-000",
+  "timestamp": "2026-02-14T13:32:04.306Z",
+  "lintResults": {
+    "errorCount": 0,
+    "warningCount": 0,
+    "results": []
+  },
+  "suppressions": {
+    "eslintDisable": [],
+    "tsIgnore": []
+  },
+  "baseline": {
+    "warningCount": 0,
+    "errorCount": 0,
+    "created": "2026-02-14T13:32:04.305Z"
+  },
+  "violations": []
+}

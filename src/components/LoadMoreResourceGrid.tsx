@@ -96,12 +96,12 @@ export function LoadMoreResourceGrid({
   }, [resources]);
 
   return (
-    <div className="flex flex-col gap-3 pb-8">
+    <div className="flex flex-col gap-6 pb-12">
       {/* The Mixed List (Resources + Ads) */}
       <div 
         id="resource-grid"
         data-testid="resource-grid"
-        className="flex flex-col gap-3"
+        className="flex flex-col gap-6"
         role="region" 
         aria-label="Agent Marketplace Grid"
       >
@@ -114,7 +114,7 @@ export function LoadMoreResourceGrid({
           <button
             onClick={loadMore}
             disabled={loading}
-            className="flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/50 text-white font-bold uppercase tracking-widest rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+            className="flex items-center gap-3 px-8 py-4 bg-white hover:shadow-md border border-slate-200 hover:border-blue-400 text-slate-900 font-bold uppercase tracking-widest rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
           >
             {loading ? (
               <>
@@ -124,7 +124,7 @@ export function LoadMoreResourceGrid({
             ) : (
               <>
                 <span>Load Next 20</span>
-                <span className="text-gray-500 font-normal text-xs">
+                <span className="text-slate-500 font-normal text-xs">
                   ({resources.length} of {totalCount})
                 </span>
               </>
@@ -132,7 +132,7 @@ export function LoadMoreResourceGrid({
           </button>
         ) : (
           resources.length > 0 && (
-            <p className="text-[10px] uppercase tracking-widest text-slate-600 py-4">
+            <p className="text-[10px] uppercase tracking-widest text-slate-500 py-4">
               All {totalCount} resources loaded
             </p>
           )

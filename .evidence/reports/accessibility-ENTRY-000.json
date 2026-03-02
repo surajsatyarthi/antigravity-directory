@@ -1,0 +1,13 @@
+{
+  "entry": "ENTRY-000",
+  "timestamp": "2026-02-14T13:31:25.582Z",
+  "url": "http://localhost:3000",
+  "results": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 0,
+    "total": 0
+  },
+  "violations": []
+}

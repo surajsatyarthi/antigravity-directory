@@ -1,18 +1,18 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-brand-primary: #3b82f6;
-  --color-brand-secondary: #8b5cf6;
-  --color-border-subtle: #1f2937;
-  --color-surface: #0a0a0a;
-  --color-background-app: #000000;
+  --color-brand-primary: #2563eb;
+  --color-brand-secondary: #7c3aed;
+  --color-border-subtle: #e2e8f0;
+  --color-surface: #ffffff;
+  --color-background-app: #f8fafc;
 }
 
 :root {
-  --background: #000000;
-  --foreground: #f9fafb;
-  --card: #0a0a0a;
-  --border: #1f2937;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --border: #e2e8f0;
 }
 
 body {
@@ -176,14 +176,14 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #111111;
+  background: #cbd5e1;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #1f2937;
+  background: #94a3b8;
 }
 /* Featured Pulse Effect */
 @keyframes featured-pulse {

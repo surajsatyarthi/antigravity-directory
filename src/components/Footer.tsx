@@ -78,9 +78,9 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="relative mt-16 overflow-hidden border-t border-white/[0.05] bg-black py-12" role="contentinfo">
+    <footer className="relative mt-16 overflow-hidden border-t border-slate-200 bg-white py-12" role="contentinfo">
       {/* Matrix Waterfall Effect - Decorative Only */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-10" aria-hidden="true">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-5" aria-hidden="true">
         <div ref={matrixRef} className="matrix-background"></div>
       </div>
 
@@ -89,14 +89,14 @@ export function Footer() {
           {/* Brand & Disclaimer */}
           <div className="flex max-w-lg flex-col gap-4 text-center md:text-left">
             <Link href="/" className="group flex items-center justify-center gap-3.5 md:justify-start p-1 rounded-sm" aria-label="Antigravity Directory Home">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white transition-all duration-300 relative overflow-hidden animate-logo-shine">
-                <Zap className="h-5 h-5 fill-black text-black relative z-20" aria-hidden="true" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 transition-all duration-300 relative overflow-hidden animate-logo-shine">
+                <Zap className="h-5 h-5 fill-white text-white relative z-20" aria-hidden="true" />
               </div>
               <div className="flex flex-col justify-center text-left py-0.5">
-                <span className="font-mono text-[17px] font-black tracking-[-0.03em] text-white lowercase leading-[1.1] premium-text-glow">
+                <span className="font-mono text-[17px] font-black tracking-[-0.03em] text-slate-900 lowercase leading-[1.1]">
                   antigravity
                 </span>
-                <span className="font-mono text-[10px] font-black tracking-[0.3em] text-gray-400 lowercase leading-none mt-1 pl-0.5 opacity-90">
+                <span className="font-mono text-[10px] font-black tracking-[0.3em] text-slate-500 lowercase leading-none mt-1 pl-0.5 opacity-90">
                   directory
                 </span>
               </div>
@@ -105,46 +105,46 @@ export function Footer() {
 
           {/* Links */}
           <div className="flex flex-col items-center gap-4">
-            <nav className="flex flex-wrap justify-center gap-x-6 gap-y-4 font-mono text-xs tracking-widest text-gray-400 uppercase px-4" aria-label="Footer Navigation">
+            <nav className="flex flex-wrap justify-center gap-x-6 gap-y-4 font-mono text-xs tracking-widest text-slate-500 uppercase px-4" aria-label="Footer Navigation">
                 <Link
                   href="/"
-                  className="p-2 text-gray-400 hover:text-white transition-colors"
+                  className="p-2 text-slate-500 hover:text-blue-600 transition-colors"
                 >
                   Home
                 </Link>
                 <Link
                   href="/prompts"
-                  className="p-2 text-gray-400 hover:text-white transition-colors"
+                  className="p-2 text-slate-500 hover:text-blue-600 transition-colors"
                 >
                   Browse Tools
                 </Link>
               <Link
                 href="/submit"
-                className="p-2 text-blue-400 hover:text-blue-300 transition-colors font-bold"
+                className="p-2 text-blue-600 hover:text-blue-700 transition-colors font-bold"
               >
                 Create Account (Earn 80%)
               </Link>
               <Link
                 href="/members"
-                className="p-2 transition-colors hover:text-white"
+                className="p-2 transition-colors hover:text-blue-600"
               >
                 Members
               </Link>
               <Link
                 href="/troubleshooting"
-                className="p-2 transition-colors hover:text-white"
+                className="p-2 transition-colors hover:text-blue-600"
               >
                 Help
               </Link>
               <Link
                 href="/privacy"
-                className="p-2 transition-colors hover:text-white"
+                className="p-2 transition-colors hover:text-blue-600"
               >
                 Privacy
               </Link>
               <Link
                 href="/terms"
-                className="p-2 transition-colors hover:text-white"
+                className="p-2 transition-colors hover:text-blue-600"
               >
                 Terms
               </Link>
@@ -154,11 +154,11 @@ export function Footer() {
         </div>
 
         {/* Bottom Notices */}
-        <div className="mt-16 text-center border-t border-white/5 pt-8 space-y-2">
-             <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-400 uppercase max-w-4xl mx-auto px-4">
+        <div className="mt-16 text-center border-t border-slate-200 pt-8 space-y-2">
+             <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-slate-400 uppercase max-w-4xl mx-auto px-4">
                  Antigravity Directory is an unofficial resource for the agentic coding community. This website is not affiliated with, endorsed by, or associated with Google LLC. "Google" and "Gemini" are trademarks of Google LLC.
              </p>
-             <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-gray-600 uppercase font-bold">
+             <p className="font-mono text-[10px] leading-relaxed tracking-[0.2em] text-slate-500 uppercase font-bold">
                 © Invictus International Consulting Services 2026
               </p>
         </div>

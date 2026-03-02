@@ -63,14 +63,14 @@ const categories = [
 
 export function CategoryGridDiscovery() {
   return (
-    <section className="py-16 border-t border-white/[0.05]">
+    <section className="py-16 bg-slate-50 border-t border-slate-100">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-3 uppercase tracking-[0.15em]">
-            Shop by Category
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
+            Browse by Category
           </h2>
-          <p className="text-gray-400 text-sm font-bold tracking-widest uppercase">
-            Discover premium tools & resources
+          <p className="text-slate-500 text-sm">
+            Discover curated tools and resources for every workflow
           </p>
         </div>
 
@@ -79,30 +79,30 @@ export function CategoryGridDiscovery() {
             <Link
               key={category.slug}
               href={`/browse?categories=${category.slug}`}
-              className="group relative bg-[#0A0A0A] border border-white/10 rounded-xl p-6 hover:border-blue-500/50 hover:bg-[#0D0D0D] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] cursor-pointer"
+              className="group relative bg-white border border-slate-200 rounded-xl p-6 hover:border-blue-400 hover:shadow-md transition-all duration-200 cursor-pointer"
             >
-              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-200">
                 {category.icon}
               </div>
-              
-              <div className="space-y-2">
+
+              <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-black text-white uppercase tracking-wide">
+                  <h3 className="text-base font-bold text-slate-900">
                     {category.name}
                   </h3>
-                  <span className="text-xs text-gray-500 font-mono">
+                  <span className="text-xs text-slate-400 font-mono">
                     {category.count}
                   </span>
                 </div>
-                
-                <p className="text-sm text-gray-400 leading-relaxed">
+
+                <p className="text-sm text-slate-500 leading-relaxed">
                   {category.description}
                 </p>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-white/5">
-                <span className="text-xs font-bold text-blue-400 uppercase tracking-wider group-hover:text-blue-300 transition-colors">
-                  Shop Now →
+              <div className="mt-4 pt-4 border-t border-slate-100">
+                <span className="text-xs font-semibold text-blue-600 group-hover:text-blue-700 transition-colors">
+                  Browse →
                 </span>
               </div>
             </Link>

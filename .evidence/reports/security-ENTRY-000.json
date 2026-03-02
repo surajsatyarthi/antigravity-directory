@@ -1,0 +1,67 @@
+{
+  "entry": "ENTRY-000",
+  "timestamp": "2026-02-14T13:33:22.934Z",
+  "results": {
+    "secrets": {
+      "found": 10,
+      "details": [
+        {
+          "file": "./.env.local",
+          "pattern": "/secret\\s*=\\s*['\"][^'\"]{20,}['\"]/i"
+        },
+        {
+          "file": "./.env.local",
+          "pattern": "/token\\s*=\\s*['\"][^'\"]{20,}['\"]/i"
+        },
+        {
+          "file": "./.env.local",
+          "pattern": "/AIza[0-9A-Za-z-_]{35}/"
+        },
+        {
+          "file": "./.env",
+          "pattern": "/AIza[0-9A-Za-z-_]{35}/"
+        },
+        {
+          "file": "./.env.test.local",
+          "pattern": "/secret\\s*=\\s*['\"][^'\"]{20,}['\"]/i"
+        },
+        {
+          "file": "./.env.test.local",
+          "pattern": "/token\\s*=\\s*['\"][^'\"]{20,}['\"]/i"
+        },
+        {
+          "file": "./.env.test.local",
+          "pattern": "/AIza[0-9A-Za-z-_]{35}/"
+        },
+        {
+          "file": "./scripts/test-email-templates.ts",
+          "pattern": "/api[_-]?key\\s*=\\s*['\"][^'\"]{20,}['\"]/i"
+        },
+        {
+          "file": "./.env.example",
+          "pattern": "/api[_-]?key\\s*=\\s*['\"][^'\"]{20,}['\"]/i"
+        },
+        {
+          "file": "./.env.example",
+          "pattern": "/secret\\s*=\\s*['\"][^'\"]{20,}['\"]/i"
+        }
+      ]
+    },
+    "npmAudit": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 4,
+      "low": 2,
+      "total": 6
+    },
+    "owaspChecklist": {
+      "complete": false,
+      "completed": 0,
+      "total": 10
+    }
+  },
+  "violations": [
+    "10 secrets detected in code",
+    "OWASP checklist incomplete (0/10)"
+  ]
+}

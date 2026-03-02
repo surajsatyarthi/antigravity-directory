@@ -89,12 +89,12 @@ export function TopFilterBar({ totalCount, categories, tags }: TopFilterBarProps
 
       <div className="flex items-center gap-3">
         <div className="hidden lg:flex items-center gap-2">
-          <label htmlFor="sort-dropdown-desktop" className="text-[10px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">Sort By:</label>
+          <label htmlFor="sort-dropdown-desktop" className="text-[10px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap">Sort By:</label>
           <select
             id="sort-dropdown-desktop"
             value={currentSort}
             onChange={(e) => handleSortChange(e.target.value)}
-            className="px-3 py-1.5 bg-[#050505] border border-white/[0.05] rounded text-white/80 focus:outline-none focus:border-blue-500/30 cursor-pointer text-[11px] font-bold hover:border-white/10 transition-colors appearance-none min-w-[140px]"
+            className="px-3 py-1.5 bg-white border border-slate-200 rounded text-slate-900 focus:outline-none focus:border-blue-400 cursor-pointer text-[11px] font-bold hover:border-slate-300 transition-colors appearance-none min-w-[140px]"
           >
             {FILTERS.SORT_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -107,12 +107,12 @@ export function TopFilterBar({ totalCount, categories, tags }: TopFilterBarProps
         <div className="flex items-center gap-3 lg:hidden">
           <MobileFilterDrawer categories={categories} tags={tags} activeCount={activeCount} />
           
-          <label htmlFor="sort-dropdown" className="text-xs font-black text-gray-400 uppercase tracking-widest hidden sm:inline">Sort Mode:</label>
+          <label htmlFor="sort-dropdown" className="text-xs font-black text-slate-500 uppercase tracking-widest hidden sm:inline">Sort Mode:</label>
           <select
             id="sort-dropdown"
             value={currentSort}
             onChange={(e) => handleSortChange(e.target.value)}
-            className="px-3 py-2 bg-[#050505] border border-white/[0.05] rounded text-white/80 focus:outline-none focus:border-blue-500/30 cursor-pointer text-sm font-bold hover:border-white/10 transition-colors appearance-none"
+            className="px-3 py-2 bg-white border border-slate-200 rounded text-slate-900 focus:outline-none focus:border-blue-400 cursor-pointer text-sm font-bold hover:border-slate-300 transition-colors appearance-none"
             aria-label="Sort resources by"
             data-testid="sort-dropdown"
           >

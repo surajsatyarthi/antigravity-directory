@@ -1,0 +1,1001 @@
+{
+  "entry": "ENTRY-000",
+  "timestamp": "2026-02-14T13:33:23.103Z",
+  "coverage": {
+    "current": 78.5,
+    "previous": 75.2,
+    "delta": 3.3,
+    "lines": {
+      "covered": 1570,
+      "total": 2000
+    },
+    "branches": {
+      "covered": 340,
+      "total": 450
+    }
+  },
+  "testQuality": {
+    "testsAnalyzed": 143,
+    "tests": [
+      {
+        "file": "tests/unit/schema.test.ts",
+        "testNumber": 1,
+        "assertions": 1.5
+      },
+      {
+        "file": "tests/unit/schema.test.ts",
+        "testNumber": 2,
+        "assertions": 1.5
+      },
+      {
+        "file": "tests/unit/profile-utils.test.ts",
+        "testNumber": 1,
+        "assertions": 2
+      },
+      {
+        "file": "tests/unit/profile-utils.test.ts",
+        "testNumber": 2,
+        "assertions": 2
+      },
+      {
+        "file": "tests/unit/profile-utils.test.ts",
+        "testNumber": 3,
+        "assertions": 2
+      },
+      {
+        "file": "tests/unit/profile-utils.test.ts",
+        "testNumber": 4,
+        "assertions": 2
+      },
+      {
+        "file": "tests/unit/lib/enrich-contacts.test.ts",
+        "testNumber": 1,
+        "assertions": 5.2
+      },
+      {
+        "file": "tests/unit/lib/enrich-contacts.test.ts",
+        "testNumber": 2,
+        "assertions": 5.2
+      },
+      {
+        "file": "tests/unit/lib/enrich-contacts.test.ts",
+        "testNumber": 3,
+        "assertions": 5.2
+      },
+      {
+        "file": "tests/unit/lib/enrich-contacts.test.ts",
+        "testNumber": 4,
+        "assertions": 5.2
+      },
+      {
+        "file": "tests/unit/lib/enrich-contacts.test.ts",
+        "testNumber": 5,
+        "assertions": 5.2
+      },
+      {
+        "file": "tests/unit/lib/enrich-contacts.test.ts",
+        "testNumber": 6,
+        "assertions": 5.2
+      },
+      {
+        "file": "tests/unit/lib/enrich-contacts.test.ts",
+        "testNumber": 7,
+        "assertions": 5.2
+      },
+      {
+        "file": "tests/unit/lib/enrich-contacts.test.ts",
+        "testNumber": 8,
+        "assertions": 5.2
+      },
+      {
+        "file": "tests/unit/lib/enrich-contacts.test.ts",
+        "testNumber": 9,
+        "assertions": 5.2
+      },
+      {
+        "file": "tests/unit/lib/enrich-contacts.test.ts",
+        "testNumber": 10,
+        "assertions": 5.2
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 1,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 2,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 3,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 4,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 5,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 6,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 7,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 8,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 9,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 10,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 11,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 12,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 13,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 14,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 15,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 16,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "testNumber": 17,
+        "assertions": 1.8823529411764706
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "testNumber": 1,
+        "assertions": 3.909090909090909
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "testNumber": 2,
+        "assertions": 3.909090909090909
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "testNumber": 3,
+        "assertions": 3.909090909090909
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "testNumber": 4,
+        "assertions": 3.909090909090909
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "testNumber": 5,
+        "assertions": 3.909090909090909
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "testNumber": 6,
+        "assertions": 3.909090909090909
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "testNumber": 7,
+        "assertions": 3.909090909090909
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "testNumber": 8,
+        "assertions": 3.909090909090909
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "testNumber": 9,
+        "assertions": 3.909090909090909
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "testNumber": 10,
+        "assertions": 3.909090909090909
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "testNumber": 11,
+        "assertions": 3.909090909090909
+      },
+      {
+        "file": "tests/integration/resource-claiming.spec.ts",
+        "testNumber": 1,
+        "assertions": 8.5
+      },
+      {
+        "file": "tests/integration/resource-claiming.spec.ts",
+        "testNumber": 2,
+        "assertions": 8.5
+      },
+      {
+        "file": "tests/api/checkout-paypal-capture.test.ts",
+        "testNumber": 1,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-paypal-capture.test.ts",
+        "testNumber": 2,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-paypal-capture.test.ts",
+        "testNumber": 3,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-paypal-capture.test.ts",
+        "testNumber": 4,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-paypal-capture.test.ts",
+        "testNumber": 5,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-paypal-capture.test.ts",
+        "testNumber": 6,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 1,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 2,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 3,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 4,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 5,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 6,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 7,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 8,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 9,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 10,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 11,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "testNumber": 12,
+        "assertions": 4.666666666666667
+      },
+      {
+        "file": "tests/api/checkout-razorpay-create.test.ts",
+        "testNumber": 1,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-razorpay-create.test.ts",
+        "testNumber": 2,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-razorpay-create.test.ts",
+        "testNumber": 3,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-razorpay-create.test.ts",
+        "testNumber": 4,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-razorpay-create.test.ts",
+        "testNumber": 5,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-razorpay-verify.test.ts",
+        "testNumber": 1,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-razorpay-verify.test.ts",
+        "testNumber": 2,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-razorpay-verify.test.ts",
+        "testNumber": 3,
+        "assertions": 4
+      },
+      {
+        "file": "tests/api/checkout-razorpay-verify.test.ts",
+        "testNumber": 4,
+        "assertions": 4
+      },
+      {
+        "file": "tests/e2e/example.spec.ts",
+        "testNumber": 1,
+        "assertions": 1
+      },
+      {
+        "file": "tests/e2e/creator-earnings.spec.ts",
+        "testNumber": 1,
+        "assertions": 8
+      },
+      {
+        "file": "tests/e2e/creator-earnings.spec.ts",
+        "testNumber": 2,
+        "assertions": 8
+      },
+      {
+        "file": "tests/e2e/creator-earnings.spec.ts",
+        "testNumber": 3,
+        "assertions": 8
+      },
+      {
+        "file": "tests/e2e/creator-earnings.spec.ts",
+        "testNumber": 4,
+        "assertions": 8
+      },
+      {
+        "file": "tests/e2e/creator-earnings.spec.ts",
+        "testNumber": 5,
+        "assertions": 8
+      },
+      {
+        "file": "tests/e2e/creator-earnings.spec.ts",
+        "testNumber": 6,
+        "assertions": 8
+      },
+      {
+        "file": "tests/e2e/auth.spec.ts",
+        "testNumber": 1,
+        "assertions": 5.25
+      },
+      {
+        "file": "tests/e2e/auth.spec.ts",
+        "testNumber": 2,
+        "assertions": 5.25
+      },
+      {
+        "file": "tests/e2e/auth.spec.ts",
+        "testNumber": 3,
+        "assertions": 5.25
+      },
+      {
+        "file": "tests/e2e/auth.spec.ts",
+        "testNumber": 4,
+        "assertions": 5.25
+      },
+      {
+        "file": "tests/e2e/admin-payout-approval.spec.ts",
+        "testNumber": 1,
+        "assertions": 8.75
+      },
+      {
+        "file": "tests/e2e/admin-payout-approval.spec.ts",
+        "testNumber": 2,
+        "assertions": 8.75
+      },
+      {
+        "file": "tests/e2e/admin-payout-approval.spec.ts",
+        "testNumber": 3,
+        "assertions": 8.75
+      },
+      {
+        "file": "tests/e2e/admin-payout-approval.spec.ts",
+        "testNumber": 4,
+        "assertions": 8.75
+      },
+      {
+        "file": "tests/e2e/claim-ui-flow.spec.ts",
+        "testNumber": 1,
+        "assertions": 8
+      },
+      {
+        "file": "tests/e2e/claim-ui-flow.spec.ts",
+        "testNumber": 2,
+        "assertions": 8
+      },
+      {
+        "file": "tests/e2e/claim-ui-flow.spec.ts",
+        "testNumber": 3,
+        "assertions": 8
+      },
+      {
+        "file": "tests/e2e/claim-ui-flow.spec.ts",
+        "testNumber": 4,
+        "assertions": 8
+      },
+      {
+        "file": "tests/e2e/claim-ui-flow.spec.ts",
+        "testNumber": 5,
+        "assertions": 8
+      },
+      {
+        "file": "tests/e2e/homepage.spec.ts",
+        "testNumber": 1,
+        "assertions": 5.5
+      },
+      {
+        "file": "tests/e2e/homepage.spec.ts",
+        "testNumber": 2,
+        "assertions": 5.5
+      },
+      {
+        "file": "tests/e2e/homepage.spec.ts",
+        "testNumber": 3,
+        "assertions": 5.5
+      },
+      {
+        "file": "tests/e2e/homepage.spec.ts",
+        "testNumber": 4,
+        "assertions": 5.5
+      },
+      {
+        "file": "tests/e2e/resource-claiming.spec.ts",
+        "testNumber": 1,
+        "assertions": 3
+      },
+      {
+        "file": "tests/e2e/resource-claiming.spec.ts",
+        "testNumber": 2,
+        "assertions": 3
+      },
+      {
+        "file": "tests/e2e/dashboard.spec.ts",
+        "testNumber": 1,
+        "assertions": 6
+      },
+      {
+        "file": "tests/e2e/dashboard.spec.ts",
+        "testNumber": 2,
+        "assertions": 6
+      },
+      {
+        "file": "tests/e2e/dashboard.spec.ts",
+        "testNumber": 3,
+        "assertions": 6
+      },
+      {
+        "file": "tests/e2e/dashboard.spec.ts",
+        "testNumber": 4,
+        "assertions": 6
+      },
+      {
+        "file": "tests/e2e/dashboard.spec.ts",
+        "testNumber": 5,
+        "assertions": 6
+      },
+      {
+        "file": "tests/e2e/resource-purchase.spec.ts",
+        "testNumber": 1,
+        "assertions": 5.6
+      },
+      {
+        "file": "tests/e2e/resource-purchase.spec.ts",
+        "testNumber": 2,
+        "assertions": 5.6
+      },
+      {
+        "file": "tests/e2e/resource-purchase.spec.ts",
+        "testNumber": 3,
+        "assertions": 5.6
+      },
+      {
+        "file": "tests/e2e/resource-purchase.spec.ts",
+        "testNumber": 4,
+        "assertions": 5.6
+      },
+      {
+        "file": "tests/e2e/resource-purchase.spec.ts",
+        "testNumber": 5,
+        "assertions": 5.6
+      },
+      {
+        "file": "tests/e2e/browsing.spec.ts",
+        "testNumber": 1,
+        "assertions": 7.75
+      },
+      {
+        "file": "tests/e2e/browsing.spec.ts",
+        "testNumber": 2,
+        "assertions": 7.75
+      },
+      {
+        "file": "tests/e2e/browsing.spec.ts",
+        "testNumber": 3,
+        "assertions": 7.75
+      },
+      {
+        "file": "tests/e2e/browsing.spec.ts",
+        "testNumber": 4,
+        "assertions": 7.75
+      },
+      {
+        "file": "tests/e2e/resource-pricing.spec.ts",
+        "testNumber": 1,
+        "assertions": 7
+      },
+      {
+        "file": "tests/e2e/resource-pricing.spec.ts",
+        "testNumber": 2,
+        "assertions": 7
+      },
+      {
+        "file": "tests/e2e/resource-pricing.spec.ts",
+        "testNumber": 3,
+        "assertions": 7
+      },
+      {
+        "file": "tests/e2e/resource-pricing.spec.ts",
+        "testNumber": 4,
+        "assertions": 7
+      },
+      {
+        "file": "tests/e2e/resource-pricing.spec.ts",
+        "testNumber": 5,
+        "assertions": 7
+      },
+      {
+        "file": "tests/e2e/resource-pricing.spec.ts",
+        "testNumber": 6,
+        "assertions": 7
+      },
+      {
+        "file": "src/__tests__/scripts/import-mode.test.ts",
+        "testNumber": 1,
+        "assertions": 2
+      },
+      {
+        "file": "src/__tests__/scripts/import-mode.test.ts",
+        "testNumber": 2,
+        "assertions": 2
+      },
+      {
+        "file": "src/__tests__/scripts/import-mode.test.ts",
+        "testNumber": 3,
+        "assertions": 2
+      },
+      {
+        "file": "src/__tests__/scripts/import-mode.test.ts",
+        "testNumber": 4,
+        "assertions": 2
+      },
+      {
+        "file": "src/__tests__/scripts/import-mode.test.ts",
+        "testNumber": 5,
+        "assertions": 2
+      },
+      {
+        "file": "src/__tests__/scripts/import-mode.test.ts",
+        "testNumber": 6,
+        "assertions": 2
+      },
+      {
+        "file": "src/__tests__/scripts/weekly-scraper.test.ts",
+        "testNumber": 1,
+        "assertions": 4.8
+      },
+      {
+        "file": "src/__tests__/scripts/weekly-scraper.test.ts",
+        "testNumber": 2,
+        "assertions": 4.8
+      },
+      {
+        "file": "src/__tests__/scripts/weekly-scraper.test.ts",
+        "testNumber": 3,
+        "assertions": 4.8
+      },
+      {
+        "file": "src/__tests__/scripts/weekly-scraper.test.ts",
+        "testNumber": 4,
+        "assertions": 4.8
+      },
+      {
+        "file": "src/__tests__/scripts/weekly-scraper.test.ts",
+        "testNumber": 5,
+        "assertions": 4.8
+      },
+      {
+        "file": "src/__tests__/scripts/seed-50-tools.test.ts",
+        "testNumber": 1,
+        "assertions": 1.3333333333333333
+      },
+      {
+        "file": "src/__tests__/scripts/seed-50-tools.test.ts",
+        "testNumber": 2,
+        "assertions": 1.3333333333333333
+      },
+      {
+        "file": "src/__tests__/scripts/seed-50-tools.test.ts",
+        "testNumber": 3,
+        "assertions": 1.3333333333333333
+      },
+      {
+        "file": "src/__tests__/scripts/seed-50-tools.test.ts",
+        "testNumber": 4,
+        "assertions": 1.3333333333333333
+      },
+      {
+        "file": "src/__tests__/scripts/seed-50-tools.test.ts",
+        "testNumber": 5,
+        "assertions": 1.3333333333333333
+      },
+      {
+        "file": "src/__tests__/scripts/seed-50-tools.test.ts",
+        "testNumber": 6,
+        "assertions": 1.3333333333333333
+      },
+      {
+        "file": "src/__tests__/scripts/validate-data.test.ts",
+        "testNumber": 1,
+        "assertions": 4.285714285714286
+      },
+      {
+        "file": "src/__tests__/scripts/validate-data.test.ts",
+        "testNumber": 2,
+        "assertions": 4.285714285714286
+      },
+      {
+        "file": "src/__tests__/scripts/validate-data.test.ts",
+        "testNumber": 3,
+        "assertions": 4.285714285714286
+      },
+      {
+        "file": "src/__tests__/scripts/validate-data.test.ts",
+        "testNumber": 4,
+        "assertions": 4.285714285714286
+      },
+      {
+        "file": "src/__tests__/scripts/validate-data.test.ts",
+        "testNumber": 5,
+        "assertions": 4.285714285714286
+      },
+      {
+        "file": "src/__tests__/scripts/validate-data.test.ts",
+        "testNumber": 6,
+        "assertions": 4.285714285714286
+      },
+      {
+        "file": "src/__tests__/scripts/validate-data.test.ts",
+        "testNumber": 7,
+        "assertions": 4.285714285714286
+      }
+    ],
+    "avgAssertions": 4.53846153846154
+  },
+  "mockRatio": {
+    "testsAnalyzed": 36,
+    "tests": [
+      {
+        "file": "tests/unit/schema.test.ts",
+        "mockCalls": 0,
+        "totalCalls": 4,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/unit/profile-utils.test.ts",
+        "mockCalls": 0,
+        "totalCalls": 4,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/unit/lib/enrich-contacts.test.ts",
+        "mockCalls": 33,
+        "totalCalls": 79,
+        "mockRatio": 0.4177215189873418,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/unit/lib/payment.test.ts",
+        "mockCalls": 16,
+        "totalCalls": 56,
+        "mockRatio": 0.2857142857142857,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/unit/lib/safeJsonLd.test.ts",
+        "mockCalls": 0,
+        "totalCalls": 23,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/integration/resource-claiming.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 54,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/api/checkout-paypal-capture.test.ts",
+        "mockCalls": 22,
+        "totalCalls": 61,
+        "mockRatio": 0.36065573770491804,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/api/checkout-paypal-create.test.ts",
+        "mockCalls": 18,
+        "totalCalls": 77,
+        "mockRatio": 0.23376623376623376,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/api/checkout-razorpay-create.test.ts",
+        "mockCalls": 10,
+        "totalCalls": 33,
+        "mockRatio": 0.30303030303030304,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/api/checkout-razorpay-verify.test.ts",
+        "mockCalls": 10,
+        "totalCalls": 35,
+        "mockRatio": 0.2857142857142857,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/example.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 2,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/creator-earnings.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 82,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/auth.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 30,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/admin-payout-approval.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 61,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/claim-ui-flow.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 87,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/navigation-state.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 21,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/persistence.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 55,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/comparison-pages.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 48,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/user-journeys.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 55,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/homepage.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 39,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/site-audit.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 37,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/resource-claiming.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 45,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/dashboard.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 58,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/mobile-responsiveness.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 48,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/troubleshooting-page.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 19,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/resource-purchase.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 54,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/tools-shell.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 29,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/tools-magnets.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 36,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/search-hydration.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 5,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/browsing.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 61,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/resource-pricing.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 82,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "tests/e2e/download-page.spec.ts",
+        "mockCalls": 0,
+        "totalCalls": 20,
+        "mockRatio": 0,
+        "isIntegration": false
+      },
+      {
+        "file": "src/__tests__/scripts/import-mode.test.ts",
+        "mockCalls": 16,
+        "totalCalls": 55,
+        "mockRatio": 0.2909090909090909,
+        "isIntegration": false
+      },
+      {
+        "file": "src/__tests__/scripts/weekly-scraper.test.ts",
+        "mockCalls": 11,
+        "totalCalls": 46,
+        "mockRatio": 0.2391304347826087,
+        "isIntegration": false
+      },
+      {
+        "file": "src/__tests__/scripts/seed-50-tools.test.ts",
+        "mockCalls": 6,
+        "totalCalls": 27,
+        "mockRatio": 0.2222222222222222,
+        "isIntegration": false
+      },
+      {
+        "file": "src/__tests__/scripts/validate-data.test.ts",
+        "mockCalls": 13,
+        "totalCalls": 61,
+        "mockRatio": 0.21311475409836064,
+        "isIntegration": false
+      }
+    ]
+  },
+  "integrationTests": {
+    "total": 1,
+    "real": 0,
+    "mocked": 1,
+    "ratio": 0
+  }
+}

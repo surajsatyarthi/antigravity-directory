@@ -100,8 +100,8 @@ export default async function HomePage({
       <Header />
       <FilterPersistenceManager />
       
-      <main 
-        className="min-h-screen bg-black text-white selection:bg-blue-500/30"
+      <main
+        className="min-h-screen bg-slate-50 text-slate-900"
       >
         {/* 1. Creator Marketplace Hero */}
         <HeroSection />
@@ -131,7 +131,7 @@ export default async function HomePage({
         <CreatorTestimonials />
 
         {/* 4. Newsletter */}
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-20 border-t border-white/[0.05] pb-24 text-center">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-20 border-t border-slate-200 pb-24 text-center">
           <NewsletterCapture source="homepage" />
         </div>
       </main>

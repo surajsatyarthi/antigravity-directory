@@ -1,0 +1,4 @@
+# Evidence Ledger
+# Format: gate,entry,evidence_file,hash,timestamp,signature
+# This file is append-only - DO NOT MODIFY EXISTING LINES
+gate-0,ENTRY-999,audit-gate-0-ENTRY-999.log,d68c68e36691632ffc6ef81136800cb39636a330128c878c519bc983040a90c1,2026-02-14T11:55:09.694Z,3a4c80a054ecae44a2b43f84c656b974e4d41c3b8a6e9b3c5e3d3fcd248c2767

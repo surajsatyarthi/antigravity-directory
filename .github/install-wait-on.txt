@@ -1,0 +1,2 @@
+# wait-on package for CI/CD
+npm install --save-dev wait-on
