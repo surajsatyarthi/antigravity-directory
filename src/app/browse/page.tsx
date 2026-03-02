@@ -82,15 +82,15 @@ export default async function BrowsePage({
       <FilterPersistenceManager />
       
       <main 
-        className="min-h-screen bg-black text-white selection:bg-blue-500/30"
+        className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-500/30"
         data-filter-state={JSON.stringify(activeFilters)}
       >
         {/* Full Directory */}
         <div className="pt-8" id="full-directory">
           <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-black text-white mb-4 uppercase tracking-[0.2em]">Full Directory</h2>
-              <p className="text-gray-400 text-sm font-bold tracking-widest uppercase">Explore all 2,200+ resources</p>
+              <h2 className="text-3xl font-black text-slate-900 mb-4 uppercase tracking-[0.2em]">Full Directory</h2>
+              <p className="text-slate-500 text-sm font-bold tracking-widest uppercase">Explore all 2,200+ resources</p>
             </div>
 
             <div className="lg:flex lg:gap-12 pb-12">
@@ -104,8 +104,8 @@ export default async function BrowsePage({
 
               {/* Grid Column */}
               <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between mb-8 border-b border-white/[0.05] pb-6">
-                  <h2 className="text-[11px] font-black tracking-[0.2em] text-gray-500 flex items-center gap-2 uppercase">
+                <div className="flex items-center justify-between mb-8 border-b border-slate-200 pb-6">
+                  <h2 className="text-[11px] font-black tracking-[0.2em] text-slate-500 flex items-center gap-2 uppercase">
                     <span className="w-1 h-1 rounded-full bg-blue-500/50"></span>
                     Directory Listings
                   </h2>
@@ -125,9 +125,9 @@ export default async function BrowsePage({
                         initialFilters={activeFilters}
                       />
                     ) : (
-                      <div className="flex flex-col items-center justify-center py-24 text-center border border-white/[0.05] rounded-xl bg-[#030303]">
-                        <h3 className="text-lg font-bold text-white mb-2 tracking-tight">No results matched</h3>
-                        <p className="text-[12px] text-gray-600 max-w-xs mb-8 leading-relaxed">
+                      <div className="flex flex-col items-center justify-center py-24 text-center border border-slate-200 rounded-xl bg-white">
+                        <h3 className="text-lg font-bold text-slate-900 mb-2 tracking-tight">No results matched</h3>
+                        <p className="text-[12px] text-slate-500 max-w-xs mb-8 leading-relaxed">
                           Try adjusting your filters or search terms.
                         </p>
                       </div>
@@ -140,7 +140,7 @@ export default async function BrowsePage({
         </div>
 
         {/* Newsletter */}
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-20 border-t border-white/[0.05] pb-24 text-center">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-20 border-t border-slate-200 pb-24 text-center">
           <NewsletterCapture source="browse" />
         </div>
       </main>

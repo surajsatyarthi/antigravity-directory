@@ -87,8 +87,8 @@ export function SubmitForm({ categories }: SubmitFormProps) {
     }
   }
 
-  const inputClasses = "w-full bg-[#0A0A0A] border border-white/5 rounded-xl px-4 py-3.5 text-base text-white placeholder:text-gray-600 focus:border-emerald-500/50 transition-all outline-none font-medium";
-  const labelClasses = "block text-xs uppercase tracking-[0.15em] font-black text-gray-500 mb-2 ml-1";
+  const inputClasses = "w-full bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-base text-slate-900 placeholder:text-slate-400 focus:border-emerald-500/50 transition-all outline-none font-medium";
+  const labelClasses = "block text-xs uppercase tracking-[0.15em] font-black text-slate-500 mb-2 ml-1";
 
   return (
     <>
@@ -105,10 +105,10 @@ export function SubmitForm({ categories }: SubmitFormProps) {
               Launch Pricing - Early Adopter Rate
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter mb-4">
+          <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-4">
             Submit Your Tool to <span className="text-emerald-500">Antigravity</span>
           </h1>
-          <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+          <p className="text-slate-500 max-w-2xl mx-auto text-lg">
             Join the most authoritative hub for agentic development. Reach high-intent users and secure 
             your permanent SEO footprint.
           </p>
@@ -116,70 +116,70 @@ export function SubmitForm({ categories }: SubmitFormProps) {
 
         {/* Benefits & Value Prop - Moved to top */}
         <div className="space-y-8 max-w-3xl mx-auto mb-16">
-          <div className="bg-[#050505] border border-white/5 rounded-3xl p-8 space-y-10 border-l-emerald-500/20 border-l-2">
-            <h3 className="text-sm font-black text-gray-500 uppercase tracking-widest border-b border-white/5 pb-4">
+          <div className="bg-white border border-slate-200 rounded-3xl p-8 space-y-10 border-l-emerald-500 border-l-4 shadow-sm">
+            <h3 className="text-sm font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 pb-4">
               Why Top Tools Launch Here
             </h3>
 
             <div className="space-y-8">
               <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
-                  <Globe2 className="w-5 h-5 text-emerald-500" />
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
+                  <Globe2 className="w-5 h-5 text-emerald-600" />
                 </div>
                 <div>
-                  <h4 className="text-base font-black text-white uppercase tracking-wider mb-2">Massive Exposure</h4>
-                  <p className="text-sm text-gray-500 leading-relaxed font-medium">Reach 2M+ active AI seekers every month looking for tools like yours.</p>
+                  <h4 className="text-base font-black text-slate-900 uppercase tracking-wider mb-2">Massive Exposure</h4>
+                  <p className="text-sm text-slate-500 leading-relaxed font-medium">Reach 2M+ active AI seekers every month looking for tools like yours.</p>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
-                  <Search className="w-5 h-5 text-blue-500" />
+                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+                  <Search className="w-5 h-5 text-blue-600" />
                 </div>
                 <div>
-                  <h4 className="text-base font-black text-white uppercase tracking-wider mb-2">SEO Benchmark (Do-Follow)</h4>
-                  <p className="text-sm text-gray-500 leading-relaxed font-medium">Boost your domain authority with a high-quality, permanent do-follow backlink.</p>
+                  <h4 className="text-base font-black text-slate-900 uppercase tracking-wider mb-2">SEO Benchmark (Do-Follow)</h4>
+                  <p className="text-sm text-slate-500 leading-relaxed font-medium">Boost your domain authority with a high-quality, permanent do-follow backlink.</p>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-5 h-5 text-purple-500" />
+                <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-5 h-5 text-purple-600" />
                 </div>
                 <div>
-                  <h4 className="text-base font-black text-white uppercase tracking-wider mb-2">Lifetime Value</h4>
-                  <p className="text-sm text-gray-500 leading-relaxed font-medium">One-time payment. Forever visibility. We never remove vetted tools.</p>
+                  <h4 className="text-base font-black text-slate-900 uppercase tracking-wider mb-2">Lifetime Value</h4>
+                  <p className="text-sm text-slate-500 leading-relaxed font-medium">One-time payment. Forever visibility. We never remove vetted tools.</p>
                 </div>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-white/5">
-              <div className="bg-[#080808] rounded-2xl p-6 border border-emerald-500/10">
+            <div className="pt-6 border-t border-slate-100">
+              <div className="bg-slate-50 rounded-2xl p-6 border border-emerald-500/20">
                 <div className="flex items-center gap-3 mb-3">
-                  <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                  <span className="text-xs font-black text-white uppercase tracking-widest">Growth Guarantee</span>
+                  <Star className="w-4 h-4 text-emerald-500 fill-emerald-500" />
+                  <span className="text-xs font-black text-slate-900 uppercase tracking-widest">Growth Guarantee</span>
                 </div>
-                <p className="text-sm text-gray-500 leading-relaxed italic mb-0">
+                <p className="text-sm text-slate-600 leading-relaxed italic mb-0">
                   "Since listing on Antigravity, we've seen a 30% increase in high-intent developer trials. The SEO boost alone was worth the entry fee."
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="p-8 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-3xl border border-white/5">
-            <h4 className="text-white font-black uppercase text-sm tracking-widest mb-6">Current Launch Promo</h4>
+          <div className="p-8 bg-gradient-to-br from-emerald-50 to-blue-50 rounded-3xl border border-emerald-100">
+            <h4 className="text-slate-900 font-black uppercase text-sm tracking-widest mb-6">Current Launch Promo</h4>
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-base">Standard Review</span>
-                <span className="text-white font-bold text-xl">$49 <span className="text-gray-600 line-through text-base ml-2">$99</span></span>
+                <span className="text-slate-600 text-base">Standard Review</span>
+                <span className="text-slate-900 font-bold text-xl">$49 <span className="text-slate-400 line-through text-base ml-2">$99</span></span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-base">Sponsored Placement</span>
-                <span className="text-emerald-400 font-bold text-xl">$149 <span className="text-gray-600 line-through text-base ml-2">$299</span></span>
+                <span className="text-slate-600 text-base">Sponsored Placement</span>
+                <span className="text-emerald-600 font-bold text-xl">$149 <span className="text-slate-400 line-through text-base ml-2">$299</span></span>
               </div>
             </div>
-            <div className="mt-6 pt-6 border-t border-white/5">
-              <p className="text-xs text-gray-500 leading-relaxed">
+            <div className="mt-6 pt-6 border-t border-slate-200">
+              <p className="text-xs text-slate-500 leading-relaxed">
                 Join 10k+ tools already growing. By submitting, you agree to our editorial standards.
               </p>
             </div>
@@ -190,13 +190,13 @@ export function SubmitForm({ categories }: SubmitFormProps) {
 
           {/* Form Section */}
           <div className="space-y-8">
-            <div className="bg-[#050505] border border-white/5 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm relative overflow-hidden">
               
               {message && (
                 <div className={`mb-8 p-4 rounded-xl flex items-center gap-3 text-sm font-bold border backdrop-blur-xl ${
                   message.type === 'success'
-                    ? 'bg-emerald-500/5 text-emerald-400 border-emerald-500/20'
-                    : 'bg-red-500/5 text-red-400 border-red-500/20'
+                    ? 'bg-emerald-50 text-emerald-600 border-emerald-200'
+                    : 'bg-red-50 text-red-600 border-red-200'
                 }`}>
                   {message.type === 'success' ? <CheckCircle2 className="w-5 h-5 shrink-0" /> : <AlertCircle className="w-5 h-5 shrink-0" />}
                   {message.text}
@@ -212,8 +212,8 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                     {selectedCategory && (
                       <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${
                         ['Prompts', 'Antigravity Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory)
-                          ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
-                          : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                          ? 'bg-blue-50 text-blue-600 border border-blue-200'
+                          : 'bg-emerald-50 text-emerald-600 border border-emerald-200'
                       }`}>
                         {['Prompts', 'Antigravity Rules', 'System Prompts', 'Context Files', 'Workflows'].includes(selectedCategory) 
                           ? '✨ Free Listing' 
@@ -242,10 +242,10 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                         );
                       })}
                     </select>
-                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600 pointer-events-none" />
+                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
                   </div>
-                  <p className="text-[10px] text-gray-500 mt-2 font-medium">
-                    * Prompts, Rules, and Workflows are <span className="text-blue-400 font-bold">FREE</span> to list. Tools & Agents require a one-time fee.
+                  <p className="text-[10px] text-slate-500 mt-2 font-medium">
+                    * Prompts, Rules, and Workflows are <span className="text-blue-500 font-bold">FREE</span> to list. Tools & Agents require a one-time fee.
                   </p>
                 </div>
 
@@ -270,8 +270,8 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                 </div>
 
                 <div className="pt-4">
-                  <button type="submit" disabled={isPending} className="group w-full py-5 bg-white hover:bg-emerald-50 text-black font-black rounded-xl transition-all active:scale-[0.98] uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 shadow-xl shadow-white/5">
-                    {isPending ? <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" /> : <Zap className="w-4 h-4" />}
+                  <button type="submit" disabled={isPending} className="group w-full py-5 bg-slate-900 hover:bg-slate-800 text-white font-black rounded-xl transition-all active:scale-[0.98] uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 shadow-xl">
+                    {isPending ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <Zap className="w-4 h-4" />}
                     <span>
                        {/* Use state instead of document.getElementById which fails on server */
                         (() => {
@@ -282,7 +282,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
                        }
                     </span>
                   </button>
-                  <p className="mt-4 text-center text-xs text-gray-700 font-bold uppercase tracking-widest">
+                  <p className="mt-4 text-center text-xs text-slate-500 font-bold uppercase tracking-widest">
                     Manually Reviewed • 100% Refund if rejected
                   </p>
                 </div>
@@ -291,23 +291,23 @@ export function SubmitForm({ categories }: SubmitFormProps) {
 
             {/* FAQs Section */}
             <div className="space-y-4">
-              <h3 className="text-base font-black text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+              <h3 className="text-base font-black text-slate-900 uppercase tracking-widest mb-6 flex items-center gap-2">
                 <BarChart3 className="w-5 h-5 text-emerald-500" />
                 Frequently Asked Questions
               </h3>
               <div className="space-y-2">
                 {FAQS.map((faq, idx) => (
-                  <div key={idx} className="bg-[#050505] border border-white/5 rounded-2xl overflow-hidden">
+                  <div key={idx} className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                     <button
                       onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                      className="w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors"
+                      className="w-full flex items-center justify-between p-5 text-left hover:bg-slate-50 transition-colors"
                     >
-                      <span className="text-sm font-bold text-gray-300 leading-relaxed">{faq.q}</span>
-                      {openFaq === idx ? <ChevronUp className="w-5 h-5 text-gray-600" /> : <ChevronDown className="w-5 h-5 text-gray-600" />}
+                      <span className="text-sm font-bold text-slate-900 leading-relaxed">{faq.q}</span>
+                      {openFaq === idx ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
                     </button>
                     {openFaq === idx && (
                       <div className="px-5 pb-5 animate-in slide-in-from-top-2 duration-300">
-                        <p className="text-sm leading-relaxed text-gray-500 font-medium" dangerouslySetInnerHTML={{ __html: safeHtml(faq.a) }} />
+                        <p className="text-sm leading-relaxed text-slate-600 font-medium" dangerouslySetInnerHTML={{ __html: safeHtml(faq.a) }} />
                       </div>
                     )}
                   </div>

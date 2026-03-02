@@ -235,7 +235,7 @@ export default async function ResourceDetailPage({
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
+    <div className="min-h-screen bg-slate-50 flex flex-col selection:bg-blue-500/30">
       {/* JSON-LD Layer (AEO) */}
       <script
         type="application/ld+json"
@@ -261,21 +261,21 @@ export default async function ResourceDetailPage({
           <span className="text-gray-300 truncate">{resource.title.toLowerCase()}</span>
         </nav>
 
-        <article className="border border-gray-900 rounded-3xl overflow-hidden bg-[#0A0A0A]">
+        <article className="border border-slate-200 rounded-3xl overflow-hidden bg-white shadow-sm">
           <div className="p-8 md:p-16">
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-12">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-white/5 text-blue-500 border border-blue-500/20 uppercase tracking-widest font-mono">
+                  <div className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-600 border border-blue-200 uppercase tracking-widest font-mono">
                     {resource.categoryName}
                   </div>
                   {/* Editors Choice Removed */}
                   {/* Badges Removed */}
                 </div>
-                <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight mb-4">
+                <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight mb-4">
                   {resource.title}
                 </h1>
-                <p className="text-lg text-gray-400 leading-relaxed font-medium">
+                <p className="text-lg text-slate-600 leading-relaxed font-medium">
                   {resource.description}
                 </p>
               </div>
@@ -286,15 +286,15 @@ export default async function ResourceDetailPage({
                     href={resource.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-200 text-black font-bold rounded-2xl shadow-xl transition-all active:scale-95 text-center min-w-[200px]"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-2xl shadow-xl transition-all active:scale-95 text-center min-w-[200px]"
                   >
                     Get Resource
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 ) : (
-                  <div className="inline-flex flex-col items-center justify-center gap-1 px-8 py-4 bg-gray-900 text-gray-500 font-bold rounded-2xl border border-white/5 text-center min-w-[200px] cursor-not-allowed">
+                  <div className="inline-flex flex-col items-center justify-center gap-1 px-8 py-4 bg-slate-100 text-slate-500 font-bold rounded-2xl border border-slate-200 text-center min-w-[200px] cursor-not-allowed">
                     <span className="text-xs">URL Not Available</span>
-                    <span className="text-[10px] font-normal text-gray-600">Contact owner to claim</span>
+                    <span className="text-[10px] font-normal text-slate-400">Contact owner to claim</span>
                   </div>
                 )}
 
@@ -368,25 +368,25 @@ export default async function ResourceDetailPage({
 
 
             {/* Stats Bar - Monospace */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-900 overflow-hidden border border-gray-900 rounded-2xl mb-12 font-mono text-xs">
-              <div className="bg-[#0D0D0D] p-6 text-center">
-                <div className="text-gray-600 uppercase tracking-widest mb-2">Rating</div>
-                <div className="flex items-center justify-center gap-1.5 font-bold text-white text-base">
-                  <Star className="w-4 h-4 fill-white text-white animate-shimmer" />
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-slate-200 overflow-hidden border border-slate-200 rounded-2xl mb-12 font-mono text-xs shadow-sm">
+              <div className="bg-white p-6 text-center">
+                <div className="text-slate-500 uppercase tracking-widest mb-2">Rating</div>
+                <div className="flex items-center justify-center gap-1.5 font-bold text-slate-900 text-base">
+                  <Star className="w-4 h-4 fill-slate-900 text-slate-900" />
                   {avgRating.toFixed(1)}
                 </div>
               </div>
-              <div className="bg-[#0D0D0D] p-6 text-center">
-                <div className="text-gray-600 uppercase tracking-widest mb-2">Views</div>
-                <div className="font-bold text-white text-base">{resource.views.toLocaleString()}</div>
+              <div className="bg-white p-6 text-center">
+                <div className="text-slate-500 uppercase tracking-widest mb-2">Views</div>
+                <div className="font-bold text-slate-900 text-base">{resource.views.toLocaleString()}</div>
               </div>
-              <div className="bg-[#0D0D0D] p-6 text-center">
-                <div className="text-gray-600 uppercase tracking-widest mb-2">Copies</div>
-                <div className="font-bold text-white text-base">{resource.copiedCount.toLocaleString()}</div>
+              <div className="bg-white p-6 text-center">
+                <div className="text-slate-500 uppercase tracking-widest mb-2">Copies</div>
+                <div className="font-bold text-slate-900 text-base">{resource.copiedCount.toLocaleString()}</div>
               </div>
-              <div className="bg-[#0D0D0D] p-6 text-center">
-                <div className="text-gray-600 uppercase tracking-widest mb-2">Reviews</div>
-                <div className="font-bold text-white text-base">{resourceRatings.length}</div>
+              <div className="bg-white p-6 text-center">
+                <div className="text-slate-500 uppercase tracking-widest mb-2">Reviews</div>
+                <div className="font-bold text-slate-900 text-base">{resourceRatings.length}</div>
               </div>
             </div>
 
@@ -394,9 +394,9 @@ export default async function ResourceDetailPage({
             {resource.content && (
               <div className="mb-12">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold tracking-tight text-white font-mono uppercase tracking-widest text-sm text-gray-500">Resource Content</h2>
+                  <h2 className="text-xl font-bold font-mono tracking-widest text-slate-900 uppercase">Resource Content</h2>
                   {hasAccess && (
-                    <button className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all">
+                    <button className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-xl transition-all">
                       <Copy className="w-4 h-4" />
                       Copy Code
                     </button>
@@ -405,23 +405,23 @@ export default async function ResourceDetailPage({
                 
                 {hasAccess ? (
                   <div className="relative group">
-                    <pre className="whitespace-pre-wrap font-mono text-sm bg-black p-8 rounded-2xl border border-gray-900 text-gray-300 overflow-x-auto max-h-[600px] leading-relaxed">
+                    <pre className="whitespace-pre-wrap font-mono text-sm bg-slate-50 p-8 rounded-2xl border border-slate-200 text-slate-700 overflow-x-auto max-h-[600px] leading-relaxed">
                       {resource.content}
                     </pre>
                   </div>
                 ) : (
-                  <div className="relative rounded-2xl border border-gray-900 bg-black overflow-hidden">
-                    <div className="p-8 filter blur-sm select-none opacity-30">
-                      <pre className="whitespace-pre-wrap font-mono text-sm text-gray-300">
+                  <div className="relative rounded-2xl border border-slate-200 bg-slate-50 overflow-hidden">
+                    <div className="p-8 filter blur-sm select-none opacity-50">
+                      <pre className="whitespace-pre-wrap font-mono text-sm text-slate-700">
                         {resource.content.slice(0, 300)}...
                         {/* Fake content to simulate length */}
                         {'\n\n[Content Hidden]\n[Content Hidden]\n[Content Hidden]'}
                       </pre>
                     </div>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black via-black/80 to-transparent z-10">
-                      <Lock className="w-8 h-8 text-white mb-4" />
-                      <h3 className="text-xl font-bold text-white mb-2">Premium Content</h3>
-                      <p className="text-gray-400 text-sm mb-6 max-w-xs text-center">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-white via-white/80 to-transparent z-10">
+                      <Lock className="w-8 h-8 text-slate-800 mb-4" />
+                      <h3 className="text-xl font-bold text-slate-900 mb-2">Premium Content</h3>
+                      <p className="text-slate-600 text-sm mb-6 max-w-xs text-center">
                         Purchase this resource to access the full source code and documentation.
                       </p>
                       <BuyButton 
@@ -442,7 +442,7 @@ export default async function ResourceDetailPage({
                 {resourceTagsList.map((tag, index) => (
                   <span
                     key={index}
-                    className="px-4 py-1.5 bg-white/5 text-gray-400 border border-white/5 rounded-full text-xs font-mono lowercase"
+                    className="px-4 py-1.5 bg-slate-100 text-slate-500 border border-slate-200 rounded-full text-xs font-mono lowercase"
                   >
                     #{tag.name}
                   </span>
@@ -451,19 +451,19 @@ export default async function ResourceDetailPage({
             )}
 
             {/* Rating CTA */}
-            <div className="pt-12 border-t border-gray-900 text-center">
-              <h3 className="text-xl font-bold mb-6 text-white font-mono uppercase tracking-widest text-sm text-gray-500">Rate this resource</h3>
+            <div className="pt-12 border-t border-slate-200 text-center">
+              <h3 className="text-xl font-bold mb-6 text-slate-900 font-mono uppercase tracking-widest text-sm text-slate-500">Rate this resource</h3>
               <div className="flex justify-center gap-4">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
                     key={star}
                     className="p-2 hover:scale-125 transition-transform"
                   >
-                    <Star className="w-10 h-10 text-gray-900 hover:text-white hover:fill-white transition-all duration-300" />
+                    <Star className="w-10 h-10 text-slate-200 hover:text-slate-400 hover:fill-slate-400 transition-all duration-300" />
                   </button>
                 ))}
               </div>
-              <p className="mt-6 text-xs text-gray-600 font-mono tracking-widest uppercase">
+              <p className="mt-6 text-xs text-slate-500 font-mono tracking-widest uppercase">
                 Sign in to verify your vote
               </p>
             </div>

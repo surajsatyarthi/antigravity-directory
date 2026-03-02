@@ -38,7 +38,7 @@ const jsonLd = safeJsonLd({
 
 export default function AdvertisePage() {
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-white/20">
+    <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-500/30">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd }}
@@ -49,19 +49,19 @@ export default function AdvertisePage() {
       <main className="pt-32 pb-24">
         {/* Hero Section */}
         <div className="text-center max-w-4xl mx-auto px-4 mb-24">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-medium text-slate-500 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             Accepting New Sponsors
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-6 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-900 mb-6 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
             Get Discovered by <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-emerald-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600">
               10,000+ AI Builders
             </span>
           </h1>
           
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
+          <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
             Antigravity Directory is the destination for the next generation of AI tools. 
             Skip the noise and put your project in front of early adopters, investors, and power users.
           </p>
@@ -76,9 +76,9 @@ export default function AdvertisePage() {
               { label: 'Click-Through Rate', value: '12%' },
               { label: 'Founder Community', value: 'Verified' },
             ].map((stat, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/5 text-center">
-                <div className="text-3xl font-black text-white mb-1">{stat.value}</div>
-                <div className="text-xs font-bold uppercase tracking-widest text-gray-500">{stat.label}</div>
+              <div key={i} className="p-6 rounded-2xl bg-white border border-slate-200 text-center shadow-sm">
+                <div className="text-3xl font-black text-slate-900 mb-1">{stat.value}</div>
+                <div className="text-xs font-bold uppercase tracking-widest text-slate-500">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -90,9 +90,9 @@ export default function AdvertisePage() {
         </div>
 
         {/* Trust Section */}
-        <div className="mt-32 text-center border-t border-white/5 pt-24">
-            <p className="text-gray-500 text-sm font-medium mb-8">TRUSTED BY BUILDERS FROM</p>
-            <div className="flex flex-wrap justify-center gap-12 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
+        <div className="mt-32 text-center border-t border-slate-200 pt-24">
+            <p className="text-slate-500 text-sm font-medium mb-8 uppercase tracking-widest">TRUSTED BY BUILDERS FROM</p>
+            <div className="flex flex-wrap justify-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 text-slate-800">
                 {/* Simple text placeholders for logos - in prod use SVG images */}
                 <span className="text-xl font-bold">Y Combinator</span>
                 <span className="text-xl font-bold">Product Hunt</span>
