@@ -102,12 +102,12 @@ export function ResourcePricingForm({
   };
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-xl p-6 mt-6">
+    <div className="bg-slate-100 border border-slate-200 rounded-xl p-6 mt-6">
       <div className="flex items-start gap-3 mb-4">
         <DollarSign className="w-5 h-5 text-green-400 mt-0.5" />
         <div className="flex-1">
-          <h3 className="text-lg font-bold text-white mb-1">Resource Pricing</h3>
-          <p className="text-sm text-gray-400">
+          <h3 className="text-lg font-bold text-slate-900 mb-1">Resource Pricing</h3>
+          <p className="text-sm text-slate-400">
             Set a price for this resource or keep it free
           </p>
         </div>
@@ -115,8 +115,8 @@ export function ResourcePricingForm({
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Enable Paid Toggle */}
-        <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/5">
-          <label htmlFor="paid-toggle" className="text-sm font-medium text-white cursor-pointer">
+        <div className="flex items-center justify-between p-3 bg-slate-100 rounded-lg border border-slate-200">
+          <label htmlFor="paid-toggle" className="text-sm font-medium text-slate-900 cursor-pointer">
             Enable Paid Access
           </label>
           <button
@@ -141,12 +141,12 @@ export function ResourcePricingForm({
         {isPaid && (
           <>
             <div className="space-y-2">
-              <label htmlFor="price-input" className="text-sm font-medium text-gray-300">
+              <label htmlFor="price-input" className="text-sm font-medium text-slate-500">
                 Price
               </label>
               <div className="flex gap-3">
                 <div className="flex-1 relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">
                     {currency === 'USD' ? '$' : '₹'}
                   </span>
                   <input
@@ -158,14 +158,14 @@ export function ResourcePricingForm({
                     step="0.01"
                     min="0"
                     max="999"
-                    className="w-full pl-8 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full pl-8 pr-4 py-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
                 </div>
                 
                 <select
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="px-4 py-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-500"
                   aria-label="Currency"
                 >
                   <option value="USD">USD</option>
@@ -192,7 +192,7 @@ export function ResourcePricingForm({
         <button
           type="submit"
           disabled={loading || (isPaid && !!error)}
-          className="w-full py-2.5 px-4 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+          className="w-full py-2.5 px-4 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-slate-900 font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
         >
           {loading ? (
             <>

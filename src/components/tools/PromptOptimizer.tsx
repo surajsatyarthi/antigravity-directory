@@ -52,7 +52,7 @@ export function PromptOptimizer() {
                 <Trash2 className="w-4 h-4" />
             </Button>
         </div>
-        <Card className="flex-1 bg-white/5 border-white/10 p-1 relative group">
+        <Card className="flex-1 bg-slate-100 border-slate-200 p-1 relative group">
             <Textarea
                 placeholder="Paste your rough prompt here... (e.g. 'Write a blog post about AI')"
                 className="w-full h-full min-h-[400px] bg-transparent border-0 resize-none focus-visible:ring-0 text-base leading-relaxed text-slate-300 p-4"
@@ -64,7 +64,7 @@ export function PromptOptimizer() {
         <Button 
             onClick={handleOptimize} 
             disabled={loading || !input.trim()}
-            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-6 text-lg shadow-lg shadow-blue-900/20"
+            className="w-full bg-blue-600 hover:bg-blue-500 text-slate-900 font-semibold py-6 text-lg shadow-lg shadow-blue-900/20"
         >
             {loading ? (
                 <>
@@ -95,9 +95,9 @@ export function PromptOptimizer() {
                 </Button>
             )}
         </div>
-        <Card className="flex-1 bg-black/40 border-green-500/30 p-1 relative overflow-hidden">
+        <Card className="flex-1 bg-white/40 border-green-500/30 p-1 relative overflow-hidden">
             {loading && (
-                <div className="absolute inset-0 z-10 bg-black/60 backdrop-blur-sm flex items-center justify-center">
+                <div className="absolute inset-0 z-10 bg-white/60 backdrop-blur-sm flex items-center justify-center">
                     <div className="text-blue-400 font-mono animate-pulse">Generating Optimization...</div>
                 </div>
             )}

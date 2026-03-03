@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Star, Eye, ArrowRight, Package } from 'lucide-react';
+import { Star, Eye, ArrowRight, Package, Copy, Bookmark } from 'lucide-react';
 import { BookmarkButton } from './BookmarkButton';
 import { MAX_INTEGRATION_ICONS } from '@/constants';
 
@@ -27,10 +27,10 @@ export function ResourceCard({ resource }: ResourceCardProps) {
   return (
     <div 
       data-testid="resource-card"
-      className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-[#050505] border rounded-lg overflow-hidden hover:border-blue-500/50 hover:bg-white/[0.01] transition-all duration-300 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
+      className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-white border rounded-xl overflow-hidden opacity-60 hover:opacity-100 hover:border-blue-300 hover:shadow-sm transition-all duration-200 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-white ${
       isFeatured
         ? 'border-yellow-500/40'
-        : 'border-white/[0.05]'
+        : 'border-slate-200'
     }`}>
 
       <Link href={`/t/${resource.slug}`} className="absolute inset-0 z-20 outline-none">
@@ -61,7 +61,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
                   className="w-5 h-5 rounded-md bg-gray-950 border border-gray-900 flex items-center justify-center shrink-0"
                   title={integration}
                 >
-                  <Package className="w-3 h-3 sm:w-2.5 sm:h-2.5 text-gray-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
+                  <Package className="w-3 h-3 sm:w-2.5 sm:h-2.5 text-slate-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
                 </div>
               ))}
             </div>
@@ -80,17 +80,17 @@ export function ResourceCard({ resource }: ResourceCardProps) {
         {/* Middle: Title & Description */}
         <div className="flex-1 min-w-0 w-full">
           <div className="flex justify-between items-start">
-             <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors mb-1 tracking-tight leading-tight truncate pr-8 sm:pr-0">
+             <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-400 transition-colors mb-1 tracking-tight leading-tight truncate pr-8 sm:pr-0">
               {resource.title}
             </h3>
           </div>
-          <p className="text-sm text-gray-400 line-clamp-3 sm:line-clamp-1 font-medium">
+          <p className="text-sm text-slate-400 line-clamp-3 sm:line-clamp-1 font-medium">
             {resource.description}
           </p>
         </div>
 
         {/* Right: Stats & Actions (Mobile: Bottom Row) */}
-        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-white/5 sm:border-0">
+        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-slate-200 sm:border-0">
           <div className="flex items-center gap-3">
             {/* Rating */}
             <div
@@ -98,10 +98,10 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               aria-label={`Rating: ${Number(resource.avgRating ?? 0).toFixed(1)} stars out of ${resource.ratingCount ?? 0} reviews`}
             >
               <Star className="w-4 h-4 sm:w-3.5 sm:h-3.5 fill-yellow-500/90 text-yellow-500/90" aria-hidden="true" />
-              <span className="text-sm font-bold font-mono text-white">
+              <span className="text-sm font-bold font-mono text-slate-900">
                 {Number(resource.avgRating ?? 0).toFixed(1)}
               </span>
-              <span className="text-gray-500 text-xs font-mono font-bold">
+              <span className="text-slate-500 text-xs font-mono font-bold">
                 ({resource.ratingCount ?? 0})
               </span>
             </div>
@@ -112,7 +112,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               aria-label={`${resource.views} views`}
             >
               <Eye className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-gray-600" aria-hidden="true" />
-              <span className="text-sm font-bold font-mono text-gray-500">
+              <span className="text-sm font-bold font-mono text-slate-500">
                 {resource.views >= 1000 ? `${(resource.views / 1000).toFixed(1)}k` : resource.views}
               </span>
             </div>
@@ -124,13 +124,25 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               initialIsBookmarked={!!resource.isBookmarked}
             />
             <div
-              className="flex items-center justify-center w-11 h-11 sm:w-7 sm:h-7 rounded-full bg-gray-950 border border-gray-900 text-gray-400 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
+              className="flex items-center justify-center w-11 h-11 sm:w-7 sm:h-7 rounded-full bg-gray-950 border border-gray-900 text-slate-400 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
               aria-hidden="true"
             >
               <ArrowRight className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Action buttons — hidden by default, shown on hover */}
+      <div className="absolute bottom-3 right-3 hidden group-hover:flex items-center gap-2 z-10">
+        {/* Copy button */}
+        <button className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-slate-700 transition-colors">
+          <Copy className="w-3.5 h-3.5" />
+        </button>
+        {/* Bookmark button */}
+        <button className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:border-slate-400 transition-colors">
+          <Bookmark className="w-3.5 h-3.5" />
+        </button>
       </div>
     </div>
   );

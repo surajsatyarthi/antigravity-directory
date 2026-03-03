@@ -96,27 +96,27 @@ export const Testimonials = () => {
   return (
     <div className="w-full mb-10">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-black text-gray-300 uppercase tracking-[0.2em]">Community Feedback</h3>
+        <h3 className="text-sm font-black text-slate-500 uppercase tracking-[0.2em]">Community Feedback</h3>
         <div className="flex items-center gap-2">
           <button
             onClick={prevSlide}
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
-            className="w-8 h-8 rounded-full bg-[#050505] border border-white/10 flex items-center justify-center hover:border-white/20 transition-all disabled:opacity-50"
+            className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:border-slate-200 transition-all disabled:opacity-50"
             aria-label="Previous testimonials"
             disabled={isTransitioning}
           >
-            <ChevronLeft className="w-4 h-4 text-gray-400" />
+            <ChevronLeft className="w-4 h-4 text-slate-400" />
           </button>
           <button
             onClick={nextSlide}
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
-            className="w-8 h-8 rounded-full bg-[#050505] border border-white/10 flex items-center justify-center hover:border-white/20 transition-all disabled:opacity-50"
+            className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:border-slate-200 transition-all disabled:opacity-50"
             aria-label="Next testimonials"
             disabled={isTransitioning}
           >
-            <ChevronRight className="w-4 h-4 text-gray-400" />
+            <ChevronRight className="w-4 h-4 text-slate-400" />
           </button>
         </div>
       </div>
@@ -134,24 +134,24 @@ export const Testimonials = () => {
             <div key={slideIdx} className="w-full flex-shrink-0">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {TESTIMONIALS.slice(slideIdx * itemsPerPage, (slideIdx + 1) * itemsPerPage).map((t, i) => (
-                  <div key={i} className="bg-[#050505] border border-white/10 rounded-lg p-5 hover:border-white/20 transition-all group flex flex-col justify-between">
+                  <div key={i} className="bg-white border border-slate-200 rounded-lg p-5 hover:border-slate-200 transition-all group flex flex-col justify-between">
                     <div>
                       <div className="flex gap-1 mb-3">
                         {[...Array(5)].map((_, idx) => (
                           <Star key={idx} className="w-3.5 h-3.5 fill-yellow-500/90 text-yellow-500/90" />
                         ))}
                       </div>
-                      <p className="text-sm text-gray-300 italic mb-4 leading-relaxed group-hover:text-gray-200 transition-colors">
+                      <p className="text-sm text-slate-500 italic mb-4 leading-relaxed group-hover:text-slate-900 transition-colors">
                         "{t.text}"
                       </p>
                     </div>
                     <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-full bg-gray-800 border border-white/10 flex items-center justify-center text-[10px] font-black text-gray-400">
+                      <div className="w-7 h-7 rounded-full bg-gray-800 border border-slate-200 flex items-center justify-center text-[10px] font-black text-slate-400">
                         {t.avatar}
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-white">{t.name}</div>
-                        <div className="text-[11px] text-gray-500 font-medium uppercase tracking-wider">{t.role}</div>
+                        <div className="text-sm font-bold text-slate-900">{t.name}</div>
+                        <div className="text-[11px] text-slate-500 font-medium uppercase tracking-wider">{t.role}</div>
                       </div>
                     </div>
                   </div>

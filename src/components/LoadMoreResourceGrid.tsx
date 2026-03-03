@@ -67,7 +67,7 @@ export function LoadMoreResourceGrid({
     const AD_FREQUENCY = 8; // Ad every 8 resources
     
     const AD_CLIENTS = [
-      { name: 'Vercel', color: 'bg-black' },
+      { name: 'Vercel', color: 'bg-white' },
       { name: 'Supabase', color: 'bg-green-900' },
       { name: 'Neon', color: 'bg-green-500' }
     ];
@@ -114,7 +114,7 @@ export function LoadMoreResourceGrid({
           <button
             onClick={loadMore}
             disabled={loading}
-            className="flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/50 text-white font-bold uppercase tracking-widest rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+            className="flex items-center gap-3 px-8 py-4 bg-slate-100 hover:bg-slate-100 border border-slate-200 hover:border-blue-500/50 text-slate-900 font-bold uppercase tracking-widest rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
           >
             {loading ? (
               <>
@@ -124,7 +124,7 @@ export function LoadMoreResourceGrid({
             ) : (
               <>
                 <span>Load Next 20</span>
-                <span className="text-gray-500 font-normal text-xs">
+                <span className="text-slate-500 font-normal text-xs">
                   ({resources.length} of {totalCount})
                 </span>
               </>

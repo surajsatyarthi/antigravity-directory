@@ -24,10 +24,10 @@ export function NavLinks({ session, username }: NavLinksProps) {
         const isActive = pathname === item.href;
         const baseClass = "transition-colors whitespace-nowrap";
         const colorClass = item.disabled 
-          ? "text-gray-400 cursor-not-allowed hover:text-white" 
+          ? "text-slate-400 cursor-not-allowed hover:text-slate-900" 
           : isActive 
-            ? "text-white" 
-            : item.label === 'MCPs' ? "text-white hover:text-blue-400" : "text-gray-300 hover:text-white";
+            ? "text-slate-900" 
+            : item.label === 'MCPs' ? "text-slate-900 hover:text-blue-400" : "text-slate-500 hover:text-slate-900";
 
         return (
           <Link

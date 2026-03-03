@@ -6,11 +6,11 @@ interface SponsoredCardProps {
 
 export function SponsoredCard({ position }: SponsoredCardProps) {
   return (
-    <div className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-[#050505] border border-dashed border-white/10 rounded-lg overflow-hidden hover:border-blue-500/30 transition-all duration-300 min-h-[140px]">
+    <div className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-white border border-dashed border-slate-200 rounded-lg overflow-hidden hover:border-blue-500/30 transition-all duration-300 min-h-[140px]">
       
       {/* Sponsored Badge (Top Right) */}
-      <div className="absolute top-0 right-0 z-30 flex items-center gap-1.5 px-2 py-1 bg-white/5 border-b border-l border-white/10 rounded-bl-lg backdrop-blur-sm">
-        <span className="text-[7px] font-black text-gray-400 uppercase tracking-[0.2em]">Ad • Slot #{position}</span>
+      <div className="absolute top-0 right-0 z-30 flex items-center gap-1.5 px-2 py-1 bg-slate-100 border-b border-l border-slate-200 rounded-bl-lg backdrop-blur-sm">
+        <span className="text-[7px] font-black text-slate-400 uppercase tracking-[0.2em]">Ad • Slot #{position}</span>
       </div>
 
       {/* Content Container (Matches ResourceCard padding) */}
@@ -18,7 +18,7 @@ export function SponsoredCard({ position }: SponsoredCardProps) {
         
         {/* Left: Icon Placeholder */}
         <div className="flex items-center justify-center w-full sm:w-auto shrink-0">
-           <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-lg bg-white/5 flex items-center justify-center">
+           <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-lg bg-slate-100 flex items-center justify-center">
              <span className="font-mono text-xs text-white/20">AD</span>
            </div>
         </div>
@@ -34,7 +34,7 @@ export function SponsoredCard({ position }: SponsoredCardProps) {
         </div>
 
         {/* Right: CTA */}
-        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-white/5 sm:border-0 border-dashed">
+        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-slate-200 sm:border-0 border-dashed">
             <button className="text-[10px] uppercase tracking-widest font-bold text-blue-400/50 hover:text-blue-400 transition-colors">
                 Contact Sales
             </button>

@@ -41,7 +41,7 @@ export function Dropdown({ item, pathname }: DropdownProps) {
     >
       <button
         className={`flex items-center gap-1.5 transition-colors whitespace-nowrap px-1 py-1 rounded-sm ${
-          isOpen || hasActiveChild ? 'text-white' : 'text-gray-300 hover:text-white'
+          isOpen || hasActiveChild ? 'text-slate-900' : 'text-slate-500 hover:text-slate-900'
         }`}
       >
         <span className="uppercase">{item.label}</span>
@@ -50,7 +50,7 @@ export function Dropdown({ item, pathname }: DropdownProps) {
 
       {isOpen && (
         <div className="absolute top-[calc(100%-4px)] left-1/2 -translate-x-1/2 pt-2 w-48 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="bg-[#0A0A0A] border border-white/[0.08] rounded-xl shadow-2xl overflow-hidden backdrop-blur-xl">
+          <div className="bg-white border border-white/[0.08] rounded-xl shadow-2xl overflow-hidden backdrop-blur-xl">
             <div className="py-1.5">
               {item.children?.map((child) => {
                 const isChildActive = pathname === child.href;
@@ -60,7 +60,7 @@ export function Dropdown({ item, pathname }: DropdownProps) {
                     href={child.href}
                     target={child.external ? "_blank" : undefined}
                     className={`flex items-center justify-between px-4 py-2.5 text-[11px] font-medium transition-all hover:bg-white/[0.03] ${
-                      isChildActive ? 'text-white bg-white/[0.05]' : 'text-gray-400 hover:text-white'
+                      isChildActive ? 'text-slate-900 bg-slate-100' : 'text-slate-400 hover:text-slate-900'
                     }`}
                   >
                     <span className="uppercase">{child.label}</span>

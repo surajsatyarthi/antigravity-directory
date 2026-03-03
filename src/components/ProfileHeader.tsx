@@ -42,7 +42,7 @@ export function ProfileHeader({ user, isOwnProfile, initialIsFollowing }: Profil
           <div className="flex flex-col md:flex-row md:items-end gap-6">
             {/* Avatar */}
             <div className="relative group">
-              <div className="w-32 h-32 rounded-3xl bg-[#0A0A0A] border-4 border-black overflow-hidden shadow-2xl transition-transform group-hover:scale-[1.02]">
+              <div className="w-32 h-32 rounded-3xl bg-white border-4 border-black overflow-hidden shadow-2xl transition-transform group-hover:scale-[1.02]">
                 {user.image ? (
                   <Image
                     src={user.image}
@@ -61,11 +61,11 @@ export function ProfileHeader({ user, isOwnProfile, initialIsFollowing }: Profil
 
             {/* User Info */}
             <div className="mb-2">
-              <h1 className="text-4xl font-black tracking-tighter text-white uppercase italic">
+              <h1 className="text-4xl font-black tracking-tighter text-slate-900 uppercase italic">
                 {user.name || 'Anonymous User'}
               </h1>
               {user.tagline && (
-                <p className="text-gray-400 font-medium italic text-sm mt-0.5 tracking-tight">
+                <p className="text-slate-400 font-medium italic text-sm mt-0.5 tracking-tight">
                   {user.tagline}
                 </p>
               )}
@@ -73,14 +73,14 @@ export function ProfileHeader({ user, isOwnProfile, initialIsFollowing }: Profil
                 <p className="text-blue-500 font-mono text-sm uppercase tracking-widest leading-none">
                   @{user.username || 'unidentified'}
                 </p>
-                <div className="flex items-center gap-4 text-gray-500 font-mono text-[10px] uppercase tracking-widest bg-white/5 px-3 py-1.5 rounded-2xl border border-white/5 shadow-inner">
+                <div className="flex items-center gap-4 text-slate-500 font-mono text-[10px] uppercase tracking-widest bg-slate-100 px-3 py-1.5 rounded-2xl border border-slate-200 shadow-inner">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-white font-black">{user.followersCount || 0}</span>
+                    <span className="text-slate-900 font-black">{user.followersCount || 0}</span>
                     <span className="text-[8px] opacity-60">Followers</span>
                   </div>
                   <div className="w-px h-2.5 bg-gray-800" />
                   <div className="flex items-center gap-1.5">
-                    <span className="text-white font-black">{user.followingCount || 0}</span>
+                    <span className="text-slate-900 font-black">{user.followingCount || 0}</span>
                     <span className="text-[8px] opacity-60">Following</span>
                   </div>
                 </div>
@@ -110,7 +110,7 @@ export function ProfileHeader({ user, isOwnProfile, initialIsFollowing }: Profil
         {/* Bio & Links */}
         <div className="mt-8 max-w-2xl">
           {user.bio ? (
-            <p className="text-gray-400 text-lg leading-relaxed font-medium mb-6">
+            <p className="text-slate-400 text-lg leading-relaxed font-medium mb-6">
               {user.bio}
             </p>
           ) : (
@@ -119,9 +119,9 @@ export function ProfileHeader({ user, isOwnProfile, initialIsFollowing }: Profil
             </p>
           )}
 
-          <div className="flex flex-wrap items-center gap-6 text-xs font-mono uppercase tracking-widest text-gray-500">
+          <div className="flex flex-wrap items-center gap-6 text-xs font-mono uppercase tracking-widest text-slate-500">
             {user.location && (
-              <div className="flex items-center gap-2 text-gray-400">
+              <div className="flex items-center gap-2 text-slate-400">
                 <MapPin className="w-3.5 h-3.5" />
                 {user.location}
               </div>
@@ -139,7 +139,7 @@ export function ProfileHeader({ user, isOwnProfile, initialIsFollowing }: Profil
                 href={`https://github.com/${user.githubUsername}`} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl text-gray-400 hover:text-white transition-all group"
+                className="p-2 bg-slate-100 hover:bg-slate-100 border border-slate-200 rounded-xl text-slate-400 hover:text-slate-900 transition-all group"
                 title="GitHub Profile"
               >
                 <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
@@ -150,7 +150,7 @@ export function ProfileHeader({ user, isOwnProfile, initialIsFollowing }: Profil
                 href={`https://twitter.com/${user.twitterHandle}`} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl text-gray-400 hover:text-[#1d9bf0] transition-all group"
+                className="p-2 bg-slate-100 hover:bg-slate-100 border border-slate-200 rounded-xl text-slate-400 hover:text-[#1d9bf0] transition-all group"
                 title="Twitter Profile"
               >
                 <Twitter className="w-4 h-4 group-hover:scale-110 transition-transform" />
@@ -161,7 +161,7 @@ export function ProfileHeader({ user, isOwnProfile, initialIsFollowing }: Profil
                 href={user.linkedinUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl text-gray-400 hover:text-[#0a66c2] transition-all group"
+                className="p-2 bg-slate-100 hover:bg-slate-100 border border-slate-200 rounded-xl text-slate-400 hover:text-[#0a66c2] transition-all group"
                 title="LinkedIn Profile"
               >
                 <Linkedin className="w-4 h-4 group-hover:scale-110 transition-transform" />
@@ -169,7 +169,7 @@ export function ProfileHeader({ user, isOwnProfile, initialIsFollowing }: Profil
             )}
             {user.discordUsername && (
               <div 
-                className="p-2 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl text-gray-400 hover:text-[#5865f2] transition-all group cursor-help"
+                className="p-2 bg-slate-100 hover:bg-slate-100 border border-slate-200 rounded-xl text-slate-400 hover:text-[#5865f2] transition-all group cursor-help"
                 title={`Discord: ${user.discordUsername}`}
               >
                 <MessageSquare className="w-4 h-4 group-hover:scale-110 transition-transform" />
@@ -180,7 +180,7 @@ export function ProfileHeader({ user, isOwnProfile, initialIsFollowing }: Profil
                 href={user.youtubeChannel.startsWith('http') ? user.youtubeChannel : `https://youtube.com/@${user.youtubeChannel}`} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl text-gray-400 hover:text-[#ff0000] transition-all group"
+                className="p-2 bg-slate-100 hover:bg-slate-100 border border-slate-200 rounded-xl text-slate-400 hover:text-[#ff0000] transition-all group"
                 title="YouTube Channel"
               >
                 <Youtube className="w-4 h-4 group-hover:scale-110 transition-transform" />

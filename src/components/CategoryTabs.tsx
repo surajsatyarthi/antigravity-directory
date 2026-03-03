@@ -38,7 +38,7 @@ export function CategoryTabs({ categories, activeCategories }: CategoryTabsProps
   const totalAllCount = categories.reduce((acc, cat) => acc + (Number(cat.count) || 0), 0);
 
   return (
-    <div className="border-b border-white/[0.05] bg-black/80 backdrop-blur-md sticky top-14 z-40 w-full overflow-hidden">
+    <div className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-14 z-40 w-full overflow-hidden">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-1 overflow-x-auto no-scrollbar py-2 -mb-px">
           {/* All Tab */}
@@ -48,8 +48,8 @@ export function CategoryTabs({ categories, activeCategories }: CategoryTabsProps
             className={cn(
               "px-4 py-2 text-[11px] font-bold uppercase tracking-widest whitespace-nowrap transition-all border-b-2 rounded-t-md",
               isActive(null) 
-                ? "text-white border-blue-500 bg-white/[0.03]" 
-                : "text-gray-500 border-transparent hover:text-gray-300 hover:bg-white/[0.01]"
+                ? "text-slate-900 border-blue-500 bg-white/[0.03]" 
+                : "text-slate-500 border-transparent hover:text-slate-500 hover:bg-white/[0.01]"
             )}
           >
             All <span className="ml-1.5 text-gray-600 font-mono text-[9px]">{totalAllCount}</span>
@@ -64,8 +64,8 @@ export function CategoryTabs({ categories, activeCategories }: CategoryTabsProps
               className={cn(
                 "px-4 py-2 text-[11px] font-bold uppercase tracking-widest whitespace-nowrap transition-all border-b-2 rounded-t-md",
                 isActive(category.slug) 
-                  ? "text-white border-blue-500 bg-white/[0.03]" 
-                  : "text-gray-500 border-transparent hover:text-gray-300 hover:bg-white/[0.01]"
+                  ? "text-slate-900 border-blue-500 bg-white/[0.03]" 
+                  : "text-slate-500 border-transparent hover:text-slate-500 hover:bg-white/[0.01]"
               )}
             >
               {category.name} <span className="ml-1.5 text-gray-600 font-mono text-[9px]">{category.count}</span>

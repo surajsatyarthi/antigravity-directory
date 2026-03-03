@@ -28,7 +28,7 @@ export function MemberCard({ member, initialIsFollowing, viewerId }: MemberCardP
   return (
     <Link 
       href={`/u/${member.username}`}
-      className="group relative bg-[#0A0A0A] border border-gray-900 rounded-[32px] p-6 hover:border-blue-500/50 transition-all hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] flex flex-col items-center text-center overflow-hidden"
+      className="group relative bg-white border border-gray-900 rounded-[32px] p-6 hover:border-blue-500/50 transition-all hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] flex flex-col items-center text-center overflow-hidden"
     >
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 blur-[60px] rounded-full -mr-16 -mt-16 group-hover:bg-blue-600/10 transition-colors" />
@@ -79,11 +79,11 @@ export function MemberCard({ member, initialIsFollowing, viewerId }: MemberCardP
 
       {/* Info */}
       <div className="flex-1 w-full space-y-1">
-        <h3 className="text-xl font-black text-white uppercase italic tracking-tighter group-hover:text-blue-400 transition-colors">
+        <h3 className="text-xl font-black text-slate-900 uppercase italic tracking-tighter group-hover:text-blue-400 transition-colors">
           {member.name || (member.username ? `@${member.username}` : 'Identified User')}
         </h3>
         {member.tagline ? (
-          <p className="text-gray-400 text-xs font-medium italic line-clamp-1 h-4">
+          <p className="text-slate-400 text-xs font-medium italic line-clamp-1 h-4">
             {member.tagline}
           </p>
         ) : (
@@ -104,11 +104,11 @@ export function MemberCard({ member, initialIsFollowing, viewerId }: MemberCardP
 
       {/* Social Icons (Mini Presence) */}
       <div className="mt-6 flex flex-wrap justify-center gap-2 opacity-50 group-hover:opacity-100 transition-opacity">
-        {member.githubUsername && <Github className="w-3.5 h-3.5 text-gray-500" />}
-        {member.twitterHandle && <Twitter className="w-3.5 h-3.5 text-gray-500" />}
-        {member.linkedinUrl && <Linkedin className="w-3.5 h-3.5 text-gray-500" />}
-        {member.youtubeChannel && <Youtube className="w-3.5 h-3.5 text-gray-500" />}
-        {member.discordUsername && <MessageSquare className="w-3.5 h-3.5 text-gray-500" />}
+        {member.githubUsername && <Github className="w-3.5 h-3.5 text-slate-500" />}
+        {member.twitterHandle && <Twitter className="w-3.5 h-3.5 text-slate-500" />}
+        {member.linkedinUrl && <Linkedin className="w-3.5 h-3.5 text-slate-500" />}
+        {member.youtubeChannel && <Youtube className="w-3.5 h-3.5 text-slate-500" />}
+        {member.discordUsername && <MessageSquare className="w-3.5 h-3.5 text-slate-500" />}
       </div>
     </Link>
   );

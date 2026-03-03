@@ -49,7 +49,7 @@ export function FollowButton({
         className={`p-2 rounded-xl border transition-all ${
           following 
             ? 'bg-blue-500/10 border-blue-500/20 text-blue-500' 
-            : 'bg-white/5 border-white/5 text-gray-400 hover:text-white hover:bg-white/10'
+            : 'bg-slate-100 border-slate-200 text-slate-400 hover:text-slate-900 hover:bg-slate-100'
         }`}
       >
         {isPending ? (
@@ -69,8 +69,8 @@ export function FollowButton({
       disabled={isPending}
       className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-black uppercase italic tracking-tighter transition-all ${
         following
-          ? 'bg-[#151515] border border-gray-800 text-gray-400 hover:border-red-500/50 hover:text-red-500 group'
-          : 'bg-blue-600 border border-blue-500 text-white hover:bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.3)]'
+          ? 'bg-[#151515] border border-gray-800 text-slate-400 hover:border-red-500/50 hover:text-red-500 group'
+          : 'bg-blue-600 border border-blue-500 text-slate-900 hover:bg-blue-700 shadow-[0_0_20px_rgba(37,99,235,0.3)]'
       }`}
     >
       {isPending ? (

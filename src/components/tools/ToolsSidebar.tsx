@@ -12,10 +12,10 @@ export function ToolsSidebar({ isCollapsed = false }: { isCollapsed?: boolean })
   const pathname = usePathname();
 
   return (
-    <div className={cn("flex flex-col h-full py-4 bg-black/50 backdrop-blur-xl border-r border-white/5", isCollapsed ? "items-center" : "")}>
+    <div className={cn("flex flex-col h-full py-4 bg-white/50 backdrop-blur-xl border-r border-slate-200", isCollapsed ? "items-center" : "")}>
       {!isCollapsed && (
         <div className="mb-6">
-          <h2 className="text-lg font-semibold text-white px-2 truncate">
+          <h2 className="text-lg font-semibold text-slate-900 px-2 truncate">
             AI Developer Tools
           </h2>
           <p className="text-xs text-slate-400 px-2 truncate">
@@ -47,7 +47,7 @@ export function ToolsSidebar({ isCollapsed = false }: { isCollapsed?: boolean })
                       isCollapsed ? "justify-center p-2" : "px-3 py-2",
                       isActive 
                         ? "bg-blue-500/10 text-blue-400 border border-blue-500/20" 
-                        : "text-slate-400 hover:bg-white/5 hover:text-slate-200 border border-transparent"
+                        : "text-slate-400 hover:bg-slate-100 hover:text-slate-200 border border-transparent"
                     )}
                   >
                     <Icon className={cn("flex-shrink-0", isCollapsed ? "w-5 h-5" : "w-4 h-4")} />
@@ -72,7 +72,7 @@ export function ToolsSidebar({ isCollapsed = false }: { isCollapsed?: boolean })
           </p>
           <Link 
             href="/"
-            className="block w-full text-center py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded transition"
+            className="block w-full text-center py-2 bg-blue-600 hover:bg-blue-500 text-slate-900 text-xs font-semibold rounded transition"
           >
             Browse Directory
           </Link>

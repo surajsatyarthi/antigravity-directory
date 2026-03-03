@@ -35,13 +35,13 @@ const testimonials = [
 
 export function CreatorTestimonials() {
   return (
-    <section className="py-16 border-t border-white/[0.05]">
+    <section className="py-16 border-t border-slate-200">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-3 uppercase tracking-[0.15em]">
+          <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-3 uppercase tracking-[0.15em]">
             Stories from 500+ Creators
           </h2>
-          <p className="text-gray-400 text-sm font-bold tracking-widest uppercase">
+          <p className="text-slate-400 text-sm font-bold tracking-widest uppercase">
             Real creators, real earnings
           </p>
         </div>
@@ -50,7 +50,7 @@ export function CreatorTestimonials() {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="relative bg-[#0A0A0A] border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+              className="relative bg-white border border-slate-200 rounded-xl p-6 hover:border-slate-200 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]"
             >
               {/* Gradient overlay */}
               <div className={`absolute inset-0 bg-gradient-to-br ${testimonial.bgColor} opacity-5 rounded-xl`} />
@@ -58,28 +58,28 @@ export function CreatorTestimonials() {
               <div className="relative z-10">
                 {/* Avatar */}
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-black text-sm flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-slate-900 font-black text-sm flex-shrink-0">
                     {testimonial.initials}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-black text-white">
+                    <h3 className="text-lg font-black text-slate-900">
                       {testimonial.name}
                     </h3>
-                    <p className="text-xs text-gray-500 uppercase tracking-wider">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider">
                       {testimonial.role}
                     </p>
                   </div>
                 </div>
 
                 {/* Earnings */}
-                <div className="mb-4 pb-4 border-b border-white/5">
+                <div className="mb-4 pb-4 border-b border-slate-200">
                   <span className="text-2xl font-black text-blue-400">
                     {testimonial.earnings}
                   </span>
                 </div>
 
                 {/* Quote */}
-                <blockquote className="text-sm text-gray-300 leading-relaxed mb-4 italic">
+                <blockquote className="text-sm text-slate-500 leading-relaxed mb-4 italic">
                   "{testimonial.quote}"
                 </blockquote>
 

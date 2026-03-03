@@ -41,8 +41,8 @@ export function BookmarkButton({ resourceId, initialIsBookmarked }: BookmarkButt
       disabled={isPending}
       className={`p-2 rounded-lg border transition-all active:scale-95 ${
         isBookmarked
-          ? 'bg-blue-600 border-blue-500 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]'
-          : 'bg-transparent border-gray-800 text-gray-500 hover:border-gray-600 hover:text-white'
+          ? 'bg-blue-600 border-blue-500 text-slate-900 shadow-[0_0_15px_rgba(37,99,235,0.3)]'
+          : 'bg-transparent border-gray-800 text-slate-500 hover:border-gray-600 hover:text-slate-900'
       }`}
       title={isBookmarked ? 'Remove Bookmark' : 'Add Bookmark'}
     >

@@ -62,19 +62,19 @@ export function SettingsForm({ user }: SettingsFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-12">
       {/* Profile Completion Header */}
-      <div className="bg-[#0A0A0A] border border-gray-900 rounded-3xl p-6 mb-8">
+      <div className="bg-white border border-gray-900 rounded-3xl p-6 mb-8">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-yellow-500/10 rounded-lg">
               <Zap className="w-5 h-5 text-yellow-500" />
             </div>
             <div>
-              <h3 className="text-white font-black uppercase italic tracking-tighter">Sector Integrity</h3>
-              <p className="text-[10px] text-gray-500 font-mono uppercase">Profile Completion Multiplier</p>
+              <h3 className="text-slate-900 font-black uppercase italic tracking-tighter">Sector Integrity</h3>
+              <p className="text-[10px] text-slate-500 font-mono uppercase">Profile Completion Multiplier</p>
             </div>
           </div>
           <div className="text-right">
-            <span className="text-2xl font-black text-white italic">{completionScore}%</span>
+            <span className="text-2xl font-black text-slate-900 italic">{completionScore}%</span>
           </div>
         </div>
         <div className="w-full bg-gray-900 h-2 rounded-full overflow-hidden">
@@ -93,10 +93,10 @@ export function SettingsForm({ user }: SettingsFormProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Core Identity Section */}
         <div className="space-y-6">
-          <h2 className="text-xs font-black text-white uppercase tracking-[4px] border-b border-gray-900 pb-2 mb-4">Core Identity</h2>
+          <h2 className="text-xs font-black text-slate-900 uppercase tracking-[4px] border-b border-gray-900 pb-2 mb-4">Core Identity</h2>
           
           <div className="space-y-2">
-            <label htmlFor="name" className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+            <label htmlFor="name" className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
               <User className="w-3 h-3" />
               Display Name
             </label>
@@ -106,12 +106,12 @@ export function SettingsForm({ user }: SettingsFormProps) {
               type="text"
               defaultValue={user.name || ''}
               required
-              className="w-full bg-black border border-gray-900 focus:border-white rounded-xl px-4 py-3 text-sm transition-all text-white placeholder:text-gray-800 outline-none"
+              className="w-full bg-white border border-gray-900 focus:border-white rounded-xl px-4 py-3 text-sm transition-all text-slate-900 placeholder:text-gray-800 outline-none"
             />
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="username" className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+            <label htmlFor="username" className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
               <span className="text-blue-500">@</span>
               Identity Slug
             </label>
@@ -121,12 +121,12 @@ export function SettingsForm({ user }: SettingsFormProps) {
               type="text"
               defaultValue={user.username || ''}
               required
-              className="w-full bg-black border border-gray-900 focus:border-blue-500 rounded-xl px-4 py-3 text-sm transition-all text-white placeholder:text-gray-800 outline-none font-mono"
+              className="w-full bg-white border border-gray-900 focus:border-blue-500 rounded-xl px-4 py-3 text-sm transition-all text-slate-900 placeholder:text-gray-800 outline-none font-mono"
             />
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="tagline" className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+            <label htmlFor="tagline" className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
               <Terminal className="w-3 h-3" />
               Pulse Tagline
             </label>
@@ -136,17 +136,17 @@ export function SettingsForm({ user }: SettingsFormProps) {
               type="text"
               defaultValue={user.tagline || ''}
               placeholder="e.g. MCP Architect | Protocol Specialist"
-              className="w-full bg-black border border-gray-900 focus:border-white rounded-xl px-4 py-3 text-sm transition-all text-white placeholder:text-gray-800 outline-none"
+              className="w-full bg-white border border-gray-900 focus:border-white rounded-xl px-4 py-3 text-sm transition-all text-slate-900 placeholder:text-gray-800 outline-none"
             />
           </div>
         </div>
 
         {/* Location & Links Section */}
         <div className="space-y-6">
-          <h2 className="text-xs font-black text-white uppercase tracking-[4px] border-b border-gray-900 pb-2 mb-4">Metadata & Links</h2>
+          <h2 className="text-xs font-black text-slate-900 uppercase tracking-[4px] border-b border-gray-900 pb-2 mb-4">Metadata & Links</h2>
           
           <div className="space-y-2">
-            <label htmlFor="location" className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+            <label htmlFor="location" className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
               <MapPin className="w-3 h-3" />
               Sector Location
             </label>
@@ -156,12 +156,12 @@ export function SettingsForm({ user }: SettingsFormProps) {
               type="text"
               defaultValue={user.location || ''}
               placeholder="e.g. Neo Tokyo, Digital Grid"
-              className="w-full bg-black border border-gray-900 focus:border-white rounded-xl px-4 py-3 text-sm transition-all text-white placeholder:text-gray-800 outline-none"
+              className="w-full bg-white border border-gray-900 focus:border-white rounded-xl px-4 py-3 text-sm transition-all text-slate-900 placeholder:text-gray-800 outline-none"
             />
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="website" className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+            <label htmlFor="website" className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
               <Globe className="w-3 h-3" />
               External Uplink
             </label>
@@ -171,7 +171,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
               type="url"
               defaultValue={user.website || ''}
               placeholder="https://your-sector.io"
-              className="w-full bg-black border border-gray-900 focus:border-white rounded-xl px-4 py-3 text-sm transition-all text-white placeholder:text-gray-800 outline-none font-mono"
+              className="w-full bg-white border border-gray-900 focus:border-white rounded-xl px-4 py-3 text-sm transition-all text-slate-900 placeholder:text-gray-800 outline-none font-mono"
             />
           </div>
         </div>
@@ -179,7 +179,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
 
       {/* Bio / Mission */}
       <div className="space-y-2">
-        <label htmlFor="bio" className="text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+        <label htmlFor="bio" className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
           <FileText className="w-3 h-3" />
           Mission Bio
         </label>
@@ -189,14 +189,14 @@ export function SettingsForm({ user }: SettingsFormProps) {
           rows={3}
           defaultValue={user.bio || ''}
           maxLength={160}
-          className="w-full bg-black border border-gray-900 focus:border-white rounded-xl px-4 py-3 text-sm transition-all text-white placeholder:text-gray-800 outline-none resize-none"
+          className="w-full bg-white border border-gray-900 focus:border-white rounded-xl px-4 py-3 text-sm transition-all text-slate-900 placeholder:text-gray-800 outline-none resize-none"
           placeholder="Describe your primary objective in the Antigravity system..."
         />
       </div>
 
       {/* Social Matrix */}
       <div className="space-y-6">
-        <h2 className="text-xs font-black text-white uppercase tracking-[4px] border-b border-gray-900 pb-2">Social Matrix</h2>
+        <h2 className="text-xs font-black text-slate-900 uppercase tracking-[4px] border-b border-gray-900 pb-2">Social Matrix</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-2">
             <label htmlFor="githubUsername" className="text-[9px] font-bold text-gray-600 uppercase tracking-widest flex items-center gap-2">
@@ -207,7 +207,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
               name="githubUsername"
               type="text"
               defaultValue={user.githubUsername || ''}
-              className="w-full bg-[#050505] border border-gray-900 focus:border-white rounded-lg px-3 py-2 text-xs text-white outline-none"
+              className="w-full bg-white border border-gray-900 focus:border-white rounded-lg px-3 py-2 text-xs text-slate-900 outline-none"
             />
           </div>
           <div className="space-y-2">
@@ -219,7 +219,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
               name="twitterHandle"
               type="text"
               defaultValue={user.twitterHandle || ''}
-              className="w-full bg-[#050505] border border-gray-900 focus:border-white rounded-lg px-3 py-2 text-xs text-white outline-none"
+              className="w-full bg-white border border-gray-900 focus:border-white rounded-lg px-3 py-2 text-xs text-slate-900 outline-none"
             />
           </div>
           <div className="space-y-2">
@@ -231,7 +231,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
               name="discordUsername"
               type="text"
               defaultValue={user.discordUsername || ''}
-              className="w-full bg-[#050505] border border-gray-900 focus:border-white rounded-lg px-3 py-2 text-xs text-white outline-none"
+              className="w-full bg-white border border-gray-900 focus:border-white rounded-lg px-3 py-2 text-xs text-slate-900 outline-none"
             />
           </div>
           <div className="space-y-2">
@@ -243,7 +243,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
               name="linkedinUrl"
               type="url"
               defaultValue={user.linkedinUrl || ''}
-              className="w-full bg-[#050505] border border-gray-900 focus:border-white rounded-lg px-3 py-2 text-xs text-white outline-none"
+              className="w-full bg-white border border-gray-900 focus:border-white rounded-lg px-3 py-2 text-xs text-slate-900 outline-none"
             />
           </div>
           <div className="space-y-2">
@@ -255,7 +255,7 @@ export function SettingsForm({ user }: SettingsFormProps) {
               name="youtubeChannel"
               type="text"
               defaultValue={user.youtubeChannel || ''}
-              className="w-full bg-[#050505] border border-gray-900 focus:border-white rounded-lg px-3 py-2 text-xs text-white outline-none"
+              className="w-full bg-white border border-gray-900 focus:border-white rounded-lg px-3 py-2 text-xs text-slate-900 outline-none"
             />
           </div>
         </div>

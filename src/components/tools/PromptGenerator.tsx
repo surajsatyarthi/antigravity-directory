@@ -43,7 +43,7 @@ export function PromptGenerator() {
             value={role}
             onChange={(e) => setRole(e.target.value)}
             placeholder="You are a senior React engineer..."
-            className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none text-white placeholder:text-slate-600"
+            className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none text-slate-900 placeholder:text-slate-600"
           />
         </div>
 
@@ -55,7 +55,7 @@ export function PromptGenerator() {
             value={task}
             onChange={(e) => setTask(e.target.value)}
             placeholder="Analyze the following code and find security vulnerabilities..."
-            className="w-full h-24 px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none resize-none text-white placeholder:text-slate-600"
+            className="w-full h-24 px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none resize-none text-slate-900 placeholder:text-slate-600"
           />
         </div>
 
@@ -67,7 +67,7 @@ export function PromptGenerator() {
             value={constraints}
             onChange={(e) => setConstraints(e.target.value)}
             placeholder="- Do not explain basic concepts&#10;- Be concise&#10;- Use TypeScript"
-            className="w-full h-24 px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none resize-none text-white placeholder:text-slate-600"
+            className="w-full h-24 px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none resize-none text-slate-900 placeholder:text-slate-600"
           />
         </div>
 
@@ -79,7 +79,7 @@ export function PromptGenerator() {
             value={format}
             onChange={(e) => setFormat(e.target.value)}
             placeholder="Return a JSON list of objects with 'id' and 'severity' keys."
-            className="w-full h-20 px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none resize-none text-white placeholder:text-slate-600"
+            className="w-full h-20 px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none resize-none text-slate-900 placeholder:text-slate-600"
           />
         </div>
       </div>

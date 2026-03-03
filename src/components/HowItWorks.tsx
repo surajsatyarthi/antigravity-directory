@@ -26,11 +26,11 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="py-40 border-t border-white/[0.05] relative overflow-hidden bg-black">
+    <section className="py-40 border-t border-slate-200 relative overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-24">
             <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-blue-500 mb-6">The Antigravity Loop</h2>
-            <h3 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-[0.9]">
+            <h3 className="text-4xl md:text-6xl font-black text-slate-900 uppercase tracking-tighter leading-[0.9]">
                 How we power the <br /> 
                 next generation of <br />
                 AI builders.
@@ -50,14 +50,14 @@ export function HowItWorks() {
                 {step.label}
               </div>
 
-              <h4 className="text-2xl font-black text-white uppercase tracking-tight mb-6 group-hover:text-blue-400 transition-colors">
+              <h4 className="text-2xl font-black text-slate-900 uppercase tracking-tight mb-6 group-hover:text-blue-400 transition-colors">
                 {step.title}
               </h4>
-              <p className="text-gray-500 font-bold text-sm leading-relaxed max-w-[320px] mb-8">
+              <p className="text-slate-500 font-bold text-sm leading-relaxed max-w-[320px] mb-8">
                 {step.desc}
               </p>
               
-              <div className="mt-auto pt-6 w-full border-t border-white/[0.05] group-hover:border-blue-500/30 transition-colors" />
+              <div className="mt-auto pt-6 w-full border-t border-slate-200 group-hover:border-blue-500/30 transition-colors" />
             </div>
           ))}
         </div>

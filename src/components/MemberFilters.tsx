@@ -37,12 +37,12 @@ export function MemberFilters() {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           placeholder="Search by name, tagline, or sector..."
-          className="w-full bg-[#050505] border border-gray-900 rounded-2xl py-4 pl-14 pr-12 text-white font-medium placeholder:text-gray-700 outline-none focus:border-blue-500/50 transition-all text-sm shadow-inner"
+          className="w-full bg-white border border-gray-900 rounded-2xl py-4 pl-14 pr-12 text-slate-900 font-medium placeholder:text-gray-700 outline-none focus:border-blue-500/50 transition-all text-sm shadow-inner"
         />
         {searchValue && (
           <button
             onClick={() => setSearchValue('')}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-900 rounded-lg text-gray-600 hover:text-white transition-colors"
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-900 rounded-lg text-gray-600 hover:text-slate-900 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -63,7 +63,7 @@ export function MemberFilters() {
               router.push(`/members?${params.toString()}`);
             });
           }}
-          className="w-full bg-[#050505] border border-gray-900 rounded-2xl py-4 pl-14 pr-6 text-white font-medium outline-none focus:border-blue-500/50 transition-all text-sm appearance-none cursor-pointer"
+          className="w-full bg-white border border-gray-900 rounded-2xl py-4 pl-14 pr-6 text-slate-900 font-medium outline-none focus:border-blue-500/50 transition-all text-sm appearance-none cursor-pointer"
         >
           <option value="">All Locations</option>
           <option value="remote">Remote Sector</option>

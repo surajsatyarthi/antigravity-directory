@@ -25,14 +25,14 @@ export function BadgeGenerator({ slug, title }: BadgeGeneratorProps) {
   };
 
   return (
-    <div className="mt-20 p-8 bg-[#0A0A0A] border border-dashed border-gray-800 rounded-[32px] text-center">
-      <div className="inline-flex items-center justify-center w-12 h-12 bg-white/5 rounded-2xl mb-6">
-        <Zap className="w-6 h-6 text-white" />
+    <div className="mt-20 p-8 bg-white border border-dashed border-gray-800 rounded-[32px] text-center">
+      <div className="inline-flex items-center justify-center w-12 h-12 bg-slate-100 rounded-2xl mb-6">
+        <Zap className="w-6 h-6 text-slate-900" />
       </div>
-      <h3 className="text-xl font-bold text-white mb-3 tracking-tight lowercase font-mono italic">
+      <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight lowercase font-mono italic">
         The Backlink Flywheel
       </h3>
-      <p className="text-sm text-gray-500 max-w-md mx-auto mb-8 leading-relaxed">
+      <p className="text-sm text-slate-500 max-w-md mx-auto mb-8 leading-relaxed">
         Are you the author of <strong>{title}</strong>? Embed this certified badge on your site to drive traffic and signal trust.
       </p>
 
@@ -52,7 +52,7 @@ export function BadgeGenerator({ slug, title }: BadgeGeneratorProps) {
              
              <div className="flex flex-col justify-center text-left">
                 <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Featured on Antigravity</span>
-                <span className="text-[13px] font-bold text-white font-sans flex items-center gap-1.5">
+                <span className="text-[13px] font-bold text-slate-900 font-sans flex items-center gap-1.5">
                    <span>👁 1.2k</span>
                    <span className="text-slate-600">•</span>
                    <span>★ 4.9</span>
@@ -66,13 +66,13 @@ export function BadgeGenerator({ slug, title }: BadgeGeneratorProps) {
       <div className="max-w-xl mx-auto">
         <div className="relative group">
           <div className="absolute inset-0 bg-blue-500/5 blur-xl group-hover:bg-blue-500/10 transition-all opacity-0 group-hover:opacity-100" />
-          <div className="relative flex items-center gap-3 bg-black p-4 rounded-2xl border border-gray-900 overflow-hidden">
-            <code className="flex-1 text-[10px] text-gray-500 font-mono text-left truncate pr-10">
+          <div className="relative flex items-center gap-3 bg-white p-4 rounded-2xl border border-gray-900 overflow-hidden">
+            <code className="flex-1 text-[10px] text-slate-500 font-mono text-left truncate pr-10">
               {embedCode}
             </code>
             <button
               onClick={handleCopy}
-              className="shrink-0 p-2 bg-white/5 hover:bg-white/10 text-white rounded-lg border border-white/10 transition-all active:scale-95"
+              className="shrink-0 p-2 bg-slate-100 hover:bg-slate-100 text-slate-900 rounded-lg border border-slate-200 transition-all active:scale-95"
               title="Copy embed code"
             >
               {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}

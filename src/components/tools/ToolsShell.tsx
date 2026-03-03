@@ -35,11 +35,11 @@ export function ToolsShell({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="flex h-[calc(100vh-64px)] overflow-hidden bg-black text-slate-200">
+    <div className="flex h-[calc(100vh-64px)] overflow-hidden bg-white text-slate-200">
       {/* Sidebar */}
       <aside 
         className={cn(
-          "flex-shrink-0 border-r border-white/10 bg-black/50 transition-all duration-300 ease-in-out overflow-y-auto custom-scrollbar",
+          "flex-shrink-0 border-r border-slate-200 bg-white/50 transition-all duration-300 ease-in-out overflow-y-auto custom-scrollbar",
           isSidebarOpen ? "w-64 translate-x-0" : "w-0 -translate-x-full md:w-16 md:translate-x-0" // w-16 for collapsed icon view on desktop
         )}
       >
@@ -49,10 +49,10 @@ export function ToolsShell({ children }: { children: React.ReactNode }) {
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col min-w-0 bg-transparent overflow-hidden">
         {/* Shell Header (Breadcrumbs / Toggle) */}
-        <header className="h-14 flex items-center px-4 border-b border-white/5 justify-between">
+        <header className="h-14 flex items-center px-4 border-b border-slate-200 justify-between">
             <button 
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors"
+                className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-slate-900 transition-colors"
                 title={isSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
             >
                 {isSidebarOpen ? <PanelLeftClose className="w-5 h-5" /> : <PanelLeftOpen className="w-5 h-5" />}
@@ -67,7 +67,7 @@ export function ToolsShell({ children }: { children: React.ReactNode }) {
                 {children}
 
                 {/* Related Tools Footer */}
-                <div className="mt-20 pt-12 border-t border-white/5">
+                <div className="mt-20 pt-12 border-t border-slate-200">
                     <h3 className="text-sm font-semibold text-slate-400 mb-6 px-1">More AI Utilities</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         {allTools.filter(t => t.href !== pathname).slice(0, 3).map(tool => {
@@ -76,13 +76,13 @@ export function ToolsShell({ children }: { children: React.ReactNode }) {
                                 <Link 
                                     key={tool.href}
                                     href={tool.href}
-                                    className="p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/10 transition group"
+                                    className="p-4 rounded-xl border border-slate-200 bg-white/[0.02] hover:bg-slate-100 hover:border-slate-200 transition group"
                                 >
                                     <div className="flex items-center gap-3 mb-2">
                                         <div className="p-2 bg-slate-900 rounded-lg group-hover:bg-blue-500/20 group-hover:text-blue-400 transition">
                                             <Icon className="w-4 h-4 text-slate-400 group-hover:text-blue-400" />
                                         </div>
-                                        <span className="text-sm font-medium text-slate-200 group-hover:text-white">{tool.name}</span>
+                                        <span className="text-sm font-medium text-slate-200 group-hover:text-slate-900">{tool.name}</span>
                                     </div>
                                     <p className="text-xs text-slate-500 line-clamp-2 pl-[3.25rem]">
                                         {tool.description}
@@ -99,7 +99,7 @@ export function ToolsShell({ children }: { children: React.ReactNode }) {
       {/* Mobile Overlay */}
       {isMobile && isSidebarOpen && (
         <div 
-          className="fixed inset-0 bg-black/80 z-40 md:hidden"
+          className="fixed inset-0 bg-white/80 z-40 md:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}

@@ -20,8 +20,8 @@ export function MobileFilterDrawer({ categories, tags, activeCount = 0 }: Mobile
         onClick={() => setIsOpen(true)}
         className={`lg:hidden flex items-center gap-2 px-3 py-2 border rounded-lg text-sm font-medium transition-all ${
           activeCount > 0 
-            ? 'bg-blue-600 border-blue-500 text-white shadow-[0_0_10px_rgba(37,99,235,0.3)]' 
-            : 'bg-[#0A0A0A] border-white/10 text-gray-300 hover:text-white hover:border-white/20'
+            ? 'bg-blue-600 border-blue-500 text-slate-900 shadow-[0_0_10px_rgba(37,99,235,0.3)]' 
+            : 'bg-white border-slate-200 text-slate-500 hover:text-slate-900 hover:border-slate-200'
         }`}
         aria-label="Open filters"
       >
@@ -38,18 +38,18 @@ export function MobileFilterDrawer({ categories, tags, activeCount = 0 }: Mobile
         <div className="fixed inset-0 z-[100] flex justify-end isolate">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in"
+            className="absolute inset-0 bg-white/80 backdrop-blur-sm animate-in fade-in"
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
           
           {/* Drawer */}
-          <div className="relative w-full max-w-[320px] bg-[#0A0A0A] h-full border-l border-white/10 shadow-2xl animate-in slide-in-from-right duration-300 flex flex-col">
-            <div className="flex items-center justify-between p-4 border-b border-white/10">
-              <h2 className="text-lg font-bold text-white tracking-tight">Filters</h2>
+          <div className="relative w-full max-w-[320px] bg-white h-full border-l border-slate-200 shadow-2xl animate-in slide-in-from-right duration-300 flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-slate-200">
+              <h2 className="text-lg font-bold text-slate-900 tracking-tight">Filters</h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors"
+                className="p-2 text-slate-400 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors"
                 aria-label="Close filters"
               >
                 <X className="w-5 h-5" />
@@ -64,7 +64,7 @@ export function MobileFilterDrawer({ categories, tags, activeCount = 0 }: Mobile
               />
             </div>
             
-            <div className="p-4 border-t border-white/10 bg-[#050505]">
+            <div className="p-4 border-t border-slate-200 bg-white">
                 <button 
                     onClick={() => setIsOpen(false)}
                     className="w-full py-3 bg-white text-black font-bold uppercase tracking-wider rounded text-sm hover:bg-gray-200 transition-colors"

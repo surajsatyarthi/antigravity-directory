@@ -44,7 +44,7 @@ export function RagVisualizer() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
       {/* Controls */}
       <div className="lg:col-span-4 space-y-6">
-        <Card className="p-6 bg-white/5 border-white/10 space-y-6">
+        <Card className="p-6 bg-slate-100 border-slate-200 space-y-6">
            <div className="space-y-4">
             <div className="space-y-2">
               <div className="flex justify-between">
@@ -80,16 +80,16 @@ export function RagVisualizer() {
            </div>
         </Card>
 
-        <Card className="p-6 bg-white/5 border-white/10">
-            <h3 className="text-sm font-semibold text-white mb-2">Statistics</h3>
+        <Card className="p-6 bg-slate-100 border-slate-200">
+            <h3 className="text-sm font-semibold text-slate-900 mb-2">Statistics</h3>
             <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                     <span className="text-slate-400">Can create</span>
-                    <span className="text-white font-mono">{chunks.length} chunks</span>
+                    <span className="text-slate-900 font-mono">{chunks.length} chunks</span>
                 </div>
                 <div className="flex justify-between">
                     <span className="text-slate-400">Total Length</span>
-                    <span className="text-white font-mono">{text.length} chars</span>
+                    <span className="text-slate-900 font-mono">{text.length} chars</span>
                 </div>
             </div>
         </Card>
@@ -100,7 +100,7 @@ export function RagVisualizer() {
         <Textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="bg-black/50 border-white/10 min-h-[100px] text-slate-300"
+            className="bg-white/50 border-slate-200 min-h-[100px] text-slate-300"
             placeholder="Enter your source text here..."
         />
 
@@ -110,7 +110,7 @@ export function RagVisualizer() {
                 {chunks.map((chunk, i) => (
                     <div 
                         key={i} 
-                        className="relative p-3 rounded-lg border border-white/5 bg-slate-900/50 hover:bg-slate-900 transition-colors group"
+                        className="relative p-3 rounded-lg border border-slate-200 bg-slate-900/50 hover:bg-slate-900 transition-colors group"
                     >
                         <div className="absolute top-2 right-2 text-[10px] text-slate-600 font-mono group-hover:text-slate-400">
                             #{i + 1} | {chunk.start}-{chunk.end}
