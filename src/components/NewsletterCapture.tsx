@@ -44,7 +44,7 @@ export function NewsletterCapture({ source = 'homepage', variant = 'full' }: New
 
   if (variant === 'inline') {
     return (
-      <div className="bg-white border border-slate-200 rounded-xl p-5 relative overflow-hidden group">
+      <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-5 relative overflow-hidden group">
         <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
           <Zap className="w-12 h-12 text-gray-700" />
         </div>
@@ -58,11 +58,11 @@ export function NewsletterCapture({ source = 'homepage', variant = 'full' }: New
             name="email"
             placeholder="dev@work.com"
             required
-            className="w-full bg-slate-100 border border-slate-200 rounded-lg px-4 py-2.5 text-xs text-slate-900 placeholder:text-gray-700 focus:outline-none focus:border-gray-500/50 transition-all mb-2"
+            className="w-full bg-white/[0.06] border border-white/[0.08] rounded-lg px-4 py-2.5 text-xs text-white placeholder:text-gray-500 focus:outline-none focus:border-white/[0.25] transition-all mb-2"
           />
           <button
             disabled={status === 'loading'}
-            className="w-full bg-gray-800 hover:bg-gray-700 disabled:opacity-50 text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] py-2.5 rounded-lg transition-all flex items-center justify-center gap-2"
+            className="w-full bg-white/[0.08] hover:bg-white/[0.15] disabled:opacity-50 text-white text-[10px] font-black uppercase tracking-[0.2em] py-2.5 rounded-lg transition-all flex items-center justify-center gap-2"
           >
             {status === 'loading' ? <Loader2 className="w-3 h-3 animate-spin" /> : 'Subscribe →'}
           </button>
@@ -74,7 +74,7 @@ export function NewsletterCapture({ source = 'homepage', variant = 'full' }: New
   return (
     <section className="relative overflow-hidden py-16 rounded-2xl">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-white border border-slate-200" />
+      <div className="absolute inset-0 bg-transparent border border-white/[0.08] rounded-2xl" />
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full" />
       <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-600/5 blur-[120px] rounded-full" />
 
@@ -101,12 +101,12 @@ export function NewsletterCapture({ source = 'homepage', variant = 'full' }: New
                 name="email"
                 placeholder="Enter your work email"
                 required
-                className="w-full bg-white/[0.03] border border-slate-200 rounded-2xl pl-12 pr-4 py-4 text-slate-900 placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all font-mono text-sm"
+                className="w-full bg-white/[0.03] border border-white/[0.08] rounded-2xl pl-12 pr-4 py-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-white/[0.25] transition-all font-mono text-sm"
               />
             </div>
             <button
               disabled={status === 'loading'}
-              className="px-8 py-4 bg-white text-black font-black rounded-2xl hover:bg-gray-200 disabled:opacity-50 transition-all uppercase tracking-widest text-xs flex items-center justify-center gap-2 shadow-xl shadow-white/5"
+              className="px-8 py-4 bg-white/[0.08] text-white font-black rounded-2xl hover:bg-white/[0.15] disabled:opacity-50 transition-all uppercase tracking-widest text-xs flex items-center justify-center gap-2 shadow-xl shadow-white/5"
             >
               {status === 'loading' ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
