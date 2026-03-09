@@ -54,6 +54,8 @@ export default async function HomePage() {
     categoryCounts.map((c: any) => [c.slug, c.count])
   );
 
+  const totalResources = Object.values(countMap).reduce((sum: number, count) => sum + (Number(count) || 0), 0);
+
   return (
     <>
       <Header />
@@ -80,7 +82,7 @@ export default async function HomePage() {
 
       <main className="min-h-screen bg-black text-white selection:bg-blue-500/30">
         {/* Hero */}
-        <HeroSection />
+        <HeroSection totalCount={totalResources} />
 
         {/* Ad slot */}
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pb-4">
@@ -88,16 +90,18 @@ export default async function HomePage() {
         </div>
 
         {/* Category sections — 5 resources each */}
-        {categorySections.map((cat) => (
-          <CategorySection
-            key={cat.slug}
-            name={cat.name}
-            slug={cat.slug}
-            icon={cat.icon}
-            resources={cat.resources}
-            totalCount={countMap[cat.slug] ?? 0}
-          />
-        ))}
+        <div id="directory">
+          {categorySections.map((cat) => (
+            <CategorySection
+              key={cat.slug}
+              name={cat.name}
+              slug={cat.slug}
+              icon={cat.icon}
+              resources={cat.resources}
+              totalCount={countMap[cat.slug] ?? 0}
+            />
+          ))}
+        </div>
 
         {/* Passive email collection */}
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-20 border-t border-white/[0.05] pb-24 text-center">

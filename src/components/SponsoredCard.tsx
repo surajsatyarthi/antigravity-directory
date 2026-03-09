@@ -55,7 +55,7 @@ export function SponsoredCard() {
   return (
     <Link
       href="/advertise"
-      className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-white/[0.02] border border-dashed border-white/[0.06] rounded-lg overflow-hidden hover:border-white/20 transition-all duration-300 min-h-[140px]"
+      className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-white/[0.02] border border-dashed border-white/[0.06] rounded-lg overflow-hidden hover:border-white/20 transition-all duration-300"
     >
       <div className="absolute top-0 right-0 z-30 flex items-center px-2 py-1 bg-white/[0.03] border-b border-l border-white/[0.06] rounded-bl-lg">
         <span className="text-[7px] font-black text-gray-600 uppercase tracking-[0.2em]">Ad</span>

@@ -16,13 +16,16 @@ export function CategorySection({ name, slug, icon, resources, totalCount }: Cat
   return (
     <section className="py-8 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/[0.05]">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-white font-black text-lg uppercase tracking-tight flex items-center gap-2">
-          <span>{icon}</span>
-          <span>{name}</span>
-        </h2>
         <Link
           href={`/${slug}`}
-          className="text-[11px] font-semibold text-gray-400 hover:text-white transition-colors tracking-wide uppercase"
+          className="text-white font-black text-lg uppercase tracking-tight flex items-center gap-2 hover:text-blue-400 transition-colors"
+        >
+          <span>{icon}</span>
+          <span>{name}</span>
+        </Link>
+        <Link
+          href={`/${slug}`}
+          className="text-xs font-semibold text-gray-400 hover:text-white transition-colors tracking-wide uppercase"
         >
           View all {totalCount} →
         </Link>

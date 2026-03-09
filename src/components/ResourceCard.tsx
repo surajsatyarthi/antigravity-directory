@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Star, Eye, ArrowRight, Package, Copy, Bookmark } from 'lucide-react';
+import { Star, Eye, ArrowRight, Package } from 'lucide-react';
 import { BookmarkButton } from './BookmarkButton';
 import { MAX_INTEGRATION_ICONS } from '@/constants';
 
@@ -27,7 +27,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
   return (
     <div 
       data-testid="resource-card"
-      className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-white/[0.03] border rounded-none overflow-hidden opacity-60 hover:opacity-100 hover:border-blue-500/40 transition-all duration-200 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
+      className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-white/[0.03] border rounded-none overflow-hidden hover:border-blue-500/40 transition-all duration-200 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
       isFeatured
         ? 'border-yellow-500/40'
         : 'border-white/[0.06]'
@@ -133,17 +133,6 @@ export function ResourceCard({ resource }: ResourceCardProps) {
         </div>
       </div>
 
-      {/* Action buttons — hidden by default, shown on hover */}
-      <div className="absolute bottom-3 right-3 hidden group-hover:flex items-center gap-2 z-10">
-        {/* Copy button */}
-        <button className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-slate-700 transition-colors">
-          <Copy className="w-3.5 h-3.5" />
-        </button>
-        {/* Bookmark button */}
-        <button className="w-8 h-8 rounded-full bg-white/[0.06] border border-white/[0.12] text-gray-400 flex items-center justify-center hover:border-slate-400 transition-colors">
-          <Bookmark className="w-3.5 h-3.5" />
-        </button>
-      </div>
     </div>
   );
 }

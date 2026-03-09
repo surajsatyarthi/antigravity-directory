@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="bg-slate-900 text-white">
+    <footer className="bg-black border-t border-white/[0.08] text-white">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           
@@ -50,8 +50,11 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-700 mt-12 pt-6 flex items-center justify-between text-xs text-slate-500">
+        <div className="border-t border-white/[0.08] mt-12 pt-6 flex items-center justify-between text-xs text-slate-500">
           <p>© 2026 Antigravity Directory</p>
+          <p className="text-slate-600 text-[11px] text-right max-w-xs">
+            Not affiliated with or endorsed by Google LLC. Google Antigravity IDE is a trademark of Google LLC.
+          </p>
         </div>
       </div>
     </footer>

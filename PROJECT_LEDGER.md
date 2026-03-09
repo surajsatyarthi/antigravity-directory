@@ -1,6 +1,6 @@
 # PROJECT LEDGER — googleantigravity.directory
 **Maintained by**: Claude Code (PM)
-**Last updated**: 2026-03-08
+**Last updated**: 2026-03-09
 **Goal**: $2,000 MRR AS FAST AS POSSIBLE
 
 ---
@@ -44,7 +44,8 @@ Ads are built last, on top of traffic.
 | TASK-011 | UI/UX overhaul — match cursor.directory dark design | 🔄 IN PROGRESS (split into sub-tasks) | Product quality + sponsor credibility |
 | TASK-015 | Visual audit — screenshot all pages | ✅ DONE | Baseline before dark mode fixes |
 | TASK-016 | Dark mode fix — cards, header, nav, search, mobile menu | ✅ DONE (conditionally) | Commits 6b2baf4 + 162b8fb. Screenshots blocked by API 503 outage — accepted as exception. Known missed fix: NewsletterCapture success state text-slate-900 lines 37+39 — carried to TASK-017. |
-| TASK-017 | Homepage layout revamp — 5 resources per category, cursor.directory pattern + NewsletterCapture success state fix | 🔴 CURRENT | UX + SEO |
+| TASK-017 | Homepage layout revamp — 5 resources per category, cursor.directory pattern + NewsletterCapture success state fix | ✅ DONE | page.tsx rewritten, CategorySection.tsx created, getResourcesByCategorySlug added, NewsletterCapture fixed |
+| TASK-018 | Homepage UX fixes — hero CTA, full-opacity cards, clickable category headers, dead code removal | 🔴 CURRENT | UX quality |
 | TASK-012 | Create /about page | ⏳ PENDING | Credibility |
 | TASK-014 | Ingest Google Workspace CLI Skills | ⏳ PENDING | Content + SEO |
 
@@ -103,7 +104,19 @@ Fix A: text-white H2 "Browse by Category". Fix B: "10 categories · 3,100+ free 
 **Minor noted**: page.tsx line 115 has stale comment "Creator Marketplace Hero" — cosmetic only, scheduled for future cleanup.
 
 ### TASK-011 — UI/UX overhaul ← CURRENT
-**Status**: 🔴 IN PROGRESS | **Date**: 2026-03-08
+**Status**: 🔄 IN PROGRESS | **Date**: 2026-03-08
+
+### TASK-017 — Homepage layout revamp
+**Status**: ✅ DONE | **Date**: 2026-03-09 | **Commit**: 8630cd3
+**Files changed**: src/app/page.tsx (full rewrite + force-dynamic), src/components/CategorySection.tsx (new), src/lib/queries.ts (getResourcesByCategorySlug at line 446), src/components/NewsletterCapture.tsx (success state text-white confirmed lines 37+39)
+**PM verification**: NewsletterCapture lines 37+39 ✅, getResourcesByCategorySlug at line 446 ✅, CategorySection.tsx exists ✅. Build 0, lint 0, all 6 HTTP 200.
+**Bugs noted (deferred)**:
+- B1: Tutorials and Cheatsheets have 0 LIVE resources in DB — CategorySection returns null for both (8 of 10 sections render). Data issue, not code. Scope of TASK-014.
+- B2: Dev mode first load ~5-7s (10 DB queries). Production mitigated by connection pool. Future: add unstable_cache to getResourcesByCategorySlug.
+
+### TASK-018 — UX fixes — Hero, Cards, Header Nav, Footer, Ad Slot ← CURRENT
+**Status**: 🔴 CURRENT | **Date**: 2026-03-09
+**Files**: HeroSection.tsx, ResourceCard.tsx, CategorySection.tsx, SponsoredCard.tsx, page.tsx, navigation.ts, Footer.tsx
 
 ---
 
