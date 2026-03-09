@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
@@ -39,23 +40,53 @@ const CATEGORIES = [
   { slug: 'troubleshooting', name: 'Troubleshooting', icon: '🔧' },
 ];
 
-export default async function HomePage() {
-  const [categorySections, categoryCounts] = await Promise.all([
-    Promise.all(
-      CATEGORIES.map(async (cat) => ({
-        ...cat,
-        resources: await getResourcesByCategorySlug(cat.slug, 5),
-      }))
-    ),
-    getCategoriesWithCounts(),
-  ]);
+// Async server component — fetches its own data so it can be Suspense-streamed
+async function CategorySectionAsync({
+  slug, name, icon, totalCount,
+}: { slug: string; name: string; icon: string; totalCount: number }) {
+  const resources = await getResourcesByCategorySlug(slug, 5);
+  return (
+    <CategorySection
+      name={name}
+      slug={slug}
+      icon={icon}
+      resources={resources}
+      totalCount={totalCount}
+    />
+  );
+}
 
+// Async component for hero stat — fetches total resource count separately
+async function HeroSectionAsync() {
+  const categoryCounts = await getCategoriesWithCounts();
+  const total = categoryCounts.reduce((sum: number, c: any) => sum + (Number(c.count) || 0), 0);
+  return <HeroSection totalCount={total} />;
+}
+
+// Async component for category shells — fetches counts for "View all N" links
+async function CategorySectionsBlock() {
+  const categoryCounts = await getCategoriesWithCounts();
   const countMap = Object.fromEntries(
     categoryCounts.map((c: any) => [c.slug, c.count])
   );
 
-  const totalResources = Object.values(countMap).reduce((sum: number, count) => sum + (Number(count) || 0), 0);
+  return (
+    <div id="directory">
+      {CATEGORIES.map((cat) => (
+        <Suspense key={cat.slug} fallback={null}>
+          <CategorySectionAsync
+            slug={cat.slug}
+            name={cat.name}
+            icon={cat.icon}
+            totalCount={countMap[cat.slug] ?? 0}
+          />
+        </Suspense>
+      ))}
+    </div>
+  );
+}
 
+export default async function HomePage() {
   return (
     <>
       <Header />
@@ -81,29 +112,22 @@ export default async function HomePage() {
       />
 
       <main className="min-h-screen bg-black text-white selection:bg-blue-500/30">
-        {/* Hero */}
-        <HeroSection totalCount={totalResources} />
+        {/* Hero — streams in with total count */}
+        <Suspense fallback={<HeroSection />}>
+          <HeroSectionAsync />
+        </Suspense>
 
-        {/* Ad slot */}
+        {/* Ad slot — renders immediately */}
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pb-4">
           <SponsoredCard />
         </div>
 
-        {/* Category sections — 5 resources each */}
-        <div id="directory">
-          {categorySections.map((cat) => (
-            <CategorySection
-              key={cat.slug}
-              name={cat.name}
-              slug={cat.slug}
-              icon={cat.icon}
-              resources={cat.resources}
-              totalCount={countMap[cat.slug] ?? 0}
-            />
-          ))}
-        </div>
+        {/* Category sections stream in progressively */}
+        <Suspense fallback={null}>
+          <CategorySectionsBlock />
+        </Suspense>
 
-        {/* Passive email collection */}
+        {/* Newsletter — renders immediately */}
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-20 border-t border-white/[0.05] pb-24 text-center">
           <NewsletterCapture source="homepage" />
         </div>
