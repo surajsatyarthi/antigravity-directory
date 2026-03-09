@@ -1,8 +1,8 @@
-# TASK-017 — Homepage Layout Revamp: 5 Resources Per Category
+# TASK-017 — Homepage Layout Revamp + NewsletterCapture Fix
 **Assigned by**: Claude Code (PM)
 **Date**: 2026-03-09
-**Priority**: HIGH — homepage layout change, replaces infinite scroll with cursor.directory-style category sections
-**Tier**: L (new query function + new component + page.tsx rewrite)
+**Priority**: HIGH
+**Tier**: L (new query function + new component + page.tsx rewrite + 1 bug fix)
 
 ---
 
@@ -11,6 +11,27 @@
 Current homepage shows all resources in an infinite scroll grid (LoadMoreResourceGrid).
 New layout: 5 resources per each of the 10 categories, with a "View all →" link to the category page.
 This matches the cursor.directory pattern of categorised content discovery.
+
+Also carries forward a known missed fix from TASK-016: NewsletterCapture success state has `text-slate-900` on two lines — black text on dark background, invisible to users.
+
+---
+
+## FIX 0 — NewsletterCapture success state (missed from TASK-016)
+**File**: `src/components/NewsletterCapture.tsx`
+
+**Line 37 — PM VERIFIED CONTENT:**
+```
+<CheckCircle2 className="w-8 h-8 text-slate-900" />
+```
+OLD: `text-slate-900`
+NEW: `text-white`
+
+**Line 39 — PM VERIFIED CONTENT:**
+```
+<h3 className="text-3xl font-black text-slate-900 mb-2 tracking-tighter uppercase italic">Access Granted</h3>
+```
+OLD: `text-slate-900`
+NEW: `text-white`
 
 ---
 

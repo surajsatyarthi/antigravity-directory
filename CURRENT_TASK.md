@@ -1,271 +1,269 @@
-# CURRENT TASK — TASK-016: Dark Mode Fix — Cards + Header + Nav
+# CURRENT TASK — TASK-017: Homepage Layout Revamp + NewsletterCapture Fix
 **Assigned by**: Claude Code (PM)
-**Date**: 2026-03-08
-**Priority**: CRITICAL — entire site is light mode on a dark background
-**Tier**: M (multiple components, ~80 line changes across 6 files)
+**Date**: 2026-03-09
+**Priority**: HIGH
+**Tier**: L (new query function + new component + page.tsx rewrite + 1 bug fix)
 
 ---
 
-## BEFORE-STATE SCREENSHOTS
-Already captured in TASK-015. Skip to fixes.
+## CONTEXT
+
+Current homepage shows all resources in an infinite scroll grid (LoadMoreResourceGrid).
+New layout: 5 resources per each of the 10 categories, with a "View all →" link to the category page.
+This matches the cursor.directory pattern of categorised content discovery.
+
+Also carries forward a known missed fix from TASK-016: NewsletterCapture success state has `text-slate-900` on two lines — black text on dark background, invisible to users.
 
 ---
 
 ## MANDATORY CROSS-CHECK PROTOCOL
+
 Before making ANY change: open the file, find the exact line listed, confirm the PM VERIFIED CONTENT matches what you see. If it does NOT match — STOP and report to PM. Do not implement that fix.
 
 ---
 
-## FIX 1 — ResourceCard dark mode
-**File**: `src/components/ResourceCard.tsx`
+## FIX 0 — NewsletterCapture success state (missed from TASK-016)
+**File**: `src/components/NewsletterCapture.tsx`
 
-**Line 30 — PM VERIFIED CONTENT:**
+**Line 37 — PM VERIFIED CONTENT:**
 ```
-className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-white border rounded-xl overflow-hidden opacity-60 hover:opacity-100 hover:border-blue-300 hover:shadow-sm transition-all duration-200 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-white ${
-```
-OLD: `bg-white border rounded-xl overflow-hidden opacity-60 hover:opacity-100 hover:border-blue-300 hover:shadow-sm transition-all duration-200 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-white`
-NEW: `bg-white/[0.03] border rounded-none overflow-hidden opacity-60 hover:opacity-100 hover:border-blue-500/40 transition-all duration-200 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black`
-
-**Line 33 — PM VERIFIED CONTENT:**
-```
-        : 'border-slate-200'
-```
-OLD: `'border-slate-200'`
-NEW: `'border-white/[0.06]'`
-
-**Line 83 — PM VERIFIED CONTENT:**
-```
-             <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-400 transition-colors mb-1 tracking-tight leading-tight truncate pr-8 sm:pr-0">
+<CheckCircle2 className="w-8 h-8 text-slate-900" />
 ```
 OLD: `text-slate-900`
 NEW: `text-white`
 
-**Line 93 — PM VERIFIED CONTENT:**
+**Line 39 — PM VERIFIED CONTENT:**
 ```
-        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-slate-200 sm:border-0">
-```
-OLD: `border-t border-slate-200 sm:border-0`
-NEW: `border-t border-white/[0.06] sm:border-0`
-
-**Line 101 — PM VERIFIED CONTENT:**
-```
-              <span className="text-sm font-bold font-mono text-slate-900">
+<h3 className="text-3xl font-black text-slate-900 mb-2 tracking-tighter uppercase italic">Access Granted</h3>
 ```
 OLD: `text-slate-900`
 NEW: `text-white`
 
-**Line 143 — PM VERIFIED CONTENT:**
+---
+
+## FIX 1 — New query function in `src/lib/queries.ts`
+
+**PM VERIFIED CONTENT — confirmed existing exports:**
+- Line 158: `export async function getFilteredResources`
+- Line 177: `export async function getFeaturedResources`
+- Line 225: `export async function getCategoriesWithCounts`
+- No existing `getResourcesByCategorySlug` function — must be added.
+
+**Add this new function** (append after the last export, before end of file):
+
+```typescript
+export async function getResourcesByCategorySlug(
+  slug: string,
+  limit: number = 5
+): Promise<ResourceWithRelations[]> {
+  const categoryRecord = await db
+    .select({ id: categories.id })
+    .from(categories)
+    .where(eq(categories.slug, slug))
+    .limit(1);
+
+  if (!categoryRecord.length) return [];
+
+  const categoryId = categoryRecord[0].id;
+
+  return db
+    .select()
+    .from(resources)
+    .where(and(eq(resources.status, 'LIVE'), eq(resources.categoryId, categoryId)))
+    .orderBy(desc(resources.createdAt))
+    .limit(limit) as Promise<ResourceWithRelations[]>;
+}
 ```
-        <button className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:border-slate-400 transition-colors">
-```
-OLD: `bg-white border border-slate-200 text-slate-600`
-NEW: `bg-white/[0.06] border border-white/[0.12] text-gray-400`
 
 ---
 
-## FIX 2 — Header dark mode
-**File**: `src/components/Header.tsx`
+## FIX 2 — New component: `src/components/CategorySection.tsx`
 
-**Line 23 — PM VERIFIED CONTENT:**
-```
-    <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-200">
-```
-OLD: `bg-white/90 backdrop-blur-md border-b border-slate-200`
-NEW: `bg-black/90 backdrop-blur-md border-b border-white/[0.08]`
+**Create this file** (does not currently exist):
 
-**Line 31 — PM VERIFIED CONTENT:**
-```
-            <span className="text-[17px] font-black tracking-[-0.03em] font-mono lowercase text-slate-900 leading-[1.1] premium-text-glow">
-```
-OLD: `text-slate-900`
-NEW: `text-white`
+```tsx
+import Link from 'next/link';
+import { ResourceCard } from './ResourceCard';
+import type { ResourceWithRelations } from '@/types/database';
 
-**Line 55 — PM VERIFIED CONTENT:**
-```
-          <div className="flex items-center gap-4 pl-4 border-l border-slate-200 h-6">
-```
-OLD: `border-l border-slate-200`
-NEW: `border-l border-white/[0.08]`
+interface CategorySectionProps {
+  name: string;
+  slug: string;
+  icon: string;
+  resources: ResourceWithRelations[];
+  totalCount: number;
+}
 
-**Line 58 — PM VERIFIED CONTENT:**
-```
-              className="flex items-center justify-center px-3 py-1 bg-white/95 hover:bg-white text-black text-[11px] font-semibold tracking-wide rounded-md transition-all whitespace-nowrap"
-```
-OLD: `bg-white/95 hover:bg-white text-black`
-NEW: `bg-white/[0.08] hover:bg-white/[0.15] text-white`
+export function CategorySection({ name, slug, icon, resources, totalCount }: CategorySectionProps) {
+  if (!resources.length) return null;
 
-**Line 75 — PM VERIFIED CONTENT:**
+  return (
+    <section className="py-8 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/[0.05]">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-white font-black text-lg uppercase tracking-tight flex items-center gap-2">
+          <span>{icon}</span>
+          <span>{name}</span>
+        </h2>
+        <Link
+          href={`/${slug}`}
+          className="text-[11px] font-semibold text-gray-400 hover:text-white transition-colors tracking-wide uppercase"
+        >
+          View all {totalCount} →
+        </Link>
+      </div>
+      <div className="flex flex-col gap-2">
+        {resources.map((resource) => (
+          <ResourceCard key={resource.id} resource={resource} />
+        ))}
+      </div>
+    </section>
+  );
+}
 ```
-                      className="w-7 h-7 rounded-full border border-slate-200 group-hover:border-blue-500 transition-colors"
-```
-OLD: `border border-slate-200 group-hover:border-blue-500`
-NEW: `border border-white/[0.12] group-hover:border-blue-500`
-
-**Line 78 — PM VERIFIED CONTENT:**
-```
-                      <div className="w-7 h-7 rounded-full bg-gray-950 flex items-center justify-center text-slate-400 group-hover:bg-gray-900 transition-colors border border-slate-200">
-```
-OLD: `border border-slate-200`
-NEW: `border border-white/[0.12]`
-
-**Line 97 — PM VERIFIED CONTENT:**
-```
-                  className="text-slate-400 hover:text-slate-900 transition-colors text-[11px] font-semibold tracking-wide whitespace-nowrap"
-```
-OLD: `hover:text-slate-900`
-NEW: `hover:text-white`
-
-**Line 67 — PM VERIFIED CONTENT (broken link):**
-```
-                  href={username ? `/u/${username}` : '/settings'}
-```
-OLD: `href={username ? \`/u/${username}\` : '/settings'}`
-NEW: `href="/dashboard"`
 
 ---
 
-## FIX 3 — SearchInput dark mode
-**File**: `src/components/SearchInput.tsx`
+## FIX 3 — Homepage `src/app/page.tsx` — full rewrite
 
-**Line 76 — PM VERIFIED CONTENT:**
-```
-          "w-full bg-white border border-slate-200 focus:border-white transition-all text-slate-900 placeholder:text-gray-600 outline-none",
-```
-OLD: `bg-white border border-slate-200 focus:border-white transition-all text-slate-900 placeholder:text-gray-600`
-NEW: `bg-white/[0.06] border border-white/[0.08] focus:border-white/[0.25] transition-all text-white placeholder:text-gray-500`
+**PM VERIFIED CONTENT — current imports to remove:**
 
----
+- Line 4: `import { CategoryGridDiscovery } from '@/components/CategoryGridDiscovery';`
+- Line 6: `import { FilterPersistenceManager } from '@/components/filters/FilterPersistenceManager';`
+- Line 7: `import { LoadMoreResourceGrid } from '@/components/LoadMoreResourceGrid';`
+- Line 9: `import { FeaturedSection } from '@/components/FeaturedSection';`
+- Line 10: `import { fetchResourcesAction } from '@/app/actions/get-resources';`
+- Line 11: `import { validateCategorySlugs, getFeaturedResources } from '@/lib/queries';`
+- Line 12: `import { validateFilterParams } from '@/lib/validation';`
 
-## FIX 4 — NavLinks dark mode
-**File**: `src/components/NavLinks.tsx`
+**PM VERIFIED CONTENT — current JSX to remove:**
 
-**Line 27 — PM VERIFIED CONTENT:**
-```
-          ? "text-slate-400 cursor-not-allowed hover:text-slate-900"
-```
-OLD: `hover:text-slate-900`
-NEW: `hover:text-slate-400`
+- Line 110: `<FilterPersistenceManager />`
+- Line 115: `{/* Hero */}` (stale comment — already fixed in TASK-016)
+- Line 119: `<CategoryGridDiscovery />`
+- Lines 127–133: `{featuredResources.length > 0 && (<FeaturedSection .../>)}`
+- Lines 135–142: `<section id="directory" ...><LoadMoreResourceGrid .../></section>`
 
-**Line 29 — PM VERIFIED CONTENT:**
-```
-            ? "text-slate-900"
-```
-OLD: `"text-slate-900"`
-NEW: `"text-white"`
-
-**Line 30 — PM VERIFIED CONTENT:**
-```
-            : item.label === 'MCPs' ? "text-slate-900 hover:text-blue-400" : "text-slate-500 hover:text-slate-900";
-```
-OLD: `item.label === 'MCPs' ? "text-slate-900 hover:text-blue-400" : "text-slate-500 hover:text-slate-900"`
-NEW: `item.label === 'MCPs' ? "text-white hover:text-blue-400" : "text-slate-400 hover:text-white"`
+**PM VERIFIED CONTENT — current data fetching to remove (lines 49–84):**
+All filter logic, `validateCategorySlugs`, `validateFilterParams`, `fetchResourcesAction` calls.
 
 ---
 
-## FIX 5 — MobileMenu dark mode
-**File**: `src/components/MobileMenu.tsx`
+**New `page.tsx` — replace the entire file with this:**
 
-**Line 36 — PM VERIFIED CONTENT:**
-```
-        className="md:hidden p-2 text-slate-400 hover:text-slate-900 focus:outline-none"
-```
-OLD: `hover:text-slate-900`
-NEW: `hover:text-white`
+```tsx
+import type { Metadata } from 'next';
+import { Header } from '@/components/Header';
+import { HeroSection } from '@/components/HeroSection';
+import { SponsoredCard } from '@/components/SponsoredCard';
+import { CategorySection } from '@/components/CategorySection';
+import { getResourcesByCategorySlug, getCategoriesWithCounts } from '@/lib/queries';
+import dynamic from 'next/dynamic';
 
-**Line 48 — PM VERIFIED CONTENT:**
-```
-        <div className="absolute top-14 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-slate-200 p-6 md:hidden flex flex-col gap-6 shadow-2xl animate-in slide-in-from-top-5">
-```
-OLD: `bg-white/95 backdrop-blur-xl border-b border-slate-200`
-NEW: `bg-black/95 backdrop-blur-xl border-b border-white/[0.08]`
+const NewsletterCapture = dynamic(() => import('@/components/NewsletterCapture').then(mod => mod.NewsletterCapture), {
+  ssr: true
+});
 
-**Line 53 — PM VERIFIED CONTENT:**
-```
-                    className={`text-lg font-bold hover:text-slate-900 ${pathname === '/' ? 'text-slate-900' : 'text-slate-500'}`}
-```
-OLD: `hover:text-slate-900 ${pathname === '/' ? 'text-slate-900' : 'text-slate-500'}`
-NEW: `hover:text-white ${pathname === '/' ? 'text-white' : 'text-slate-400'}`
+export const metadata: Metadata = {
+  title: "Antigravity Directory — MCP Servers, Skills, Rules & Prompts for Google Antigravity IDE",
+  description: "The free directory of Google Antigravity IDE resources. Browse 3,000+ MCP servers, rules, prompts, skills and workflows — all free.",
+  openGraph: {
+    title: "Antigravity Directory — MCP Servers, Skills, Rules & Prompts for Google Antigravity IDE",
+    description: "Browse 3,000+ free MCP servers, rules, prompts and workflows for Google Antigravity IDE.",
+    type: "website",
+    url: "https://googleantigravity.directory"
+  },
+  alternates: {
+    canonical: "https://googleantigravity.directory"
+  }
+};
 
-**Line 65 — PM VERIFIED CONTENT:**
-```
-                        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mt-2 px-1">
-```
-OLD: `text-slate-500`
-NEW: `text-slate-400`
+const CATEGORIES = [
+  { slug: 'mcp-servers',     name: 'MCP Servers',    icon: '🔌' },
+  { slug: 'skills',          name: 'Skills',          icon: '⚡' },
+  { slug: 'rules',           name: 'Rules',           icon: '📋' },
+  { slug: 'workflows',       name: 'Workflows',       icon: '🔄' },
+  { slug: 'prompts',         name: 'Prompts',         icon: '💬' },
+  { slug: 'agents',          name: 'Agents',          icon: '🤖' },
+  { slug: 'boilerplates',    name: 'Boilerplates',    icon: '📦' },
+  { slug: 'tutorials',       name: 'Tutorials',       icon: '📚' },
+  { slug: 'cheatsheets',     name: 'Cheatsheets',     icon: '📄' },
+  { slug: 'troubleshooting', name: 'Troubleshooting', icon: '🔧' },
+];
 
-**Line 68 — PM VERIFIED CONTENT:**
-```
-                                <div className="flex flex-col gap-3 pl-4 border-l border-slate-200">
-```
-OLD: `border-l border-slate-200`
-NEW: `border-l border-white/[0.08]`
+export default async function HomePage() {
+  const [categorySections, categoryCounts] = await Promise.all([
+    Promise.all(
+      CATEGORIES.map(async (cat) => ({
+        ...cat,
+        resources: await getResourcesByCategorySlug(cat.slug, 5),
+      }))
+    ),
+    getCategoriesWithCounts(),
+  ]);
 
-**Line 77 — PM VERIFIED CONTENT:**
-```
-                                className={`text-base font-bold hover:text-slate-900 flex items-center gap-2 ${isChildActive ? 'text-slate-900' : 'text-slate-400'}`}
-```
-OLD: `hover:text-slate-900 flex items-center gap-2 ${isChildActive ? 'text-slate-900' : 'text-slate-400'}`
-NEW: `hover:text-white flex items-center gap-2 ${isChildActive ? 'text-white' : 'text-slate-400'}`
+  const countMap = Object.fromEntries(
+    categoryCounts.map((c: any) => [c.slug, c.count])
+  );
 
-**Line 95 — PM VERIFIED CONTENT:**
-```
-                        className={`text-lg font-bold hover:text-slate-900 flex items-center gap-2 ${isActive ? 'text-slate-900' : 'text-slate-500'}`}
-```
-OLD: `hover:text-slate-900 flex items-center gap-2 ${isActive ? 'text-slate-900' : 'text-slate-500'}`
-NEW: `hover:text-white flex items-center gap-2 ${isActive ? 'text-white' : 'text-slate-400'}`
+  return (
+    <>
+      <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Antigravity Directory",
+            "url": "https://googleantigravity.directory",
+            "description": "The #1 resource directory for Google Antigravity IDE",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://googleantigravity.directory/?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          })
+        }}
+      />
 
-**Line 103 — PM VERIFIED CONTENT:**
-```
-                <div className="h-px w-full bg-slate-100 my-1" />
-```
-OLD: `bg-slate-100`
-NEW: `bg-white/[0.08]`
+      <main className="min-h-screen bg-black text-white selection:bg-blue-500/30">
+        {/* Hero */}
+        <HeroSection />
 
-**Line 113 — PM VERIFIED CONTENT:**
-```
-            <div className="h-px w-full bg-slate-100" />
-```
-OLD: `bg-slate-100`
-NEW: `bg-white/[0.08]`
+        {/* Ad slot */}
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+          <SponsoredCard />
+        </div>
 
-**Line 119 — PM VERIFIED CONTENT (also broken link):**
-```
-                            href={currentUsername ? `/u/${currentUsername}` : '/settings'}
-```
-OLD: `href={currentUsername ? \`/u/${currentUsername}\` : '/settings'}`
-NEW: `href="/dashboard"`
+        {/* Category sections — 5 resources each */}
+        {categorySections.map((cat) => (
+          <CategorySection
+            key={cat.slug}
+            name={cat.name}
+            slug={cat.slug}
+            icon={cat.icon}
+            resources={cat.resources}
+            totalCount={countMap[cat.slug] ?? 0}
+          />
+        ))}
 
-**Line 121 — PM VERIFIED CONTENT:**
+        {/* Passive email collection */}
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-20 border-t border-white/[0.05] pb-24 text-center">
+          <NewsletterCapture source="homepage" />
+        </div>
+      </main>
+    </>
+  );
+}
 ```
-                            className="flex items-center gap-3 text-slate-500 hover:text-slate-900"
-```
-OLD: `text-slate-500 hover:text-slate-900`
-NEW: `text-slate-400 hover:text-white`
-
-**Line 141 — PM VERIFIED CONTENT:**
-```
-                        className="w-full py-3 bg-white text-black font-black uppercase tracking-widest rounded-lg hover:bg-gray-200 transition-colors"
-```
-OLD: `bg-white text-black ... hover:bg-gray-200`
-NEW: `bg-white/[0.08] text-white ... hover:bg-white/[0.15]`
-
----
-
-## FIX 6 — Stale comment
-**File**: `src/app/page.tsx`
-
-**Line 115 — PM VERIFIED CONTENT:**
-```
-        {/* 1. Creator Marketplace Hero */}
-```
-OLD: `{/* 1. Creator Marketplace Hero */}`
-NEW: `{/* Hero */}`
 
 ---
 
 ## PHASE 2 — BUILD + LINT
 
-After all fixes:
 ```bash
 npm run build
 npm run lint
@@ -274,13 +272,9 @@ Both must exit 0. If either fails — stop, report the full error output, do not
 
 ---
 
-## PHASE 3 — AFTER SCREENSHOTS + EVIDENCE
+## PHASE 3 — SCREENSHOTS + EVIDENCE
 
-After build + lint exit 0:
-
-Screenshot every page:
 ```bash
-# Also check HTTP status
 curl -o /dev/null -s -w "%{http_code}\n" http://localhost:3000
 curl -o /dev/null -s -w "%{http_code}\n" http://localhost:3000/mcp-servers
 curl -o /dev/null -s -w "%{http_code}\n" http://localhost:3000/skills
@@ -292,7 +286,7 @@ curl -o /dev/null -s -w "%{http_code}\n" http://localhost:3000/submit
 Then commit:
 ```bash
 git add -A
-git commit -m "fix(ui): dark mode — header, nav, search, ResourceCard all dark"
+git commit -m "feat(homepage): category sections — 5 resources per category, cursor.directory pattern"
 git log --oneline -1
 git diff HEAD~1 HEAD
 ```
@@ -302,41 +296,19 @@ git diff HEAD~1 HEAD
 ## MANDATORY REPORT FORMAT
 
 ```
-TASK-016 REPORT
+TASK-017 REPORT
 ==============================
 
 --- CROSS-CHECK RESULTS ---
-Fix 1 ResourceCard line 30 matches: [YES/NO]
-Fix 1 ResourceCard line 33 matches: [YES/NO]
-Fix 1 ResourceCard line 83 matches: [YES/NO]
-Fix 1 ResourceCard line 93 matches: [YES/NO]
-Fix 1 ResourceCard line 101 matches: [YES/NO]
-Fix 1 ResourceCard line 143 matches: [YES/NO]
-Fix 2 Header line 23 matches: [YES/NO]
-Fix 2 Header line 31 matches: [YES/NO]
-Fix 2 Header line 55 matches: [YES/NO]
-Fix 2 Header line 58 matches: [YES/NO]
-Fix 2 Header line 67 matches: [YES/NO]
-Fix 2 Header line 75 matches: [YES/NO]
-Fix 2 Header line 78 matches: [YES/NO]
-Fix 2 Header line 97 matches: [YES/NO]
-Fix 3 SearchInput line 76 matches: [YES/NO]
-Fix 4 NavLinks line 27 matches: [YES/NO]
-Fix 4 NavLinks line 29 matches: [YES/NO]
-Fix 4 NavLinks line 30 matches: [YES/NO]
-Fix 5 MobileMenu line 36 matches: [YES/NO]
-Fix 5 MobileMenu line 48 matches: [YES/NO]
-Fix 5 MobileMenu line 53 matches: [YES/NO]
-Fix 5 MobileMenu line 65 matches: [YES/NO]
-Fix 5 MobileMenu line 68 matches: [YES/NO]
-Fix 5 MobileMenu line 77 matches: [YES/NO]
-Fix 5 MobileMenu line 95 matches: [YES/NO]
-Fix 5 MobileMenu line 103 matches: [YES/NO]
-Fix 5 MobileMenu line 113 matches: [YES/NO]
-Fix 5 MobileMenu line 119 matches: [YES/NO]
-Fix 5 MobileMenu line 121 matches: [YES/NO]
-Fix 5 MobileMenu line 141 matches: [YES/NO]
-Fix 6 page.tsx line 115 matches: [YES/NO]
+Fix 0 NewsletterCapture line 37 matches: [YES/NO]
+Fix 0 NewsletterCapture line 39 matches: [YES/NO]
+Fix 1 queries.ts — getResourcesByCategorySlug added: [YES/NO]
+Fix 2 CategorySection.tsx — file created: [YES/NO]
+Fix 3 page.tsx — CategoryGridDiscovery removed: [YES/NO]
+Fix 3 page.tsx — LoadMoreResourceGrid removed: [YES/NO]
+Fix 3 page.tsx — FeaturedSection removed: [YES/NO]
+Fix 3 page.tsx — FilterPersistenceManager removed: [YES/NO]
+Fix 3 page.tsx — 10 category sections render: [YES/NO]
 
 --- BUILD + LINT ---
 npm run build exit code: [0 / error]
@@ -352,31 +324,13 @@ Commit hash: [paste]
 Diff:
 [paste git diff HEAD~1 HEAD]
 
---- AFTER SCREENSHOTS ---
-
-Homepage after:
+--- SCREENSHOTS ---
+Homepage (all 10 category sections visible):
 [ATTACH SCREENSHOT]
-Observations: [dark header? dark cards? white text visible?]
+Observations: [each category shows 5 cards + View all link?]
 
 /mcp-servers after:
 [ATTACH SCREENSHOT]
-Observations: [dark header? dark cards?]
-
-/skills after:
-[ATTACH SCREENSHOT]
-Observations:
-
-/rules after:
-[ATTACH SCREENSHOT]
-Observations:
-
-/advertise after:
-[ATTACH SCREENSHOT]
-Observations:
-
-/submit after:
-[ATTACH SCREENSHOT]
-Observations:
 
 --- HTTP STATUS PER PAGE ---
 http://localhost:3000 → [status code]
@@ -393,7 +347,7 @@ Errors: [paste or "none"]
 DB data loading: [yes/no — paste one API response excerpt]
 
 --- SCREEN RECORDING (MANDATORY) ---
-[ATTACH RECORDING — hover over ResourceCards on homepage, open mobile menu, show dark state throughout]
+[ATTACH RECORDING — scroll homepage showing all 10 category sections, click one "View all" link]
 Missing recording = task not done.
 
 --- BUGS SPOTTED (do not fix, report only) ---
@@ -405,6 +359,7 @@ Missing recording = task not done.
 ---
 
 ## DO NOT DO
-- Do NOT fix anything not listed above
-- Do NOT change any files not listed above
-- Report all other bugs you see — PM decides what to fix next
+- Do NOT touch any files not listed above
+- Do NOT add search/filter back to homepage (search stays in header, redirects stay as-is)
+- Do NOT modify the category pages (`src/app/[slug]/page.tsx`)
+- Report all bugs spotted — PM decides what to fix next

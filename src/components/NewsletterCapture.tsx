@@ -34,9 +34,9 @@ export function NewsletterCapture({ source = 'homepage', variant = 'full' }: New
     return (
       <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-[2rem] p-12 text-center animate-in zoom-in duration-500">
         <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/20">
-          <CheckCircle2 className="w-8 h-8 text-slate-900" />
+          <CheckCircle2 className="w-8 h-8 text-white" />
         </div>
-        <h3 className="text-3xl font-black text-slate-900 mb-2 tracking-tighter uppercase italic">Access Granted</h3>
+        <h3 className="text-3xl font-black text-white mb-2 tracking-tighter uppercase italic">Access Granted</h3>
         <p className="text-emerald-400 font-mono text-xs uppercase tracking-widest">{message}</p>
       </div>
     );

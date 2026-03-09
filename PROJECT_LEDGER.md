@@ -43,8 +43,8 @@ Ads are built last, on top of traffic.
 | TASK-010B | Wire up ad slots — homepage + global badge | ✅ DONE | sponsor.ts + 3 components + wired into layout, homepage, category pages |
 | TASK-011 | UI/UX overhaul — match cursor.directory dark design | 🔄 IN PROGRESS (split into sub-tasks) | Product quality + sponsor credibility |
 | TASK-015 | Visual audit — screenshot all pages | ✅ DONE | Baseline before dark mode fixes |
-| TASK-016 | Dark mode fix — cards, header, nav, search, mobile menu | 🔴 CURRENT | Entire site was light mode on dark background |
-| TASK-017 | Homepage layout revamp — 5 resources per category, cursor.directory pattern | ⏳ PENDING — spec ready at docs/TASK-017-SPEC.md | UX + SEO |
+| TASK-016 | Dark mode fix — cards, header, nav, search, mobile menu | ✅ DONE (conditionally) | Commits 6b2baf4 + 162b8fb. Screenshots blocked by API 503 outage — accepted as exception. Known missed fix: NewsletterCapture success state text-slate-900 lines 37+39 — carried to TASK-017. |
+| TASK-017 | Homepage layout revamp — 5 resources per category, cursor.directory pattern + NewsletterCapture success state fix | 🔴 CURRENT | UX + SEO |
 | TASK-012 | Create /about page | ⏳ PENDING | Credibility |
 | TASK-014 | Ingest Google Workspace CLI Skills | ⏳ PENDING | Content + SEO |
 

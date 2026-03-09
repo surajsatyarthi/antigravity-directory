@@ -1,88 +1,58 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
-import { CategoryGridDiscovery } from '@/components/CategoryGridDiscovery';
-// REMOVED - CTASection (redundant with Hero CTAs)
-import { FilterPersistenceManager } from '@/components/filters/FilterPersistenceManager';
-import { LoadMoreResourceGrid } from '@/components/LoadMoreResourceGrid';
 import { SponsoredCard } from '@/components/SponsoredCard';
-import { FeaturedSection } from '@/components/FeaturedSection';
-import { fetchResourcesAction } from '@/app/actions/get-resources';
-import { validateCategorySlugs, getFeaturedResources } from '@/lib/queries';
-import { validateFilterParams } from '@/lib/validation';
-import dynamic from 'next/dynamic';
+import { CategorySection } from '@/components/CategorySection';
+import { getResourcesByCategorySlug, getCategoriesWithCounts } from '@/lib/queries';
+import dynamicImport from 'next/dynamic';
 
-const NewsletterCapture = dynamic(() => import('@/components/NewsletterCapture').then(mod => mod.NewsletterCapture), {
+export const dynamic = 'force-dynamic';
+
+const NewsletterCapture = dynamicImport(() => import('@/components/NewsletterCapture').then(mod => mod.NewsletterCapture), {
   ssr: true
 });
 
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: Promise<{ q?: string; categories?: string }>;
-}): Promise<Metadata> {
-  const { q, categories } = await searchParams;
-  
-  if (q) return { title: `Search results for "${q}"` };
-  if (categories) return { title: `Filtered Resources` };
-  
-  return {
+export const metadata: Metadata = {
+  title: "Antigravity Directory — MCP Servers, Skills, Rules & Prompts for Google Antigravity IDE",
+  description: "The free directory of Google Antigravity IDE resources. Browse 3,000+ MCP servers, rules, prompts, skills and workflows — all free.",
+  openGraph: {
     title: "Antigravity Directory — MCP Servers, Skills, Rules & Prompts for Google Antigravity IDE",
-    description: "The free directory of Google Antigravity IDE resources. Browse 3,000+ MCP servers, rules, prompts, skills and workflows — all free.",
-    openGraph: {
-      title: "Antigravity Directory — MCP Servers, Skills, Rules & Prompts for Google Antigravity IDE",
-      description: "Browse 3,000+ free MCP servers, rules, prompts and workflows for Google Antigravity IDE.",
-      type: "website",
-      url: "https://googleantigravity.directory"
-    },
-    alternates: {
-      canonical: "https://googleantigravity.directory"
-    }
-  };
-}
+    description: "Browse 3,000+ free MCP servers, rules, prompts and workflows for Google Antigravity IDE.",
+    type: "website",
+    url: "https://googleantigravity.directory"
+  },
+  alternates: {
+    canonical: "https://googleantigravity.directory"
+  }
+};
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ q?: string; categories?: string; tags?: string; sort?: string; page?: string }>;
-}) {
-  const params = await searchParams;
-  
-  const urlParams = new URLSearchParams(params as Record<string, string>);
-  const filters = validateFilterParams(urlParams);
-  
-  const validCategorySlugs = await validateCategorySlugs(filters.categories);
-  
-  const cleanedFilters = {
-    ...filters,
-    categories: validCategorySlugs
-  };
+const CATEGORIES = [
+  { slug: 'mcp-servers',     name: 'MCP Servers',    icon: '🔌' },
+  { slug: 'skills',          name: 'Skills',          icon: '⚡' },
+  { slug: 'rules',           name: 'Rules',           icon: '📋' },
+  { slug: 'workflows',       name: 'Workflows',       icon: '🔄' },
+  { slug: 'prompts',         name: 'Prompts',         icon: '💬' },
+  { slug: 'agents',          name: 'Agents',          icon: '🤖' },
+  { slug: 'boilerplates',    name: 'Boilerplates',    icon: '📦' },
+  { slug: 'tutorials',       name: 'Tutorials',       icon: '📚' },
+  { slug: 'cheatsheets',     name: 'Cheatsheets',     icon: '📄' },
+  { slug: 'troubleshooting', name: 'Troubleshooting', icon: '🔧' },
+];
 
-  const page = Number(params.page) || 1;
-
-  const [fetchResult, featuredResources] = await Promise.all([
-    fetchResourcesAction({
-      page,
-      search: cleanedFilters.search,
-      categories: cleanedFilters.categories.join(','),
-      tags: cleanedFilters.tags.join(','),
-      sort: cleanedFilters.sort
-    }),
-    getFeaturedResources(cleanedFilters.categories[0], 6)
+export default async function HomePage() {
+  const [categorySections, categoryCounts] = await Promise.all([
+    Promise.all(
+      CATEGORIES.map(async (cat) => ({
+        ...cat,
+        resources: await getResourcesByCategorySlug(cat.slug, 5),
+      }))
+    ),
+    getCategoriesWithCounts(),
   ]);
 
-  const { resources: filteredResources, totalCount } = fetchResult.success 
-    ? { resources: fetchResult.resources, totalCount: fetchResult.totalCount }
-    : { resources: [], totalCount: 0 };
-
-  const activeFilters = {
-    categories: cleanedFilters.categories,
-    tags: cleanedFilters.tags,
-    badgeTypes: cleanedFilters.badgeTypes,
-    q: cleanedFilters.search,
-    sort: cleanedFilters.sort
-  };
-
+  const countMap = Object.fromEntries(
+    categoryCounts.map((c: any) => [c.slug, c.count])
+  );
 
   return (
     <>
@@ -107,41 +77,29 @@ export default async function HomePage({
           })
         }}
       />
-      <FilterPersistenceManager />
-      
-      <main 
-        className="min-h-screen bg-black text-white selection:bg-blue-500/30"
-      >
+
+      <main className="min-h-screen bg-black text-white selection:bg-blue-500/30">
         {/* Hero */}
         <HeroSection />
-
-        {/* 2. Category Discovery Grid */}
-        <CategoryGridDiscovery />
 
         {/* Ad slot */}
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pb-4">
           <SponsoredCard />
         </div>
 
-        {/* 3. Featured Resources (Seeded Data) */}
-        {featuredResources.length > 0 && (
-          <FeaturedSection 
-            title="Featured Resources"
-            resources={featuredResources} 
-            href="/"
+        {/* Category sections — 5 resources each */}
+        {categorySections.map((cat) => (
+          <CategorySection
+            key={cat.slug}
+            name={cat.name}
+            slug={cat.slug}
+            icon={cat.icon}
+            resources={cat.resources}
+            totalCount={countMap[cat.slug] ?? 0}
           />
-        )}
+        ))}
 
-        {/* 4. Directory Grid / Search Results */}
-        <section id="directory" className="py-12 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-             <LoadMoreResourceGrid 
-                initialResources={filteredResources}
-                initialTotalCount={totalCount}
-                initialFilters={activeFilters}
-             />
-        </section>
-
-        {/* 4. Newsletter */}
+        {/* Passive email collection */}
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-20 border-t border-white/[0.05] pb-24 text-center">
           <NewsletterCapture source="homepage" />
         </div>
@@ -149,4 +107,3 @@ export default async function HomePage({
     </>
   );
 }
-
