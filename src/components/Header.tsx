@@ -20,7 +20,7 @@ export async function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <header className="sticky top-0 z-50 w-full bg-black/90 backdrop-blur-md border-b border-white/[0.08]">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3.5 group shrink-0 p-1 rounded-sm">
@@ -28,7 +28,7 @@ export async function Header() {
             <Zap className="w-4.5 h-4.5 text-black fill-black relative z-20" />
           </div>
           <div className="flex flex-col justify-center py-0.5">
-            <span className="text-[17px] font-black tracking-[-0.03em] font-mono lowercase text-slate-900 leading-[1.1] premium-text-glow">
+            <span className="text-[17px] font-black tracking-[-0.03em] font-mono lowercase text-white leading-[1.1] premium-text-glow">
               antigravity
             </span>
             <span className="text-[10px] font-black tracking-[0.3em] font-mono lowercase text-slate-400 leading-none mt-1 pl-0.5 opacity-90">
@@ -52,10 +52,10 @@ export async function Header() {
             <NavLinks session={session} username={username} />
           </div>
 
-          <div className="flex items-center gap-4 pl-4 border-l border-slate-200 h-6">
+          <div className="flex items-center gap-4 pl-4 border-l border-white/[0.08] h-6">
             <Link
               href="/submit"
-              className="flex items-center justify-center px-3 py-1 bg-white/95 hover:bg-white text-black text-[11px] font-semibold tracking-wide rounded-md transition-all whitespace-nowrap"
+              className="flex items-center justify-center px-3 py-1 bg-white/[0.08] hover:bg-white/[0.15] text-white text-[11px] font-semibold tracking-wide rounded-md transition-all whitespace-nowrap"
             >
               <Zap className="w-2.5 h-2.5 mr-1.5" />
               <span>SUBMIT</span>
@@ -64,7 +64,7 @@ export async function Header() {
             {session ? (
               <div className="flex items-center gap-3">
                 <Link
-                  href={username ? `/u/${username}` : '/settings'}
+                  href="/dashboard"
                   className="group flex items-center"
                   aria-label={`View profile for ${session.user?.name || 'user'}`}
                 >
@@ -72,10 +72,10 @@ export async function Header() {
                     <img
                       src={session.user.image}
                       alt=""
-                      className="w-7 h-7 rounded-full border border-slate-200 group-hover:border-blue-500 transition-colors"
+                      className="w-7 h-7 rounded-full border border-white/[0.12] group-hover:border-blue-500 transition-colors"
                     />
                   ) : (
-                    <div className="w-7 h-7 rounded-full bg-gray-950 flex items-center justify-center text-slate-400 group-hover:bg-gray-900 transition-colors border border-slate-200">
+                    <div className="w-7 h-7 rounded-full bg-gray-950 flex items-center justify-center text-slate-400 group-hover:bg-gray-900 transition-colors border border-white/[0.12]">
                       <User className="w-3.5 h-3.5" />
                     </div>
                   )}
@@ -94,7 +94,7 @@ export async function Header() {
               <form action={handleSignIn} className="flex items-center">
                 <button
                   type="submit"
-                  className="text-slate-400 hover:text-slate-900 transition-colors text-[11px] font-semibold tracking-wide whitespace-nowrap"
+                  className="text-slate-400 hover:text-white transition-colors text-[11px] font-semibold tracking-wide whitespace-nowrap"
                 >
                   SIGN IN
                 </button>

@@ -1746,7 +1746,6 @@ import { HeroSearch } from '@/components/HeroSearch';
 import { CategoryTabs } from '@/components/CategoryTabs';
 import { FeaturedSection } from '@/components/FeaturedSection';
 import { InfiniteResourceGrid } from '@/components/InfiniteResourceGrid';
-import { NewsletterCapture } from '@/components/NewsletterCapture';
 import { getCategoriesWithCounts, getFeaturedResources } from '@/lib/queries';
 
 export default async function HomePage({
@@ -1788,8 +1787,6 @@ export default async function HomePage({
           <InfiniteResourceGrid />
         </div>
 
-        {/* Newsletter */}
-        <NewsletterCapture source="homepage" />
       </main>
     </>
   );
@@ -1822,7 +1819,7 @@ describe('Homepage Layout', () => {
 - [ ] Category tabs visible and functional
 - [ ] Featured section shows
 - [ ] Resource grid loads below featured
-- [ ] Newsletter signup visible
+
 - [ ] Layout matches design specs
 - [ ] Mobile responsive
 - [ ] All tests passing

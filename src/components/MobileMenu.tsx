@@ -33,7 +33,7 @@ export function MobileMenu({ session: initialSession }: MobileMenuProps) {
     <>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden p-2 text-slate-400 hover:text-slate-900 focus:outline-none"
+        className="md:hidden p-2 text-slate-400 hover:text-white focus:outline-none"
         aria-label="Toggle mobile menu"
       >
         {isOpen ? (
@@ -45,12 +45,12 @@ export function MobileMenu({ session: initialSession }: MobileMenuProps) {
 
       {/* Mobile Overlay */}
       {isOpen && (
-        <div className="absolute top-14 left-0 w-full bg-white/95 backdrop-blur-xl border-b border-slate-200 p-6 md:hidden flex flex-col gap-6 shadow-2xl animate-in slide-in-from-top-5">
+        <div className="absolute top-14 left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/[0.08] p-6 md:hidden flex flex-col gap-6 shadow-2xl animate-in slide-in-from-top-5">
             <nav className="flex flex-col gap-4">
                 <Link 
                     href="/" 
                     onClick={() => setIsOpen(false)}
-                    className={`text-lg font-bold hover:text-slate-900 ${pathname === '/' ? 'text-slate-900' : 'text-slate-500'}`}
+                    className={`text-lg font-bold hover:text-white ${pathname === '/' ? 'text-white' : 'text-slate-400'}`}
                 >
                     Explore
                 </Link>
@@ -62,10 +62,10 @@ export function MobileMenu({ session: initialSession }: MobileMenuProps) {
                     if (item.children) {
                         return (
                             <div key={item.label} className="flex flex-col gap-3">
-                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mt-2 px-1">
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mt-2 px-1">
                                     {item.label}
                                 </div>
-                                <div className="flex flex-col gap-3 pl-4 border-l border-slate-200">
+                                <div className="flex flex-col gap-3 pl-4 border-l border-white/[0.08]">
                                     {item.children.map(child => {
                                         const isChildActive = pathname === child.href;
                                         return (
@@ -74,7 +74,7 @@ export function MobileMenu({ session: initialSession }: MobileMenuProps) {
                                                 href={child.href}
                                                 target={child.external ? "_blank" : undefined}
                                                 onClick={() => setIsOpen(false)}
-                                                className={`text-base font-bold hover:text-slate-900 flex items-center gap-2 ${isChildActive ? 'text-slate-900' : 'text-slate-400'}`}
+                                                className={`text-base font-bold hover:text-white flex items-center gap-2 ${isChildActive ? 'text-white' : 'text-slate-400'}`}
                                             >
                                                 {child.label}
                                                 {child.isNew && <span className="bg-[#fbbf24] text-black text-[9px] px-1 rounded-sm">NEW</span>}
@@ -92,7 +92,7 @@ export function MobileMenu({ session: initialSession }: MobileMenuProps) {
                             href={item.href}
                             target={item.external ? "_blank" : undefined}
                             onClick={() => setIsOpen(false)}
-                            className={`text-lg font-bold hover:text-slate-900 flex items-center gap-2 ${isActive ? 'text-slate-900' : 'text-slate-500'}`}
+                            className={`text-lg font-bold hover:text-white flex items-center gap-2 ${isActive ? 'text-white' : 'text-slate-400'}`}
                         >
                             {item.label} 
                             {item.isNew && <span className="bg-[#fbbf24] text-black text-[10px] px-1.5 rounded-sm">NEW</span>}
@@ -100,7 +100,7 @@ export function MobileMenu({ session: initialSession }: MobileMenuProps) {
                     )
                 })}
 
-                <div className="h-px w-full bg-slate-100 my-1" />
+                <div className="h-px w-full bg-white/[0.08] my-1" />
                 <Link 
                     href="/submit" 
                     onClick={() => setIsOpen(false)}
@@ -110,15 +110,15 @@ export function MobileMenu({ session: initialSession }: MobileMenuProps) {
                 </Link>
             </nav>
 
-            <div className="h-px w-full bg-slate-100" />
+            <div className="h-px w-full bg-white/[0.08]" />
 
             <div className="flex flex-col gap-4">
                 {isAuthenticated ? (
                     <>
                          <Link 
-                            href={currentUsername ? `/u/${currentUsername}` : '/settings'}
+                            href="/dashboard"
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-3 text-slate-500 hover:text-slate-900"
+                            className="flex items-center gap-3 text-slate-400 hover:text-white"
                         >
                             {currentImage ? (
                                 <img src={currentImage} alt="" className="w-8 h-8 rounded-full" />
@@ -138,7 +138,7 @@ export function MobileMenu({ session: initialSession }: MobileMenuProps) {
                     <form action={handleSignIn} className="w-full">
                         <button 
                             type="submit"
-                            className="w-full py-3 bg-white text-black font-black uppercase tracking-widest rounded-lg hover:bg-gray-200 transition-colors"
+                            className="w-full py-3 bg-white/[0.08] text-white font-black uppercase tracking-widest rounded-lg hover:bg-white/[0.15] transition-colors"
                         >
                             Sign In
                         </button>

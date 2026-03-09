@@ -4,6 +4,7 @@ import {
   Users
 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FollowButton } from './FollowButton';
 
 interface ProfileHeaderProps {
@@ -97,12 +98,12 @@ export function ProfileHeader({ user, isOwnProfile, initialIsFollowing }: Profil
               />
             )}
             {isOwnProfile && (
-              <a
+              <Link
                 href="/settings"
                 className="inline-flex px-8 py-3 bg-white text-black font-black rounded-xl hover:bg-gray-200 transition-all uppercase tracking-widest text-xs active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
               >
                 Edit Sector Profile
-              </a>
+              </Link>
             )}
           </div>
         </div>

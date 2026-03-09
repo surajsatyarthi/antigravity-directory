@@ -9,7 +9,7 @@ import { ResourceCard } from '@/components/ResourceCard';
 import { 
   ShieldCheck, Zap, BarChart3, Users, 
   Package, Clock, CheckCircle2, AlertCircle,
-  TrendingUp, ExternalLink, Settings, DollarSign
+  TrendingUp, ExternalLink, Settings
 } from 'lucide-react';
 import { getOwnerDashboardData, getAdminDashboardData } from '@/lib/queries';
 import { getEdwardProspects } from '@/lib/edward';
@@ -21,8 +21,6 @@ const EdwardOutreachPanel = dynamic(() => import('@/components/EdwardOutreachPan
 });
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
-import { EarningsOverview } from '@/components/dashboard/EarningsOverview';
-import { SalesHistory } from '@/components/dashboard/SalesHistory';
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -138,18 +136,6 @@ export default async function DashboardPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-600/10 to-purple-600/10 border border-blue-500/20 rounded-3xl p-8 relative overflow-hidden">
-                 <div className="absolute -right-4 -bottom-4 opacity-10">
-                    <DollarSign className="w-32 h-32 text-blue-500" />
-                 </div>
-                 <h3 className="text-xl font-black mb-6">Revenue Stats</h3>
-                 <div className="space-y-6">
-                    <div>
-                       <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Est. Gross MRR</p>
-                       <p className="text-3xl font-black text-white">$4,260</p>
-                    </div>
-                </div>
-              </div>
             </div>
 
             {/* Edward Intelligence Section */}
@@ -176,27 +162,6 @@ export default async function DashboardPage() {
                 </div>
               ))}
             </div>
-
-            {/* Earnings Section (ENTRY-010) - Only show if user has claimed resources */}
-            {ownerData.tools.length > 0 && (
-              <div>
-                <div className="flex items-center justify-between mb-10">
-                  <h2 className="text-2xl font-black tracking-tighter text-white uppercase italic flex items-center gap-3">
-                    <div className="w-1.5 h-6 bg-emerald-600 rounded-full" /> Your Earnings
-                  </h2>
-                </div>
-                <div className="space-y-6 mb-12">
-                  {/* Earnings Overview Cards */}
-                  <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-                    <EarningsOverview />
-                  </div>
-                  {/* Sales History Table */}
-                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-                    <SalesHistory />
-                  </div>
-                </div>
-              </div>
-            )}
 
             {/* My Tools Section */}
             <div>

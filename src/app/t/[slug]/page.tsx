@@ -3,19 +3,13 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Star, Eye, Copy, ExternalLink, ArrowLeft, ChevronRight } from 'lucide-react';
 import { db } from '@/lib/db';
-import { resources, categories, ratings, tags, resourceTags, purchases, userResourceAccess, users } from '@/drizzle/schema';
+import { resources, categories, ratings, tags, resourceTags, users } from '@/drizzle/schema';
 import { eq, and, sql } from 'drizzle-orm';
 import { Header } from '@/components/Header';
 import { CitationBlock } from '@/components/CitationBlock';
 import { BadgeGenerator } from '@/components/BadgeGenerator';
 import { Footer } from '@/components/Footer';
 import { safeJsonLd } from '@/lib/utils/safeJsonLd';
-import { auth } from '@/auth';
-import { BuyButton } from '@/components/BuyButton';
-import { ClaimButton } from '@/components/ClaimButton';
-import { ResourcePricingForm } from '@/components/ResourcePricingForm';
-import { Lock } from 'lucide-react';
-
 export async function generateMetadata({
   params,
 }: {
@@ -26,37 +20,36 @@ export async function generateMetadata({
     .select({
       title: resources.title,
       description: resources.description,
-      metaTitle: resources.metaTitle,
       metaDesc: resources.metaDesc,
-      isIndexed: resources.isIndexed,
-      status: resources.status,
+      categoryName: categories.name,
     })
     .from(resources)
+    .leftJoin(categories, eq(resources.categoryId, categories.id))
     .where(eq(resources.slug, slug))
     .limit(1);
 
-  if (!resource) return { title: 'Resource Not Found' };
+  if (!resource) {
+    return {
+      title: 'Resource Not Found | Antigravity Directory',
+    };
+  }
 
-  const title = resource.metaTitle || resource.title;
-  const description = resource.metaDesc || resource.description;
+  const categoryName = resource.categoryName ?? 'Resource';
+  const title = `${resource.title} — Antigravity ${categoryName} | googleantigravity.directory`;
+  const description = resource.metaDesc
+    ?? `${resource.description} — A ${categoryName} for Google Antigravity IDE. Browse more ${categoryName} resources on googleantigravity.directory.`;
 
   return {
     title,
     description,
-    robots: resource.status === 'LIVE' ? 'index, follow' : 'noindex, nofollow',
     openGraph: {
       title,
       description,
-      type: 'article',
-      url: `/t/${slug}`,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
+      type: 'website',
+      url: `https://googleantigravity.directory/t/${slug}`,
     },
     alternates: {
-      canonical: `/t/${slug}`,
+      canonical: `https://googleantigravity.directory/t/${slug}`,
     },
   };
 }
@@ -82,18 +75,10 @@ export default async function ResourceDetailPage({
       verified: resources.verified,
       badgeType: resources.badgeType,
       categoryName: categories.name,
-      price: resources.price,
-      currency: resources.currency,
-      authorId: resources.authorId,
-      authorName: users.name, // Added
-      authorUsername: users.username, // Added
-      authorImage: users.image, // Added
-      authorGithub: users.githubUsername, // Added
-      claimedAt: resources.claimedAt, // Added
+      categorySlug: categories.slug,
     })
     .from(resources)
     .leftJoin(categories, eq(resources.categoryId, categories.id))
-    .leftJoin(users, eq(resources.authorId, users.id)) // Added join
     .where(eq(resources.slug, slug))
     .limit(1);
 
@@ -119,61 +104,21 @@ export default async function ResourceDetailPage({
     .leftJoin(tags, eq(resourceTags.tagId, tags.id))
     .where(eq(resourceTags.resourceId, resource.id));
 
-  const session = await auth();
-  let hasAccess = false;
-  
-  // Free resources are accessible to all
-  if (!resource.price || resource.price === 0) {
-    hasAccess = true;
-  } else if (session?.user?.id) {
-     // Check if user is author
-     if (resource.authorId === session.user.id) {
-       hasAccess = true;
-     } else {
-       // Check if user purchased
-       const accessRecord = await db.query.userResourceAccess.findFirst({
-         where: and(
-           eq(userResourceAccess.userId, session.user.id),
-           eq(userResourceAccess.resourceId, resource.id)
-         )
-       });
-       if (accessRecord) hasAccess = true;
-     }
-  }
-
-  // Calculate earnings for social proof
-  let resourceEarnings = 0;
-  if (resource.price && resource.price > 0) {
-    const earningsResult = await db
-      .select({ total: sql<number>`SUM(${purchases.creatorEarnings})` })
-      .from(purchases)
-      .where(eq(purchases.resourceId, resource.id));
-      
-    resourceEarnings = earningsResult[0]?.total || 0;
-  }
 
   const softwareAppJsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": resource.title,
     "description": resource.description,
-    "applicationCategory": resource.categoryName || "AI Tool",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": avgRating.toFixed(1),
-      "reviewCount": resourceRatings.length || 1,
-    },
+    "applicationCategory": resource.categoryName || "Utility",
+    "operatingSystem": "Google Antigravity IDE",
+    "url": resource.url || `https://googleantigravity.directory/t/${resource.slug}`,
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock"
-    },
-    "author": {
-      "@type": "Organization",
-      "name": "Antigravity Community"
-    },
-    "operatingSystem": "Web-based",
+    }
   };
 
   const faqJsonLd = {
@@ -190,20 +135,18 @@ export default async function ResourceDetailPage({
       },
       {
         "@type": "Question",
-        "name": `Is ${resource.title} verified on Antigravity?`,
+        "name": `Is ${resource.title} free?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": resource.verified 
-              ? `${resource.title} is a verified tool on the Antigravity Directory.`
-              : `${resource.title} is a community-submitted tool. We encourage users to verify its original documentation for details.`
+          "text": `Yes. ${resource.title} is free to access on Antigravity Directory. Browse and copy resources at no cost.`
         }
       },
       {
         "@type": "Question",
-        "name": `Where can I find alternatives to ${resource.title}?`,
+        "name": `How do I use ${resource.title} in Antigravity?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `You can explore top-rated alternatives and similar tools to ${resource.title} in the ${resource.categoryName || 'General'} category on Antigravity Directory.`
+          "text": "Visit the resource page and use the copy button to copy the content directly into your Antigravity workspace."
         }
       }
     ]
@@ -217,19 +160,19 @@ export default async function ResourceDetailPage({
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory'
+        "item": "https://googleantigravity.directory"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": resource.categoryName || "Resources",
-        "item": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory'}/categories/${resource.categoryName?.toLowerCase().replace(/\s+/g, '-')}`
+        "item": `https://googleantigravity.directory/${resource.categorySlug || ''}`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": resource.title,
-        "item": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory'}/t/${resource.slug}`
+        "item": `https://googleantigravity.directory/t/${resource.slug}`
       }
     ]
   };
@@ -256,7 +199,9 @@ export default async function ResourceDetailPage({
         <nav className="flex items-center gap-2 text-sm text-gray-500 mb-12 font-mono">
           <Link href="/" className="hover:text-white transition-colors">home</Link>
           <span className="text-gray-800">/</span>
-          <Link href="/" className="hover:text-white transition-colors">explore</Link>
+          <Link href={`/${resource.categorySlug || ''}`} className="hover:text-white transition-colors">
+            {resource.categoryName?.toLowerCase() || 'category'}
+          </Link>
           <span className="text-gray-800">/</span>
           <span className="text-gray-300 truncate">{resource.title.toLowerCase()}</span>
         </nav>
@@ -298,58 +243,6 @@ export default async function ResourceDetailPage({
                   </div>
                 )}
 
-                {/* Monetization CTAs */}
-                {/* Claim Button (ENTRY-009) */}
-                <div className="w-full flex justify-center">
-                  <ClaimButton 
-                    resourceId={resource.id}
-                    resourceName={resource.title}
-                    resourceUrl={resource.url || ""}
-                    initialClaimed={!!resource.authorId}
-                    initialClaimedBy={resource.authorId ? {
-                      name: resource.authorName,
-                      username: resource.authorUsername || resource.authorGithub,
-                      image: resource.authorImage
-                    } : null}
-                  />
-                </div>
-                
-                {/* Resource Pricing Form - Only for Authors/Claimers */}
-                {session?.user?.id && resource.authorId === session.user.id && (
-                  <ResourcePricingForm
-                    resourceId={resource.id}
-                    initialPrice={resource.price}
-                    initialCurrency={resource.currency || 'USD'}
-                    claimedAt={resource.claimedAt}
-                  />
-                )}
-                
-                <Link
-                  href="/submit"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 font-bold rounded-xl border border-blue-500/10 transition-all text-xs uppercase tracking-widest"
-                >
-                  Promote Tool
-                </Link>
-
-                {/* Buy Button for Paid Resources */}
-                {resource.price > 0 && !hasAccess && (
-                   <div className="mt-4 p-4 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-blue-500/10 border border-emerald-500/20">
-                      <div className="mb-3 text-center">
-                        <span className="text-xs font-bold text-emerald-400 tracking-widest uppercase">
-                          Premium Resource
-                        </span>
-                        <div className="text-[10px] text-gray-500 font-mono mt-1">
-                          Creator earned ${(resourceEarnings / 100).toLocaleString()}
-                        </div>
-                      </div>
-                      <BuyButton 
-                        price={resource.price}
-                        currency={resource.currency || 'USD'}
-                        resourceId={resource.id}
-                        resourceName={resource.title}
-                      />
-                   </div>
-                )}
               </div>
             </div>
 
@@ -395,44 +288,17 @@ export default async function ResourceDetailPage({
               <div className="mb-12">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold tracking-tight text-white font-mono uppercase tracking-widest text-sm text-gray-500">Resource Content</h2>
-                  {hasAccess && (
-                    <button className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all">
-                      <Copy className="w-4 h-4" />
-                      Copy Code
-                    </button>
-                  )}
+                  <button className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all">
+                    <Copy className="w-4 h-4" />
+                    Copy Code
+                  </button>
                 </div>
                 
-                {hasAccess ? (
-                  <div className="relative group">
-                    <pre className="whitespace-pre-wrap font-mono text-sm bg-black p-8 rounded-2xl border border-gray-900 text-gray-300 overflow-x-auto max-h-[600px] leading-relaxed">
-                      {resource.content}
-                    </pre>
-                  </div>
-                ) : (
-                  <div className="relative rounded-2xl border border-gray-900 bg-black overflow-hidden">
-                    <div className="p-8 filter blur-sm select-none opacity-30">
-                      <pre className="whitespace-pre-wrap font-mono text-sm text-gray-300">
-                        {resource.content.slice(0, 300)}...
-                        {/* Fake content to simulate length */}
-                        {'\n\n[Content Hidden]\n[Content Hidden]\n[Content Hidden]'}
-                      </pre>
-                    </div>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black via-black/80 to-transparent z-10">
-                      <Lock className="w-8 h-8 text-white mb-4" />
-                      <h3 className="text-xl font-bold text-white mb-2">Premium Content</h3>
-                      <p className="text-gray-400 text-sm mb-6 max-w-xs text-center">
-                        Purchase this resource to access the full source code and documentation.
-                      </p>
-                      <BuyButton 
-                        price={resource.price}
-                        currency={resource.currency || 'USD'}
-                        resourceId={resource.id}
-                        resourceName={resource.title}
-                      />
-                    </div>
-                  </div>
-                )}
+                <div className="relative group">
+                  <pre className="whitespace-pre-wrap font-mono text-sm bg-black p-8 rounded-2xl border border-gray-900 text-gray-300 overflow-x-auto max-h-[600px] leading-relaxed">
+                    {resource.content}
+                  </pre>
+                </div>
               </div>
             )}
 

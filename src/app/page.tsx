@@ -1,19 +1,14 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
-import { auth } from '@/auth';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
 import { CategoryGridDiscovery } from '@/components/CategoryGridDiscovery';
-import { CreatorTestimonials } from '@/components/CreatorTestimonials';
 // REMOVED - CTASection (redundant with Hero CTAs)
 import { FilterPersistenceManager } from '@/components/filters/FilterPersistenceManager';
-import { FilterSidebar } from '@/components/filters/FilterSidebar';
-import { TopFilterBar } from '@/components/filters/TopFilterBar';
 import { LoadMoreResourceGrid } from '@/components/LoadMoreResourceGrid';
-import { DirectoryIntelligence } from '@/components/DirectoryIntelligence';
+import { SponsoredCard } from '@/components/SponsoredCard';
 import { FeaturedSection } from '@/components/FeaturedSection';
 import { fetchResourcesAction } from '@/app/actions/get-resources';
-import { getCategoriesWithCounts, getAllTags, validateCategorySlugs, getFeaturedResources } from '@/lib/queries';
+import { validateCategorySlugs, getFeaturedResources } from '@/lib/queries';
 import { validateFilterParams } from '@/lib/validation';
 import dynamic from 'next/dynamic';
 
@@ -32,12 +27,16 @@ export async function generateMetadata({
   if (categories) return { title: `Filtered Resources` };
   
   return {
-    title: "Biggest community for Antigravity | googleantigravity.directory",
-    description: "The marketplace where 500+ creators monetize their tools. Earn 80% commission on MCP servers, rules, and workflows.",
+    title: "Antigravity Directory — MCP Servers, Skills, Rules & Prompts for Google Antigravity IDE",
+    description: "The free directory of Google Antigravity IDE resources. Browse 3,000+ MCP servers, rules, prompts, skills and workflows — all free.",
     openGraph: {
-      title: "Biggest community for Antigravity",
-      description: "The marketplace where 500+ creators monetize their tools. Earn 80% commission.",
-      type: "website"
+      title: "Antigravity Directory — MCP Servers, Skills, Rules & Prompts for Google Antigravity IDE",
+      description: "Browse 3,000+ free MCP servers, rules, prompts and workflows for Google Antigravity IDE.",
+      type: "website",
+      url: "https://googleantigravity.directory"
+    },
+    alternates: {
+      canonical: "https://googleantigravity.directory"
     }
   };
 }
@@ -60,12 +59,8 @@ export default async function HomePage({
   };
 
   const page = Number(params.page) || 1;
-  const pageSize = 20;
 
-  const [session, categoriesWithCounts, tags, fetchResult, featuredResources] = await Promise.all([
-    auth(),
-    getCategoriesWithCounts(),
-    getAllTags(),
+  const [fetchResult, featuredResources] = await Promise.all([
     fetchResourcesAction({
       page,
       search: cleanedFilters.search,
@@ -88,33 +83,52 @@ export default async function HomePage({
     sort: cleanedFilters.sort
   };
 
-  const activeCategoryName = cleanedFilters.categories.length > 0 
-    ? categoriesWithCounts.find(c => c.slug === cleanedFilters.categories[0])?.name 
-    : undefined;
-
-  // Check if we are in "Search/Filter Mode" or "Landing Mode"
-  const isBrowsing = cleanedFilters.search || cleanedFilters.categories.length > 0;
 
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Antigravity Directory",
+            "url": "https://googleantigravity.directory",
+            "description": "The #1 resource directory for Google Antigravity IDE",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://googleantigravity.directory/?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          })
+        }}
+      />
       <FilterPersistenceManager />
       
       <main 
         className="min-h-screen bg-black text-white selection:bg-blue-500/30"
       >
-        {/* 1. Creator Marketplace Hero */}
+        {/* Hero */}
         <HeroSection />
 
         {/* 2. Category Discovery Grid */}
         <CategoryGridDiscovery />
+
+        {/* Ad slot */}
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+          <SponsoredCard />
+        </div>
 
         {/* 3. Featured Resources (Seeded Data) */}
         {featuredResources.length > 0 && (
           <FeaturedSection 
             title="Featured Resources"
             resources={featuredResources} 
-            href="/browse?sort=trending"
+            href="/"
           />
         )}
 
@@ -126,9 +140,6 @@ export default async function HomePage({
                 initialFilters={activeFilters}
              />
         </section>
-
-        {/* 5. Creator Testimonials */}
-        <CreatorTestimonials />
 
         {/* 4. Newsletter */}
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-20 border-t border-white/[0.05] pb-24 text-center">

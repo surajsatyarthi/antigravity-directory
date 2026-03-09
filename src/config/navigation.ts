@@ -14,15 +14,13 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'MCPs', href: '/mcp-servers' },
   { label: 'Workflows', href: '/workflows' },
   { label: 'Skills', href: '/skills' },
-  { label: 'Members', href: '/members' },
   {
     label: 'More',
     href: '#',
     children: [
       { label: 'Troubleshooting', href: '/troubleshooting' },
-      { label: 'Download', href: '/download' },
+
       { label: 'Advertise', href: '/advertise' },
-      { label: 'Community', href: 'https://discord.gg/antigravity', external: true },
     ]
   },
 ];

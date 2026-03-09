@@ -87,7 +87,6 @@ export function LoadMoreResourceGrid({
         items.push(
             <SponsoredCard 
                 key={`ad-${index}`} 
-                position={adSlotIndex + 1}
             />
         );
       }

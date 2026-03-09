@@ -5,13 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: [
-        '/dashboard/',
-        '/settings/',
-        '/submit/',
-        '/api/',
-      ],
+      disallow: ['/admin/', '/auth/', '/dashboard', '/settings', '/api/'],
     },
-    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory'}/sitemap.xml`,
+    sitemap: 'https://googleantigravity.directory/sitemap.xml',
   };
 }

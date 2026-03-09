@@ -27,10 +27,10 @@ export function ResourceCard({ resource }: ResourceCardProps) {
   return (
     <div 
       data-testid="resource-card"
-      className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-white border rounded-xl overflow-hidden opacity-60 hover:opacity-100 hover:border-blue-300 hover:shadow-sm transition-all duration-200 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-white ${
+      className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-white/[0.03] border rounded-none overflow-hidden opacity-60 hover:opacity-100 hover:border-blue-500/40 transition-all duration-200 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
       isFeatured
         ? 'border-yellow-500/40'
-        : 'border-slate-200'
+        : 'border-white/[0.06]'
     }`}>
 
       <Link href={`/t/${resource.slug}`} className="absolute inset-0 z-20 outline-none">
@@ -80,7 +80,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
         {/* Middle: Title & Description */}
         <div className="flex-1 min-w-0 w-full">
           <div className="flex justify-between items-start">
-             <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-400 transition-colors mb-1 tracking-tight leading-tight truncate pr-8 sm:pr-0">
+             <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors mb-1 tracking-tight leading-tight truncate pr-8 sm:pr-0">
               {resource.title}
             </h3>
           </div>
@@ -90,7 +90,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
         </div>
 
         {/* Right: Stats & Actions (Mobile: Bottom Row) */}
-        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-slate-200 sm:border-0">
+        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-white/[0.06] sm:border-0">
           <div className="flex items-center gap-3">
             {/* Rating */}
             <div
@@ -98,7 +98,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               aria-label={`Rating: ${Number(resource.avgRating ?? 0).toFixed(1)} stars out of ${resource.ratingCount ?? 0} reviews`}
             >
               <Star className="w-4 h-4 sm:w-3.5 sm:h-3.5 fill-yellow-500/90 text-yellow-500/90" aria-hidden="true" />
-              <span className="text-sm font-bold font-mono text-slate-900">
+              <span className="text-sm font-bold font-mono text-white">
                 {Number(resource.avgRating ?? 0).toFixed(1)}
               </span>
               <span className="text-slate-500 text-xs font-mono font-bold">
@@ -140,7 +140,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
           <Copy className="w-3.5 h-3.5" />
         </button>
         {/* Bookmark button */}
-        <button className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:border-slate-400 transition-colors">
+        <button className="w-8 h-8 rounded-full bg-white/[0.06] border border-white/[0.12] text-gray-400 flex items-center justify-center hover:border-slate-400 transition-colors">
           <Bookmark className="w-3.5 h-3.5" />
         </button>
       </div>

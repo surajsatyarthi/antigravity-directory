@@ -25,16 +25,16 @@ export function Footer() {
           <div>
             <h3 className="text-xs font-semibold tracking-widest uppercase text-slate-400 mb-4">Browse</h3>
             <div className="flex flex-col gap-2">
-              <Link href="/browse?categories=mcp-servers" className="text-sm text-slate-300 hover:text-white transition-colors block">MCP Servers</Link>
-              <Link href="/browse?categories=skills" className="text-sm text-slate-300 hover:text-white transition-colors block">Skills</Link>
-              <Link href="/browse?categories=rules" className="text-sm text-slate-300 hover:text-white transition-colors block">Rules</Link>
-              <Link href="/browse?categories=prompts" className="text-sm text-slate-300 hover:text-white transition-colors block">Prompts</Link>
-              <Link href="/browse?categories=agents" className="text-sm text-slate-300 hover:text-white transition-colors block">Agents</Link>
-              <Link href="/browse?categories=workflows" className="text-sm text-slate-300 hover:text-white transition-colors block">Workflows</Link>
-              <Link href="/browse?categories=boilerplates" className="text-sm text-slate-300 hover:text-white transition-colors block">Boilerplates</Link>
-              <Link href="/browse?categories=troubleshooting" className="text-sm text-slate-300 hover:text-white transition-colors block">Troubleshooting</Link>
-              <Link href="/browse?categories=tutorials" className="text-sm text-slate-300 hover:text-white transition-colors block">Tutorials</Link>
-              <Link href="/browse?categories=cheatsheets" className="text-sm text-slate-300 hover:text-white transition-colors block">Cheatsheets</Link>
+              <Link href="/mcp-servers" className="text-sm text-slate-300 hover:text-white transition-colors block">MCP Servers</Link>
+              <Link href="/skills" className="text-sm text-slate-300 hover:text-white transition-colors block">Skills</Link>
+              <Link href="/rules" className="text-sm text-slate-300 hover:text-white transition-colors block">Rules</Link>
+              <Link href="/prompts" className="text-sm text-slate-300 hover:text-white transition-colors block">Prompts</Link>
+              <Link href="/agents" className="text-sm text-slate-300 hover:text-white transition-colors block">Agents</Link>
+              <Link href="/workflows" className="text-sm text-slate-300 hover:text-white transition-colors block">Workflows</Link>
+              <Link href="/boilerplates" className="text-sm text-slate-300 hover:text-white transition-colors block">Boilerplates</Link>
+              <Link href="/troubleshooting" className="text-sm text-slate-300 hover:text-white transition-colors block">Troubleshooting</Link>
+              <Link href="/tutorials" className="text-sm text-slate-300 hover:text-white transition-colors block">Tutorials</Link>
+              <Link href="/cheatsheets" className="text-sm text-slate-300 hover:text-white transition-colors block">Cheatsheets</Link>
             </div>
           </div>
 

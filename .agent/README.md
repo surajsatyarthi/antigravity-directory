@@ -1,324 +1,88 @@
-# RALPH PROTOCOLS
-**Centralized Quality Standards for All Projects**
+# RALPH PROTOCOLS (Central Repository)
+**Mandatory Governance & Quality Standards for All Projects**
 
-**Updated**: 2026-02-12
-**Version**: 3.0 (Sync System Edition)
-**Status**: Production-Ready
-
----
-
-## 🎯 WHAT IS THIS?
-
-This is the **central source of truth** for quality protocols used across all Antigravity projects.
-
-**Purpose**: Maintain ONE protocol repository on GitHub → Auto-sync to all projects
-
-**Structure**:
-```
-GitHub: ralph-protocols (this repo)
-   ↓ sync
-Project 1/.agent/ ← Synced protocols
-Project 2/.agent/ ← Synced protocols
-Project 3/.agent/ ← Synced protocols
-Project 4/.agent/ ← Synced protocols
-Project 5/.agent/ ← Synced protocols
-```
+**Updated**: 2026-02-17
+**Version**: 8.0 (Mandatory Master Playbook Edition)
+**Status**: Active Enforcement
 
 ---
 
-## 🚀 QUICK START
+## 🎯 NEW ARCHITECTURE (v10.1 Real-Time Forensic)
 
-### For Projects Using These Protocols
+We have moved from a "Guidelines" model to a **Governance Operating System**.
+The single source of truth is now: **`ralph_master_playbook_v8.json`**. // Note: We keep the filename v8 for compatibility but content is v10.1
 
-**Sync latest protocols to your project**:
+### Security Audit (2026-02-17)
+*   **Status**: PASSED (With Mitigation)
+*   **Critical Fix 1**: Split-Key Architecture (Prevents Forgery).
+*   **Critical Fix 2**: Forensic Evidence Requirement (Prevents Empty Tests).
+*   **Critical Fix 3**: Real-Time Sidecar (Prevents Token Waste).
+
+### Core Changes
+1.  **Mandatory**: Rules are no longer optional. They are enforced by the Antigravity platform.
+2.  **Turnstile Blocking**: You cannot start Step B until Step A has a proof.
+3.  **Real-Time Sidecar**: A background process watches and verifies *as you type*.
+4.  **Forensic**: Every verification MUST include zipped logs/screenshots ("The Evidence").
+5.  **Proof-Based**: Every check produces a cryptographic proof (HMAC-SHA256).
+4.  **Sync-First**: You edit the JSON here, and it syncs to all 5 client projects.
+5.  **CICL Enforcement**: Local bypasses (`--no-verify`) are caught by the Server CI/CD.
+
+---
+
+## 🔒 KEY ARCHITECTURE (CRITICAL)
+
+To prevent agents from forging proofs:
+*   **Local Dev**: Uses `RALPH_LOCAL_DEV_KEY`. Generates `DEV_PROOF`. Good for PRs.
+*   **Production CI**: Uses `RALPH_CI_SECRET_KEY`. Generates `PROD_PROOF`. Required for Release.
+*   **Rule**: Production will REJECT any deployment signed with a Dev Key.
+
+---
+
+---
+
+## 📂 REPOSITORY STRUCTURE
+
+### 📜 Core Configuration
+*   `ralph_master_playbook_v8.json`: **THE LAW.** The complete configuration for Rules, Skills, and Gates. Sync this file to all projects.
+
+### 📚 Documentation Categories
+*   **`protocols/`**: The human-readable definitions of the laws.
+    *   `RALPH_PROTOCOL.md`: Technical Gates (1-12).
+    *   `PM_PROTOCOL.md`: Strategic Gates (Product/Biz).
+    *   `CIRCULAR_ENFORCEMENT.md`: The checks-and-balances system.
+*   **`guides/`**: Instructions for Agents and Humans.
+    *   `AI_CODER_ADAPTATION_GUIDE.md`: How agents should behave.
+    *   `CIRCULAR_ENFORCEMENT_SETUP.md`: Implementation details.
+    *   `SHAREABLE_PROMPTS_GUIDE.md`: Standard prompts for communication.
+*   **`scripts/`**: Automation tools.
+    *   `sync-protocols.js` (and others): deployment logic.
+*   **`legacy_reports/`**: Audit results from previous versions (Reference only).
+*   **`archive/`**: Deprecated v6.5/v7.0 materials.
+
+---
+
+## 🚀 HOW TO SYNC
+
+To push the latest `ralph_master_playbook_v8.json` to all your projects:
+
 ```bash
+# In each client project (BMN, etc.)
 npm run sync:protocols
 ```
 
-**First-time setup** (new project):
-```bash
-npm run sync:protocols:init
-```
-
-**See complete setup guide**: Each project has `PROTOCOL_SYNC_SETUP.md`
+This will:
+1.  Pull the latest JSON from this repo.
+2.  Update the project's `.agent/` folder.
+3.  Trigger the local Antigravity agent to ingest the new rules.
 
 ---
 
-## 📖 CORE PROTOCOLS
+## 🔄 RETRO-AUDIT STRATEGY
 
-### 1. **RALPH_PROTOCOL.md** (12 Gates - Technical Quality)
-- Build compilation (0 errors)
-- TypeScript validation (0 type errors)
-- Console cleanliness (0 errors/warnings)
-- Logic correctness
-- Database query optimization (no N+1)
-- Performance (<2s page load)
-- Mobile responsiveness (375px, 768px, 1024px)
-- Security (XSS, SQL injection, CSRF prevention)
-- Error handling (graceful failures)
-- Code style consistency
-- Test coverage (unit + integration)
-- CI/CD readiness
-
-**When to Use**: Every code submission, always required
+For legacy codebases (pre-v8.0):
+1.  **Trigger One-Time Baseline**: Run "run retro-audit full baseline on src/" in the project.
+2.  **Permanent Delta Mode**: After the baseline, the Verifier Agent automatically checks *only* changed files.
 
 ---
 
-### 2. **PM_PROTOCOL.md** (7 Gates - Strategic Validation)
-- Strategic alignment (Antigravity IDE focus)
-- Product-market fit (user research validated)
-- Monetization model (revenue stream assigned)
-- SEO impact (indexed pages, keywords, traffic)
-- Virality (product) - growth mechanics, retention hooks
-- Virality (engineering) - analytics tracking
-- MRR validation (revenue math verified)
-
-**When to Use**: User-facing features, monetization changes, major product changes
-
----
-
-### 3. **COMMUNICATION_PROTOCOL.md** (CEO Relay System)
-- Ledger-based communication (PROJECT_LEDGER.md)
-- Shareable prompts (Rule 5 - mandatory)
-- PM ↔ CEO ↔ Coder relay system
-- Timestamp format standards
-- Evidence requirements
-
-**When to Use**: All PM-Coder communication
-
----
-
-### 4. **CIRCULAR_ENFORCEMENT.md** (Accountability System)
-- PM verification gates (Coder blocks if PM didn't research)
-- Ralph verification gates (PM blocks if quality fails)
-- Documentation verification (Coder blocks if PM didn't document)
-- State machine transitions
-- Verification commands (`npm run verify:*`)
-
-**When to Use**: Task transitions, approvals, handoffs
-
----
-
-### 5. **SHAREABLE_PROMPTS_GUIDE.md** (Rule 5 Implementation)
-- Prompt format requirements
-- Templates for common scenarios
-- CEO relay instructions
-- Examples and anti-patterns
-
-**When to Use**: Every message sent to CEO for relay
-
----
-
-## 📁 FOLDER STRUCTURE
-
-```
-protocol/
-├── README.md                         ← You are here
-├── RALPH_PROTOCOL.md                 ← 12 quality gates
-├── PM_PROTOCOL.md                    ← 7 strategic gates
-├── COMMUNICATION_PROTOCOL.md         ← CEO ↔ PM ↔ Coder messaging
-├── CIRCULAR_ENFORCEMENT.md           ← Workflow documentation
-├── CIRCULAR_ENFORCEMENT_SETUP.md     ← Implementation guide
-├── SHAREABLE_PROMPTS_GUIDE.md        ← Rule 5 (mandatory prompts)
-├── PROMPT_FOR_AI_CODERS.md           ← Quick reference
-├── AI_CODER_ADAPTATION_GUIDE.md      ← Detailed AI coder guidance
-├── verification-scripts/
-│   ├── verify-pm-gates.js            ← Coder blocks PM
-│   ├── verify-ralph-gates.js         ← PM blocks Coder
-│   └── verify-pm-documentation.js    ← Coder blocks next task
-├── templates/
-│   ├── PM_ASSESSMENT_TEMPLATE.md
-│   ├── QA_REPORT_TEMPLATE.md
-│   ├── SELF_AUDIT_TEMPLATE.md
-│   └── [other templates]
-└── scripts/
-    └── [utility scripts]
-```
-
----
-
-## 🔄 HOW THE SYNC SYSTEM WORKS
-
-### Central Repository (This GitHub Repo)
-- **URL**: `https://github.com/YOUR_USERNAME/ralph-protocols`
-- **Branch**: `main` (single branch, always production-ready)
-- **Updates**: Edit here → Push to GitHub → Sync to all projects
-
-### Project Sync
-Each project has a sync script that:
-1. Clones/pulls this GitHub repository
-2. Copies all protocols to project's `.agent` folder
-3. Reports sync status
-
-### Update Workflow
-
-**To update protocols**:
-
-1. **Edit on GitHub** (Recommended):
-   - Click file → Edit → Commit
-   - Changes immediately available for sync
-
-2. **Edit Locally** (Advanced):
-   ```bash
-   cd /Users/surajsatyarthi/Desktop/Projects/protocol
-
-   # Edit files
-   vim RALPH_PROTOCOL.md
-
-   # Commit and push
-   git add .
-   git commit -m "docs: update RALPH_PROTOCOL - add new gate"
-   git push origin main
-   ```
-
-3. **Sync to All Projects**:
-   ```bash
-   # In each project
-   npm run sync:protocols
-   ```
-
----
-
-## 📊 PROTOCOL HIERARCHY
-
-```
-ALL CODE SUBMISSIONS:
-├─ Ralph Protocol (12/12) ← Always required
-└─ PM Protocol (7/7) ← Required if user-facing/strategic
-
-USER-FACING FEATURES:
-├─ Ralph Protocol (12/12)
-├─ PM Protocol (7/7)
-└─ Circular Enforcement (state transitions)
-
-INFRASTRUCTURE WORK:
-└─ Ralph Protocol (12/12) only
-
-ALL COMMUNICATION:
-├─ Communication Protocol (ledger-based)
-└─ Shareable Prompts (Rule 5 - mandatory)
-```
-
----
-
-## 🚨 NON-NEGOTIABLE RULES
-
-1. **Ralph 12/12 Required** - No code ships without all 12 gates passing
-2. **PM 7/7 for User-Facing** - Strategic validation mandatory for user-visible work
-3. **Shareable Prompts (Rule 5)** - Every message to CEO must include copy-paste prompt
-4. **Evidence-Based** - All gate scores require proof (screenshots, logs, test results)
-5. **Circular Enforcement** - PM and Coder verify each other's work before transitions
-6. **No Gate Skipping** - Cannot approve/reject without completing full gate report
-
----
-
-## 🎓 PROJECTS USING THESE PROTOCOLS
-
-1. **googleantigravity.directory** - Marketplace for Antigravity tools
-2. **Project 2** - TBD
-3. **Project 3** - TBD
-4. **Project 4** - TBD
-5. **Project 5** - TBD
-
-All projects sync from this central repository.
-
----
-
-## 🛠 VERIFICATION SCRIPTS
-
-### verify-pm-gates.js
-**Who uses**: Coder
-**When**: Before starting task
-**Checks**: Research audit exists, plan approved, 3+ web searches
-**Exit codes**: 0 = Pass, 1 = Block
-
-### verify-ralph-gates.js
-**Who uses**: PM
-**When**: Before approving task
-**Checks**: Build, lint, tests pass
-**Exit codes**: 0 = Pass, 1 = Block
-
-### verify-pm-documentation.js
-**Who uses**: Coder
-**When**: Before starting next task
-**Checks**: PM documented previous task (Gate 8)
-**Exit codes**: 0 = Pass, 1 = Block
-
----
-
-## 📚 TRAINING
-
-### For Coders
-```bash
-# Before starting task
-npm run verify:pm-gates -- ENTRY-XXX
-# Exit 0 → Start work
-# Exit 1 → Comment "🚫 BLOCKED" in ledger
-
-# Before starting next task
-npm run verify:pm-documentation -- ENTRY-{previous}
-# Exit 0 → Accept next task
-# Exit 1 → Block until PM completes Gate 8
-```
-
-### For PMs
-```bash
-# Before approving task
-npm run verify:ralph-gates -- ENTRY-XXX
-# Exit 0 → Approve
-# Exit 1 → Comment "🚫 BLOCKED" in ledger
-
-# After approving (Gate 8 - MANDATORY)
-# 1. Create .ralph/ENTRY-XXX-completion-report.md
-# 2. Update PROJECT_LEDGER.md to DONE
-# 3. Commit: "docs: document ENTRY-XXX completion (Gate 8)"
-```
-
----
-
-## 📝 VERSION HISTORY
-
-### v3.0 (2026-02-12) - Sync System Edition
-- ✅ **NEW**: Centralized GitHub repository
-- ✅ **NEW**: Auto-sync system for all projects
-- ✅ Protocol sync via npm commands
-- ✅ Removed manual file copying requirement
-- ✅ Single source of truth architecture
-
-### v2.1 (2026-02-12) - Shareable Prompts Edition
-- ✅ Added mandatory shareable prompts (Rule 5)
-- ✅ CEO relay standardization
-
-### v2.0 (2026-02-12) - Circular Enforcement Edition
-- ✅ Added circular enforcement system
-- ✅ Added 3 verification scripts
-- ✅ Updated Ralph Protocol to v6.5
-- ✅ Updated PM Protocol to v3.0 (Gate 8)
-
-### v1.0 (2026-02-11) - Original Release
-- Initial protocol collection
-
----
-
-## 🆘 SUPPORT
-
-### Common Issues
-
-**Q: How do I update protocols across all projects?**
-A: Edit in this GitHub repo → Push → Run `npm run sync:protocols` in each project
-
-**Q: Can I edit .agent folder directly in projects?**
-A: NO - edits will be overwritten on next sync. Edit in this central repo instead.
-
-**Q: Sync fails with "repository not found"**
-A: Check `scripts/sync-protocols.js` has correct GitHub URL
-
-**Q: Sync not pulling latest changes**
-A: Force refresh: `rm -rf .protocol-cache && npm run sync:protocols:init`
-
----
-
-**Last Updated**: 2026-02-12
-**Repository**: https://github.com/YOUR_USERNAME/ralph-protocols
-**Status**: Production-Ready (Centralized Sync System)
-**Maintenance**: Update here → Sync to all projects
+**Maintainer Note**: Do not edit files in `protocols/` without also updating `ralph_master_playbook_v8.json`, as the JSON is what the agents actually read.

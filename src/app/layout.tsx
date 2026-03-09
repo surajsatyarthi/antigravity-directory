@@ -5,6 +5,7 @@ import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import { Toaster } from "@/components/ui/toaster";
+import { SponsorBadge } from '@/components/SponsorBadge';
 import { Suspense } from "react";
 
 const inter = Inter({
@@ -97,6 +98,7 @@ export default function RootLayout({
           <Footer />
           <Toaster />
           <SonnerToaster position="top-center" richColors />
+          <SponsorBadge />
         </Providers>
       </body>
     </html>

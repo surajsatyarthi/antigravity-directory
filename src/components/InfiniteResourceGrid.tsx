@@ -107,7 +107,6 @@ export function InfiniteResourceGrid({
         items.push(
             <SponsoredCard 
                 key={`ad-${index}`} 
-                position={adSlotIndex + 1}
                 // In real app, we would pass client data here: client={adClient}
             />
         );

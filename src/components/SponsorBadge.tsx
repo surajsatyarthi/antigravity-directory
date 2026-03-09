@@ -1,22 +1,23 @@
 'use client';
 
-interface SponsorBadgeProps {
-  sponsorName: string;
-  sponsorLogoUrl: string;
-  sponsorHref: string;
-}
+import { SPONSOR } from '@/config/sponsor';
 
-export function SponsorBadge({ sponsorName, sponsorLogoUrl, sponsorHref }: SponsorBadgeProps) {
+export function SponsorBadge() {
+  if (!SPONSOR.active) return null;
+
   return (
     <a
-      href={sponsorHref}
+      href={SPONSOR.href}
       target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-4 right-4 z-40 flex flex-col bg-slate-900 rounded-lg p-2.5 shadow-lg
-                 animate-[slideUp_0.4s_ease_1s_both]"
+      rel="noopener noreferrer sponsored"
+      className="fixed bottom-4 right-4 z-40 flex flex-col bg-white/[0.05] border border-white/[0.08] backdrop-blur-sm rounded-xl p-3 shadow-xl hover:bg-white/[0.08] transition-all"
     >
-      <span className="text-[10px] font-mono text-slate-400 mb-1">Sponsored by</span>
-      <img src={sponsorLogoUrl} alt={sponsorName} className="h-[18px] w-auto" />
+      <span className="text-[9px] font-mono text-gray-500 mb-1.5 uppercase tracking-widest">Sponsored by</span>
+      {SPONSOR.logoUrl ? (
+        <img src={SPONSOR.logoUrl} alt={SPONSOR.name} className="h-[18px] w-auto" />
+      ) : (
+        <span className="text-xs font-bold text-white">{SPONSOR.name}</span>
+      )}
     </a>
   );
 }

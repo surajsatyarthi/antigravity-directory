@@ -7,7 +7,7 @@ import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Advertise & Sponsor | Antigravity Directory',
-  description: 'Reach 10,000+ AI builders and developers. Promote your AI tool with featured listings, verified badges, and homepage placement.',
+  description: 'Reach AI builders and developers by sponsoring the Antigravity Directory. Get in front of the people building with Google Antigravity IDE.',
   openGraph: {
     title: 'Advertise your AI Tool on Antigravity Directory',
     description: 'Get discovered by 10k+ monthly active AI users. Fast-track your growth with our premium listing options.',
@@ -17,23 +17,10 @@ export const metadata: Metadata = {
 
 const jsonLd = safeJsonLd({
   '@context': 'https://schema.org',
-  '@type': 'Product',
-  'name': 'Antigravity Directory Sponsorship',
-  'description': 'Premium listing packages for AI tools on Antigravity Directory.',
-  'offers': [
-    {
-      '@type': 'Offer',
-      'name': 'Standard Boost',
-      'price': '49.00',
-      'priceCurrency': 'USD'
-    },
-    {
-      '@type': 'Offer',
-      'name': 'Featured Sponsor',
-      'price': '149.00',
-      'priceCurrency': 'USD'
-    }
-  ]
+  '@type': 'WebPage',
+  'name': 'Advertise on Antigravity Directory',
+  'description': 'Reach AI builders and developers. Sponsor the Antigravity Directory.',
+  'url': 'https://googleantigravity.directory/advertise'
 });
 
 export default function AdvertisePage() {
@@ -89,17 +76,7 @@ export default function AdvertisePage() {
           <AdvertiseClient />
         </div>
 
-        {/* Trust Section */}
-        <div className="mt-32 text-center border-t border-white/5 pt-24">
-            <p className="text-gray-500 text-sm font-medium mb-8">TRUSTED BY BUILDERS FROM</p>
-            <div className="flex flex-wrap justify-center gap-12 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
-                {/* Simple text placeholders for logos - in prod use SVG images */}
-                <span className="text-xl font-bold">Y Combinator</span>
-                <span className="text-xl font-bold">Product Hunt</span>
-                <span className="text-xl font-bold">Hacker News</span>
-                <span className="text-xl font-bold">Twitter / X</span>
-            </div>
-        </div>
+
       </main>
 
       <Footer />
