@@ -6,8 +6,7 @@ interface CitationBlockProps {
     description: string;
     category: string;
     verified: boolean;
-    rating: string;
-    views: string;
+
   };
 }
 
@@ -54,14 +53,7 @@ export function CitationBlock({ data }: CitationBlockProps) {
               {data.verified ? 'Verified' : 'Community'}
             </div>
           </div>
-          <div className="p-4 bg-white/[0.03] border border-white/[0.06] rounded-none">
-            <div className="text-[8px] font-bold text-gray-600 uppercase tracking-widest mb-1">Score</div>
-            <div className="text-xs text-gray-300 font-mono font-bold">{data.rating} / 5.0</div>
-          </div>
-          <div className="p-4 bg-white/[0.03] border border-white/[0.06] rounded-none">
-            <div className="text-[8px] font-bold text-gray-600 uppercase tracking-widest mb-1">Visibility</div>
-            <div className="text-xs text-gray-300 font-mono font-bold">{data.views} sessions</div>
-          </div>
+
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Star, Eye, ArrowRight, Package } from 'lucide-react';
+import { ArrowRight, Package } from 'lucide-react';
 import { MAX_INTEGRATION_ICONS } from '@/constants';
 
 interface ResourceCardProps {
@@ -8,10 +8,7 @@ interface ResourceCardProps {
     title: string;
     slug: string;
     description: string;
-    views: number;
     categoryName?: string | null | undefined;
-    avgRating?: number;
-    ratingCount?: number;
     featured: boolean;
     badgeType?: string | null;
     status?: string;
@@ -88,33 +85,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
         </div>
 
         {/* Right: Stats & Actions (Mobile: Bottom Row) */}
-        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-white/[0.06] sm:border-0">
-          <div className="flex items-center gap-3">
-            {/* Rating */}
-            <div
-              className="flex items-center gap-1.5"
-              aria-label={`Rating: ${Number(resource.avgRating ?? 0).toFixed(1)} stars out of ${resource.ratingCount ?? 0} reviews`}
-            >
-              <Star className="w-4 h-4 sm:w-3.5 sm:h-3.5 fill-yellow-500/90 text-yellow-500/90" aria-hidden="true" />
-              <span className="text-sm font-bold font-mono text-white">
-                {Number(resource.avgRating ?? 0).toFixed(1)}
-              </span>
-              <span className="text-slate-500 text-xs font-mono font-bold">
-                ({resource.ratingCount ?? 0})
-              </span>
-            </div>
-
-            {/* Views */}
-            <div
-              className="flex items-center gap-1.5"
-              aria-label={`${resource.views} views`}
-            >
-              <Eye className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-gray-600" aria-hidden="true" />
-              <span className="text-sm font-bold font-mono text-slate-500">
-                {resource.views >= 1000 ? `${(resource.views / 1000).toFixed(1)}k` : resource.views}
-              </span>
-            </div>
-          </div>
+        <div className="flex items-center justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-white/[0.06] sm:border-0">
 
           <div className="flex items-center gap-2 relative z-30">
 

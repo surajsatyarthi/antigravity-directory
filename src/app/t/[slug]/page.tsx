@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Star, Eye, Copy, ExternalLink, ArrowLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, ArrowLeft, ChevronRight } from 'lucide-react';
 import { db } from '@/lib/db';
-import { resources, categories, ratings, tags, resourceTags, users } from '@/drizzle/schema';
+import { resources, categories, tags, resourceTags, users } from '@/drizzle/schema';
 import { eq, and, sql } from 'drizzle-orm';
 import { Header } from '@/components/Header';
 import { CitationBlock } from '@/components/CitationBlock';
 import { BadgeGenerator } from '@/components/BadgeGenerator';
 import { safeJsonLd } from '@/lib/utils/safeJsonLd';
+import { CopyButton } from '@/components/CopyButton';
 export async function generateMetadata({
   params,
 }: {
@@ -69,8 +70,7 @@ export default async function ResourceDetailPage({
       description: resources.description,
       content: resources.content,
       url: resources.url,
-      views: resources.views,
-      copiedCount: resources.copiedCount,
+
       verified: resources.verified,
       badgeType: resources.badgeType,
       categoryName: categories.name,
@@ -85,16 +85,7 @@ export default async function ResourceDetailPage({
     notFound();
   }
 
-  // Get ratings
-  const resourceRatings = await db
-    .select({ rating: ratings.rating })
-    .from(ratings)
-    .where(eq(ratings.resourceId, resource.id));
 
-  const avgRating =
-    resourceRatings.length > 0
-      ? resourceRatings.reduce((sum, r) => sum + r.rating, 0) / resourceRatings.length
-      : 0;
 
   // Get tags
   const resourceTagsList = await db
@@ -252,45 +243,19 @@ export default async function ResourceDetailPage({
                 description: resource.description,
                 category: resource.categoryName || 'General',
                 verified: resource.verified,
-                rating: avgRating.toFixed(1),
-                views: resource.views.toLocaleString()
               }}
             />
 
 
 
-            {/* Stats Bar - Monospace */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.02] overflow-hidden border border-white/[0.06] rounded-none mb-12 font-mono text-xs">
-              <div className="bg-[#0D0D0D] p-6 text-center">
-                <div className="text-gray-600 uppercase tracking-widest mb-2">Rating</div>
-                <div className="flex items-center justify-center gap-1.5 font-bold text-white text-base">
-                  <Star className="w-4 h-4 fill-white text-white animate-shimmer" />
-                  {avgRating.toFixed(1)}
-                </div>
-              </div>
-              <div className="bg-[#0D0D0D] p-6 text-center">
-                <div className="text-gray-600 uppercase tracking-widest mb-2">Views</div>
-                <div className="font-bold text-white text-base">{resource.views.toLocaleString()}</div>
-              </div>
-              <div className="bg-[#0D0D0D] p-6 text-center">
-                <div className="text-gray-600 uppercase tracking-widest mb-2">Copies</div>
-                <div className="font-bold text-white text-base">{resource.copiedCount.toLocaleString()}</div>
-              </div>
-              <div className="bg-[#0D0D0D] p-6 text-center">
-                <div className="text-gray-600 uppercase tracking-widest mb-2">Reviews</div>
-                <div className="font-bold text-white text-base">{resourceRatings.length}</div>
-              </div>
-            </div>
+
 
             {/* Content / Code Preview */}
             {resource.content && (
               <div className="mb-12">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold tracking-tight text-white font-mono uppercase tracking-widest text-sm text-gray-500">Resource Content</h2>
-                  <button className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-none transition-all">
-                    <Copy className="w-4 h-4" />
-                    Copy Code
-                  </button>
+                  <CopyButton content={resource.content!} />
                 </div>
                 
                 <div className="relative group">
@@ -315,23 +280,7 @@ export default async function ResourceDetailPage({
               </div>
             )}
 
-            {/* Rating CTA */}
-            <div className="pt-12 border-t border-gray-900 text-center">
-              <h3 className="text-xl font-bold mb-6 text-white font-mono uppercase tracking-widest text-sm text-gray-500">Rate this resource</h3>
-              <div className="flex justify-center gap-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <button
-                    key={star}
-                    className="p-2 hover:scale-125 transition-transform"
-                  >
-                    <Star className="w-10 h-10 text-gray-900 hover:text-white hover:fill-white transition-all duration-300" />
-                  </button>
-                ))}
-              </div>
-              <p className="mt-6 text-xs text-gray-600 font-mono tracking-widest uppercase">
-                Sign in to verify your vote
-              </p>
-            </div>
+
             {/* Badge Flywheel Section */}
             <BadgeGenerator 
               slug={resource.slug} 
