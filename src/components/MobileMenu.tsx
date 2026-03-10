@@ -3,26 +3,13 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Zap, User, LogOut } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS } from '@/config/navigation';
-import { handleSignIn, handleSignOut } from '@/lib/actions/auth';
-import { useSession } from 'next-auth/react';
-import { Session } from 'next-auth';
 
-interface MobileMenuProps {
-  session: Session | null;
-}
-
-export function MobileMenu({ session: initialSession }: MobileMenuProps) {
+export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const { data: session } = useSession();
-  
-  // Get username from live session hook (not stale prop)
-  // session.user.name populated by auth.ts session callback
-  const currentUsername = session?.user?.name;
-  const currentImage = session?.user?.image || initialSession?.user?.image;
-  const isAuthenticated = !!session?.user || !!initialSession?.user;
+
 
 
   useEffect(() => {
@@ -112,39 +99,7 @@ export function MobileMenu({ session: initialSession }: MobileMenuProps) {
 
             <div className="h-px w-full bg-white/[0.08]" />
 
-            <div className="flex flex-col gap-4">
-                {isAuthenticated ? (
-                    <>
-                         <Link 
-                            href="/dashboard"
-                            onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-3 text-slate-400 hover:text-white"
-                        >
-                            {currentImage ? (
-                                <img src={currentImage} alt="" className="w-8 h-8 rounded-full" />
-                            ) : (
-                                <User className="w-8 h-8 p-1.5 bg-gray-800 rounded-full" />
-                            )}
-                            <span className="font-medium">My Profile</span>
-                        </Link>
-                        <form action={handleSignOut}>
-                            <button type="submit" className="flex items-center gap-3 text-red-400 hover:text-red-300">
-                                <LogOut className="w-5 h-5" />
-                                <span>Sign Out</span>
-                            </button>
-                        </form>
-                    </>
-                ) : (
-                    <form action={handleSignIn} className="w-full">
-                        <button 
-                            type="submit"
-                            className="w-full py-3 bg-white/[0.08] text-white font-black uppercase tracking-widest rounded-lg hover:bg-white/[0.15] transition-colors"
-                        >
-                            Sign In
-                        </button>
-                    </form>
-                )}
-            </div>
+
         </div>
       )}
     </>

@@ -205,7 +205,7 @@ export const submissions = pgTable('submissions', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
   
   // Foreign keys
-  userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  userId: text('user_id').references(() => users.id, { onDelete: 'set null' }),
 }, (table) => ({
   userIdIdx: index('submissions_user_id_idx').on(table.userId),
   statusIdx: index('submissions_status_idx').on(table.status),

@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Star, Eye, ArrowRight, Package } from 'lucide-react';
-import { BookmarkButton } from './BookmarkButton';
 import { MAX_INTEGRATION_ICONS } from '@/constants';
 
 interface ResourceCardProps {
@@ -16,7 +15,6 @@ interface ResourceCardProps {
     featured: boolean;
     badgeType?: string | null;
     status?: string;
-    isBookmarked?: boolean;
     integrations?: string[] | null;
   };
 }
@@ -119,10 +117,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
           </div>
 
           <div className="flex items-center gap-2 relative z-30">
-            <BookmarkButton
-              resourceId={resource.id}
-              initialIsBookmarked={!!resource.isBookmarked}
-            />
+
             <div
               className="flex items-center justify-center w-11 h-11 sm:w-7 sm:h-7 rounded-full bg-gray-950 border border-gray-900 text-slate-400 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
               aria-hidden="true"

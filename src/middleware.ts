@@ -6,15 +6,8 @@ const authMiddleware = auth((req) => {
   const isAuth = !!req.auth;
   const isAuthPage = req.nextUrl.pathname.startsWith("/auth");
   const isAdminPage = req.nextUrl.pathname.startsWith("/admin");
-  const isDashboardPage = req.nextUrl.pathname.startsWith("/dashboard");
 
-  // Redirect authenticated users away from auth pages
-  if (isAuthPage) {
-    if (isAuth) {
-      return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
-    }
-    return null;
-  }
+
 
   // Protect admin routes
   if (isAdminPage) {
@@ -41,18 +34,6 @@ const authMiddleware = auth((req) => {
     }
   }
 
-  // Protect dashboard routes
-  if (isDashboardPage) {
-    if (!isAuth) {
-      let from = req.nextUrl.pathname;
-      if (req.nextUrl.search) {
-        from += req.nextUrl.search;
-      }
-      return NextResponse.redirect(
-        new URL(`/auth/signin?from=${encodeURIComponent(from)}`, req.nextUrl)
-      );
-    }
-  }
 
   return null;
 });
