@@ -94,7 +94,7 @@ export function JsonToPydantic() {
               onChange={(e) => setInput(e.target.value)}
               onBlur={convert}
               placeholder='{"name": "Antigravity", "is_awesome": true}'
-              className={`w-full h-full p-4 font-mono text-xs bg-slate-900/50 border rounded-xl outline-none resize-none transition-all text-white placeholder:text-slate-600 ${error ? 'border-red-500 focus:ring-red-500' : 'border-slate-700 focus:ring-2 focus:ring-amber-500'}`}
+              className={`w-full h-full p-4 font-mono text-xs bg-slate-900/50 border rounded-none outline-none resize-none transition-all text-white placeholder:text-slate-600 ${error ? 'border-red-500 focus:ring-red-500' : 'border-slate-700 focus:ring-2 focus:ring-amber-500'}`}
             />
             {error && (
               <div className="absolute bottom-4 left-4 right-4 bg-red-900/50 border border-red-500/50 text-red-200 text-xs p-2 rounded">
@@ -125,7 +125,7 @@ export function JsonToPydantic() {
               readOnly
               value={output}
               placeholder="# Python code will appear here..."
-              className="w-full h-full p-4 font-mono text-xs bg-slate-900 text-green-400 border border-slate-800 rounded-xl outline-none resize-none"
+              className="w-full h-full p-4 font-mono text-xs bg-slate-900 text-green-400 border border-slate-800 rounded-none outline-none resize-none"
             />
           </div>
         </div>
@@ -134,7 +134,7 @@ export function JsonToPydantic() {
       <div className="flex justify-center">
         <button
           onClick={convert}
-          className="lg:hidden flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition shadow-sm"
+          className="lg:hidden flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold rounded-lg transition shadow-sm"
         >
           Convert JSON <ArrowRight className="w-4 h-4" />
         </button>

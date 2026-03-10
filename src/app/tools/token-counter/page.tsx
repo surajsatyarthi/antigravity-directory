@@ -1,7 +1,7 @@
 import { Binary } from 'lucide-react';
 import { TokenCounter } from '@/components/tools/TokenCounter';
 import { safeJsonLd } from '@/lib/utils';
-import { ToolsShell } from '@/components/tools/ToolsShell';
+
 
 export const metadata = {
   title: 'TikToken Counter',
@@ -24,7 +24,7 @@ const jsonLd = safeJsonLd({
 
 export default function TokenCounterPage() {
   return (
-    <ToolsShell>
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd }}
@@ -48,6 +48,6 @@ export default function TokenCounterPage() {
             <TokenCounter />
         </div>
       </div>
-    </ToolsShell>
+    </>
   );
 }

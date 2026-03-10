@@ -67,7 +67,7 @@ export function LoadMoreResourceGrid({
     const AD_FREQUENCY = 8; // Ad every 8 resources
     
     const AD_CLIENTS = [
-      { name: 'Vercel', color: 'bg-black' },
+      { name: 'Vercel', color: 'bg-white' },
       { name: 'Supabase', color: 'bg-green-900' },
       { name: 'Neon', color: 'bg-green-500' }
     ];
@@ -87,7 +87,6 @@ export function LoadMoreResourceGrid({
         items.push(
             <SponsoredCard 
                 key={`ad-${index}`} 
-                position={adSlotIndex + 1}
             />
         );
       }
@@ -114,7 +113,7 @@ export function LoadMoreResourceGrid({
           <button
             onClick={loadMore}
             disabled={loading}
-            className="flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/50 text-white font-bold uppercase tracking-widest rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+            className="flex items-center gap-3 px-8 py-4 bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-blue-500/50 text-white font-bold uppercase tracking-widest rounded-none transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
           >
             {loading ? (
               <>
@@ -124,7 +123,7 @@ export function LoadMoreResourceGrid({
             ) : (
               <>
                 <span>Load Next 20</span>
-                <span className="text-gray-500 font-normal text-xs">
+                <span className="text-gray-400 font-normal text-xs">
                   ({resources.length} of {totalCount})
                 </span>
               </>
@@ -132,7 +131,7 @@ export function LoadMoreResourceGrid({
           </button>
         ) : (
           resources.length > 0 && (
-            <p className="text-[10px] uppercase tracking-widest text-slate-600 py-4">
+            <p className="text-[10px] uppercase tracking-widest text-gray-400 py-4">
               All {totalCount} resources loaded
             </p>
           )

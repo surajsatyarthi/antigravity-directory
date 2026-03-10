@@ -1,0 +1,68 @@
+
+> antigravity-directory@0.1.0 start
+> next start -p 3005
+
+▲ Next.js 16.1.6
+- Local:         http://localhost:3005
+- Network:       http://192.168.29.81:3005
+
+✓ Starting...
+✓ Ready in 2.7s
+Middleware: Start /mcp-servers
+[validateFilterParams] Raw params: categories=mcp-servers
+[validateFilterParams] Validated result: {
+  categories: [ 'mcp-servers' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  pricing: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'mcp-servers' ]
+[validateFilterParams] Raw params: categories=mcp-servers
+[validateFilterParams] Validated result: {
+  categories: [ 'mcp-servers' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  pricing: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'mcp-servers' ]
+Middleware: Start /prompts
+[validateFilterParams] Raw params: categories=prompts
+[validateFilterParams] Validated result: {
+  categories: [ 'prompts' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  pricing: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'prompts' ]
+[validateFilterParams] Raw params: categories=prompts
+[validateFilterParams] Validated result: {
+  categories: [ 'prompts' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  pricing: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'prompts' ]
+[validateCategorySlugs] Result: [ 'prompts' ]
+[validateCategorySlugs] Result: [ 'mcp-servers' ]
+[fetchResourcesAction] Filtered: sponsored=3, organic=17, totalOrganic=96
+[fetchResourcesAction] First organic: v0.dev UI Bootstrapper
+[validateCategorySlugs] Result: [ 'prompts' ]
+[fetchResourcesAction] Filtered: sponsored=3, organic=17, totalOrganic=96
+[fetchResourcesAction] First organic: v0.dev UI Bootstrapper
+[fetchResourcesAction] Filtered: sponsored=3, organic=17, totalOrganic=2075
+[fetchResourcesAction] First organic: Perplexity Mcp Zerver
+[validateCategorySlugs] Result: [ 'mcp-servers' ]
+[fetchResourcesAction] Filtered: sponsored=3, organic=17, totalOrganic=2075
+[fetchResourcesAction] First organic: Perplexity Mcp Zerver

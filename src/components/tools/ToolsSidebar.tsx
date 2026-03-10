@@ -12,7 +12,7 @@ export function ToolsSidebar({ isCollapsed = false }: { isCollapsed?: boolean })
   const pathname = usePathname();
 
   return (
-    <div className={cn("flex flex-col h-full py-4 bg-black/50 backdrop-blur-xl border-r border-white/5", isCollapsed ? "items-center" : "")}>
+    <div className={cn("flex flex-col h-full py-4 bg-white/[0.03] border-r border-white/[0.06]", isCollapsed ? "items-center" : "")}>
       {!isCollapsed && (
         <div className="mb-6">
           <h2 className="text-lg font-semibold text-white px-2 truncate">
@@ -47,7 +47,7 @@ export function ToolsSidebar({ isCollapsed = false }: { isCollapsed?: boolean })
                       isCollapsed ? "justify-center p-2" : "px-3 py-2",
                       isActive 
                         ? "bg-blue-500/10 text-blue-400 border border-blue-500/20" 
-                        : "text-slate-400 hover:bg-white/5 hover:text-slate-200 border border-transparent"
+                        : "text-slate-400 hover:bg-white/[0.05] hover:text-slate-200 border border-transparent"
                     )}
                   >
                     <Icon className={cn("flex-shrink-0", isCollapsed ? "w-5 h-5" : "w-4 h-4")} />

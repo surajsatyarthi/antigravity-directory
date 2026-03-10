@@ -34,7 +34,7 @@ export function TokenCounter() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
       <div className="lg:col-span-8">
-        <Card className="bg-white/5 border-white/10 p-1">
+        <Card className="bg-white/[0.03] border border-white/[0.06] p-1">
             <Textarea
                 placeholder="Paste your text here to count tokens..."
                 className="min-h-[400px] bg-transparent border-0 resize-none focus-visible:ring-0 text-lg leading-relaxed font-mono text-slate-300"
@@ -63,11 +63,11 @@ export function TokenCounter() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-4">
-            <Card className="bg-white/5 border-white/10 p-4 text-center">
+            <Card className="bg-white/[0.03] border border-white/[0.06] p-4 text-center">
                 <div className="text-xs text-slate-400 mb-1">Characters</div>
                 <div className="text-2xl font-bold text-slate-200">{chars.toLocaleString()}</div>
             </Card>
-            <Card className="bg-white/5 border-white/10 p-4 text-center">
+            <Card className="bg-white/[0.03] border border-white/[0.06] p-4 text-center">
                 <div className="text-xs text-slate-400 mb-1">Est. Cost (GPT-4o)</div>
                 <div className="text-2xl font-bold text-green-400">${cost.toFixed(4)}</div>
             </Card>

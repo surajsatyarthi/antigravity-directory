@@ -443,3 +443,24 @@ export async function getCategoryTools(categorySlug: string, limit: number = 3) 
       .limit(limit);
 }
 
+export async function getResourcesByCategorySlug(
+  slug: string,
+  limit: number = 5
+): Promise<ResourceWithRelations[]> {
+  const categoryRecord = await db
+    .select({ id: categories.id })
+    .from(categories)
+    .where(eq(categories.slug, slug))
+    .limit(1);
+
+  if (!categoryRecord.length) return [];
+
+  const categoryId = categoryRecord[0].id;
+
+  return db
+    .select()
+    .from(resources)
+    .where(and(eq(resources.status, 'LIVE'), eq(resources.categoryId, categoryId)))
+    .orderBy(desc(resources.createdAt))
+    .limit(limit) as Promise<ResourceWithRelations[]>;
+}

@@ -64,9 +64,12 @@ export async function approveSubmission(submissionId: string) {
 
         // Send email to user
         try {
-          const submissionUser = await db.query.users.findFirst({
-            where: eq(users.id, submission.userId),
-          });
+          let submissionUser = null;
+          if (submission.userId) {
+            submissionUser = await db.query.users.findFirst({
+              where: eq(users.id, submission.userId),
+            });
+          }
 
           if (submissionUser) {
             await sendListingLive({
@@ -157,9 +160,12 @@ export async function getSubmissionsQueue(status?: 'PENDING' | 'APPROVED' | 'REJ
     // Enrich with user data
     const enriched = await Promise.all(
       submissionsList.map(async (sub) => {
-        const user = await db.query.users.findFirst({
-          where: eq(users.id, sub.userId),
-        });
+        let user = null;
+        if (sub.userId) {
+          user = await db.query.users.findFirst({
+            where: eq(users.id, sub.userId),
+          });
+        }
         return {
           ...sub,
           userEmail: user?.email,

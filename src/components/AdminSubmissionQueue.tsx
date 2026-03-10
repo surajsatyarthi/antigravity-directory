@@ -51,8 +51,8 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
   if (submissions.length === 0) {
     return (
       <div className="text-center py-12">
-        <div className="bg-white/5 border border-white/10 rounded-lg p-8">
-          <p className="text-gray-400 text-lg">No pending submissions</p>
+        <div className="bg-white/[0.03] border border-white/[0.06] rounded-none p-8">
+          <p className="text-slate-400 text-lg">No pending submissions</p>
         </div>
       </div>
     );
@@ -63,7 +63,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
       {submissions.map((submission) => (
         <div
           key={submission.id}
-          className="bg-white/5 border border-white/10 rounded-lg overflow-hidden hover:border-white/20 transition-colors"
+          className="bg-white/[0.03] border border-white/[0.06] rounded-none overflow-hidden hover:border-white/[0.12] transition-colors"
         >
           {/* Header */}
           <div
@@ -76,7 +76,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
                 <span className={`px-3 py-1 rounded-full text-xs font-mono uppercase ${
                   submission.paymentStatus === 'PAID'
                     ? 'bg-emerald-500/20 text-emerald-400'
-                    : 'bg-gray-500/20 text-gray-400'
+                    : 'bg-gray-500/20 text-slate-400'
                 }`}>
                   {submission.paymentStatus === 'PAID' ? '💰 Paid' : 'Free'}
                 </span>
@@ -86,24 +86,24 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
                   </span>
                 )}
               </div>
-              <p className="text-gray-400 text-sm mb-2">{submission.description}</p>
-              <div className="flex gap-4 text-xs text-gray-500">
+              <p className="text-slate-400 text-sm mb-2">{submission.description}</p>
+              <div className="flex gap-4 text-xs text-slate-500">
                 <span>Category: {submission.categoryName || 'Uncategorized'}</span>
                 <span>Submitted by: {submission.userName || submission.userEmail}</span>
                 <span>{new Date(submission.createdAt).toLocaleDateString()}</span>
               </div>
             </div>
-            <div className="ml-4 text-gray-400">
+            <div className="ml-4 text-slate-400">
               {expandedId === submission.id ? '−' : '+'}
             </div>
           </div>
 
           {/* Expanded Details */}
           {expandedId === submission.id && (
-            <div className="border-t border-white/10 bg-black/40 p-6 space-y-4">
+            <div className="border-t border-white/[0.06] bg-white/[0.03] p-6 space-y-4">
               {submission.url && (
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">
+                  <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
                     URL
                   </label>
                   <a
@@ -118,14 +118,14 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
               )}
 
               <div>
-                <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">
+                <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
                   Full Description
                 </label>
-                <p className="text-gray-300 text-sm leading-relaxed">{submission.description}</p>
+                <p className="text-slate-500 text-sm leading-relaxed">{submission.description}</p>
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">
+                <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
                   Submitter Email
                 </label>
                 <a
@@ -137,7 +137,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 border-t border-white/10 flex gap-3">
+              <div className="pt-4 border-t border-white/[0.06] flex gap-3">
                 <button
                   onClick={() => handleApprove(submission.id)}
                   disabled={isPending}
@@ -160,7 +160,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
               {/* Rejection Reason (optional) */}
               {false && (
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">
+                  <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
                     Rejection Reason (optional)
                   </label>
                   <textarea
@@ -172,7 +172,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
                       })
                     }
                     placeholder="Why are you rejecting this submission?"
-                    className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white text-sm placeholder:text-gray-600 focus:border-emerald-500/50 outline-none resize-none"
+                    className="w-full bg-white/[0.03] border border-white/[0.06] rounded-none px-4 py-3 text-white text-sm placeholder:text-gray-600 focus:border-emerald-500/50 outline-none resize-none"
                     rows={3}
                   />
                 </div>

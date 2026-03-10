@@ -39,18 +39,18 @@ export function ThreeValueCards() {
       {cards.map((card) => (
         <div 
           key={card.title} 
-          className="border border-white/10 rounded-lg p-6 hover:bg-white/5 transition-all duration-300 backdrop-blur-sm"
+          className="border border-slate-200 rounded-lg p-6 hover:bg-slate-100 transition-all duration-300 backdrop-blur-sm"
         >
           <div className="text-4xl mb-4">{card.emoji}</div>
-          <h3 className="font-bold text-xl mb-2 text-white">{card.title}</h3>
-          <p className="text-gray-400 text-sm mb-4 leading-relaxed">{card.description}</p>
+          <h3 className="font-bold text-xl mb-2 text-slate-900">{card.title}</h3>
+          <p className="text-slate-400 text-sm mb-4 leading-relaxed">{card.description}</p>
           <div className="mb-4">
             <div className="font-black text-3xl text-blue-400">{card.stat}</div>
-            <div className="text-xs text-gray-500 uppercase tracking-wider">{card.statLabel}</div>
+            <div className="text-xs text-slate-500 uppercase tracking-wider">{card.statLabel}</div>
           </div>
           <button
             onClick={card.buttonAction}
-            className="w-full px-4 py-2 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 transition-colors active:scale-95 uppercase tracking-wider text-sm"
+            className="w-full px-4 py-2 bg-blue-600 text-slate-900 font-bold rounded hover:bg-blue-700 transition-colors active:scale-95 uppercase tracking-wider text-sm"
           >
             {card.buttonText}
           </button>

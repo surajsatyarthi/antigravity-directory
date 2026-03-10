@@ -6,12 +6,7 @@ import { usePathname } from 'next/navigation';
 import { NAV_ITEMS } from '@/config/navigation';
 import { Dropdown } from './Dropdown';
 
-interface NavLinksProps {
-  session: any;
-  username: string | null;
-}
-
-export function NavLinks({ session, username }: NavLinksProps) {
+export function NavLinks() {
   const pathname = usePathname();
 
   return (
@@ -24,10 +19,10 @@ export function NavLinks({ session, username }: NavLinksProps) {
         const isActive = pathname === item.href;
         const baseClass = "transition-colors whitespace-nowrap";
         const colorClass = item.disabled 
-          ? "text-gray-400 cursor-not-allowed hover:text-white" 
+          ? "text-slate-400 cursor-not-allowed hover:text-slate-400" 
           : isActive 
             ? "text-white" 
-            : item.label === 'MCPs' ? "text-white hover:text-blue-400" : "text-gray-300 hover:text-white";
+            : item.label === 'MCPs' ? "text-white hover:text-blue-400" : "text-slate-400 hover:text-white";
 
         return (
           <Link

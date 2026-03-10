@@ -1,136 +1,133 @@
-import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import { auth } from '@/auth';
+import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
-import { CategoryGridDiscovery } from '@/components/CategoryGridDiscovery';
-import { CreatorTestimonials } from '@/components/CreatorTestimonials';
-// REMOVED - CTASection (redundant with Hero CTAs)
-import { FilterPersistenceManager } from '@/components/filters/FilterPersistenceManager';
-import { FilterSidebar } from '@/components/filters/FilterSidebar';
-import { TopFilterBar } from '@/components/filters/TopFilterBar';
-import { LoadMoreResourceGrid } from '@/components/LoadMoreResourceGrid';
-import { DirectoryIntelligence } from '@/components/DirectoryIntelligence';
-import { FeaturedSection } from '@/components/FeaturedSection';
-import { fetchResourcesAction } from '@/app/actions/get-resources';
-import { getCategoriesWithCounts, getAllTags, validateCategorySlugs, getFeaturedResources } from '@/lib/queries';
-import { validateFilterParams } from '@/lib/validation';
-import dynamic from 'next/dynamic';
+import { SponsoredCard } from '@/components/SponsoredCard';
+import { CategorySection } from '@/components/CategorySection';
+import { getResourcesByCategorySlug, getCategoriesWithCounts } from '@/lib/queries';
+import dynamicImport from 'next/dynamic';
 
-const NewsletterCapture = dynamic(() => import('@/components/NewsletterCapture').then(mod => mod.NewsletterCapture), {
+export const dynamic = 'force-dynamic';
+
+const NewsletterCapture = dynamicImport(() => import('@/components/NewsletterCapture').then(mod => mod.NewsletterCapture), {
   ssr: true
 });
 
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: Promise<{ q?: string; categories?: string }>;
-}): Promise<Metadata> {
-  const { q, categories } = await searchParams;
-  
-  if (q) return { title: `Search results for "${q}"` };
-  if (categories) return { title: `Filtered Resources` };
-  
-  return {
-    title: "Biggest community for Antigravity | googleantigravity.directory",
-    description: "The marketplace where 500+ creators monetize their tools. Earn 80% commission on MCP servers, rules, and workflows.",
-    openGraph: {
-      title: "Biggest community for Antigravity",
-      description: "The marketplace where 500+ creators monetize their tools. Earn 80% commission.",
-      type: "website"
-    }
-  };
+export const metadata: Metadata = {
+  title: "Antigravity Directory — MCP Servers, Skills, Rules & Prompts for Google Antigravity IDE",
+  description: "The free directory of Google Antigravity IDE resources. Browse 3,000+ MCP servers, rules, prompts, skills and workflows — all free.",
+  openGraph: {
+    title: "Antigravity Directory — MCP Servers, Skills, Rules & Prompts for Google Antigravity IDE",
+    description: "Browse 3,000+ free MCP servers, rules, prompts and workflows for Google Antigravity IDE.",
+    type: "website",
+    url: "https://googleantigravity.directory"
+  },
+  alternates: {
+    canonical: "https://googleantigravity.directory"
+  }
+};
+
+const CATEGORIES = [
+  { slug: 'mcp-servers',     name: 'MCP Servers',    icon: '🔌' },
+  { slug: 'skills',          name: 'Skills',          icon: '⚡' },
+  { slug: 'rules',           name: 'Rules',           icon: '📋' },
+  { slug: 'workflows',       name: 'Workflows',       icon: '🔄' },
+  { slug: 'prompts',         name: 'Prompts',         icon: '💬' },
+  { slug: 'agents',          name: 'Agents',          icon: '🤖' },
+  { slug: 'boilerplates',    name: 'Boilerplates',    icon: '📦' },
+  { slug: 'tutorials',       name: 'Tutorials',       icon: '📚' },
+  { slug: 'cheatsheets',     name: 'Cheatsheets',     icon: '📄' },
+  { slug: 'troubleshooting', name: 'Troubleshooting', icon: '🔧' },
+];
+
+// Async server component — fetches its own data so it can be Suspense-streamed
+async function CategorySectionAsync({
+  slug, name, icon, totalCount,
+}: { slug: string; name: string; icon: string; totalCount: number }) {
+  const resources = await getResourcesByCategorySlug(slug, 5);
+  return (
+    <CategorySection
+      name={name}
+      slug={slug}
+      icon={icon}
+      resources={resources}
+      totalCount={totalCount}
+    />
+  );
 }
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ q?: string; categories?: string; tags?: string; sort?: string; page?: string }>;
-}) {
-  const params = await searchParams;
-  
-  const urlParams = new URLSearchParams(params as Record<string, string>);
-  const filters = validateFilterParams(urlParams);
-  
-  const validCategorySlugs = await validateCategorySlugs(filters.categories);
-  
-  const cleanedFilters = {
-    ...filters,
-    categories: validCategorySlugs
-  };
+// Async component for hero stat — fetches total resource count separately
+async function HeroSectionAsync() {
+  const categoryCounts = await getCategoriesWithCounts();
+  const total = categoryCounts.reduce((sum: number, c: any) => sum + (Number(c.count) || 0), 0);
+  return <HeroSection totalCount={total} />;
+}
 
-  const page = Number(params.page) || 1;
-  const pageSize = 20;
+// Async component for category shells — fetches counts for "View all N" links
+async function CategorySectionsBlock() {
+  const categoryCounts = await getCategoriesWithCounts();
+  const countMap = Object.fromEntries(
+    categoryCounts.map((c: any) => [c.slug, c.count])
+  );
 
-  const [session, categoriesWithCounts, tags, fetchResult, featuredResources] = await Promise.all([
-    auth(),
-    getCategoriesWithCounts(),
-    getAllTags(),
-    fetchResourcesAction({
-      page,
-      search: cleanedFilters.search,
-      categories: cleanedFilters.categories.join(','),
-      tags: cleanedFilters.tags.join(','),
-      sort: cleanedFilters.sort
-    }),
-    getFeaturedResources(cleanedFilters.categories[0], 6)
-  ]);
+  return (
+    <div id="directory">
+      {CATEGORIES.map((cat) => (
+        <Suspense key={cat.slug} fallback={null}>
+          <CategorySectionAsync
+            slug={cat.slug}
+            name={cat.name}
+            icon={cat.icon}
+            totalCount={countMap[cat.slug] ?? 0}
+          />
+        </Suspense>
+      ))}
+    </div>
+  );
+}
 
-  const { resources: filteredResources, totalCount } = fetchResult.success 
-    ? { resources: fetchResult.resources, totalCount: fetchResult.totalCount }
-    : { resources: [], totalCount: 0 };
-
-  const activeFilters = {
-    categories: cleanedFilters.categories,
-    tags: cleanedFilters.tags,
-    badgeTypes: cleanedFilters.badgeTypes,
-    q: cleanedFilters.search,
-    sort: cleanedFilters.sort
-  };
-
-  const activeCategoryName = cleanedFilters.categories.length > 0 
-    ? categoriesWithCounts.find(c => c.slug === cleanedFilters.categories[0])?.name 
-    : undefined;
-
-  // Check if we are in "Search/Filter Mode" or "Landing Mode"
-  const isBrowsing = cleanedFilters.search || cleanedFilters.categories.length > 0;
-
+export default async function HomePage() {
   return (
     <>
       <Header />
-      <FilterPersistenceManager />
-      
-      <main 
-        className="min-h-screen bg-black text-white selection:bg-blue-500/30"
-      >
-        {/* 1. Creator Marketplace Hero */}
-        <HeroSection />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Antigravity Directory",
+            "url": "https://googleantigravity.directory",
+            "description": "The #1 resource directory for Google Antigravity IDE",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://googleantigravity.directory/?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          })
+        }}
+      />
 
-        {/* 2. Category Discovery Grid */}
-        <CategoryGridDiscovery />
+      <main className="min-h-screen bg-black text-white selection:bg-blue-500/30">
+        {/* Hero — streams in with total count */}
+        <Suspense fallback={<HeroSection />}>
+          <HeroSectionAsync />
+        </Suspense>
 
-        {/* 3. Featured Resources (Seeded Data) */}
-        {featuredResources.length > 0 && (
-          <FeaturedSection 
-            title="Featured Resources"
-            resources={featuredResources} 
-            href="/browse?sort=trending"
-          />
-        )}
+        {/* Ad slot — renders immediately */}
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+          <SponsoredCard />
+        </div>
 
-        {/* 4. Directory Grid / Search Results */}
-        <section id="directory" className="py-12 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-             <LoadMoreResourceGrid 
-                initialResources={filteredResources}
-                initialTotalCount={totalCount}
-                initialFilters={activeFilters}
-             />
-        </section>
+        {/* Category sections stream in progressively */}
+        <Suspense fallback={null}>
+          <CategorySectionsBlock />
+        </Suspense>
 
-        {/* 5. Creator Testimonials */}
-        <CreatorTestimonials />
-
-        {/* 4. Newsletter */}
+        {/* Newsletter — renders immediately */}
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-20 border-t border-white/[0.05] pb-24 text-center">
           <NewsletterCapture source="homepage" />
         </div>
@@ -138,4 +135,3 @@ export default async function HomePage({
     </>
   );
 }
-

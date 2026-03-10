@@ -10,19 +10,19 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Rules', href: '/rules' },
-  { label: 'Prompts', href: '/prompts', isNew: true },
+  { label: 'Prompts', href: '/prompts' },
   { label: 'MCPs', href: '/mcp-servers' },
   { label: 'Workflows', href: '/workflows' },
   { label: 'Skills', href: '/skills' },
-  { label: 'Members', href: '/members' },
   {
     label: 'More',
     href: '#',
     children: [
+      { label: 'Agents', href: '/agents' },
+      { label: 'Boilerplates', href: '/boilerplates' },
+      { label: 'Tutorials', href: '/tutorials' },
+      { label: 'Cheatsheets', href: '/cheatsheets' },
       { label: 'Troubleshooting', href: '/troubleshooting' },
-      { label: 'Download', href: '/download' },
-      { label: 'Advertise', href: '/advertise' },
-      { label: 'Community', href: 'https://discord.gg/antigravity', external: true },
     ]
   },
 ];

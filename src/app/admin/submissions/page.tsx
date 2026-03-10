@@ -31,9 +31,12 @@ export default async function AdminSubmissionsPage() {
   // Enrich with user data
   const enrichedSubmissions = await Promise.all(
     pendingSubmissions.map(async (sub) => {
-      const subUser = await db.query.users.findFirst({
-        where: eq(users.id, sub.userId),
-      });
+      let subUser = null;
+      if (sub.userId) {
+        subUser = await db.query.users.findFirst({
+          where: eq(users.id, sub.userId),
+        });
+      }
       return {
         ...sub,
         userEmail: subUser?.email,

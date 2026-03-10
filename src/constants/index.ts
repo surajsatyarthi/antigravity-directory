@@ -149,3 +149,20 @@ export const ANIMATION = {
 export type SortOption = typeof FILTERS.SORT_OPTIONS[number]['value'];
 export type CategoryGroup = typeof CATEGORY_GROUPS[keyof typeof CATEGORY_GROUPS];
 export type IntegrationName = keyof typeof INTEGRATION_ICONS;
+
+// ============================================================================
+// SEARCH CATEGORIES (Used by SearchInput dropdown)
+// ============================================================================
+
+export const SEARCH_CATEGORIES = [
+  { slug: 'mcp-servers', label: 'MCP Servers' },
+  { slug: 'skills', label: 'Skills' },
+  { slug: 'rules', label: 'Rules' },
+  { slug: 'prompts', label: 'Prompts' },
+  { slug: 'agents', label: 'Agents' },
+  { slug: 'workflows', label: 'Workflows' },
+  { slug: 'boilerplates', label: 'Boilerplates' },
+  { slug: 'troubleshooting', label: 'Troubleshooting' },
+  { slug: 'tutorials', label: 'Tutorials' },
+  { slug: 'cheatsheets', label: 'Cheatsheets' },
+] as const;

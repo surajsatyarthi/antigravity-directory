@@ -71,7 +71,7 @@ export default function ToolsIndexPage() {
             <Link 
               key={tool.href} 
               href={tool.href}
-              className="group block p-6 rounded-xl border border-white/10 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all bg-card"
+              className="group block p-6 rounded-none border border-white/[0.06] hover:border-white/[0.12] transition-all bg-white/[0.02]"
             >
               <div className="flex items-start gap-4">
                 <div className={`p-3 rounded-lg ${tool.color}`}>

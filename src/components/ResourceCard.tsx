@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { Star, Eye, ArrowRight, Package } from 'lucide-react';
-import { BookmarkButton } from './BookmarkButton';
+import { ArrowRight, Package } from 'lucide-react';
 import { MAX_INTEGRATION_ICONS } from '@/constants';
 
 interface ResourceCardProps {
@@ -9,14 +8,10 @@ interface ResourceCardProps {
     title: string;
     slug: string;
     description: string;
-    views: number;
     categoryName?: string | null | undefined;
-    avgRating?: number;
-    ratingCount?: number;
     featured: boolean;
     badgeType?: string | null;
     status?: string;
-    isBookmarked?: boolean;
     integrations?: string[] | null;
   };
 }
@@ -27,10 +22,10 @@ export function ResourceCard({ resource }: ResourceCardProps) {
   return (
     <div 
       data-testid="resource-card"
-      className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-[#050505] border rounded-lg overflow-hidden hover:border-blue-500/50 hover:bg-white/[0.01] transition-all duration-300 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
+      className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-white/[0.03] border rounded-none overflow-hidden hover:border-blue-500/40 transition-all duration-200 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
       isFeatured
         ? 'border-yellow-500/40'
-        : 'border-white/[0.05]'
+        : 'border-white/[0.06]'
     }`}>
 
       <Link href={`/t/${resource.slug}`} className="absolute inset-0 z-20 outline-none">
@@ -61,7 +56,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
                   className="w-5 h-5 rounded-md bg-gray-950 border border-gray-900 flex items-center justify-center shrink-0"
                   title={integration}
                 >
-                  <Package className="w-3 h-3 sm:w-2.5 sm:h-2.5 text-gray-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
+                  <Package className="w-3 h-3 sm:w-2.5 sm:h-2.5 text-slate-400 group-hover:text-blue-400 transition-colors" aria-hidden="true" />
                 </div>
               ))}
             </div>
@@ -84,47 +79,18 @@ export function ResourceCard({ resource }: ResourceCardProps) {
               {resource.title}
             </h3>
           </div>
-          <p className="text-sm text-gray-400 line-clamp-3 sm:line-clamp-1 font-medium">
+          <p className="text-sm text-slate-400 line-clamp-3 sm:line-clamp-1 font-medium">
             {resource.description}
           </p>
         </div>
 
         {/* Right: Stats & Actions (Mobile: Bottom Row) */}
-        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-white/5 sm:border-0">
-          <div className="flex items-center gap-3">
-            {/* Rating */}
-            <div
-              className="flex items-center gap-1.5"
-              aria-label={`Rating: ${Number(resource.avgRating ?? 0).toFixed(1)} stars out of ${resource.ratingCount ?? 0} reviews`}
-            >
-              <Star className="w-4 h-4 sm:w-3.5 sm:h-3.5 fill-yellow-500/90 text-yellow-500/90" aria-hidden="true" />
-              <span className="text-sm font-bold font-mono text-white">
-                {Number(resource.avgRating ?? 0).toFixed(1)}
-              </span>
-              <span className="text-gray-500 text-xs font-mono font-bold">
-                ({resource.ratingCount ?? 0})
-              </span>
-            </div>
-
-            {/* Views */}
-            <div
-              className="flex items-center gap-1.5"
-              aria-label={`${resource.views} views`}
-            >
-              <Eye className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-gray-600" aria-hidden="true" />
-              <span className="text-sm font-bold font-mono text-gray-500">
-                {resource.views >= 1000 ? `${(resource.views / 1000).toFixed(1)}k` : resource.views}
-              </span>
-            </div>
-          </div>
+        <div className="flex items-center justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-white/[0.06] sm:border-0">
 
           <div className="flex items-center gap-2 relative z-30">
-            <BookmarkButton
-              resourceId={resource.id}
-              initialIsBookmarked={!!resource.isBookmarked}
-            />
+
             <div
-              className="flex items-center justify-center w-11 h-11 sm:w-7 sm:h-7 rounded-full bg-gray-950 border border-gray-900 text-gray-400 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
+              className="flex items-center justify-center w-11 h-11 sm:w-7 sm:h-7 rounded-full bg-gray-950 border border-gray-900 text-slate-400 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
               aria-hidden="true"
             >
               <ArrowRight className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
@@ -132,6 +98,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
           </div>
         </div>
       </div>
+
     </div>
   );
 }

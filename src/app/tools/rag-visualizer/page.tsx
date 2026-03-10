@@ -1,7 +1,7 @@
 import { Split } from 'lucide-react';
 import { RagVisualizer } from '@/components/tools/RagVisualizer';
 import { safeJsonLd } from '@/lib/utils';
-import { ToolsShell } from '@/components/tools/ToolsShell';
+
 
 export const metadata = {
   title: 'RAG Text Chunking Visualizer',
@@ -24,7 +24,7 @@ const jsonLd = safeJsonLd({
 
 export default function RagVisualizerPage() {
   return (
-    <ToolsShell>
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd }}
@@ -48,6 +48,6 @@ export default function RagVisualizerPage() {
             <RagVisualizer />
         </div>
       </div>
-    </ToolsShell>
+    </>
   );
 }

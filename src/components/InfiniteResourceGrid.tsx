@@ -84,7 +84,7 @@ export function InfiniteResourceGrid({
     
     // Mock Ad Clients to Rotate
     const AD_CLIENTS = [
-      { name: 'Vercel', color: 'bg-black' },
+      { name: 'Vercel', color: 'bg-white' },
       { name: 'Supabase', color: 'bg-green-900' },
       { name: 'Neon', color: 'bg-green-500' }
     ];
@@ -107,7 +107,6 @@ export function InfiniteResourceGrid({
         items.push(
             <SponsoredCard 
                 key={`ad-${index}`} 
-                position={adSlotIndex + 1}
                 // In real app, we would pass client data here: client={adClient}
             />
         );

@@ -48,13 +48,13 @@ export function Pagination({ totalCount, pageSize }: PaginationProps) {
 
   return (
     <nav 
-      className="flex items-center justify-center gap-1.5 mt-8 py-4 border-t border-white/[0.05]"
+      className="flex items-center justify-center gap-1.5 mt-8 py-4 border-t border-slate-200"
       aria-label="Pagination"
     >
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="p-1.5 text-gray-600 hover:text-white disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+        className="p-1.5 text-gray-600 hover:text-slate-900 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
         aria-label="Previous page"
       >
         <ChevronLeft className="w-4 h-4" />
@@ -65,7 +65,7 @@ export function Pagination({ totalCount, pageSize }: PaginationProps) {
           <>
             <button
               onClick={() => handlePageChange(1)}
-              className="w-7 h-7 flex items-center justify-center rounded text-[11px] font-bold text-gray-700 hover:text-white hover:bg-white/5 transition-all"
+              className="w-7 h-7 flex items-center justify-center rounded text-[11px] font-bold text-gray-700 hover:text-slate-900 hover:bg-slate-100 transition-all"
             >
               1
             </button>
@@ -80,7 +80,7 @@ export function Pagination({ totalCount, pageSize }: PaginationProps) {
             className={`w-7 h-7 flex items-center justify-center rounded text-[11px] font-bold transition-all ${
               currentPage === page
                 ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30'
-                : 'text-gray-700 hover:text-white hover:bg-white/5'
+                : 'text-gray-700 hover:text-slate-900 hover:bg-slate-100'
             }`}
             aria-current={currentPage === page ? 'page' : undefined}
           >
@@ -93,7 +93,7 @@ export function Pagination({ totalCount, pageSize }: PaginationProps) {
             {endPage < totalPages - 1 && <span className="text-gray-800 mx-1 text-[10px]">...</span>}
             <button
               onClick={() => handlePageChange(totalPages)}
-              className="w-7 h-7 flex items-center justify-center rounded text-[11px] font-bold text-gray-700 hover:text-white hover:bg-white/5 transition-all"
+              className="w-7 h-7 flex items-center justify-center rounded text-[11px] font-bold text-gray-700 hover:text-slate-900 hover:bg-slate-100 transition-all"
             >
               {totalPages}
             </button>
@@ -104,7 +104,7 @@ export function Pagination({ totalCount, pageSize }: PaginationProps) {
       <button
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="p-1.5 text-gray-600 hover:text-white disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+        className="p-1.5 text-gray-600 hover:text-slate-900 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
         aria-label="Next page"
       >
         <ChevronRight className="w-4 h-4" />
