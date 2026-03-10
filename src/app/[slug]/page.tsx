@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 import { Header } from '@/components/Header';
 import { LoadMoreResourceGrid } from '@/components/LoadMoreResourceGrid';
 import { CategorySponsorBanner } from '@/components/CategorySponsorBanner';
+import { SortBar } from '@/components/SortBar';
 import { fetchResourcesAction } from '@/app/actions/get-resources';
 
 const CATEGORIES: Record<string, { name: string; description: string }> = {
@@ -81,8 +83,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function CategoryPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ q?: string; sort?: string }> }) {
   const { slug } = await params;
+  const { q, sort } = await searchParams;
   const category = CATEGORIES[slug];
 
   if (!category) {
@@ -92,6 +95,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const fetchResult = await fetchResourcesAction({
     page: 1,
     categories: slug,
+    search: q,
+    sort: sort,
   });
 
   const resources = fetchResult.success ? fetchResult.resources : [];
@@ -120,9 +125,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const activeFilters = {
     categories: [slug],
     tags: [],
-    badgeTypes: undefined,
-    q: undefined,
-    sort: undefined
+    search: q,
+    sort: sort,
   };
 
   return (
@@ -144,6 +148,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         {/* Resource Grid */}
         <section className="py-8 max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
              <CategorySponsorBanner />
+             <Suspense fallback={null}>
+               <SortBar />
+             </Suspense>
              <LoadMoreResourceGrid 
                 initialResources={resources}
                 initialTotalCount={totalCount}
