@@ -28,7 +28,7 @@ export function Header() {
         </Link>
 
         {/* Center Section: Search Bar */}
-        <div className="hidden md:flex w-[240px] lg:w-[320px] items-center">
+        <div className="hidden md:flex w-[280px] lg:w-[440px] items-center">
           <Suspense fallback={
             <div className="w-full bg-white/[0.05] border border-white/[0.06] rounded-full h-9" />
           }>
