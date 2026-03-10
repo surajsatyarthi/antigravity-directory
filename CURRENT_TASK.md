@@ -1,448 +1,230 @@
-# CURRENT TASK — TASK-015: Dead Code Deletion + Dark Mode Fix (Resource Detail + Tools + Admin)
+# CURRENT TASK — TASK-027: Merge to Main + Deploy to Production + Live Site Audit
 **Assigned by**: Claude Code (PM)
 **Date**: 2026-03-10
-**Priority**: CRITICAL
+**Priority**: CRITICAL — nothing reaches the live site until this is done
 
 ---
 
 ## CONTEXT
 
-Two problems discovered by PM full-site audit (2026-03-10):
-
-1. **Dead component files** — 20+ component files with zero imports anywhere in the codebase. They add bundle weight, pollute Antigravity's reading context, and carry light-mode violations that will re-emerge if activated.
-
-2. **Live dark mode violations** — 5 files currently rendered to users contain `bg-white`, `bg-slate-100`, or `bg-white/40+` on containers/cards/sections. Violates locked design spec.
+All work since TASK-011 lives on `feat/ui-cursor-patterns`. The `main` branch is 30+ commits behind. Vercel deploys from `main`. The live site at googleantigravity.directory is running old code. This task merges the branch, pushes to production, and verifies the live site looks correct.
 
 ---
 
-## PART 0 — INDEPENDENT AUDIT (RUN FIRST — DO NOT SKIP)
+## MANDATORY PRE-CHECK
 
-Before implementing anything, run your own grep audit across all src/ .tsx files. This validates PM's scope. Do not rely on PM's list — find violations yourself.
-
-### Step 0A — Grep for all banned light-mode patterns:
+Run these before doing anything:
 
 ```bash
-grep -rn "bg-white\|bg-slate-100\|bg-slate-50\|bg-gray-50\|bg-white/50\|bg-white/40\|bg-white/80" \
-  /Users/user/Desktop/antigravity-directory/src \
-  --include="*.tsx"
+git log main --oneline -3
+git log feat/ui-cursor-patterns --oneline -3
+git diff main..feat/ui-cursor-patterns --stat
 ```
 
-### Step 0B — Grep for banned border-radius on containers:
+Expected:
+- `main` most recent commit should be something old (pre-TASK-011)
+- `feat/ui-cursor-patterns` most recent commit: `361550e feat(ux): remove ratings and views...`
+- Diff stat: 30+ files changed
+
+If `main` has NEW commits not in `feat/ui-cursor-patterns` — STOP and report to PM before merging. Do NOT force-push.
+
+---
+
+## PART 1 — MERGE AND PUSH
 
 ```bash
-grep -rn "rounded-2xl\|rounded-3xl\|rounded-xl\|rounded-\[" \
-  /Users/user/Desktop/antigravity-directory/src \
-  --include="*.tsx"
+git checkout main
+git merge feat/ui-cursor-patterns --no-edit
+git push origin main
+git log main --oneline -3
 ```
 
-### Step 0C — Report ALL results
-
-Paste the raw grep output in your report. Then apply this filter:
-
-**EXCLUDE these intentional patterns (do NOT flag as violations):**
-- `bg-white text-black` or `bg-white hover:bg-gray-200 text-black` on `<a>` or `<button>` elements — white CTA buttons, cursor.directory pattern, KEEP
-- `bg-gradient-to-br from-slate-900` — dark gradient, KEEP
-- `bg-black` — already dark, KEEP
-- `bg-white/\[0.` — already uses spec-compliant low-opacity white, KEEP
-- `bg-white/5` or `bg-white/10` — spec-compliant, KEEP
-
-**Flag everything else** — file path + line number + exact class string.
-
-### Step 0D — Compare against PM's 7-file list
-
-PM identified violations in these 7 files:
-1. `src/components/CitationBlock.tsx`
-2. `src/components/BadgeGenerator.tsx`
-3. `src/app/t/[slug]/page.tsx`
-4. `src/components/tools/ToolsShell.tsx`
-5. `src/components/tools/ToolsSidebar.tsx`
-6. `src/components/AdminSubmissionQueue.tsx`
-7. `src/components/Header.tsx`
-
-If your audit finds violations in ANY files NOT on PM's list — **STOP. Report to PM before implementing.** Do not proceed with Parts 1 or 2 until PM confirms scope.
-
-If your audit confirms PM's list is complete — proceed to Part 1.
+Paste the output of `git log main --oneline -3` in your report.
 
 ---
 
-## MANDATORY CROSS-CHECK PROTOCOL
+## PART 2 — WAIT FOR VERCEL DEPLOY
 
-Before implementing: confirm the PM VERIFIED CONTENT below matches what you see in each file. If it does NOT match — STOP and report to PM.
+After pushing, Vercel will auto-deploy. Wait for the deploy to complete before proceeding.
 
----
-
-## PART 1 — DELETE DEAD COMPONENT FILES
-
-### PM VERIFIED: these files have ZERO imports in the entire codebase
-
-Run this before deleting to confirm each has 0 references:
+Check deploy status:
 ```bash
-for f in HowItWorks DirectoryIntelligence StatsBar ComparisonPage PromptDetailView MemberCard Testimonials CreatorTestimonials CategoryTabs CategoryGridDiscovery CreatorProofSection MemberFilters ResourcePricingForm ProfileHeader SettingsForm SortDropdown; do
-  echo -n "$f: "; grep -rn "$f" /Users/user/Desktop/antigravity-directory/src --include="*.tsx" | grep -v "^.*components/$f\|export\|interface\|function\|const $f\|type $f" | wc -l
-done
+npx vercel ls 2>/dev/null || echo "Use Vercel dashboard"
 ```
 
-Any file with count > 0 — DO NOT delete it. Report to PM instead.
-
-### Files to delete (confirmed 0 imports by PM grep):
-
-```
-src/components/HowItWorks.tsx
-src/components/DirectoryIntelligence.tsx
-src/components/StatsBar.tsx
-src/components/ComparisonPage.tsx
-src/components/PromptDetailView.tsx
-src/components/MemberCard.tsx
-src/components/Testimonials.tsx
-src/components/CreatorTestimonials.tsx
-src/components/CategoryTabs.tsx
-src/components/CategoryGridDiscovery.tsx
-src/components/CreatorProofSection.tsx
-src/components/MemberFilters.tsx
-src/components/ResourcePricingForm.tsx
-src/components/ProfileHeader.tsx
-src/components/SettingsForm.tsx
-src/components/SortDropdown.tsx
-```
-
-Also delete dead filter components (only referenced inside each other, chain leads to nothing):
-```
-src/components/filters/FilterSidebar.tsx
-src/components/filters/MobileFilterDrawer.tsx
-src/components/filters/TopFilterBar.tsx
-src/components/filters/FilterPersistenceManager.tsx
-```
-
-Also delete dead tools components (ToolsShell is in /tools/layout.tsx — see PART 2 before deleting):
-```
-src/components/tools/PromptOptimizer.tsx
-src/components/tools/RoiCalculator.tsx
-src/components/tools/RagVisualizer.tsx
-src/components/tools/TokenCounter.tsx
-src/components/tools/JsonToPydantic.tsx
-src/components/tools/PromptGenerator.tsx
-```
-
-⚠️ DO NOT delete `ToolsShell.tsx` or `ToolsSidebar.tsx` — they are live in `/tools/layout.tsx`. Fix them in PART 2 instead.
-
-After deletion run build + lint. If build fails on a missing import, report to PM — do not restore the file, just identify what imported it.
+Or simply wait 3–5 minutes and proceed to Part 3.
 
 ---
 
-## PART 2 — FIX LIVE DARK MODE VIOLATIONS
+## PART 3 — LIVE SITE VERIFICATION (AUTOMATED BROWSER)
 
-### PM VERIFIED violations — read from actual files today
+Use the automated browser to visit the live site. Navigate to each URL below and take a screenshot.
 
----
+Base URL: `https://googleantigravity.directory`
 
-**FILE 1: `src/components/CitationBlock.tsx`**
+### 3A — Homepage
+URL: `https://googleantigravity.directory`
 
-Line 16 — outer wrapper:
-```
-bg-white border border-gray-900 rounded-2xl
-```
-Fix → `bg-white/[0.03] border border-white/[0.06] rounded-none`
+Verify:
+- Dark background (black) — NOT white or light grey
+- Resource cards visible in the list
+- Header has search bar with dropdown (Amazon-style)
+- "ADVERTISE HERE" badge visible bottom-right corner
+- No "Sign In" button in the header
 
-Line 34 — title text (will be invisible on dark bg):
-```
-text-slate-900
-```
-Fix → `text-white`
+Screenshot: `temp/task027_homepage.png`
 
-Lines 42, 46, 57, 61 — four inner grid cells (identical):
-```
-bg-white/50 border border-gray-900 rounded-xl
-```
-Fix → `bg-white/[0.03] border border-white/[0.06] rounded-none`
+### 3B — Category page (MCP Servers — largest category, 2,033 resources)
+URL: `https://googleantigravity.directory/mcp-servers`
 
-Lines 44, 48, 59, 63 — grid cell body text (invisible on dark bg):
-```
-text-slate-900
-```
-Fix → `text-gray-300`
+Verify:
+- Dark background
+- "Sponsored / Your tool here" banner at the top
+- Resource cards with no star ratings, no view counts
+- Sort bar visible
+- "ADVERTISE HERE" badge bottom-right
 
----
+Screenshot: `temp/task027_category.png`
 
-**FILE 2: `src/components/BadgeGenerator.tsx`**
+### 3C — Resource detail page
+URL: `https://googleantigravity.directory/mcp-servers` → click any resource card
 
-Line 28 — outer wrapper:
-```
-bg-white border border-dashed border-gray-800 rounded-[32px]
-```
-Fix → `bg-white/[0.03] border border-white/[0.06] rounded-none`
+Verify:
+- Dark background
+- No stats bar (Rating / Views / Copies / Reviews grid)
+- No "Rate this resource" stars at the bottom
+- No "Sign in to verify your vote" text
+- CitationBlock shows only 2 cells: "Entity Type" and "Trust Signal"
+- Get Resource button has sharp corners (rounded-none)
+- "ADVERTISE HERE" badge bottom-right
 
-Line 29 — icon container:
-```
-bg-slate-100 rounded-2xl
-```
-Fix → `bg-white/[0.05] rounded-none`
+Screenshot: `temp/task027_detail.png`
 
-Line 32 — heading:
-```
-text-slate-900
-```
-Fix → `text-white`
+### 3D — Tutorials category (expected: empty or near-empty)
+URL: `https://googleantigravity.directory/tutorials`
 
-Line 35 — body text:
-```
-text-slate-500
-```
-Fix → `text-gray-400`
+Record exactly what you see — how many resources, or is it empty?
 
-Line 55 — badge preview text (inside dark gradient — currently invisible):
-```
-text-slate-900
-```
-Fix → `text-white`
+Screenshot: `temp/task027_tutorials.png`
 
-Line 69 — embed code box:
-```
-bg-white ... rounded-2xl border border-gray-900
-```
-Fix → `bg-white/[0.03] rounded-none border border-white/[0.06]`
+### 3E — Cheatsheets category
+URL: `https://googleantigravity.directory/cheatsheets`
 
-Line 70 — embed code text:
-```
-text-slate-500
-```
-Fix → `text-gray-400`
+Same — record what you see.
 
-Line 75 — copy button:
-```
-bg-slate-100 hover:bg-slate-100 text-slate-900 rounded-lg border-slate-200
-```
-Fix → `bg-white/[0.05] hover:bg-white/[0.1] text-white rounded-none border-white/[0.1]`
+Screenshot: `temp/task027_cheatsheets.png`
 
-Line 82 — footer note:
-```
-text-gray-700
-```
-Fix → `text-gray-500`
+### 3F — Advertise page
+URL: `https://googleantigravity.directory/advertise`
+
+Verify it loads (not 404). Record what you see.
+
+Screenshot: `temp/task027_advertise.png`
 
 ---
 
-**FILE 3: `src/app/t/[slug]/page.tsx`**
+## PART 4 — DB AUDIT (DEAD RESOURCES)
 
-Line 208 — main article wrapper:
-```
-border border-gray-900 rounded-3xl
-```
-Fix → `border border-white/[0.06] rounded-none`
+Run this SQL query on the production database to count resources with no url AND no content per category:
 
-Line 263 — stats bar:
+```sql
+SELECT c.name as category, COUNT(*) as dead_count
+FROM resources r
+JOIN categories c ON r.category_id = c.id
+WHERE r.status = 'LIVE'
+AND r.url IS NULL
+AND r.content IS NULL
+GROUP BY c.name
+ORDER BY dead_count DESC;
 ```
-bg-gray-900 overflow-hidden border border-gray-900 rounded-2xl
-```
-Fix → `bg-white/[0.02] overflow-hidden border border-white/[0.06] rounded-none`
 
-Line 264, 271, 275, 279 — stats cells:
-```
-bg-[#0D0D0D]
-```
-Keep as-is — already dark.
+Run via Drizzle in a temp script OR via Supabase SQL editor if you have access.
 
----
+If using a temp script, create `temp/audit.cjs`, run it, then delete it.
 
-**FILE 4: `src/components/tools/ToolsShell.tsx`**
-
-Line 38 — entire shell container:
-```
-bg-white text-slate-200
-```
-Fix → `bg-black text-gray-300`
-
-Line 42 — sidebar panel:
-```
-bg-white/50
-```
-Fix → `bg-white/[0.03]`
-
-Line 102 — mobile overlay:
-```
-bg-white/80
-```
-Fix → `bg-black/80`
+Paste the full result table in your report.
 
 ---
 
-**FILE 5: `src/components/tools/ToolsSidebar.tsx`**
-
-Line 15 — sidebar:
-```
-bg-white/50 backdrop-blur-xl border-r border-slate-200
-```
-Fix → `bg-white/[0.03] border-r border-white/[0.06]`
-
----
-
-**FILE 6: `src/components/AdminSubmissionQueue.tsx`**
-
-Line 54 — empty state container:
-```
-bg-slate-100 border border-slate-200 rounded-lg
-```
-Fix → `bg-white/[0.03] border border-white/[0.06] rounded-none`
-
-Line 103 — review panel:
-```
-bg-white/40
-```
-Fix → `bg-white/[0.03]`
-
-Line 175 — textarea:
-```
-bg-white/40 border border-slate-200 rounded-lg text-slate-900
-```
-Fix → `bg-white/[0.03] border border-white/[0.06] rounded-none text-white`
-
----
-
-**FILE 7: `src/components/Header.tsx`**
-
-Line 43 — nav skeleton loader (shows briefly on load):
-```
-bg-white border border-slate-200 rounded-full h-9
-```
-Fix → `bg-white/[0.05] border border-white/[0.06] rounded-full h-9`
-
----
-
-**FILE 8: `src/components/LoadMoreResourceGrid.tsx`**
-
-⚠️ Found by Antigravity's Part 0 independent audit — not on PM's original list. PM verified. Include in this task.
-
-Line 116 — "Load Next 20" button:
-```
-bg-slate-100 hover:bg-slate-100 border border-slate-200 text-slate-900 rounded-xl
-```
-Fix → `bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-white rounded-none`
-
-Line 126 — count subtext inside button:
-```
-text-slate-500
-```
-Fix → `text-gray-400`
-
-Line 134 — "All X resources loaded" end state text:
-```
-text-slate-600
-```
-Fix → `text-gray-500`
-
----
-
-## PART 3 — BUILD + LINT + VERIFY
+## PART 5 — HTTP STATUS CHECK (LIVE DOMAIN)
 
 ```bash
-npm run build
-npm run lint
-```
-Both must exit 0.
-
-```bash
-curl -o /dev/null -s -w "%{http_code}\n" http://localhost:3000
-curl -o /dev/null -s -w "%{http_code}\n" http://localhost:3000/t/tutorial-claude-prompting-best-practices
-curl -o /dev/null -s -w "%{http_code}\n" http://localhost:3000/admin/submissions
+curl -o /dev/null -s -w "%{http_code}\n" https://googleantigravity.directory/
+curl -o /dev/null -s -w "%{http_code}\n" https://googleantigravity.directory/mcp-servers
+curl -o /dev/null -s -w "%{http_code}\n" https://googleantigravity.directory/tutorials
+curl -o /dev/null -s -w "%{http_code}\n" https://googleantigravity.directory/cheatsheets
+curl -o /dev/null -s -w "%{http_code}\n" https://googleantigravity.directory/advertise
 ```
 
 All must return 200.
 
 ---
 
-## PART 4 — SCREENSHOTS
+## DO NOT DO
 
-Save to:
-- `temp/task015_resource_detail_top.png` — /t/[slug] above the fold
-- `temp/task015_resource_detail_citation.png` — CitationBlock visible, dark
-- `temp/task015_resource_detail_badge.png` — BadgeGenerator visible, dark
-- `temp/task015_admin.png` — /admin/submissions page
-- `temp/task015_category_load_more.png` — any category page scrolled to bottom, "Load Next 20" button dark
-
----
-
-## PART 5 — COMMIT
-
-```bash
-git add -A
-git commit -m "fix(ui): delete 20 dead components + dark mode fix on resource detail, tools, admin"
-git log --oneline -1
-git diff HEAD~1 HEAD --stat
-```
+- Do NOT merge with `--squash` — preserve full commit history
+- Do NOT force-push main
+- Do NOT change any source files in this task
+- Do NOT delete the `feat/ui-cursor-patterns` branch (keep it as backup)
 
 ---
 
 ## MANDATORY REPORT FORMAT
 
 ```
-TASK-015 REPORT
+TASK-027 REPORT
 ==============================
 
---- CROSS-CHECK: DEAD FILES (0 import count confirmed before delete) ---
-HowItWorks: [count]
-DirectoryIntelligence: [count]
-StatsBar: [count]
-ComparisonPage: [count]
-PromptDetailView: [count]
-MemberCard: [count]
-Testimonials: [count]
-CreatorTestimonials: [count]
-CategoryTabs: [count]
-CategoryGridDiscovery: [count]
-CreatorProofSection: [count]
-MemberFilters: [count]
-ResourcePricingForm: [count]
-ProfileHeader: [count]
-SettingsForm: [count]
-SortDropdown: [count]
-FilterSidebar: [count]
-MobileFilterDrawer: [count]
-TopFilterBar: [count]
-FilterPersistenceManager: [count]
-Tools (PromptOptimizer/RoiCalculator/RagVisualizer/TokenCounter/JsonToPydantic/PromptGenerator): [counts]
+--- PART 0: PRE-CHECK ---
+main most recent commit: [paste]
+feat/ui-cursor-patterns most recent commit: [paste]
+Files in diff: [count]
 
-Files actually deleted: [list]
-Files skipped (had references): [list + reason]
+--- PART 1: MERGE ---
+git merge output: [paste]
+git push output: [paste]
+main after merge (log -3): [paste]
 
---- CROSS-CHECK: PM VERIFIED CONTENT ---
-CitationBlock.tsx line 16 matches spec: [YES/NO]
-BadgeGenerator.tsx line 28 matches spec: [YES/NO]
-page.tsx line 208 matches spec: [YES/NO]
-ToolsShell.tsx line 38 matches spec: [YES/NO]
-ToolsSidebar.tsx line 15 matches spec: [YES/NO]
-AdminSubmissionQueue.tsx line 54 matches spec: [YES/NO]
-Header.tsx line 43 matches spec: [YES/NO]
-LoadMoreResourceGrid.tsx line 116 matches spec: [YES/NO]
+--- PART 2: DEPLOY ---
+Deploy status: [DEPLOYED / PENDING / ERROR]
+Time waited: [X minutes]
 
---- BUILD + LINT ---
-npm run build exit code: [0 / error]
-npm run lint exit code: [0 / error]
+--- PART 3: LIVE SITE ---
+Homepage dark background: [YES/NO]
+Homepage resource cards visible: [YES/NO]
+Homepage search dropdown visible: [YES/NO]
+Homepage "ADVERTISE HERE" badge: [YES/NO]
+Homepage no Sign In button: [YES/NO]
+---
+Category page sponsor banner: [YES/NO]
+Category page no star ratings on cards: [YES/NO]
+---
+Detail page no stats bar: [YES/NO]
+Detail page no rating widget: [YES/NO]
+Detail page 2-cell CitationBlock: [YES/NO]
+---
+Tutorials page: [empty / X resources]
+Cheatsheets page: [empty / X resources]
+Advertise page: [loads OK / 404]
 
---- HTTP ---
+--- PART 4: DB AUDIT ---
+[paste full query result table]
+
+--- PART 5: HTTP STATUS ---
 / → [status]
-/t/tutorial-claude-prompting-best-practices → [status]
-/admin/submissions → [status]
-/prompts → [status]
-
---- GIT ---
-Commit hash: [paste]
-Files changed stat: [paste git diff HEAD~1 HEAD --stat]
+/mcp-servers → [status]
+/tutorials → [status]
+/cheatsheets → [status]
+/advertise → [status]
 
 --- SCREENSHOTS ---
-temp/task015_resource_detail_top.png: [YES/NO]
-temp/task015_resource_detail_citation.png: [YES/NO — confirm dark background visible]
-temp/task015_resource_detail_badge.png: [YES/NO — confirm dark background visible]
-temp/task015_admin.png: [YES/NO]
-temp/task015_category_load_more.png: [YES/NO — confirm dark "Load Next 20" button visible]
+temp/task027_homepage.png: [YES/NO]
+temp/task027_category.png: [YES/NO]
+temp/task027_detail.png: [YES/NO]
+temp/task027_tutorials.png: [YES/NO]
+temp/task027_cheatsheets.png: [YES/NO]
+temp/task027_advertise.png: [YES/NO]
 
 --- BUGS SPOTTED (do not fix, report only) ---
 1.
-2.
 ```
-
----
-
-## DO NOT DO
-- Do NOT touch `ToolsShell.tsx` or `ToolsSidebar.tsx` for deletion — fix them only
-- Do NOT touch any file not listed in this spec
-- Do NOT restore deleted files if build fails — identify the import and report to PM
-- Do NOT change the intentional white CTA buttons (`bg-white text-black` on `<a>` and `<button>` elements)

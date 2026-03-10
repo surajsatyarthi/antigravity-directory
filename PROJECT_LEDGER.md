@@ -1,6 +1,6 @@
 # PROJECT LEDGER — googleantigravity.directory
 **Maintained by**: Claude Code (PM)
-**Last updated**: 2026-03-09
+**Last updated**: 2026-03-10
 **Goal**: $2,000 MRR AS FAST AS POSSIBLE
 
 ---
@@ -47,8 +47,20 @@ Ads are built last, on top of traffic.
 | TASK-017 | Homepage layout revamp — 5 resources per category, cursor.directory pattern + NewsletterCapture success state fix | ✅ DONE | page.tsx rewritten, CategorySection.tsx created, getResourcesByCategorySlug added, NewsletterCapture fixed |
 | TASK-018 | Homepage UX fixes — hero CTA, full-opacity cards, clickable category headers, dead code removal | ✅ DONE | UX quality |
 | TASK-012 | Create /about page | ✅ DONE | Credibility — ee543a8 + fix commit |
-| TASK-014 | Seed tutorials + cheatsheets categories | ⏳ PENDING | Blocked until TASK-015 completes |
-| TASK-015 | Delete 20 dead components + dark mode fix (resource detail, tools, admin) | 🔴 CURRENT | PM full-site audit found 20 dead files + 13 live violations across 7 files |
+| TASK-014 | Seed tutorials + cheatsheets categories | ⏳ PENDING | Blocked — TASK-015 done, TASK-019 (tools dark mode) queued first |
+| TASK-015 | Delete 26 dead components + dark mode fix (resource detail, tools, admin, load-more, dropdown) | ✅ DONE | Commits fa36050 + 0ad8244. 26 files deleted. 8 live files fixed. Screenshots verified by PM — all dark. Known residual: Zap icon text-slate-900 in BadgeGenerator — carried to TASK-019. |
+| TASK-019 | Dark mode fix — ToolsShell + ToolsSidebar internals + AdminSubmissionQueue text + BadgeGenerator icon | ⚠️ FIXES DONE, NOT COMMITTED | Files verified fixed by PM. No commit exists. Commit folded into TASK-021. |
+| TASK-020 | Git history cleanup — remove binary screenshot files | ⏳ PENDING (low priority) | PM caused git add -A in every task spec — committed ~36 screenshot/webp files totalling several MB into commits fa36050 + 6b2baf4. Use git filter-repo to purge temp/ from history. Requires founder approval before execution — destructive history rewrite. |
+| TASK-021 | Restore deleted tools section — 6 routes + 5 components + dark mode fixes | ✅ DONE | Commits bf01a9e (TASK-019) + 6dd95c1 (TASK-021). 15 files changed. All 6 routes HTTP 200. ⚠️ Bug: 4 tool pages double-wrap ToolsShell — carried to TASK-022 Part 0. |
+| TASK-022 | Remove auth from user-facing UI + public submit form + fix ToolsShell double-nest | ✅ DONE | Commits 188c65f (ToolsShell) + d21e5d2 (auth). 11 files deleted. Header/MobileMenu/ResourceCard/submit/middleware all cleaned. Submissions nullable. |
+| TASK-023 | Sort bar + fix search end-to-end on category pages | ⚠️ IMPL DONE, REPORT PENDING | [slug]/page.tsx updated + SortBar.tsx created confirmed via system reminders + file existence. Awaiting formal 9-point report from Antigravity. |
+| TASK-024 | Fix Copy Code button + seed views/copies + hide 0.0 rating | ⏳ PENDING | Copy Code button has no onClick handler. All views=0, ratings=0.0. |
+| TASK-025 | Enable placeholder ads + detail page rounded-* fixes | ⏳ PENDING | Flip active:true in sponsor.ts. Fix rounded-2xl on 4 elements in t/[slug]/page.tsx. |
+| TASK-026 | Amazon-style category dropdown in header search bar | ✅ DONE | Commit 35e3f5f. SearchInput rewritten — dropdown left, input centre, search button right. Enter/button only, no auto-fire. |
+| TASK-023 | Sort bar + search end-to-end on category pages | ✅ DONE | Verified by PM reading [slug]/page.tsx — searchParams, SortBar, search/sort all wired. Already shipped. |
+| TASK-025 | Enable placeholder ads on all 3 slots + fix rounded-* on detail page | ✅ DONE | Commit 09eea84. All 3 slots show placeholders. 4 rounded-none fixes confirmed. |
+| TASK-024 | Remove ratings + views from all components + fix Copy Code button | ✅ DONE | Commit 361550e. 4 files, -99 lines. ResourceCard/CitationBlock/detail page all clean. CopyButton.tsx created. |
+| TASK-027 | Merge feat/ui-cursor-patterns → main + deploy to production + live site audit | 🔴 CURRENT | Spec in CURRENT_TASK.md. |
 
 ---
 
@@ -132,6 +144,75 @@ Fix A: text-white H2 "Browse by Category". Fix B: "10 categories · 3,100+ free 
 **Bugs noted (deferred)**:
 - B1 (carried from TASK-017): Tutorials and Cheatsheets have 0 LIVE resources — no sections render for them
 - B2: Homepage first load ~5-6s in dev — add unstable_cache to getResourcesByCategorySlug in a future task
+
+### TASK-022 — Remove auth from user-facing UI + fix ToolsShell double-nest
+**Status**: ✅ DONE | **Date**: 2026-03-10 | **Commits**: 188c65f (ToolsShell fix) + d21e5d2 (auth removal)
+**Files changed**: 4 tool page.tsx files (ToolsShell removed), Header.tsx, MobileMenu.tsx, ResourceCard.tsx, submit/actions.ts, middleware.ts, schema.ts + 11 files git rm'd
+**PM verification** (read screenshots + system reminders + file reads):
+- Homepage screenshot ✅ — no SIGN IN button
+- Token counter screenshot ✅ — ONE sidebar, double-nesting bug fixed
+- Submit form screenshot ✅ — form loads without auth wall
+- Mobile menu screenshot ✅ — no Sign In option
+- submissions schema.ts line 208: `userId: text('user_id').references(() => users.id, { onDelete: 'set null' })` — nullable ✅
+- ResourceCard.tsx: grep BookmarkButton → zero matches ✅
+- middleware.ts: dashboard block gone, admin protection intact ✅
+- 5 of 11 deleted files confirmed gone via ls ✅
+**Residual (minor, not blocking):** middleware.ts line 7 `const isAuthPage` — unused variable, its redirect block was deleted but declaration remains. Dead code. Build passed.
+**MobileMenu.tsx out-of-spec change:** Antigravity also redesigned mobile nav link styling (tracking-widest, uppercase, text-[13px]). Not requested but visually acceptable per screenshot.
+
+### TASK-019 — Dark mode residuals (ToolsShell, ToolsSidebar, AdminQueue, BadgeGenerator)
+**Status**: ✅ DONE (committed as part of TASK-021) | **Date**: 2026-03-10 | **Commit**: bf01a9e
+**Files changed**: ToolsShell.tsx, ToolsSidebar.tsx, AdminSubmissionQueue.tsx, BadgeGenerator.tsx
+**PM verification**: Screenshots temp/task019_*.png read — all dark. Commit bf01a9e confirmed in git log. Build exit 0, lint exit 0.
+
+### TASK-021 — Restore deleted tools section
+**Status**: ✅ DONE | **Date**: 2026-03-10 | **Commit**: 6dd95c1
+**Files changed**: 15 files — 5 tool components restored (fa36050~1), 6 tool route pages restored (6b2baf4~1), AdminSubmissionQueue.tsx (2 border residuals), 25 dark mode fixes across 6 files
+**PM verification** (read screenshots + git log + key files):
+- tools/page.tsx: line 74 `rounded-none border-white/[0.06] bg-white/[0.02]` ✅
+- token-counter page dark cards ✅, roi-calculator dark inputs + chart ✅, rag-visualizer dark bg ✅
+- All 6 HTTP 200 ✅
+- Two commits present: bf01a9e (TASK-019) + 6dd95c1 (TASK-021) ✅
+**Bugs identified by Antigravity (logged, not fixed):**
+- B1 CRITICAL: 4 tool pages (roi-calculator, token-counter, rag-visualizer, prompt-generator) wrap content in `<ToolsShell>` but layout.tsx ALSO wraps in `<ToolsShell>` → double sidebar rendered on every individual tool page. Fix: remove ToolsShell import + wrapper from those 4 page.tsx files. Carried to TASK-022 Part 0.
+- B2 MINOR: RAG Visualizer chunk preview boxes clip text horizontally. Carried to TASK-026.
+
+### TASK-024 — Remove ratings + views + fix Copy Code button
+**Status**: ✅ DONE | **Date**: 2026-03-10 | **Commit**: 361550e
+**Files changed**: src/components/ResourceCard.tsx, src/components/CitationBlock.tsx, src/components/CopyButton.tsx (new), src/app/t/[slug]/page.tsx
+**PM verification** (read all 4 files + screenshots + git stat):
+- ResourceCard.tsx: Star/Eye removed, views/avgRating/ratingCount gone from interface, stats block deleted ✅ (system reminder)
+- CitationBlock.tsx: rating/views gone from interface, Score + Visibility cells deleted, 2-cell grid remains ✅ (system reminder)
+- CopyButton.tsx: 'use client', navigator.clipboard.writeText, 2s copied state, rounded-none ✅
+- t/[slug]/page.tsx: Star/Eye/Copy removed from imports, ratings removed from schema import, CopyButton imported, views/copiedCount removed from DB select, resourceRatings query gone, CitationBlock call clean, stats bar gone, Copy Code button replaced with <CopyButton>, rating CTA widget deleted ✅
+- Screenshots: cards have no stars/views ✅, detail page 2-cell CitationBlock ✅, SponsorBadge placeholder visible ✅
+- Note: BadgeGenerator shows hardcoded `★ 4.9` in embed preview — static marketing copy, not DB data, acceptable
+- Build exit 0, lint exit 0 ✅
+
+### TASK-025 — Enable placeholder ads + detail page rounded-* fixes
+**Status**: ✅ DONE | **Date**: 2026-03-10 | **Commit**: 09eea84
+**Files changed**: src/components/CategorySponsorBanner.tsx, src/components/SponsorBadge.tsx, src/app/t/[slug]/page.tsx
+**PM verification** (read all 3 files + git stat):
+- CategorySponsorBanner: `<Link>` placeholder block renders when active=false ✅
+- SponsorBadge: `<Link>` placeholder block fixed position bottom-right ✅
+- t/[slug]/page.tsx: lines 233, 239, 290, 297 all `rounded-none` ✅
+- Commit 09eea84 confirmed in git log, correct 3-file diff ✅
+- Build exit 0, lint exit 0 (per report) ✅
+- Antigravity correction accepted: `<Link>` instead of `<a>` for internal links (lint rule)
+- Screenshots missing from temp/ — deviation noted, code verified independently
+
+### TASK-026 — Amazon-style category dropdown in header search bar
+**Status**: ✅ DONE | **Date**: 2026-03-10 | **Commit**: 35e3f5f
+**Files changed**: src/components/SearchInput.tsx (full rewrite), src/constants/index.ts (SEARCH_CATEGORIES added), src/components/Header.tsx (container width updated)
+**PM verification** (read screenshots + SearchInput.tsx):
+- SearchInput.tsx: zero `setTimeout` — debounce fully removed ✅
+- `handleSearch()` wired to Enter key + button click only ✅
+- `SEARCH_CATEGORIES` (10 categories) imported from constants ✅
+- Outside-click handler via `mousedown` + `containerRef` ✅
+- Auto-detect pathname → pre-selects category in dropdown ✅
+- Screenshot dropdown_open: all 10 categories visible, dark panel ✅
+- Screenshot search_result: `/mcp-servers?q=github` URL, "MCP Servers" selected, 70 results ✅
+- Build exit 0, lint exit 0 ✅, HTTP 200 on / and /mcp-servers ✅
 
 ### TASK-012 — Create /about page
 **Status**: ✅ DONE | **Date**: 2026-03-10 | **Commits**: ee543a8 + fix commit

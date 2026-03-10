@@ -6,12 +6,7 @@ import { usePathname } from 'next/navigation';
 import { NAV_ITEMS } from '@/config/navigation';
 import { Dropdown } from './Dropdown';
 
-interface NavLinksProps {
-  session: any;
-  username: string | null;
-}
-
-export function NavLinks({ session, username }: NavLinksProps) {
+export function NavLinks() {
   const pathname = usePathname();
 
   return (

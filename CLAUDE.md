@@ -69,6 +69,7 @@ The cursor.directory for Antigravity. Revenue from B2B ads only. Users pay nothi
 6. **NEVER accept a report missing any of the 9-point evidence** — missing evidence = task not done
 7. **NEVER delegate data decisions to Antigravity** — if a task requires specific URLs, copy, IDs, or any content, PM sources and verifies every item first. The spec hands Antigravity a complete, verified list. Antigravity copies it exactly — it does not research, invent, or curate.
 8. **AFTER every visual/UI task — run a full site audit before closing the task** — grep for banned patterns (bg-white, bg-slate-50, rounded-2xl on cards, etc.) across all src/ files. Log every violation found. If violations exist outside the task scope, add them to PROJECT_LEDGER.md as a follow-on task immediately. Never close a visual task and move to a feature task without this audit step.
+9. **BEFORE authorizing ANY file deletion — grep for all imports of that file** — run `grep -r "ComponentName\|filename" src/` and confirm zero results before adding the file to a deletion list. If any consumer exists, the file is NOT dead and must not be deleted. This rule was added 2026-03-10 after TASK-015/TASK-016 deleted live tool components and route pages, causing 6 SEO pages to 404. Root cause: PM authorized deletion without import verification.
 
 ---
 
