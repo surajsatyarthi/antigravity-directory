@@ -27,7 +27,7 @@ export function BadgeGenerator({ slug, title }: BadgeGeneratorProps) {
   return (
     <div className="mt-20 p-8 bg-white/[0.03] border border-white/[0.06] rounded-none text-center">
       <div className="inline-flex items-center justify-center w-12 h-12 bg-white/[0.05] rounded-none mb-6">
-        <Zap className="w-6 h-6 text-slate-900" />
+        <Zap className="w-6 h-6 text-white" />
       </div>
       <h3 className="text-xl font-bold text-white mb-3 tracking-tight lowercase font-mono italic">
         The Backlink Flywheel

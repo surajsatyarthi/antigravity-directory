@@ -72,7 +72,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
           >
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
-                <h3 className="text-lg font-semibold text-slate-900">{submission.title}</h3>
+                <h3 className="text-lg font-semibold text-white">{submission.title}</h3>
                 <span className={`px-3 py-1 rounded-full text-xs font-mono uppercase ${
                   submission.paymentStatus === 'PAID'
                     ? 'bg-emerald-500/20 text-emerald-400'
@@ -100,7 +100,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
 
           {/* Expanded Details */}
           {expandedId === submission.id && (
-            <div className="border-t border-slate-200 bg-white/[0.03] p-6 space-y-4">
+            <div className="border-t border-white/[0.06] bg-white/[0.03] p-6 space-y-4">
               {submission.url && (
                 <div>
                   <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
@@ -137,7 +137,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 border-t border-slate-200 flex gap-3">
+              <div className="pt-4 border-t border-white/[0.06] flex gap-3">
                 <button
                   onClick={() => handleApprove(submission.id)}
                   disabled={isPending}
