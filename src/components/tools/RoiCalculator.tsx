@@ -60,7 +60,7 @@ export function RoiCalculator() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
       {/* Controls */}
       <div className="lg:col-span-4 space-y-6">
-        <Card className="p-6 bg-slate-100 border-slate-200 space-y-6">
+        <Card className="p-6 bg-white/[0.03] border border-white/[0.06] space-y-6">
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="users-input" className="text-slate-200">Active Users</Label>
@@ -69,7 +69,7 @@ export function RoiCalculator() {
                 type="number" 
                 value={users} 
                 onChange={(e) => setUsers(Number(e.target.value))} 
-                className="bg-white/50 border-slate-200" 
+                className="bg-white/[0.03] border-white/[0.06] text-white" 
               />
               <Slider 
                 value={[users]} 
@@ -86,7 +86,7 @@ export function RoiCalculator() {
                 type="number" 
                 value={requestsPerDay} 
                 onChange={(e) => setRequestsPerDay(Number(e.target.value))}
-                className="bg-white/50 border-slate-200" 
+                className="bg-white/[0.03] border-white/[0.06] text-white" 
               />
               <Slider 
                 value={[requestsPerDay]} 
@@ -103,7 +103,7 @@ export function RoiCalculator() {
                 type="number" 
                 value={inputTokens} 
                 onChange={(e) => setInputTokens(Number(e.target.value))}
-                className="bg-white/50 border-slate-200" 
+                className="bg-white/[0.03] border-white/[0.06] text-white" 
               />
             </div>
 
@@ -113,11 +113,11 @@ export function RoiCalculator() {
                 type="number" 
                 value={outputTokens} 
                 onChange={(e) => setOutputTokens(Number(e.target.value))}
-                className="bg-white/50 border-slate-200" 
+                className="bg-white/[0.03] border-white/[0.06] text-white" 
               />
             </div>
             
-             <div className="pt-4 border-t border-slate-200 text-xs text-slate-500">
+             <div className="pt-4 border-t border-white/[0.06] text-xs text-slate-500">
                * Prices per 1M tokens. Updated Feb 2026.
             </div>
           </div>
@@ -126,10 +126,10 @@ export function RoiCalculator() {
 
       {/* Chart */}
       <div className="lg:col-span-8 space-y-6">
-        <Card className="p-6 bg-slate-100 border-slate-200 h-[500px] flex flex-col">
+        <Card className="p-6 bg-white/[0.03] border border-white/[0.06] h-[500px] flex flex-col">
           <div className="mb-6 flex justify-between items-end">
              <div>
-                <h3 className="text-lg font-semibold text-slate-900">Monthly Cost Projection</h3>
+                <h3 className="text-lg font-semibold text-white">Monthly Cost Projection</h3>
                 <p className="text-slate-400 text-sm">Based on {users * requestsPerDay * 30} total monthly requests</p>
              </div>
              <div className="text-right">
