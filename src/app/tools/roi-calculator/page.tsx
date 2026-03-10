@@ -1,7 +1,7 @@
 import { Calculator } from 'lucide-react';
 import { RoiCalculator } from '@/components/tools/RoiCalculator';
 import { safeJsonLd } from '@/lib/utils';
-import { ToolsShell } from '@/components/tools/ToolsShell';
+
 
 export const metadata = {
   title: 'LLM Cost & ROI Calculator',
@@ -24,7 +24,7 @@ const jsonLd = safeJsonLd({
 
 export default function RoiCalculatorPage() {
   return (
-    <ToolsShell>
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd }}
@@ -48,6 +48,6 @@ export default function RoiCalculatorPage() {
             <RoiCalculator />
         </div>
       </div>
-    </ToolsShell>
+    </>
   );
 }

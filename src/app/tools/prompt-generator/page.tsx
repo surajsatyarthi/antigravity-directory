@@ -1,7 +1,7 @@
 import { Terminal } from 'lucide-react';
 import { PromptOptimizer } from '@/components/tools/PromptOptimizer';
 import { safeJsonLd } from '@/lib/utils';
-import { ToolsShell } from '@/components/tools/ToolsShell';
+
 
 export const metadata = {
   title: 'AI Prompt Optimizer',
@@ -24,7 +24,7 @@ const jsonLd = safeJsonLd({
 
 export default function PromptOptimizerPage() {
   return (
-    <ToolsShell>
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd }}
@@ -48,6 +48,6 @@ export default function PromptOptimizerPage() {
             <PromptOptimizer />
         </div>
       </div>
-    </ToolsShell>
+    </>
   );
 }
