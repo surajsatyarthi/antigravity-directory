@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { ResourceCard } from '@/components/ResourceCard';
 import { SponsoredCard } from '@/components/SponsoredCard';
 import { fetchResourcesAction, type FetchResourcesParams } from '@/app/actions/get-resources';
@@ -23,6 +24,9 @@ export function LoadMoreResourceGrid({
   initialTotalCount,
   initialFilters 
 }: LoadMoreResourceGridProps) {
+  const urlParams = useSearchParams();
+  const urlQ = urlParams.get('q') || undefined;
+  const urlSort = urlParams.get('sort') || undefined;
   const [resources, setResources] = useState<ResourceWithRelations[]>(initialResources);
   const [totalCount, setTotalCount] = useState(initialTotalCount);
   const [page, setPage] = useState(1);
@@ -37,16 +41,38 @@ export function LoadMoreResourceGrid({
     setPage(1);
   }, [initialResources, initialTotalCount]);
 
+  // Re-fetch when URL search/sort params change (client-side navigation)
+  useEffect(() => {
+    if (!urlQ && !urlSort) return; // Base URL — server data is already correct
+    let cancelled = false;
+    setLoading(true);
+    fetchResourcesAction({
+      page: 1,
+      search: urlQ,
+      categories: initialFilters.categories?.join(','),
+      sort: urlSort,
+    }).then(result => {
+      if (!cancelled && result.success) {
+        setResources(result.resources);
+        setTotalCount(result.totalCount);
+        setHasMore(result.hasNextPage);
+        setPage(1);
+      }
+      if (!cancelled) setLoading(false);
+    });
+    return () => { cancelled = true; };
+  }, [urlQ, urlSort]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const loadMore = async () => {
     setLoading(true);
     const nextPage = page + 1;
     
     const params: FetchResourcesParams = {
       page: nextPage,
-      search: initialFilters.search,
+      search: urlQ,
       categories: initialFilters.categories?.join(','),
       tags: initialFilters.tags?.join(','),
-      sort: initialFilters.sort
+      sort: urlSort,
     };
 
     const result = await fetchResourcesAction(params);

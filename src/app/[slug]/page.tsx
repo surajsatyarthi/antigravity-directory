@@ -54,6 +54,8 @@ export async function generateStaticParams() {
   return Object.keys(CATEGORIES).map((slug) => ({ slug }));
 }
 
+export const revalidate = 3600; // ISR — rebuild each category page at most once per hour
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const category = CATEGORIES[slug];
@@ -83,9 +85,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function CategoryPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ q?: string; sort?: string }> }) {
+export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const { q, sort } = await searchParams;
   const category = CATEGORIES[slug];
 
   if (!category) {
@@ -95,8 +96,6 @@ export default async function CategoryPage({ params, searchParams }: { params: P
   const fetchResult = await fetchResourcesAction({
     page: 1,
     categories: slug,
-    search: q,
-    sort: sort,
   });
 
   const resources = fetchResult.success ? fetchResult.resources : [];
@@ -125,8 +124,6 @@ export default async function CategoryPage({ params, searchParams }: { params: P
   const activeFilters = {
     categories: [slug],
     tags: [],
-    search: q,
-    sort: sort,
   };
 
   return (
@@ -151,11 +148,13 @@ export default async function CategoryPage({ params, searchParams }: { params: P
              <Suspense fallback={null}>
                <SortBar />
              </Suspense>
-             <LoadMoreResourceGrid 
-                initialResources={resources}
-                initialTotalCount={totalCount}
-                initialFilters={activeFilters}
-             />
+             <Suspense fallback={null}>
+               <LoadMoreResourceGrid 
+                  initialResources={resources}
+                  initialTotalCount={totalCount}
+                  initialFilters={activeFilters}
+               />
+             </Suspense>
         </section>
       </main>
     </>
