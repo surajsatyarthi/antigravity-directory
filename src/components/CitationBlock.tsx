@@ -13,7 +13,7 @@ interface CitationBlockProps {
 
 export function CitationBlock({ data }: CitationBlockProps) {
   return (
-    <div className="bg-white border border-gray-900 rounded-2xl p-6 mb-12 relative overflow-hidden group">
+    <div className="bg-white/[0.03] border border-white/[0.06] rounded-none p-6 mb-12 relative overflow-hidden group">
       {/* Decorative Gradient */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 blur-[60px] pointer-events-none" />
       
@@ -31,7 +31,7 @@ export function CitationBlock({ data }: CitationBlockProps) {
             "Automated summary for AI agents and search engines."
           </p>
           <div className="space-y-2">
-            <h4 className="text-slate-900 font-bold text-lg">{data.title}</h4>
+            <h4 className="text-white font-bold text-lg">{data.title}</h4>
             <p className="text-xs text-slate-500 leading-relaxed">
               {data.description}
             </p>
@@ -39,13 +39,13 @@ export function CitationBlock({ data }: CitationBlockProps) {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <div className="p-4 bg-white/50 border border-gray-900 rounded-xl">
+          <div className="p-4 bg-white/[0.03] border border-white/[0.06] rounded-none">
             <div className="text-[8px] font-bold text-gray-600 uppercase tracking-widest mb-1">Entity Type</div>
-            <div className="text-xs text-slate-900 font-mono font-bold truncate">{data.category}</div>
+            <div className="text-xs text-gray-300 font-mono font-bold truncate">{data.category}</div>
           </div>
-          <div className="p-4 bg-white/50 border border-gray-900 rounded-xl">
+          <div className="p-4 bg-white/[0.03] border border-white/[0.06] rounded-none">
             <div className="text-[8px] font-bold text-gray-600 uppercase tracking-widest mb-1">Trust Signal</div>
-            <div className="flex items-center gap-1 text-xs text-slate-900 font-mono font-bold">
+            <div className="flex items-center gap-1 text-xs text-gray-300 font-mono font-bold">
               {data.verified ? (
                 <CheckCircle2 className="w-3 h-3 text-green-500" />
               ) : (
@@ -54,13 +54,13 @@ export function CitationBlock({ data }: CitationBlockProps) {
               {data.verified ? 'Verified' : 'Community'}
             </div>
           </div>
-          <div className="p-4 bg-white/50 border border-gray-900 rounded-xl">
+          <div className="p-4 bg-white/[0.03] border border-white/[0.06] rounded-none">
             <div className="text-[8px] font-bold text-gray-600 uppercase tracking-widest mb-1">Score</div>
-            <div className="text-xs text-slate-900 font-mono font-bold">{data.rating} / 5.0</div>
+            <div className="text-xs text-gray-300 font-mono font-bold">{data.rating} / 5.0</div>
           </div>
-          <div className="p-4 bg-white/50 border border-gray-900 rounded-xl">
+          <div className="p-4 bg-white/[0.03] border border-white/[0.06] rounded-none">
             <div className="text-[8px] font-bold text-gray-600 uppercase tracking-widest mb-1">Visibility</div>
-            <div className="text-xs text-slate-900 font-mono font-bold">{data.views} sessions</div>
+            <div className="text-xs text-gray-300 font-mono font-bold">{data.views} sessions</div>
           </div>
         </div>
       </div>

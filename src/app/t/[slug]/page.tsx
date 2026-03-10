@@ -8,7 +8,6 @@ import { eq, and, sql } from 'drizzle-orm';
 import { Header } from '@/components/Header';
 import { CitationBlock } from '@/components/CitationBlock';
 import { BadgeGenerator } from '@/components/BadgeGenerator';
-import { Footer } from '@/components/Footer';
 import { safeJsonLd } from '@/lib/utils/safeJsonLd';
 export async function generateMetadata({
   params,
@@ -206,7 +205,7 @@ export default async function ResourceDetailPage({
           <span className="text-gray-300 truncate">{resource.title.toLowerCase()}</span>
         </nav>
 
-        <article className="border border-gray-900 rounded-3xl overflow-hidden bg-[#0A0A0A]">
+        <article className="border border-white/[0.06] rounded-none overflow-hidden bg-[#0A0A0A]">
           <div className="p-8 md:p-16">
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-12">
               <div className="flex-1">
@@ -261,7 +260,7 @@ export default async function ResourceDetailPage({
 
 
             {/* Stats Bar - Monospace */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-900 overflow-hidden border border-gray-900 rounded-2xl mb-12 font-mono text-xs">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.02] overflow-hidden border border-white/[0.06] rounded-none mb-12 font-mono text-xs">
               <div className="bg-[#0D0D0D] p-6 text-center">
                 <div className="text-gray-600 uppercase tracking-widest mb-2">Rating</div>
                 <div className="flex items-center justify-center gap-1.5 font-bold text-white text-base">
@@ -342,7 +341,6 @@ export default async function ResourceDetailPage({
         </article>
       </main>
 
-      <Footer />
     </div>
   );
 }

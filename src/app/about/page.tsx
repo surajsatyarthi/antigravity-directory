@@ -51,7 +51,7 @@ export default function AboutPage() {
                 Who built it
               </h2>
               <p>
-                Built and maintained by a solo developer based in India. No VC funding. No team.
+                Built and maintained by a team of developers. No VC funding.
                 Just a directory that needed to exist.
               </p>
             </section>

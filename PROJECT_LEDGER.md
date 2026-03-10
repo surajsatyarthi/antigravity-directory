@@ -45,9 +45,10 @@ Ads are built last, on top of traffic.
 | TASK-015 | Visual audit — screenshot all pages | ✅ DONE | Baseline before dark mode fixes |
 | TASK-016 | Dark mode fix — cards, header, nav, search, mobile menu | ✅ DONE (conditionally) | Commits 6b2baf4 + 162b8fb. Screenshots blocked by API 503 outage — accepted as exception. Known missed fix: NewsletterCapture success state text-slate-900 lines 37+39 — carried to TASK-017. |
 | TASK-017 | Homepage layout revamp — 5 resources per category, cursor.directory pattern + NewsletterCapture success state fix | ✅ DONE | page.tsx rewritten, CategorySection.tsx created, getResourcesByCategorySlug added, NewsletterCapture fixed |
-| TASK-018 | Homepage UX fixes — hero CTA, full-opacity cards, clickable category headers, dead code removal | 🔴 CURRENT | UX quality |
-| TASK-012 | Create /about page | ⏳ PENDING | Credibility |
-| TASK-014 | Ingest Google Workspace CLI Skills | ⏳ PENDING | Content + SEO |
+| TASK-018 | Homepage UX fixes — hero CTA, full-opacity cards, clickable category headers, dead code removal | ✅ DONE | UX quality |
+| TASK-012 | Create /about page | ✅ DONE | Credibility — ee543a8 + fix commit |
+| TASK-014 | Seed tutorials + cheatsheets categories | ⏳ PENDING | Blocked until TASK-015 completes |
+| TASK-015 | Delete 20 dead components + dark mode fix (resource detail, tools, admin) | 🔴 CURRENT | PM full-site audit found 20 dead files + 13 live violations across 7 files |
 
 ---
 
@@ -114,9 +115,37 @@ Fix A: text-white H2 "Browse by Category". Fix B: "10 categories · 3,100+ free 
 - B1: Tutorials and Cheatsheets have 0 LIVE resources in DB — CategorySection returns null for both (8 of 10 sections render). Data issue, not code. Scope of TASK-014.
 - B2: Dev mode first load ~5-7s (10 DB queries). Production mitigated by connection pool. Future: add unstable_cache to getResourcesByCategorySlug.
 
-### TASK-018 — UX fixes — Hero, Cards, Header Nav, Footer, Ad Slot ← CURRENT
-**Status**: 🔴 CURRENT | **Date**: 2026-03-09
-**Files**: HeroSection.tsx, ResourceCard.tsx, CategorySection.tsx, SponsoredCard.tsx, page.tsx, navigation.ts, Footer.tsx
+### TASK-018 — UX fixes — Hero, Cards, Header Nav, Footer, Ad Slot
+**Status**: ✅ DONE | **Date**: 2026-03-09 | **Commits**: 225819a (7 fixes), f3fd164 (Suspense streaming hotfix)
+**Files changed**: HeroSection.tsx, ResourceCard.tsx, CategorySection.tsx, SponsoredCard.tsx, page.tsx, navigation.ts, Footer.tsx
+**PM verification** (read all 7 files + full git diff):
+- Fix 1 HeroSection ✅ — totalCount prop, subheading, Browse Resources button — exact spec match
+- Fix 2A ResourceCard ✅ — opacity-60 hover:opacity-100 removed, Copy+Bookmark imports removed
+- Fix 2B ResourceCard ✅ — dead hover buttons (lines 136-146) deleted
+- Fix 3 CategorySection ✅ — h2 → Link with hover:text-blue-400, text-[11px] → text-xs
+- Fix 4 SponsoredCard ✅ — min-h-[140px] removed from placeholder (real card line 14 untouched)
+- Fix 5 page.tsx ✅ — id="directory" present, totalCount wired to HeroSection (via Suspense streaming — see scope note)
+- Fix 6 navigation.ts ✅ — Agents/Boilerplates/Tutorials/Cheatsheets added, Advertise removed, isNew removed
+- Fix 7 Footer.tsx ✅ — bg-black border-t border-white/[0.08], border-white/[0.08] bottom bar, Google disclaimer added
+**Scope addition (flagged by Antigravity)**: page.tsx was refactored to use Suspense streaming components (HeroSectionAsync, CategorySectionsBlock, CategorySectionAsync). Required because force-dynamic + stale loading.tsx (old marketplace skeleton) caused perpetual spinner on first load. This is better architecture — each category section streams independently. PM accepts this scope increase as legitimate and correct.
+**Screenshots verified by PM** (2026-03-09): All 5 read from temp/ — hero subheading + CTA ✅, cards full opacity ✅, category header clickable ✅, More dropdown correct 5 items no Advertise ✅, footer black + disclaimer ✅. TASK-016 visual evidence retroactively confirmed by these screenshots (dark mode changes visible throughout).
+**Bugs noted (deferred)**:
+- B1 (carried from TASK-017): Tutorials and Cheatsheets have 0 LIVE resources — no sections render for them
+- B2: Homepage first load ~5-6s in dev — add unstable_cache to getResourcesByCategorySlug in a future task
+
+### TASK-012 — Create /about page
+**Status**: ✅ DONE | **Date**: 2026-03-10 | **Commits**: ee543a8 + fix commit
+**Files changed**: src/app/about/page.tsx (new file, 79 lines)
+**PM verification** (read file + screenshot temp/task012_about.png):
+- File created ✅ — exact spec match on all content except "Who built it" copy
+- "Who built it" copy: "Built and maintained by a team of developers. No VC funding. Just a directory that needed to exist." — **founder-approved deviation from spec**
+- 4 sections present ✅ (What this is, Why it exists, Who built it, Contact)
+- Contact email: directoryantigravity@gmail.com ✅
+- No Footer component added ✅ (Footer is in RootLayout)
+- metadata + canonical URL ✅
+- bg-black page background ✅
+- Screenshot: H1 ABOUT visible, all 4 sections, email link in blue, dark background, footer renders below ✅
+- Build exit 0 ✅, Lint exit 0 ✅, HTTP 200 ✅
 
 ---
 

@@ -4,7 +4,6 @@ import { users } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
 import { redirect } from 'next/navigation';
 import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { ResourceCard } from '@/components/ResourceCard';
 import { 
   ShieldCheck, Zap, BarChart3, Users, 
@@ -203,7 +202,6 @@ export default async function DashboardPage() {
         )}
       </main>
 
-      <Footer />
     </div>
   );
 }

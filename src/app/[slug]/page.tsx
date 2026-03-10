@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { LoadMoreResourceGrid } from '@/components/LoadMoreResourceGrid';
 import { CategorySponsorBanner } from '@/components/CategorySponsorBanner';
 import { fetchResourcesAction } from '@/app/actions/get-resources';
@@ -152,7 +151,6 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
              />
         </section>
       </main>
-      <Footer />
     </>
   );
 }

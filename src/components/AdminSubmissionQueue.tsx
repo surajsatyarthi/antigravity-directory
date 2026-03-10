@@ -51,7 +51,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
   if (submissions.length === 0) {
     return (
       <div className="text-center py-12">
-        <div className="bg-slate-100 border border-slate-200 rounded-lg p-8">
+        <div className="bg-white/[0.03] border border-white/[0.06] rounded-none p-8">
           <p className="text-slate-400 text-lg">No pending submissions</p>
         </div>
       </div>
@@ -63,7 +63,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
       {submissions.map((submission) => (
         <div
           key={submission.id}
-          className="bg-slate-100 border border-slate-200 rounded-lg overflow-hidden hover:border-slate-200 transition-colors"
+          className="bg-white/[0.03] border border-white/[0.06] rounded-none overflow-hidden hover:border-white/[0.12] transition-colors"
         >
           {/* Header */}
           <div
@@ -100,7 +100,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
 
           {/* Expanded Details */}
           {expandedId === submission.id && (
-            <div className="border-t border-slate-200 bg-white/40 p-6 space-y-4">
+            <div className="border-t border-slate-200 bg-white/[0.03] p-6 space-y-4">
               {submission.url && (
                 <div>
                   <label className="block text-xs uppercase tracking-widest text-slate-500 mb-2">
@@ -172,7 +172,7 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
                       })
                     }
                     placeholder="Why are you rejecting this submission?"
-                    className="w-full bg-white/40 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 text-sm placeholder:text-gray-600 focus:border-emerald-500/50 outline-none resize-none"
+                    className="w-full bg-white/[0.03] border border-white/[0.06] rounded-none px-4 py-3 text-white text-sm placeholder:text-gray-600 focus:border-emerald-500/50 outline-none resize-none"
                     rows={3}
                   />
                 </div>

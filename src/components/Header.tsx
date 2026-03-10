@@ -40,7 +40,7 @@ export async function Header() {
         {/* Center Section: Search Bar */}
         <div className="hidden md:flex w-[240px] lg:w-[320px] items-center">
           <Suspense fallback={
-            <div className="w-full bg-white border border-slate-200 rounded-full h-9" />
+            <div className="w-full bg-white/[0.05] border border-white/[0.06] rounded-full h-9" />
           }>
             <SearchInput />
           </Suspense>

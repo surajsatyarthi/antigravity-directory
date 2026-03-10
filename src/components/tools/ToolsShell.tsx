@@ -35,11 +35,11 @@ export function ToolsShell({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="flex h-[calc(100vh-64px)] overflow-hidden bg-white text-slate-200">
+    <div className="flex h-[calc(100vh-64px)] overflow-hidden bg-black text-gray-300">
       {/* Sidebar */}
       <aside 
         className={cn(
-          "flex-shrink-0 border-r border-slate-200 bg-white/50 transition-all duration-300 ease-in-out overflow-y-auto custom-scrollbar",
+          "flex-shrink-0 border-r border-slate-200 bg-white/[0.03] transition-all duration-300 ease-in-out overflow-y-auto custom-scrollbar",
           isSidebarOpen ? "w-64 translate-x-0" : "w-0 -translate-x-full md:w-16 md:translate-x-0" // w-16 for collapsed icon view on desktop
         )}
       >
@@ -99,7 +99,7 @@ export function ToolsShell({ children }: { children: React.ReactNode }) {
       {/* Mobile Overlay */}
       {isMobile && isSidebarOpen && (
         <div 
-          className="fixed inset-0 bg-white/80 z-40 md:hidden"
+          className="fixed inset-0 bg-black/80 z-40 md:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}

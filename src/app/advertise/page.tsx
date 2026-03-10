@@ -3,7 +3,6 @@ import { Metadata } from 'next';
 import { AdvertiseClient } from '@/components/AdvertiseClient';
 import { safeJsonLd } from '@/lib/utils';
 import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Advertise & Sponsor | Antigravity Directory',
@@ -79,7 +78,6 @@ export default function AdvertisePage() {
 
       </main>
 
-      <Footer />
     </div>
   );
 }

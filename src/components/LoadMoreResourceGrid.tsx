@@ -113,7 +113,7 @@ export function LoadMoreResourceGrid({
           <button
             onClick={loadMore}
             disabled={loading}
-            className="flex items-center gap-3 px-8 py-4 bg-slate-100 hover:bg-slate-100 border border-slate-200 hover:border-blue-500/50 text-slate-900 font-bold uppercase tracking-widest rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+            className="flex items-center gap-3 px-8 py-4 bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-blue-500/50 text-white font-bold uppercase tracking-widest rounded-none transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm"
           >
             {loading ? (
               <>
@@ -123,7 +123,7 @@ export function LoadMoreResourceGrid({
             ) : (
               <>
                 <span>Load Next 20</span>
-                <span className="text-slate-500 font-normal text-xs">
+                <span className="text-gray-400 font-normal text-xs">
                   ({resources.length} of {totalCount})
                 </span>
               </>
@@ -131,7 +131,7 @@ export function LoadMoreResourceGrid({
           </button>
         ) : (
           resources.length > 0 && (
-            <p className="text-[10px] uppercase tracking-widest text-slate-600 py-4">
+            <p className="text-[10px] uppercase tracking-widest text-gray-400 py-4">
               All {totalCount} resources loaded
             </p>
           )

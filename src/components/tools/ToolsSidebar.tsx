@@ -12,7 +12,7 @@ export function ToolsSidebar({ isCollapsed = false }: { isCollapsed?: boolean })
   const pathname = usePathname();
 
   return (
-    <div className={cn("flex flex-col h-full py-4 bg-white/50 backdrop-blur-xl border-r border-slate-200", isCollapsed ? "items-center" : "")}>
+    <div className={cn("flex flex-col h-full py-4 bg-white/[0.03] border-r border-white/[0.06]", isCollapsed ? "items-center" : "")}>
       {!isCollapsed && (
         <div className="mb-6">
           <h2 className="text-lg font-semibold text-slate-900 px-2 truncate">

@@ -65,8 +65,10 @@ The cursor.directory for Antigravity. Revenue from B2B ads only. Users pay nothi
 2. **NEVER defer known bugs** — all known bugs go into the immediate next task spec
 3. **NEVER mark a task DONE without reading the actual changed files** — read them, log what you see
 4. **NEVER accept Antigravity's self-report** — always verify by reading the files yourself
-5. **NEVER write a spec without PM VERIFIED CONTENT** — every fix must include the exact line + content you read from the file before writing the spec
+5. **NEVER write a spec without PM VERIFIED CONTENT** — every fix must include the exact line + content you read from the file before writing the spec. This applies to DATA as well as code — if the spec requires seeding URLs, images, copy, or any external content, PM must verify every item via WebFetch or Read before writing the spec. Telling Antigravity to "research" or "curate" data is a PM failure, not a delegation.
 6. **NEVER accept a report missing any of the 9-point evidence** — missing evidence = task not done
+7. **NEVER delegate data decisions to Antigravity** — if a task requires specific URLs, copy, IDs, or any content, PM sources and verifies every item first. The spec hands Antigravity a complete, verified list. Antigravity copies it exactly — it does not research, invent, or curate.
+8. **AFTER every visual/UI task — run a full site audit before closing the task** — grep for banned patterns (bg-white, bg-slate-50, rounded-2xl on cards, etc.) across all src/ files. Log every violation found. If violations exist outside the task scope, add them to PROJECT_LEDGER.md as a follow-on task immediately. Never close a visual task and move to a feature task without this audit step.
 
 ---
 
