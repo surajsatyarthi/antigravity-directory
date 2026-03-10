@@ -1,9 +1,26 @@
 'use client';
 
+import Link from 'next/link';
 import { SPONSOR } from '@/config/sponsor';
 
 export function CategorySponsorBanner() {
-  if (!SPONSOR.active) return null;
+  if (!SPONSOR.active) {
+    return (
+      <Link
+        href="/advertise"
+        className="group flex items-center gap-4 w-full bg-white/[0.02] border border-dashed border-white/[0.06] hover:border-white/[0.15] transition-all duration-200 px-5 py-3 mb-6"
+      >
+        <span className="text-[9px] font-black text-gray-700 uppercase tracking-[0.2em] shrink-0">Sponsored</span>
+        <div className="w-px h-4 bg-white/[0.06] shrink-0" />
+        <span className="text-sm text-gray-700 group-hover:text-gray-500 transition-colors font-medium truncate">
+          Your tool here — reach developers building with Google Antigravity IDE
+        </span>
+        <span className="ml-auto text-[10px] uppercase tracking-widest font-bold text-blue-400/40 group-hover:text-blue-400 transition-colors shrink-0">
+          Advertise →
+        </span>
+      </Link>
+    );
+  }
 
   return (
     <a

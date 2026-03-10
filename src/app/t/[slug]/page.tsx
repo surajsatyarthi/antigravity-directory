@@ -230,13 +230,13 @@ export default async function ResourceDetailPage({
                     href={resource.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-200 text-black font-bold rounded-2xl shadow-xl transition-all active:scale-95 text-center min-w-[200px]"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-200 text-black font-bold rounded-none shadow-xl transition-all active:scale-95 text-center min-w-[200px]"
                   >
                     Get Resource
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 ) : (
-                  <div className="inline-flex flex-col items-center justify-center gap-1 px-8 py-4 bg-gray-900 text-gray-500 font-bold rounded-2xl border border-white/5 text-center min-w-[200px] cursor-not-allowed">
+                  <div className="inline-flex flex-col items-center justify-center gap-1 px-8 py-4 bg-gray-900 text-gray-500 font-bold rounded-none border border-white/5 text-center min-w-[200px] cursor-not-allowed">
                     <span className="text-xs">URL Not Available</span>
                     <span className="text-[10px] font-normal text-gray-600">Contact owner to claim</span>
                   </div>
@@ -287,14 +287,14 @@ export default async function ResourceDetailPage({
               <div className="mb-12">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold tracking-tight text-white font-mono uppercase tracking-widest text-sm text-gray-500">Resource Content</h2>
-                  <button className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl transition-all">
+                  <button className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-none transition-all">
                     <Copy className="w-4 h-4" />
                     Copy Code
                   </button>
                 </div>
                 
                 <div className="relative group">
-                  <pre className="whitespace-pre-wrap font-mono text-sm bg-black p-8 rounded-2xl border border-gray-900 text-gray-300 overflow-x-auto max-h-[600px] leading-relaxed">
+                  <pre className="whitespace-pre-wrap font-mono text-sm bg-black p-8 rounded-none border border-gray-900 text-gray-300 overflow-x-auto max-h-[600px] leading-relaxed">
                     {resource.content}
                   </pre>
                 </div>
