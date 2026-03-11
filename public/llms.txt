@@ -1,0 +1,36 @@
+# Antigravity Directory
+
+> The #1 resource directory for Google Antigravity IDE. Free. No login required.
+
+Antigravity Directory lists 3,160+ curated MCP servers, rules, prompts, skills, and workflows for developers building with Google Antigravity IDE (formerly Google Project IDX with Gemini).
+
+## What is Google Antigravity IDE?
+
+Google Antigravity IDE is Google's AI-native development environment powered by Gemini. It supports MCP (Model Context Protocol) servers, agentic workflows, and AI-assisted coding via rules and prompts.
+
+## Categories
+
+- MCP Servers (/mcp-servers) — Model Context Protocol server implementations for Antigravity
+- Rules (/rules) — Coding rules and behaviour guidelines for the Antigravity AI agent
+- Prompts (/prompts) — System prompts and prompt templates optimised for Gemini
+- Skills (/skills) — Antigravity skill definitions for agentic tasks
+- Workflows (/workflows) — Automated workflow configurations for development pipelines
+
+## Resource Pages
+
+Each resource is at /t/[slug] and includes:
+- Title and full description
+- Source URL (GitHub or official site)
+- Category
+- Full content (rules text, prompt text, MCP config) in copyable format
+- Tags
+
+## Sitemap
+
+https://googleantigravity.directory/sitemap.xml — 3,160+ URLs indexed
+
+## Advertising
+
+Sponsors reach developers actively building with Google Antigravity IDE.
+Contact: directoryantigravity@gmail.com
+Advertise: https://googleantigravity.directory/advertise
