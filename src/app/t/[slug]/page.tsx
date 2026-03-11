@@ -10,6 +10,7 @@ import { CitationBlock } from '@/components/CitationBlock';
 import { BadgeGenerator } from '@/components/BadgeGenerator';
 import { safeJsonLd } from '@/lib/utils/safeJsonLd';
 import { CopyButton } from '@/components/CopyButton';
+import { ShareBar } from '@/components/ShareBar';
 export async function generateMetadata({
   params,
 }: {
@@ -287,6 +288,11 @@ export default async function ResourceDetailPage({
               </div>
             )}
 
+            {/* Social Sharing */}
+            <ShareBar
+              url={`https://googleantigravity.directory/t/${resource.slug}`}
+              title={resource.title}
+            />
 
             {/* Badge Flywheel Section */}
             <BadgeGenerator 
