@@ -16,6 +16,9 @@ export function AdvertiseClient() {
     const data = {
       company: (form.elements.namedItem('company') as HTMLInputElement).value,
       email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      url: (form.elements.namedItem('url') as HTMLInputElement).value,
+      audience: (form.elements.namedItem('audience') as HTMLInputElement).value,
+      slot: (form.elements.namedItem('slot') as HTMLSelectElement).value,
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
     };
     try {
@@ -36,7 +39,7 @@ export function AdvertiseClient() {
     }
   }
 
-  const inputClasses = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-base text-white placeholder:text-gray-600 focus:border-white/30 transition-all outline-none font-medium";
+  const inputClasses = "w-full bg-white/5 border border-white/10 rounded-none px-4 py-3.5 text-base text-white placeholder:text-gray-600 focus:border-white/30 transition-all outline-none font-medium";
   const labelClasses = "block text-xs uppercase tracking-[0.15em] font-black text-gray-500 mb-2";
 
   if (submitted) {
@@ -51,14 +54,14 @@ export function AdvertiseClient() {
 
   return (
     <div className="max-w-xl mx-auto px-4">
-      <div className="bg-white/[0.03] border border-white/[0.06] rounded-3xl p-8">
-        <h2 className="text-2xl font-black text-white mb-2">Get in touch</h2>
+      <div className="bg-white/[0.03] border border-white/[0.06] rounded-none p-8">
+        <h2 className="text-2xl font-black text-white mb-2">Send an enquiry</h2>
         <p className="text-gray-500 text-sm mb-8">
           Tell us about your product. We'll reply within 24 hours with availability and pricing.
         </p>
 
         {error && (
-          <div className="mb-6 p-4 rounded-xl flex items-center gap-3 text-sm font-bold bg-red-500/5 text-red-400 border border-red-500/20">
+          <div className="mb-6 p-4 rounded-none flex items-center gap-3 text-sm font-bold bg-red-500/5 text-red-400 border border-red-500/20">
             <AlertCircle className="w-5 h-5 shrink-0" />
             {error}
           </div>
@@ -74,13 +77,33 @@ export function AdvertiseClient() {
             <input type="email" name="email" required placeholder="you@company.com" className={inputClasses} />
           </div>
           <div>
-            <label className={labelClasses}>What are you promoting?</label>
-            <textarea name="message" required rows={4} placeholder="Brief description of your tool and what you're looking for..." className={`${inputClasses} resize-none`} />
+            <label className={labelClasses}>Company Website / Social URL</label>
+            <input type="url" name="url" required placeholder="https://..." className={inputClasses} />
+          </div>
+          <div>
+            <label className={labelClasses}>Target Audience</label>
+            <input type="text" name="audience" required placeholder="e.g. React developers, AI researchers..." className={inputClasses} />
+          </div>
+          <div>
+            <label className={labelClasses}>Preferred Slot</label>
+            <select name="slot" required defaultValue="" className={inputClasses}>
+               <option value="" disabled>Select a slot...</option>
+               <option value="site-wide">Site-wide Sponsor Badge ($2,000/mo)</option>
+               <option value="homepage-banner">Homepage Banner ($800–$1,500/mo)</option>
+               <option value="category">Category Page Sponsor ($300–$500/mo)</option>
+               <option value="featured">Featured Listing ($199/mo)</option>
+               <option value="promoted">Promoted Card ($99/mo)</option>
+               <option value="undecided">Not sure yet / Discussing options</option>
+            </select>
+          </div>
+          <div>
+            <label className={labelClasses}>Extra Details / Questions</label>
+            <textarea name="message" required rows={4} placeholder="Tell us more about your tool and goals..." className={`${inputClasses} resize-none`} />
           </div>
           <button
             type="submit"
             disabled={isPending}
-            className="w-full py-4 bg-white hover:bg-gray-100 text-black font-black rounded-xl transition-all uppercase tracking-[0.15em] text-xs flex items-center justify-center gap-3"
+            className="w-full py-4 bg-white hover:bg-gray-100 text-black font-black rounded-none transition-all uppercase tracking-[0.15em] text-xs flex items-center justify-center gap-3"
           >
             {isPending ? (
               <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
