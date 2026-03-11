@@ -1,0 +1,23 @@
+4:import { ToolsShell } from '@/components/tools/ToolsShell';
+27:    <ToolsShell>
+51:    </ToolsShell>
+4:import { ToolsShell } from '@/components/tools/ToolsShell';
+27:    <ToolsShell>
+51:    </ToolsShell>
+4:import { ToolsShell } from '@/components/tools/ToolsShell';
+27:    <ToolsShell>
+51:    </ToolsShell>
+4:import { ToolsShell } from '@/components/tools/ToolsShell';
+27:    <ToolsShell>
+51:    </ToolsShell>
+8:import { handleSignIn, handleSignOut } from '@/lib/actions/auth';
+83:                <form action={handleSignOut} className="flex items-center">
+94:              <form action={handleSignIn} className="flex items-center">
+99:                  SIGN IN
+3:import { BookmarkButton } from './BookmarkButton';
+122:            <BookmarkButton
+23:  if (!session?.user?.id) {
+8:  const isAdminPage = req.nextUrl.pathname.startsWith("/admin");
+9:  const isDashboardPage = req.nextUrl.pathname.startsWith("/dashboard");
+20:  if (isAdminPage) {
+45:  if (isDashboardPage) {

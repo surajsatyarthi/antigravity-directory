@@ -1,0 +1,60 @@
+TASK-032 REPORT
+==============================
+
+--- CROSS-CHECK ---
+orderBy grep (queries.ts): 
+141:      .orderBy(
+sort type grep (database.ts): 
+43:  sort: 'latest' | 'views' | 'rating' | 'recommended';
+SORT_OPTIONS grep (constants): 
+96:  SORT_OPTIONS: [
+97:    { value: 'recommended', label: 'Recommended' },
+98:    { value: 'latest', label: 'Latest' },
+
+--- PART 1: queries.ts ---
+filters.sort branch added: YES
+Latest → orderBy(publishedAt DESC): YES
+Recommended → orderBy(views DESC, publishedAt DESC): YES
+Exact changed lines: 
+      .orderBy(
+        ...(filters.sort === 'latest'
+          ? [desc(resources.publishedAt)]
+          : [desc(resources.views), desc(resources.publishedAt)])
+      )
+
+--- PART 2: database.ts ---
+sort type narrowed to 'latest' | 'recommended': YES
+Exact changed line: 
+  sort: 'latest' | 'recommended';
+
+--- PART 3: BUILD ---
+Build exit code: 0
+Build output (last 5 lines): 
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+filters.sort grep after change: 
+142:        ...(filters.sort === 'latest'
+sort type grep after change: 
+43:  sort: 'latest' | 'recommended';
+
+--- PART 4: VISUAL ---
+Recommended order (first 3 titles): [ 'sooperset/mcp-atlassian', 'Perplexity Mcp Zerver', 'Mcp Server Email' ]
+Latest order (first 3 titles): [ 'Anthropic API', 'Perplexity Mcp Zerver', 'Mcp Server Email' ]
+Order changed when switching sort: YES
+URL updates to ?sort=latest: YES
+task032_sort_recommended.png: YES
+task032_sort_latest.png: YES
+
+--- PART 5: GIT ---
+Commit hash: 1cea9982d24ee11bc1e0d2550b636a534b132c39
+Files staged (confirm only 2 files): src/lib/queries.ts src/types/database.ts
+Vercel deploy: GREEN
+task032_vercel_green.png: YES
+
+--- PART 6: HTTP ---
+/mcp-servers → 200 (via 307)
+/mcp-servers?sort=latest → 200 (via 307)
+
+--- BUGS SPOTTED (do not fix, report only) ---
+1. `unstable_cache` effectively blocks `sort` functionality changes from reflecting dynamically without clearing `.next/cache` or waiting 5 minutes in dev server. This caused cached sorting for testing until cleared.
