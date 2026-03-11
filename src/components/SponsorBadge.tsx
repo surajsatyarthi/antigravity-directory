@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { SPONSOR } from '@/config/sponsor';
+import { SPONSOR_BADGE } from '@/config/sponsor';
 
 export function SponsorBadge() {
-  if (!SPONSOR.active) {
+  if (!SPONSOR_BADGE.active) {
     return (
       <Link
         href="/advertise"
@@ -18,16 +18,16 @@ export function SponsorBadge() {
 
   return (
     <a
-      href={SPONSOR.href}
+      href={SPONSOR_BADGE.href}
       target="_blank"
       rel="noopener noreferrer sponsored"
-      className="fixed bottom-4 right-4 z-40 flex flex-col bg-white/[0.05] border border-white/[0.08] backdrop-blur-sm rounded-xl p-3 shadow-xl hover:bg-white/[0.08] transition-all"
+      className="fixed bottom-4 right-4 z-40 flex flex-col bg-white/[0.05] border border-white/[0.08] backdrop-blur-sm rounded-none p-3 shadow-xl hover:bg-white/[0.08] transition-all"
     >
       <span className="text-[9px] font-mono text-gray-500 mb-1.5 uppercase tracking-widest">Sponsored by</span>
-      {SPONSOR.logoUrl ? (
-        <img src={SPONSOR.logoUrl} alt={SPONSOR.name} className="h-[18px] w-auto" />
+      {SPONSOR_BADGE.logoUrl ? (
+        <img src={SPONSOR_BADGE.logoUrl} alt={SPONSOR_BADGE.name} className="h-[18px] w-auto" />
       ) : (
-        <span className="text-xs font-bold text-white">{SPONSOR.name}</span>
+        <span className="text-xs font-bold text-white">{SPONSOR_BADGE.name}</span>
       )}
     </a>
   );

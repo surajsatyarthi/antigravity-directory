@@ -40,7 +40,7 @@ export interface FilterState {
   categories: string[]; // Array of category slugs
   tags: string[];       // Array of tag slugs
   search: string;       // Search query
-  sort: 'latest' | 'views' | 'rating' | 'recommended';
+  sort: 'latest' | 'recommended';
   badgeTypes: string[]; // []
   pricing: string[];     // Array of pricing slugs (free, paid, etc)
   group?: string;       // Focus Domain slug (process, work, service)

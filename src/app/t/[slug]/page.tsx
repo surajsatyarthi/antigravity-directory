@@ -47,6 +47,13 @@ export async function generateMetadata({
       description,
       type: 'website',
       url: `https://googleantigravity.directory/t/${slug}`,
+      images: [{ url: '/opengraph-image.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/twitter-image.png'],
     },
     alternates: {
       canonical: `https://googleantigravity.directory/t/${slug}`,

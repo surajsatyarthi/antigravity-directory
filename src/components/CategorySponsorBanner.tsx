@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { SPONSOR } from '@/config/sponsor';
+import { SPONSOR_CATEGORY } from '@/config/sponsor';
 
 export function CategorySponsorBanner() {
-  if (!SPONSOR.active) {
+  if (!SPONSOR_CATEGORY.active) {
     return (
       <Link
         href="/advertise"
@@ -24,25 +24,25 @@ export function CategorySponsorBanner() {
 
   return (
     <a
-      href={SPONSOR.href}
+      href={SPONSOR_CATEGORY.href}
       target="_blank"
       rel="noopener noreferrer sponsored"
-      className="group flex items-center gap-4 w-full bg-white/[0.03] border border-white/[0.06] rounded-xl px-5 py-3 mb-6 hover:border-white/20 transition-all duration-200"
+      className="group flex items-center gap-4 w-full bg-white/[0.03] border border-white/[0.06] rounded-none px-5 py-3 mb-6 hover:border-white/20 transition-all duration-200"
     >
       <span className="text-[9px] font-black text-gray-600 uppercase tracking-[0.2em] shrink-0">Sponsored</span>
 
       <div className="w-px h-4 bg-white/[0.08] shrink-0" />
 
-      {SPONSOR.logoUrl && (
+      {SPONSOR_CATEGORY.logoUrl && (
         <img
-          src={SPONSOR.logoUrl}
-          alt={SPONSOR.name}
+          src={SPONSOR_CATEGORY.logoUrl}
+          alt={SPONSOR_CATEGORY.name}
           className="h-5 w-auto object-contain shrink-0"
         />
       )}
 
       <span className="text-sm text-gray-400 font-medium truncate">
-        {SPONSOR.tagline || SPONSOR.description}
+        {SPONSOR_CATEGORY.tagline || SPONSOR_CATEGORY.description}
       </span>
 
       <span className="ml-auto text-[10px] uppercase tracking-widest font-bold text-blue-400/60 group-hover:text-blue-400 transition-colors shrink-0">
