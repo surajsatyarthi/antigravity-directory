@@ -139,8 +139,9 @@ async function getFilteredResourcesInternal(filters: FilterState, page: number =
       .where(conditions.length > 0 ? and(...conditions) : undefined)
       .groupBy(resources.id, categories.name)
       .orderBy(
-        desc(resources.views), // Removed automatic featured boost
-        desc(resources.publishedAt)
+        ...(filters.sort === 'latest'
+          ? [desc(resources.publishedAt)]
+          : [desc(resources.views), desc(resources.publishedAt)])
       )
       .limit(pageSize)
       .offset(offset);
