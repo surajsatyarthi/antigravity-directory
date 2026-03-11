@@ -1,0 +1,16 @@
+ src/app/tools/json-to-pydantic/page.tsx  |  65 +++++++++++
+ src/app/tools/page.tsx                   |  96 ++++++++++++++++
+ src/app/tools/prompt-generator/page.tsx  |  53 +++++++++
+ src/app/tools/rag-visualizer/page.tsx    |  53 +++++++++
+ src/app/tools/roi-calculator/page.tsx    |  53 +++++++++
+ src/app/tools/token-counter/page.tsx     |  53 +++++++++
+ src/components/AdminSubmissionQueue.tsx  |   6 +-
+ src/components/BadgeGenerator.tsx        |   2 +-
+ src/components/tools/JsonToPydantic.tsx  | 148 +++++++++++++++++++++++++
+ src/components/tools/PromptOptimizer.tsx | 122 +++++++++++++++++++++
+ src/components/tools/RagVisualizer.tsx   | 128 ++++++++++++++++++++++
+ src/components/tools/RoiCalculator.tsx   | 182 +++++++++++++++++++++++++++++++
+ src/components/tools/TokenCounter.tsx    |  86 +++++++++++++++
+ src/components/tools/ToolsShell.tsx      |  12 +-
+ src/components/tools/ToolsSidebar.tsx    |   6 +-
+ 15 files changed, 1052 insertions(+), 13 deletions(-)
