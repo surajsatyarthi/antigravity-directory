@@ -96,8 +96,6 @@ export const FILTERS = {
   SORT_OPTIONS: [
     { value: 'recommended', label: 'Recommended' },
     { value: 'latest', label: 'Latest' },
-    { value: 'views', label: 'Most Viewed' },
-    { value: 'rating', label: 'Highest Rated' },
   ] as const,
   
   // localStorage key for filter persistence

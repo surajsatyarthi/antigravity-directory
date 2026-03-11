@@ -7,7 +7,7 @@ import { CategorySection } from '@/components/CategorySection';
 import { getResourcesByCategorySlug, getCategoriesWithCounts } from '@/lib/queries';
 import dynamicImport from 'next/dynamic';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // ISR — rebuild homepage at most once per hour
 
 const NewsletterCapture = dynamicImport(() => import('@/components/NewsletterCapture').then(mod => mod.NewsletterCapture), {
   ssr: true
