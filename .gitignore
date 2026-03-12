@@ -46,3 +46,6 @@ next-env.d.ts
 # Protocol sync (synced from GitHub)
 /.agent
 /.protocol-cache
+
+# PM verification screenshots and scripts (local only, never commit)
+/temp
