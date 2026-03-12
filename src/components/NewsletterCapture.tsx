@@ -32,8 +32,8 @@ export function NewsletterCapture({ source = 'homepage', variant = 'full' }: New
 
   if (status === 'success') {
     return (
-      <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-[2rem] p-12 text-center animate-in zoom-in duration-500">
-        <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/20">
+      <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-none p-12 text-center animate-in zoom-in duration-500">
+        <div className="w-16 h-16 bg-emerald-500 rounded-none flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/20">
           <CheckCircle2 className="w-8 h-8 text-white" />
         </div>
         <h3 className="text-3xl font-black text-white mb-2 tracking-tighter uppercase italic">Access Granted</h3>
@@ -44,12 +44,12 @@ export function NewsletterCapture({ source = 'homepage', variant = 'full' }: New
 
   if (variant === 'inline') {
     return (
-      <div className="bg-white/[0.03] border border-white/[0.08] rounded-xl p-5 relative overflow-hidden group">
+      <div className="bg-white/[0.03] border border-white/[0.08] rounded-none p-5 relative overflow-hidden group">
         <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
           <Zap className="w-12 h-12 text-gray-700" />
         </div>
-        <h4 className="text-xs font-black text-slate-400 mb-1 uppercase tracking-tight">Weekly Newsletter</h4>
-        <p className="text-[10px] text-gray-600 mb-4 leading-relaxed uppercase tracking-widest font-mono">Get the latest tools weekly.</p>
+        <h4 className="text-xs font-black text-slate-400 mb-1 uppercase tracking-tight">Weekly Digest</h4>
+        <p className="text-[10px] text-gray-600 mb-4 leading-relaxed uppercase tracking-widest font-mono">Top tools. New MCPs. Productivity tips.</p>
 
         <form onSubmit={handleSubmit} className="relative">
           <input type="hidden" name="source" value={source} />
@@ -58,11 +58,11 @@ export function NewsletterCapture({ source = 'homepage', variant = 'full' }: New
             name="email"
             placeholder="dev@work.com"
             required
-            className="w-full bg-white/[0.06] border border-white/[0.08] rounded-lg px-4 py-2.5 text-xs text-white placeholder:text-gray-500 focus:outline-none focus:border-white/[0.25] transition-all mb-2"
+            className="w-full bg-white/[0.06] border border-white/[0.08] rounded-none px-4 py-2.5 text-xs text-white placeholder:text-gray-500 focus:outline-none focus:border-white/[0.25] transition-all mb-2"
           />
           <button
             disabled={status === 'loading'}
-            className="w-full bg-white/[0.08] hover:bg-white/[0.15] disabled:opacity-50 text-white text-[10px] font-black uppercase tracking-[0.2em] py-2.5 rounded-lg transition-all flex items-center justify-center gap-2"
+            className="w-full bg-white/[0.08] hover:bg-white/[0.15] disabled:opacity-50 text-white text-[10px] font-black uppercase tracking-[0.2em] py-2.5 rounded-none transition-all flex items-center justify-center gap-2"
           >
             {status === 'loading' ? <Loader2 className="w-3 h-3 animate-spin" /> : 'Subscribe →'}
           </button>
@@ -72,23 +72,23 @@ export function NewsletterCapture({ source = 'homepage', variant = 'full' }: New
   }
 
   return (
-    <section className="relative overflow-hidden py-16 rounded-2xl">
+    <section className="relative overflow-hidden py-16 rounded-none">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-transparent border border-white/[0.08] rounded-2xl" />
+      <div className="absolute inset-0 bg-transparent border border-white/[0.08] rounded-none" />
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full" />
       <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-600/5 blur-[120px] rounded-full" />
 
       <div className="relative max-w-4xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 border border-blue-600/20 text-[10px] font-black uppercase tracking-[0.15em] text-blue-400 mb-4">
-            <Zap className="w-3 h-3" /> Newsletter Signup
+            <Zap className="w-3 h-3" /> Weekly Digest
         </div>
 
         <h2 className="text-2xl md:text-3xl font-black text-slate-500 mb-4 tracking-tight uppercase">
-          Weekly <span className="text-slate-400">Developer</span> Newsletter
+          The Best Antigravity Tools, <span className="text-slate-400">Every Week</span>
         </h2>
 
         <p className="text-slate-500 text-sm leading-relaxed max-w-2xl mx-auto mb-8">
-          Get the latest AI tools and resources delivered to your inbox. Unsubscribe anytime.
+          New MCPs · Top Skills · Productivity hacks · Curated picks — straight to your inbox.
         </p>
 
         <form onSubmit={handleSubmit} className="relative max-w-lg mx-auto">
@@ -101,12 +101,12 @@ export function NewsletterCapture({ source = 'homepage', variant = 'full' }: New
                 name="email"
                 placeholder="Enter your work email"
                 required
-                className="w-full bg-white/[0.03] border border-white/[0.08] rounded-2xl pl-12 pr-4 py-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-white/[0.25] transition-all font-mono text-sm"
+                className="w-full bg-white/[0.03] border border-white/[0.08] rounded-none pl-12 pr-4 py-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-white/[0.25] transition-all font-mono text-sm"
               />
             </div>
             <button
               disabled={status === 'loading'}
-              className="px-8 py-4 bg-white/[0.08] text-white font-black rounded-2xl hover:bg-white/[0.15] disabled:opacity-50 transition-all uppercase tracking-widest text-xs flex items-center justify-center gap-2 shadow-xl shadow-white/5"
+              className="px-8 py-4 bg-white/[0.08] text-white font-black rounded-none hover:bg-white/[0.15] disabled:opacity-50 transition-all uppercase tracking-widest text-xs flex items-center justify-center gap-2 shadow-xl shadow-white/5"
             >
               {status === 'loading' ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -123,7 +123,7 @@ export function NewsletterCapture({ source = 'homepage', variant = 'full' }: New
         </form>
 
         <p className="mt-8 text-[10px] text-gray-600 font-mono uppercase tracking-[0.2em]">
-          Get weekly updates. No spam.
+          Join developers staying ahead. No spam, ever.
         </p>
       </div>
     </section>

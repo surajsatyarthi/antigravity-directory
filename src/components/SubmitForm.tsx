@@ -53,7 +53,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
         </p>
       </div>
 
-      <div className="bg-white/[0.03] border border-white/[0.06] rounded-3xl p-8">
+      <div className="bg-white/[0.03] border border-white/[0.06] rounded-none p-8">
         {message && (
           <div className={`mb-8 p-4 rounded-none flex items-center gap-3 text-sm font-bold border ${
             message.type === 'success'
