@@ -29,13 +29,19 @@ jobs:
         run: npx tsx scripts/weekly-scraper.ts discover
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check if pending resources exist
         id: check_pending
         run: |
           if [ -f scripts/pending-resources.json ]; then
-            echo "has_pending=true" >> $GITHUB_OUTPUT
-            echo "pending_count=$(jq length scripts/pending-resources.json)" >> $GITHUB_OUTPUT
+            PENDING_COUNT=$(jq length scripts/pending-resources.json)
+            if [ "$PENDING_COUNT" -gt 0 ]; then
+              echo "has_pending=true" >> $GITHUB_OUTPUT
+              echo "pending_count=$PENDING_COUNT" >> $GITHUB_OUTPUT
+            else
+              echo "has_pending=false" >> $GITHUB_OUTPUT
+            fi
           else
             echo "has_pending=false" >> $GITHUB_OUTPUT
           fi
