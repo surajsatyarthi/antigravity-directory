@@ -1,229 +1,300 @@
-# CURRENT TASK — TASK-027: Merge to Main + Deploy to Production + Live Site Audit
+# CURRENT TASK — TASK-034: Social Sharing Bar + SponsorBadge Text Fix
 **Assigned by**: Claude Code (PM)
-**Date**: 2026-03-10
-**Priority**: CRITICAL — nothing reaches the live site until this is done
+**Date**: 2026-03-11
+**Priority**: HIGH — social sharing drives organic traffic + virality. Each resource share = a backlink signal.
 
 ---
 
 ## CONTEXT
 
-All work since TASK-011 lives on `feat/ui-cursor-patterns`. The `main` branch is 30+ commits behind. Vercel deploys from `main`. The live site at googleantigravity.directory is running old code. This task merges the branch, pushes to production, and verifies the live site looks correct.
+Add a social sharing bar to every resource detail page (`/t/[slug]`).
+Also fix the "SPONSORED BY" text colour in `SponsorBadge.tsx` — currently `text-gray-500` (too dim on dark bg).
+
+Channels: **WhatsApp, X (Twitter), Facebook, Email, Copy Link**.
 
 ---
 
-## MANDATORY PRE-CHECK
+## FILES TO CHANGE — 3 FILES ONLY
 
-Run these before doing anything:
+1. `src/components/ShareBar.tsx` — CREATE NEW
+2. `src/app/t/[slug]/page.tsx` — add import + render ShareBar
+3. `src/components/SponsorBadge.tsx` — fix one class: `text-gray-500` → `text-gray-400`
+
+**DO NOT touch any other file.**
+
+---
+
+## MANDATORY CROSS-CHECK BEFORE TOUCHING ANYTHING
 
 ```bash
-git log main --oneline -3
-git log feat/ui-cursor-patterns --oneline -3
-git diff main..feat/ui-cursor-patterns --stat
+grep -n "ShareBar" src/app/t/\[slug\]/page.tsx
+grep -rn "ShareBar" src/components/
+grep -n "text-gray-500" src/components/SponsorBadge.tsx
 ```
 
-Expected:
-- `main` most recent commit should be something old (pre-TASK-011)
-- `feat/ui-cursor-patterns` most recent commit: `361550e feat(ux): remove ratings and views...`
-- Diff stat: 30+ files changed
+Expected readings:
+- `ShareBar` grep: zero results in both (component does not exist yet) — confirmed by PM
+- `SponsorBadge.tsx`: line 26 has `text-gray-500` on the "Sponsored by" span — confirmed by PM reading the file
 
-If `main` has NEW commits not in `feat/ui-cursor-patterns` — STOP and report to PM before merging. Do NOT force-push.
+If readings differ — STOP and report to PM.
 
 ---
 
-## PART 1 — MERGE AND PUSH
+## PM VERIFIED CONTENT
+
+### `src/app/t/[slug]/page.tsx` (PM read full file)
+
+Current imports end at line 12:
+```typescript
+import { CopyButton } from '@/components/CopyButton';
+```
+ShareBar import goes on line 13, immediately after:
+```typescript
+import { ShareBar } from '@/components/ShareBar';
+```
+
+ShareBar renders between the Tags block and BadgeGenerator. PM verified:
+- Line 277–288: Tags block — closes with `</div>` after the tags map
+- Line 291: `<BadgeGenerator slug={resource.slug} title={resource.title} />`
+- ShareBar inserts between line 288 and line 291
+
+The resource data available at render time:
+- `resource.title` — string, the resource title
+- `resource.slug` — string, used to build the canonical URL: `https://googleantigravity.directory/t/${resource.slug}`
+
+### `src/components/SponsorBadge.tsx` (PM read full file)
+
+Line 26 exact content:
+```typescript
+<span className="text-[9px] font-mono text-gray-500 mb-1.5 uppercase tracking-widest">Sponsored by</span>
+```
+Fix: `text-gray-500` → `text-gray-400`. One word change. Nothing else.
+
+---
+
+## PART 1 — CREATE `src/components/ShareBar.tsx`
+
+Create new file. Full implementation:
+
+```typescript
+'use client';
+
+import { useState } from 'react';
+import { Link } from 'lucide-react';
+
+interface ShareBarProps {
+  url: string;
+  title: string;
+}
+
+export function ShareBar({ url, title }: ShareBarProps) {
+  const [copied, setCopied] = useState(false);
+
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent(title);
+
+  const shares = [
+    {
+      label: 'WhatsApp',
+      href: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+    },
+    {
+      label: 'X',
+      href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+    },
+    {
+      label: 'Facebook',
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    },
+    {
+      label: 'Email',
+      href: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+    },
+  ];
+
+  function handleCopy() {
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  return (
+    <div className="mb-12 flex flex-wrap items-center gap-3">
+      <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest mr-2">
+        Share
+      </span>
+
+      {shares.map(({ label, href }) => (
+        <a
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-gray-400 hover:text-white hover:border-white/20 transition-all rounded-none"
+        >
+          {label}
+        </a>
+      ))}
+
+      <button
+        onClick={handleCopy}
+        className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-gray-400 hover:text-white hover:border-white/20 transition-all rounded-none"
+      >
+        <Link className="w-3 h-3" />
+        {copied ? 'Copied!' : 'Copy Link'}
+      </button>
+    </div>
+  );
+}
+```
+
+---
+
+## PART 2 — EDIT `src/app/t/[slug]/page.tsx`
+
+**Change 1 — add import on line 13** (after the CopyButton import):
+
+Old:
+```typescript
+import { CopyButton } from '@/components/CopyButton';
+```
+
+New:
+```typescript
+import { CopyButton } from '@/components/CopyButton';
+import { ShareBar } from '@/components/ShareBar';
+```
+
+**Change 2 — insert ShareBar between Tags block and BadgeGenerator:**
+
+Old (lines 288–295):
+```typescript
+            )}
+
+
+            {/* Badge Flywheel Section */}
+            <BadgeGenerator
+              slug={resource.slug}
+              title={resource.title}
+            />
+```
+
+New:
+```typescript
+            )}
+
+            {/* Social Sharing */}
+            <ShareBar
+              url={`https://googleantigravity.directory/t/${resource.slug}`}
+              title={resource.title}
+            />
+
+            {/* Badge Flywheel Section */}
+            <BadgeGenerator
+              slug={resource.slug}
+              title={resource.title}
+            />
+```
+
+No other changes to this file.
+
+---
+
+## PART 3 — EDIT `src/components/SponsorBadge.tsx`
+
+Line 26 only. Change one class:
+
+Old:
+```typescript
+      <span className="text-[9px] font-mono text-gray-500 mb-1.5 uppercase tracking-widest">Sponsored by</span>
+```
+
+New:
+```typescript
+      <span className="text-[9px] font-mono text-gray-400 mb-1.5 uppercase tracking-widest">Sponsored by</span>
+```
+
+Nothing else changes in this file.
+
+---
+
+## PART 4 — BUILD + COMMIT + DEPLOY
 
 ```bash
-git checkout main
-git merge feat/ui-cursor-patterns --no-edit
+npm run build
+```
+
+Must exit 0.
+
+```bash
+git add src/components/ShareBar.tsx src/app/t/\[slug\]/page.tsx src/components/SponsorBadge.tsx
+git commit -m "feat(sharing): add ShareBar to resource detail pages + fix SponsorBadge text colour"
 git push origin main
-git log main --oneline -3
 ```
 
-Paste the output of `git log main --oneline -3` in your report.
+Wait for Vercel GREEN.
 
 ---
 
-## PART 2 — WAIT FOR VERCEL DEPLOY
+## PART 5 — SCREENSHOTS
 
-After pushing, Vercel will auto-deploy. Wait for the deploy to complete before proceeding.
+Using automated browser, navigate to any resource detail page (e.g. `https://googleantigravity.directory/t/github-mcp-server`) and take:
 
-Check deploy status:
-```bash
-npx vercel ls 2>/dev/null || echo "Use Vercel dashboard"
-```
-
-Or simply wait 3–5 minutes and proceed to Part 3.
-
----
-
-## PART 3 — LIVE SITE VERIFICATION (AUTOMATED BROWSER)
-
-Use the automated browser to visit the live site. Navigate to each URL below and take a screenshot.
-
-Base URL: `https://googleantigravity.directory`
-
-### 3A — Homepage
-URL: `https://googleantigravity.directory`
-
-Verify:
-- Dark background (black) — NOT white or light grey
-- Resource cards visible in the list
-- Header has search bar with dropdown (Amazon-style)
-- "ADVERTISE HERE" badge visible bottom-right corner
-- No "Sign In" button in the header
-
-Screenshot: `temp/task027_homepage.png`
-
-### 3B — Category page (MCP Servers — largest category, 2,033 resources)
-URL: `https://googleantigravity.directory/mcp-servers`
-
-Verify:
-- Dark background
-- "Sponsored / Your tool here" banner at the top
-- Resource cards with no star ratings, no view counts
-- Sort bar visible
-- "ADVERTISE HERE" badge bottom-right
-
-Screenshot: `temp/task027_category.png`
-
-### 3C — Resource detail page
-URL: `https://googleantigravity.directory/mcp-servers` → click any resource card
-
-Verify:
-- Dark background
-- No stats bar (Rating / Views / Copies / Reviews grid)
-- No "Rate this resource" stars at the bottom
-- No "Sign in to verify your vote" text
-- CitationBlock shows only 2 cells: "Entity Type" and "Trust Signal"
-- Get Resource button has sharp corners (rounded-none)
-- "ADVERTISE HERE" badge bottom-right
-
-Screenshot: `temp/task027_detail.png`
-
-### 3D — Tutorials category (expected: empty or near-empty)
-URL: `https://googleantigravity.directory/tutorials`
-
-Record exactly what you see — how many resources, or is it empty?
-
-Screenshot: `temp/task027_tutorials.png`
-
-### 3E — Cheatsheets category
-URL: `https://googleantigravity.directory/cheatsheets`
-
-Same — record what you see.
-
-Screenshot: `temp/task027_cheatsheets.png`
-
-### 3F — Advertise page
-URL: `https://googleantigravity.directory/advertise`
-
-Verify it loads (not 404). Record what you see.
-
-Screenshot: `temp/task027_advertise.png`
-
----
-
-## PART 4 — DB AUDIT (DEAD RESOURCES)
-
-Run this SQL query on the production database to count resources with no url AND no content per category:
-
-```sql
-SELECT c.name as category, COUNT(*) as dead_count
-FROM resources r
-JOIN categories c ON r.category_id = c.id
-WHERE r.status = 'LIVE'
-AND r.url IS NULL
-AND r.content IS NULL
-GROUP BY c.name
-ORDER BY dead_count DESC;
-```
-
-Run via Drizzle in a temp script OR via Supabase SQL editor if you have access.
-
-If using a temp script, create `temp/audit.cjs`, run it, then delete it.
-
-Paste the full result table in your report.
-
----
-
-## PART 5 — HTTP STATUS CHECK (LIVE DOMAIN)
-
-```bash
-curl -o /dev/null -s -w "%{http_code}\n" https://googleantigravity.directory/
-curl -o /dev/null -s -w "%{http_code}\n" https://googleantigravity.directory/mcp-servers
-curl -o /dev/null -s -w "%{http_code}\n" https://googleantigravity.directory/tutorials
-curl -o /dev/null -s -w "%{http_code}\n" https://googleantigravity.directory/cheatsheets
-curl -o /dev/null -s -w "%{http_code}\n" https://googleantigravity.directory/advertise
-```
-
-All must return 200.
+1. `temp/task034_sharebar.png` — full view of the ShareBar showing all 5 buttons
+2. `temp/task034_copy_clicked.png` — after clicking "Copy Link", showing "Copied!" state
+3. `temp/task034_sponsor_badge.png` — bottom-right SponsorBadge showing brighter "SPONSORED BY" text
+4. `temp/task034_vercel_green.png` — Vercel deployment showing green
 
 ---
 
 ## DO NOT DO
 
-- Do NOT merge with `--squash` — preserve full commit history
-- Do NOT force-push main
-- Do NOT change any source files in this task
-- Do NOT delete the `feat/ui-cursor-patterns` branch (keep it as backup)
+- Do NOT add rounded-* classes — all buttons must be `rounded-none`
+- Do NOT change anything else in `SponsorBadge.tsx` beyond the one class
+- Do NOT change anything else in `t/[slug]/page.tsx` beyond the two changes above
+- Do NOT commit with `git add -A` — stage only the 3 specified files
 
 ---
 
 ## MANDATORY REPORT FORMAT
 
 ```
-TASK-027 REPORT
+TASK-034 REPORT
 ==============================
 
---- PART 0: PRE-CHECK ---
-main most recent commit: [paste]
-feat/ui-cursor-patterns most recent commit: [paste]
-Files in diff: [count]
+--- CROSS-CHECK ---
+ShareBar grep (t/[slug]/page.tsx): [paste output]
+ShareBar grep (components/): [paste output]
+text-gray-500 grep (SponsorBadge.tsx): [paste output]
 
---- PART 1: MERGE ---
-git merge output: [paste]
-git push output: [paste]
-main after merge (log -3): [paste]
+--- PART 1: ShareBar.tsx ---
+File created: [YES/NO]
+'use client' at line 1: [YES/NO]
+rounded-none on all buttons: [YES/NO]
+Copy Link shows "Copied!" state: [YES/NO]
 
---- PART 2: DEPLOY ---
-Deploy status: [DEPLOYED / PENDING / ERROR]
-Time waited: [X minutes]
+--- PART 2: t/[slug]/page.tsx ---
+ShareBar import added: [YES/NO]
+ShareBar rendered between Tags and BadgeGenerator: [YES/NO]
+Exact changed lines: [paste]
 
---- PART 3: LIVE SITE ---
-Homepage dark background: [YES/NO]
-Homepage resource cards visible: [YES/NO]
-Homepage search dropdown visible: [YES/NO]
-Homepage "ADVERTISE HERE" badge: [YES/NO]
-Homepage no Sign In button: [YES/NO]
----
-Category page sponsor banner: [YES/NO]
-Category page no star ratings on cards: [YES/NO]
----
-Detail page no stats bar: [YES/NO]
-Detail page no rating widget: [YES/NO]
-Detail page 2-cell CitationBlock: [YES/NO]
----
-Tutorials page: [empty / X resources]
-Cheatsheets page: [empty / X resources]
-Advertise page: [loads OK / 404]
+--- PART 3: SponsorBadge.tsx ---
+text-gray-500 → text-gray-400 changed: [YES/NO]
+Exact changed line: [paste]
 
---- PART 4: DB AUDIT ---
-[paste full query result table]
+--- PART 4: BUILD + DEPLOY ---
+Build exit code: [0 / error]
+Build output (last 5 lines): [paste]
+Files staged: [paste — must be exactly 3 files]
+Commit hash: [paste]
+Vercel deploy: [GREEN / ERROR]
 
---- PART 5: HTTP STATUS ---
-/ → [status]
-/mcp-servers → [status]
-/tutorials → [status]
-/cheatsheets → [status]
-/advertise → [status]
-
---- SCREENSHOTS ---
-temp/task027_homepage.png: [YES/NO]
-temp/task027_category.png: [YES/NO]
-temp/task027_detail.png: [YES/NO]
-temp/task027_tutorials.png: [YES/NO]
-temp/task027_cheatsheets.png: [YES/NO]
-temp/task027_advertise.png: [YES/NO]
+--- PART 5: SCREENSHOTS ---
+task034_sharebar.png: [YES/NO]
+task034_copy_clicked.png: [YES/NO]
+task034_sponsor_badge.png: [YES/NO]
+task034_vercel_green.png: [YES/NO]
 
 --- BUGS SPOTTED (do not fix, report only) ---
 1.

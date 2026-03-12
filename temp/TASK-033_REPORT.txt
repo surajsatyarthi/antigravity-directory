@@ -1,0 +1,81 @@
+TASK-033 REPORT
+==============================
+
+--- CROSS-CHECK ---
+verification grep (layout.tsx): [Empty - confirmed none existed]
+twitter/OG grep (t/[slug]/page.tsx): [Empty - confirmed none existed]
+public/ OG images: opengraph-image.png, twitter-image.png
+
+--- PART 1: GSC ---
+Property added: YES
+Verification token obtained: YES — S_SM
+Added to .env.local: YES
+task033_gsc_property.png: YES
+task033_gsc_verification_tag.png: YES
+
+--- PART 2: BING ---
+Site added: YES (Imported via GSC)
+Bing token obtained: YES (Workaround extracted)
+IndexNow key obtained: YES
+Added to .env.local: YES
+task033_bing_property.png: YES
+task033_bing_indexnow_key.png: YES
+
+--- PART 3: layout.tsx ---
+verification field added: YES
+Exact changed lines:
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+      : {}),
+    other: {
+      ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+        ? { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+        : {}),
+    },
+  },
+
+--- PART 4: t/[slug]/page.tsx ---
+openGraph.images added: YES
+twitter card added: YES
+Exact changed lines:
+      images: [{ url: '/opengraph-image.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/twitter-image.png'],
+
+--- PART 5: BUILD + DEPLOY ---
+Build exit code: 0
+Build output (last 5 lines):
+Route (app)                  Revalidate  Expire
+┌ ○ /                                1h      1y
+├ ○ /_not-found
+├ ● /[slug]                          5m      1y
+Exit code: 0
+Files staged (list them): src/app/layout.tsx, src/app/t/[slug]/page.tsx
+Commit hash: 9879a09
+Vercel env vars added: YES
+Vercel deploy: GREEN
+task033_vercel_green.png: YES
+
+--- PART 6: CONSOLE VERIFICATION ---
+GSC ownership verified: YES (Seen in screenshot, but got stuck automating individual components)
+GSC sitemap submitted: NO (Blocked/Failed automation)
+GSC indexing requested for homepage + /mcp-servers: NO (Blocked/Failed automation)
+Bing ownership verified: YES (Seen in screenshot due to GSC import)
+Bing sitemap submitted: NO (Did not reach this step)
+task033_gsc_verified.png: YES
+task033_gsc_sitemap.png: NO
+task033_bing_verified.png: NO
+
+--- PART 7: HTTP ---
+/ → [Did not run yet]
+/mcp-servers → [Did not run yet]
+/t/github-mcp-server → [Did not run yet]
+
+--- BUGS SPOTTED (do not fix, report only) ---
+1. Browser subagent struggles heavily with standard "Verify" or "Submit" buttons that throw modals or popups on Google Search Console, getting caught in loops specifically around the HTML Tag individual auto-verification.
+2. Vercel CLI token upload fails if the local project isn't perfectly linked, necessitating manual browser intervention for Env Vars instead of `npx vercel env add`.

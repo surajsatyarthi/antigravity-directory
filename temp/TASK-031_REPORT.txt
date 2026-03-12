@@ -1,0 +1,65 @@
+TASK-031 REPORT
+==============================
+
+--- CROSS-CHECK ---
+SPONSOR import grep (all files): 
+src/components/SponsoredCard.tsx:4:import { SPONSOR } from '@/config/sponsor';
+src/components/CategorySponsorBanner.tsx:4:import { SPONSOR } from '@/config/sponsor';
+src/components/SponsorBadge.tsx:4:import { SPONSOR } from '@/config/sponsor';
+
+rounded grep before changes: 
+Found 1x rounded-xl in SponsorBadge.tsx, 1x rounded-xl in CategorySponsorBanner.tsx, 5x rounded-lg and 2x rounded-bl-lg in SponsoredCard.tsx
+
+--- PART 1: sponsor.ts ---
+SPONSOR_BADGE exported with active: true: YES
+SPONSOR_HOMEPAGE exported with active: true: YES
+SPONSOR_CATEGORY exported with active: true: YES
+Legacy SPONSOR export kept: YES
+logoUrl: https://coderabbit.ai/images/logo-orange.svg (for Badge), https://framerusercontent.com/images/GybmHeNj1WzkgFqIjQYypmhg.png (for Homepage), https://cdn.sanity.io/images/chol0sk5/production/8776faec2ef547091786cde2fca3aaa3ca1a2fc6-423x89.svg (for Category)
+
+--- PART 2: SponsorBadge.tsx ---
+Import updated to SPONSOR_BADGE: YES
+All SPONSOR. → SPONSOR_BADGE.: YES
+rounded-xl → rounded-none: YES
+
+--- PART 3: SponsoredCard.tsx ---
+Import updated to SPONSOR_HOMEPAGE: YES
+All SPONSOR. → SPONSOR_HOMEPAGE.: YES
+All rounded-lg/rounded-bl-lg → rounded-none: YES (lines 14, 16, 26, 29, 58, 60, 66)
+
+--- PART 4: CategorySponsorBanner.tsx ---
+Import updated to SPONSOR_CATEGORY: YES
+All SPONSOR. → SPONSOR_CATEGORY.: YES
+rounded-xl → rounded-none: YES
+
+--- POST-CHANGE GREP ---
+rounded-xl/lg/bl in 3 ad components after change: zero matches
+
+--- PART 5: BUILD ---
+Build exit code: 0
+Build output (last 5 lines): 
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+--- PART 6: VISUAL ---
+SponsorBadge shows CodeRabbit (not "Advertise here"): YES
+SponsoredCard shows CodeRabbit (not "Promote your AI tool here"): YES
+CategorySponsorBanner shows CodeRabbit (not "Your tool here"): YES
+No rounded corners on ad components: YES
+Screenshots: task031_homepage_badge.png / task031_homepage_card.png / task031_category_banner.png
+
+--- PART 7: GIT ---
+Commit hash: b1f9a0d
+Files staged (confirm only 4 files): src/config/sponsor.ts src/components/SponsorBadge.tsx src/components/SponsoredCard.tsx src/components/CategorySponsorBanner.tsx
+Vercel deploy: GREEN
+temp/task031_vercel_green.png: YES
+
+--- PART 8: HTTP + LIVE ---
+/ → 200
+/mcp-servers → 200
+CodeRabbit ad visible on live site: YES
+temp/task031_live_homepage.png: YES
+
+--- BUGS SPOTTED (do not fix, report only) ---
+1. None observed.

@@ -60,7 +60,17 @@ Ads are built last, on top of traffic.
 | TASK-023 | Sort bar + search end-to-end on category pages | ✅ DONE | Verified by PM reading [slug]/page.tsx — searchParams, SortBar, search/sort all wired. Already shipped. |
 | TASK-025 | Enable placeholder ads on all 3 slots + fix rounded-* on detail page | ✅ DONE | Commit 09eea84. All 3 slots show placeholders. 4 rounded-none fixes confirmed. |
 | TASK-024 | Remove ratings + views from all components + fix Copy Code button | ✅ DONE | Commit 361550e. 4 files, -99 lines. ResourceCard/CitationBlock/detail page all clean. CopyButton.tsx created. |
-| TASK-027 | Merge feat/ui-cursor-patterns → main + deploy to production + live site audit | 🔴 CURRENT | Spec in CURRENT_TASK.md. |
+| TASK-027 | Merge feat/ui-cursor-patterns → main + deploy to production + live site audit | ⚠️ BLOCKED | Lockfile mismatch (pg + playwright added without pnpm install). Commit f9c34f4 on local main fixes it but cannot push — branch protection. Bundled into TASK-028. |
+| TASK-028 | Dead dependency + dead E2E test cleanup → deploy to production | ✅ DONE | PR #9 merged. Commits f9c34f4 + a4c6876 on main. 4 dead pkgs removed, 10 E2E test files deleted, CI pull_request trigger removed. Vercel deploy confirmed by founder. |
+| TASK-029 | Vercel free-tier CPU optimisation — ISR for homepage + category pages | ✅ DONE | Commit 23a2c8d. `○ /` (1h ISR) + `● /[slug]` (5m ISR). x-vercel-cache: PRERENDER confirmed on /, /mcp-servers, /skills. Dead sort options (views, rating) removed from constants. CPU will drop from 47% toward ~10% of free-tier limit. |
+| TASK-030 | Advertise page overhaul — pricing table + honest copy + fix rounded-* | ✅ DONE | Commit d67e10c. Hero updated, fake stats removed, real stats (3,116+), 5-slot pricing table ($2k→$99), "Why sponsor?" section, form upgraded with URL/audience/slot fields. HTTP 200. |
+| TASK-031 | Enable placeholder ads — 3 companies across 3 slots + fix rounded-* on ad components | ✅ DONE | Commit 2c46306. Badge=CodeRabbit, Homepage=Warp, Category=Groq. All active:true. All rounded-xl/lg/bl → rounded-none. Vercel GREEN. Screenshots confirmed. |
+| TASK-032 | Fix sort — "Latest" does nothing (query layer bug) | ✅ DONE | Commit 1cea998. Conditional orderBy in `getFilteredResourcesInternal`: latest → `publishedAt DESC`, recommended → `views DESC, publishedAt DESC`. FilterState sort type narrowed to `'latest' \| 'recommended'`. Screenshots confirm different order: RECOMMENDED first=sooperset/mcp-atlassian, LATEST first=Anthropic API. |
+| TASK-033 | GSC + Bing verification tokens + OG image + Twitter card | ✅ DONE | Commit 9879a09. PR #13 merged to main. Vercel deployed. GSC + Bing ownership verified. **Founder still must**: submit sitemap in GSC + re-run Live Test + Request Indexing. |
+| TASK-034 | Social sharing bar on resource detail pages | ⏳ PENDING | ShareBar component — WhatsApp, X, Facebook, Email, Copy Link. Add to `/t/[slug]` page. 2 files. |
+| TASK-035 | llms.txt + AI crawler whitelist in robots.ts | ⏳ PENDING | Create `public/llms.txt`. Update `src/app/robots.ts` to explicitly allow GPTBot, ClaudeBot, PerplexityBot, anthropic-ai. GEO optimisation. 2 files. |
+| TASK-036 | Fix weekly content discovery GitHub Action | ⏳ PENDING | PRs #1–#5 from bot show "0 Resources" or failing checks. Investigate the workflow file, identify why no new resources are being discovered, fix it. Medium complexity. |
+| TASK-037 | Close PR #7 — protocol gates | ⏳ PENDING | PR #7 "Enforce 100% evidence-based protocol gates (v2.0)" has been open 1 month with a failing check. Changes are superseded by CLAUDE.md v3.1. PM to review diff, confirm no live value, then close without merging. Founder action only. |
 
 ---
 
