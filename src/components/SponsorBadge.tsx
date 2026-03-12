@@ -21,7 +21,7 @@ export function SponsorBadge() {
       href={SPONSOR_BADGE.href}
       target="_blank"
       rel="noopener noreferrer sponsored"
-      className="fixed bottom-24 right-4 sm:top-1/2 sm:bottom-auto sm:-translate-y-1/2 z-40 flex flex-col bg-white/[0.05] border border-white/[0.08] backdrop-blur-sm rounded-none p-3 shadow-xl hover:bg-white/[0.08] transition-all"
+      className="fixed bottom-24 right-4 sm:top-1/2 sm:bottom-auto sm:-translate-y-1/2 z-40 flex flex-col bg-black/80 border border-white/[0.12] rounded-none p-3 shadow-xl hover:bg-black/90 transition-all"
     >
       <span className="text-[9px] font-mono text-gray-500 mb-1.5 uppercase tracking-widest">Sponsored by</span>
       {SPONSOR_BADGE.logoUrl && (
