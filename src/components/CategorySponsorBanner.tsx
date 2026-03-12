@@ -27,9 +27,9 @@ export function CategorySponsorBanner() {
       href={SPONSOR_CATEGORY.href}
       target="_blank"
       rel="noopener noreferrer sponsored"
-      className="group flex items-center gap-4 w-full bg-white/[0.03] border border-white/[0.06] rounded-none px-5 py-3 mb-6 hover:border-white/20 transition-all duration-200"
+      className="group flex items-center gap-4 w-full bg-yellow-500/[0.04] border border-yellow-500/20 rounded-none px-5 py-3 mb-6 hover:border-yellow-500/40 transition-all duration-200"
     >
-      <span className="text-[9px] font-black text-gray-600 uppercase tracking-[0.2em] shrink-0">Sponsored</span>
+      <span className="text-[9px] font-black text-yellow-500/70 uppercase tracking-[0.2em] shrink-0">Sponsored</span>
 
       <div className="w-px h-4 bg-white/[0.08] shrink-0" />
 

@@ -11,10 +11,10 @@ export function SponsoredCard() {
         href={SPONSOR_HOMEPAGE.href}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-white/[0.03] border border-white/[0.06] rounded-none overflow-hidden hover:border-white/20 transition-all duration-300 min-h-[140px]"
+        className="group relative flex flex-col sm:flex-row items-start sm:items-center bg-yellow-500/[0.05] border border-yellow-500/20 rounded-none overflow-hidden hover:border-yellow-500/40 transition-all duration-300 min-h-[140px]"
       >
         <div className="absolute top-0 right-0 z-30 flex items-center px-2 py-1 bg-white/[0.03] border-b border-l border-white/[0.06] rounded-none">
-          <span className="text-[7px] font-black text-gray-600 uppercase tracking-[0.2em]">Sponsored</span>
+          <span className="text-[7px] font-black text-yellow-500/70 uppercase tracking-[0.2em]">Sponsored</span>
         </div>
 
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full p-5 sm:p-4 relative z-10">

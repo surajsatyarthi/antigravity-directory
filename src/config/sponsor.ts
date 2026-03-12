@@ -6,7 +6,7 @@ export const SPONSOR_BADGE = {
   active: true,
   name: 'CodeRabbit',
   tagline: 'Cut code review time & bugs in half',
-  logoUrl: 'https://coderabbit.ai/images/logo-orange.svg',
+  logoUrl: 'https://coderabbit.ai/images/CR_mark_orange.svg',
   href: 'https://coderabbit.ai',
   description: 'AI code reviews for every pull request. Instant analysis, 1-click fixes, fully customizable.',
 };
