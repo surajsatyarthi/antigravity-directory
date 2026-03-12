@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Antigravity Directory",
     default: "Antigravity Directory | MCP Servers, Rules & Prompts",
   },
-  description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
+  description: "The #1 free directory for Google Antigravity IDE. Browse 3,116+ MCP servers, skills, rules, prompts and workflows — all free, no login required.",
   keywords: ["google antigravity", "antigravity ide", "mcp servers", "antigravity rules", "gemini 3", "ai coding", "agentic development", "antigravity prompts", "mcp directory"],
   icons: {
     icon: "/favicon.ico",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Antigravity Directory",
-    description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
+    description: "The #1 free directory for Google Antigravity IDE. Browse 3,116+ MCP servers, skills, rules, prompts and workflows — all free, no login required.",
     url: "https://googleantigravity.directory",
     siteName: "Google Antigravity Directory",
     images: [
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Antigravity Directory | AI Intelligence Hub",
-    description: "The complete resource hub for Google Antigravity IDE. Discover 500+ curated MCP servers, coding rules, and prompts for Gemini 3-powered agentic development.",
+    title: "Antigravity Directory — MCP Servers, Skills, Rules & Prompts",
+    description: "The #1 free directory for Google Antigravity IDE. Browse 3,116+ MCP servers, skills, rules, prompts and workflows — all free, no login required.",
     images: ["/twitter-image.png"],
   },
   alternates: {
