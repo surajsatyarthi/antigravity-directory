@@ -23,12 +23,11 @@ export function SponsorBadge() {
       rel="noopener noreferrer sponsored"
       className="fixed bottom-24 right-4 sm:top-1/2 sm:bottom-auto sm:-translate-y-1/2 z-40 flex flex-col bg-white/[0.05] border border-white/[0.08] backdrop-blur-sm rounded-none p-3 shadow-xl hover:bg-white/[0.08] transition-all"
     >
-      <span className="text-[9px] font-mono text-white mb-1.5 uppercase tracking-widest">Sponsored by</span>
-      {SPONSOR_BADGE.logoUrl ? (
-        <img src={SPONSOR_BADGE.logoUrl} alt={SPONSOR_BADGE.name} className="h-[18px] w-auto" />
-      ) : (
-        <span className="text-xs font-bold text-white">{SPONSOR_BADGE.name}</span>
+      <span className="text-[9px] font-mono text-gray-500 mb-1.5 uppercase tracking-widest">Sponsored by</span>
+      {SPONSOR_BADGE.logoUrl && (
+        <img src={SPONSOR_BADGE.logoUrl} alt={SPONSOR_BADGE.name} className="h-[18px] w-auto mb-1" />
       )}
+      <span className="text-[11px] font-bold text-white leading-none">{SPONSOR_BADGE.name}</span>
     </a>
   );
 }
