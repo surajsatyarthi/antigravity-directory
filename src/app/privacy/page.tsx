@@ -9,7 +9,7 @@ export default function PrivacyPage() {
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         {/* Header */}
         <Link href="/" className="inline-flex items-center gap-3 mb-12 group">
-          <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center group-hover:bg-gray-200 transition-all">
+          <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center group-hover:bg-gray-200 transition-all">
             <Zap className="w-6 h-6 text-black fill-black" />
           </div>
           <h1 className="text-xl font-black tracking-tighter text-white lowercase font-mono">
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
         </Link>
 
         {/* Content */}
-        <div className="bg-[#0A0A0A] border border-gray-900 rounded-[32px] p-8 md:p-12">
+        <div className="bg-[#0A0A0A] border border-gray-900 rounded-none p-8 md:p-12">
           <h1 className="text-4xl font-black tracking-tighter text-white mb-2">Privacy Policy</h1>
           <p className="text-gray-500 text-sm font-mono mb-12">Last updated: January 10, 2026</p>
 

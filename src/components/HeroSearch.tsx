@@ -10,14 +10,14 @@ export function HeroSearch() {
       <div className="absolute top-0 left-1/4 w-[300px] h-[300px] bg-purple-500/5 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-slate-200 mb-8 animate-fade-in">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 animate-fade-in">
           <Zap className="w-3 h-3 text-blue-400 fill-blue-400" />
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-            500+ Curated Resources
+            3,116+ Resources
           </span>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-[1.05] premium-text-glow">
+        <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-[1.05] premium-text-glow">
           Discover <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-500">Antigravity</span> Resources
         </h1>
         
@@ -26,7 +26,7 @@ export function HeroSearch() {
         </p>
 
         <div className="max-w-3xl mx-auto">
-          <Suspense fallback={<div className="h-16 w-full bg-white/[0.03] rounded-2xl animate-pulse" />}>
+          <Suspense fallback={<div className="h-16 w-full bg-white/[0.03] rounded-none animate-pulse" />}>
             <SearchInput variant="hero" placeholder="Search for 'gmail mcp', 'tailwind rules', 'agent workflows'..." />
           </Suspense>
         </div>
@@ -36,7 +36,7 @@ export function HeroSearch() {
           {['Gmail MCP', 'Tailwind Rules', 'SQL Workflows', 'Prompt Samples'].map((tag) => (
             <button
               key={tag}
-              className="px-3 py-1.5 rounded-md bg-white/[0.02] border border-slate-200 text-[10px] font-bold hover:text-slate-900 hover:bg-slate-100 transition-all"
+              className="px-3 py-1.5 rounded-none bg-white/[0.02] border border-white/[0.08] text-[10px] font-bold hover:text-white hover:bg-white/[0.08] transition-all"
             >
               {tag}
             </button>

@@ -39,7 +39,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
     }
   }
 
-  const inputClasses = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-base text-white placeholder:text-gray-600 focus:border-white/30 transition-all outline-none font-medium";
+  const inputClasses = "w-full bg-white/5 border border-white/10 rounded-none px-4 py-3.5 text-base text-white placeholder:text-gray-600 focus:border-white/30 transition-all outline-none font-medium";
   const labelClasses = "block text-xs uppercase tracking-[0.15em] font-black text-gray-500 mb-2 ml-1";
 
   return (
@@ -53,9 +53,9 @@ export function SubmitForm({ categories }: SubmitFormProps) {
         </p>
       </div>
 
-      <div className="bg-white/[0.03] border border-white/[0.06] rounded-3xl p-8">
+      <div className="bg-white/[0.03] border border-white/[0.06] rounded-none p-8">
         {message && (
-          <div className={`mb-8 p-4 rounded-xl flex items-center gap-3 text-sm font-bold border ${
+          <div className={`mb-8 p-4 rounded-none flex items-center gap-3 text-sm font-bold border ${
             message.type === 'success'
               ? 'bg-emerald-500/5 text-emerald-400 border-emerald-500/20'
               : 'bg-red-500/5 text-red-400 border-red-500/20'
@@ -105,7 +105,7 @@ export function SubmitForm({ categories }: SubmitFormProps) {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full py-4 bg-white hover:bg-gray-100 text-black font-black rounded-xl transition-all uppercase tracking-[0.15em] text-xs flex items-center justify-center gap-3"
+              className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-none transition-all uppercase tracking-[0.15em] text-xs flex items-center justify-center gap-3"
             >
               {isPending ? (
                 <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />

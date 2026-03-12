@@ -237,7 +237,6 @@ export default async function ResourceDetailPage({
                 ) : (
                   <div className="inline-flex flex-col items-center justify-center gap-1 px-8 py-4 bg-gray-900 text-gray-500 font-bold rounded-none border border-white/5 text-center min-w-[200px] cursor-not-allowed">
                     <span className="text-xs">URL Not Available</span>
-                    <span className="text-[10px] font-normal text-gray-600">Contact owner to claim</span>
                   </div>
                 )}
 
