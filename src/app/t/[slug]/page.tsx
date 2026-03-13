@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ExternalLink, ArrowLeft, ChevronRight } from 'lucide-react';
 import { db } from '@/lib/db';
 import { resources, categories, tags, resourceTags, users } from '@/drizzle/schema';
-import { eq, and, sql } from 'drizzle-orm';
+import { eq, and, sql, ne } from 'drizzle-orm';
 import { Header } from '@/components/Header';
 import { CitationBlock } from '@/components/CitationBlock';
 import { BadgeGenerator } from '@/components/BadgeGenerator';
@@ -102,6 +102,36 @@ export default async function ResourceDetailPage({
     .leftJoin(tags, eq(resourceTags.tagId, tags.id))
     .where(eq(resourceTags.resourceId, resource.id));
 
+  // Related resources — tag overlap DESC, publishedAt fallback, same category, exclude self, LIVE only
+  const relatedResources = await db
+    .select({
+      title: resources.title,
+      slug: resources.slug,
+      description: resources.description,
+      categoryName: categories.name,
+      categorySlug: categories.slug,
+    })
+    .from(resources)
+    .leftJoin(categories, eq(resources.categoryId, categories.id))
+    .where(
+      and(
+        eq(categories.slug, resource.categorySlug ?? ''),
+        eq(resources.status, 'LIVE'),
+        ne(resources.id, resource.id)
+      )
+    )
+    .orderBy(
+      sql`(
+        SELECT COUNT(*) FROM resource_tags rt2
+        WHERE rt2.resource_id = ${resources.id}
+        AND rt2.tag_id IN (
+          SELECT tag_id FROM resource_tags WHERE resource_id = ${resource.id}
+        )
+      ) DESC NULLS LAST`,
+      sql`${resources.publishedAt} DESC NULLS LAST`
+    )
+    .limit(3);
+
 
   const softwareAppJsonLd = {
     "@context": "https://schema.org",
@@ -187,6 +217,12 @@ export default async function ResourceDetailPage({
                 <p className="text-lg text-gray-400 leading-relaxed font-medium">
                   {resource.description}
                 </p>
+                
+                {/* Social Sharing */}
+                <ShareBar
+                  url={`https://googleantigravity.directory/t/${resource.slug}`}
+                  title={resource.title}
+                />
               </div>
               
               <div className="flex flex-col gap-3 shrink-0">
@@ -253,11 +289,41 @@ export default async function ResourceDetailPage({
               </div>
             )}
 
-            {/* Social Sharing */}
-            <ShareBar
-              url={`https://googleantigravity.directory/t/${resource.slug}`}
-              title={resource.title}
-            />
+            {/* Related Resources */}
+            {relatedResources.length > 0 && (
+              <div className="mb-12">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-sm font-bold text-gray-500 uppercase tracking-widest font-mono">
+                    More {resource.categoryName}
+                  </h2>
+                  <Link
+                    href={`/${resource.categorySlug || ''}`}
+                    className="text-xs text-blue-400 hover:text-blue-300 transition-colors font-mono"
+                  >
+                    View all →
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {relatedResources.map((related) => (
+                    <Link
+                      key={related.slug}
+                      href={`/t/${related.slug}`}
+                      className="block p-4 bg-white/[0.03] border border-white/[0.06] rounded-none hover:border-blue-500/40 transition-colors group"
+                    >
+                      <div className="text-xs font-mono text-blue-500 uppercase tracking-widest mb-2">
+                        {related.categoryName}
+                      </div>
+                      <h3 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors mb-2 leading-snug">
+                        {related.title}
+                      </h3>
+                      <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
+                        {related.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Badge Flywheel Section */}
             <BadgeGenerator 

@@ -31,6 +31,7 @@ If the spec references a field (views, ratings, copiedCount, githubStars, etc.) 
 | Featured/Sponsored ribbon on ResourceCard | `src/components/ResourceCard.tsx` line 36 | Shown when `resource.featured = true` |
 | CitationBlock | `src/app/t/[slug]/page.tsx` line 247 | Shows title, description, category, verified |
 | ShareBar | `src/app/t/[slug]/page.tsx` line 291 | Active social sharing |
+| Related resources section | `src/app/t/[slug]/page.tsx` | 3 same-category resources ordered by tag overlap. Conditional — hidden if 0 related exist. |
 | /tools pages (static utilities) | `src/app/tools/*.tsx` | Static client-side tools (Token Counter, ROI Calc etc.). DO NOT use the `tools` DB table — completely separate |
 
 ---
@@ -120,7 +121,6 @@ If the spec references a field (views, ratings, copiedCount, githubStars, etc.) 
 |---|---|---|
 | "Was this helpful?" vote button | TASK-058 | None — next task after TASK-057 |
 | aggregateRating JSON-LD | Post-TASK-058 | Requires real vote data first |
-| Related resources section | TASK-045 | None |
 | IndexNow auto-ping | TASK-048 | None |
 | Decision-making filters | TASK-051 | Requires TASK-050 data enrichment |
 | Combination pages | TASK-054 | Requires TASK-050 data enrichment |
