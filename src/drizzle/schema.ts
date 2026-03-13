@@ -339,10 +339,7 @@ export const userResourceAccess = pgTable('user_resource_access', {
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   resources: many(resources),
-  ratings: many(ratings),
   submissions: many(submissions),
-  bookmarks: many(bookmarks),
-  payments: many(payments),
 }));
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
@@ -358,22 +355,9 @@ export const resourcesRelations = relations(resources, ({ one, many }) => ({
     fields: [resources.authorId],
     references: [users.id],
   }),
-  ratings: many(ratings),
   resourceTags: many(resourceTags),
-  bookmarks: many(bookmarks),
-  payments: many(payments),
 }));
 
-export const ratingsRelations = relations(ratings, ({ one }) => ({
-  resource: one(resources, {
-    fields: [ratings.resourceId],
-    references: [resources.id],
-  }),
-  user: one(users, {
-    fields: [ratings.userId],
-    references: [users.id],
-  }),
-}));
 
 export const tagsRelations = relations(tags, ({ many }) => ({
   resourceTags: many(resourceTags),
@@ -394,58 +378,6 @@ export const submissionsRelations = relations(submissions, ({ one }) => ({
   user: one(users, {
     fields: [submissions.userId],
     references: [users.id],
-  }),
-}));
-
-export const bookmarksRelations = relations(bookmarks, ({ one }) => ({
-  user: one(users, {
-    fields: [bookmarks.userId],
-    references: [users.id],
-  }),
-  resource: one(resources, {
-    fields: [bookmarks.resourceId],
-    references: [resources.id],
-  }),
-}));
-
-export const paymentsRelations = relations(payments, ({ one }) => ({
-  user: one(users, {
-    fields: [payments.userId],
-    references: [users.id],
-  }),
-  resource: one(resources, {
-    fields: [payments.resourceId],
-    references: [resources.id],
-  }),
-}));
-
-export const purchasesRelations = relations(purchases, ({ one }) => ({
-  resource: one(resources, {
-    fields: [purchases.resourceId],
-    references: [resources.id],
-  }),
-  buyer: one(users, {
-    fields: [purchases.buyerId],
-    references: [users.id],
-  }),
-  creator: one(users, {
-    fields: [purchases.creatorId],
-    references: [users.id],
-  }),
-}));
-
-export const userResourceAccessRelations = relations(userResourceAccess, ({ one }) => ({
-  user: one(users, {
-    fields: [userResourceAccess.userId],
-    references: [users.id],
-  }),
-  resource: one(resources, {
-    fields: [userResourceAccess.resourceId],
-    references: [resources.id],
-  }),
-  purchase: one(purchases, {
-    fields: [userResourceAccess.purchaseId],
-    references: [purchases.id],
   }),
 }));
 
@@ -472,20 +404,6 @@ export const payoutRequests = pgTable('payout_requests', {
   statusIdx: index('payout_requests_status_idx').on(table.status),
   requestedAtIdx: index('payout_requests_requested_at_idx').on(table.requestedAt),
   adminIdIdx: index('payout_requests_admin_id_idx').on(table.adminId),
-}));
-
-export const creatorEarningsRelations = relations(creatorEarnings, ({ one }) => ({
-  user: one(users, {
-    fields: [creatorEarnings.userId],
-    references: [users.id],
-  }),
-}));
-
-export const payoutRequestsRelations = relations(payoutRequests, ({ one }) => ({
-  creator: one(users, {
-    fields: [payoutRequests.creatorId],
-    references: [users.id],
-  }),
 }));
 
 

@@ -91,11 +91,11 @@ Ads are built last, on top of traffic.
 | TASK-054 | Combination pages — /category/[slug]/[use-case-slug] | ⏳ PENDING (Phase 2) | 10 categories × 20-30 use-case tags = 200-300 new indexable URLs. Google cannot index JS filters — needs dedicated pages. Requires TASK-053 audit first. |
 | TASK-055 | Comparison pages — "Antigravity IDE vs Cursor/Cline/Windsurf" | ⏳ PENDING (Phase 2) | Editorial pages targeting 200-500 searches/month each. High sponsor-attractiveness. |
 | TASK-056 | SEO research validation — Antigravity independent audit | ✅ DONE | All 8 findings verified. Key closures: S3 anchor text (sr-only IS descriptive — no fix needed), S4 sitemap lastmod (already uses updatedAt — no fix needed), S19 passage ranking (CSS truncation only — no fix needed). Key findings: avgRating+ratingCount already in queries.ts pattern; ratings table has real 1-5 data; SearchAction deprecated Nov 2024; G4 (Gemini citation) = SSR + information density + schema validation + semantic proximity. Report: TASK-056_report.md |
-| TASK-057 | Schema cleanup — FAQPage removal + SearchAction removal | ⏳ PENDING | 2 JSON-LD removals. aggregateRating DROPPED from scope — rating UI removed in TASK-024, ratings table empty, proxy data = misleading schema risk. Fix 1: remove dead FAQPage from 3,116 detail pages. Fix 2: remove deprecated SearchAction from homepage WebSite schema. |
-| TASK-057 | Schema cleanup + badge fix — FAQPage removal + SearchAction removal + BadgeGenerator fake stats | ⏳ PENDING | 3 fixes. Fix 3 added 2026-03-13 after PM full codebase audit found BadgeGenerator showing hardcoded "👁 1.2k • ★ 4.9" on every resource detail page. Badge should only say "Listed on Antigravity Directory". |
+| TASK-057 | Schema cleanup + badge fix — FAQPage removal + SearchAction removal + BadgeGenerator fake stats | ✅ DONE | Commit 9d42f1f. 3 fixes: FAQPage gone from 3,116 detail pages, SearchAction gone from homepage WebSite schema, BadgeGenerator now says "Listed on Antigravity Directory" (no fake stats). Badge API simplified — only selects title, no ratings join. Build + lint exit 0. |
 | TASK-058 | Minimal "Was this helpful?" vote on resource detail pages | ⏳ PENDING | Prerequisite for legitimate aggregateRating schema. Vote button UI + API + visible count. Once real ratings exist, aggregateRating can be added cleanly. |
 | TASK-059 | Marketplace dead code counter-analysis — READ ONLY, no deletions | ⏳ PENDING | Antigravity reads EVERY file in src/ and cross-references schema tables → queries → app routes → components. Reports ALL files, functions, tables, and components with no active public-facing consumer. PM reviews and approves deletion list, then writes TASK-060. PM initial findings: 9 dead DB tables, 5 dead query functions, comparison.ts dead utility. Antigravity must find anything PM missed. |
 | TASK-060 | Marketplace dead code deletion — execute TASK-059 approved list | ⏳ PENDING (blocked on TASK-059) | Deletes all marketplace-era dead code confirmed by TASK-059 counter-analysis. No deletions until PM approves the full list. |
+| TASK-061 | Reddit + Twitter/X posting strategy | ⏳ PENDING (do NOT start until SEO cleanup complete) | Reddit bans accounts for self-promotion without community history. Strategy must cover: subreddit mapping (which subs, which rules), comment-first warmup period before any link posting, content formats that provide value not promotion, Twitter content cadence. No posting until strategy is written and approved by founder. Accounts: @AntigravityIDE (Twitter), u/antigravityIDE (Reddit). |
 
 ---
 
@@ -262,6 +262,19 @@ Fix A: text-white H2 "Browse by Category". Fix B: "10 categories · 3,100+ free 
 - bg-black page background ✅
 - Screenshot: H1 ABOUT visible, all 4 sections, email link in blue, dark background, footer renders below ✅
 - Build exit 0 ✅, Lint exit 0 ✅, HTTP 200 ✅
+
+---
+
+### TASK-057 — Schema cleanup + badge fix
+**Status**: ✅ DONE | **Date**: 2026-03-13 | **Commit**: 9d42f1f
+**Files changed**: `src/app/t/[slug]/page.tsx`, `src/app/page.tsx`, `src/components/BadgeGenerator.tsx`, `src/app/api/badges/[slug]/route.ts`
+**PM verification** (read all 4 files):
+- Fix 1: `faqJsonLd` variable gone. Only softwareAppJsonLd + breadcrumbJsonLd scripts remain ✅
+- Fix 2: WebSite schema lines 93-104 — no `potentialAction`, clean 4-field object ✅
+- Fix 3a: BadgeGenerator.tsx line 54 — "Listed on Antigravity Directory", stats span deleted ✅
+- Fix 3b: Badge API — only selects `title`, no ratings join, no formatNumber/viewsText/ratingText/statsLine, single `<text y="30">` ✅
+- Build exit 0, lint exit 0 ✅
+**Minor residual** (logged for TASK-059): `route.ts` line 2 still imports `ratings` and `sql` — both now unused. Lint passed (project config does not error on unused imports). Will be cleaned in marketplace dead code sweep.
 
 ---
 

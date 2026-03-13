@@ -7,7 +7,9 @@
 
 ## THE ONE CONSTRAINT
 
-Zero budget. Social accounts created 2026-03-13 (Reddit + Twitter/X). One founder with a day job.
+Zero budget. Social accounts created 2026-03-13. One founder with a day job.
+- Twitter/X: @AntigravityIDE — https://x.com/AntigravityIDE
+- Reddit: u/antigravityIDE — https://www.reddit.com/user/antigravityIDE/
 
 Every tactic in this plan costs nothing and can be done in under 2 hours.
 
