@@ -38,6 +38,7 @@ export function CategorySponsorBanner() {
           src={SPONSOR_CATEGORY.logoUrl}
           alt={SPONSOR_CATEGORY.name}
           className="h-5 w-auto object-contain shrink-0"
+          style={SPONSOR_CATEGORY.logoFilter ? { filter: SPONSOR_CATEGORY.logoFilter } : undefined}
         />
       )}
 
