@@ -1,301 +1,199 @@
-# CURRENT TASK — TASK-034: Social Sharing Bar + SponsorBadge Text Fix
+# CURRENT TASK — TASK-057: Schema Cleanup + Badge Fix (3 fixes)
 **Assigned by**: Claude Code (PM)
-**Date**: 2026-03-11
-**Priority**: HIGH — social sharing drives organic traffic + virality. Each resource share = a backlink signal.
+**Date**: 2026-03-13
+**Branch**: fix/post-audit-cleanup (current branch)
 
 ---
 
-## CONTEXT
+## WHY THIS TASK EXISTS
 
-Add a social sharing bar to every resource detail page (`/t/[slug]`).
-Also fix the "SPONSORED BY" text colour in `SponsorBadge.tsx` — currently `text-gray-500` (too dim on dark bg).
+TASK-056 SEO audit identified dead/deprecated schema on two pages. Fix 3 was added after PM full codebase audit (2026-03-13) found the BadgeGenerator is showing hardcoded fake stats on every resource detail page.
 
-Channels: **WhatsApp, X (Twitter), Facebook, Email, Copy Link**.
-
----
-
-## FILES TO CHANGE — 3 FILES ONLY
-
-1. `src/components/ShareBar.tsx` — CREATE NEW
-2. `src/app/t/[slug]/page.tsx` — add import + render ShareBar
-3. `src/components/SponsorBadge.tsx` — fix one class: `text-gray-500` → `text-gray-400`
-
-**DO NOT touch any other file.**
+**Note on aggregateRating**: Originally planned as Fix 1. REMOVED from this task. Rating UI was removed in TASK-024 (commit 361550e). No user can submit ratings. Ratings table will be empty. Adding aggregateRating schema without real visible ratings = misleading structured data = Google ignores or flags it. Will be addressed separately once a real signal mechanism exists (TASK-058).
 
 ---
 
-## MANDATORY CROSS-CHECK BEFORE TOUCHING ANYTHING
+## FEATURE STATE CHECK (PM Rule 10)
 
-```bash
-grep -n "ShareBar" src/app/t/\[slug\]/page.tsx
-grep -rn "ShareBar" src/components/
-grep -n "text-gray-500" src/components/SponsorBadge.tsx
-```
-
-Expected readings:
-- `ShareBar` grep: zero results in both (component does not exist yet) — confirmed by PM
-- `SponsorBadge.tsx`: line 26 has `text-gray-500` on the "Sponsored by" span — confirmed by PM reading the file
-
-If readings differ — STOP and report to PM.
+Fields referenced in this task — verified against `docs/FEATURE_STATE.md`:
+- `faqJsonLd` — schema variable in `src/app/t/[slug]/page.tsx` lines 122-151. No UI feature depends on it. Safe to delete.
+- `potentialAction` / `SearchAction` — inside WebSite JSON-LD in `src/app/page.tsx` lines 102-109. No UI feature depends on it. Safe to delete.
+- `views` / `avgRating` — used in badge API. BACKEND-ONLY (views=0, ratings table empty). Badge should NOT reference them. Removing from SVG is correct.
 
 ---
 
 ## PM VERIFIED CONTENT
 
-### `src/app/t/[slug]/page.tsx` (PM read full file)
+### Fix 1 — FAQPage dead schema (resource detail pages)
 
-Current imports end at line 12:
-```typescript
-import { CopyButton } from '@/components/CopyButton';
+**File**: `src/app/t/[slug]/page.tsx`
+
+PM read lines 122-151: `faqJsonLd` variable defined. Three fake Q&A pairs hardcoded.
+PM read lines 185-188: script tag outputs it.
+
+```tsx
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
+/>
 ```
-ShareBar import goes on line 13, immediately after:
-```typescript
-import { ShareBar } from '@/components/ShareBar';
-```
 
-ShareBar renders between the Tags block and BadgeGenerator. PM verified:
-- Line 277–288: Tags block — closes with `</div>` after the tags map
-- Line 291: `<BadgeGenerator slug={resource.slug} title={resource.title} />`
-- ShareBar inserts between line 288 and line 291
-
-The resource data available at render time:
-- `resource.title` — string, the resource title
-- `resource.slug` — string, used to build the canonical URL: `https://googleantigravity.directory/t/${resource.slug}`
-
-### `src/components/SponsorBadge.tsx` (PM read full file)
-
-Line 26 exact content:
-```typescript
-<span className="text-[9px] font-mono text-gray-500 mb-1.5 uppercase tracking-widest">Sponsored by</span>
-```
-Fix: `text-gray-500` → `text-gray-400`. One word change. Nothing else.
+**Why remove**: FAQPage rich results restricted to gov/health sites since 2023. Generates GSC structured data warnings across 3,116 pages. Zero SEO value.
 
 ---
 
-## PART 1 — CREATE `src/components/ShareBar.tsx`
+### Fix 2 — SearchAction deprecated (homepage)
 
-Create new file. Full implementation:
+**File**: `src/app/page.tsx`
 
-```typescript
-'use client';
+PM read lines 93-112. Contains `potentialAction` block with `SearchAction`.
 
-import { useState } from 'react';
-import { Link } from 'lucide-react';
+**Why remove potentialAction only**: Google deprecated Sitelinks Search Box November 2024. `WebSite` schema itself must stay — Google uses it for site name recognition in SERP.
 
-interface ShareBarProps {
-  url: string;
-  title: string;
-}
-
-export function ShareBar({ url, title }: ShareBarProps) {
-  const [copied, setCopied] = useState(false);
-
-  const encodedUrl = encodeURIComponent(url);
-  const encodedTitle = encodeURIComponent(title);
-
-  const shares = [
-    {
-      label: 'WhatsApp',
-      href: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
-    },
-    {
-      label: 'X',
-      href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
-    },
-    {
-      label: 'Facebook',
-      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-    },
-    {
-      label: 'Email',
-      href: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
-    },
-  ];
-
-  function handleCopy() {
-    navigator.clipboard.writeText(url).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  }
-
-  return (
-    <div className="mb-12 flex flex-wrap items-center gap-3">
-      <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest mr-2">
-        Share
-      </span>
-
-      {shares.map(({ label, href }) => (
-        <a
-          key={label}
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-4 py-2 bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-gray-400 hover:text-white hover:border-white/20 transition-all rounded-none"
-        >
-          {label}
-        </a>
-      ))}
-
-      <button
-        onClick={handleCopy}
-        className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-gray-400 hover:text-white hover:border-white/20 transition-all rounded-none"
-      >
-        <Link className="w-3 h-3" />
-        {copied ? 'Copied!' : 'Copy Link'}
-      </button>
-    </div>
-  );
+**After fix**, the script tag must contain only:
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Antigravity Directory",
+  "url": "https://googleantigravity.directory",
+  "description": "The #1 resource directory for Google Antigravity IDE"
 }
 ```
 
 ---
 
-## PART 2 — EDIT `src/app/t/[slug]/page.tsx`
+### Fix 3 — BadgeGenerator fake stats (resource detail pages)
 
-**Change 1 — add import on line 13** (after the CopyButton import):
+**Files**: `src/components/BadgeGenerator.tsx` AND `src/app/api/badges/[slug]/route.ts`
 
-Old:
-```typescript
-import { CopyButton } from '@/components/CopyButton';
+**PM read BadgeGenerator.tsx lines 53-59:**
+```tsx
+<span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Featured on Antigravity</span>
+<span className="text-[13px] font-bold text-white font-sans flex items-center gap-1.5">
+   <span>👁 1.2k</span>
+   <span className="text-slate-600">•</span>
+   <span>★ 4.9</span>
+</span>
 ```
+These numbers are hardcoded. Not real data. Every resource page shows "👁 1.2k • ★ 4.9" to authors.
 
-New:
-```typescript
-import { CopyButton } from '@/components/CopyButton';
-import { ShareBar } from '@/components/ShareBar';
+**PM read badge API route.ts lines 37-39:**
+```ts
+const viewsText = formatNumber(data.views);
+const ratingText = Number(data.avgRating).toFixed(1);
+const statsLine = `👁 ${viewsText} • ★ ${ratingText}`;
 ```
+Actual badge SVG served to external embeds shows "👁 0 • ★ 0.0" for all resources because views=0 and ratings table is empty.
 
-**Change 2 — insert ShareBar between Tags block and BadgeGenerator:**
+**Founder direction**: Badge should only say "Listed on Antigravity Directory". No stats.
 
-Old (lines 288–295):
-```typescript
-            )}
+**After fix — BadgeGenerator.tsx preview:**
+- Change text from "Featured on Antigravity" → "Listed on Antigravity Directory"
+- Delete the entire stats span block (both the emoji spans and their parent)
+- Keep lightning bolt logo, keep embed code logic, keep heading and description
 
-
-            {/* Badge Flywheel Section */}
-            <BadgeGenerator
-              slug={resource.slug}
-              title={resource.title}
-            />
-```
-
-New:
-```typescript
-            )}
-
-            {/* Social Sharing */}
-            <ShareBar
-              url={`https://googleantigravity.directory/t/${resource.slug}`}
-              title={resource.title}
-            />
-
-            {/* Badge Flywheel Section */}
-            <BadgeGenerator
-              slug={resource.slug}
-              title={resource.title}
-            />
-```
-
-No other changes to this file.
+**After fix — badge API SVG:**
+- Remove `formatNumber` function entirely
+- Remove `viewsText`, `ratingText`, `statsLine` variables
+- Remove DB join with `ratings` table — only select `title` from `resources`
+- Change SVG `<text>` content from "Featured on Antigravity" → "Listed on Antigravity Directory"
+- Remove the second `<text>` element (was rendering statsLine)
+- Set the remaining `<text>` element `y="30"` to vertically centre in 50px badge
+- Keep gradient, logo path, border rect, 200×50 dimensions
 
 ---
 
-## PART 3 — EDIT `src/components/SponsorBadge.tsx`
+## IMPLEMENTATION INSTRUCTIONS
 
-Line 26 only. Change one class:
+### Fix 1 — Remove FAQPage (`src/app/t/[slug]/page.tsx`)
+1. Delete `faqJsonLd` variable definition (lines 122-151)
+2. Delete script tag that outputs it (lines 185-188)
+3. Do NOT touch SoftwareApplication schema or BreadcrumbList schema
 
-Old:
-```typescript
-      <span className="text-[9px] font-mono text-gray-500 mb-1.5 uppercase tracking-widest">Sponsored by</span>
-```
+### Fix 2 — Remove SearchAction (`src/app/page.tsx`)
+Remove only the `potentialAction` object from the WebSite JSON. Keep `@context`, `@type`, `name`, `url`, `description`. Do not touch anything else.
 
-New:
-```typescript
-      <span className="text-[9px] font-mono text-gray-400 mb-1.5 uppercase tracking-widest">Sponsored by</span>
-```
+### Fix 3 — Fix BadgeGenerator
 
-Nothing else changes in this file.
+**BadgeGenerator.tsx:**
+1. Change preview header text: "Featured on Antigravity" → "Listed on Antigravity Directory"
+2. Delete the entire stats span block (👁 1.2k • ★ 4.9 and parent)
+3. Do not change embed code logic, heading, description, or copy button
 
----
-
-## PART 4 — BUILD + COMMIT + DEPLOY
-
-```bash
-npm run build
-```
-
-Must exit 0.
-
-```bash
-git add src/components/ShareBar.tsx src/app/t/\[slug\]/page.tsx src/components/SponsorBadge.tsx
-git commit -m "feat(sharing): add ShareBar to resource detail pages + fix SponsorBadge text colour"
-git push origin main
-```
-
-Wait for Vercel GREEN.
+**badge API route.ts:**
+1. Remove `formatNumber` function
+2. Remove `viewsText`, `ratingText`, `statsLine` variables
+3. Remove `views`, `avgRating`, `ratingCount` from DB select — only keep `title`
+4. Remove `.leftJoin(ratings, ...)` — no longer needed
+5. In SVG: change first `<text>` content to "Listed on Antigravity Directory"
+6. In SVG: delete the second `<text>` element (statsLine)
+7. Set remaining `<text>` element `y="30"` for vertical centering
+8. Keep gradient, logo, border, 200×50 dimensions
 
 ---
 
-## PART 5 — SCREENSHOTS
+## MANDATORY CROSS-CHECK
 
-Using automated browser, navigate to any resource detail page (e.g. `https://googleantigravity.directory/t/github-mcp-server`) and take:
+Before implementing, Antigravity must confirm:
 
-1. `temp/task034_sharebar.png` — full view of the ShareBar showing all 5 buttons
-2. `temp/task034_copy_clicked.png` — after clicking "Copy Link", showing "Copied!" state
-3. `temp/task034_sponsor_badge.png` — bottom-right SponsorBadge showing brighter "SPONSORED BY" text
-4. `temp/task034_vercel_green.png` — Vercel deployment showing green
+1. Read `src/app/t/[slug]/page.tsx` lines 122-151 — does `faqJsonLd` have three fake Q&A pairs?
+2. Read lines 185-188 of same file — is FAQPage script tag present?
+3. Read `src/app/page.tsx` lines 93-112 — does WebSite + SearchAction block match?
+4. Read `src/components/BadgeGenerator.tsx` lines 53-59 — hardcoded "👁 1.2k • ★ 4.9" present?
+5. Read `src/app/api/badges/[slug]/route.ts` lines 37-39 — `viewsText`, `ratingText`, `statsLine` present?
 
----
-
-## DO NOT DO
-
-- Do NOT add rounded-* classes — all buttons must be `rounded-none`
-- Do NOT change anything else in `SponsorBadge.tsx` beyond the one class
-- Do NOT change anything else in `t/[slug]/page.tsx` beyond the two changes above
-- Do NOT commit with `git add -A` — stage only the 3 specified files
+If ANY reading does not match — STOP and report. Do not implement until PM confirms.
 
 ---
 
 ## MANDATORY REPORT FORMAT
 
 ```
-TASK-034 REPORT
-==============================
+TASK-057 IMPLEMENTATION REPORT
+================================
 
---- CROSS-CHECK ---
-ShareBar grep (t/[slug]/page.tsx): [paste output]
-ShareBar grep (components/): [paste output]
-text-gray-500 grep (SponsorBadge.tsx): [paste output]
+Cross-check results:
+- Fix 1 faqJsonLd check: [MATCH / MISMATCH — paste lines 122-151]
+- Fix 1 script tag check: [MATCH / MISMATCH — paste lines 185-188]
+- Fix 2 WebSite check: [MATCH / MISMATCH — paste lines 93-112]
+- Fix 3 BadgeGenerator check: [MATCH / MISMATCH — paste lines 53-59]
+- Fix 3 badge API check: [MATCH / MISMATCH — paste lines 37-39]
 
---- PART 1: ShareBar.tsx ---
-File created: [YES/NO]
-'use client' at line 1: [YES/NO]
-rounded-none on all buttons: [YES/NO]
-Copy Link shows "Copied!" state: [YES/NO]
+Changes made:
 
---- PART 2: t/[slug]/page.tsx ---
-ShareBar import added: [YES/NO]
-ShareBar rendered between Tags and BadgeGenerator: [YES/NO]
-Exact changed lines: [paste]
+Fix 1 — FAQPage removed:
+[confirm: faqJsonLd variable deleted]
+[confirm: script tag deleted]
+[paste surrounding lines showing clean removal]
 
---- PART 3: SponsorBadge.tsx ---
-text-gray-500 → text-gray-400 changed: [YES/NO]
-Exact changed line: [paste]
+Fix 2 — SearchAction removed:
+[paste updated WebSite JSON-LD block — must show potentialAction gone]
 
---- PART 4: BUILD + DEPLOY ---
-Build exit code: [0 / error]
-Build output (last 5 lines): [paste]
-Files staged: [paste — must be exactly 3 files]
-Commit hash: [paste]
-Vercel deploy: [GREEN / ERROR]
+Fix 3 — BadgeGenerator fixed:
+[paste updated BadgeGenerator preview block — must show "Listed on Antigravity Directory", no stats]
+[paste updated badge API SVG block — no statsLine, single text element at y="30"]
 
---- PART 5: SCREENSHOTS ---
-task034_sharebar.png: [YES/NO]
-task034_copy_clicked.png: [YES/NO]
-task034_sponsor_badge.png: [YES/NO]
-task034_vercel_green.png: [YES/NO]
-
---- BUGS SPOTTED (do not fix, report only) ---
-1.
+Evidence:
+1. Screenshots: temp/task057_detail_page.png, temp/task057_homepage.png, temp/task057_badge_preview.png
+2. Screen recording: temp/task057_recording.webm
+3. Git commit hash: [hash]
+4. Git diff: [exact changed lines only]
+5. Build log: [full output + exit code 0]
+6. Lint log: [full output + exit code 0]
+7. HTTP status: /t/[any-slug] → 200, / → 200
+8. Browser console: no errors on detail page and homepage
+9. Network tab: no schema errors in console
 ```
+
+---
+
+## DO NOT CHANGE
+
+- SoftwareApplication schema block
+- BreadcrumbList schema
+- Embed code URL logic in BadgeGenerator (only the visual preview + API SVG change)
+- Any component files other than BadgeGenerator.tsx
+- Any category page files
+- Any DB schema files
+- No aggregateRating changes

@@ -119,37 +119,6 @@ export default async function ResourceDetailPage({
     }
   };
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": `What is ${resource.title}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": resource.description
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `Is ${resource.title} free?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Yes. ${resource.title} is free to access on Antigravity Directory. Browse and copy resources at no cost.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `How do I use ${resource.title} in Antigravity?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Visit the resource page and use the copy button to copy the content directly into your Antigravity workspace."
-        }
-      }
-    ]
-  };
-
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -182,10 +151,7 @@ export default async function ResourceDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(softwareAppJsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
-      />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}

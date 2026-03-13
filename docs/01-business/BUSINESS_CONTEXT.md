@@ -92,7 +92,8 @@ $99–$299 per listing
 - ❌ NO creator earnings or payouts
 - ❌ NO Razorpay, NO PayPal, NO Stripe
 - ❌ NOT multi-IDE (Antigravity-only)
-- ❌ NO social media accounts
+- ✅ Twitter/X: https://x.com/AntigravityIDE (created 2026-03-13)
+- ✅ Reddit account: created 2026-03-13
 
 ---
 
@@ -208,6 +209,16 @@ Repo: https://github.com/googleworkspace/cli
 3. **Category grid on homepage**: REMOVED — no CategoryGridDiscovery on homepage. Categories accessible via nav and footer only.
 4. **Card corners**: `rounded-none` — sharp 90-degree corners, matching cursor.directory exactly. All cards site-wide.
 **Reference screenshots**: `docs/screenshots/cursor-reference/` — 25 cursor.directory screenshots committed.
+
+### 2026-03-13 — Social accounts created
+**Twitter/X**: https://x.com/AntigravityIDE
+**Reddit**: account created (handle TBC)
+**What this unblocks**: Day 1 GTM actions — launch post on Reddit (r/AntigravityIDE, r/cursor), Twitter announcement, Google AI Developers Forum post.
+
+### 2026-03-13 — Development phase declared COMPLETE. Phase 2 begins.
+**Decision**: Founder has officially closed the development phase. No new feature development until $2k MRR is hit.
+**Phase 2 focus**: Sponsor outreach, SEO compounding, marketing (Reddit, HN, creator outreach), data enrichment.
+**What this means**: No new code tasks unless directly required by a sponsor deal or a blocking SEO issue. All effort redirects to distribution and revenue.
 
 ### 2026-03-08 — Promoted listing prices confirmed provisional
 **Decision**: $99–$299 promoted listing prices are provisional starting points, not final prices.

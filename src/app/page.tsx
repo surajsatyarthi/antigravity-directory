@@ -98,15 +98,7 @@ export default async function HomePage() {
             "@type": "WebSite",
             "name": "Antigravity Directory",
             "url": "https://googleantigravity.directory",
-            "description": "The #1 resource directory for Google Antigravity IDE",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": "https://googleantigravity.directory/?q={search_term_string}"
-              },
-              "query-input": "required name=search_term_string"
-            }
+            "description": "The #1 resource directory for Google Antigravity IDE"
           })
         }}
       />

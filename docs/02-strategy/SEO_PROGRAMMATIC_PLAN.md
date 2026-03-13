@@ -420,19 +420,88 @@ Google launched `googleworkspace/cli` on March 6, 2026. It ships 100+ Agent Skil
 
 ---
 
-## 12. POST-LAUNCH — GOOGLE SEARCH CONSOLE
+## 12. POST-LAUNCH — SEARCH ENGINE SUBMISSION (ALL ENGINES)
 
-**Day 1 after launch**:
-1. Submit site to Google Search Console
-2. Submit sitemap URL: `https://googleantigravity.directory/sitemap.xml`
-3. Request indexing for homepage + all 10 category pages manually (URL Inspection tool)
-4. Verify no crawl errors
+### Current status (as of 2026-03-13)
+- Google Search Console: ✅ property verified, ❌ sitemap NOT submitted
+- Bing Webmaster Tools: ✅ property verified (imported from GSC), ❌ sitemap NOT submitted
+- IndexNow key: ✅ obtained and in .env.local, ❌ not yet wired to auto-ping
 
-**Week 2**:
+---
+
+### 12A. Google Search Console
+
+**Immediate (do now — manual):**
+1. Go to search.google.com/search-console
+2. Sitemaps → submit `https://googleantigravity.directory/sitemap.xml`
+3. URL Inspection → request indexing for homepage + all 10 category pages manually
+
+**Week 2:**
 - Check coverage report — how many of 3,116 pages are indexed
 - Fix any crawl errors
-- Submit request for top 50 resources by views to be indexed manually
+- Submit top 50 resources manually via URL Inspection
 
-**Month 1**:
-- Check which queries are showing impressions
+**Monthly:**
+- Check which queries are getting impressions
 - Double down on content in those categories
+
+---
+
+### 12B. Bing Webmaster Tools
+
+**Immediate (do now — manual):**
+1. Go to bing.com/webmasters
+2. Your site is already imported from GSC
+3. Sitemaps → submit `https://googleantigravity.directory/sitemap.xml`
+
+**Why Bing matters:**
+- Bing powers DuckDuckGo, Yahoo, Ecosia, and AOL search — one submission covers all of them
+- Bing indexes developer content aggressively
+- Bing's AI (Copilot) pulls from its index — getting indexed = appearing in AI answers
+
+**Monthly:**
+- Check Bing Webmaster Tools for crawl errors and keyword data
+
+---
+
+### 12C. IndexNow — Auto-ping on new content
+
+**What it is:** A protocol supported by Bing, Yandex, Seznam, and Naver. One API call notifies all of them instantly when a new page is published. Google does NOT support IndexNow (they have their own system).
+
+**Status:** IndexNow key already obtained (TASK-033). Not yet wired.
+
+**What Antigravity needs to build (future task):**
+When a new resource is inserted into the DB with status=LIVE, ping:
+```
+https://www.bing.com/indexnow?url=https://googleantigravity.directory/t/[slug]&key=[INDEXNOW_KEY]
+```
+This tells Bing/Yandex/Seznam immediately — no waiting for crawl.
+
+**Engines covered by one IndexNow ping:**
+- Bing ✅
+- DuckDuckGo (via Bing) ✅
+- Yahoo (via Bing) ✅
+- Yandex ✅
+- Ecosia (via Bing) ✅
+- Seznam ✅
+
+---
+
+### 12D. Yandex Webmaster (optional, low priority)
+
+- Yandex is covered by IndexNow
+- Only add Yandex Webmaster Tools manually if traffic data shows Russian/Eastern European visitors
+
+---
+
+### 12E. Search engine market share context
+
+| Engine | Global share | Notes |
+|---|---|---|
+| Google | ~91% | Largest — primary focus |
+| Bing | ~4% | Powers DuckDuckGo, Yahoo, Copilot AI |
+| Yandex | ~2.5% | Covered by IndexNow |
+| DuckDuckGo | ~0.6% | Pulls from Bing index |
+| Others | <1% | Not worth separate submission |
+
+Submitting to Google + Bing + IndexNow covers ~98% of all search traffic with minimal effort.

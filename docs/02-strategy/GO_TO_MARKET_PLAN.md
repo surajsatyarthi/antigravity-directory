@@ -7,7 +7,7 @@
 
 ## THE ONE CONSTRAINT
 
-Zero budget. Zero social media accounts. One founder with a day job.
+Zero budget. Social accounts created 2026-03-13 (Reddit + Twitter/X). One founder with a day job.
 
 Every tactic in this plan costs nothing and can be done in under 2 hours.
 

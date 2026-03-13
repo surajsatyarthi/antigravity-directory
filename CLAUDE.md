@@ -70,6 +70,7 @@ The cursor.directory for Antigravity. Revenue from B2B ads only. Users pay nothi
 7. **NEVER delegate data decisions to Antigravity** — if a task requires specific URLs, copy, IDs, or any content, PM sources and verifies every item first. The spec hands Antigravity a complete, verified list. Antigravity copies it exactly — it does not research, invent, or curate.
 8. **AFTER every visual/UI task — run a full site audit before closing the task** — grep for banned patterns (bg-white, bg-slate-50, rounded-2xl on cards, etc.) across all src/ files. Log every violation found. If violations exist outside the task scope, add them to PROJECT_LEDGER.md as a follow-on task immediately. Never close a visual task and move to a feature task without this audit step.
 9. **BEFORE authorizing ANY file deletion — grep for all imports of that file** — run `grep -r "ComponentName\|filename" src/` and confirm zero results before adding the file to a deletion list. If any consumer exists, the file is NOT dead and must not be deleted. This rule was added 2026-03-10 after TASK-015/TASK-016 deleted live tool components and route pages, causing 6 SEO pages to 404. Root cause: PM authorized deletion without import verification.
+10. **BEFORE writing any spec that references a data field or UI feature — read `docs/FEATURE_STATE.md`** — confirm the field/feature is listed as ACTIVE IN UI. Stored in DB ≠ displayed in UI. Added 2026-03-13 after PM wrote aggregateRating spec without knowing ratings UI was removed in TASK-024 (commit 361550e). Every CURRENT_TASK.md spec must include a FEATURE STATE CHECK section listing every field referenced and its confirmed status.
 
 ---
 
@@ -82,14 +83,17 @@ The cursor.directory for Antigravity. Revenue from B2B ads only. Users pay nothi
 4. `docs/01-business/PRODUCT_BRIEF.md` — scope
 5. `docs/04-prds/PRD_V1.md` — page specs
 6. `docs/new-start/DESIGN_SPEC.md` — component rules, banned copy, banned backgrounds
+7. `docs/FEATURE_STATE.md` — **MANDATORY** — what features/fields are active vs removed. Read this before writing ANY spec that touches a data field or UI component. Added 2026-03-13 after PM wrote aggregateRating spec without knowing ratings UI was removed in TASK-024.
 
 **Step 2 — Before writing any task spec:**
 - Read every file you will reference in the spec
 - Record exact line numbers and content (PM VERIFIED CONTENT)
 - Never write a spec based on memory or assumption
+- **If the spec references any data field (views, ratings, copiedCount, githubStars, etc.) — check `docs/FEATURE_STATE.md` first.** If the field is not listed as ACTIVE IN UI, it is backend-only. Do not build user-facing specs around it.
 
 **Step 3 — Write CURRENT_TASK.md with:**
 - PM VERIFIED CONTENT for every fix (exact line + content)
+- **FEATURE STATE CHECK section** — list every data field or UI feature referenced in the spec, confirm its status from `docs/FEATURE_STATE.md`, and paste the relevant row. A spec with a missing FEATURE STATE CHECK is incomplete and must not be sent to Antigravity.
 - Mandatory cross-check instruction for Antigravity to confirm PM's readings
 - Full report format including all 9 evidence items
 
@@ -167,6 +171,7 @@ Neither PM nor Antigravity self-reports. Both verify each other.
 | `docs/04-prds/PRD_V1.md` | Page-by-page specs |
 | `docs/new-start/DESIGN_SPEC.md` | Component behaviour, color tokens, banned backgrounds — single source of truth (UI-UX-SPEC.md archived) |
 | `docs/new-start/CURSOR-DIRECTORY-AUDIT.md` | cursor.directory reference — source of truth for design |
+| `docs/FEATURE_STATE.md` | **MANDATORY PRE-SPEC READ** — active vs removed vs backend-only features |
 | `docs/02-strategy/SEO_PROGRAMMATIC_PLAN.md` | SEO meta formulas, schema, sitemap |
 | `docs/02-strategy/GO_TO_MARKET_PLAN.md` | Launch plan, sponsor outreach |
 | `.gemini/GEMINI.md` | Antigravity standing orders |
