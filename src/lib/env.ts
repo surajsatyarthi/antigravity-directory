@@ -32,6 +32,7 @@ const envSchema = z.object({
   NEXT_PUBLIC_SITE_URL: z.string().url(),
 
   // Optional
+  INDEXNOW_KEY: z.string().optional(),
   SENTRY_DSN: z.string().url().optional(),
   NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional(),
   SENTRY_AUTH_TOKEN: z.string().optional(),

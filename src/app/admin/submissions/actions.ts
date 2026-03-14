@@ -6,6 +6,7 @@ import { eq, and } from 'drizzle-orm';
 import { auth } from '@/auth';
 import { sendListingLive } from '@/lib/email/templates';
 import { revalidatePath } from 'next/cache';
+import { pingIndexNow } from '@/lib/indexnow';
 
 // Helper to verify admin role
 async function verifyAdmin() {
@@ -61,6 +62,9 @@ export async function approveSubmission(submissionId: string) {
         await db.update(resources)
           .set({ status: 'LIVE', updatedAt: new Date() })
           .where(eq(resources.id, resource.id));
+
+        // Notify Bing/Yandex/Seznam immediately — non-blocking
+        await pingIndexNow(resource.slug);
 
         // Send email to user
         try {
