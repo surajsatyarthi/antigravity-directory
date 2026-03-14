@@ -165,7 +165,7 @@ Per Ralph Protocol v18.0 (`.agent/RALPH_PROTOCOL.md`), a task is DONE only when 
 | # | Evidence | Required | Required filename in temp/ |
 |---|---|---|---|
 | 1 | Screenshots — every changed page | YES | `temp/task0XX_[page].png` — filenames specified per task |
-| 2 | Screen recording — hover states, interactions | YES | `temp/task0XX_recording.webm` |
+| 2 | Screen recording — hover states, interactions | **UI tasks only** | `temp/task0XX_recording.webm` — **omit for config/hook/backend tasks. PM cannot play .webm files. Only required when hover states or animations cannot be shown in screenshots.** |
 | 3 | Git commit hash | YES | inline in report |
 | 4 | Git diff — exact changed lines | YES | inline in report |
 | 5 | Build log — full output + exit code 0 | YES | **`temp/task0XX_build.log`** — MUST be saved as a file |
@@ -179,9 +179,11 @@ Per Ralph Protocol v18.0 (`.agent/RALPH_PROTOCOL.md`), a task is DONE only when 
 - `temp/task0XX_lint.log`
 - `temp/task0XX_http_status.txt`
 
-If the spec does not name these files, Antigravity has no obligation to create them, and PM cannot verify items 5, 6, 7. PM is responsible for including these filenames in every spec. Added 2026-03-13 after TASK-045 evidence items 5/6/7 were self-reported with no files on disk.
+**Screen recording rule (updated 2026-03-14):** Only require `temp/task0XX_recording.webm` when the task has hover states, animations, or interactions that screenshots cannot capture. Never require it for config changes, hook files, backend tasks, or copy fixes. PM cannot play .webm files — an unviewable evidence item is not evidence.
 
-PM marks DONE in PROJECT_LEDGER.md only after receiving all 9 AND reading the changed files.
+If the spec does not name the 3 required log files, Antigravity has no obligation to create them, and PM cannot verify items 5, 6, 7. PM is responsible for including these filenames in every spec.
+
+PM marks DONE in PROJECT_LEDGER.md only after receiving all applicable evidence items AND reading the changed files.
 
 ---
 

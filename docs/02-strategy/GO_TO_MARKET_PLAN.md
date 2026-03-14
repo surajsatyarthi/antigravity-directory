@@ -33,8 +33,7 @@ The new sequence:
 
 **Pricing:** $2,000/month. Offer first month at $1,000 to lower the barrier to yes.
 
-**Highest-priority target — CodeRabbit:**
-CodeRabbit already sponsors cursor.directory. They have a budget line for exactly this model. Email subject: "You sponsor cursor.directory — we're the same thing for Google Antigravity IDE." One email. They need zero education.
+**⚠️ DO NOT pitch CodeRabbit, Warp, or Groq — their logos are already live on the site as placeholders. Pitching them is contradictory.**
 
 **To enable placeholder ads:** Antigravity flips `active: true` in `src/config/sponsor.ts` and updates the placeholder text to "Sponsored by [Your Brand]" — 10 minutes of work. Do this before sending any outreach.
 
@@ -62,11 +61,12 @@ Send cold emails to these targets in priority order:
 
 | Priority | Company | Why |
 |---|---|---|
-| 1 | CodeRabbit | Already sponsors cursor.directory. Budget exists. Zero education needed. |
-| 2 | Together AI | AI API provider — reaches Antigravity devs directly |
-| 3 | Groq | Same — fast inference API, dev audience |
-| 4 | Fireworks AI | Same category |
-| 5 | Any MCP server company with funding | Their users are our users |
+| 1 | Together AI | AI API provider — reaches Antigravity devs directly |
+| 2 | Fireworks AI | Same — fast inference API, dev audience |
+| 3 | Any MCP server company with funding | Their users are our users |
+| ❌ | CodeRabbit | Already on site as placeholder — do not pitch |
+| ❌ | Warp | Already on site as placeholder — do not pitch |
+| ❌ | Groq | Already on site as placeholder — do not pitch |
 
 Email template:
 > Subject: You sponsor cursor.directory — we built the same thing for Google Antigravity IDE
