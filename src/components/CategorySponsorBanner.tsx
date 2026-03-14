@@ -37,7 +37,7 @@ export function CategorySponsorBanner() {
         <img
           src={SPONSOR_CATEGORY.logoUrl}
           alt={SPONSOR_CATEGORY.name}
-          className="h-5 w-auto object-contain shrink-0"
+          className="h-12 w-12 object-contain shrink-0"
           style={SPONSOR_CATEGORY.logoFilter ? { filter: SPONSOR_CATEGORY.logoFilter } : undefined}
         />
       )}

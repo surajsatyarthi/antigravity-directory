@@ -24,7 +24,7 @@ export const SPONSOR_CATEGORY = {
   active: true,
   name: 'Groq',
   tagline: 'Inference is Fuel for AI',
-  logoUrl: 'https://cdn.sanity.io/images/chol0sk5/production/8776faec2ef547091786cde2fca3aaa3ca1a2fc6-423x89.svg',
+  logoUrl: 'https://logotyp.us/file/groq.svg',
   logoFilter: 'brightness(0) invert(1)',
   href: 'https://groq.com',
   description: 'Fast, low-cost AI inference. The fastest LLM API available.',
