@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     title: "Antigravity Directory — MCP Servers, Skills, Rules & Prompts for Google Antigravity IDE",
     description: "Browse 3,000+ free MCP servers, rules, prompts and workflows for Google Antigravity IDE.",
     type: "website",
-    url: "https://googleantigravity.directory"
+    url: "https://www.googleantigravity.directory"
   },
   alternates: {
-    canonical: "https://googleantigravity.directory"
+    canonical: "https://www.googleantigravity.directory"
   }
 };
 
@@ -97,7 +97,7 @@ export default async function HomePage() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Antigravity Directory",
-            "url": "https://googleantigravity.directory",
+            "url": "https://www.googleantigravity.directory",
             "description": "The #1 resource directory for Google Antigravity IDE"
           })
         }}

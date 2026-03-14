@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Antigravity: The Complete Guide",
     description: "Master Google Antigravity IDE with our comprehensive guide. Everything you need to know about Gemini 3 agentic development.",
     type: "article",
-    url: "https://googleantigravity.directory/google-antigravity",
+    url: "https://www.googleantigravity.directory/google-antigravity",
   }
 };
 

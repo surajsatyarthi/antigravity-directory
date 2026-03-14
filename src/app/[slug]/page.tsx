@@ -67,20 +67,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   });
 
   const count = fetchResult.success ? fetchResult.totalCount : 0;
-  const title = `${category.name} for Google Antigravity IDE | googleantigravity.directory`;
+  const title = `${category.name} for Google Antigravity IDE`;
   const description = category.description.replace('{count}', String(count));
 
   return {
     title,
     description,
     alternates: {
-      canonical: `https://googleantigravity.directory/${slug}`,
+      canonical: `https://www.googleantigravity.directory/${slug}`,
     },
     openGraph: {
       title,
       description,
       type: 'website',
-      url: `https://googleantigravity.directory/${slug}`,
+      url: `https://www.googleantigravity.directory/${slug}`,
     },
   };
 }
@@ -109,15 +109,15 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     '@type': 'CollectionPage',
     'name': `${category.name} for Google Antigravity IDE`,
     'description': description,
-    'url': `https://googleantigravity.directory/${slug}`,
+    'url': `https://www.googleantigravity.directory/${slug}`,
   };
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     'itemListElement': [
-      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://googleantigravity.directory' },
-      { '@type': 'ListItem', 'position': 2, 'name': category.name, 'item': `https://googleantigravity.directory/${slug}` },
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.googleantigravity.directory' },
+      { '@type': 'ListItem', 'position': 2, 'name': category.name, 'item': `https://www.googleantigravity.directory/${slug}` },
     ],
   };
 

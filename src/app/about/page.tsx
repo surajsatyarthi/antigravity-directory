@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'About | Antigravity Directory',
   description: 'Antigravity Directory is the free resource hub for Google Antigravity IDE — MCP servers, rules, prompts, skills and workflows in one place.',
   alternates: {
-    canonical: 'https://googleantigravity.directory/about',
+    canonical: 'https://www.googleantigravity.directory/about',
   },
 };
 

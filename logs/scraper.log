@@ -32860,3 +32860,734 @@
 [2026-02-03T17:27:15.656Z] [INFO] 🔍 Validating pending resources data... 
 [2026-02-03T17:27:15.692Z] [INFO] 📋 Checking 2304 resources... 
 [2026-02-03T17:27:15.755Z] [INFO] ✅ Validation PASSED: No data issues found. 
+[2026-03-14T13:34:24.493Z] [ERROR] ❌ GITHUB_TOKEN environment variable is not set! 
+[2026-03-14T13:53:37.941Z] [INFO] 
+🚀 Backfill Content Script 
+[2026-03-14T13:53:37.944Z] [INFO]    Mode:     DRY RUN (no DB writes) 
+[2026-03-14T13:53:37.944Z] [INFO]    Category: mcp-servers 
+[2026-03-14T13:53:37.944Z] [INFO]    Cap:      200 resources total
+ 
+[2026-03-14T13:53:38.933Z] [INFO] 📋 Found 200 eligible resources (cap: 200)
+ 
+[2026-03-14T13:53:40.311Z] [WARN] ⚠️   Mcp To Skill Converter: no eligible file found in repo 
+[2026-03-14T13:53:40.313Z] [WARN] ⚠️   Modelcontextprotocol Web Content Pick: no eligible file found in repo 
+[2026-03-14T13:53:40.330Z] [WARN] ⚠️   Mcp For Paper Read Based On AI IDE: no eligible file found in repo 
+[2026-03-14T13:53:41.103Z] [WARN] ⚠️  0x4m4/hexstrike-ai: no eligible file found in repo 
+[2026-03-14T13:53:41.115Z] [WARN] ⚠️  0xJacky/nginx-ui: no eligible file found in repo 
+[2026-03-14T13:53:41.142Z] [INFO] ✅ [DRY RUN] 12306 Mcp: would set content (149 chars) 
+[2026-03-14T13:53:41.143Z] [INFO]    Preview: {   "mcpServers": {     "12306-mcp": {       "command": "npx",       "args": [         "-y",         "12306-mcp"       ]... 
+[2026-03-14T13:53:41.897Z] [WARN] ⚠️  1Panel: no eligible file found in repo 
+[2026-03-14T13:53:41.927Z] [INFO] ✅ [DRY RUN] 1mcp: would set content (139 chars) 
+[2026-03-14T13:53:41.928Z] [INFO]    Preview: {   "mcpServers": {     "1mcp": {       "command": "npx",       "args": [         "-y",         "1mcp"       ],       "e... 
+[2026-03-14T13:53:41.953Z] [WARN] ⚠️  53AI/53AIHub: no eligible file found in repo 
+[2026-03-14T13:53:42.678Z] [WARN] ⚠️  A2a Go: no eligible file found in repo 
+[2026-03-14T13:53:42.708Z] [WARN] ⚠️  A2A MCP Server: no eligible file found in repo 
+[2026-03-14T13:53:42.761Z] [WARN] ⚠️  A2V: no eligible file found in repo 
+[2026-03-14T13:53:43.464Z] [WARN] ⚠️  Abcoder: no eligible file found in repo 
+[2026-03-14T13:53:43.526Z] [WARN] ⚠️  Ableton 11 Mcp For Windows Codex And Antigravity: no eligible file found in repo 
+[2026-03-14T13:53:43.565Z] [WARN] ⚠️  Ableton Live Mcp Server: no eligible file found in repo 
+[2026-03-14T13:53:44.298Z] [WARN] ⚠️  Academic Search Mcp Server: no eligible file found in repo 
+[2026-03-14T13:53:44.298Z] [WARN] ⚠️  Academic Antigravity: no eligible file found in repo 
+[2026-03-14T13:53:44.358Z] [WARN] ⚠️  Aci Mcp: no eligible file found in repo 
+[2026-03-14T13:53:45.309Z] [WARN] ⚠️  Aderyn: no eligible file found in repo 
+[2026-03-14T13:53:45.310Z] [WARN] ⚠️  Action_mcp: no eligible file found in repo 
+[2026-03-14T13:53:45.374Z] [WARN] ⚠️  activepieces/activepieces: no eligible file found in repo 
+[2026-03-14T13:53:46.113Z] [WARN] ⚠️  Advanced Mcp Youtube: no eligible file found in repo 
+[2026-03-14T13:53:46.122Z] [INFO] ✅ [DRY RUN] Adonis Mcp: would set content (158 chars) 
+[2026-03-14T13:53:46.122Z] [INFO]    Preview: {   "mcpServers": {     "adonis-mcp": {       "command": "npx",       "args": [         "-y",         "@7nohe/adonis-mcp... 
+[2026-03-14T13:53:46.182Z] [WARN] ⚠️  Advanced Unity Mcp: no eligible file found in repo 
+[2026-03-14T13:53:46.907Z] [INFO] ✅ [DRY RUN] After Effects Mcp: would set content (165 chars) 
+[2026-03-14T13:53:46.908Z] [INFO]    Preview: {   "mcpServers": {     "after-effects-mcp": {       "command": "npx",       "args": [         "-y",         "after-effe... 
+[2026-03-14T13:53:46.915Z] [WARN] ⚠️  ag2ai/ag2: no eligible file found in repo 
+[2026-03-14T13:53:46.974Z] [INFO] ✅ [DRY RUN] Agent: would set content (147 chars) 
+[2026-03-14T13:53:46.975Z] [INFO]    Preview: {   "mcpServers": {     "agent": {       "command": "npx",       "args": [         "-y",         "@1mcp/agent"       ], ... 
+[2026-03-14T13:53:47.716Z] [WARN] ⚠️  Agent Toolkit: no eligible file found in repo 
+[2026-03-14T13:53:47.718Z] [WARN] ⚠️  Agent Skills: no eligible file found in repo 
+[2026-03-14T13:53:47.767Z] [WARN] ⚠️  AgentChat: no eligible file found in repo 
+[2026-03-14T13:53:48.493Z] [WARN] ⚠️  AgentDeskAI/browser-tools-mcp: no eligible file found in repo 
+[2026-03-14T13:53:48.507Z] [WARN] ⚠️  Agentgateway: no eligible file found in repo 
+[2026-03-14T13:53:48.603Z] [WARN] ⚠️  Agentic Ai Protocols: no eligible file found in repo 
+[2026-03-14T13:53:49.277Z] [WARN] ⚠️  Agentic Radar: no eligible file found in repo 
+[2026-03-14T13:53:49.286Z] [WARN] ⚠️  Agentor: no eligible file found in repo 
+[2026-03-14T13:53:49.408Z] [INFO] ✅ [DRY RUN] Agentql Mcp: would set content (153 chars) 
+[2026-03-14T13:53:49.408Z] [INFO]    Preview: {   "mcpServers": {     "agentql-mcp": {       "command": "npx",       "args": [         "-y",         "agentql-mcp"    ... 
+[2026-03-14T13:53:50.069Z] [WARN] ⚠️  Agents: no eligible file found in repo 
+[2026-03-14T13:53:50.070Z] [WARN] ⚠️  agentscope-ai/agentscope: no eligible file found in repo 
+[2026-03-14T13:53:50.255Z] [WARN] ⚠️  Agentset: no eligible file found in repo 
+[2026-03-14T13:53:50.842Z] [WARN] ⚠️  AgentUp: no eligible file found in repo 
+[2026-03-14T13:53:50.868Z] [WARN] ⚠️  Ai Agent Mcp: no eligible file found in repo 
+[2026-03-14T13:53:51.023Z] [INFO] ✅ [DRY RUN] Ai Agent Team: would set content (157 chars) 
+[2026-03-14T13:53:51.023Z] [INFO]    Preview: {   "mcpServers": {     "ai-agent-team": {       "command": "npx",       "args": [         "-y",         "ai-agent-team"... 
+[2026-03-14T13:53:51.635Z] [WARN] ⚠️  AI Agent Using Mcp Server: no eligible file found in repo 
+[2026-03-14T13:53:51.668Z] [WARN] ⚠️  AI Agents Performance Testing MCP Client: no eligible file found in repo 
+[2026-03-14T13:53:51.808Z] [WARN] ⚠️  Ai Agents Skills: no eligible file found in repo 
+[2026-03-14T13:53:52.438Z] [WARN] ⚠️  Ai Agents Starter Kit: no eligible file found in repo 
+[2026-03-14T13:53:52.452Z] [WARN] ⚠️  Ai Command: no eligible file found in repo 
+[2026-03-14T13:53:52.596Z] [WARN] ⚠️  Ai Counsel: no eligible file found in repo 
+[2026-03-14T13:53:53.220Z] [WARN] ⚠️  AI Gateway: no eligible file found in repo 
+[2026-03-14T13:53:53.227Z] [WARN] ⚠️  Ai Trader: no eligible file found in repo 
+[2026-03-14T13:53:53.389Z] [WARN] ⚠️  Ai Workflow Orchestrator Docs: no eligible file found in repo 
+[2026-03-14T13:53:54.007Z] [INFO] ✅ [DRY RUN] Aica: would set content (148 chars) 
+[2026-03-14T13:53:54.008Z] [INFO]    Preview: {   "mcpServers": {     "aica": {       "command": "npx",       "args": [         "-y",         "@devneko/aica"       ],... 
+[2026-03-14T13:53:54.026Z] [INFO] ✅ [DRY RUN] Aicode Toolkit: would set content (157 chars) 
+[2026-03-14T13:53:54.026Z] [INFO]    Preview: {   "mcpServers": {     "source": {       "command": "npx",       "args": [         "-y",         "@scaffold-mcp/source"... 
+[2026-03-14T13:53:54.205Z] [WARN] ⚠️  Aider Mcp Server: no eligible file found in repo 
+[2026-03-14T13:53:54.804Z] [WARN] ⚠️  AIForwardDeveloperChallenge: no eligible file found in repo 
+[2026-03-14T13:53:54.814Z] [WARN] ⚠️  Aihappey Agents: no eligible file found in repo 
+[2026-03-14T13:53:54.991Z] [WARN] ⚠️  aipotheosis-labs/aci: no eligible file found in repo 
+[2026-03-14T13:53:55.571Z] [WARN] ⚠️  Airtable : no eligible file found in repo 
+[2026-03-14T13:53:55.626Z] [WARN] ⚠️  Airbnb StockScreener Agent With MCP: no eligible file found in repo 
+[2026-03-14T13:53:55.758Z] [WARN] ⚠️  Airtable Instance 33: no eligible file found in repo 
+[2026-03-14T13:53:56.341Z] [WARN] ⚠️  Airtable Instance 53: no eligible file found in repo 
+[2026-03-14T13:53:56.403Z] [WARN] ⚠️  Airtable Instance 73: no eligible file found in repo 
+[2026-03-14T13:53:56.510Z] [WARN] ⚠️  Airtable Instance 93: no eligible file found in repo 
+[2026-03-14T13:53:57.180Z] [INFO] ✅ [DRY RUN] Airtable Mcp Server: would set content (169 chars) 
+[2026-03-14T13:53:57.180Z] [INFO]    Preview: {   "mcpServers": {     "airtable-mcp-server": {       "command": "npx",       "args": [         "-y",         "airtable... 
+[2026-03-14T13:53:57.205Z] [INFO] ✅ [DRY RUN] Aisdk Mcp Bridge: would set content (163 chars) 
+[2026-03-14T13:53:57.206Z] [INFO]    Preview: {   "mcpServers": {     "aisdk-mcp-bridge": {       "command": "npx",       "args": [         "-y",         "aisdk-mcp-b... 
+[2026-03-14T13:53:57.303Z] [WARN] ⚠️  Aks Mcp: no eligible file found in repo 
+[2026-03-14T13:53:57.969Z] [WARN] ⚠️  Akshare One Mcp: no eligible file found in repo 
+[2026-03-14T13:53:57.987Z] [WARN] ⚠️  Aleph: no eligible file found in repo 
+[2026-03-14T13:53:58.084Z] [WARN] ⚠️  alibaba/nacos: no eligible file found in repo 
+[2026-03-14T13:53:58.755Z] [WARN] ⚠️  Alibabacloud Tablestore Mcp Server: no eligible file found in repo 
+[2026-03-14T13:53:58.816Z] [WARN] ⚠️  Alpaca Mcp Server: no eligible file found in repo 
+[2026-03-14T13:53:58.886Z] [WARN] ⚠️  Aminer Mcp: no eligible file found in repo 
+[2026-03-14T13:53:59.549Z] [WARN] ⚠️  Android Mcp Server: no eligible file found in repo 
+[2026-03-14T13:53:59.615Z] [WARN] ⚠️  Anemoi: no eligible file found in repo 
+[2026-03-14T13:53:59.680Z] [INFO] ✅ [DRY RUN] Anki Mcp Server: would set content (161 chars) 
+[2026-03-14T13:53:59.681Z] [INFO]    Preview: {   "mcpServers": {     "anki-mcp-server": {       "command": "npx",       "args": [         "-y",         "anki-mcp-ser... 
+[2026-03-14T13:54:00.336Z] [WARN] ⚠️  Annas Mcp: no eligible file found in repo 
+[2026-03-14T13:54:00.393Z] [WARN] ⚠️  Anshulrules.Github.Io: no eligible file found in repo 
+[2026-03-14T13:54:00.450Z] [WARN] ⚠️  Anthropic Mcp Antigravity Browser Ubuntu: no eligible file found in repo 
+[2026-03-14T13:54:01.113Z] [WARN] ⚠️  Anthropic Mcp Antigravity Browser Windows: no eligible file found in repo 
+[2026-03-14T13:54:01.193Z] [WARN] ⚠️  Anthropic Mcp Demo: no eligible file found in repo 
+[2026-03-14T13:54:01.253Z] [INFO] ✅ [DRY RUN] Anti Search: would set content (153 chars) 
+[2026-03-14T13:54:01.253Z] [INFO]    Preview: {   "mcpServers": {     "anti-search": {       "command": "npx",       "args": [         "-y",         "anti-search"    ... 
+[2026-03-14T13:54:01.918Z] [WARN] ⚠️  Antigravity: no eligible file found in repo 
+[2026-03-14T13:54:02.010Z] [WARN] ⚠️  Antigravity AI Agent_MCP Auto Connect Setup: no eligible file found in repo 
+[2026-03-14T13:54:02.046Z] [WARN] ⚠️  Antigravity Automation: no eligible file found in repo 
+[2026-03-14T13:54:02.711Z] [INFO] ✅ [DRY RUN] Antigravity Awesome Skills: would set content (183 chars) 
+[2026-03-14T13:54:02.711Z] [INFO]    Preview: {   "mcpServers": {     "antigravity-awesome-skills": {       "command": "npx",       "args": [         "-y",         "a... 
+[2026-03-14T13:54:02.818Z] [WARN] ⚠️  Antigravity Blender Mcp: no eligible file found in repo 
+[2026-03-14T13:54:02.839Z] [WARN] ⚠️  Antigravity Boots: no eligible file found in repo 
+[2026-03-14T13:54:03.577Z] [INFO] ✅ [DRY RUN] Antigravity Claude Flow Mcp Router: would set content (199 chars) 
+[2026-03-14T13:54:03.577Z] [INFO]    Preview: {   "mcpServers": {     "antigravity_claude-flow_mcp_router": {       "command": "npx",       "args": [         "-y",   ... 
+[2026-03-14T13:54:03.649Z] [WARN] ⚠️  Antigravity Figma Mcp Study 01: no eligible file found in repo 
+[2026-03-14T13:54:03.663Z] [WARN] ⚠️  Antigravity Figma Mcp Study 02: no eligible file found in repo 
+[2026-03-14T13:54:04.382Z] [WARN] ⚠️  Antigravity Foundation: no eligible file found in repo 
+[2026-03-14T13:54:04.445Z] [WARN] ⚠️  Antigravity Gemini Debug Logs: no eligible file found in repo 
+[2026-03-14T13:54:04.466Z] [INFO] ✅ [DRY RUN] Antigravity Image Mcp: would set content (173 chars) 
+[2026-03-14T13:54:04.466Z] [INFO]    Preview: {   "mcpServers": {     "antigravity-image-mcp": {       "command": "npx",       "args": [         "-y",         "antigr... 
+[2026-03-14T13:54:05.195Z] [INFO] ✅ [DRY RUN] Antigravity Jules Integration: would set content (189 chars) 
+[2026-03-14T13:54:05.195Z] [INFO]    Preview: {   "mcpServers": {     "antigravity-jules-integration": {       "command": "npx",       "args": [         "-y",        ... 
+[2026-03-14T13:54:05.245Z] [WARN] ⚠️  Antigravity Lanes: no eligible file found in repo 
+[2026-03-14T13:54:05.260Z] [INFO] ✅ [DRY RUN] Antigravity Jules Orchestration: would set content (193 chars) 
+[2026-03-14T13:54:05.260Z] [INFO]    Preview: {   "mcpServers": {     "antigravity-jules-orchestration": {       "command": "npx",       "args": [         "-y",      ... 
+[2026-03-14T13:54:06.003Z] [WARN] ⚠️  Antigravity Mcp Airflow Duckdb Pipeline Pull Data From Youtube: no eligible file found in repo 
+[2026-03-14T13:54:06.027Z] [WARN] ⚠️  Antigravity Mcp Intel Npu: no eligible file found in repo 
+[2026-03-14T13:54:06.057Z] [WARN] ⚠️  Antigravity Mcp Best Practices: no eligible file found in repo 
+[2026-03-14T13:54:06.811Z] [INFO] ✅ [DRY RUN] Antigravity Mcp Server: would set content (175 chars) 
+[2026-03-14T13:54:06.811Z] [INFO]    Preview: {   "mcpServers": {     "antigravity-mcp-server": {       "command": "npx",       "args": [         "-y",         "antig... 
+[2026-03-14T13:54:06.813Z] [WARN] ⚠️  Antigravity Mcp Test: no eligible file found in repo 
+[2026-03-14T13:54:06.846Z] [WARN] ⚠️  Antigravity Mcp Setup: no eligible file found in repo 
+[2026-03-14T13:54:07.648Z] [INFO] ✅ [DRY RUN] Antigravity Notebooklm Mcp: would set content (183 chars) 
+[2026-03-14T13:54:07.648Z] [INFO]    Preview: {   "mcpServers": {     "antigravity-notebooklm-mcp": {       "command": "npx",       "args": [         "-y",         "a... 
+[2026-03-14T13:54:07.652Z] [WARN] ⚠️  Antigravity Pdf Mcp: no eligible file found in repo 
+[2026-03-14T13:54:07.652Z] [WARN] ⚠️  Antigravity Podcast To Newsletter Skill: no eligible file found in repo 
+[2026-03-14T13:54:08.454Z] [WARN] ⚠️  Antigravity Review Mcp: no eligible file found in repo 
+[2026-03-14T13:54:08.457Z] [WARN] ⚠️  Antigravity Skills: no eligible file found in repo 
+[2026-03-14T13:54:08.462Z] [WARN] ⚠️  Antigravity Superpower: no eligible file found in repo 
+[2026-03-14T13:54:09.242Z] [WARN] ⚠️  Antigravity Template: no eligible file found in repo 
+[2026-03-14T13:54:09.249Z] [WARN] ⚠️  Antigravity Unity Mcp Server: no eligible file found in repo 
+[2026-03-14T13:54:09.260Z] [WARN] ⚠️  Antigravity Youtube Rag: no eligible file found in repo 
+[2026-03-14T13:54:10.026Z] [WARN] ⚠️  Antigravity_glm_mcp: no eligible file found in repo 
+[2026-03-14T13:54:10.048Z] [INFO] ✅ [DRY RUN] Antigravity_figma_mcp: would set content (173 chars) 
+[2026-03-14T13:54:10.049Z] [INFO]    Preview: {   "mcpServers": {     "antigravity-figma-mcp": {       "command": "npx",       "args": [         "-y",         "antigr... 
+[2026-03-14T13:54:10.076Z] [WARN] ⚠️  Antigravity_mcp: no eligible file found in repo 
+[2026-03-14T13:54:10.822Z] [WARN] ⚠️  Antigravity_UnrealEngine_Max: no eligible file found in repo 
+[2026-03-14T13:54:10.857Z] [INFO] ✅ [DRY RUN] Antigravity2Api: would set content (161 chars) 
+[2026-03-14T13:54:10.858Z] [INFO]    Preview: {   "mcpServers": {     "antigravity2api": {       "command": "npx",       "args": [         "-y",         "antigravity2... 
+[2026-03-14T13:54:10.898Z] [WARN] ⚠️  Antigravitydirectory: no eligible file found in repo 
+[2026-03-14T13:54:11.622Z] [INFO] ✅ [DRY RUN] AntigravityMobile: would set content (167 chars) 
+[2026-03-14T13:54:11.622Z] [INFO]    Preview: {   "mcpServers": {     "antigravity-mobile": {       "command": "npx",       "args": [         "-y",         "antigravi... 
+[2026-03-14T13:54:11.663Z] [INFO] ✅ [DRY RUN] Any Chat Completions Mcp: would set content (192 chars) 
+[2026-03-14T13:54:11.663Z] [INFO]    Preview: {   "mcpServers": {     "any-chat-completions-mcp": {       "command": "npx",       "args": [         "-y",         "@py... 
+[2026-03-14T13:54:11.734Z] [INFO] ✅ [DRY RUN] Any Script Mcp: would set content (159 chars) 
+[2026-03-14T13:54:11.734Z] [INFO]    Preview: {   "mcpServers": {     "any-script-mcp": {       "command": "npx",       "args": [         "-y",         "any-script-mc... 
+[2026-03-14T13:54:12.431Z] [INFO] ✅ [DRY RUN] Anytype Mcp: would set content (163 chars) 
+[2026-03-14T13:54:12.431Z] [INFO]    Preview: {   "mcpServers": {     "anytype-mcp": {       "command": "npx",       "args": [         "-y",         "@anyproto/anytyp... 
+[2026-03-14T13:54:12.470Z] [INFO] ✅ [DRY RUN] Api200: would set content (151 chars) 
+[2026-03-14T13:54:12.471Z] [INFO]    Preview: {   "mcpServers": {     "selfhosted": {       "command": "npx",       "args": [         "-y",         "selfhosted"      ... 
+[2026-03-14T13:54:12.515Z] [WARN] ⚠️  Api2mcp4j: no eligible file found in repo 
+[2026-03-14T13:54:13.251Z] [INFO] ✅ [DRY RUN] Apify Mcp Server: would set content (172 chars) 
+[2026-03-14T13:54:13.251Z] [INFO]    Preview: {   "mcpServers": {     "actors-mcp-server": {       "command": "npx",       "args": [         "-y",         "@apify/act... 
+[2026-03-14T13:54:13.292Z] [INFO] ✅ [DRY RUN] Apipost Mcp Server Simple: would set content (181 chars) 
+[2026-03-14T13:54:13.292Z] [INFO]    Preview: {   "mcpServers": {     "apipost-mcp-server-simple": {       "command": "npx",       "args": [         "-y",         "ap... 
+[2026-03-14T13:54:13.341Z] [INFO] ✅ [DRY RUN] Apitomcp: would set content (145 chars) 
+[2026-03-14T13:54:13.341Z] [INFO]    Preview: {   "mcpServers": {     "api2mcp": {       "command": "npx",       "args": [         "-y",         "api2mcp"       ],   ... 
+[2026-03-14T13:54:14.031Z] [WARN] ⚠️  Apktool Mcp Server: no eligible file found in repo 
+[2026-03-14T13:54:14.085Z] [WARN] ⚠️  Apollo Mcp Server: no eligible file found in repo 
+[2026-03-14T13:54:14.151Z] [INFO] ✅ [DRY RUN] App Store Connect Mcp Server: would set content (185 chars) 
+[2026-03-14T13:54:14.151Z] [INFO]    Preview: {   "mcpServers": {     "appstore-connect-mcp-server": {       "command": "npx",       "args": [         "-y",         "... 
+[2026-03-14T13:54:14.821Z] [WARN] ⚠️  appcypher/awesome-mcp-servers: no eligible file found in repo 
+[2026-03-14T13:54:14.900Z] [INFO] ✅ [DRY RUN] Apple Doc Mcp: would set content (171 chars) 
+[2026-03-14T13:54:14.901Z] [INFO]    Preview: {   "mcpServers": {     "apple-doc-mcp-server": {       "command": "npx",       "args": [         "-y",         "apple-d... 
+[2026-03-14T13:54:14.952Z] [INFO] ✅ [DRY RUN] Apple Docs Mcp: would set content (172 chars) 
+[2026-03-14T13:54:14.953Z] [INFO]    Preview: {   "mcpServers": {     "apple-docs-mcp": {       "command": "npx",       "args": [         "-y",         "@kimsungwhee/... 
+[2026-03-14T13:54:15.630Z] [INFO] ✅ [DRY RUN] Apple Health Mcp: would set content (173 chars) 
+[2026-03-14T13:54:15.631Z] [INFO]    Preview: {   "mcpServers": {     "apple-health-mcp": {       "command": "npx",       "args": [         "-y",         "@neiltron/a... 
+[2026-03-14T13:54:15.692Z] [WARN] ⚠️  Apple Health Mcp Server: no eligible file found in repo 
+[2026-03-14T13:54:15.759Z] [INFO] ✅ [DRY RUN] Apple Mcp: would set content (149 chars) 
+[2026-03-14T13:54:15.760Z] [INFO]    Preview: {   "mcpServers": {     "apple-mcp": {       "command": "npx",       "args": [         "-y",         "apple-mcp"       ]... 
+[2026-03-14T13:54:16.421Z] [INFO] ✅ [DRY RUN] Applescript Mcp: would set content (171 chars) 
+[2026-03-14T13:54:16.421Z] [INFO]    Preview: {   "mcpServers": {     "applescript-mcp": {       "command": "npx",       "args": [         "-y",         "@peakmojo/ap... 
+[2026-03-14T13:54:16.491Z] [WARN] ⚠️  Arcade Mcp: no eligible file found in repo 
+[2026-03-14T13:54:16.542Z] [WARN] ⚠️  Arch Mcp: no eligible file found in repo 
+[2026-03-14T13:54:17.199Z] [WARN] ⚠️  Archestra: no eligible file found in repo 
+[2026-03-14T13:54:17.290Z] [WARN] ⚠️  Archiledger: no eligible file found in repo 
+[2026-03-14T13:54:17.341Z] [WARN] ⚠️  Arindam200/awesome-ai-apps: no eligible file found in repo 
+[2026-03-14T13:54:18.006Z] [WARN] ⚠️  Ark Mcp: no eligible file found in repo 
+[2026-03-14T13:54:18.065Z] [WARN] ⚠️  Armor Crypto Mcp: no eligible file found in repo 
+[2026-03-14T13:54:18.138Z] [WARN] ⚠️  ArXiv Analyst: no eligible file found in repo 
+[2026-03-14T13:54:18.802Z] [WARN] ⚠️  Arxiv Latex Mcp: no eligible file found in repo 
+[2026-03-14T13:54:18.858Z] [WARN] ⚠️  Arxiv Mcp Server: no eligible file found in repo 
+[2026-03-14T13:54:18.927Z] [WARN] ⚠️  Aseprite Mcp: no eligible file found in repo 
+[2026-03-14T13:54:19.628Z] [WARN] ⚠️  Asistencia Supabase Antigravity: no eligible file found in repo 
+[2026-03-14T13:54:19.644Z] [WARN] ⚠️  assafelovic/gpt-researcher: no eligible file found in repo 
+[2026-03-14T13:54:19.718Z] [WARN] ⚠️  AstrBotDevs/AstrBot: no eligible file found in repo 
+[2026-03-14T13:54:20.427Z] [WARN] ⚠️  Astro Mcp: no eligible file found in repo 
+[2026-03-14T13:54:20.461Z] [INFO] ✅ [DRY RUN] Astria Mcp: would set content (165 chars) 
+[2026-03-14T13:54:20.461Z] [INFO]    Preview: {   "mcpServers": {     "astria-mcp-server": {       "command": "npx",       "args": [         "-y",         "astria-mcp... 
+[2026-03-14T13:54:20.512Z] [INFO] ✅ [DRY RUN] Atlas Docs Mcp: would set content (173 chars) 
+[2026-03-14T13:54:20.513Z] [INFO]    Preview: {   "mcpServers": {     "atlas-docs-mcp": {       "command": "npx",       "args": [         "-y",         "@cartographai... 
+[2026-03-14T13:54:21.290Z] [INFO] ✅ [DRY RUN] Atlas Mcp Server: would set content (163 chars) 
+[2026-03-14T13:54:21.290Z] [INFO]    Preview: {   "mcpServers": {     "atlas-mcp-server": {       "command": "npx",       "args": [         "-y",         "atlas-mcp-s... 
+[2026-03-14T13:54:21.294Z] [WARN] ⚠️  Atlassian Dc Mcp Go: no eligible file found in repo 
+[2026-03-14T13:54:21.304Z] [WARN] ⚠️  Atlassian Mcp Server: no eligible file found in repo 
+[2026-03-14T13:54:22.088Z] [WARN] ⚠️  ATSPI MCP Server: no eligible file found in repo 
+[2026-03-14T13:54:22.094Z] [INFO] ✅ [DRY RUN] Augmented Nature UniProt MCP Server: would set content (159 chars) 
+[2026-03-14T13:54:22.094Z] [INFO]    Preview: {   "mcpServers": {     "uniprot-server": {       "command": "npx",       "args": [         "-y",         "uniprot-serve... 
+[2026-03-14T13:54:22.107Z] [WARN] ⚠️  Auto Mcp: no eligible file found in repo 
+[2026-03-14T13:54:22.878Z] [WARN] ⚠️  Autocad Mcp: no eligible file found in repo 
+[2026-03-14T13:54:22.879Z] [WARN] ⚠️  AutomatedEmulation: no eligible file found in repo 
+[2026-03-14T13:54:23.272Z] [INFO] ✅ [DRY RUN] Automation Mcp: would set content (159 chars) 
+[2026-03-14T13:54:23.273Z] [INFO]    Preview: {   "mcpServers": {     "automation-mcp": {       "command": "npx",       "args": [         "-y",         "automation-mc... 
+[2026-03-14T13:54:23.841Z] [WARN] ⚠️  Automcp: no eligible file found in repo 
+[2026-03-14T13:54:23.842Z] [WARN] ⚠️  Awesome Audio Skills: no eligible file found in repo 
+[2026-03-14T13:54:24.119Z] [WARN] ⚠️  Awesome Claude Code Plugins: no eligible file found in repo 
+[2026-03-14T13:54:24.626Z] [WARN] ⚠️  Awesome Claude Dxt: no eligible file found in repo 
+[2026-03-14T13:54:24.643Z] [WARN] ⚠️  Awesome Crypto Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:54:25.060Z] [WARN] ⚠️  Awesome Devops Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:54:25.418Z] [WARN] ⚠️  Awesome DotNET MCP: no eligible file found in repo 
+[2026-03-14T13:54:25.443Z] [WARN] ⚠️  Awesome Hacking Lists: no eligible file found in repo 
+[2026-03-14T13:54:25.859Z] [WARN] ⚠️  Awesome MCP: no eligible file found in repo 
+[2026-03-14T13:54:26.203Z] [WARN] ⚠️  Awesome Mcp Devtools: no eligible file found in repo 
+[2026-03-14T13:54:26.217Z] [WARN] ⚠️  Awesome Mcp List: no eligible file found in repo 
+[2026-03-14T13:54:26.695Z] [WARN] ⚠️  Awesome Mcp Personas: no eligible file found in repo 
+[2026-03-14T13:54:26.968Z] [WARN] ⚠️  Awesome Mcp Security: no eligible file found in repo 
+[2026-03-14T13:54:27.019Z] [WARN] ⚠️  Awesome Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:54:27.462Z] [WARN] ⚠️  Awesome MCP ZH: no eligible file found in repo 
+[2026-03-14T13:54:27.758Z] [WARN] ⚠️  Awesome Osint Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:54:27.804Z] [WARN] ⚠️  Awesome Remote Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:54:28.244Z] [WARN] ⚠️  Awesome Web3 Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:54:28.524Z] [WARN] ⚠️  Aws Cost Explorer Mcp Server: no eligible file found in repo 
+[2026-03-14T13:54:28.743Z] [WARN] ⚠️  Aws Finops Mcp Server: no eligible file found in repo 
+[2026-03-14T13:54:29.148Z] [INFO] ✅ [DRY RUN] Aws Geocode Mcp: would set content (161 chars) 
+[2026-03-14T13:54:29.149Z] [INFO]    Preview: {   "mcpServers": {     "aws-geocode-mcp": {       "command": "npx",       "args": [         "-y",         "aws-geocode-... 
+[2026-03-14T13:54:29.344Z] [WARN] ⚠️  Aws Lambda Mcp Cookbook: no eligible file found in repo 
+[2026-03-14T13:54:29.533Z] [WARN] ⚠️  Aws Log Sentinel: no eligible file found in repo 
+[2026-03-14T13:54:29.963Z] [INFO] ✅ [DRY RUN] Aws Mcp: would set content (165 chars) 
+[2026-03-14T13:54:29.964Z] [INFO]    Preview: {   "mcpServers": {     "chatwithcloud-mcp": {       "command": "npx",       "args": [         "-y",         "chatwithcl... 
+[2026-03-14T13:54:30.128Z] [WARN] ⚠️  Aws Mcp Server: no eligible file found in repo 
+[2026-03-14T13:54:30.381Z] [WARN] ⚠️  Aws Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:54:30.763Z] [WARN] ⚠️  Aws Mcp Servers Samples: no eligible file found in repo 
+[2026-03-14T13:54:30.931Z] [INFO] ✅ [DRY RUN] Aws S3 Mcp: would set content (151 chars) 
+[2026-03-14T13:54:30.931Z] [INFO]    Preview: {   "mcpServers": {     "aws-s3-mcp": {       "command": "npx",       "args": [         "-y",         "aws-s3-mcp"      ... 
+[2026-03-14T13:54:31.195Z] [WARN] ⚠️  Aws Security Mcp: no eligible file found in repo 
+[2026-03-14T13:54:31.552Z] [WARN] ⚠️  awslabs/mcp: no eligible file found in repo 
+[2026-03-14T13:54:31.712Z] [WARN] ⚠️  Awsome_kali_MCPServers: no eligible file found in repo 
+[2026-03-14T13:54:31.987Z] [INFO] ✅ [DRY RUN] Ax Cli: would set content (168 chars) 
+[2026-03-14T13:54:31.987Z] [INFO]    Preview: {   "mcpServers": {     "ax-monorepo": {       "command": "npx",       "args": [         "-y",         "@defai.digital/a... 
+[2026-03-14T13:54:32.339Z] [WARN] ⚠️  Axendo.ModelContextProtocol.Umbraco: no eligible file found in repo 
+[2026-03-14T13:54:32.596Z] [WARN] ⚠️  Axon.MCP.Server: no eligible file found in repo 
+[2026-03-14T13:54:32.868Z] [WARN] ⚠️  Azan Mcp: no eligible file found in repo 
+[2026-03-14T13:54:33.127Z] [INFO] ✅ [DRY RUN] Azure Devops Mcp: would set content (151 chars) 
+[2026-03-14T13:54:33.127Z] [INFO]    Preview: {   "mcpServers": {     "mcp": {       "command": "npx",       "args": [         "-y",         "@azure-devops/mcp"      ... 
+[2026-03-14T13:54:33.379Z] [WARN] ⚠️  Azure Mcp: no eligible file found in repo 
+[2026-03-14T13:54:33.864Z] [WARN] ⚠️  AzureMCP Demo: no eligible file found in repo 
+[2026-03-14T13:54:33.864Z] [INFO] 
+📊 BACKFILL SUMMARY 
+[2026-03-14T13:54:33.865Z] [INFO]   ✅ Updated:              46 
+[2026-03-14T13:54:33.865Z] [INFO]   ⏭️  Skipped (has content): 0 
+[2026-03-14T13:54:33.865Z] [INFO]   ⚠️  No file found:        154 
+[2026-03-14T13:54:33.865Z] [INFO]   🚫 Non-GitHub URL:        0 
+[2026-03-14T13:54:33.866Z] [INFO]   ❌ Errors:               0 
+[2026-03-14T13:54:33.866Z] [INFO] 
+  By category: 
+[2026-03-14T13:54:33.866Z] [INFO]   MCP Servers    : 46 updated / 0 skipped / 154 failed 
+[2026-03-14T13:54:33.866Z] [INFO]   Rules          : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:54:33.866Z] [INFO]   Prompts        : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:54:33.867Z] [INFO]   Skills         : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:54:33.867Z] [INFO]   Workflows      : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:54:33.867Z] [INFO]   Agents         : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:54:33.867Z] [INFO]   Boilerplates   : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:54:33.867Z] [INFO]   Troubleshooting: 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:58:11.281Z] [INFO] 
+🚀 Backfill Content Script 
+[2026-03-14T13:58:11.284Z] [INFO]    Mode:     LIVE 
+[2026-03-14T13:58:11.284Z] [INFO]    Category: mcp-servers 
+[2026-03-14T13:58:11.284Z] [INFO]    Cap:      200 resources total
+ 
+[2026-03-14T13:58:12.081Z] [INFO] 📋 Found 200 eligible resources (cap: 200)
+ 
+[2026-03-14T13:58:13.136Z] [WARN] ⚠️   Mcp To Skill Converter: no eligible file found in repo 
+[2026-03-14T13:58:13.141Z] [WARN] ⚠️   Modelcontextprotocol Web Content Pick: no eligible file found in repo 
+[2026-03-14T13:58:13.155Z] [WARN] ⚠️   Mcp For Paper Read Based On AI IDE: no eligible file found in repo 
+[2026-03-14T13:58:13.912Z] [WARN] ⚠️  0x4m4/hexstrike-ai: no eligible file found in repo 
+[2026-03-14T13:58:13.934Z] [WARN] ⚠️  0xJacky/nginx-ui: no eligible file found in repo 
+[2026-03-14T13:58:14.073Z] [INFO] ✅ 12306 Mcp: content set (149 chars) 
+[2026-03-14T13:58:14.715Z] [WARN] ⚠️  1Panel: no eligible file found in repo 
+[2026-03-14T13:58:14.817Z] [INFO] ✅ 1mcp: content set (139 chars) 
+[2026-03-14T13:58:15.250Z] [WARN] ⚠️  53AI/53AIHub: no eligible file found in repo 
+[2026-03-14T13:58:15.501Z] [WARN] ⚠️  A2a Go: no eligible file found in repo 
+[2026-03-14T13:58:15.635Z] [WARN] ⚠️  A2A MCP Server: no eligible file found in repo 
+[2026-03-14T13:58:16.035Z] [WARN] ⚠️  A2V: no eligible file found in repo 
+[2026-03-14T13:58:16.287Z] [WARN] ⚠️  Abcoder: no eligible file found in repo 
+[2026-03-14T13:58:16.424Z] [WARN] ⚠️  Ableton 11 Mcp For Windows Codex And Antigravity: no eligible file found in repo 
+[2026-03-14T13:58:16.799Z] [WARN] ⚠️  Ableton Live Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:17.080Z] [WARN] ⚠️  Academic Antigravity: no eligible file found in repo 
+[2026-03-14T13:58:17.208Z] [WARN] ⚠️  Academic Search Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:17.570Z] [WARN] ⚠️  Aci Mcp: no eligible file found in repo 
+[2026-03-14T13:58:17.850Z] [WARN] ⚠️  Action_mcp: no eligible file found in repo 
+[2026-03-14T13:58:18.198Z] [WARN] ⚠️  activepieces/activepieces: no eligible file found in repo 
+[2026-03-14T13:58:18.743Z] [INFO] ✅ Adonis Mcp: content set (158 chars) 
+[2026-03-14T13:58:18.770Z] [WARN] ⚠️  Aderyn: no eligible file found in repo 
+[2026-03-14T13:58:18.979Z] [WARN] ⚠️  Advanced Mcp Youtube: no eligible file found in repo 
+[2026-03-14T13:58:19.515Z] [WARN] ⚠️  Advanced Unity Mcp: no eligible file found in repo 
+[2026-03-14T13:58:19.660Z] [INFO] ✅ After Effects Mcp: content set (165 chars) 
+[2026-03-14T13:58:19.870Z] [WARN] ⚠️  ag2ai/ag2: no eligible file found in repo 
+[2026-03-14T13:58:20.413Z] [INFO] ✅ Agent: content set (147 chars) 
+[2026-03-14T13:58:20.451Z] [WARN] ⚠️  Agent Skills: no eligible file found in repo 
+[2026-03-14T13:58:20.656Z] [WARN] ⚠️  Agent Toolkit: no eligible file found in repo 
+[2026-03-14T13:58:21.181Z] [WARN] ⚠️  AgentChat: no eligible file found in repo 
+[2026-03-14T13:58:21.226Z] [WARN] ⚠️  AgentDeskAI/browser-tools-mcp: no eligible file found in repo 
+[2026-03-14T13:58:21.432Z] [WARN] ⚠️  Agentgateway: no eligible file found in repo 
+[2026-03-14T13:58:21.951Z] [WARN] ⚠️  Agentic Ai Protocols: no eligible file found in repo 
+[2026-03-14T13:58:22.005Z] [WARN] ⚠️  Agentic Radar: no eligible file found in repo 
+[2026-03-14T13:58:22.203Z] [WARN] ⚠️  Agentor: no eligible file found in repo 
+[2026-03-14T13:58:22.797Z] [WARN] ⚠️  Agents: no eligible file found in repo 
+[2026-03-14T13:58:22.845Z] [INFO] ✅ Agentql Mcp: content set (153 chars) 
+[2026-03-14T13:58:22.990Z] [WARN] ⚠️  agentscope-ai/agentscope: no eligible file found in repo 
+[2026-03-14T13:58:23.582Z] [WARN] ⚠️  Agentset: no eligible file found in repo 
+[2026-03-14T13:58:23.632Z] [WARN] ⚠️  AgentUp: no eligible file found in repo 
+[2026-03-14T13:58:23.777Z] [WARN] ⚠️  Ai Agent Mcp: no eligible file found in repo 
+[2026-03-14T13:58:24.415Z] [WARN] ⚠️  AI Agent Using Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:24.463Z] [INFO] ✅ Ai Agent Team: content set (157 chars) 
+[2026-03-14T13:58:24.554Z] [WARN] ⚠️  AI Agents Performance Testing MCP Client: no eligible file found in repo 
+[2026-03-14T13:58:25.180Z] [WARN] ⚠️  Ai Agents Skills: no eligible file found in repo 
+[2026-03-14T13:58:25.245Z] [WARN] ⚠️  Ai Agents Starter Kit: no eligible file found in repo 
+[2026-03-14T13:58:25.338Z] [WARN] ⚠️  Ai Command: no eligible file found in repo 
+[2026-03-14T13:58:25.954Z] [WARN] ⚠️  Ai Counsel: no eligible file found in repo 
+[2026-03-14T13:58:26.034Z] [WARN] ⚠️  AI Gateway: no eligible file found in repo 
+[2026-03-14T13:58:26.108Z] [WARN] ⚠️  Ai Trader: no eligible file found in repo 
+[2026-03-14T13:58:26.734Z] [WARN] ⚠️  Ai Workflow Orchestrator Docs: no eligible file found in repo 
+[2026-03-14T13:58:26.925Z] [INFO] ✅ Aica: content set (148 chars) 
+[2026-03-14T13:58:27.240Z] [INFO] ✅ Aicode Toolkit: content set (157 chars) 
+[2026-03-14T13:58:27.505Z] [WARN] ⚠️  Aider Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:27.742Z] [WARN] ⚠️  AIForwardDeveloperChallenge: no eligible file found in repo 
+[2026-03-14T13:58:28.013Z] [WARN] ⚠️  Aihappey Agents: no eligible file found in repo 
+[2026-03-14T13:58:28.300Z] [WARN] ⚠️  aipotheosis-labs/aci: no eligible file found in repo 
+[2026-03-14T13:58:28.518Z] [WARN] ⚠️  Airbnb StockScreener Agent With MCP: no eligible file found in repo 
+[2026-03-14T13:58:28.778Z] [WARN] ⚠️  Airtable : no eligible file found in repo 
+[2026-03-14T13:58:29.062Z] [WARN] ⚠️  Airtable Instance 33: no eligible file found in repo 
+[2026-03-14T13:58:29.284Z] [WARN] ⚠️  Airtable Instance 53: no eligible file found in repo 
+[2026-03-14T13:58:29.564Z] [WARN] ⚠️  Airtable Instance 73: no eligible file found in repo 
+[2026-03-14T13:58:29.817Z] [WARN] ⚠️  Airtable Instance 93: no eligible file found in repo 
+[2026-03-14T13:58:30.161Z] [INFO] ✅ Airtable Mcp Server: content set (169 chars) 
+[2026-03-14T13:58:30.443Z] [INFO] ✅ Aisdk Mcp Bridge: content set (163 chars) 
+[2026-03-14T13:58:30.598Z] [WARN] ⚠️  Aks Mcp: no eligible file found in repo 
+[2026-03-14T13:58:30.927Z] [WARN] ⚠️  Akshare One Mcp: no eligible file found in repo 
+[2026-03-14T13:58:31.227Z] [WARN] ⚠️  Aleph: no eligible file found in repo 
+[2026-03-14T13:58:31.405Z] [WARN] ⚠️  alibaba/nacos: no eligible file found in repo 
+[2026-03-14T13:58:31.709Z] [WARN] ⚠️  Alibabacloud Tablestore Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:32.011Z] [WARN] ⚠️  Alpaca Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:32.199Z] [WARN] ⚠️  Aminer Mcp: no eligible file found in repo 
+[2026-03-14T13:58:32.487Z] [WARN] ⚠️  Android Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:32.794Z] [WARN] ⚠️  Anemoi: no eligible file found in repo 
+[2026-03-14T13:58:33.075Z] [INFO] ✅ Anki Mcp Server: content set (161 chars) 
+[2026-03-14T13:58:33.260Z] [WARN] ⚠️  Annas Mcp: no eligible file found in repo 
+[2026-03-14T13:58:33.583Z] [WARN] ⚠️  Anshulrules.Github.Io: no eligible file found in repo 
+[2026-03-14T13:58:33.851Z] [WARN] ⚠️  Anthropic Mcp Antigravity Browser Ubuntu: no eligible file found in repo 
+[2026-03-14T13:58:34.038Z] [WARN] ⚠️  Anthropic Mcp Antigravity Browser Windows: no eligible file found in repo 
+[2026-03-14T13:58:34.360Z] [WARN] ⚠️  Anthropic Mcp Demo: no eligible file found in repo 
+[2026-03-14T13:58:34.725Z] [INFO] ✅ Anti Search: content set (153 chars) 
+[2026-03-14T13:58:34.818Z] [WARN] ⚠️  Antigravity: no eligible file found in repo 
+[2026-03-14T13:58:35.231Z] [WARN] ⚠️  Antigravity AI Agent_MCP Auto Connect Setup: no eligible file found in repo 
+[2026-03-14T13:58:35.512Z] [WARN] ⚠️  Antigravity Automation: no eligible file found in repo 
+[2026-03-14T13:58:35.685Z] [INFO] ✅ Antigravity Awesome Skills: content set (183 chars) 
+[2026-03-14T13:58:36.016Z] [WARN] ⚠️  Antigravity Blender Mcp: no eligible file found in repo 
+[2026-03-14T13:58:36.297Z] [WARN] ⚠️  Antigravity Boots: no eligible file found in repo 
+[2026-03-14T13:58:36.564Z] [INFO] ✅ Antigravity Claude Flow Mcp Router: content set (199 chars) 
+[2026-03-14T13:58:36.813Z] [WARN] ⚠️  Antigravity Figma Mcp Study 01: no eligible file found in repo 
+[2026-03-14T13:58:37.092Z] [WARN] ⚠️  Antigravity Figma Mcp Study 02: no eligible file found in repo 
+[2026-03-14T13:58:37.336Z] [WARN] ⚠️  Antigravity Foundation: no eligible file found in repo 
+[2026-03-14T13:58:37.977Z] [WARN] ⚠️  Antigravity Gemini Debug Logs: no eligible file found in repo 
+[2026-03-14T13:58:37.993Z] [INFO] ✅ Antigravity Image Mcp: content set (173 chars) 
+[2026-03-14T13:58:38.376Z] [INFO] ✅ Antigravity Jules Integration: content set (189 chars) 
+[2026-03-14T13:58:38.805Z] [WARN] ⚠️  Antigravity Lanes: no eligible file found in repo 
+[2026-03-14T13:58:38.896Z] [INFO] ✅ Antigravity Jules Orchestration: content set (193 chars) 
+[2026-03-14T13:58:39.214Z] [WARN] ⚠️  Antigravity Mcp Airflow Duckdb Pipeline Pull Data From Youtube: no eligible file found in repo 
+[2026-03-14T13:58:39.594Z] [WARN] ⚠️  Antigravity Mcp Best Practices: no eligible file found in repo 
+[2026-03-14T13:58:39.689Z] [WARN] ⚠️  Antigravity Mcp Intel Npu: no eligible file found in repo 
+[2026-03-14T13:58:40.126Z] [INFO] ✅ Antigravity Mcp Server: content set (175 chars) 
+[2026-03-14T13:58:40.382Z] [WARN] ⚠️  Antigravity Mcp Setup: no eligible file found in repo 
+[2026-03-14T13:58:40.445Z] [WARN] ⚠️  Antigravity Mcp Test: no eligible file found in repo 
+[2026-03-14T13:58:40.995Z] [INFO] ✅ Antigravity Notebooklm Mcp: content set (183 chars) 
+[2026-03-14T13:58:41.173Z] [WARN] ⚠️  Antigravity Pdf Mcp: no eligible file found in repo 
+[2026-03-14T13:58:41.219Z] [WARN] ⚠️  Antigravity Podcast To Newsletter Skill: no eligible file found in repo 
+[2026-03-14T13:58:41.950Z] [WARN] ⚠️  Antigravity Skills: no eligible file found in repo 
+[2026-03-14T13:58:41.993Z] [WARN] ⚠️  Antigravity Superpower: no eligible file found in repo 
+[2026-03-14T13:58:42.162Z] [WARN] ⚠️  Antigravity Review Mcp: no eligible file found in repo 
+[2026-03-14T13:58:42.729Z] [WARN] ⚠️  Antigravity Template: no eligible file found in repo 
+[2026-03-14T13:58:42.789Z] [WARN] ⚠️  Antigravity Unity Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:42.947Z] [WARN] ⚠️  Antigravity Youtube Rag: no eligible file found in repo 
+[2026-03-14T13:58:43.554Z] [WARN] ⚠️  Antigravity_glm_mcp: no eligible file found in repo 
+[2026-03-14T13:58:43.652Z] [INFO] ✅ Antigravity_figma_mcp: content set (173 chars) 
+[2026-03-14T13:58:43.737Z] [WARN] ⚠️  Antigravity_mcp: no eligible file found in repo 
+[2026-03-14T13:58:44.339Z] [WARN] ⚠️  Antigravity_UnrealEngine_Max: no eligible file found in repo 
+[2026-03-14T13:58:44.532Z] [WARN] ⚠️  Antigravitydirectory: no eligible file found in repo 
+[2026-03-14T13:58:44.543Z] [INFO] ✅ Antigravity2Api: content set (161 chars) 
+[2026-03-14T13:58:45.214Z] [INFO] ✅ AntigravityMobile: content set (167 chars) 
+[2026-03-14T13:58:45.399Z] [INFO] ✅ Any Chat Completions Mcp: content set (192 chars) 
+[2026-03-14T13:58:45.446Z] [INFO] ✅ Any Script Mcp: content set (159 chars) 
+[2026-03-14T13:58:46.121Z] [INFO] ✅ Anytype Mcp: content set (163 chars) 
+[2026-03-14T13:58:46.222Z] [WARN] ⚠️  Api2mcp4j: no eligible file found in repo 
+[2026-03-14T13:58:46.276Z] [INFO] ✅ Api200: content set (151 chars) 
+[2026-03-14T13:58:47.036Z] [INFO] ✅ Apify Mcp Server: content set (172 chars) 
+[2026-03-14T13:58:47.110Z] [INFO] ✅ Apipost Mcp Server Simple: content set (181 chars) 
+[2026-03-14T13:58:47.166Z] [INFO] ✅ Apitomcp: content set (145 chars) 
+[2026-03-14T13:58:47.811Z] [WARN] ⚠️  Apktool Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:47.886Z] [WARN] ⚠️  Apollo Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:48.028Z] [INFO] ✅ App Store Connect Mcp Server: content set (185 chars) 
+[2026-03-14T13:58:48.596Z] [WARN] ⚠️  appcypher/awesome-mcp-servers: no eligible file found in repo 
+[2026-03-14T13:58:48.762Z] [INFO] ✅ Apple Doc Mcp: content set (171 chars) 
+[2026-03-14T13:58:48.911Z] [INFO] ✅ Apple Docs Mcp: content set (172 chars) 
+[2026-03-14T13:58:49.486Z] [INFO] ✅ Apple Health Mcp: content set (173 chars) 
+[2026-03-14T13:58:49.534Z] [WARN] ⚠️  Apple Health Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:49.782Z] [INFO] ✅ Apple Mcp: content set (149 chars) 
+[2026-03-14T13:58:50.318Z] [WARN] ⚠️  Arcade Mcp: no eligible file found in repo 
+[2026-03-14T13:58:50.363Z] [INFO] ✅ Applescript Mcp: content set (171 chars) 
+[2026-03-14T13:58:50.551Z] [WARN] ⚠️  Arch Mcp: no eligible file found in repo 
+[2026-03-14T13:58:51.136Z] [WARN] ⚠️  Archestra: no eligible file found in repo 
+[2026-03-14T13:58:51.177Z] [WARN] ⚠️  Archiledger: no eligible file found in repo 
+[2026-03-14T13:58:51.367Z] [WARN] ⚠️  Arindam200/awesome-ai-apps: no eligible file found in repo 
+[2026-03-14T13:58:51.913Z] [WARN] ⚠️  Ark Mcp: no eligible file found in repo 
+[2026-03-14T13:58:51.970Z] [WARN] ⚠️  Armor Crypto Mcp: no eligible file found in repo 
+[2026-03-14T13:58:52.136Z] [WARN] ⚠️  ArXiv Analyst: no eligible file found in repo 
+[2026-03-14T13:58:52.692Z] [WARN] ⚠️  Arxiv Latex Mcp: no eligible file found in repo 
+[2026-03-14T13:58:52.747Z] [WARN] ⚠️  Arxiv Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:52.910Z] [WARN] ⚠️  Aseprite Mcp: no eligible file found in repo 
+[2026-03-14T13:58:53.479Z] [WARN] ⚠️  Asistencia Supabase Antigravity: no eligible file found in repo 
+[2026-03-14T13:58:53.521Z] [WARN] ⚠️  assafelovic/gpt-researcher: no eligible file found in repo 
+[2026-03-14T13:58:53.697Z] [WARN] ⚠️  AstrBotDevs/AstrBot: no eligible file found in repo 
+[2026-03-14T13:58:54.295Z] [WARN] ⚠️  Astro Mcp: no eligible file found in repo 
+[2026-03-14T13:58:54.362Z] [INFO] ✅ Astria Mcp: content set (165 chars) 
+[2026-03-14T13:58:54.604Z] [INFO] ✅ Atlas Docs Mcp: content set (173 chars) 
+[2026-03-14T13:58:55.135Z] [WARN] ⚠️  Atlassian Dc Mcp Go: no eligible file found in repo 
+[2026-03-14T13:58:55.182Z] [INFO] ✅ Atlas Mcp Server: content set (163 chars) 
+[2026-03-14T13:58:55.399Z] [WARN] ⚠️  Atlassian Mcp Server: no eligible file found in repo 
+[2026-03-14T13:58:55.907Z] [WARN] ⚠️  ATSPI MCP Server: no eligible file found in repo 
+[2026-03-14T13:58:56.066Z] [INFO] ✅ Augmented Nature UniProt MCP Server: content set (159 chars) 
+[2026-03-14T13:58:56.579Z] [WARN] ⚠️  Auto Mcp: no eligible file found in repo 
+[2026-03-14T13:58:56.687Z] [WARN] ⚠️  Autocad Mcp: no eligible file found in repo 
+[2026-03-14T13:58:56.848Z] [WARN] ⚠️  AutomatedEmulation: no eligible file found in repo 
+[2026-03-14T13:58:57.470Z] [WARN] ⚠️  Automcp: no eligible file found in repo 
+[2026-03-14T13:58:57.472Z] [INFO] ✅ Automation Mcp: content set (159 chars) 
+[2026-03-14T13:58:57.631Z] [WARN] ⚠️  Awesome Audio Skills: no eligible file found in repo 
+[2026-03-14T13:58:58.250Z] [WARN] ⚠️  Awesome Claude Dxt: no eligible file found in repo 
+[2026-03-14T13:58:58.255Z] [WARN] ⚠️  Awesome Claude Code Plugins: no eligible file found in repo 
+[2026-03-14T13:58:58.396Z] [WARN] ⚠️  Awesome Crypto Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:58:59.021Z] [WARN] ⚠️  Awesome Devops Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:58:59.033Z] [WARN] ⚠️  Awesome DotNET MCP: no eligible file found in repo 
+[2026-03-14T13:58:59.175Z] [WARN] ⚠️  Awesome Hacking Lists: no eligible file found in repo 
+[2026-03-14T13:58:59.795Z] [WARN] ⚠️  Awesome MCP: no eligible file found in repo 
+[2026-03-14T13:58:59.817Z] [WARN] ⚠️  Awesome Mcp Devtools: no eligible file found in repo 
+[2026-03-14T13:58:59.986Z] [WARN] ⚠️  Awesome Mcp List: no eligible file found in repo 
+[2026-03-14T13:59:00.566Z] [WARN] ⚠️  Awesome Mcp Personas: no eligible file found in repo 
+[2026-03-14T13:59:00.581Z] [WARN] ⚠️  Awesome Mcp Security: no eligible file found in repo 
+[2026-03-14T13:59:00.753Z] [WARN] ⚠️  Awesome Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:59:01.328Z] [WARN] ⚠️  Awesome MCP ZH: no eligible file found in repo 
+[2026-03-14T13:59:01.362Z] [WARN] ⚠️  Awesome Osint Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:59:01.531Z] [WARN] ⚠️  Awesome Remote Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:59:02.102Z] [WARN] ⚠️  Awesome Web3 Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:59:02.133Z] [WARN] ⚠️  Aws Cost Explorer Mcp Server: no eligible file found in repo 
+[2026-03-14T13:59:02.325Z] [WARN] ⚠️  Aws Finops Mcp Server: no eligible file found in repo 
+[2026-03-14T13:59:02.939Z] [WARN] ⚠️  Aws Lambda Mcp Cookbook: no eligible file found in repo 
+[2026-03-14T13:59:02.975Z] [INFO] ✅ Aws Geocode Mcp: content set (161 chars) 
+[2026-03-14T13:59:03.105Z] [WARN] ⚠️  Aws Log Sentinel: no eligible file found in repo 
+[2026-03-14T13:59:03.746Z] [WARN] ⚠️  Aws Mcp Server: no eligible file found in repo 
+[2026-03-14T13:59:03.830Z] [INFO] ✅ Aws Mcp: content set (165 chars) 
+[2026-03-14T13:59:03.902Z] [WARN] ⚠️  Aws Mcp Servers: no eligible file found in repo 
+[2026-03-14T13:59:04.530Z] [WARN] ⚠️  Aws Mcp Servers Samples: no eligible file found in repo 
+[2026-03-14T13:59:04.678Z] [WARN] ⚠️  Aws Security Mcp: no eligible file found in repo 
+[2026-03-14T13:59:04.706Z] [INFO] ✅ Aws S3 Mcp: content set (151 chars) 
+[2026-03-14T13:59:05.312Z] [WARN] ⚠️  awslabs/mcp: no eligible file found in repo 
+[2026-03-14T13:59:05.451Z] [WARN] ⚠️  Awsome_kali_MCPServers: no eligible file found in repo 
+[2026-03-14T13:59:05.644Z] [INFO] ✅ Ax Cli: content set (168 chars) 
+[2026-03-14T13:59:06.098Z] [WARN] ⚠️  Axendo.ModelContextProtocol.Umbraco: no eligible file found in repo 
+[2026-03-14T13:59:06.218Z] [WARN] ⚠️  Axon.MCP.Server: no eligible file found in repo 
+[2026-03-14T13:59:06.414Z] [WARN] ⚠️  Azan Mcp: no eligible file found in repo 
+[2026-03-14T13:59:06.992Z] [INFO] ✅ Azure Devops Mcp: content set (151 chars) 
+[2026-03-14T13:59:07.005Z] [WARN] ⚠️  Azure Mcp: no eligible file found in repo 
+[2026-03-14T13:59:07.192Z] [WARN] ⚠️  AzureMCP Demo: no eligible file found in repo 
+[2026-03-14T13:59:07.193Z] [INFO] 
+📊 BACKFILL SUMMARY 
+[2026-03-14T13:59:07.195Z] [INFO]   ✅ Updated:              46 
+[2026-03-14T13:59:07.196Z] [INFO]   ⏭️  Skipped (has content): 0 
+[2026-03-14T13:59:07.197Z] [INFO]   ⚠️  No file found:        154 
+[2026-03-14T13:59:07.197Z] [INFO]   🚫 Non-GitHub URL:        0 
+[2026-03-14T13:59:07.197Z] [INFO]   ❌ Errors:               0 
+[2026-03-14T13:59:07.198Z] [INFO] 
+  By category: 
+[2026-03-14T13:59:07.198Z] [INFO]   MCP Servers    : 46 updated / 0 skipped / 154 failed 
+[2026-03-14T13:59:07.199Z] [INFO]   Rules          : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:59:07.199Z] [INFO]   Prompts        : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:59:07.199Z] [INFO]   Skills         : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:59:07.200Z] [INFO]   Workflows      : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:59:07.200Z] [INFO]   Agents         : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:59:07.201Z] [INFO]   Boilerplates   : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T13:59:07.201Z] [INFO]   Troubleshooting: 0 updated / 0 skipped / 0 failed 
+[2026-03-14T14:04:25.722Z] [INFO] 
+🚀 Backfill Content Script 
+[2026-03-14T14:04:25.725Z] [INFO]    Mode:     LIVE 
+[2026-03-14T14:04:25.725Z] [INFO]    Category: rules 
+[2026-03-14T14:04:25.725Z] [INFO]    Cap:      200 resources total
+ 
+[2026-03-14T14:04:26.414Z] [INFO] 📋 Found 0 eligible resources (cap: 200)
+ 
+[2026-03-14T14:04:26.446Z] [INFO] Nothing to process. All eligible resources already have content. 
+[2026-03-14T14:55:40.802Z] [INFO] 
+🚀 Backfill Content Script 
+[2026-03-14T14:55:40.805Z] [INFO]    Mode:     LIVE 
+[2026-03-14T14:55:40.805Z] [INFO]    Category: mcp-servers 
+[2026-03-14T14:55:40.805Z] [INFO]    Cap:      200 resources total
+ 
+[2026-03-14T14:55:41.738Z] [INFO] 📋 Found 200 eligible resources (cap: 200)
+ 
+[2026-03-14T14:55:42.738Z] [WARN] ⚠️   Modelcontextprotocol Web Content Pick: no eligible file found in repo 
+[2026-03-14T14:55:42.748Z] [WARN] ⚠️   Mcp For Paper Read Based On AI IDE: no eligible file found in repo 
+[2026-03-14T14:55:42.751Z] [WARN] ⚠️   Mcp To Skill Converter: no eligible file found in repo 
+[2026-03-14T14:55:43.519Z] [WARN] ⚠️  0x4m4/hexstrike-ai: no eligible file found in repo 
+[2026-03-14T14:55:43.531Z] [WARN] ⚠️  1Panel: no eligible file found in repo 
+[2026-03-14T14:55:43.569Z] [WARN] ⚠️  0xJacky/nginx-ui: no eligible file found in repo 
+[2026-03-14T14:55:44.314Z] [WARN] ⚠️  53AI/53AIHub: no eligible file found in repo 
+[2026-03-14T14:55:44.316Z] [WARN] ⚠️  A2a Go: no eligible file found in repo 
+[2026-03-14T14:55:44.370Z] [WARN] ⚠️  A2A MCP Server: no eligible file found in repo 
+[2026-03-14T14:55:45.104Z] [WARN] ⚠️  Abcoder: no eligible file found in repo 
+[2026-03-14T14:55:45.135Z] [WARN] ⚠️  A2V: no eligible file found in repo 
+[2026-03-14T14:55:45.158Z] [WARN] ⚠️  Ableton 11 Mcp For Windows Codex And Antigravity: no eligible file found in repo 
+[2026-03-14T14:55:45.883Z] [WARN] ⚠️  Ableton Live Mcp Server: no eligible file found in repo 
+[2026-03-14T14:55:45.935Z] [WARN] ⚠️  Academic Search Mcp Server: no eligible file found in repo 
+[2026-03-14T14:55:45.941Z] [WARN] ⚠️  Academic Antigravity: no eligible file found in repo 
+[2026-03-14T14:55:46.671Z] [WARN] ⚠️  Aci Mcp: no eligible file found in repo 
+[2026-03-14T14:55:46.714Z] [WARN] ⚠️  Action_mcp: no eligible file found in repo 
+[2026-03-14T14:55:46.817Z] [WARN] ⚠️  activepieces/activepieces: no eligible file found in repo 
+[2026-03-14T14:55:47.455Z] [WARN] ⚠️  Aderyn: no eligible file found in repo 
+[2026-03-14T14:55:47.520Z] [WARN] ⚠️  Advanced Mcp Youtube: no eligible file found in repo 
+[2026-03-14T14:55:47.617Z] [WARN] ⚠️  Advanced Unity Mcp: no eligible file found in repo 
+[2026-03-14T14:55:48.251Z] [WARN] ⚠️  ag2ai/ag2: no eligible file found in repo 
+[2026-03-14T14:55:48.308Z] [WARN] ⚠️  Agent Skills: no eligible file found in repo 
+[2026-03-14T14:55:48.420Z] [WARN] ⚠️  Agent Toolkit: no eligible file found in repo 
+[2026-03-14T14:55:49.220Z] [WARN] ⚠️  Agentgateway: no eligible file found in repo 
+[2026-03-14T14:55:49.391Z] [WARN] ⚠️  AgentChat: no eligible file found in repo 
+[2026-03-14T14:55:49.484Z] [WARN] ⚠️  AgentDeskAI/browser-tools-mcp: no eligible file found in repo 
+[2026-03-14T14:55:50.003Z] [WARN] ⚠️  Agentic Ai Protocols: no eligible file found in repo 
+[2026-03-14T14:55:50.183Z] [WARN] ⚠️  Agentic Radar: no eligible file found in repo 
+[2026-03-14T14:55:50.266Z] [WARN] ⚠️  Agentor: no eligible file found in repo 
+[2026-03-14T14:55:50.822Z] [WARN] ⚠️  Agents: no eligible file found in repo 
+[2026-03-14T14:55:50.971Z] [WARN] ⚠️  agentscope-ai/agentscope: no eligible file found in repo 
+[2026-03-14T14:55:51.068Z] [WARN] ⚠️  Agentset: no eligible file found in repo 
+[2026-03-14T14:55:51.626Z] [WARN] ⚠️  AgentUp: no eligible file found in repo 
+[2026-03-14T14:55:51.754Z] [WARN] ⚠️  Ai Agent Mcp: no eligible file found in repo 
+[2026-03-14T14:55:51.867Z] [WARN] ⚠️  AI Agent Using Mcp Server: no eligible file found in repo 
+[2026-03-14T14:55:52.408Z] [WARN] ⚠️  AI Agents Performance Testing MCP Client: no eligible file found in repo 
+[2026-03-14T14:55:52.551Z] [WARN] ⚠️  Ai Agents Skills: no eligible file found in repo 
+[2026-03-14T14:55:52.649Z] [WARN] ⚠️  Ai Agents Starter Kit: no eligible file found in repo 
+[2026-03-14T14:55:53.190Z] [WARN] ⚠️  Ai Command: no eligible file found in repo 
+[2026-03-14T14:55:53.476Z] [WARN] ⚠️  Ai Counsel: no eligible file found in repo 
+[2026-03-14T14:55:53.516Z] [WARN] ⚠️  AI Gateway: no eligible file found in repo 
+[2026-03-14T14:55:53.974Z] [WARN] ⚠️  Ai Trader: no eligible file found in repo 
+[2026-03-14T14:55:54.349Z] [WARN] ⚠️  Ai Workflow Orchestrator Docs: no eligible file found in repo 
+[2026-03-14T14:55:54.355Z] [WARN] ⚠️  Aider Mcp Server: no eligible file found in repo 
+[2026-03-14T14:55:54.750Z] [WARN] ⚠️  AIForwardDeveloperChallenge: no eligible file found in repo 
+[2026-03-14T14:55:55.137Z] [WARN] ⚠️  aipotheosis-labs/aci: no eligible file found in repo 
+[2026-03-14T14:55:55.138Z] [WARN] ⚠️  Aihappey Agents: no eligible file found in repo 
+[2026-03-14T14:55:55.538Z] [WARN] ⚠️  Airbnb StockScreener Agent With MCP: no eligible file found in repo 
+[2026-03-14T14:55:55.890Z] [WARN] ⚠️  Airtable : no eligible file found in repo 
+[2026-03-14T14:55:55.899Z] [WARN] ⚠️  Airtable Instance 33: no eligible file found in repo 
+[2026-03-14T14:55:56.389Z] [WARN] ⚠️  Airtable Instance 53: no eligible file found in repo 
+[2026-03-14T14:55:56.650Z] [WARN] ⚠️  Airtable Instance 73: no eligible file found in repo 
+[2026-03-14T14:55:56.666Z] [WARN] ⚠️  Airtable Instance 93: no eligible file found in repo 
+[2026-03-14T14:55:57.201Z] [WARN] ⚠️  Aks Mcp: no eligible file found in repo 
+[2026-03-14T14:55:57.485Z] [WARN] ⚠️  Akshare One Mcp: no eligible file found in repo 
+[2026-03-14T14:55:57.486Z] [WARN] ⚠️  Aleph: no eligible file found in repo 
+[2026-03-14T14:55:57.992Z] [WARN] ⚠️  alibaba/nacos: no eligible file found in repo 
+[2026-03-14T14:55:58.290Z] [WARN] ⚠️  Alibabacloud Tablestore Mcp Server: no eligible file found in repo 
+[2026-03-14T14:55:58.291Z] [WARN] ⚠️  Alpaca Mcp Server: no eligible file found in repo 
+[2026-03-14T14:55:58.785Z] [WARN] ⚠️  Aminer Mcp: no eligible file found in repo 
+[2026-03-14T14:55:59.060Z] [WARN] ⚠️  Android Mcp Server: no eligible file found in repo 
+[2026-03-14T14:55:59.069Z] [WARN] ⚠️  Anemoi: no eligible file found in repo 
+[2026-03-14T14:55:59.569Z] [WARN] ⚠️  Annas Mcp: no eligible file found in repo 
+[2026-03-14T14:55:59.853Z] [WARN] ⚠️  Anthropic Mcp Antigravity Browser Ubuntu: no eligible file found in repo 
+[2026-03-14T14:55:59.866Z] [WARN] ⚠️  Anshulrules.Github.Io: no eligible file found in repo 
+[2026-03-14T14:56:00.349Z] [WARN] ⚠️  Anthropic Mcp Antigravity Browser Windows: no eligible file found in repo 
+[2026-03-14T14:56:00.626Z] [WARN] ⚠️  Anthropic Mcp Demo: no eligible file found in repo 
+[2026-03-14T14:56:00.651Z] [WARN] ⚠️  Antigravity: no eligible file found in repo 
+[2026-03-14T14:56:01.138Z] [WARN] ⚠️  Antigravity AI Agent_MCP Auto Connect Setup: no eligible file found in repo 
+[2026-03-14T14:56:01.435Z] [WARN] ⚠️  Antigravity Blender Mcp: no eligible file found in repo 
+[2026-03-14T14:56:01.815Z] [WARN] ⚠️  Antigravity Automation: no eligible file found in repo 
+[2026-03-14T14:56:01.915Z] [WARN] ⚠️  Antigravity Boots: no eligible file found in repo 
+[2026-03-14T14:56:02.243Z] [WARN] ⚠️  Antigravity Figma Mcp Study 01: no eligible file found in repo 
+[2026-03-14T14:56:02.618Z] [WARN] ⚠️  Antigravity Figma Mcp Study 02: no eligible file found in repo 
+[2026-03-14T14:56:02.704Z] [WARN] ⚠️  Antigravity Foundation: no eligible file found in repo 
+[2026-03-14T14:56:03.038Z] [WARN] ⚠️  Antigravity Gemini Debug Logs: no eligible file found in repo 
+[2026-03-14T14:56:03.405Z] [WARN] ⚠️  Antigravity Lanes: no eligible file found in repo 
+[2026-03-14T14:56:03.501Z] [WARN] ⚠️  Antigravity Mcp Airflow Duckdb Pipeline Pull Data From Youtube: no eligible file found in repo 
+[2026-03-14T14:56:03.821Z] [WARN] ⚠️  Antigravity Mcp Best Practices: no eligible file found in repo 
+[2026-03-14T14:56:04.175Z] [WARN] ⚠️  Antigravity Mcp Intel Npu: no eligible file found in repo 
+[2026-03-14T14:56:04.501Z] [WARN] ⚠️  Antigravity Mcp Setup: no eligible file found in repo 
+[2026-03-14T14:56:04.985Z] [WARN] ⚠️  Antigravity Mcp Test: no eligible file found in repo 
+[2026-03-14T14:56:05.086Z] [WARN] ⚠️  Antigravity Pdf Mcp: no eligible file found in repo 
+[2026-03-14T14:56:05.293Z] [WARN] ⚠️  Antigravity Podcast To Newsletter Skill: no eligible file found in repo 
+[2026-03-14T14:56:05.766Z] [WARN] ⚠️  Antigravity Review Mcp: no eligible file found in repo 
+[2026-03-14T14:56:05.871Z] [WARN] ⚠️  Antigravity Skills: no eligible file found in repo 
+[2026-03-14T14:56:06.209Z] [WARN] ⚠️  Antigravity Superpower: no eligible file found in repo 
+[2026-03-14T14:56:06.556Z] [WARN] ⚠️  Antigravity Template: no eligible file found in repo 
+[2026-03-14T14:56:06.672Z] [WARN] ⚠️  Antigravity Unity Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:06.992Z] [WARN] ⚠️  Antigravity Youtube Rag: no eligible file found in repo 
+[2026-03-14T14:56:07.451Z] [WARN] ⚠️  Antigravity_mcp: no eligible file found in repo 
+[2026-03-14T14:56:07.734Z] [WARN] ⚠️  Antigravity_glm_mcp: no eligible file found in repo 
+[2026-03-14T14:56:07.772Z] [WARN] ⚠️  Antigravity_UnrealEngine_Max: no eligible file found in repo 
+[2026-03-14T14:56:08.241Z] [WARN] ⚠️  Antigravitydirectory: no eligible file found in repo 
+[2026-03-14T14:56:08.589Z] [WARN] ⚠️  Api2mcp4j: no eligible file found in repo 
+[2026-03-14T14:56:08.655Z] [WARN] ⚠️  Apktool Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:09.035Z] [WARN] ⚠️  Apollo Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:09.473Z] [WARN] ⚠️  Apple Health Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:09.487Z] [WARN] ⚠️  appcypher/awesome-mcp-servers: no eligible file found in repo 
+[2026-03-14T14:56:09.877Z] [WARN] ⚠️  Arcade Mcp: no eligible file found in repo 
+[2026-03-14T14:56:10.255Z] [WARN] ⚠️  Arch Mcp: no eligible file found in repo 
+[2026-03-14T14:56:10.291Z] [WARN] ⚠️  Archestra: no eligible file found in repo 
+[2026-03-14T14:56:10.739Z] [WARN] ⚠️  Archiledger: no eligible file found in repo 
+[2026-03-14T14:56:11.044Z] [WARN] ⚠️  Arindam200/awesome-ai-apps: no eligible file found in repo 
+[2026-03-14T14:56:11.161Z] [WARN] ⚠️  Ark Mcp: no eligible file found in repo 
+[2026-03-14T14:56:11.528Z] [WARN] ⚠️  Armor Crypto Mcp: no eligible file found in repo 
+[2026-03-14T14:56:11.842Z] [WARN] ⚠️  ArXiv Analyst: no eligible file found in repo 
+[2026-03-14T14:56:12.057Z] [WARN] ⚠️  Arxiv Latex Mcp: no eligible file found in repo 
+[2026-03-14T14:56:12.321Z] [WARN] ⚠️  Arxiv Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:12.636Z] [WARN] ⚠️  Aseprite Mcp: no eligible file found in repo 
+[2026-03-14T14:56:12.840Z] [WARN] ⚠️  Asistencia Supabase Antigravity: no eligible file found in repo 
+[2026-03-14T14:56:13.106Z] [WARN] ⚠️  assafelovic/gpt-researcher: no eligible file found in repo 
+[2026-03-14T14:56:13.436Z] [WARN] ⚠️  AstrBotDevs/AstrBot: no eligible file found in repo 
+[2026-03-14T14:56:13.645Z] [WARN] ⚠️  Astro Mcp: no eligible file found in repo 
+[2026-03-14T14:56:13.921Z] [WARN] ⚠️  Atlassian Dc Mcp Go: no eligible file found in repo 
+[2026-03-14T14:56:14.229Z] [WARN] ⚠️  Atlassian Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:14.422Z] [WARN] ⚠️  ATSPI MCP Server: no eligible file found in repo 
+[2026-03-14T14:56:14.740Z] [WARN] ⚠️  Auto Mcp: no eligible file found in repo 
+[2026-03-14T14:56:15.021Z] [WARN] ⚠️  Autocad Mcp: no eligible file found in repo 
+[2026-03-14T14:56:15.208Z] [WARN] ⚠️  AutomatedEmulation: no eligible file found in repo 
+[2026-03-14T14:56:15.539Z] [WARN] ⚠️  Automcp: no eligible file found in repo 
+[2026-03-14T14:56:15.824Z] [WARN] ⚠️  Awesome Audio Skills: no eligible file found in repo 
+[2026-03-14T14:56:15.974Z] [WARN] ⚠️  Awesome Claude Code Plugins: no eligible file found in repo 
+[2026-03-14T14:56:16.319Z] [WARN] ⚠️  Awesome Claude Dxt: no eligible file found in repo 
+[2026-03-14T14:56:16.619Z] [WARN] ⚠️  Awesome Crypto Mcp Servers: no eligible file found in repo 
+[2026-03-14T14:56:16.758Z] [WARN] ⚠️  Awesome Devops Mcp Servers: no eligible file found in repo 
+[2026-03-14T14:56:17.126Z] [WARN] ⚠️  Awesome DotNET MCP: no eligible file found in repo 
+[2026-03-14T14:56:17.407Z] [WARN] ⚠️  Awesome Hacking Lists: no eligible file found in repo 
+[2026-03-14T14:56:17.554Z] [WARN] ⚠️  Awesome MCP: no eligible file found in repo 
+[2026-03-14T14:56:17.923Z] [WARN] ⚠️  Awesome Mcp Devtools: no eligible file found in repo 
+[2026-03-14T14:56:18.207Z] [WARN] ⚠️  Awesome Mcp List: no eligible file found in repo 
+[2026-03-14T14:56:18.357Z] [WARN] ⚠️  Awesome Mcp Personas: no eligible file found in repo 
+[2026-03-14T14:56:18.709Z] [WARN] ⚠️  Awesome Mcp Security: no eligible file found in repo 
+[2026-03-14T14:56:18.993Z] [WARN] ⚠️  Awesome Mcp Servers: no eligible file found in repo 
+[2026-03-14T14:56:19.128Z] [WARN] ⚠️  Awesome MCP ZH: no eligible file found in repo 
+[2026-03-14T14:56:19.523Z] [WARN] ⚠️  Awesome Osint Mcp Servers: no eligible file found in repo 
+[2026-03-14T14:56:19.804Z] [WARN] ⚠️  Awesome Remote Mcp Servers: no eligible file found in repo 
+[2026-03-14T14:56:19.924Z] [WARN] ⚠️  Awesome Web3 Mcp Servers: no eligible file found in repo 
+[2026-03-14T14:56:20.315Z] [WARN] ⚠️  Aws Cost Explorer Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:20.701Z] [WARN] ⚠️  Aws Finops Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:20.734Z] [WARN] ⚠️  Aws Lambda Mcp Cookbook: no eligible file found in repo 
+[2026-03-14T14:56:21.162Z] [WARN] ⚠️  Aws Log Sentinel: no eligible file found in repo 
+[2026-03-14T14:56:21.523Z] [WARN] ⚠️  Aws Mcp Servers: no eligible file found in repo 
+[2026-03-14T14:56:21.528Z] [WARN] ⚠️  Aws Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:21.951Z] [WARN] ⚠️  Aws Mcp Servers Samples: no eligible file found in repo 
+[2026-03-14T14:56:22.308Z] [WARN] ⚠️  Aws Security Mcp: no eligible file found in repo 
+[2026-03-14T14:56:22.317Z] [WARN] ⚠️  awslabs/mcp: no eligible file found in repo 
+[2026-03-14T14:56:22.718Z] [WARN] ⚠️  Awsome_kali_MCPServers: no eligible file found in repo 
+[2026-03-14T14:56:23.109Z] [WARN] ⚠️  Axon.MCP.Server: no eligible file found in repo 
+[2026-03-14T14:56:23.112Z] [WARN] ⚠️  Axendo.ModelContextProtocol.Umbraco: no eligible file found in repo 
+[2026-03-14T14:56:23.509Z] [WARN] ⚠️  Azan Mcp: no eligible file found in repo 
+[2026-03-14T14:56:24.017Z] [WARN] ⚠️  Azure Mcp: no eligible file found in repo 
+[2026-03-14T14:56:24.018Z] [WARN] ⚠️  AzureMCP Demo: no eligible file found in repo 
+[2026-03-14T14:56:24.703Z] [INFO] ✅ Backlog Mcp Server: content set (167 chars) 
+[2026-03-14T14:56:24.810Z] [WARN] ⚠️  Bank Api: no eligible file found in repo 
+[2026-03-14T14:56:24.975Z] [INFO] ✅ BaSB MCP: content set (147 chars) 
+[2026-03-14T14:56:25.541Z] [WARN] ⚠️  BaSB MCP Worker: no eligible file found in repo 
+[2026-03-14T14:56:25.742Z] [INFO] ✅ Base Mcp: content set (147 chars) 
+[2026-03-14T14:56:25.810Z] [WARN] ⚠️  Base44 Mcp: no eligible file found in repo 
+[2026-03-14T14:56:26.474Z] [INFO] ✅ Basecoat Ui Mcp: content set (161 chars) 
+[2026-03-14T14:56:26.558Z] [WARN] ⚠️  BaseLayer: no eligible file found in repo 
+[2026-03-14T14:56:26.689Z] [INFO] ✅ Bazi Mcp: content set (147 chars) 
+[2026-03-14T14:56:27.278Z] [WARN] ⚠️  beclab/Olares: no eligible file found in repo 
+[2026-03-14T14:56:27.385Z] [WARN] ⚠️  Better Chatbot: no eligible file found in repo 
+[2026-03-14T14:56:27.587Z] [INFO] ✅ Better Icons: content set (155 chars) 
+[2026-03-14T14:56:28.180Z] [WARN] ⚠️  Beyond Mcp: no eligible file found in repo 
+[2026-03-14T14:56:28.258Z] [INFO] ✅ Better Memory Mcp: content set (175 chars) 
+[2026-03-14T14:56:28.406Z] [WARN] ⚠️  Bifrost: no eligible file found in repo 
+[2026-03-14T14:56:29.077Z] [WARN] ⚠️  BigMCP: no eligible file found in repo 
+[2026-03-14T14:56:29.177Z] [WARN] ⚠️  Bilibili Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:29.677Z] [INFO] ✅ BifrostMCP: content set (153 chars) 
+[2026-03-14T14:56:29.990Z] [WARN] ⚠️  Binance Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:29.993Z] [INFO] ✅ Binance MCP: content set (177 chars) 
+[2026-03-14T14:56:30.494Z] [WARN] ⚠️  Binary_ninja_mcp: no eligible file found in repo 
+[2026-03-14T14:56:30.771Z] [WARN] ⚠️  Bing Search Mcp: no eligible file found in repo 
+[2026-03-14T14:56:30.827Z] [WARN] ⚠️  Biomcp: no eligible file found in repo 
+[2026-03-14T14:56:31.427Z] [INFO] ✅ Bitbucket Mcp: content set (157 chars) 
+[2026-03-14T14:56:31.572Z] [WARN] ⚠️  BitbucketMcpServers: no eligible file found in repo 
+[2026-03-14T14:56:31.743Z] [INFO] ✅ Bitcoin Mcp: content set (153 chars) 
+[2026-03-14T14:56:32.227Z] [WARN] ⚠️  Blender MCP Antigravity: no eligible file found in repo 
+[2026-03-14T14:56:32.385Z] [WARN] ⚠️  Blender MCP For Antigravity: no eligible file found in repo 
+[2026-03-14T14:56:32.577Z] [WARN] ⚠️  block/goose: no eligible file found in repo 
+[2026-03-14T14:56:33.186Z] [WARN] ⚠️  BloodHound MCP AI: no eligible file found in repo 
+[2026-03-14T14:56:33.321Z] [WARN] ⚠️  Blockrun Agent Wallet: no eligible file found in repo 
+[2026-03-14T14:56:33.393Z] [WARN] ⚠️  Blueprint Mcp: no eligible file found in repo 
+[2026-03-14T14:56:33.997Z] [WARN] ⚠️  Booksapi Mcp: no eligible file found in repo 
+[2026-03-14T14:56:34.112Z] [WARN] ⚠️  Boost: no eligible file found in repo 
+[2026-03-14T14:56:34.194Z] [WARN] ⚠️  Borsa Mcp: no eligible file found in repo 
+[2026-03-14T14:56:34.893Z] [WARN] ⚠️  Brave Search MCP Server: no eligible file found in repo 
+[2026-03-14T14:56:34.941Z] [INFO] ✅ Brave Search Mcp Server: content set (184 chars) 
+[2026-03-14T14:56:35.013Z] [WARN] ⚠️  Bridge4simulator: no eligible file found in repo 
+[2026-03-14T14:56:35.755Z] [WARN] ⚠️  Brightdata Mcp Adk Hackathon: no eligible file found in repo 
+[2026-03-14T14:56:35.819Z] [INFO] ✅ Brightdata Mcp: content set (149 chars) 
+[2026-03-14T14:56:35.888Z] [WARN] ⚠️  Browser Control Mcp: no eligible file found in repo 
+[2026-03-14T14:56:36.636Z] [WARN] ⚠️  Browser Use Gologin: no eligible file found in repo 
+[2026-03-14T14:56:36.708Z] [INFO] ✅ Browser Mcp Server: content set (186 chars) 
+[2026-03-14T14:56:36.766Z] [WARN] ⚠️  Browser Use Mcp Server: no eligible file found in repo 
+[2026-03-14T14:56:37.408Z] [WARN] ⚠️  Browserbase : no eligible file found in repo 
+[2026-03-14T14:56:37.476Z] [WARN] ⚠️  Browserbase Instance 22: no eligible file found in repo 
+[2026-03-14T14:56:37.477Z] [INFO] 
+📊 BACKFILL SUMMARY 
+[2026-03-14T14:56:37.478Z] [INFO]   ✅ Updated:              14 
+[2026-03-14T14:56:37.478Z] [INFO]   ⏭️  Skipped (has content): 0 
+[2026-03-14T14:56:37.479Z] [INFO]   ⚠️  No file found:        186 
+[2026-03-14T14:56:37.479Z] [INFO]   🚫 Non-GitHub URL:        0 
+[2026-03-14T14:56:37.479Z] [INFO]   ❌ Errors:               0 
+[2026-03-14T14:56:37.479Z] [INFO] 
+  By category: 
+[2026-03-14T14:56:37.480Z] [INFO]   MCP Servers    : 14 updated / 0 skipped / 186 failed 
+[2026-03-14T14:56:37.480Z] [INFO]   Rules          : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T14:56:37.480Z] [INFO]   Prompts        : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T14:56:37.481Z] [INFO]   Skills         : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T14:56:37.491Z] [INFO]   Workflows      : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T14:56:37.492Z] [INFO]   Agents         : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T14:56:37.493Z] [INFO]   Boilerplates   : 0 updated / 0 skipped / 0 failed 
+[2026-03-14T14:56:37.494Z] [INFO]   Troubleshooting: 0 updated / 0 skipped / 0 failed 

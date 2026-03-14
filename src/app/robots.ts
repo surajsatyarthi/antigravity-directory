@@ -29,6 +29,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://googleantigravity.directory/sitemap.xml',
+    sitemap: 'https://www.googleantigravity.directory/sitemap.xml',
   };
 }
