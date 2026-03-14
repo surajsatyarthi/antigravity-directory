@@ -9,6 +9,14 @@
             "command": ".claude/hooks/inject-rules-after-compact.sh"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/inject-session-rules.sh"
+          }
+        ]
       }
     ],
     "PreToolUse": [
@@ -22,6 +30,10 @@
           {
             "type": "command",
             "command": ".claude/hooks/require-screenshots-before-done.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/require-http-status-log.sh"
           }
         ]
       },
@@ -31,6 +43,10 @@
           {
             "type": "command",
             "command": ".claude/hooks/block-src-edits.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/require-screenshots-before-done.sh"
           }
         ]
       },

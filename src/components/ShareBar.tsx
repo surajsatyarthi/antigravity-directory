@@ -41,8 +41,8 @@ export function ShareBar({ url, title }: ShareBarProps) {
   }
 
   return (
-    <div className="mb-12 flex flex-wrap items-center gap-3">
-      <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest mr-2">
+    <div className="flex items-center gap-3 mt-8">
+      <span className="text-[10px] font-mono text-gray-600 uppercase tracking-widest mr-2 shrink-0">
         Share
       </span>
 
@@ -52,7 +52,7 @@ export function ShareBar({ url, title }: ShareBarProps) {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-2 bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-gray-400 hover:text-white hover:border-white/20 transition-all rounded-none"
+          className="px-4 py-2 bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-gray-400 hover:text-white hover:border-white/20 transition-all rounded-none shrink-0"
         >
           {label}
         </a>
@@ -60,7 +60,7 @@ export function ShareBar({ url, title }: ShareBarProps) {
 
       <button
         onClick={handleCopy}
-        className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-gray-400 hover:text-white hover:border-white/20 transition-all rounded-none"
+        className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-gray-400 hover:text-white hover:border-white/20 transition-all rounded-none shrink-0"
       >
         <Link className="w-3 h-3" />
         {copied ? 'Copied!' : 'Copy Link'}

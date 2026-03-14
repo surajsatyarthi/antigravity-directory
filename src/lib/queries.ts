@@ -4,7 +4,7 @@
  */
 
 import { db } from '@/lib/db';
-import { resources, categories, ratings, resourceTags, tags, tools, submissions, users, payments } from '@/drizzle/schema';
+import { resources, categories, ratings, resourceTags, tags, tools, submissions } from '@/drizzle/schema';
 import { eq, and, or, inArray, ilike, desc, asc, sql, count } from 'drizzle-orm';
 import { FilterState, ResourceWithRelations, CategoryWithCount, Tag } from '@/types/database';
 
@@ -76,17 +76,6 @@ async function getFilteredResourcesInternal(filters: FilterState, page: number =
       conditions.push(eq(resources.featured, filters.isSponsored));
     }
 
-    // Filter by pricing (OR logic within pricing)
-    if (filters.pricing && filters.pricing.length > 0) {
-      const pricingConditions = [];
-      if (filters.pricing.includes('free')) pricingConditions.push(eq(resources.price, 0));
-      if (filters.pricing.includes('paid')) pricingConditions.push(sql`${resources.price} > 0`);
-      
-      if (pricingConditions.length > 0) {
-        const pricingOr = or(...pricingConditions);
-        if (pricingOr) conditions.push(pricingOr);
-      }
-    }
 
     // Filter by group (Focus Domain - Single Select)
     if (filters.group) {
@@ -172,53 +161,6 @@ export async function getFilteredResources(filters: FilterState, page: number = 
   )();
 }
 
-/**
- * Get featured resources (featured = true)
- */
-export async function getFeaturedResources(categorySlug?: string, limit: number = 6): Promise<ResourceWithRelations[]> {
-    const conditions = [
-        eq(resources.featured, true),
-        eq(resources.status, 'LIVE')
-    ];
-    
-    if (categorySlug) {
-      const category = (await db.select({ id: categories.id }).from(categories).where(eq(categories.slug, categorySlug)).limit(1))[0];
-      if (category) {
-        conditions.push(eq(resources.categoryId, category.id));
-      }
-    }
-
-    const results = await db
-      .select({
-        id: resources.id,
-        title: resources.title,
-        slug: resources.slug,
-        description: resources.description,
-        url: resources.url,
-        thumbnail: resources.thumbnail,
-        integrations: resources.integrations,
-        featured: resources.featured,
-        verified: resources.verified,
-        views: resources.views,
-        copiedCount: resources.copiedCount,
-        publishedAt: resources.publishedAt,
-        badgeType: resources.badgeType,
-        status: resources.status,
-        categoryName: categories.name,
-        categoryId: resources.categoryId,
-        avgRating: sql<number>`COALESCE(AVG(${ratings.rating}), 0)`,
-        ratingCount: sql<number>`COUNT(DISTINCT ${ratings.id})`,
-      })
-      .from(resources)
-      .leftJoin(categories, eq(resources.categoryId, categories.id))
-      .leftJoin(ratings, eq(resources.id, ratings.resourceId))
-      .where(and(...conditions))
-      .groupBy(resources.id, categories.name)
-      .orderBy(desc(resources.publishedAt))
-      .limit(limit);
-
-    return results as unknown as ResourceWithRelations[];
-}
 
 /**
  * Get all categories with resource counts
@@ -305,40 +247,6 @@ export async function getToolBySlug(slug: string) {
     return { ...tool, relatedResources };
 }
 
-/**
- * Get data for Owner Dashboard
- */
-export async function getOwnerDashboardData(userId: string) {
-    const stats = await db
-      .select({
-        totalViews: sql<number>`SUM(${resources.views})`,
-        toolCount: sql<number>`COUNT(${resources.id})`,
-      })
-      .from(resources)
-      .where(eq(resources.authorId, userId));
-
-    const authoredTools = await db
-      .select({
-        id: resources.id,
-        title: resources.title,
-        slug: resources.slug,
-        description: resources.description,
-        views: resources.views,
-        status: resources.status,
-        featured: resources.featured,
-        categoryName: categories.name,
-        avgRating: sql<number>`COALESCE(AVG(${ratings.rating}), 0)`,
-        ratingCount: sql<number>`COUNT(DISTINCT ${ratings.id})`,
-      })
-      .from(resources)
-      .leftJoin(categories, eq(resources.categoryId, categories.id))
-      .leftJoin(ratings, eq(resources.id, ratings.resourceId))
-      .where(eq(resources.authorId, userId))
-      .groupBy(resources.id, categories.name)
-      .orderBy(desc(resources.publishedAt));
-
-    return { stats: stats[0], tools: authoredTools };
-}
 
 /**
  * Get data for Admin Dashboard
@@ -373,76 +281,6 @@ export async function getAdminDashboardData() {
     };
 }
 
-/**
- * Get top creators by earnings (for CreatorProofSection)
- */
-export async function getTopCreators(limit: number = 4) {
-    const results = await db
-      .select({
-        id: users.id,
-        name: users.name,
-        username: users.username,
-        image: users.image,
-        tagline: users.tagline,
-        totalEarnings: sql<number>`COALESCE(SUM(${payments.amount}), 0) / 100`, // Convert cents to dollars
-        toolsCount: count(resources.id),
-      })
-      .from(users)
-      .leftJoin(payments, eq(users.id, payments.userId))
-      .leftJoin(resources, eq(users.id, resources.authorId))
-      .where(eq(payments.status, 'SUCCEEDED'))
-      .groupBy(users.id)
-      .orderBy(desc(sql`total_earnings`))
-      .limit(limit);
-
-    return results;
-}
-
-/**
- * Get platform-wide stats (for StatsBar)
- */
-export async function getPlatformStats() {
-    const [toolsRes, creatorsRes, earningsRes] = await Promise.all([
-      db.select({ count: count() }).from(resources),
-      db.select({ count: count() }).from(users).where(sql`${users.id} IN (SELECT author_id FROM resources)`),
-      db.select({ total: sql<number>`SUM(${payments.amount})` }).from(payments).where(eq(payments.status, 'SUCCEEDED'))
-    ]);
-
-    return {
-      totalTools: Number(toolsRes[0]?.count || 0),
-      totalCreators: Number(creatorsRes[0]?.count || 0),
-      totalEarnings: Math.floor(Number(earningsRes[0]?.total || 0) / 100)
-    };
-}
-
-/**
- * Get featured tools for a category (for CategoryShowcase)
- */
-export async function getCategoryTools(categorySlug: string, limit: number = 3) {
-    const category = (await db.select({ id: categories.id }).from(categories).where(eq(categories.slug, categorySlug)).limit(1))[0];
-    if (!category) return [];
-
-    return await db
-      .select({
-        id: resources.id,
-        title: resources.title,
-        slug: resources.slug,
-        description: resources.description,
-        thumbnail: resources.thumbnail,
-        price: sql<number>`29`, // Mock price for now as it's not in schema yet
-        rating: sql<number>`COALESCE(AVG(${ratings.rating}), 5)`,
-        salesCount: sql<number>`COUNT(DISTINCT ${payments.id})`,
-        creatorName: users.name,
-      })
-      .from(resources)
-      .leftJoin(users, eq(resources.authorId, users.id))
-      .leftJoin(ratings, eq(resources.id, ratings.resourceId))
-      .leftJoin(payments, eq(resources.id, payments.resourceId))
-      .where(eq(resources.categoryId, category.id))
-      .groupBy(resources.id, users.name)
-      .orderBy(desc(sql`sales_count`))
-      .limit(limit);
-}
 
 export async function getResourcesByCategorySlug(
   slug: string,

@@ -51,12 +51,7 @@ export function BadgeGenerator({ slug, title }: BadgeGeneratorProps) {
              </div>
              
              <div className="flex flex-col justify-center text-left">
-                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Featured on Antigravity</span>
-                <span className="text-[13px] font-bold text-white font-sans flex items-center gap-1.5">
-                   <span>👁 1.2k</span>
-                   <span className="text-slate-600">•</span>
-                   <span>★ 4.9</span>
-                </span>
+                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Listed on Antigravity Directory</span>
              </div>
           </div>
         </div>

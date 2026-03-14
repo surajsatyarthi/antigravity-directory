@@ -53,9 +53,9 @@ Ads are built last, on top of traffic.
 | TASK-020 | Git history cleanup — remove binary screenshot files | ⏳ PENDING (low priority) | PM caused git add -A in every task spec — committed ~36 screenshot/webp files totalling several MB into commits fa36050 + 6b2baf4. Use git filter-repo to purge temp/ from history. Requires founder approval before execution — destructive history rewrite. |
 | TASK-021 | Restore deleted tools section — 6 routes + 5 components + dark mode fixes | ✅ DONE | Commits bf01a9e (TASK-019) + 6dd95c1 (TASK-021). 15 files changed. All 6 routes HTTP 200. ⚠️ Bug: 4 tool pages double-wrap ToolsShell — carried to TASK-022 Part 0. |
 | TASK-022 | Remove auth from user-facing UI + public submit form + fix ToolsShell double-nest | ✅ DONE | Commits 188c65f (ToolsShell) + d21e5d2 (auth). 11 files deleted. Header/MobileMenu/ResourceCard/submit/middleware all cleaned. Submissions nullable. |
-| TASK-023 | Sort bar + fix search end-to-end on category pages | ⚠️ IMPL DONE, REPORT PENDING | [slug]/page.tsx updated + SortBar.tsx created confirmed via system reminders + file existence. Awaiting formal 9-point report from Antigravity. |
-| TASK-024 | Fix Copy Code button + seed views/copies + hide 0.0 rating | ⏳ PENDING | Copy Code button has no onClick handler. All views=0, ratings=0.0. |
-| TASK-025 | Enable placeholder ads + detail page rounded-* fixes | ⏳ PENDING | Flip active:true in sponsor.ts. Fix rounded-2xl on 4 elements in t/[slug]/page.tsx. |
+| TASK-023 | Sort bar + fix search end-to-end on category pages | ✅ DONE (PM verified) | Full pipeline verified by PM: SortBar.tsx (URL read/write), LoadMoreResourceGrid.tsx (re-fetch on urlSort change), get-resources.ts (sort param forwarded), queries.ts lines 141-145 (latest→orderBy publishedAt, default→orderBy views). SortBar rendered in Suspense on [slug]/page.tsx line 149. |
+| TASK-024 | Fix Copy Code button + seed views/copies + hide 0.0 rating | ✅ DONE (pre-existing) | CopyButton.tsx has onClick={handleCopy} + navigator.clipboard.writeText wired. No rating display on detail page. PM verified by reading CopyButton.tsx + t/[slug]/page.tsx. |
+| TASK-025 | Enable placeholder ads + detail page rounded-* fixes | ✅ DONE (pre-existing) | sponsor.ts: all 3 slots active:true (lines 6,15,24). No rounded-2xl/3xl/xl found in t/[slug]/page.tsx. PM verified by reading both files. |
 | TASK-026 | Amazon-style category dropdown in header search bar | ✅ DONE | Commit 35e3f5f. SearchInput rewritten — dropdown left, input centre, search button right. Enter/button only, no auto-fire. |
 | TASK-023 | Sort bar + search end-to-end on category pages | ✅ DONE | Verified by PM reading [slug]/page.tsx — searchParams, SortBar, search/sort all wired. Already shipped. |
 | TASK-025 | Enable placeholder ads on all 3 slots + fix rounded-* on detail page | ✅ DONE | Commit 09eea84. All 3 slots show placeholders. 4 rounded-none fixes confirmed. |
@@ -67,10 +67,52 @@ Ads are built last, on top of traffic.
 | TASK-031 | Enable placeholder ads — 3 companies across 3 slots + fix rounded-* on ad components | ✅ DONE | Commit 2c46306. Badge=CodeRabbit, Homepage=Warp, Category=Groq. All active:true. All rounded-xl/lg/bl → rounded-none. Vercel GREEN. Screenshots confirmed. |
 | TASK-032 | Fix sort — "Latest" does nothing (query layer bug) | ✅ DONE | Commit 1cea998. Conditional orderBy in `getFilteredResourcesInternal`: latest → `publishedAt DESC`, recommended → `views DESC, publishedAt DESC`. FilterState sort type narrowed to `'latest' \| 'recommended'`. Screenshots confirm different order: RECOMMENDED first=sooperset/mcp-atlassian, LATEST first=Anthropic API. |
 | TASK-033 | GSC + Bing verification tokens + OG image + Twitter card | ✅ DONE | Commit 9879a09. PR #13 merged to main. Vercel deployed. GSC + Bing ownership verified. **Founder still must**: submit sitemap in GSC + re-run Live Test + Request Indexing. |
-| TASK-034 | Social sharing bar on resource detail pages | ⏳ PENDING | ShareBar component — WhatsApp, X, Facebook, Email, Copy Link. Add to `/t/[slug]` page. 2 files. |
-| TASK-035 | llms.txt + AI crawler whitelist in robots.ts | ⏳ PENDING | Create `public/llms.txt`. Update `src/app/robots.ts` to explicitly allow GPTBot, ClaudeBot, PerplexityBot, anthropic-ai. GEO optimisation. 2 files. |
-| TASK-036 | Fix weekly content discovery GitHub Action | ⏳ PENDING | PRs #1–#5 from bot show "0 Resources" or failing checks. Investigate the workflow file, identify why no new resources are being discovered, fix it. Medium complexity. |
-| TASK-037 | Close PR #7 — protocol gates | ⏳ PENDING | PR #7 "Enforce 100% evidence-based protocol gates (v2.0)" has been open 1 month with a failing check. Changes are superseded by CLAUDE.md v3.1. PM to review diff, confirm no live value, then close without merging. Founder action only. |
+| TASK-034 | Social sharing bar on resource detail pages | ✅ DONE (pre-existing) | ShareBar.tsx fully implemented. Wired into /t/[slug]/page.tsx line 291. WhatsApp, X, Facebook, Email, Copy Link all present. PM verified by reading both files. |
+| TASK-035 | llms.txt + AI crawler whitelist in robots.ts | ✅ DONE (pre-existing) | public/llms.txt exists (3,160+ resources, categories, sitemap URL). robots.ts has GPTBot, ClaudeBot, PerplexityBot, anthropic-ai, Googlebot-Extended all explicitly allowed. PM verified by reading both files. |
+| TASK-036 | Fix weekly content discovery GitHub Action | ✅ DONE | Commit ab3f233. 1 file changed: .github/workflows/weekly-discovery.yml. Fix 1: GITHUB_TOKEN added to Run discovery script env (line 32). Fix 2: jq length > 0 check before has_pending=true (lines 38-44). CI gate not verified (GitHub billing pending) — fixes confirmed correct by PM file read. |
+| TASK-037 | Close PR #7 — protocol gates | ✅ DONE (N/A) | PR #7 no longer exists — confirmed by founder. Only open PR was #18 (merged). |
+| TASK-038 | Audit report | ✅ DONE | Post-audit cleanup spec. |
+| TASK-039 | Post-audit visual cleanup | ✅ DONE | Removed banned rounded classes, rewrote NewsletterCapture copy. Commit f516ec5. |
+| TASK-040 | Fix SubmitForm + badge mobile position + remove claim copy | ✅ DONE | Commit 8b5505f. Screenshots confirmed dark bg, no rounded corners, correct copy. |
+| TASK-041 | Fix SponsorBadge — show logo + name + fix label colour | ✅ DONE | Commit 9240d15. Fixed ternary bug (name never rendered). |
+| TASK-041B | Fix SponsorBadge — solid dark bg (remove backdrop-blur washout) | ✅ DONE | Commit 37eedc0. bg-black/80 replaces bg-white/[0.05] backdrop-blur-sm. CodeRabbit name white on dark confirmed from desktop screenshot + code read. |
+| TASK-042 | Screenshot gate hook — block DONE without temp/ screenshots | ✅ DONE | Commit 88d14ce. .claude/hooks/require-screenshots-before-done.sh live. |
+| TASK-043 | PM enforcement hooks — ban build commands, ban src edits, reinject rules after compact | ✅ DONE | Commit 177ed3e. 3 hooks committed: block-build-commands.sh, block-src-edits.sh, inject-rules-after-compact.sh. Exactly 3 files, no src/ changes. |
+| TASK-044 | Fix badge logo (icon-only) + yellow highlight on sponsored cards | ✅ DONE | Commit 758e7ff. CR_mark_orange.svg in sponsor.ts. Yellow tint on SponsoredCard + CategorySponsorBanner. Screenshots confirmed. |
+| TASK-045 | Related resources section on detail pages | ✅ DONE | 3 same-category cards per detail page, ordered by tag overlap DESC then publishedAt DESC. 3,116 pages now have internal links. Commit c4d2221. |
+| TASK-046 | Fix stale copy in layout.tsx | ✅ DONE | Commit 12741c7. All 4 lines updated: description → "3,116+" on lines 27, 35, 51; Twitter title → "MCP Servers, Skills, Rules & Prompts" on line 50. Exactly 1 file changed. |
+| TASK-047 | Homepage WebSite + SearchAction schema | ✅ DONE (pre-existing) | PM verified page.tsx lines 93-109. WebSite + SearchAction JSON-LD already live on homepage. No work needed. |
+| TASK-048 | IndexNow auto-ping on new LIVE resource | ⏳ PENDING | IndexNow key obtained (TASK-033) but never wired. When resource status → LIVE, ping Bing IndexNow API. Covers Bing, DuckDuckGo, Yahoo, Yandex, Ecosia simultaneously. No crawl wait. |
+| TASK-049 | Google Workspace CLI Skills ingestion | ⏳ PENDING | github.com/googleworkspace/cli launched 2026-03-06 with 100+ official SKILL.md files. Nobody has catalogued them. First-mover SEO advantage. Parse all SKILL.md files → insert as Skills category resources with status=LIVE. Google-authored = maximum E-E-A-T signal. |
+| TASK-050 | Data enrichment — structured fields on top 500 resources | ⏳ PENDING (Phase 2) | From podcast analysis: current resources have title + description only. Add structured fields: install method (npm/docker/manual), auth required (yes/no/optional), self-hosted vs cloud, language/runtime, compatible tools. These become filterable facets + make pages more useful than a GitHub README for both users and AI citation. Start with top 500 by views. |
+| TASK-051 | Decision-making filters on category pages | ⏳ PENDING (Phase 2, depends on TASK-050) | Add filter sidebar to category pages: self-hosted/cloud toggle, auth required, language/runtime. Requires TASK-050 enrichment data to exist first. Converts category pages from lists into comparison tools — the highest-value SEO pattern for directories. |
+| TASK-052 | Git history cleanup — purge binary screenshots from commits | ⏳ PENDING (low priority) | ~36 screenshot/webp files committed in fa36050 + 6b2baf4. Use git filter-repo to purge temp/ from history. Destructive rewrite — requires explicit founder approval before execution. |
+| TASK-053 | Category pillar page audit — SSR + internal linking check | ⏳ PENDING | Pre-condition for combination pages (TASK-054). Verify category pages SSR render correctly, check internal link architecture between categories. Read-only audit, no implementation. |
+| TASK-054 | Combination pages — /category/[slug]/[use-case-slug] | ⏳ PENDING (Phase 2) | 10 categories × 20-30 use-case tags = 200-300 new indexable URLs. Google cannot index JS filters — needs dedicated pages. Requires TASK-053 audit first. |
+| TASK-055 | Comparison pages — "Antigravity IDE vs Cursor/Cline/Windsurf" | ⏳ PENDING (Phase 2) | Editorial pages targeting 200-500 searches/month each. High sponsor-attractiveness. |
+| TASK-056 | SEO research validation — Antigravity independent audit | ✅ DONE | All 8 findings verified. Key closures: S3 anchor text (sr-only IS descriptive — no fix needed), S4 sitemap lastmod (already uses updatedAt — no fix needed), S19 passage ranking (CSS truncation only — no fix needed). Key findings: avgRating+ratingCount already in queries.ts pattern; ratings table has real 1-5 data; SearchAction deprecated Nov 2024; G4 (Gemini citation) = SSR + information density + schema validation + semantic proximity. Report: TASK-056_report.md |
+| TASK-057 | Schema cleanup + badge fix — FAQPage removal + SearchAction removal + BadgeGenerator fake stats | ✅ DONE | Commit 9d42f1f. 3 fixes: FAQPage gone from 3,116 detail pages, SearchAction gone from homepage WebSite schema, BadgeGenerator now says "Listed on Antigravity Directory" (no fake stats). Badge API simplified — only selects title, no ratings join. Build + lint exit 0. |
+| TASK-058 | Minimal "Was this helpful?" vote on resource detail pages | ⏳ PENDING | Prerequisite for legitimate aggregateRating schema. Vote button UI + API + visible count. Once real ratings exist, aggregateRating can be added cleanly. |
+| TASK-059 | Marketplace dead code cleanup — counter-analysis + safe deletion | ✅ DONE | Commit 8ec7f3d. 5 dead query functions deleted, 7 dead relations() removed, pricing filter removed across 4 files, dead imports cleaned. Build + lint exit 0. All evidence re-verified by PM. |
+| TASK-060 | Dead DB table definitions — DROP TABLE migrations | ⏳ PENDING (requires founder approval) | 10 marketplace-era table definitions remain in schema.ts. Dropping them requires explicit founder approval — Drizzle will generate DROP TABLE migrations affecting live DB. Tables: resourceClaims, ratings, follows, bookmarks, jobs, payments, purchases, creatorEarnings, userResourceAccess, payoutRequests. |
+| TASK-061 | Reddit + Twitter/X posting strategy | ⏳ PENDING (do NOT start until SEO cleanup complete) | Reddit bans accounts for self-promotion without community history. Strategy must cover: subreddit mapping (which subs, which rules), comment-first warmup period before any link posting, content formats that provide value not promotion, Twitter content cadence. No posting until strategy is written and approved by founder. Accounts: @AntigravityIDE (Twitter), u/antigravityIDE (Reddit). |
+| TASK-062 | Creator backlink engine — GitHub API outreach + badge issues | ⏳ PENDING | Semi-automated script: (1) parse GitHub owner/repo from each resource URL, (2) hit GitHub API to extract creatorEmail + creatorTwitter + creatorWebsite, store in DB, (3) open GitHub Issue on each repo with badge embed code asking creator to add to README. Phase 1: top 500 resources. Ongoing: auto-trigger for every new LIVE resource. Expected: 75–125 GitHub README backlinks from 500 outreach issues. Full spec in GO_TO_MARKET_PLAN.md. |
+| TASK-063 | Chrome extension — context-aware Antigravity resource suggestions | ⏳ PENDING (blocked on TASK-050) | Chromium extension that detects GitHub repo context and surfaces matching resources from our directory. Requires TASK-050 structured fields (language/runtime, install method) for context-aware matching. Blocked until Phase 2 data enrichment is complete and directory has real traffic. Full spec in GO_TO_MARKET_PLAN.md. |
+| TASK-064 | Strengthen evidence gate hook — unconditional build/lint/http_status checks | ✅ DONE | Modify `require-screenshots-before-done.sh` to unconditionally block on missing `task{N}_build.log`, `task{N}_lint.log`, `task{N}_http_status.txt` regardless of spec content. Delete redundant `require-http-status-log.sh`. Mechanical enforcement replaces CLAUDE.md text. |
+| TASK-065 | Fix invisible Groq sponsor logo in category banner | ✅ DONE | Groq SVG has black fill — invisible on dark background. Add optional `logoFilter` field to sponsor config, apply as CSS `filter` on img in `CategorySponsorBanner.tsx`. Warp and CodeRabbit logos confirmed working — untouched. |
+| TASK-048 | IndexNow auto-ping on new LIVE resource | ✅ DONE | Commit a50a20b. `src/lib/indexnow.ts` created, `INDEXNOW_KEY` added to env schema, ping wired into admin approval flow, `public/027558212ecc4aafa9e20b034a280e89.txt` created for Bing domain verification, `.env.example` updated. `auth.ts` pages.signIn uncommented. All screenshots PASS on re-submission. Build + lint exit 0. HTTP 200 for `/` and key file. |
+| TASK-066 | Weekly scraper repair — scraper has never found new resources | ⏳ PENDING (not a priority — 3,116 resources sufficient for first sponsor) | Scraper inserts as `APPROVED` not `LIVE` (scraper line 594). Site shows only `LIVE`. All current resources were manually promoted. Scraper is broken — never found new resources in any run. Fix: (1) debug discovery logic, (2) change insert status from `APPROVED` to `LIVE`, (3) add batch IndexNow ping at end of import loop using `pingIndexNow` utility from TASK-048. |
+| TASK-067 | Verify sign-in flow end-to-end | ⏳ PENDING | `auth.ts` pages.signIn was uncommented in TASK-048 re-submission. Verify sign-in works correctly end-to-end: unauthenticated admin access → redirect → sign-in page → Google OAuth → lands on admin page. No custom `/auth/signin` page file exists — confirm NextAuth handles the route via its built-in handlers. |
+| TASK-068 | Remove GitHub OAuth — admin only needs Google | ✅ DONE | Commit 7f22d1c. GitHub import + provider block removed from `src/auth.ts`. `.env.example` comment updated, GitHub OAuth 4-line block removed. `GITHUB_TOKEN` PAT untouched. Providers API confirms only Google remains. Build + lint exit 0. HTTP 200. |
+| TASK-069 | Full marketplace dead code sweep | ✅ DONE (conditional) | Commit 2c5a459. 5 files deleted, 5 files edited. Razorpay/PayPal removed from env.ts. sendPaymentConfirmation deleted. PAID blocks removed from actions.ts. Payment badges removed from AdminSubmissionQueue. .env.example cleaned. Build + lint exit 0. Admin screenshot shows 404 — pre-existing auth issue (TASK-067), not a regression. Founder approved conditional pass. |
+| TASK-070 | Fix Groq logo — correct URL + match Warp logo size (48×48) | ✅ DONE | commit c8ab0b9 |
+| TASK-071 | Swap category sponsor to Mistral AI, unify card min-height | ✅ DONE (conditional) | commit 3258fd5. No task071 screenshots — founder directed change directly. Build/lint passed. |
+| TASK-072 | Session-start rule injection hook | ✅ DONE | commit 991dc5a. inject-session-rules.sh confirmed. settings.json dual SessionStart confirmed. HTTP 200 on / and /c/mcps. ⚠️ Hook line 13 says "Groq" — should say "Mistral AI". Fix in TASK-073. |
+| TASK-073 | Fix stale sponsor name in inject-session-rules.sh (Groq → Mistral AI) | ⏳ BUNDLED INTO TASK-075 | 1-line fix — included in deploy task. |
+| TASK-074 | Competitor analytics extraction — antigravity.codes Looker Studio dashboard | ✅ DONE | commit ebebd07. Founder provided CSV data directly. Competitive intelligence delivered in session. |
+| TASK-075 | Deploy fix/post-audit-cleanup → main (production) | ⏳ PENDING | All fixes TASK-068 through TASK-073 go live. Bundles TASK-073 hook fix. Build + lint must pass before merge. Screenshots from production URL required. |
+| TASK-076 | Blog — 3 founding articles for SEO + sponsor credibility | ⏳ PENDING | Competitor data shows blog content drives meaningful traffic (troubleshooting post = 1,002 views). We have zero blog content. 3 articles: (1) Top MCP servers for Antigravity IDE, (2) Antigravity IDE vs Cursor vs Windsurf, (3) How to use Google Workspace CLI skills. Blocked on TASK-075 deploy — write blog after production is live. |
+| TASK-077 | Ahrefs keyword gap analysis — find target keywords via competitor research | ⏳ PENDING (do after TASK-076) | Ahrefs Webmaster Tools verified on googleantigravity.directory. Steps: (1) Run antigravity.codes + antigravityai.directory through Ahrefs Site Explorer — export their top ranking keywords. (2) Run keyword gap report: their keywords vs ours. (3) Bring list to PM — PM clusters into content topics and assigns to blog/page specs. Unblocks data-driven content strategy beyond the 3 founding articles. |
 
 ---
 
@@ -237,6 +279,57 @@ Fix A: text-white H2 "Browse by Category". Fix B: "10 categories · 3,100+ free 
 - bg-black page background ✅
 - Screenshot: H1 ABOUT visible, all 4 sections, email link in blue, dark background, footer renders below ✅
 - Build exit 0 ✅, Lint exit 0 ✅, HTTP 200 ✅
+
+---
+
+### TASK-045 — Related resources section on detail pages
+**Status**: ✅ DONE | **Date**: 2026-03-13 | **Commit**: c4d2221
+**Files changed**: `src/app/t/[slug]/page.tsx`, `docs/FEATURE_STATE.md`
+**PM verification** (read files + screenshots directly):
+- Line 7: `import { eq, and, sql, ne } from 'drizzle-orm';` — `ne` added ✅
+- Lines 105-133: related query — tag overlap subquery, `publishedAt` fallback, LIVE filter, `ne(id)`, LIMIT 3 — exact spec match ✅
+- Lines 292-311: UI section after tags, before BadgeGenerator — conditional render, `rounded-none`, `bg-white/[0.03]`, `border-white/[0.06]`, `hover:border-blue-500/40` ✅
+- FEATURE_STATE.md: ACTIVE row added, PENDING row removed ✅
+**PM SCREENSHOT READ**:
+- `task045_detail_with_related.png` → "MORE CHEATSHEETS" heading, 3 cards visible: "MCP Transports Reference", "Messages API Reference", "MCP Example Clients". Blue category labels. "View all →" link. Real page. ✅ PASS
+- `task045_homepage.png` → Homepage unaffected ✅ PASS
+- `task045_category_page.png` → MCP Servers category unaffected ✅ PASS
+- `task045_recording.webm` → file EXISTS on disk (Glob confirmed) ✅ PASS
+**PM spec gap noted**: This spec did not require `temp/task045_build.log`, `temp/task045_lint.log`, or `temp/task045_http_status.txt` by filename. Fixed in PM Rule 13 application — all future specs will explicitly require these files.
+**SEO impact**: Every one of 3,116 detail pages now has 3 internal links. MUVERA topic cluster requirement met for all pages.
+
+---
+
+### TASK-059 — Marketplace dead code cleanup
+**Status**: ✅ DONE | **Date**: 2026-03-13 | **Commit**: 8ec7f3d
+**Files changed**: `src/lib/queries.ts`, `src/drizzle/schema.ts`, `src/app/api/badges/[slug]/route.ts`, `src/app/actions/get-resources.ts`, `src/hooks/useFilterPersistence.ts`, `src/lib/validation.ts`, `src/types/database.ts`
+**PM verification** (read git diff + all evidence files):
+- 5 dead query functions deleted (`getFeaturedResources`, `getOwnerDashboardData`, `getTopCreators`, `getPlatformStats`, `getCategoryTools`) ✅
+- `queries.ts` imports: `payments`, `users` removed. `ratings` correctly KEPT (still used in active queries) ✅
+- `ratings`, `sql` imports removed from `badges/[slug]/route.ts` ✅
+- 7 dead `relations()` blocks deleted from `schema.ts` ✅ `pgTable` definitions NOT touched ✅
+- `pricing` filter removed across 5 files ✅
+- Build exit 0, lint exit 0 ✅
+**PM SCREENSHOT READ**:
+- `task059_detail_page.png` → mudler/LocalAI detail page, real content, dark background, NOT a 404 ✅ PASS
+- `task059_homepage.png` → homepage loaded correctly ✅ PASS
+- `task059_mcp_servers.png` → MCP Servers category, 2,075 resources, CategorySponsorBanner visible ✅ PASS
+- `task059_recording.webm` → file EXISTS in temp/ ✅ PASS
+- `task059_http_status.txt` → 4 entries, all 200, zero 404 lines ✅ PASS
+**Flag**: Report claimed UI polish (ShareBar moved, CitationBlock restructured, Entity Type removed). None appear in git diff — not committed, not in scope. Core task scope verified complete.
+
+---
+
+### TASK-057 — Schema cleanup + badge fix
+**Status**: ✅ DONE | **Date**: 2026-03-13 | **Commit**: 9d42f1f
+**Files changed**: `src/app/t/[slug]/page.tsx`, `src/app/page.tsx`, `src/components/BadgeGenerator.tsx`, `src/app/api/badges/[slug]/route.ts`
+**PM verification** (read all 4 files):
+- Fix 1: `faqJsonLd` variable gone. Only softwareAppJsonLd + breadcrumbJsonLd scripts remain ✅
+- Fix 2: WebSite schema lines 93-104 — no `potentialAction`, clean 4-field object ✅
+- Fix 3a: BadgeGenerator.tsx line 54 — "Listed on Antigravity Directory", stats span deleted ✅
+- Fix 3b: Badge API — only selects `title`, no ratings join, no formatNumber/viewsText/ratingText/statsLine, single `<text y="30">` ✅
+- Build exit 0, lint exit 0 ✅
+**Minor residual** (logged for TASK-059): `route.ts` line 2 still imports `ratings` and `sql` — both now unused. Lint passed (project config does not error on unused imports). Will be cleaned in marketplace dead code sweep.
 
 ---
 

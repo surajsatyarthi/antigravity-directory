@@ -25,10 +25,9 @@ export function useFilterPersistence() {
   const badgesParam = searchParams.get('badges') || '';
   const qParam = searchParams.get('q') || '';
   const sortParam = searchParams.get('sort') || FILTERS.DEFAULT_SORT;
-  const pricingParam = searchParams.get('pricing') || '';
   const groupParam = searchParams.get('group') || '';
   
-  const hasUrlParams = categoriesParam !== '' || tagsParam !== '' || badgesParam !== '' || qParam !== '' || pricingParam !== '' || sortParam !== FILTERS.DEFAULT_SORT || groupParam !== '';
+  const hasUrlParams = categoriesParam !== '' || tagsParam !== '' || badgesParam !== '' || qParam !== '' || sortParam !== FILTERS.DEFAULT_SORT || groupParam !== '';
 
   // 1. Initial Restoration / Readiness Check
   useEffect(() => {
@@ -52,7 +51,6 @@ export function useFilterPersistence() {
         if (parsed.badgeTypes?.length) restorationParams.set('badges', parsed.badgeTypes.join(','));
         if (parsed.search) restorationParams.set('q', parsed.search);
         if (parsed.sort) restorationParams.set('sort', parsed.sort);
-        if (parsed.pricing) restorationParams.set('pricing', Array.isArray(parsed.pricing) ? parsed.pricing.join(',') : parsed.pricing);
         if (parsed.group) restorationParams.set('group', parsed.group);
 
         const validated = validateFilterParams(restorationParams);
@@ -62,7 +60,6 @@ export function useFilterPersistence() {
         if (validated.badgeTypes?.length) finalParams.set('badges', validated.badgeTypes.join(','));
         if (validated.search) finalParams.set('q', validated.search);
         if (validated.sort !== FILTERS.DEFAULT_SORT) finalParams.set('sort', validated.sort);
-        if (validated.pricing && validated.pricing.length > 0) finalParams.set('pricing', validated.pricing.join(','));
         if (validated.group) finalParams.set('group', validated.group);
 
         const paramsString = finalParams.toString();
@@ -112,11 +109,10 @@ export function useFilterPersistence() {
       badgeTypes: badgesParam.split(',').filter(Boolean),
       search: qParam,
       sort: sortParam,
-      pricing: pricingParam.split(',').filter(Boolean),
       group: groupParam,
     };
 
-    const hasValues = filters.categories.length > 0 || filters.tags.length > 0 || filters.badgeTypes.length > 0 || filters.search !== '' || filters.pricing.length > 0 || filters.sort !== FILTERS.DEFAULT_SORT || filters.group !== '';
+    const hasValues = filters.categories.length > 0 || filters.tags.length > 0 || filters.badgeTypes.length > 0 || filters.search !== '' || filters.sort !== FILTERS.DEFAULT_SORT || filters.group !== '';
     const stateStr = JSON.stringify(filters);
 
     if (hasValues) {
@@ -128,7 +124,7 @@ export function useFilterPersistence() {
       localStorage.removeItem(FILTERS.STORAGE_KEY);
       lastSyncedState.current = null;
     }
-  }, [categoriesParam, tagsParam, qParam, sortParam, isReady, searchParams.size, badgesParam, pricingParam, groupParam]);
+  }, [categoriesParam, tagsParam, qParam, sortParam, isReady, searchParams.size, badgesParam, groupParam]);
 
   // 4. Tab Sync
   useEffect(() => {
@@ -146,7 +142,6 @@ export function useFilterPersistence() {
           if (parsed.badgeTypes) newParams.set('badges', parsed.badgeTypes.join(','));
           if (parsed.search) newParams.set('q', parsed.search);
           if (parsed.sort) newParams.set('sort', parsed.sort);
-          if (parsed.pricing) newParams.set('pricing', Array.isArray(parsed.pricing) ? parsed.pricing.join(',') : parsed.pricing);
           if (parsed.group) newParams.set('group', parsed.group);
           
           const target = `${pathname}?${newParams.toString()}`;
