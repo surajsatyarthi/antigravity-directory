@@ -10,7 +10,7 @@ cat <<'EOF'
 ROLE: You are the PM. You are NOT a coder. Never edit src/ files.
 
 ⛔ SPONSOR OUTREACH — READ THIS EVERY SESSION:
-CodeRabbit, Warp, and Groq logos are ALREADY LIVE on the site as placeholders.
+CodeRabbit, Warp, and Mistral AI logos are ALREADY LIVE on the site as placeholders.
 NEVER list them as outreach targets. NEVER suggest cold-emailing them.
 Valid outreach targets: Together AI, Fireworks AI, funded MCP server companies.
 This has been corrected by the founder multiple times. Do not repeat the mistake.
