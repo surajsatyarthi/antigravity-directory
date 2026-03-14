@@ -22,12 +22,12 @@ export const SPONSOR_HOMEPAGE = {
 
 export const SPONSOR_CATEGORY = {
   active: true,
-  name: 'Groq',
-  tagline: 'Inference is Fuel for AI',
-  logoUrl: 'https://logotyp.us/file/groq.svg',
-  logoFilter: 'brightness(0) invert(1)',
-  href: 'https://groq.com',
-  description: 'Fast, low-cost AI inference. The fastest LLM API available.',
+  name: 'Mistral AI',
+  tagline: 'Frontier AI in your hands',
+  logoUrl: 'https://svgl.app/library/mistral-ai_logo.svg',
+  logoFilter: undefined,
+  href: 'https://mistral.ai',
+  description: 'Building the world’s most advanced AI systems. High-performance models available everywhere.',
 };
 
 // Legacy export — keeps any other files that import SPONSOR working
