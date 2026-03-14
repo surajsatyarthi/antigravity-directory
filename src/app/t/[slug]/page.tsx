@@ -173,6 +173,21 @@ export default async function ResourceDetailPage({
       }
     ]
   };
+  function getCopyLabel(categoryName: string | null | undefined): string {
+    switch (categoryName) {
+      case 'Prompts':        return 'Copy Prompt';
+      case 'Rules':          return 'Copy Rule';
+      case 'Skills':         return 'Copy Skill';
+      case 'Workflows':      return 'Copy Workflow';
+      case 'Agents':         return 'Copy Agent';
+      case 'Boilerplates':   return 'Copy Boilerplate';
+      case 'Tutorials':      return 'Copy Tutorial';
+      case 'Cheatsheets':    return 'Copy Cheatsheet';
+      case 'Troubleshooting':return 'Copy Fix';
+      case 'MCP Servers':    return 'Copy Config';
+      default:               return 'Copy';
+    }
+  }
 
   return (
     <div className="min-h-screen bg-black flex flex-col selection:bg-white/10">
@@ -264,7 +279,7 @@ export default async function ResourceDetailPage({
               <div className="mb-12">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold tracking-tight text-white font-mono uppercase tracking-widest text-sm text-gray-500">Resource Content</h2>
-                  <CopyButton content={resource.content!} />
+                  <CopyButton content={resource.content!} label={getCopyLabel(resource.categoryName)} />
                 </div>
                 
                 <div className="relative group">
