@@ -67,36 +67,6 @@ const AD_SLOTS = [
     ],
     slots: 'Up to 10 slots (1 per category)',
   },
-  {
-    name: 'Featured Listing',
-    price: '$199',
-    period: '/month',
-    tag: 'IN-CONTEXT PLACEMENT',
-    description: 'Your resource pinned to the top of a category page, above all organic listings. The highest position in the browse grid — where every visitor starts.',
-    features: [
-      'Pinned to top of chosen category',
-      'Displayed as a resource card (native, non-intrusive)',
-      'Outranks all 3,116 organic listings in that category',
-      'Ideal for MCP servers, skills, prompts, or tools',
-      '1 featured slot per category',
-    ],
-    slots: 'Up to 10 slots (1 per category)',
-  },
-  {
-    name: 'Promoted Card',
-    price: '$99',
-    period: '/month',
-    tag: 'ENTRY LEVEL',
-    description: 'A highlighted resource card in the browse grid — visually distinct from organic listings, positioned early in search results.',
-    features: [
-      'Highlighted border to stand out in the grid',
-      'Positioned in the first page of results',
-      'Works across all category pages',
-      'Ideal for getting early traction at low cost',
-      'Multiple slots available',
-    ],
-    slots: 'Limited slots',
-  },
 ];
 
 export default function AdvertisePage() {
@@ -147,11 +117,6 @@ export default function AdvertisePage() {
               </div>
             ))}
           </div>
-        </div>
-        <div className="max-w-5xl mx-auto px-4 mb-20">
-          <p className="text-xs text-gray-600 mt-3">
-            * Monthly visitor and traffic stats will be published here once Google Search Console data is available. Sponsorship prices will be revised upward as traffic grows — early sponsors lock in founding rates.
-          </p>
         </div>
 
         {/* Why Advertise Here */}
@@ -247,9 +212,7 @@ export default function AdvertisePage() {
         {/* Footer note */}
         <div className="max-w-5xl mx-auto px-4 text-center">
           <p className="text-xs text-gray-600">
-            Prices shown are founding sponsor rates and will increase as the site grows.
-            This page is updated quarterly with traffic and performance data.
-            Current data: 3,116 resources indexed as of March 2026.
+            Prices shown are founding sponsor rates and will increase as traffic grows. Current: 3,116 resources indexed, March 2026.
           </p>
         </div>
 
