@@ -37,8 +37,8 @@ export async function generateMetadata({
 
   const categoryName = resource.categoryName ?? 'Resource';
   const title = `${resource.title} | Antigravity ${categoryName}`;
-  const description = resource.metaDesc
-    ?? `${resource.description} — A ${categoryName} for Google Antigravity IDE. Browse more ${categoryName} resources on googleantigravity.directory.`;
+  const baseDesc = resource.metaDesc ?? resource.description ?? `${categoryName} for Google Antigravity IDE`;
+  const description = baseDesc.length > 155 ? baseDesc.slice(0, 152) + '...' : baseDesc;
 
   return {
     title,
@@ -138,7 +138,7 @@ export default async function ResourceDetailPage({
     "@type": "SoftwareApplication",
     "name": resource.title,
     "description": resource.description,
-    "applicationCategory": resource.categoryName || "Utility",
+    "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Google Antigravity IDE",
     "url": resource.url || `https://www.googleantigravity.directory/t/${resource.slug}`,
     "offers": {
