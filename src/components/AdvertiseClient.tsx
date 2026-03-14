@@ -91,8 +91,6 @@ export function AdvertiseClient() {
                <option value="site-wide">Site-wide Sponsor Badge ($2,000/mo)</option>
                <option value="homepage-banner">Homepage Banner ($800–$1,500/mo)</option>
                <option value="category">Category Page Sponsor ($300–$500/mo)</option>
-               <option value="featured">Featured Listing ($199/mo)</option>
-               <option value="promoted">Promoted Card ($99/mo)</option>
                <option value="undecided">Not sure yet / Discussing options</option>
             </select>
           </div>
