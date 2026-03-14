@@ -36,7 +36,7 @@ export async function generateMetadata({
   }
 
   const categoryName = resource.categoryName ?? 'Resource';
-  const title = `${resource.title} — Antigravity ${categoryName} | googleantigravity.directory`;
+  const title = `${resource.title} | Antigravity ${categoryName}`;
   const description = resource.metaDesc
     ?? `${resource.description} — A ${categoryName} for Google Antigravity IDE. Browse more ${categoryName} resources on googleantigravity.directory.`;
 
@@ -47,7 +47,7 @@ export async function generateMetadata({
       title,
       description,
       type: 'website',
-      url: `https://googleantigravity.directory/t/${slug}`,
+      url: `https://www.googleantigravity.directory/t/${slug}`,
       images: [{ url: '/opengraph-image.png', width: 1200, height: 630 }],
     },
     twitter: {
@@ -57,7 +57,7 @@ export async function generateMetadata({
       images: ['/twitter-image.png'],
     },
     alternates: {
-      canonical: `https://googleantigravity.directory/t/${slug}`,
+      canonical: `https://www.googleantigravity.directory/t/${slug}`,
     },
   };
 }
@@ -140,7 +140,7 @@ export default async function ResourceDetailPage({
     "description": resource.description,
     "applicationCategory": resource.categoryName || "Utility",
     "operatingSystem": "Google Antigravity IDE",
-    "url": resource.url || `https://googleantigravity.directory/t/${resource.slug}`,
+    "url": resource.url || `https://www.googleantigravity.directory/t/${resource.slug}`,
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -157,19 +157,19 @@ export default async function ResourceDetailPage({
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://googleantigravity.directory"
+        "item": "https://www.googleantigravity.directory"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": resource.categoryName || "Resources",
-        "item": `https://googleantigravity.directory/${resource.categorySlug || ''}`
+        "item": `https://www.googleantigravity.directory/${resource.categorySlug || ''}`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": resource.title,
-        "item": `https://googleantigravity.directory/t/${resource.slug}`
+        "item": `https://www.googleantigravity.directory/t/${resource.slug}`
       }
     ]
   };
@@ -235,7 +235,7 @@ export default async function ResourceDetailPage({
                 
                 {/* Social Sharing */}
                 <ShareBar
-                  url={`https://googleantigravity.directory/t/${resource.slug}`}
+                  url={`https://www.googleantigravity.directory/t/${resource.slug}`}
                   title={resource.title}
                 />
               </div>

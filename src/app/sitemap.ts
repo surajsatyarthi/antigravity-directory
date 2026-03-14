@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 import { resources } from '@/drizzle/schema';
 import { eq } from 'drizzle-orm';
 
-const BASE_URL = 'https://googleantigravity.directory';
+const BASE_URL = 'https://www.googleantigravity.directory';
 
 const CATEGORY_SLUGS = [
   'mcp-servers',

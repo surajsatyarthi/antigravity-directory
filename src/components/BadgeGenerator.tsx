@@ -12,7 +12,7 @@ export function BadgeGenerator({ slug, title }: BadgeGeneratorProps) {
   const [copied, setCopied] = useState(false);
   
   // Use a relative path for the image for now, or a public CDN if we had one
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.googleantigravity.directory';
   const badgeUrl = `${siteUrl}/api/badges/${slug}`;
   const profileUrl = `${siteUrl}/t/${slug}`;
   

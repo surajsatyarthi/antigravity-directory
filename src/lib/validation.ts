@@ -144,7 +144,7 @@ export function validateOrigin(request: Request): boolean {
   
   // Whitelist of allowed origins
   const allowedOrigins = [
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://googleantigravity.directory',
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.googleantigravity.directory',
     'http://localhost:3000', // Development
   ];
   

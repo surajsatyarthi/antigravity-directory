@@ -1,229 +1,156 @@
-# CURRENT TASK — TASK-069: Full marketplace dead code sweep
+# CURRENT TASK — TASK-084: Fix www/non-www URL mismatch + title length
 **Assigned by**: Claude Code (PM)
 **Date**: 2026-03-14
-**Branch**: fix/post-audit-cleanup (current branch)
+**Branch**: fix/post-audit-cleanup
 
 ---
 
 ## WHY THIS TASK EXISTS
 
-This site is a free directory with B2B ads. No marketplace. No payments. No creator earnings. Retrograde analysis found 5 dead files and 5 files with dead marketplace code still in the codebase — payout emails, payment badges, Razorpay/PayPal config, and components for users who no longer exist. These are all being deleted or gutted now.
+Ahrefs site audit shows **Health Score: 0**.
+
+Top issues:
+- 3XX redirect in sitemap: 3,160
+- Canonical points to redirect: 3,160
+- Title too long: 3,157
+
+**Root cause — URL mismatch:**
+`NEXT_PUBLIC_SITE_URL = https://www.googleantigravity.directory` (with www) — confirmed in `.env.local` line 12.
+
+Every hardcoded URL in the codebase uses `https://googleantigravity.directory` (no www) — 25 occurrences across 12 files. Vercel redirects non-www → www (307). So every sitemap entry and every canonical tag points to the redirecting domain. The Ahrefs crawler follows those URLs, hits a redirect, and flags all 3,160 as broken.
+
+**Root cause — title length:**
+Current format on resource detail pages: `${resource.title} — Antigravity ${categoryName} | googleantigravity.directory`
+Example: "GitHub MCP Server — Antigravity MCP Servers | googleantigravity.directory" = 74 chars.
+Google truncates at ~60 chars. Fix: drop the domain suffix from all title tags.
+
+Fixing both issues resolves **6,320 of 6,323 Ahrefs errors** in one deploy.
 
 ---
 
-## RETROGRADE CHECK
+## ALSO DO IN THIS TASK: commit TASK-082 script
 
-*Who is this code for, and does that person still exist on a free directory with B2B ads?*
-- `AdminPayoutQueue`, `PayoutApprovalModal` — for admin reviewing creator payouts. No creators. Dead.
-- `SalesHistory` — for creator dashboard showing sales. No creators. Dead.
-- `ThreeValueCards` — "Earn 80%" / "Join Community" / "View Profiles" marketplace marketing. No marketplace. Dead.
-- `src/lib/email.ts` — payout approval/rejection emails to creators. No payouts. Dead.
-- `sendPaymentConfirmation` — email sent after a paid resource submission. No paid submissions. Dead.
-- `paymentStatus === 'PAID'` blocks in actions.ts — fires when a paid submission is approved. `paymentStatus` is always `NONE`. Never fires. Dead.
-- Razorpay/PayPal in env.ts — required validation for payment keys. No payments. Crashes build if keys absent. Dead.
-- Payment sections in .env.example — documentation for payment keys that don't exist. Dead.
+The `scripts/backfill-content.ts` file was never committed to git. Before starting TASK-084 work, commit it:
+```
+git add scripts/backfill-content.ts
+git commit -m "feat(scripts): add content backfill script (TASK-082)"
+```
 
-*Adjacent dead code to follow downstream?*
-DB table drops (payments, purchases, creatorEarnings, payoutRequests, etc.) are **TASK-060** — requires founder approval before Drizzle generates DROP TABLE migrations. Do NOT touch schema.ts in this task.
+---
+
+## FIX 1 — Global URL find-and-replace (25 occurrences, 12 files)
+
+Replace every instance of:
+```
+https://googleantigravity.directory
+```
+with:
+```
+https://www.googleantigravity.directory
+```
+
+**Complete list of files and lines to change:**
+
+| File | Lines |
+|---|---|
+| `src/app/layout.tsx` | 22, 36 |
+| `src/app/sitemap.ts` | 6 |
+| `src/app/robots.ts` | 32 |
+| `src/app/page.tsx` | 23, 26, 100 |
+| `src/app/about/page.tsx` | 8 |
+| `src/app/advertise/page.tsx` | 21 |
+| `src/app/google-antigravity/page.tsx` | 14 |
+| `src/app/t/[slug]/page.tsx` | 50, 60, 143, 160, 166, 172, 238 |
+| `src/app/[slug]/page.tsx` | 77, 83, 112, 119, 120 |
+| `src/lib/indexnow.ts` | 1 |
+| `src/components/BadgeGenerator.tsx` | 15 (fallback string only) |
+| `src/lib/validation.ts` | 147 (fallback string only) |
+
+Use a global find-and-replace across `src/`. Do NOT touch any other string.
+
+---
+
+## FIX 2 — Title length (2 files)
+
+### `src/app/t/[slug]/page.tsx` — line 39
+
+**Current:**
+```typescript
+const title = `${resource.title} — Antigravity ${categoryName} | googleantigravity.directory`;
+```
+
+**Fix:**
+```typescript
+const title = `${resource.title} | Antigravity ${categoryName}`;
+```
+
+### `src/app/[slug]/page.tsx` — line 70
+
+**Current:**
+```typescript
+const title = `${category.name} for Google Antigravity IDE | googleantigravity.directory`;
+```
+
+**Fix:**
+```typescript
+const title = `${category.name} for Google Antigravity IDE`;
+```
+
+No other title changes needed. `layout.tsx` default title (line 25) is already 52 chars — acceptable.
+
+---
+
+## CROSS-CHECK INSTRUCTIONS
+
+Before implementing, confirm these exact lines match:
+
+1. `src/app/layout.tsx` line 22: `metadataBase: new URL('https://googleantigravity.directory')` ✅ PM verified
+2. `src/app/sitemap.ts` line 6: `const BASE_URL = 'https://googleantigravity.directory';` ✅ PM verified
+3. `src/app/t/[slug]/page.tsx` line 39: `` const title = `${resource.title} — Antigravity ${categoryName} | googleantigravity.directory`; `` ✅ PM verified
+4. `src/app/[slug]/page.tsx` line 70: `` const title = `${category.name} for Google Antigravity IDE | googleantigravity.directory`; `` ✅ PM verified
+5. `.env.local` line 12: `NEXT_PUBLIC_SITE_URL="https://www.googleantigravity.directory"` ✅ PM verified
+
+If any of these do not match — STOP and report before implementing.
 
 ---
 
 ## FEATURE STATE CHECK
 
-| Field/Feature | Status | Source |
-|---|---|---|
-| Payments / marketplace | DEAD — removed from product | BUSINESS_CONTEXT.md |
-| `paymentStatus` on submissions | Always `NONE` — never `PAID` | `src/app/admin/submissions/actions.ts` line 52 |
-| Razorpay vars in env.ts | Required `.min(1)` — crashes build if absent | `src/lib/env.ts` lines 13-16 |
-| PayPal vars in env.ts | Required `.min(1)` — crashes build if absent | `src/lib/env.ts` lines 18-19 |
-| `sendListingLive` in email/templates.ts | KEEP — valid for future free submission flow | `src/lib/email/templates.ts` lines 62-105 |
-| Scraper test files (`__tests__/scripts/`) | KEEP — scraper tests, not marketplace code | `src/__tests__/scripts/` |
+- `metadataBase` in `layout.tsx` — ACTIVE. Affects how Next.js resolves relative OG/Twitter image URLs globally.
+- `canonical` URLs — ACTIVE on all page routes. Directly affects Google indexing.
+- `sitemap.ts BASE_URL` — ACTIVE. All 3,160 sitemap entries use this.
+- Title `template` in `layout.tsx` line 24: `"%s | Antigravity Directory"` — ACTIVE. Not changed by this task.
 
 ---
 
-## PM VERIFIED CONTENT
+## RETROGRADE CHECK
 
-### Files to DELETE — all confirmed zero external imports (PM grepped 2026-03-14)
-
-**`src/components/admin/AdminPayoutQueue.tsx`** — payout queue UI. Zero imports outside own file. DELETE.
-
-**`src/components/admin/PayoutApprovalModal.tsx`** — payout approval modal. Zero imports outside own file. DELETE.
-
-**`src/components/dashboard/SalesHistory.tsx`** — creator sales history. Zero imports outside own file. DELETE.
-
-**`src/components/ThreeValueCards.tsx`** — marketplace marketing cards ("Earn 80%", "Join Community", "View Profiles"). Zero imports outside own file. DELETE.
-
-**`src/lib/email.ts`** — payout approved/rejected email functions. Zero imports anywhere (PM confirmed via grep). DELETE entire file.
-
----
-
-### File edits — PM verified exact lines
-
-**`src/lib/env.ts` lines 13-19** (PM read 2026-03-14):
-```typescript
-  // Payments - Razorpay
-  RAZORPAY_KEY_ID: z.string().min(1, 'RAZORPAY_KEY_ID is required'),
-  RAZORPAY_KEY_SECRET: z.string().min(1, 'RAZORPAY_KEY_SECRET is required'),
-
-  // Payments - PayPal
-  PAYPAL_CLIENT_ID: z.string().min(1, 'PAYPAL_CLIENT_ID is required'),
-  PAYPAL_CLIENT_SECRET: z.string().min(1, 'PAYPAL_CLIENT_SECRET is required'),
-```
-DELETE these 7 lines. Nothing in the codebase uses these env vars.
-
----
-
-**`src/lib/email/templates.ts` lines 6-60** (PM read 2026-03-14):
-```typescript
-export async function sendPaymentConfirmation({...}) { ... }
-```
-DELETE this entire function (lines 6 through 60 inclusive). `sendListingLive` at lines 62-105 **stays untouched**.
-
----
-
-**`src/app/admin/submissions/actions.ts`** (PM read 2026-03-14):
-
-Line 7 — DELETE (becomes unused after PAID block removal):
-```typescript
-import { sendListingLive } from '@/lib/email/templates';
-```
-
-Line 9 — DELETE (becomes unused after PAID block removal):
-```typescript
-import { pingIndexNow } from '@/lib/indexnow';
-```
-
-Lines 51-91 — DELETE entire PAID block in `approveSubmission` (the `if (submission.paymentStatus === 'PAID')` block and everything inside it).
-
-Lines 127-139 — DELETE entire PAID block in `rejectSubmission` (the `if (submission.paymentStatus === 'PAID')` block and everything inside it).
-
-After deletions: check if `and` (imported from drizzle-orm line 5) and `resources` table (imported line 4) are still used elsewhere in the file. If no remaining references, remove them from the import. Only remove what is genuinely unused after the deletions.
-
----
-
-**`src/components/AdminSubmissionQueue.tsx` lines 76-87** (PM read 2026-03-14):
-```tsx
-                <span className={`px-3 py-1 rounded-full text-xs font-mono uppercase ${
-                  submission.paymentStatus === 'PAID'
-                    ? 'bg-emerald-500/20 text-emerald-400'
-                    : 'bg-gray-500/20 text-slate-400'
-                }`}>
-                  {submission.paymentStatus === 'PAID' ? '💰 Paid' : 'Free'}
-                </span>
-                {submission.paymentType === 'FEATURED' && (
-                  <span className="px-3 py-1 rounded-full text-xs font-mono uppercase bg-yellow-500/20 text-yellow-400">
-                    ⭐ Featured
-                  </span>
-                )}
-```
-DELETE these 12 lines. Always showed "Free" — paymentStatus is never PAID. Keep all other submission card content untouched.
-
----
-
-**`.env.example` lines 28-43** (PM read 2026-03-14):
-```
-# ============================================
-# PAYMENTS - RAZORPAY (India)
-# ============================================
-# Get from Razorpay Dashboard: https://dashboard.razorpay.com/
-NEXT_PUBLIC_RAZORPAY_KEY_ID="rzp_test_xxxxxxxxxxxxx"
-RAZORPAY_KEY_SECRET="your-razorpay-secret-key"
-RAZORPAY_WEBHOOK_SECRET="your-razorpay-webhook-secret"
-
-# ============================================
-# PAYMENTS - PAYPAL (International)
-# ============================================
-# Get from PayPal Developer: https://developer.paypal.com/
-NEXT_PUBLIC_PAYPAL_CLIENT_ID="your-paypal-client-id"
-PAYPAL_CLIENT_SECRET="your-paypal-secret-key"
-PAYPAL_MODE="sandbox" # Use "live" for production
-```
-DELETE all 15 lines (lines 28-43 inclusive, including the blank line between sections). Everything before line 28 and after line 43 stays untouched.
-
----
-
-## MANDATORY CROSS-CHECK
-
-Before implementing, Antigravity must confirm:
-1. `src/lib/env.ts` lines 13-19: Razorpay + PayPal required blocks — present ✓
-2. `src/lib/email/templates.ts` line 6: `export async function sendPaymentConfirmation` — present ✓
-3. `src/app/admin/submissions/actions.ts` line 7: `import { sendListingLive }` — present ✓
-4. `src/app/admin/submissions/actions.ts` line 9: `import { pingIndexNow }` — present ✓
-5. `src/app/admin/submissions/actions.ts` line 52: `if (submission.paymentStatus === 'PAID')` — present ✓
-6. `src/components/AdminSubmissionQueue.tsx` line 77: `submission.paymentStatus === 'PAID'` in badge span — present ✓
-7. `.env.example` line 29: `# PAYMENTS - RAZORPAY (India)` — present ✓
-8. Grep `src/` for imports of `AdminPayoutQueue`, `PayoutApprovalModal`, `SalesHistory`, `ThreeValueCards`, `lib/email` — all must return zero external results before deleting
-
-If any do not match — STOP and report to PM.
-
----
-
-## DO NOT TOUCH
-
-- `src/lib/email/templates.ts` lines 62-105 — `sendListingLive` function stays
-- `src/lib/indexnow.ts` — stays (TASK-066 will wire it correctly)
-- `src/__tests__/scripts/` — scraper tests, not marketplace code
-- `src/components/AdminSubmissionQueue.tsx` — keep the whole file, only remove the 12 payment badge lines (76-87)
-- `src/drizzle/schema.ts` — DB table drops are TASK-060, require founder approval
-- `GITHUB_TOKEN` in `.env.example` — scraper PAT, stays
+1. *Who is this for?* Google's crawler and every user who lands on the site via search. Affects every one of 3,116 pages.
+2. *Adjacent dead code?* None. This is a string replacement. No logic changes. Zero regression risk.
+3. *Risk?* Essentially zero. We are changing non-canonical URLs to match the live canonical domain. The 307 redirects from non-www to www will continue to work — they are Vercel-level, not code-level.
 
 ---
 
 ## MANDATORY REPORT FORMAT
 
-Antigravity must provide ALL 9 evidence items:
+Required evidence files in `temp/`:
+- `temp/task084_build.log` — full build output, exit code 0
+- `temp/task084_lint.log` — full lint output, exit code 0
+- `temp/task084_http_status.txt` — HTTP status for:
+  - `https://www.googleantigravity.directory/` — must be 200
+  - `https://www.googleantigravity.directory/t/[any-live-slug]` — must be 200
+  - `https://www.googleantigravity.directory/mcp-servers` — must be 200
 
-1. **Screenshots** — save to:
-   - `temp/task069_admin_submissions.png` — admin submissions page showing submission cards WITHOUT payment badges
-   - `temp/task069_homepage.png` — homepage loading correctly (smoke test)
+Required screenshots in `temp/`:
+- `temp/task084_detail_page.png` — any resource detail page showing correct page load (no redirect error)
+- `temp/task084_sitemap.png` — browser view of `https://www.googleantigravity.directory/sitemap.xml` showing www URLs
 
-2. **Screen recording** — save to `temp/task069_recording.webm`
-
-3. **Git commit hash** — paste inline
-
-4. **Git diff** — paste exact changed lines inline (5 deleted files + 5 edited files)
-
-5. **Build log** — run `npm run build 2>&1 | tee temp/task069_build.log` — must exit 0
-
-6. **Lint log** — run `npm run lint 2>&1 | tee temp/task069_lint.log` — must exit 0
-
-7. **HTTP status** — save to `temp/task069_http_status.txt`:
-   ```
-   / → 200
-   /mcp-servers → 200
-   ```
-
-8. **Browser console** — no errors on homepage and admin page
-
-9. **Dead code confirmed** — state: "5 files deleted, 5 files edited, build passes, no marketplace imports remain"
-
-**Required files on disk in temp/:**
-- `temp/task069_build.log`
-- `temp/task069_lint.log`
-- `temp/task069_http_status.txt`
-- `temp/task069_admin_submissions.png`
-- `temp/task069_homepage.png`
-- `temp/task069_recording.webm`
-
-Task is NOT done if any of these files are missing.
-
----
-
-## AFTER THIS TASK — TASK-070 IS NEXT
-
-Fix Groq logo: (1) replace McLaren co-branded URL in `src/config/sponsor.ts` line 27 with standalone wordmark `https://cdn.sanity.io/images/chol0sk5/production/2a8cc526896d13f521915aee21282d11cf522a3c-95x30.svg`, (2) change logo size in `CategorySponsorBanner.tsx` line 40 from `h-5 w-auto` to `h-12 w-12` to match Warp's 48×48px.
-
----
-
-## PM SCREENSHOT READ — TASK-068 (verified 2026-03-14)
-
-| File | What PM saw | Verdict |
-|---|---|---|
-| `task068_signin_page.png` | `/api/auth/providers` JSON from production (googleantigravity.directory). Only one key: `"google"` — `id: "google", name: "Google", type: "oidc"`. No GitHub key present. | ✅ PASS |
-| `task068_homepage.png` | Homepage loading correctly on dark background. Hero visible: "THE #1 RESOURCE DIRECTORY FOR GOOGLE ANTIGRAVITY IDE". CodeRabbit sponsor badge top-right. Warp sponsored card visible. Resource list rendering. No errors. | ✅ PASS |
-
-**HTTP status**: `/ → 200`, `/mcp-servers → 200` — ✅ PASS
-**No 404 entries in http_status.txt** — ✅ PASS
-**All 6 required files present in temp/** — ✅ PASS
-**Git commit 7f22d1c confirmed in log** — ✅ PASS
-**G13 GATE**: Screenshots from `googleantigravity.directory` (production) — ✅ PASS
+Report must include:
+1. Confirmation that all 5 cross-check items matched
+2. Git commit hash for TASK-082 script commit
+3. Git commit hash for TASK-084 URL + title fix
+4. Total number of occurrences replaced (must be 25)
+5. Confirmation that title format on detail pages no longer includes the domain suffix
+6. Build log exit code
+7. Lint log exit code
+8. HTTP status file contents

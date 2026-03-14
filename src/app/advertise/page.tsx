@@ -18,7 +18,7 @@ const jsonLd = safeJsonLd({
   '@type': 'WebPage',
   'name': 'Advertise on Antigravity Directory',
   'description': 'Reach developers building with Google Antigravity IDE. Sponsor the only dedicated Antigravity resource directory.',
-  'url': 'https://googleantigravity.directory/advertise'
+  'url': 'https://www.googleantigravity.directory/advertise'
 });
 
 const AD_SLOTS = [

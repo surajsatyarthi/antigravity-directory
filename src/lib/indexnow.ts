@@ -1,4 +1,4 @@
-const SITE_URL = 'https://googleantigravity.directory';
+const SITE_URL = 'https://www.googleantigravity.directory';
 const INDEXNOW_HOST = 'googleantigravity.directory';
 
 export async function pingIndexNow(slug: string): Promise<void> {

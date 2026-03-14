@@ -19,7 +19,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://googleantigravity.directory'),
+  metadataBase: new URL('https://www.googleantigravity.directory'),
   title: {
     template: "%s | Antigravity Directory",
     default: "Antigravity Directory | MCP Servers, Rules & Prompts",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Antigravity Directory",
     description: "The #1 free directory for Google Antigravity IDE. Browse 3,116+ MCP servers, skills, rules, prompts and workflows — all free, no login required.",
-    url: "https://googleantigravity.directory",
+    url: "https://www.googleantigravity.directory",
     siteName: "Google Antigravity Directory",
     images: [
       {
