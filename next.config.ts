@@ -33,6 +33,14 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: '/c/mcps',
+        destination: '/mcp-servers',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

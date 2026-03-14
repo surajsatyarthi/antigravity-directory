@@ -9,6 +9,14 @@
             "command": ".claude/hooks/inject-rules-after-compact.sh"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/inject-session-rules.sh"
+          }
+        ]
       }
     ],
     "PreToolUse": [
