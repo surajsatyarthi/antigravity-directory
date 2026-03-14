@@ -39,6 +39,10 @@ const nextConfig: NextConfig = {
         source: '/c/mcps',
         destination: '/mcp-servers',
       },
+      {
+        source: '/c/mcp-servers',
+        destination: '/mcp-servers',
+      },
     ];
   },
 };
