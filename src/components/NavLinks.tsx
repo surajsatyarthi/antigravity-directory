@@ -22,7 +22,7 @@ export function NavLinks() {
           ? "text-slate-400 cursor-not-allowed hover:text-slate-400" 
           : isActive 
             ? "text-white" 
-            : item.label === 'MCPs' ? "text-white hover:text-blue-400" : "text-slate-400 hover:text-white";
+            : "text-slate-400 hover:text-white";
 
         return (
           <Link
