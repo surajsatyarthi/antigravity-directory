@@ -1,185 +1,229 @@
-# CURRENT TASK — TASK-059: Marketplace Dead Code Counter-Analysis + Safe Cleanup
+# CURRENT TASK — TASK-069: Full marketplace dead code sweep
 **Assigned by**: Claude Code (PM)
-**Date**: 2026-03-13
+**Date**: 2026-03-14
 **Branch**: fix/post-audit-cleanup (current branch)
 
 ---
 
 ## WHY THIS TASK EXISTS
 
-The codebase still contains substantial marketplace-era dead code: tables, query functions, and imports that serve no active public route. This bloats the bundle, adds JOIN overhead to every active query that imports the dead functions, and creates confusion about what the site actually does. Founder direction: nothing from the marketplace phase survives.
-
-PM has done an initial audit. Antigravity must do a COUNTER-ANALYSIS — read every file independently, find what PM missed, then clean what is safe to clean.
+This site is a free directory with B2B ads. No marketplace. No payments. No creator earnings. Retrograde analysis found 5 dead files and 5 files with dead marketplace code still in the codebase — payout emails, payment badges, Razorpay/PayPal config, and components for users who no longer exist. These are all being deleted or gutted now.
 
 ---
 
-## SCOPE SPLIT — WHAT ANTIGRAVITY MAY CLEAN VS. WHAT REQUIRES PM DECISION
+## RETROGRADE CHECK
 
-### SAFE TO CLEAN IN THIS TASK (TypeScript/code only — no DB changes):
-1. Dead **query functions** in `src/lib/queries.ts` — delete the entire function
-2. Dead **imports** in any file — remove unused imports
-3. Dead **relations** in `src/drizzle/schema.ts` that reference dead tables — remove only the `relations()` blocks, NOT the table definition itself
+*Who is this code for, and does that person still exist on a free directory with B2B ads?*
+- `AdminPayoutQueue`, `PayoutApprovalModal` — for admin reviewing creator payouts. No creators. Dead.
+- `SalesHistory` — for creator dashboard showing sales. No creators. Dead.
+- `ThreeValueCards` — "Earn 80%" / "Join Community" / "View Profiles" marketplace marketing. No marketplace. Dead.
+- `src/lib/email.ts` — payout approval/rejection emails to creators. No payouts. Dead.
+- `sendPaymentConfirmation` — email sent after a paid resource submission. No paid submissions. Dead.
+- `paymentStatus === 'PAID'` blocks in actions.ts — fires when a paid submission is approved. `paymentStatus` is always `NONE`. Never fires. Dead.
+- Razorpay/PayPal in env.ts — required validation for payment keys. No payments. Crashes build if keys absent. Dead.
+- Payment sections in .env.example — documentation for payment keys that don't exist. Dead.
 
-### NOT SAFE — REQUIRES PM + FOUNDER DECISION BEFORE ANY ACTION:
-- Removing table definitions from `schema.ts` — Drizzle will generate DROP TABLE migrations on next `db:push`. Live DB. Tables may have real rows (even if UI is gone). Requires explicit founder approval.
-- Dropping DB columns from active tables (e.g. `price`, `salesCount` on resources) — same risk.
-- Any schema migration
-
-**Antigravity must report these but NOT act on them.**
+*Adjacent dead code to follow downstream?*
+DB table drops (payments, purchases, creatorEarnings, payoutRequests, etc.) are **TASK-060** — requires founder approval before Drizzle generates DROP TABLE migrations. Do NOT touch schema.ts in this task.
 
 ---
 
-## PM VERIFIED STARTING LIST
+## FEATURE STATE CHECK
 
-### Dead schema tables (verified by PM reading `src/drizzle/schema.ts`)
-
-| Table | Lines | Why dead |
+| Field/Feature | Status | Source |
 |---|---|---|
-| `resourceClaims` | 144-153 | Claiming system removed. No active route calls it. |
-| `ratings` | 155-169 | UI removed TASK-024 (commit 361550e). Table empty. |
-| `follows` | 214-223 | Social graph — no UI ever built or shipped. |
-| `bookmarks` | 226-234 | BookmarkButton removed TASK-022. No active route. |
-| `jobs` | 263-279 | Jobs board never built. No route exists. |
-| `payments` | 281-297 | Marketplace payments. All payment routes deleted TASK-002/003. |
-| `purchases` | 299-317 | 80/20 split system. Deleted same tasks. |
-| `creatorEarnings` | 319-327 | Creator payout tracking. Deleted same tasks. |
-| `userResourceAccess` | 329-337 | Purchase access control. Deleted same tasks. |
-| `payoutRequests` | 452-475 | Creator payout requests. Deleted same tasks. |
-
-**These table definitions must NOT be deleted in this task.** Report them with confirmation. PM will write a separate DB migration task with founder approval.
-
-### Dead query functions (verified by PM reading `src/lib/queries.ts`)
-
-| Function | Lines | Why dead |
-|---|---|---|
-| `getFeaturedResources` | 178-221 | Queries `featured` resources. `SponsoredCard` handles featured ads via `sponsor.ts` config — not DB query. Antigravity must grep `src/` for `getFeaturedResources` to confirm zero consumers before deleting. |
-| `getOwnerDashboardData` | 311-341 | Owner dashboard removed. Queries `authorId` + ratings. Antigravity must grep for `getOwnerDashboardData` to confirm. |
-| `getTopCreators` | 379-399 | Marketplace — queries `payments.amount` for creator earnings leaderboard. Antigravity must grep for `getTopCreators` to confirm. |
-| `getPlatformStats` | 404-416 | Marketplace — queries total earnings from `payments`. References `StatsBar` in comment but component was deleted. Antigravity must grep for `getPlatformStats` to confirm. |
-| `getCategoryTools` | 421-445 | Marketplace — fetches resources by category with mock price `29` hardcoded on line 432, joined with `payments`. Antigravity must grep for `getCategoryTools` to confirm. |
-
-**If grep confirms zero consumers, delete these functions.**
-
-### Dead imports (verified by PM)
-
-| File | Import | Why dead |
-|---|---|---|
-| `src/lib/queries.ts` line 7 | `payments` from schema | Only used in `getTopCreators`, `getPlatformStats`, `getCategoryTools` — all dead if confirmed above |
-| `src/lib/queries.ts` line 7 | `users` from schema | Used in `getOwnerDashboardData` + `getAdminDashboardData`. If `getOwnerDashboardData` is deleted, check if `users` is still needed for `getAdminDashboardData`. |
-| `src/app/api/badges/[slug]/route.ts` line 2 | `ratings` from schema | Dead since TASK-057. No longer used. |
-| `src/app/api/badges/[slug]/route.ts` line 3 | `sql` from drizzle-orm | Dead since TASK-057. No longer used. |
-
-### Dead fields on active tables (report only — DO NOT remove)
-
-These fields exist on LIVE tables. Removing them requires column-drop migrations. PM must review and get founder approval.
-
-**On `resources` table:**
-- `price` (line 109) — marketplace pricing, filter in `getFilteredResources` line 82-83 but no UI exposes this filter
-- `currency` (line 110) — marketplace
-- `salesCount` (line 111) — marketplace per-resource sales tracking
-- `isIndexed` / `indexedAt` (lines 114-115) — staged indexing feature, no active consumer
-- `githubStars` / `githubForks` (lines 118-119) — no GitHub sync API active, always 0
-- `claimedAt` / `claimedVia` (lines 127-128) — claiming system removed
-
-**On `users` table:**
-- `bio`, `location`, `tagline`, `website`, `githubUsername`, `twitterHandle`, `linkedinUrl`, `youtubeChannel`, `discordUsername` (lines 14-20) — social profile fields, no profile page exists
-- `profileCompletionScore`, `followersCount`, `followingCount` (lines 23-26) — social metrics, no UI
-
-**Note on `pricing` filter in `getFilteredResources`**: If `price` field is confirmed dead, the `pricing` filter block (lines 79-89 in queries.ts) should also be removed. Antigravity must check if `pricing` is passed from any active UI component before removing.
+| Payments / marketplace | DEAD — removed from product | BUSINESS_CONTEXT.md |
+| `paymentStatus` on submissions | Always `NONE` — never `PAID` | `src/app/admin/submissions/actions.ts` line 52 |
+| Razorpay vars in env.ts | Required `.min(1)` — crashes build if absent | `src/lib/env.ts` lines 13-16 |
+| PayPal vars in env.ts | Required `.min(1)` — crashes build if absent | `src/lib/env.ts` lines 18-19 |
+| `sendListingLive` in email/templates.ts | KEEP — valid for future free submission flow | `src/lib/email/templates.ts` lines 62-105 |
+| Scraper test files (`__tests__/scripts/`) | KEEP — scraper tests, not marketplace code | `src/__tests__/scripts/` |
 
 ---
 
-## COUNTER-ANALYSIS INSTRUCTIONS
+## PM VERIFIED CONTENT
 
-Antigravity must NOT simply trust PM's list. Read every file independently:
+### Files to DELETE — all confirmed zero external imports (PM grepped 2026-03-14)
 
-1. **Read every file in `src/app/`** — list all active page routes and API routes
-2. **Read every file in `src/components/`** — list all components and what data they consume
-3. **Read `src/lib/queries.ts`** — for each exported function, grep `src/` for its import. Zero imports = dead.
-4. **Read `src/drizzle/schema.ts`** — for each table export, grep `src/` for its usage. Confirm which are truly dead.
-5. **Read `src/types/database.ts`** if it exists — check for dead type definitions
-6. **Grep for any additional dead patterns** PM may have missed
+**`src/components/admin/AdminPayoutQueue.tsx`** — payout queue UI. Zero imports outside own file. DELETE.
 
-**If Antigravity finds anything PM did NOT list — add it to the report.**
+**`src/components/admin/PayoutApprovalModal.tsx`** — payout approval modal. Zero imports outside own file. DELETE.
+
+**`src/components/dashboard/SalesHistory.tsx`** — creator sales history. Zero imports outside own file. DELETE.
+
+**`src/components/ThreeValueCards.tsx`** — marketplace marketing cards ("Earn 80%", "Join Community", "View Profiles"). Zero imports outside own file. DELETE.
+
+**`src/lib/email.ts`** — payout approved/rejected email functions. Zero imports anywhere (PM confirmed via grep). DELETE entire file.
 
 ---
 
-## WHAT TO ACTUALLY CLEAN IN THIS TASK
+### File edits — PM verified exact lines
 
-After counter-analysis confirms the dead code:
+**`src/lib/env.ts` lines 13-19** (PM read 2026-03-14):
+```typescript
+  // Payments - Razorpay
+  RAZORPAY_KEY_ID: z.string().min(1, 'RAZORPAY_KEY_ID is required'),
+  RAZORPAY_KEY_SECRET: z.string().min(1, 'RAZORPAY_KEY_SECRET is required'),
 
-### DELETE (safe — TypeScript code only):
-1. Dead query functions confirmed by grep: delete the entire function body
-2. Dead imports in `queries.ts`: remove from the import line (keep active ones)
-3. Dead imports in `route.ts`: remove `ratings` and `sql`
-4. Dead `relations()` blocks in `schema.ts` that reference dead tables ONLY — e.g. `ratingsRelations`, `bookmarksRelations`, `paymentsRelations`, `purchasesRelations`, `creatorEarningsRelations`, `payoutRequestsRelations`, `userResourceAccessRelations` (the `relations()` functions, NOT the `pgTable` definitions)
-5. Any other dead imports/functions Antigravity finds in the counter-analysis
+  // Payments - PayPal
+  PAYPAL_CLIENT_ID: z.string().min(1, 'PAYPAL_CLIENT_ID is required'),
+  PAYPAL_CLIENT_SECRET: z.string().min(1, 'PAYPAL_CLIENT_SECRET is required'),
+```
+DELETE these 7 lines. Nothing in the codebase uses these env vars.
 
-### DO NOT TOUCH:
-- `pgTable` definitions in `schema.ts` — no DB changes in this task
-- DB columns on active tables (`price`, `salesCount`, etc.)
-- Any active query function (getFilteredResources, getCategoriesWithCounts, getResourcesByCategorySlug, getAllTags, getTopTools, getToolBySlug, getAdminDashboardData)
-- Any active component
+---
+
+**`src/lib/email/templates.ts` lines 6-60** (PM read 2026-03-14):
+```typescript
+export async function sendPaymentConfirmation({...}) { ... }
+```
+DELETE this entire function (lines 6 through 60 inclusive). `sendListingLive` at lines 62-105 **stays untouched**.
+
+---
+
+**`src/app/admin/submissions/actions.ts`** (PM read 2026-03-14):
+
+Line 7 — DELETE (becomes unused after PAID block removal):
+```typescript
+import { sendListingLive } from '@/lib/email/templates';
+```
+
+Line 9 — DELETE (becomes unused after PAID block removal):
+```typescript
+import { pingIndexNow } from '@/lib/indexnow';
+```
+
+Lines 51-91 — DELETE entire PAID block in `approveSubmission` (the `if (submission.paymentStatus === 'PAID')` block and everything inside it).
+
+Lines 127-139 — DELETE entire PAID block in `rejectSubmission` (the `if (submission.paymentStatus === 'PAID')` block and everything inside it).
+
+After deletions: check if `and` (imported from drizzle-orm line 5) and `resources` table (imported line 4) are still used elsewhere in the file. If no remaining references, remove them from the import. Only remove what is genuinely unused after the deletions.
+
+---
+
+**`src/components/AdminSubmissionQueue.tsx` lines 76-87** (PM read 2026-03-14):
+```tsx
+                <span className={`px-3 py-1 rounded-full text-xs font-mono uppercase ${
+                  submission.paymentStatus === 'PAID'
+                    ? 'bg-emerald-500/20 text-emerald-400'
+                    : 'bg-gray-500/20 text-slate-400'
+                }`}>
+                  {submission.paymentStatus === 'PAID' ? '💰 Paid' : 'Free'}
+                </span>
+                {submission.paymentType === 'FEATURED' && (
+                  <span className="px-3 py-1 rounded-full text-xs font-mono uppercase bg-yellow-500/20 text-yellow-400">
+                    ⭐ Featured
+                  </span>
+                )}
+```
+DELETE these 12 lines. Always showed "Free" — paymentStatus is never PAID. Keep all other submission card content untouched.
+
+---
+
+**`.env.example` lines 28-43** (PM read 2026-03-14):
+```
+# ============================================
+# PAYMENTS - RAZORPAY (India)
+# ============================================
+# Get from Razorpay Dashboard: https://dashboard.razorpay.com/
+NEXT_PUBLIC_RAZORPAY_KEY_ID="rzp_test_xxxxxxxxxxxxx"
+RAZORPAY_KEY_SECRET="your-razorpay-secret-key"
+RAZORPAY_WEBHOOK_SECRET="your-razorpay-webhook-secret"
+
+# ============================================
+# PAYMENTS - PAYPAL (International)
+# ============================================
+# Get from PayPal Developer: https://developer.paypal.com/
+NEXT_PUBLIC_PAYPAL_CLIENT_ID="your-paypal-client-id"
+PAYPAL_CLIENT_SECRET="your-paypal-secret-key"
+PAYPAL_MODE="sandbox" # Use "live" for production
+```
+DELETE all 15 lines (lines 28-43 inclusive, including the blank line between sections). Everything before line 28 and after line 43 stays untouched.
+
+---
+
+## MANDATORY CROSS-CHECK
+
+Before implementing, Antigravity must confirm:
+1. `src/lib/env.ts` lines 13-19: Razorpay + PayPal required blocks — present ✓
+2. `src/lib/email/templates.ts` line 6: `export async function sendPaymentConfirmation` — present ✓
+3. `src/app/admin/submissions/actions.ts` line 7: `import { sendListingLive }` — present ✓
+4. `src/app/admin/submissions/actions.ts` line 9: `import { pingIndexNow }` — present ✓
+5. `src/app/admin/submissions/actions.ts` line 52: `if (submission.paymentStatus === 'PAID')` — present ✓
+6. `src/components/AdminSubmissionQueue.tsx` line 77: `submission.paymentStatus === 'PAID'` in badge span — present ✓
+7. `.env.example` line 29: `# PAYMENTS - RAZORPAY (India)` — present ✓
+8. Grep `src/` for imports of `AdminPayoutQueue`, `PayoutApprovalModal`, `SalesHistory`, `ThreeValueCards`, `lib/email` — all must return zero external results before deleting
+
+If any do not match — STOP and report to PM.
+
+---
+
+## DO NOT TOUCH
+
+- `src/lib/email/templates.ts` lines 62-105 — `sendListingLive` function stays
+- `src/lib/indexnow.ts` — stays (TASK-066 will wire it correctly)
+- `src/__tests__/scripts/` — scraper tests, not marketplace code
+- `src/components/AdminSubmissionQueue.tsx` — keep the whole file, only remove the 12 payment badge lines (76-87)
+- `src/drizzle/schema.ts` — DB table drops are TASK-060, require founder approval
+- `GITHUB_TOKEN` in `.env.example` — scraper PAT, stays
 
 ---
 
 ## MANDATORY REPORT FORMAT
 
-```
-TASK-059 COUNTER-ANALYSIS + CLEANUP REPORT
-===========================================
+Antigravity must provide ALL 9 evidence items:
 
-COUNTER-ANALYSIS FINDINGS:
+1. **Screenshots** — save to:
+   - `temp/task069_admin_submissions.png` — admin submissions page showing submission cards WITHOUT payment badges
+   - `temp/task069_homepage.png` — homepage loading correctly (smoke test)
 
-PM list confirmed:
-- Dead query functions: [list each + grep result confirming zero consumers]
-- Dead imports: [list each]
+2. **Screen recording** — save to `temp/task069_recording.webm`
 
-PM list corrections (anything PM got wrong):
-- [list anything where PM's reading was incorrect]
+3. **Git commit hash** — paste inline
 
-Additional dead code found by Antigravity (not in PM list):
-- [file, line, what it is, why dead]
+4. **Git diff** — paste exact changed lines inline (5 deleted files + 5 edited files)
 
-DEAD DB TABLES (report only — no action):
-[paste the 10 tables from PM list + confirm with grep results]
+5. **Build log** — run `npm run build 2>&1 | tee temp/task069_build.log` — must exit 0
 
-DEAD FIELDS ON ACTIVE TABLES (report only — no action):
-[paste PM list + any additions]
+6. **Lint log** — run `npm run lint 2>&1 | tee temp/task069_lint.log` — must exit 0
 
-CHANGES MADE:
+7. **HTTP status** — save to `temp/task069_http_status.txt`:
+   ```
+   / → 200
+   /mcp-servers → 200
+   ```
 
-Deleted query functions:
-[for each: function name, lines deleted, grep result confirming zero consumers]
+8. **Browser console** — no errors on homepage and admin page
 
-Removed dead imports:
-[for each: file, line, what was removed]
+9. **Dead code confirmed** — state: "5 files deleted, 5 files edited, build passes, no marketplace imports remain"
 
-Removed dead relations():
-[for each: relation name, lines deleted]
+**Required files on disk in temp/:**
+- `temp/task069_build.log`
+- `temp/task069_lint.log`
+- `temp/task069_http_status.txt`
+- `temp/task069_admin_submissions.png`
+- `temp/task069_homepage.png`
+- `temp/task069_recording.webm`
 
-Any other dead code removed:
-[list]
-
-Evidence:
-1. Screenshots: temp/task059_tools_page.png (verify tools still work), temp/task059_admin_page.png, temp/task059_homepage.png
-2. Screen recording: temp/task059_recording.webm
-3. Git commit hash: [hash]
-4. Git diff: [all changed lines]
-5. Build log: [full output + exit code 0]
-6. Lint log: [full output + exit code 0]
-7. HTTP status: / → 200, /mcp-servers → 200, /tools → 200, /admin → 200, /t/[any-slug] → 200
-8. Browser console: no errors
-9. Network tab: no errors
-```
+Task is NOT done if any of these files are missing.
 
 ---
 
-## DO NOT CHANGE
+## AFTER THIS TASK — TASK-070 IS NEXT
 
-- Any `pgTable` definition in `schema.ts`
-- Any active query function
-- Any component in `src/components/`
-- Any page in `src/app/`
-- Any config file (`sponsor.ts`, `navigation.ts`, etc.)
-- No `npm run` commands beyond build + lint
+Fix Groq logo: (1) replace McLaren co-branded URL in `src/config/sponsor.ts` line 27 with standalone wordmark `https://cdn.sanity.io/images/chol0sk5/production/2a8cc526896d13f521915aee21282d11cf522a3c-95x30.svg`, (2) change logo size in `CategorySponsorBanner.tsx` line 40 from `h-5 w-auto` to `h-12 w-12` to match Warp's 48×48px.
+
+---
+
+## PM SCREENSHOT READ — TASK-068 (verified 2026-03-14)
+
+| File | What PM saw | Verdict |
+|---|---|---|
+| `task068_signin_page.png` | `/api/auth/providers` JSON from production (googleantigravity.directory). Only one key: `"google"` — `id: "google", name: "Google", type: "oidc"`. No GitHub key present. | ✅ PASS |
+| `task068_homepage.png` | Homepage loading correctly on dark background. Hero visible: "THE #1 RESOURCE DIRECTORY FOR GOOGLE ANTIGRAVITY IDE". CodeRabbit sponsor badge top-right. Warp sponsored card visible. Resource list rendering. No errors. | ✅ PASS |
+
+**HTTP status**: `/ → 200`, `/mcp-servers → 200` — ✅ PASS
+**No 404 entries in http_status.txt** — ✅ PASS
+**All 6 required files present in temp/** — ✅ PASS
+**Git commit 7f22d1c confirmed in log** — ✅ PASS
+**G13 GATE**: Screenshots from `googleantigravity.directory` (production) — ✅ PASS

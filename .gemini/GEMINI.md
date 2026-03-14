@@ -95,10 +95,36 @@ Every task goes through explicit Gates (like G1 for Auth/Audit, G13 for Browser 
 ### MANDATORY VERIFICATION BEFORE REPORTING A TASK "DONE"
 
 1. Verify no violations of the `Iron Rule` (Stop on error).
-2. `npm run build` → must exit 0.
-3. `npm run lint` → must exit 0.
-4. Preview the changes using your automated browser.
-5. Create G13 report/screenshots as required.
+2. `npm run build` → must exit 0. **Save full output to `temp/task0XX_build.log`** (replace 0XX with the task number).
+3. `npm run lint` → must exit 0. **Save full output to `temp/task0XX_lint.log`** (replace 0XX with the task number).
+4. Hit every changed page URL with curl or fetch. **Save all results to `temp/task0XX_http_status.txt`** (replace 0XX with the task number). Format: `http://127.0.0.1:3000/[path] → [status]` one per line.
+5. Preview the changes using your automated browser. Save screenshots to `temp/` with task-specific filenames.
+6. Save the screen recording to `temp/task0XX_recording.webm`.
+
+**These 3 files are non-negotiable on every task:**
+- `temp/task0XX_build.log`
+- `temp/task0XX_lint.log`
+- `temp/task0XX_http_status.txt`
+
+PM will Glob for these files after every report. If they do not exist, the task is not done. This applies to ALL tasks — not just tasks where the spec lists these filenames.
+
+---
+
+## RETROGRADE CHECK — WHAT IT IS AND WHAT TO DO WITH IT
+
+Every `CURRENT_TASK.md` spec now includes a **RETROGRADE CHECK** section written by the PM.
+
+It answers two questions:
+1. Who is this code for, and does that person still exist on a free directory with B2B ads?
+2. What adjacent code serves the same dead user type?
+
+**Your job when you see this section:**
+- Read it before implementing
+- If the PM flagged dead adjacent code as "include in this task" — delete or fix it as part of the task
+- If the PM flagged dead adjacent code as "follow-on task" — do not touch it, the PM will create a separate task
+- If you find additional dead code the PM did not flag — report it in your evidence report under "ADDITIONAL DEAD CODE FOUND"
+
+This is how the codebase gets cleaned as we build, not in separate cleanup sprints.
 
 ---
 

@@ -4,9 +4,7 @@ import { db } from '@/lib/db';
 import { submissions, resources, categories, users } from '@/drizzle/schema';
 import { eq, and } from 'drizzle-orm';
 import { auth } from '@/auth';
-import { sendListingLive } from '@/lib/email/templates';
 import { revalidatePath } from 'next/cache';
-import { pingIndexNow } from '@/lib/indexnow';
 
 // Helper to verify admin role
 async function verifyAdmin() {
@@ -48,48 +46,6 @@ export async function approveSubmission(submissionId: string) {
       .set({ status: 'APPROVED', updatedAt: new Date() })
       .where(eq(submissions.id, submissionId));
 
-    // If there's a corresponding resource (paid submission), mark it as LIVE
-    if (submission.paymentStatus === 'PAID') {
-      // Find the resource created from this submission
-      const resource = await db.query.resources.findFirst({
-        where: and(
-          eq(resources.title, submission.title),
-          eq(resources.status, 'VETTING')
-        ),
-      });
-
-      if (resource) {
-        await db.update(resources)
-          .set({ status: 'LIVE', updatedAt: new Date() })
-          .where(eq(resources.id, resource.id));
-
-        // Notify Bing/Yandex/Seznam immediately — non-blocking
-        await pingIndexNow(resource.slug);
-
-        // Send email to user
-        try {
-          let submissionUser = null;
-          if (submission.userId) {
-            submissionUser = await db.query.users.findFirst({
-              where: eq(users.id, submission.userId),
-            });
-          }
-
-          if (submissionUser) {
-            await sendListingLive({
-              userEmail: submissionUser.email,
-              userName: submissionUser.name || 'there',
-              resourceTitle: submission.title,
-              resourceSlug: resource.slug,
-            });
-          }
-        } catch (emailError) {
-          console.error('Failed to send listing live email:', emailError);
-          // Don't fail the approval if email fails
-        }
-      }
-    }
-
     revalidatePath('/');
     revalidatePath('/admin/submissions');
     return { success: true };
@@ -122,21 +78,6 @@ export async function rejectSubmission(submissionId: string, reason?: string) {
         updatedAt: new Date(),
       })
       .where(eq(submissions.id, submissionId));
-
-    // If there's a corresponding resource in VETTING, also mark as rejected
-    if (submission.paymentStatus === 'PAID') {
-      const resource = await db.query.resources.findFirst({
-        where: and(
-          eq(resources.title, submission.title),
-          eq(resources.status, 'VETTING')
-        ),
-      });
-
-      if (resource) {
-        // Delete the VETTING resource if submission is rejected
-        await db.delete(resources).where(eq(resources.id, resource.id));
-      }
-    }
 
     revalidatePath('/');
     revalidatePath('/admin/submissions');

@@ -85,18 +85,52 @@ Email template:
 
 Send to 10 companies. Expect 1-2 replies. One yes = $2,000 MRR.
 
-**Day 1 — Direct outreach to MCP creators (1 hour)**
+**Day 1 — Creator backlink outreach (automated, 1-hour setup)**
 
-Search GitHub for repos with "antigravity" in the name or description. Find the authors. Send one message:
+We have 3,116 resources. Most have a GitHub URL. Each GitHub URL has an owner. Each owner has a public profile with email, Twitter handle, and website. This is a backlink engine — not manual outreach.
 
-> "Hi — I built a free directory of Antigravity resources (googleantigravity.directory). Your [project name] is already listed. I thought you'd want to know, and if you'd like a do-follow backlink added to your listing, just let me know."
+**How it works (semi-automated script — TASK-062):**
 
-This gets:
-- Backlinks from their GitHub READMEs
-- Word of mouth to their users
-- Authentic creator engagement
+1. For each resource with a GitHub URL, extract `{owner}/{repo}` from the URL
+2. Hit GitHub API (no auth required for public data):
+   - `GET https://api.github.com/users/{owner}` → returns `email`, `twitter_username`, `blog`, `name`
+   - Store these as `creatorEmail`, `creatorTwitter`, `creatorWebsite` fields in our DB
+3. Open a GitHub Issue on their repo via GitHub API (requires a GitHub token — one-time setup):
 
-Target: 20 outreach messages in week 1.
+Issue title: `Your project is featured on Antigravity Directory`
+
+Issue body:
+> Hi! Your project **{resource.title}** is listed on [Antigravity Directory](https://googleantigravity.directory/t/{resource.slug}) — the free resource directory for Google Antigravity IDE users.
+>
+> If you find the listing useful, consider adding this badge to your README — it links back to your listing and lets users find your project faster:
+>
+> ```markdown
+> [![Listed on Antigravity Directory](https://googleantigravity.directory/api/badges/{resource.slug})](https://googleantigravity.directory/t/{resource.slug})
+> ```
+>
+> No action required — just thought you'd want to know. 🙂
+
+**Why a GitHub Issue, not email:**
+- No personal contact info needed
+- It is on their public repo — not spam
+- The badge ask is a 30-second action that creates a permanent do-follow backlink from an active GitHub repo
+- GitHub Issues are indexed by Google — the issue itself creates a secondary link signal
+
+**Phasing:**
+- Week 1: Top 500 resources by category (MCP Servers first — largest category, most active GitHub repos)
+- Ongoing: Auto-trigger issue for every new resource added with status=LIVE
+
+**Twitter DM (for creators with `twitter_username` in GitHub profile):**
+> "Hey — your project {title} is featured on Antigravity Directory, the first resource directory for Google Antigravity IDE: googleantigravity.directory/t/{slug}. Thought you'd want to know!"
+
+No ask. Just awareness. A percentage will tweet it organically.
+
+**Expected results from 500 outreach issues:**
+- 15–25% add the badge to their README = 75–125 GitHub README backlinks
+- 5–10% tweet it = organic reach to their followers
+- 100% receive awareness = future word of mouth
+
+This is how cursor.directory built its backlink profile — their badge is on hundreds of GitHub READMEs from rule and MCP creators. We replicate it with automation.
 
 **Day 2–7 — Monitor and respond**
 
@@ -171,12 +205,38 @@ This happens by:
 
 ---
 
+## PHASE 4 — CHROME EXTENSION (Future, post Phase 2)
+
+**Product idea:** A Chromium extension that surfaces relevant Antigravity resources from our directory while the developer is working — inside the browser, connected to the IDE.
+
+**Why our data makes this possible:**
+- 3,116 structured resources across 10 categories
+- Category + tag metadata enables context-aware suggestions
+- Badge API already exists — extension can pull live resource data
+
+**What the extension would do:**
+- Detect when the user is on a GitHub repo and surface any related Antigravity resources (MCP servers, rules, boilerplates) that match the repo's language/framework
+- Sidebar or popup showing top resources for the current context — one-click copy into Antigravity workspace
+- Works on all Chromium-based browsers: Chrome, Edge, Brave, Arc
+
+**Why this generates backlinks naturally:**
+- Chrome Web Store listing = indexed page linking to our site
+- Dev blog posts about "best Antigravity IDE extensions" will reference us
+- GitHub READMEs for Antigravity tools will link to our extension
+- YouTube setup videos for Antigravity will mention the extension
+
+**When to build this:** After Phase 2 is complete — the directory must have traffic and credibility before an extension is worth distributing. Building the extension before the directory has users is building a solution for an empty room.
+
+**TASK-063** — Chrome extension spec and build. Blocked until TASK-050 (data enrichment) is complete — the extension needs structured fields (language/runtime, install method) to do context-aware matching.
+
+---
+
 ## WHAT WE ARE NOT DOING
 
 | Tactic | Why we're not doing it |
 |---|---|
 | Paid ads | Zero budget. The content is the marketing. |
-| Social media accounts | No time to maintain them. Not needed. |
+| Paid social media | Zero budget. Organic only — @AntigravityIDE (Twitter) + u/antigravityIDE (Reddit) exist for community presence, not paid promotion. |
 | Product Hunt launch | Low Antigravity-specific audience. Not worth the effort at launch. |
 | Building free tools (ROI calculator etc.) | Distraction from core directory. |
 | Comparison pages (`/vs/`) | Low priority until core pages are indexed. |

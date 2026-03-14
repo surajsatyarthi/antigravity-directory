@@ -22,6 +22,10 @@
           {
             "type": "command",
             "command": ".claude/hooks/require-screenshots-before-done.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/require-http-status-log.sh"
           }
         ]
       },
@@ -31,6 +35,10 @@
           {
             "type": "command",
             "command": ".claude/hooks/block-src-edits.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/require-screenshots-before-done.sh"
           }
         ]
       },

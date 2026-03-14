@@ -73,18 +73,6 @@ export function AdminSubmissionQueue({ submissions }: AdminSubmissionQueueProps)
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
                 <h3 className="text-lg font-semibold text-white">{submission.title}</h3>
-                <span className={`px-3 py-1 rounded-full text-xs font-mono uppercase ${
-                  submission.paymentStatus === 'PAID'
-                    ? 'bg-emerald-500/20 text-emerald-400'
-                    : 'bg-gray-500/20 text-slate-400'
-                }`}>
-                  {submission.paymentStatus === 'PAID' ? '💰 Paid' : 'Free'}
-                </span>
-                {submission.paymentType === 'FEATURED' && (
-                  <span className="px-3 py-1 rounded-full text-xs font-mono uppercase bg-yellow-500/20 text-yellow-400">
-                    ⭐ Featured
-                  </span>
-                )}
               </div>
               <p className="text-slate-400 text-sm mb-2">{submission.description}</p>
               <div className="flex gap-4 text-xs text-slate-500">

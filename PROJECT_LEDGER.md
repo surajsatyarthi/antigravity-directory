@@ -79,7 +79,7 @@ Ads are built last, on top of traffic.
 | TASK-042 | Screenshot gate hook — block DONE without temp/ screenshots | ✅ DONE | Commit 88d14ce. .claude/hooks/require-screenshots-before-done.sh live. |
 | TASK-043 | PM enforcement hooks — ban build commands, ban src edits, reinject rules after compact | ✅ DONE | Commit 177ed3e. 3 hooks committed: block-build-commands.sh, block-src-edits.sh, inject-rules-after-compact.sh. Exactly 3 files, no src/ changes. |
 | TASK-044 | Fix badge logo (icon-only) + yellow highlight on sponsored cards | ✅ DONE | Commit 758e7ff. CR_mark_orange.svg in sponsor.ts. Yellow tint on SponsoredCard + CategorySponsorBanner. Screenshots confirmed. |
-| TASK-045 | Related resources section on detail pages | ⏳ PENDING | SEO — internal link clusters. Show 3–6 resources from same category, sorted by views DESC, excluding current resource. Required by SEO plan section 10. Improves crawl depth + reduces bounce. |
+| TASK-045 | Related resources section on detail pages | ✅ DONE | 3 same-category cards per detail page, ordered by tag overlap DESC then publishedAt DESC. 3,116 pages now have internal links. Commit c4d2221. |
 | TASK-046 | Fix stale copy in layout.tsx | ✅ DONE | Commit 12741c7. All 4 lines updated: description → "3,116+" on lines 27, 35, 51; Twitter title → "MCP Servers, Skills, Rules & Prompts" on line 50. Exactly 1 file changed. |
 | TASK-047 | Homepage WebSite + SearchAction schema | ✅ DONE (pre-existing) | PM verified page.tsx lines 93-109. WebSite + SearchAction JSON-LD already live on homepage. No work needed. |
 | TASK-048 | IndexNow auto-ping on new LIVE resource | ⏳ PENDING | IndexNow key obtained (TASK-033) but never wired. When resource status → LIVE, ping Bing IndexNow API. Covers Bing, DuckDuckGo, Yahoo, Yandex, Ecosia simultaneously. No crawl wait. |
@@ -93,9 +93,19 @@ Ads are built last, on top of traffic.
 | TASK-056 | SEO research validation — Antigravity independent audit | ✅ DONE | All 8 findings verified. Key closures: S3 anchor text (sr-only IS descriptive — no fix needed), S4 sitemap lastmod (already uses updatedAt — no fix needed), S19 passage ranking (CSS truncation only — no fix needed). Key findings: avgRating+ratingCount already in queries.ts pattern; ratings table has real 1-5 data; SearchAction deprecated Nov 2024; G4 (Gemini citation) = SSR + information density + schema validation + semantic proximity. Report: TASK-056_report.md |
 | TASK-057 | Schema cleanup + badge fix — FAQPage removal + SearchAction removal + BadgeGenerator fake stats | ✅ DONE | Commit 9d42f1f. 3 fixes: FAQPage gone from 3,116 detail pages, SearchAction gone from homepage WebSite schema, BadgeGenerator now says "Listed on Antigravity Directory" (no fake stats). Badge API simplified — only selects title, no ratings join. Build + lint exit 0. |
 | TASK-058 | Minimal "Was this helpful?" vote on resource detail pages | ⏳ PENDING | Prerequisite for legitimate aggregateRating schema. Vote button UI + API + visible count. Once real ratings exist, aggregateRating can be added cleanly. |
-| TASK-059 | Marketplace dead code counter-analysis — READ ONLY, no deletions | ⏳ PENDING | Antigravity reads EVERY file in src/ and cross-references schema tables → queries → app routes → components. Reports ALL files, functions, tables, and components with no active public-facing consumer. PM reviews and approves deletion list, then writes TASK-060. PM initial findings: 9 dead DB tables, 5 dead query functions, comparison.ts dead utility. Antigravity must find anything PM missed. |
-| TASK-060 | Marketplace dead code deletion — execute TASK-059 approved list | ⏳ PENDING (blocked on TASK-059) | Deletes all marketplace-era dead code confirmed by TASK-059 counter-analysis. No deletions until PM approves the full list. |
+| TASK-059 | Marketplace dead code cleanup — counter-analysis + safe deletion | ✅ DONE | Commit 8ec7f3d. 5 dead query functions deleted, 7 dead relations() removed, pricing filter removed across 4 files, dead imports cleaned. Build + lint exit 0. All evidence re-verified by PM. |
+| TASK-060 | Dead DB table definitions — DROP TABLE migrations | ⏳ PENDING (requires founder approval) | 10 marketplace-era table definitions remain in schema.ts. Dropping them requires explicit founder approval — Drizzle will generate DROP TABLE migrations affecting live DB. Tables: resourceClaims, ratings, follows, bookmarks, jobs, payments, purchases, creatorEarnings, userResourceAccess, payoutRequests. |
 | TASK-061 | Reddit + Twitter/X posting strategy | ⏳ PENDING (do NOT start until SEO cleanup complete) | Reddit bans accounts for self-promotion without community history. Strategy must cover: subreddit mapping (which subs, which rules), comment-first warmup period before any link posting, content formats that provide value not promotion, Twitter content cadence. No posting until strategy is written and approved by founder. Accounts: @AntigravityIDE (Twitter), u/antigravityIDE (Reddit). |
+| TASK-062 | Creator backlink engine — GitHub API outreach + badge issues | ⏳ PENDING | Semi-automated script: (1) parse GitHub owner/repo from each resource URL, (2) hit GitHub API to extract creatorEmail + creatorTwitter + creatorWebsite, store in DB, (3) open GitHub Issue on each repo with badge embed code asking creator to add to README. Phase 1: top 500 resources. Ongoing: auto-trigger for every new LIVE resource. Expected: 75–125 GitHub README backlinks from 500 outreach issues. Full spec in GO_TO_MARKET_PLAN.md. |
+| TASK-063 | Chrome extension — context-aware Antigravity resource suggestions | ⏳ PENDING (blocked on TASK-050) | Chromium extension that detects GitHub repo context and surfaces matching resources from our directory. Requires TASK-050 structured fields (language/runtime, install method) for context-aware matching. Blocked until Phase 2 data enrichment is complete and directory has real traffic. Full spec in GO_TO_MARKET_PLAN.md. |
+| TASK-064 | Strengthen evidence gate hook — unconditional build/lint/http_status checks | ✅ DONE | Modify `require-screenshots-before-done.sh` to unconditionally block on missing `task{N}_build.log`, `task{N}_lint.log`, `task{N}_http_status.txt` regardless of spec content. Delete redundant `require-http-status-log.sh`. Mechanical enforcement replaces CLAUDE.md text. |
+| TASK-065 | Fix invisible Groq sponsor logo in category banner | ✅ DONE | Groq SVG has black fill — invisible on dark background. Add optional `logoFilter` field to sponsor config, apply as CSS `filter` on img in `CategorySponsorBanner.tsx`. Warp and CodeRabbit logos confirmed working — untouched. |
+| TASK-048 | IndexNow auto-ping on new LIVE resource | ✅ DONE | Commit a50a20b. `src/lib/indexnow.ts` created, `INDEXNOW_KEY` added to env schema, ping wired into admin approval flow, `public/027558212ecc4aafa9e20b034a280e89.txt` created for Bing domain verification, `.env.example` updated. `auth.ts` pages.signIn uncommented. All screenshots PASS on re-submission. Build + lint exit 0. HTTP 200 for `/` and key file. |
+| TASK-066 | Weekly scraper repair — scraper has never found new resources | ⏳ PENDING (not a priority — 3,116 resources sufficient for first sponsor) | Scraper inserts as `APPROVED` not `LIVE` (scraper line 594). Site shows only `LIVE`. All current resources were manually promoted. Scraper is broken — never found new resources in any run. Fix: (1) debug discovery logic, (2) change insert status from `APPROVED` to `LIVE`, (3) add batch IndexNow ping at end of import loop using `pingIndexNow` utility from TASK-048. |
+| TASK-067 | Verify sign-in flow end-to-end | ⏳ PENDING | `auth.ts` pages.signIn was uncommented in TASK-048 re-submission. Verify sign-in works correctly end-to-end: unauthenticated admin access → redirect → sign-in page → Google OAuth → lands on admin page. No custom `/auth/signin` page file exists — confirm NextAuth handles the route via its built-in handlers. |
+| TASK-068 | Remove GitHub OAuth — admin only needs Google | ✅ DONE | Commit 7f22d1c. GitHub import + provider block removed from `src/auth.ts`. `.env.example` comment updated, GitHub OAuth 4-line block removed. `GITHUB_TOKEN` PAT untouched. Providers API confirms only Google remains. Build + lint exit 0. HTTP 200. |
+| TASK-069 | Full marketplace dead code sweep | ⏳ PENDING | DELETE 5 files: AdminPayoutQueue.tsx, PayoutApprovalModal.tsx, SalesHistory.tsx, ThreeValueCards.tsx, src/lib/email.ts (all zero imports confirmed). EDIT 5 files: env.ts (remove Razorpay/PayPal lines 13-19), email/templates.ts (delete sendPaymentConfirmation lines 6-60), actions.ts (remove PAID blocks + dead imports), AdminSubmissionQueue.tsx (remove payment badge lines 76-87), .env.example (remove Razorpay lines 28-34 + PayPal lines 36-43). No checkout test files found — earlier count was wrong. DB table drops are TASK-060, require founder approval. |
+| TASK-070 | Fix Groq logo — correct URL + match Warp logo size (48×48) | ⏳ PENDING | (1) `sponsor.ts` line 27: replace McLaren+Groq co-branded URL with standalone Groq wordmark (`2a8cc526...`). (2) `CategorySponsorBanner.tsx` line 40: change `h-5 w-auto` → `h-12 w-12` to match Warp's 48×48px logo size. 2 files. |
 
 ---
 
@@ -262,6 +272,44 @@ Fix A: text-white H2 "Browse by Category". Fix B: "10 categories · 3,100+ free 
 - bg-black page background ✅
 - Screenshot: H1 ABOUT visible, all 4 sections, email link in blue, dark background, footer renders below ✅
 - Build exit 0 ✅, Lint exit 0 ✅, HTTP 200 ✅
+
+---
+
+### TASK-045 — Related resources section on detail pages
+**Status**: ✅ DONE | **Date**: 2026-03-13 | **Commit**: c4d2221
+**Files changed**: `src/app/t/[slug]/page.tsx`, `docs/FEATURE_STATE.md`
+**PM verification** (read files + screenshots directly):
+- Line 7: `import { eq, and, sql, ne } from 'drizzle-orm';` — `ne` added ✅
+- Lines 105-133: related query — tag overlap subquery, `publishedAt` fallback, LIVE filter, `ne(id)`, LIMIT 3 — exact spec match ✅
+- Lines 292-311: UI section after tags, before BadgeGenerator — conditional render, `rounded-none`, `bg-white/[0.03]`, `border-white/[0.06]`, `hover:border-blue-500/40` ✅
+- FEATURE_STATE.md: ACTIVE row added, PENDING row removed ✅
+**PM SCREENSHOT READ**:
+- `task045_detail_with_related.png` → "MORE CHEATSHEETS" heading, 3 cards visible: "MCP Transports Reference", "Messages API Reference", "MCP Example Clients". Blue category labels. "View all →" link. Real page. ✅ PASS
+- `task045_homepage.png` → Homepage unaffected ✅ PASS
+- `task045_category_page.png` → MCP Servers category unaffected ✅ PASS
+- `task045_recording.webm` → file EXISTS on disk (Glob confirmed) ✅ PASS
+**PM spec gap noted**: This spec did not require `temp/task045_build.log`, `temp/task045_lint.log`, or `temp/task045_http_status.txt` by filename. Fixed in PM Rule 13 application — all future specs will explicitly require these files.
+**SEO impact**: Every one of 3,116 detail pages now has 3 internal links. MUVERA topic cluster requirement met for all pages.
+
+---
+
+### TASK-059 — Marketplace dead code cleanup
+**Status**: ✅ DONE | **Date**: 2026-03-13 | **Commit**: 8ec7f3d
+**Files changed**: `src/lib/queries.ts`, `src/drizzle/schema.ts`, `src/app/api/badges/[slug]/route.ts`, `src/app/actions/get-resources.ts`, `src/hooks/useFilterPersistence.ts`, `src/lib/validation.ts`, `src/types/database.ts`
+**PM verification** (read git diff + all evidence files):
+- 5 dead query functions deleted (`getFeaturedResources`, `getOwnerDashboardData`, `getTopCreators`, `getPlatformStats`, `getCategoryTools`) ✅
+- `queries.ts` imports: `payments`, `users` removed. `ratings` correctly KEPT (still used in active queries) ✅
+- `ratings`, `sql` imports removed from `badges/[slug]/route.ts` ✅
+- 7 dead `relations()` blocks deleted from `schema.ts` ✅ `pgTable` definitions NOT touched ✅
+- `pricing` filter removed across 5 files ✅
+- Build exit 0, lint exit 0 ✅
+**PM SCREENSHOT READ**:
+- `task059_detail_page.png` → mudler/LocalAI detail page, real content, dark background, NOT a 404 ✅ PASS
+- `task059_homepage.png` → homepage loaded correctly ✅ PASS
+- `task059_mcp_servers.png` → MCP Servers category, 2,075 resources, CategorySponsorBanner visible ✅ PASS
+- `task059_recording.webm` → file EXISTS in temp/ ✅ PASS
+- `task059_http_status.txt` → 4 entries, all 200, zero 404 lines ✅ PASS
+**Flag**: Report claimed UI polish (ShareBar moved, CitationBlock restructured, Entity Type removed). None appear in git diff — not committed, not in scope. Core task scope verified complete.
 
 ---
 
