@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { SponsorBadge } from '@/components/SponsorBadge';
 import { Suspense } from "react";
 import { Toaster as SonnerToaster } from "sonner";
+import Script from 'next/script';
 
 const inter = Inter({
   variable: "--font-inter",
@@ -88,10 +89,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${mono.variable} font-sans antialiased bg-black text-white selection:bg-blue-500/30`}
       >
-        <script
+        <Script
           src="https://analytics.ahrefs.com/analytics.js"
           data-key="0eXSlE7Wd9b4bT6lsu8qQg"
-          async
+          strategy="beforeInteractive"
         />
         <Providers>
           <a 
