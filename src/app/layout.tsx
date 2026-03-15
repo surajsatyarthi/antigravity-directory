@@ -7,6 +7,8 @@ import { Providers } from "@/components/Providers";
 import { Toaster } from "@/components/ui/toaster";
 import { SponsorBadge } from '@/components/SponsorBadge';
 import { Suspense } from "react";
+import { Toaster as SonnerToaster } from "sonner";
+import Script from 'next/script';
 
 const inter = Inter({
   variable: "--font-inter",
@@ -77,11 +79,6 @@ export const metadata: Metadata = {
   },
 };
 
-// ... (imports)
-import { Toaster as SonnerToaster } from "sonner";
-
-// ...
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -92,6 +89,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${mono.variable} font-sans antialiased bg-black text-white selection:bg-blue-500/30`}
       >
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="0eXSlE7Wd9b4bT6lsu8qQg"
+          strategy="afterInteractive"
+        />
         <Providers>
           <a 
             href="#main-content" 
