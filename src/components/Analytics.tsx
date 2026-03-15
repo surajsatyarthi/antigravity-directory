@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 import { GoogleAnalytics, sendGAEvent } from '@next/third-parties/google';
+import Script from 'next/script';
 
 export function Analytics() {
   const pathname = usePathname();
@@ -47,6 +48,13 @@ export function Analytics() {
       {process.env.NEXT_PUBLIC_GA_ID && (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       )}
+
+      {/* Ahrefs Web Analytics */}
+      <Script
+        src="https://analytics.ahrefs.com/analytics.js"
+        data-key="0eXSlE7Wd9b4bT6lsu8qQg"
+        strategy="afterInteractive"
+      />
     </>
   );
 }
