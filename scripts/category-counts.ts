@@ -11,7 +11,7 @@ async function getCounts() {
     const results = await sql`
       SELECT c.name, count(r.id) as count
       FROM categories c
-      LEFT JOIN resources r ON c.id = r.category_id
+      LEFT JOIN resources r ON c.id = r.category_id AND r.status = 'LIVE'
       GROUP BY c.name
       ORDER BY count DESC
     `;
