@@ -5,6 +5,7 @@ import { Header } from '@/components/Header';
 import { LoadMoreResourceGrid } from '@/components/LoadMoreResourceGrid';
 import { CategorySponsorBanner } from '@/components/CategorySponsorBanner';
 import { SortBar } from '@/components/SortBar';
+import { PaginationNav } from '@/components/PaginationNav';
 import { fetchResourcesAction } from '@/app/actions/get-resources';
 
 const CATEGORIES: Record<string, { name: string; description: string }> = {
@@ -103,6 +104,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   
   const count = totalCount;
   const description = category.description.replace('{count}', String(count));
+  const ITEMS_PER_PAGE = 50;
+  const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
 
   const collectionPageSchema = {
     '@context': 'https://schema.org',
@@ -153,6 +156,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                   initialResources={resources}
                   initialTotalCount={totalCount}
                   initialFilters={activeFilters}
+               />
+             </Suspense>
+             <Suspense fallback={null}>
+               <PaginationNav 
+                 currentPage={1} 
+                 totalPages={totalPages} 
+                 basePath={`/${slug}`} 
                />
              </Suspense>
         </section>
