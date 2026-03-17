@@ -1,0 +1,411 @@
+=== START BACKFILL AT Tue Mar 17 13:53:08 IST 2026 ===
+[dotenv@17.2.4] injecting env (23) from .env.local -- tip: ⚙️  suppress all logs with { quiet: true }
+
+🚀 Backfill Content Script
+   Mode:     LIVE
+   Category: prompts
+   Cap:      200 resources total
+
+📋 Found 1 eligible resources (cap: 200)
+
+✅ DeepSeek V3 System Prompt: content set (219 chars)
+
+📊 BACKFILL SUMMARY
+  ✅ Updated:              1
+  ⏭️  Skipped (has content): 0
+  ⚠️  No file found:        0
+  🚫 Non-GitHub URL:        0
+  ❌ Errors:               0
+
+  By category:
+  MCP Servers    : 0 updated / 0 skipped / 0 failed
+  Rules          : 0 updated / 0 skipped / 0 failed
+  Prompts        : 1 updated / 0 skipped / 0 failed
+  Skills         : 0 updated / 0 skipped / 0 failed
+  Workflows      : 0 updated / 0 skipped / 0 failed
+  Agents         : 0 updated / 0 skipped / 0 failed
+  Boilerplates   : 0 updated / 0 skipped / 0 failed
+  Troubleshooting: 0 updated / 0 skipped / 0 failed
+[dotenv@17.2.4] injecting env (23) from .env.local -- tip: ⚙️  suppress all logs with { quiet: true }
+
+🚀 Backfill Content Script
+   Mode:     LIVE
+   Category: skills
+   Cap:      200 resources total
+
+📋 Found 0 eligible resources (cap: 200)
+
+Nothing to process. All eligible resources already have content.
+[dotenv@17.2.4] injecting env (23) from .env.local -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+
+🚀 Backfill Content Script
+   Mode:     LIVE
+   Category: workflows
+   Cap:      200 resources total
+
+📋 Found 173 eligible resources (cap: 200)
+
+⚠️  150 N8n Templates: no eligible file found in repo
+⚠️   LangGraph Prospect To Lead Workflow: no eligible file found in repo
+⚠️  A LangGraph Based Conditional Workflow Demo With Visual Output: no eligible file found in repo
+⚠️  Agent Generator: no eligible file found in repo
+⚠️  Agent Skills Standard: no eligible file found in repo
+⚠️  Agentic AI With CrewAI: no eligible file found in repo
+⚠️  Agentic Systems: no eligible file found in repo
+⚠️  Agentic Prd Generation: no eligible file found in repo
+⚠️  Agentic Workflow Using LangGraph: no eligible file found in repo
+⚠️  Agentic_AI_LangGraph_Learning_Journey: no eligible file found in repo
+⚠️  Agentic_AI_using_LangGraph: no eligible file found in repo
+⚠️  AgenticAI Projects: no eligible file found in repo
+⚠️  AgentVerse: no eligible file found in repo
+⚠️  AgenticRAG: no eligible file found in repo
+⚠️  AgenticAI_with_LangChain_LangGraph: no eligible file found in repo
+⚠️  Ai Agent Frameworks: no eligible file found in repo
+⚠️  Ai Agent With Crewai: no eligible file found in repo
+⚠️  AI Agents Research Report: no eligible file found in repo
+⚠️  AI Agents With CrewAI: no eligible file found in repo
+⚠️  Ai Devkit: no eligible file found in repo
+⚠️  AI Model Training Pipeline: no eligible file found in repo
+⚠️  AI Research Assistant: no eligible file found in repo
+⚠️  Aiflowy: no eligible file found in repo
+⚠️  AntigravityManager: no eligible file found in repo
+⚠️  Apflow: no eligible file found in repo
+⚠️  Anyparser_crewai: no eligible file found in repo
+⚠️  Aurora OS.Js: no eligible file found in repo
+⚠️  Automation Workflow: no eligible file found in repo
+⚠️  AutoGPT Task Executor: no eligible file found in repo
+⚠️  AutoML AI Assistant: no eligible file found in repo
+⚠️  Awesome N8n: no eligible file found in repo
+⚠️  Awesome N8n Templates: no eligible file found in repo
+⚠️  Awesome N8n Workflows: no eligible file found in repo
+⚠️  BabyAGI Task Manager: no eligible file found in repo
+⚠️  Awesome Workflow Automation: no eligible file found in repo
+⚠️  Bazel Central Registry: no eligible file found in repo
+⚠️  Blogging With CrewAI: no eligible file found in repo
+⚠️  Beads: no eligible file found in repo
+⚠️  Bytechef: no eligible file found in repo
+⚠️  CAAL: no eligible file found in repo
+⚠️  Cad2data Revit IFC DWG DGN Pipeline With Conversion Validation Qto: no eligible file found in repo
+⚠️  Canvas: no eligible file found in repo
+⚠️  Chatwiki: no eligible file found in repo
+⚠️  Churn_monitor: no eligible file found in repo
+⚠️  Code Executor MCP: no eligible file found in repo
+⚠️  Cognito LangGraph RAG Chatbot: no eligible file found in repo
+⚠️  ComfyUI CrewAI: no eligible file found in repo
+⚠️  Companies Powered By Crewai: no eligible file found in repo
+⚠️  Content Generation Workflow: no eligible file found in repo
+⚠️  Crew Llamafile: no eligible file found in repo
+⚠️  CrewAI Agentic Jira: no eligible file found in repo
+⚠️  CrewAI Boilerplate: no eligible file found in repo
+⚠️  CrewAI Examples: no eligible file found in repo
+⚠️  CrewAI GUI Qt: no eligible file found in repo
+⚠️  CrewAI Meeting_Minutes: no eligible file found in repo
+⚠️  CrewAI Multi-Agent System: no eligible file found in repo
+⚠️  Crewai News Bias Agent Workflow: no eligible file found in repo
+⚠️  Crewai Playground: no eligible file found in repo
+⚠️  CrewAI Quickstart: no eligible file found in repo
+⚠️  Crewai Task Guardrails Demo: no eligible file found in repo
+⚠️  CrewAI Tutorial: no eligible file found in repo
+⚠️  CrewAI_Fitness_Agent: no eligible file found in repo
+⚠️  CrewAIToolsExtension: no eligible file found in repo
+⚠️  Datarobot Agent Templates: no eligible file found in repo
+⚠️  Debugging Workflows Using LangGraph Studio: no eligible file found in repo
+⚠️  Different Workflows In LangGraph: no eligible file found in repo
+⚠️  Docker Image Build & Push: no eligible file found in repo
+⚠️  Droppy: no eligible file found in repo
+⚠️  Dxos: no eligible file found in repo
+⚠️  Email Workflow Automation Using Crewai: no eligible file found in repo
+⚠️  End To End Agentic Ai Automation Lab: no eligible file found in repo
+⚠️  Flock: no eligible file found in repo
+⚠️  Freedify: no eligible file found in repo
+⚠️  Fullstack Starter: no eligible file found in repo
+⚠️  GragonAo Translate_Workflow_LangGraph_for_WND: no eligible file found in repo
+⚠️  Ha_washdata: no eligible file found in repo
+⚠️  HMLR Agentic AI Memory System: no eligible file found in repo
+⚠️  Interactive Crewai Panel: no eligible file found in repo
+⚠️  IsoCodes: no eligible file found in repo
+⚠️  Kana Dojo: no eligible file found in repo
+⚠️  KCloud Platform IoT: no eligible file found in repo
+⚠️  Kodo Template: no eligible file found in repo
+⚠️  Lang_Graph_Workflow: no eligible file found in repo
+⚠️  LangChain RAG Pipeline: no eligible file found in repo
+⚠️  LangGraph: no eligible file found in repo
+⚠️  LangGraph Agent: no eligible file found in repo
+⚠️  LangGraph Agent Orchestrator: no eligible file found in repo
+⚠️  LangGraph Agentic Workflow: no eligible file found in repo
+⚠️  LangGraph Agents   Agentic RAG With LangGraph: no eligible file found in repo
+⚠️  LangGraph Based Agentic Cybersecurity Workflow: no eligible file found in repo
+⚠️  LangGraph BranchFlow: no eligible file found in repo
+⚠️  LangGraph Course: no eligible file found in repo
+⚠️  LangGraph Email Processing Pipeline: no eligible file found in repo
+⚠️  LangGraph For Agentic AI: no eligible file found in repo
+⚠️  LangGraph FastAPI Streamlit: no eligible file found in repo
+⚠️  LangGraph Hub: no eligible file found in repo
+⚠️  LangGraph LangChain Agentic Workflows: no eligible file found in repo
+⚠️  LangGraph Learning Implementations: no eligible file found in repo
+⚠️  LangGraph Local Workflow: no eligible file found in repo
+⚠️  LangGraph MAS4SE: no eligible file found in repo
+⚠️  LangGraph Mastery Playbook: no eligible file found in repo
+⚠️  LangGraph Multi Modal Researcher: no eligible file found in repo
+⚠️  LangGraph MultiAgents Medical Workflow: no eligible file found in repo
+⚠️  LangGraph Practice: no eligible file found in repo
+⚠️  LangGraph Reflection Researcher: no eligible file found in repo
+⚠️  LangGraph Research Assistant: no eligible file found in repo
+⚠️  LangGraph Research Paper Generation: no eligible file found in repo
+⚠️  LangGraph WhatsApp Bot: no eligible file found in repo
+⚠️  LangGraph Workflows: no eligible file found in repo
+⚠️  LangGraph_projects: no eligible file found in repo
+⚠️  LangGraphProjects: no eligible file found in repo
+⚠️  Laravel N8n: no eligible file found in repo
+⚠️  Law Agents: no eligible file found in repo
+⚠️  Lifeforge: no eligible file found in repo
+⚠️  Linkedin Post Generator: no eligible file found in repo
+⚠️  LLM Agent For Code Reviews: no eligible file found in repo
+⚠️  LLM App Testing Workflow: no eligible file found in repo
+⚠️  LLM_Powered_Simple_Chatbot_Using_LangGraph: no eligible file found in repo
+⚠️  LLM RAG Research: no eligible file found in repo
+⚠️  Mcp Crew Ai: no eligible file found in repo
+⚠️  MySQLTuner Perl: no eligible file found in repo
+⚠️  Multi AI Agent Systems With CrewAI: no eligible file found in repo
+⚠️  N8n Ai Automations: no eligible file found in repo
+⚠️  N8n Claude Code Guide: no eligible file found in repo
+⚠️  N8n Automation Templates 5000: no eligible file found in repo
+⚠️  N8n Docs: no eligible file found in repo
+⚠️  N8n Deepseek: no eligible file found in repo
+⚠️  N8n CyberSecurity Workflows: no eligible file found in repo
+⚠️  N8n Free Templates: no eligible file found in repo
+⚠️  N8n Helm Chart: no eligible file found in repo
+⚠️  N8n Master Workflows: no eligible file found in repo
+⚠️  N8n Nodes Comfyui: no eligible file found in repo
+⚠️  N8n Nodes Globals: no eligible file found in repo
+⚠️  N8n Nodes Python: no eligible file found in repo
+⚠️  N8n Skills: no eligible file found in repo
+⚠️  N8n Templates: no eligible file found in repo
+⚠️  N8n Workflow Builder Ai: no eligible file found in repo
+⚠️  N8n Workflow Templates: no eligible file found in repo
+⚠️  N8n Workflows: no eligible file found in repo
+⚠️  N8n Workflows Esp: no eligible file found in repo
+⚠️  N8n_agent: no eligible file found in repo
+⚠️  N8nworkflows.Xyz: no eligible file found in repo
+⚠️  Nanobrowser: no eligible file found in repo
+⚠️  Neva: no eligible file found in repo
+⚠️  Nuitka: no eligible file found in repo
+⚠️  Personalized Email Generator: no eligible file found in repo
+⚠️  Ppt Master: no eligible file found in repo
+⚠️  PlatformPlatform: no eligible file found in repo
+⚠️  Practical LangGraph: no eligible file found in repo
+⚠️  Project Notioncrew: no eligible file found in repo
+⚠️  Process Compose: no eligible file found in repo
+⚠️  Pydantic LangGraph: no eligible file found in repo
+⚠️  Python Package Release: no eligible file found in repo
+⚠️  Quantified Self: no eligible file found in repo
+⚠️  Quran.Com Frontend Next: no eligible file found in repo
+⚠️  Redesigned Octo Barnacle: no eligible file found in repo
+⚠️  RAG Context Engineering Flow: no eligible file found in repo
+⚠️  Remixatron: no eligible file found in repo
+⚠️  Rsyslog: no eligible file found in repo
+⚠️  Report Generator: no eligible file found in repo
+⚠️  Self Host N8n On Gcr: no eligible file found in repo
+⚠️  Self Hosted Ai Starter Kit: no eligible file found in repo
+⚠️  Smart Marketing Assistant Crew AI: no eligible file found in repo
+⚠️  Splunk Platform Automator: no eligible file found in repo
+⚠️  StepperDriver: no eligible file found in repo
+⚠️  Study Lang Graph: no eligible file found in repo
+⚠️  TerminaI: no eligible file found in repo
+⚠️  Vercel Preview Deploy: no eligible file found in repo
+⚠️  Ultimate N8n Ai Workflows: no eligible file found in repo
+⚠️  Waha N8n Templates: no eligible file found in repo
+⚠️  Workflows: no eligible file found in repo
+⚠️  Witr: no eligible file found in repo
+⚠️  Zie619 N8n Workflows: no eligible file found in repo
+
+📊 BACKFILL SUMMARY
+  ✅ Updated:              0
+  ⏭️  Skipped (has content): 0
+  ⚠️  No file found:        173
+  🚫 Non-GitHub URL:        0
+  ❌ Errors:               0
+
+  By category:
+  MCP Servers    : 0 updated / 0 skipped / 0 failed
+  Rules          : 0 updated / 0 skipped / 0 failed
+  Prompts        : 0 updated / 0 skipped / 0 failed
+  Skills         : 0 updated / 0 skipped / 0 failed
+  Workflows      : 0 updated / 0 skipped / 173 failed
+  Agents         : 0 updated / 0 skipped / 0 failed
+  Boilerplates   : 0 updated / 0 skipped / 0 failed
+  Troubleshooting: 0 updated / 0 skipped / 0 failed
+[dotenv@17.2.4] injecting env (23) from .env.local -- tip: ⚙️  suppress all logs with { quiet: true }
+
+🚀 Backfill Content Script
+   Mode:     LIVE
+   Category: agents
+   Cap:      200 resources total
+
+📋 Found 52 eligible resources (cap: 200)
+
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  AutoGPT: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  BabyAGI: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  ChatDev: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+⚠️  MetaGPT: no eligible file found in repo
+
+📊 BACKFILL SUMMARY
+  ✅ Updated:              0
+  ⏭️  Skipped (has content): 0
+  ⚠️  No file found:        52
+  🚫 Non-GitHub URL:        0
+  ❌ Errors:               0
+
+  By category:
+  MCP Servers    : 0 updated / 0 skipped / 0 failed
+  Rules          : 0 updated / 0 skipped / 0 failed
+  Prompts        : 0 updated / 0 skipped / 0 failed
+  Skills         : 0 updated / 0 skipped / 0 failed
+  Workflows      : 0 updated / 0 skipped / 0 failed
+  Agents         : 0 updated / 0 skipped / 52 failed
+  Boilerplates   : 0 updated / 0 skipped / 0 failed
+  Troubleshooting: 0 updated / 0 skipped / 0 failed
+[dotenv@17.2.4] injecting env (23) from .env.local -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+
+🚀 Backfill Content Script
+   Mode:     LIVE
+   Category: boilerplates
+   Cap:      200 resources total
+
+📋 Found 59 eligible resources (cap: 200)
+
+⚠️  Astro SaaS Starter: no eligible file found in repo
+✅ Ai_saas_app: content set (68 chars)
+⚠️  Anthropic Claude Quickstart: no eligible file found in repo
+⚠️  AutoGen Agent Framework: no eligible file found in repo
+⚠️  AutoGPT Starter Kit: no eligible file found in repo
+✅ ChatGPT Clone - Next.js: content set (56 chars)
+⚠️  Chrome Extension Starter: no eligible file found in repo
+✅ Cloudflare Workers Starter: content set (98 chars)
+⚠️  CrewAI Multi-Agent System: no eligible file found in repo
+⚠️  Cypress E2E Starter: no eligible file found in repo
+⚠️  Dash Analytics Starter: no eligible file found in repo
+⚠️  Django SaaS Boilerplate: no eligible file found in repo
+⚠️  Docker Compose Stacks: no eligible file found in repo
+⚠️  Docusaurus Documentation: no eligible file found in repo
+✅ Electron React Boilerplate: content set (161 chars)
+⚠️  Expo Router Template: no eligible file found in repo
+⚠️  Embedchain Starter: no eligible file found in repo
+⚠️  Express TypeScript API: no eligible file found in repo
+⚠️  Firebase SaaS Starter: no eligible file found in repo
+✅ FastAPI Microservice Template: content set (78 chars)
+✅ Go Clean Architecture: content set (345 chars)
+✅ Go CLI Template: content set (20 chars)
+⚠️  Gradio ML Demo: no eligible file found in repo
+⚠️  LangChain.js Template: no eligible file found in repo
+⚠️  LangGraph Agent Template: no eligible file found in repo
+✅ LlamaIndex App Template: content set (23 chars)
+⚠️  Makerkit - Multi-Framework SaaS: no eligible file found in repo
+⚠️  Medusa E-commerce: no eligible file found in repo
+⚠️  NestJS Enterprise Starter: no eligible file found in repo
+⚠️  Next.js Commerce: no eligible file found in repo
+⚠️  Nextacular: no eligible file found in repo
+⚠️  Nextra Docs Starter: no eligible file found in repo
+✅ Nextjs Starter Kit: content set (46 chars)
+⚠️  Node.js CLI Starter: no eligible file found in repo
+⚠️  OpenAI Cookbook Starter: no eligible file found in repo
+⚠️  OpenAI SaaS Starter Kit: no eligible file found in repo
+⚠️  OpenSaaS - Wasp Framework: no eligible file found in repo
+⚠️  Plasmo Extension Framework: no eligible file found in repo
+⚠️  Playwright Test Suite: no eligible file found in repo
+⚠️  Polar: no eligible file found in repo
+⚠️  React Native Starter: no eligible file found in repo
+⚠️  Rust CLI Template: no eligible file found in repo
+✅ Remix SaaS Template: content set (28 chars)
+✅ RedwoodJS Startup: content set (63 chars)
+⚠️  Saas: no eligible file found in repo
+✅ Saas Starter Kit: content set (72 chars)
+⚠️  Serverless Framework Template: no eligible file found in repo
+✅ SaaS Boilerplate: content set (113 chars)
+⚠️  ShipFast - Next.js SaaS: no eligible file found in repo
+⚠️  ShipFree: no eligible file found in repo
+✅ Shopify Hydrogen Starter: content set (35 chars)
+⚠️  Startup Nextjs: no eligible file found in repo
+⚠️  Streamlit Data App: no eligible file found in repo
+⚠️  Supabase SaaS Kit: no eligible file found in repo
+✅ T3 Stack - tRPC + Prisma: content set (24 chars)
+✅ Tauri Desktop App: content set (27 chars)
+⚠️  VitePress Docs Template: no eligible file found in repo
+⚠️  Vercel AI Chatbot: no eligible file found in repo
+✅ Zenstack: content set (37 chars)
+
+📊 BACKFILL SUMMARY
+  ✅ Updated:              17
+  ⏭️  Skipped (has content): 0
+  ⚠️  No file found:        42
+  🚫 Non-GitHub URL:        0
+  ❌ Errors:               0
+
+  By category:
+  MCP Servers    : 0 updated / 0 skipped / 0 failed
+  Rules          : 0 updated / 0 skipped / 0 failed
+  Prompts        : 0 updated / 0 skipped / 0 failed
+  Skills         : 0 updated / 0 skipped / 0 failed
+  Workflows      : 0 updated / 0 skipped / 0 failed
+  Agents         : 0 updated / 0 skipped / 0 failed
+  Boilerplates   : 17 updated / 0 skipped / 42 failed
+  Troubleshooting: 0 updated / 0 skipped / 0 failed
+[dotenv@17.2.4] injecting env (23) from .env.local -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+
+🚀 Backfill Content Script
+   Mode:     LIVE
+   Category: troubleshooting
+   Cap:      200 resources total
+
+📋 Found 0 eligible resources (cap: 200)
+
+Nothing to process. All eligible resources already have content.
+=== END BACKFILL AT Tue Mar 17 13:55:58 IST 2026 ===
