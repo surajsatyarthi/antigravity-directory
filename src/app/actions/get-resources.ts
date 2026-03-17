@@ -45,12 +45,19 @@ export async function fetchResourcesAction(params: FetchResourcesParams) {
       ORGANIC_RATIO
     );
 
+    // C. Fetch Total Count (All LIVE resources)
+    const { totalCount: totalAll } = await getFilteredResources(
+      { ...cleanedFilters },
+      1,
+      1
+    );
+
     console.log(`[fetchResourcesAction] Filtered: sponsored=${sponsoredResults.length}, organic=${organicResults.length}, totalOrganic=${totalOrganic}`);
     if (organicResults.length > 0) {
         console.log('[fetchResourcesAction] First organic:', organicResults[0].title);
     }
 
-    // C. Interleave Logic (Amazon-style: Top Slot + Distributed)
+    // D. Interleave Logic (Amazon-style: Top Slot + Distributed)
     const interleavedResources = [];
     const sponsoredQueue = [...sponsoredResults];
     const organicQueue = [...organicResults];
@@ -87,7 +94,8 @@ export async function fetchResourcesAction(params: FetchResourcesParams) {
     return {
       success: true,
       resources: interleavedResources,
-      totalCount: totalOrganic, // Approximate for UI
+      totalCount: totalAll,
+
       hasNextPage,
       page: params.page
     };
