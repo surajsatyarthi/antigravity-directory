@@ -4,7 +4,7 @@
 
 # Maintained by Claude Code (PM). Do not edit manually.
 
-# Last updated: 2026-03-09
+# Last updated: 2026-03-24
 
 ---
 
@@ -68,6 +68,28 @@ Only exceptions: Footer uses `bg-slate-900`. Header uses `bg-black/90` (dark —
 Category counts must come from the database.
 Never hardcode resource counts, user counts, or traffic stats.
 
+### RULE 3 — First principles only
+
+Every implementation decision must be justified by first principles (SEO best practices, performance, UX, correctness).
+"Competitor X does Y" is never a valid reason to build something.
+If a CURRENT_TASK.md spec cites competitor behaviour as its sole justification — flag it to the PM before implementing. Do not build tasks that exist only because a competitor does something similar.
+
+---
+
+### RULE 4 — Plan Submission Workflow
+
+After creating `implementation_plan.md`, send the founder this exact message:
+
+> "Plan ready for TASK-XXX at [absolute path to implementation_plan.md].
+> Core approach: [one sentence summary].
+> Please forward to PM (Claude Code) for approval."
+
+The founder passes this to PM (Claude Code). PM reads the file and writes APPROVED or REJECTED.
+You receive the PM response back via the founder.
+
+**Do NOT write code before PM writes APPROVED.**
+**Do NOT ask the founder to approve — the founder is the messenger only.**
+
 ---
 
 ## CARD BEHAVIOUR (cursor.directory pattern — non-non-negotiable)
@@ -84,29 +106,84 @@ mcp-servers / skills / rules / prompts / agents / workflows / boilerplates / tro
 
 ---
 
-## QUALITY GATES AND PROTOCOLS (MANDATORY)
+## RALPH PROTOCOL v20.0 (MANDATORY)
 
-We now use centralized protocols managed via the `.agent` folder.
+Read `.agent/RALPH_PROTOCOL.md` at the start of every task.
+It has two parts:
+- **Part 1** = PM Protocol (Claude Code's rules — read for awareness)
+- **Part 2** = Coder Protocol (your rules — follow exactly)
 
-**CRITICAL: You must read and follow `.agent/RALPH_PROTOCOL.md` for all tasks.**
+### YOUR 8-PHASE WORKFLOW (Part 2 summary)
 
-Every task goes through explicit Gates (like G1 for Auth/Audit, G13 for Browser Preview, G14 for PM Approval). You must follow the exact Evidence tracking steps described in the Ralph Protocol.
+**Phase 1 — RESEARCH** (mandatory before writing any plan)
 
-### MANDATORY VERIFICATION BEFORE REPORTING A TASK "DONE"
+Before writing `implementation_plan.md`, search all 5 sources:
+- **GitHub** — existing implementations, libraries that solve the problem, open issues on libraries you plan to use
+- **npm** — packages that already solve this reliably (check stars + last updated)
+- **Web** — best practices and known pitfalls for Next.js 15, TypeScript, Tailwind, Supabase, Drizzle ORM
+- **Reddit** — r/nextjs, r/typescript, r/webdev, r/supabase — look for "anyone had issues with X" threads
+- **Twitter/X** — recent developer complaints or workarounds (last 6 months only)
 
-1. Verify no violations of the `Iron Rule` (Stop on error).
-2. `npm run build` → must exit 0. **Save full output to `temp/task0XX_build.log`** (replace 0XX with the task number).
-3. `npm run lint` → must exit 0. **Save full output to `temp/task0XX_lint.log`** (replace 0XX with the task number).
-4. Hit every changed page URL with curl or fetch. **Save all results to `temp/task0XX_http_status.txt`** (replace 0XX with the task number). Format: `http://127.0.0.1:3000/[path] → [status]` one per line.
-5. Preview the changes using your automated browser. Save screenshots to `temp/` with task-specific filenames.
-6. Save the screen recording to `temp/task0XX_recording.webm`.
+Log every query and finding. A plan submitted without a RESEARCH section is rejected by PM immediately.
+
+**Phase 2 — PLAN**
+
+Write `implementation_plan.md` with these sections:
+RESEARCH / APPROACH / FILES TO CHANGE / FILES NOT CHANGING / RISKS / ACCEPTANCE CRITERIA
+
+Then send founder the Rule 4 message (above). Wait for APPROVED.
+
+**Phase 3 — IMPLEMENT**
+
+Only after APPROVED. Implement exactly what the plan describes. Nothing more.
+Stop and report to PM on any error — never self-recover.
+
+**Phase 4 — VERIFY**
+
+Use these exact commands — do not invent redirection syntax:
+
+```bash
+npm run build 2>&1 | tee temp/taskXXX_build.log
+npm run lint 2>&1 | tee temp/taskXXX_lint.log
+```
+
+HTTP status — start dev server first, then:
+```bash
+curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/[path]
+```
+Write results to `temp/taskXXX_http_status.txt`, one line per URL:
+```
+http://localhost:3000/[path] → 200
+```
+
+Screenshots — copy from your artifacts directory to project temp/:
+```bash
+cp [your_artifacts_path/screenshot.png] temp/taskXXX_[page].png
+```
 
 **These 3 files are non-negotiable on every task:**
-- `temp/task0XX_build.log`
-- `temp/task0XX_lint.log`
-- `temp/task0XX_http_status.txt`
+- `temp/taskXXX_build.log`
+- `temp/taskXXX_lint.log`
+- `temp/taskXXX_http_status.txt`
 
-PM will Glob for these files after every report. If they do not exist, the task is not done. This applies to ALL tasks — not just tasks where the spec lists these filenames.
+PM will Glob for these. Missing = task not done.
+
+**Phase 5 — COMMIT**
+
+Stage specific files only. Never `git add -A`.
+```bash
+git add [file1] [file2]
+git commit -m "TASK-XXX: [what changed and why]"
+```
+
+**Phase 6 — REPORT**
+
+Send 9-point evidence report via founder to PM.
+Do not send if any evidence file is missing — missing file = step not completed.
+
+**Phase 7 — AGENTS.MD**
+
+After every task, update `AGENTS.md` in the relevant folder with anything a future agent should know.
 
 ---
 
@@ -128,12 +205,20 @@ This is how the codebase gets cleaned as we build, not in separate cleanup sprin
 
 ---
 
-## FULL SPECS (read these for detailed requirements)
+## AGENTS.MD — YOUR LONG-TERM CODEBASE MEMORY
 
-- Product scope: `docs/01-business/PRODUCT_BRIEF.md`
-- Component design rules: `docs/new-start/DESIGN_SPEC.md`
-- SEO implementation: `docs/02-strategy/SEO_PROGRAMMATIC_PLAN.md`
-- Current task: `CURRENT_TASK.md`
+After every completed task, if you learned something a future agent should know
+about this codebase — add it to `AGENTS.md` in the relevant folder.
+If no `AGENTS.md` exists in that folder, create one.
+
+**What belongs here:**
+- Component dependencies not obvious from the file itself
+- Fields missing from default queries that must be added manually
+- Utility functions that were extracted and where they now live
+- Patterns that worked and patterns that were tried and failed
+- Any gotcha that caused a task to fail or require rework
+
+This is your long-term memory. Every entry makes future tasks faster and more accurate.
 
 ---
 
