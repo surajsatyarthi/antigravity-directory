@@ -22,7 +22,7 @@ const hooksPlugin = require("eslint-plugin-react-hooks");
 
 const eslintConfig = [
   {
-    ignores: [".next/**", "node_modules/**", "public/**", "test-results/**", "playwright-report/**"],
+    ignores: [".next/**", "node_modules/**", "public/**", "test-results/**", "playwright-report/**", "temp/**", "Ralph protocol/**", "dist/**"],
   },
   {
     files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.mjs"],
