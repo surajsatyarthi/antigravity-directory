@@ -1,0 +1,321 @@
+
+> antigravity-directory@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local, .env
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 35.6s
+  Running TypeScript ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/75) ...
+[validateFilterParams] Raw params: categories=skills
+[validateFilterParams] Validated result: {
+  categories: [ 'skills' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'skills' ]
+[validateFilterParams] Raw params: categories=skills
+[validateFilterParams] Validated result: {
+  categories: [ 'skills' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'skills' ]
+[validateFilterParams] Raw params: categories=mcp-servers
+[validateFilterParams] Validated result: {
+  categories: [ 'mcp-servers' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'mcp-servers' ]
+[validateFilterParams] Raw params: categories=mcp-servers
+[validateFilterParams] Validated result: {
+  categories: [ 'mcp-servers' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'mcp-servers' ]
+[validateFilterParams] Raw params: categories=rules
+[validateFilterParams] Validated result: {
+  categories: [ 'rules' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'rules' ]
+[validateFilterParams] Raw params: categories=rules
+[validateFilterParams] Validated result: {
+  categories: [ 'rules' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'rules' ]
+[validateFilterParams] Raw params: categories=prompts
+[validateFilterParams] Validated result: {
+  categories: [ 'prompts' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'prompts' ]
+[validateFilterParams] Raw params: categories=prompts
+[validateFilterParams] Validated result: {
+  categories: [ 'prompts' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'prompts' ]
+[validateFilterParams] Raw params: categories=agents
+[validateFilterParams] Validated result: {
+  categories: [ 'agents' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'agents' ]
+[validateFilterParams] Raw params: categories=agents
+[validateFilterParams] Validated result: {
+  categories: [ 'agents' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'agents' ]
+[validateFilterParams] Raw params: categories=workflows
+[validateFilterParams] Validated result: {
+  categories: [ 'workflows' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'workflows' ]
+[validateFilterParams] Raw params: categories=workflows
+[validateFilterParams] Validated result: {
+  categories: [ 'workflows' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'workflows' ]
+[validateCategorySlugs] Result: [ 'skills' ]
+[validateCategorySlugs] Result: [ 'mcp-servers' ]
+[validateCategorySlugs] Result: [ 'mcp-servers' ]
+[validateCategorySlugs] Result: [ 'prompts' ]
+[validateCategorySlugs] Result: [ 'rules' ]
+[validateCategorySlugs] Result: [ 'agents' ]
+[validateCategorySlugs] Result: [ 'skills' ]
+[validateCategorySlugs] Result: [ 'agents' ]
+[validateCategorySlugs] Result: [ 'workflows' ]
+[validateCategorySlugs] Result: [ 'workflows' ]
+[validateCategorySlugs] Result: [ 'rules' ]
+[validateCategorySlugs] Result: [ 'prompts' ]
+[fetchResourcesAction] Filtered: sponsored=0, organic=0, totalOrganic=0
+[fetchResourcesAction] Filtered: sponsored=0, organic=0, totalOrganic=0
+[fetchResourcesAction] Filtered: sponsored=0, organic=17, totalOrganic=27
+[fetchResourcesAction] First organic: v0.dev UI Bootstrapper
+[fetchResourcesAction] Filtered: sponsored=0, organic=17, totalOrganic=27
+[fetchResourcesAction] First organic: v0.dev UI Bootstrapper
+[fetchResourcesAction] Filtered: sponsored=0, organic=17, totalOrganic=45
+[fetchResourcesAction] First organic: PulseOne Antigravity Rules
+[fetchResourcesAction] Filtered: sponsored=0, organic=17, totalOrganic=45
+[fetchResourcesAction] First organic: PulseOne Antigravity Rules
+[fetchResourcesAction] Filtered: sponsored=0, organic=17, totalOrganic=298
+[fetchResourcesAction] First organic: RAG Context Engineering Flow
+[fetchResourcesAction] Filtered: sponsored=0, organic=17, totalOrganic=298
+[fetchResourcesAction] First organic: RAG Context Engineering Flow
+[fetchResourcesAction] Filtered: sponsored=3, organic=17, totalOrganic=1995
+[fetchResourcesAction] First organic: Perplexity Mcp Zerver
+[fetchResourcesAction] Filtered: sponsored=3, organic=17, totalOrganic=1995
+[fetchResourcesAction] First organic: Perplexity Mcp Zerver
+[fetchResourcesAction] Filtered: sponsored=3, organic=17, totalOrganic=91
+[fetchResourcesAction] First organic: LangChain Agents
+[fetchResourcesAction] Filtered: sponsored=3, organic=17, totalOrganic=91
+[fetchResourcesAction] First organic: LangChain Agents
+[validateFilterParams] Raw params: categories=boilerplates
+[validateFilterParams] Validated result: {
+  categories: [ 'boilerplates' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'boilerplates' ]
+[validateFilterParams] Raw params: categories=boilerplates
+[validateFilterParams] Validated result: {
+  categories: [ 'boilerplates' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'boilerplates' ]
+[validateFilterParams] Raw params: categories=cheatsheets
+[validateFilterParams] Validated result: {
+  categories: [ 'cheatsheets' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'cheatsheets' ]
+[validateFilterParams] Raw params: categories=cheatsheets
+[validateFilterParams] Validated result: {
+  categories: [ 'cheatsheets' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'cheatsheets' ]
+[validateFilterParams] Raw params: categories=troubleshooting
+[validateFilterParams] Validated result: {
+  categories: [ 'troubleshooting' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'troubleshooting' ]
+[validateFilterParams] Raw params: categories=troubleshooting
+[validateFilterParams] Validated result: {
+  categories: [ 'troubleshooting' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'troubleshooting' ]
+[validateFilterParams] Raw params: categories=tutorials
+[validateFilterParams] Validated result: {
+  categories: [ 'tutorials' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'tutorials' ]
+[validateFilterParams] Raw params: categories=tutorials
+[validateFilterParams] Validated result: {
+  categories: [ 'tutorials' ],
+  tags: [],
+  search: '',
+  sort: 'recommended',
+  badgeTypes: [],
+  group: undefined
+}
+[validateCategorySlugs] Validating: [ 'tutorials' ]
+[validateCategorySlugs] Result: [ 'boilerplates' ]
+[validateCategorySlugs] Result: [ 'troubleshooting' ]
+[validateCategorySlugs] Result: [ 'cheatsheets' ]
+[validateCategorySlugs] Result: [ 'tutorials' ]
+[validateCategorySlugs] Result: [ 'tutorials' ]
+[validateCategorySlugs] Result: [ 'cheatsheets' ]
+[validateCategorySlugs] Result: [ 'boilerplates' ]
+[validateCategorySlugs] Result: [ 'troubleshooting' ]
+  Generating static pages using 3 workers (18/75) 
+[fetchResourcesAction] Filtered: sponsored=0, organic=15, totalOrganic=15
+[fetchResourcesAction] First organic: Batch Processing with Claude
+[fetchResourcesAction] Filtered: sponsored=0, organic=15, totalOrganic=15
+[fetchResourcesAction] First organic: Batch Processing with Claude
+[fetchResourcesAction] Filtered: sponsored=3, organic=17, totalOrganic=36
+[fetchResourcesAction] First organic: ShipFast Next.js SaaS
+[fetchResourcesAction] Filtered: sponsored=3, organic=17, totalOrganic=36
+[fetchResourcesAction] First organic: ShipFast Next.js SaaS
+[fetchResourcesAction] Filtered: sponsored=0, organic=15, totalOrganic=15
+[fetchResourcesAction] First organic: Prompt Caching
+[fetchResourcesAction] Filtered: sponsored=0, organic=15, totalOrganic=15
+[fetchResourcesAction] First organic: Prompt Caching
+  Generating static pages using 3 workers (37/75) 
+[fetchResourcesAction] Filtered: sponsored=0, organic=0, totalOrganic=0
+[fetchResourcesAction] Filtered: sponsored=0, organic=0, totalOrganic=0
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+  Generating static pages using 3 workers (56/75) 
+✓ Generating static pages using 3 workers (75/75) in 7.9s
+  Finalizing page optimization ...
+
+Route (app)                  Revalidate  Expire
+┌ ○ /                                1h      1y
+├ ○ /_not-found
+├ ● /[slug]                          5m      1y
+│ ├ /mcp-servers                     5m      1y
+│ ├ /skills                          5m      1y
+│ ├ /rules                           5m      1y
+│ └ [+7 more paths]
+├ ● /[slug]/page/[pageNum]           5m      1y
+│ ├ /mcp-servers/page/2              5m      1y
+│ ├ /mcp-servers/page/3              5m      1y
+│ ├ /mcp-servers/page/4              5m      1y
+│ └ [+42 more paths]
+├ ○ /about
+├ ƒ /admin/submissions
+├ ○ /advertise
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/badges/[slug]
+├ ƒ /api/contact/sponsor
+├ ƒ /api/resources
+├ ƒ /api/resources/[id]
+├ ○ /google-antigravity
+├ ○ /privacy
+├ ○ /robots.txt
+├ ƒ /sitemap.xml
+├ ○ /submit
+├ ƒ /t/[slug]
+├ ○ /terms
+├ ○ /tools
+├ ○ /tools/json-to-pydantic
+├ ○ /tools/prompt-generator
+├ ○ /tools/rag-visualizer
+├ ○ /tools/roi-calculator
+└ ○ /tools/token-counter
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

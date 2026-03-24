@@ -33591,3 +33591,406 @@
 [2026-03-14T14:56:37.492Z] [INFO]   Agents         : 0 updated / 0 skipped / 0 failed 
 [2026-03-14T14:56:37.493Z] [INFO]   Boilerplates   : 0 updated / 0 skipped / 0 failed 
 [2026-03-14T14:56:37.494Z] [INFO]   Troubleshooting: 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:23:11.288Z] [INFO] 
+🚀 Backfill Content Script 
+[2026-03-17T08:23:11.291Z] [INFO]    Mode:     LIVE 
+[2026-03-17T08:23:11.292Z] [INFO]    Category: prompts 
+[2026-03-17T08:23:11.292Z] [INFO]    Cap:      200 resources total
+ 
+[2026-03-17T08:23:11.914Z] [INFO] 📋 Found 1 eligible resources (cap: 200)
+ 
+[2026-03-17T08:23:16.724Z] [INFO] ✅ DeepSeek V3 System Prompt: content set (219 chars) 
+[2026-03-17T08:23:16.725Z] [INFO] 
+📊 BACKFILL SUMMARY 
+[2026-03-17T08:23:16.726Z] [INFO]   ✅ Updated:              1 
+[2026-03-17T08:23:16.727Z] [INFO]   ⏭️  Skipped (has content): 0 
+[2026-03-17T08:23:16.727Z] [INFO]   ⚠️  No file found:        0 
+[2026-03-17T08:23:16.727Z] [INFO]   🚫 Non-GitHub URL:        0 
+[2026-03-17T08:23:16.728Z] [INFO]   ❌ Errors:               0 
+[2026-03-17T08:23:16.728Z] [INFO] 
+  By category: 
+[2026-03-17T08:23:16.728Z] [INFO]   MCP Servers    : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:23:16.728Z] [INFO]   Rules          : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:23:16.729Z] [INFO]   Prompts        : 1 updated / 0 skipped / 0 failed 
+[2026-03-17T08:23:16.729Z] [INFO]   Skills         : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:23:16.729Z] [INFO]   Workflows      : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:23:16.729Z] [INFO]   Agents         : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:23:16.730Z] [INFO]   Boilerplates   : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:23:16.730Z] [INFO]   Troubleshooting: 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:23:17.827Z] [INFO] 
+🚀 Backfill Content Script 
+[2026-03-17T08:23:17.828Z] [INFO]    Mode:     LIVE 
+[2026-03-17T08:23:17.829Z] [INFO]    Category: skills 
+[2026-03-17T08:23:17.830Z] [INFO]    Cap:      200 resources total
+ 
+[2026-03-17T08:23:18.214Z] [INFO] 📋 Found 0 eligible resources (cap: 200)
+ 
+[2026-03-17T08:23:18.215Z] [INFO] Nothing to process. All eligible resources already have content. 
+[2026-03-17T08:23:19.593Z] [INFO] 
+🚀 Backfill Content Script 
+[2026-03-17T08:23:19.594Z] [INFO]    Mode:     LIVE 
+[2026-03-17T08:23:19.595Z] [INFO]    Category: workflows 
+[2026-03-17T08:23:19.596Z] [INFO]    Cap:      200 resources total
+ 
+[2026-03-17T08:23:19.990Z] [INFO] 📋 Found 173 eligible resources (cap: 200)
+ 
+[2026-03-17T08:23:21.814Z] [WARN] ⚠️  150 N8n Templates: no eligible file found in repo 
+[2026-03-17T08:23:21.843Z] [WARN] ⚠️   LangGraph Prospect To Lead Workflow: no eligible file found in repo 
+[2026-03-17T08:23:21.886Z] [WARN] ⚠️  A LangGraph Based Conditional Workflow Demo With Visual Output: no eligible file found in repo 
+[2026-03-17T08:23:23.662Z] [WARN] ⚠️  Agent Generator: no eligible file found in repo 
+[2026-03-17T08:23:23.664Z] [WARN] ⚠️  Agent Skills Standard: no eligible file found in repo 
+[2026-03-17T08:23:23.665Z] [WARN] ⚠️  Agentic AI With CrewAI: no eligible file found in repo 
+[2026-03-17T08:23:25.386Z] [WARN] ⚠️  Agentic Systems: no eligible file found in repo 
+[2026-03-17T08:23:25.387Z] [WARN] ⚠️  Agentic Prd Generation: no eligible file found in repo 
+[2026-03-17T08:23:25.404Z] [WARN] ⚠️  Agentic Workflow Using LangGraph: no eligible file found in repo 
+[2026-03-17T08:23:27.249Z] [WARN] ⚠️  Agentic_AI_LangGraph_Learning_Journey: no eligible file found in repo 
+[2026-03-17T08:23:27.251Z] [WARN] ⚠️  Agentic_AI_using_LangGraph: no eligible file found in repo 
+[2026-03-17T08:23:27.253Z] [WARN] ⚠️  AgenticAI Projects: no eligible file found in repo 
+[2026-03-17T08:23:28.993Z] [WARN] ⚠️  AgentVerse: no eligible file found in repo 
+[2026-03-17T08:23:28.994Z] [WARN] ⚠️  AgenticRAG: no eligible file found in repo 
+[2026-03-17T08:23:29.399Z] [WARN] ⚠️  AgenticAI_with_LangChain_LangGraph: no eligible file found in repo 
+[2026-03-17T08:23:30.632Z] [WARN] ⚠️  Ai Agent Frameworks: no eligible file found in repo 
+[2026-03-17T08:23:30.667Z] [WARN] ⚠️  Ai Agent With Crewai: no eligible file found in repo 
+[2026-03-17T08:23:31.768Z] [WARN] ⚠️  AI Agents Research Report: no eligible file found in repo 
+[2026-03-17T08:23:32.257Z] [WARN] ⚠️  AI Agents With CrewAI: no eligible file found in repo 
+[2026-03-17T08:23:32.286Z] [WARN] ⚠️  Ai Devkit: no eligible file found in repo 
+[2026-03-17T08:23:33.503Z] [WARN] ⚠️  AI Model Training Pipeline: no eligible file found in repo 
+[2026-03-17T08:23:34.000Z] [WARN] ⚠️  AI Research Assistant: no eligible file found in repo 
+[2026-03-17T08:23:34.002Z] [WARN] ⚠️  Aiflowy: no eligible file found in repo 
+[2026-03-17T08:23:35.141Z] [WARN] ⚠️  AntigravityManager: no eligible file found in repo 
+[2026-03-17T08:23:35.637Z] [WARN] ⚠️  Apflow: no eligible file found in repo 
+[2026-03-17T08:23:35.647Z] [WARN] ⚠️  Anyparser_crewai: no eligible file found in repo 
+[2026-03-17T08:23:37.223Z] [WARN] ⚠️  Aurora OS.Js: no eligible file found in repo 
+[2026-03-17T08:23:37.280Z] [WARN] ⚠️  Automation Workflow: no eligible file found in repo 
+[2026-03-17T08:23:37.292Z] [WARN] ⚠️  AutoGPT Task Executor: no eligible file found in repo 
+[2026-03-17T08:23:38.931Z] [WARN] ⚠️  AutoML AI Assistant: no eligible file found in repo 
+[2026-03-17T08:23:39.337Z] [WARN] ⚠️  Awesome N8n: no eligible file found in repo 
+[2026-03-17T08:23:39.365Z] [WARN] ⚠️  Awesome N8n Templates: no eligible file found in repo 
+[2026-03-17T08:23:40.757Z] [WARN] ⚠️  Awesome N8n Workflows: no eligible file found in repo 
+[2026-03-17T08:23:41.175Z] [WARN] ⚠️  BabyAGI Task Manager: no eligible file found in repo 
+[2026-03-17T08:23:41.176Z] [WARN] ⚠️  Awesome Workflow Automation: no eligible file found in repo 
+[2026-03-17T08:23:42.511Z] [WARN] ⚠️  Bazel Central Registry: no eligible file found in repo 
+[2026-03-17T08:23:42.918Z] [WARN] ⚠️  Blogging With CrewAI: no eligible file found in repo 
+[2026-03-17T08:23:42.919Z] [WARN] ⚠️  Beads: no eligible file found in repo 
+[2026-03-17T08:23:44.233Z] [WARN] ⚠️  Bytechef: no eligible file found in repo 
+[2026-03-17T08:23:44.531Z] [WARN] ⚠️  CAAL: no eligible file found in repo 
+[2026-03-17T08:23:45.135Z] [WARN] ⚠️  Cad2data Revit IFC DWG DGN Pipeline With Conversion Validation Qto: no eligible file found in repo 
+[2026-03-17T08:23:45.874Z] [WARN] ⚠️  Canvas: no eligible file found in repo 
+[2026-03-17T08:23:46.294Z] [WARN] ⚠️  Chatwiki: no eligible file found in repo 
+[2026-03-17T08:23:46.792Z] [WARN] ⚠️  Churn_monitor: no eligible file found in repo 
+[2026-03-17T08:23:47.509Z] [WARN] ⚠️  Code Executor MCP: no eligible file found in repo 
+[2026-03-17T08:23:48.383Z] [WARN] ⚠️  Cognito LangGraph RAG Chatbot: no eligible file found in repo 
+[2026-03-17T08:23:48.426Z] [WARN] ⚠️  ComfyUI CrewAI: no eligible file found in repo 
+[2026-03-17T08:23:49.138Z] [WARN] ⚠️  Companies Powered By Crewai: no eligible file found in repo 
+[2026-03-17T08:23:50.018Z] [WARN] ⚠️  Content Generation Workflow: no eligible file found in repo 
+[2026-03-17T08:23:50.064Z] [WARN] ⚠️  Crew Llamafile: no eligible file found in repo 
+[2026-03-17T08:23:50.797Z] [WARN] ⚠️  CrewAI Agentic Jira: no eligible file found in repo 
+[2026-03-17T08:23:51.688Z] [WARN] ⚠️  CrewAI Boilerplate: no eligible file found in repo 
+[2026-03-17T08:23:51.725Z] [WARN] ⚠️  CrewAI Examples: no eligible file found in repo 
+[2026-03-17T08:23:52.436Z] [WARN] ⚠️  CrewAI GUI Qt: no eligible file found in repo 
+[2026-03-17T08:23:53.359Z] [WARN] ⚠️  CrewAI Meeting_Minutes: no eligible file found in repo 
+[2026-03-17T08:23:54.078Z] [WARN] ⚠️  CrewAI Multi-Agent System: no eligible file found in repo 
+[2026-03-17T08:23:54.134Z] [WARN] ⚠️  Crewai News Bias Agent Workflow: no eligible file found in repo 
+[2026-03-17T08:23:54.985Z] [WARN] ⚠️  Crewai Playground: no eligible file found in repo 
+[2026-03-17T08:23:55.700Z] [WARN] ⚠️  CrewAI Quickstart: no eligible file found in repo 
+[2026-03-17T08:23:55.848Z] [WARN] ⚠️  Crewai Task Guardrails Demo: no eligible file found in repo 
+[2026-03-17T08:23:56.746Z] [WARN] ⚠️  CrewAI Tutorial: no eligible file found in repo 
+[2026-03-17T08:23:57.366Z] [WARN] ⚠️  CrewAI_Fitness_Agent: no eligible file found in repo 
+[2026-03-17T08:23:57.477Z] [WARN] ⚠️  CrewAIToolsExtension: no eligible file found in repo 
+[2026-03-17T08:23:58.398Z] [WARN] ⚠️  Datarobot Agent Templates: no eligible file found in repo 
+[2026-03-17T08:23:59.054Z] [WARN] ⚠️  Debugging Workflows Using LangGraph Studio: no eligible file found in repo 
+[2026-03-17T08:23:59.162Z] [WARN] ⚠️  Different Workflows In LangGraph: no eligible file found in repo 
+[2026-03-17T08:24:00.002Z] [WARN] ⚠️  Docker Image Build & Push: no eligible file found in repo 
+[2026-03-17T08:24:00.675Z] [WARN] ⚠️  Droppy: no eligible file found in repo 
+[2026-03-17T08:24:00.791Z] [WARN] ⚠️  Dxos: no eligible file found in repo 
+[2026-03-17T08:24:01.633Z] [WARN] ⚠️  Email Workflow Automation Using Crewai: no eligible file found in repo 
+[2026-03-17T08:24:02.332Z] [WARN] ⚠️  End To End Agentic Ai Automation Lab: no eligible file found in repo 
+[2026-03-17T08:24:02.415Z] [WARN] ⚠️  Flock: no eligible file found in repo 
+[2026-03-17T08:24:03.267Z] [WARN] ⚠️  Freedify: no eligible file found in repo 
+[2026-03-17T08:24:03.985Z] [WARN] ⚠️  Fullstack Starter: no eligible file found in repo 
+[2026-03-17T08:24:04.133Z] [WARN] ⚠️  GragonAo Translate_Workflow_LangGraph_for_WND: no eligible file found in repo 
+[2026-03-17T08:24:05.307Z] [WARN] ⚠️  Ha_washdata: no eligible file found in repo 
+[2026-03-17T08:24:05.613Z] [WARN] ⚠️  HMLR Agentic AI Memory System: no eligible file found in repo 
+[2026-03-17T08:24:05.840Z] [WARN] ⚠️  Interactive Crewai Panel: no eligible file found in repo 
+[2026-03-17T08:24:06.957Z] [WARN] ⚠️  IsoCodes: no eligible file found in repo 
+[2026-03-17T08:24:07.265Z] [WARN] ⚠️  Kana Dojo: no eligible file found in repo 
+[2026-03-17T08:24:07.488Z] [WARN] ⚠️  KCloud Platform IoT: no eligible file found in repo 
+[2026-03-17T08:24:08.602Z] [WARN] ⚠️  Kodo Template: no eligible file found in repo 
+[2026-03-17T08:24:08.918Z] [WARN] ⚠️  Lang_Graph_Workflow: no eligible file found in repo 
+[2026-03-17T08:24:09.212Z] [WARN] ⚠️  LangChain RAG Pipeline: no eligible file found in repo 
+[2026-03-17T08:24:10.277Z] [WARN] ⚠️  LangGraph: no eligible file found in repo 
+[2026-03-17T08:24:10.569Z] [WARN] ⚠️  LangGraph Agent: no eligible file found in repo 
+[2026-03-17T08:24:10.860Z] [WARN] ⚠️  LangGraph Agent Orchestrator: no eligible file found in repo 
+[2026-03-17T08:24:11.944Z] [WARN] ⚠️  LangGraph Agentic Workflow: no eligible file found in repo 
+[2026-03-17T08:24:12.405Z] [WARN] ⚠️  LangGraph Agents   Agentic RAG With LangGraph: no eligible file found in repo 
+[2026-03-17T08:24:13.422Z] [WARN] ⚠️  LangGraph Based Agentic Cybersecurity Workflow: no eligible file found in repo 
+[2026-03-17T08:24:13.600Z] [WARN] ⚠️  LangGraph BranchFlow: no eligible file found in repo 
+[2026-03-17T08:24:14.097Z] [WARN] ⚠️  LangGraph Course: no eligible file found in repo 
+[2026-03-17T08:24:15.081Z] [WARN] ⚠️  LangGraph Email Processing Pipeline: no eligible file found in repo 
+[2026-03-17T08:24:15.771Z] [WARN] ⚠️  LangGraph For Agentic AI: no eligible file found in repo 
+[2026-03-17T08:24:15.878Z] [WARN] ⚠️  LangGraph FastAPI Streamlit: no eligible file found in repo 
+[2026-03-17T08:24:16.743Z] [WARN] ⚠️  LangGraph Hub: no eligible file found in repo 
+[2026-03-17T08:24:17.424Z] [WARN] ⚠️  LangGraph LangChain Agentic Workflows: no eligible file found in repo 
+[2026-03-17T08:24:17.507Z] [WARN] ⚠️  LangGraph Learning Implementations: no eligible file found in repo 
+[2026-03-17T08:24:18.397Z] [WARN] ⚠️  LangGraph Local Workflow: no eligible file found in repo 
+[2026-03-17T08:24:19.059Z] [WARN] ⚠️  LangGraph MAS4SE: no eligible file found in repo 
+[2026-03-17T08:24:19.135Z] [WARN] ⚠️  LangGraph Mastery Playbook: no eligible file found in repo 
+[2026-03-17T08:24:20.044Z] [WARN] ⚠️  LangGraph Multi Modal Researcher: no eligible file found in repo 
+[2026-03-17T08:24:20.714Z] [WARN] ⚠️  LangGraph MultiAgents Medical Workflow: no eligible file found in repo 
+[2026-03-17T08:24:20.756Z] [WARN] ⚠️  LangGraph Practice: no eligible file found in repo 
+[2026-03-17T08:24:21.698Z] [WARN] ⚠️  LangGraph Reflection Researcher: no eligible file found in repo 
+[2026-03-17T08:24:22.351Z] [WARN] ⚠️  LangGraph Research Assistant: no eligible file found in repo 
+[2026-03-17T08:24:22.380Z] [WARN] ⚠️  LangGraph Research Paper Generation: no eligible file found in repo 
+[2026-03-17T08:24:23.353Z] [WARN] ⚠️  LangGraph WhatsApp Bot: no eligible file found in repo 
+[2026-03-17T08:24:23.986Z] [WARN] ⚠️  LangGraph Workflows: no eligible file found in repo 
+[2026-03-17T08:24:24.025Z] [WARN] ⚠️  LangGraph_projects: no eligible file found in repo 
+[2026-03-17T08:24:24.989Z] [WARN] ⚠️  LangGraphProjects: no eligible file found in repo 
+[2026-03-17T08:24:25.641Z] [WARN] ⚠️  Laravel N8n: no eligible file found in repo 
+[2026-03-17T08:24:25.642Z] [WARN] ⚠️  Law Agents: no eligible file found in repo 
+[2026-03-17T08:24:27.061Z] [WARN] ⚠️  Lifeforge: no eligible file found in repo 
+[2026-03-17T08:24:27.255Z] [WARN] ⚠️  Linkedin Post Generator: no eligible file found in repo 
+[2026-03-17T08:24:27.295Z] [WARN] ⚠️  LLM Agent For Code Reviews: no eligible file found in repo 
+[2026-03-17T08:24:28.649Z] [WARN] ⚠️  LLM App Testing Workflow: no eligible file found in repo 
+[2026-03-17T08:24:28.996Z] [WARN] ⚠️  LLM_Powered_Simple_Chatbot_Using_LangGraph: no eligible file found in repo 
+[2026-03-17T08:24:29.002Z] [WARN] ⚠️  LLM RAG Research: no eligible file found in repo 
+[2026-03-17T08:24:30.228Z] [WARN] ⚠️  Mcp Crew Ai: no eligible file found in repo 
+[2026-03-17T08:24:30.749Z] [WARN] ⚠️  MySQLTuner Perl: no eligible file found in repo 
+[2026-03-17T08:24:30.751Z] [WARN] ⚠️  Multi AI Agent Systems With CrewAI: no eligible file found in repo 
+[2026-03-17T08:24:31.967Z] [WARN] ⚠️  N8n Ai Automations: no eligible file found in repo 
+[2026-03-17T08:24:32.471Z] [WARN] ⚠️  N8n Claude Code Guide: no eligible file found in repo 
+[2026-03-17T08:24:32.472Z] [WARN] ⚠️  N8n Automation Templates 5000: no eligible file found in repo 
+[2026-03-17T08:24:34.096Z] [WARN] ⚠️  N8n Docs: no eligible file found in repo 
+[2026-03-17T08:24:34.165Z] [WARN] ⚠️  N8n Deepseek: no eligible file found in repo 
+[2026-03-17T08:24:34.523Z] [WARN] ⚠️  N8n CyberSecurity Workflows: no eligible file found in repo 
+[2026-03-17T08:24:35.704Z] [WARN] ⚠️  N8n Free Templates: no eligible file found in repo 
+[2026-03-17T08:24:35.778Z] [WARN] ⚠️  N8n Helm Chart: no eligible file found in repo 
+[2026-03-17T08:24:36.231Z] [WARN] ⚠️  N8n Master Workflows: no eligible file found in repo 
+[2026-03-17T08:24:37.390Z] [WARN] ⚠️  N8n Nodes Comfyui: no eligible file found in repo 
+[2026-03-17T08:24:37.402Z] [WARN] ⚠️  N8n Nodes Globals: no eligible file found in repo 
+[2026-03-17T08:24:37.894Z] [WARN] ⚠️  N8n Nodes Python: no eligible file found in repo 
+[2026-03-17T08:24:39.028Z] [WARN] ⚠️  N8n Skills: no eligible file found in repo 
+[2026-03-17T08:24:39.029Z] [WARN] ⚠️  N8n Templates: no eligible file found in repo 
+[2026-03-17T08:24:39.534Z] [WARN] ⚠️  N8n Workflow Builder Ai: no eligible file found in repo 
+[2026-03-17T08:24:40.646Z] [WARN] ⚠️  N8n Workflow Templates: no eligible file found in repo 
+[2026-03-17T08:24:40.756Z] [WARN] ⚠️  N8n Workflows: no eligible file found in repo 
+[2026-03-17T08:24:41.185Z] [WARN] ⚠️  N8n Workflows Esp: no eligible file found in repo 
+[2026-03-17T08:24:42.285Z] [WARN] ⚠️  N8n_agent: no eligible file found in repo 
+[2026-03-17T08:24:42.384Z] [WARN] ⚠️  N8nworkflows.Xyz: no eligible file found in repo 
+[2026-03-17T08:24:42.889Z] [WARN] ⚠️  Nanobrowser: no eligible file found in repo 
+[2026-03-17T08:24:44.019Z] [WARN] ⚠️  Neva: no eligible file found in repo 
+[2026-03-17T08:24:44.020Z] [WARN] ⚠️  Nuitka: no eligible file found in repo 
+[2026-03-17T08:24:44.866Z] [WARN] ⚠️  Personalized Email Generator: no eligible file found in repo 
+[2026-03-17T08:24:45.787Z] [WARN] ⚠️  Ppt Master: no eligible file found in repo 
+[2026-03-17T08:24:45.788Z] [WARN] ⚠️  PlatformPlatform: no eligible file found in repo 
+[2026-03-17T08:24:46.730Z] [WARN] ⚠️  Practical LangGraph: no eligible file found in repo 
+[2026-03-17T08:24:47.553Z] [WARN] ⚠️  Project Notioncrew: no eligible file found in repo 
+[2026-03-17T08:24:47.556Z] [WARN] ⚠️  Process Compose: no eligible file found in repo 
+[2026-03-17T08:24:48.449Z] [WARN] ⚠️  Pydantic LangGraph: no eligible file found in repo 
+[2026-03-17T08:24:49.259Z] [WARN] ⚠️  Python Package Release: no eligible file found in repo 
+[2026-03-17T08:24:49.273Z] [WARN] ⚠️  Quantified Self: no eligible file found in repo 
+[2026-03-17T08:24:50.191Z] [WARN] ⚠️  Quran.Com Frontend Next: no eligible file found in repo 
+[2026-03-17T08:24:51.010Z] [WARN] ⚠️  Redesigned Octo Barnacle: no eligible file found in repo 
+[2026-03-17T08:24:51.011Z] [WARN] ⚠️  RAG Context Engineering Flow: no eligible file found in repo 
+[2026-03-17T08:24:51.886Z] [WARN] ⚠️  Remixatron: no eligible file found in repo 
+[2026-03-17T08:24:52.611Z] [WARN] ⚠️  Rsyslog: no eligible file found in repo 
+[2026-03-17T08:24:52.666Z] [WARN] ⚠️  Report Generator: no eligible file found in repo 
+[2026-03-17T08:24:53.512Z] [WARN] ⚠️  Self Host N8n On Gcr: no eligible file found in repo 
+[2026-03-17T08:24:54.286Z] [WARN] ⚠️  Self Hosted Ai Starter Kit: no eligible file found in repo 
+[2026-03-17T08:24:54.322Z] [WARN] ⚠️  Smart Marketing Assistant Crew AI: no eligible file found in repo 
+[2026-03-17T08:24:55.181Z] [WARN] ⚠️  Splunk Platform Automator: no eligible file found in repo 
+[2026-03-17T08:24:55.928Z] [WARN] ⚠️  StepperDriver: no eligible file found in repo 
+[2026-03-17T08:24:55.974Z] [WARN] ⚠️  Study Lang Graph: no eligible file found in repo 
+[2026-03-17T08:24:56.847Z] [WARN] ⚠️  TerminaI: no eligible file found in repo 
+[2026-03-17T08:24:57.665Z] [WARN] ⚠️  Vercel Preview Deploy: no eligible file found in repo 
+[2026-03-17T08:24:57.666Z] [WARN] ⚠️  Ultimate N8n Ai Workflows: no eligible file found in repo 
+[2026-03-17T08:24:58.485Z] [WARN] ⚠️  Waha N8n Templates: no eligible file found in repo 
+[2026-03-17T08:24:59.406Z] [WARN] ⚠️  Workflows: no eligible file found in repo 
+[2026-03-17T08:24:59.407Z] [WARN] ⚠️  Witr: no eligible file found in repo 
+[2026-03-17T08:25:00.261Z] [WARN] ⚠️  Zie619 N8n Workflows: no eligible file found in repo 
+[2026-03-17T08:25:00.261Z] [INFO] 
+📊 BACKFILL SUMMARY 
+[2026-03-17T08:25:00.263Z] [INFO]   ✅ Updated:              0 
+[2026-03-17T08:25:00.263Z] [INFO]   ⏭️  Skipped (has content): 0 
+[2026-03-17T08:25:00.263Z] [INFO]   ⚠️  No file found:        173 
+[2026-03-17T08:25:00.263Z] [INFO]   🚫 Non-GitHub URL:        0 
+[2026-03-17T08:25:00.264Z] [INFO]   ❌ Errors:               0 
+[2026-03-17T08:25:00.264Z] [INFO] 
+  By category: 
+[2026-03-17T08:25:00.264Z] [INFO]   MCP Servers    : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:00.265Z] [INFO]   Rules          : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:00.265Z] [INFO]   Prompts        : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:00.265Z] [INFO]   Skills         : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:00.265Z] [INFO]   Workflows      : 0 updated / 0 skipped / 173 failed 
+[2026-03-17T08:25:00.266Z] [INFO]   Agents         : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:00.266Z] [INFO]   Boilerplates   : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:00.266Z] [INFO]   Troubleshooting: 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:01.325Z] [INFO] 
+🚀 Backfill Content Script 
+[2026-03-17T08:25:01.327Z] [INFO]    Mode:     LIVE 
+[2026-03-17T08:25:01.327Z] [INFO]    Category: agents 
+[2026-03-17T08:25:01.328Z] [INFO]    Cap:      200 resources total
+ 
+[2026-03-17T08:25:01.838Z] [INFO] 📋 Found 52 eligible resources (cap: 200)
+ 
+[2026-03-17T08:25:03.831Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:03.833Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:03.834Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:05.551Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:05.553Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:05.554Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:07.189Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:07.190Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:07.192Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:08.935Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:08.936Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:08.936Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:10.772Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:10.781Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:10.789Z] [WARN] ⚠️  AutoGPT: no eligible file found in repo 
+[2026-03-17T08:25:12.411Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:12.412Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:12.414Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:14.114Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:14.116Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:14.118Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:15.893Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:15.894Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:15.895Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:17.531Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:17.532Z] [WARN] ⚠️  BabyAGI: no eligible file found in repo 
+[2026-03-17T08:25:17.535Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:19.272Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:19.282Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:19.284Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:21.013Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:21.015Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:21.016Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:22.754Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:22.755Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:22.756Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:24.494Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:24.495Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:24.499Z] [WARN] ⚠️  ChatDev: no eligible file found in repo 
+[2026-03-17T08:25:27.003Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:27.016Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:27.362Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:29.300Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:29.301Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:29.663Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:31.549Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:31.927Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:31.938Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:34.064Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:34.200Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:34.207Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:36.374Z] [WARN] ⚠️  MetaGPT: no eligible file found in repo 
+[2026-03-17T08:25:36.376Z] [INFO] 
+📊 BACKFILL SUMMARY 
+[2026-03-17T08:25:36.377Z] [INFO]   ✅ Updated:              0 
+[2026-03-17T08:25:36.378Z] [INFO]   ⏭️  Skipped (has content): 0 
+[2026-03-17T08:25:36.380Z] [INFO]   ⚠️  No file found:        52 
+[2026-03-17T08:25:36.381Z] [INFO]   🚫 Non-GitHub URL:        0 
+[2026-03-17T08:25:36.382Z] [INFO]   ❌ Errors:               0 
+[2026-03-17T08:25:36.383Z] [INFO] 
+  By category: 
+[2026-03-17T08:25:36.383Z] [INFO]   MCP Servers    : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:36.385Z] [INFO]   Rules          : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:36.386Z] [INFO]   Prompts        : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:36.387Z] [INFO]   Skills         : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:36.388Z] [INFO]   Workflows      : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:36.388Z] [INFO]   Agents         : 0 updated / 0 skipped / 52 failed 
+[2026-03-17T08:25:36.388Z] [INFO]   Boilerplates   : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:36.388Z] [INFO]   Troubleshooting: 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:37.397Z] [INFO] 
+🚀 Backfill Content Script 
+[2026-03-17T08:25:37.398Z] [INFO]    Mode:     LIVE 
+[2026-03-17T08:25:37.399Z] [INFO]    Category: boilerplates 
+[2026-03-17T08:25:37.400Z] [INFO]    Cap:      200 resources total
+ 
+[2026-03-17T08:25:37.778Z] [INFO] 📋 Found 59 eligible resources (cap: 200)
+ 
+[2026-03-17T08:25:38.841Z] [WARN] ⚠️  Astro SaaS Starter: no eligible file found in repo 
+[2026-03-17T08:25:39.323Z] [INFO] ✅ Ai_saas_app: content set (68 chars) 
+[2026-03-17T08:25:39.399Z] [WARN] ⚠️  Anthropic Claude Quickstart: no eligible file found in repo 
+[2026-03-17T08:25:39.839Z] [WARN] ⚠️  AutoGen Agent Framework: no eligible file found in repo 
+[2026-03-17T08:25:40.313Z] [WARN] ⚠️  AutoGPT Starter Kit: no eligible file found in repo 
+[2026-03-17T08:25:40.362Z] [INFO] ✅ ChatGPT Clone - Next.js: content set (56 chars) 
+[2026-03-17T08:25:40.676Z] [WARN] ⚠️  Chrome Extension Starter: no eligible file found in repo 
+[2026-03-17T08:25:41.286Z] [INFO] ✅ Cloudflare Workers Starter: content set (98 chars) 
+[2026-03-17T08:25:41.645Z] [WARN] ⚠️  CrewAI Multi-Agent System: no eligible file found in repo 
+[2026-03-17T08:25:41.973Z] [WARN] ⚠️  Cypress E2E Starter: no eligible file found in repo 
+[2026-03-17T08:25:42.113Z] [WARN] ⚠️  Dash Analytics Starter: no eligible file found in repo 
+[2026-03-17T08:25:42.704Z] [WARN] ⚠️  Django SaaS Boilerplate: no eligible file found in repo 
+[2026-03-17T08:25:42.795Z] [WARN] ⚠️  Docker Compose Stacks: no eligible file found in repo 
+[2026-03-17T08:25:42.949Z] [WARN] ⚠️  Docusaurus Documentation: no eligible file found in repo 
+[2026-03-17T08:25:43.641Z] [INFO] ✅ Electron React Boilerplate: content set (161 chars) 
+[2026-03-17T08:25:43.787Z] [WARN] ⚠️  Expo Router Template: no eligible file found in repo 
+[2026-03-17T08:25:43.895Z] [WARN] ⚠️  Embedchain Starter: no eligible file found in repo 
+[2026-03-17T08:25:44.424Z] [WARN] ⚠️  Express TypeScript API: no eligible file found in repo 
+[2026-03-17T08:25:44.737Z] [WARN] ⚠️  Firebase SaaS Starter: no eligible file found in repo 
+[2026-03-17T08:25:44.978Z] [INFO] ✅ FastAPI Microservice Template: content set (78 chars) 
+[2026-03-17T08:25:45.346Z] [INFO] ✅ Go Clean Architecture: content set (345 chars) 
+[2026-03-17T08:25:45.651Z] [INFO] ✅ Go CLI Template: content set (20 chars) 
+[2026-03-17T08:25:46.023Z] [WARN] ⚠️  Gradio ML Demo: no eligible file found in repo 
+[2026-03-17T08:25:46.148Z] [WARN] ⚠️  LangChain.js Template: no eligible file found in repo 
+[2026-03-17T08:25:46.502Z] [WARN] ⚠️  LangGraph Agent Template: no eligible file found in repo 
+[2026-03-17T08:25:46.961Z] [INFO] ✅ LlamaIndex App Template: content set (23 chars) 
+[2026-03-17T08:25:47.037Z] [WARN] ⚠️  Makerkit - Multi-Framework SaaS: no eligible file found in repo 
+[2026-03-17T08:25:47.468Z] [WARN] ⚠️  Medusa E-commerce: no eligible file found in repo 
+[2026-03-17T08:25:47.769Z] [WARN] ⚠️  NestJS Enterprise Starter: no eligible file found in repo 
+[2026-03-17T08:25:47.867Z] [WARN] ⚠️  Next.js Commerce: no eligible file found in repo 
+[2026-03-17T08:25:48.301Z] [WARN] ⚠️  Nextacular: no eligible file found in repo 
+[2026-03-17T08:25:48.687Z] [WARN] ⚠️  Nextra Docs Starter: no eligible file found in repo 
+[2026-03-17T08:25:48.752Z] [INFO] ✅ Nextjs Starter Kit: content set (46 chars) 
+[2026-03-17T08:25:49.174Z] [WARN] ⚠️  Node.js CLI Starter: no eligible file found in repo 
+[2026-03-17T08:25:49.585Z] [WARN] ⚠️  OpenAI Cookbook Starter: no eligible file found in repo 
+[2026-03-17T08:25:49.586Z] [WARN] ⚠️  OpenAI SaaS Starter Kit: no eligible file found in repo 
+[2026-03-17T08:25:50.094Z] [WARN] ⚠️  OpenSaaS - Wasp Framework: no eligible file found in repo 
+[2026-03-17T08:25:50.412Z] [WARN] ⚠️  Plasmo Extension Framework: no eligible file found in repo 
+[2026-03-17T08:25:50.626Z] [WARN] ⚠️  Playwright Test Suite: no eligible file found in repo 
+[2026-03-17T08:25:50.935Z] [WARN] ⚠️  Polar: no eligible file found in repo 
+[2026-03-17T08:25:51.273Z] [WARN] ⚠️  React Native Starter: no eligible file found in repo 
+[2026-03-17T08:25:52.119Z] [WARN] ⚠️  Rust CLI Template: no eligible file found in repo 
+[2026-03-17T08:25:52.333Z] [INFO] ✅ Remix SaaS Template: content set (28 chars) 
+[2026-03-17T08:25:52.494Z] [INFO] ✅ RedwoodJS Startup: content set (63 chars) 
+[2026-03-17T08:25:52.964Z] [WARN] ⚠️  Saas: no eligible file found in repo 
+[2026-03-17T08:25:53.488Z] [INFO] ✅ Saas Starter Kit: content set (72 chars) 
+[2026-03-17T08:25:53.802Z] [WARN] ⚠️  Serverless Framework Template: no eligible file found in repo 
+[2026-03-17T08:25:53.806Z] [INFO] ✅ SaaS Boilerplate: content set (113 chars) 
+[2026-03-17T08:25:54.307Z] [WARN] ⚠️  ShipFast - Next.js SaaS: no eligible file found in repo 
+[2026-03-17T08:25:54.705Z] [WARN] ⚠️  ShipFree: no eligible file found in repo 
+[2026-03-17T08:25:54.807Z] [INFO] ✅ Shopify Hydrogen Starter: content set (35 chars) 
+[2026-03-17T08:25:55.214Z] [WARN] ⚠️  Startup Nextjs: no eligible file found in repo 
+[2026-03-17T08:25:55.518Z] [WARN] ⚠️  Streamlit Data App: no eligible file found in repo 
+[2026-03-17T08:25:55.854Z] [WARN] ⚠️  Supabase SaaS Kit: no eligible file found in repo 
+[2026-03-17T08:25:56.117Z] [INFO] ✅ T3 Stack - tRPC + Prisma: content set (24 chars) 
+[2026-03-17T08:25:56.424Z] [INFO] ✅ Tauri Desktop App: content set (27 chars) 
+[2026-03-17T08:25:56.959Z] [WARN] ⚠️  VitePress Docs Template: no eligible file found in repo 
+[2026-03-17T08:25:57.075Z] [WARN] ⚠️  Vercel AI Chatbot: no eligible file found in repo 
+[2026-03-17T08:25:57.455Z] [INFO] ✅ Zenstack: content set (37 chars) 
+[2026-03-17T08:25:57.455Z] [INFO] 
+📊 BACKFILL SUMMARY 
+[2026-03-17T08:25:57.457Z] [INFO]   ✅ Updated:              17 
+[2026-03-17T08:25:57.458Z] [INFO]   ⏭️  Skipped (has content): 0 
+[2026-03-17T08:25:57.459Z] [INFO]   ⚠️  No file found:        42 
+[2026-03-17T08:25:57.459Z] [INFO]   🚫 Non-GitHub URL:        0 
+[2026-03-17T08:25:57.459Z] [INFO]   ❌ Errors:               0 
+[2026-03-17T08:25:57.459Z] [INFO] 
+  By category: 
+[2026-03-17T08:25:57.460Z] [INFO]   MCP Servers    : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:57.460Z] [INFO]   Rules          : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:57.460Z] [INFO]   Prompts        : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:57.460Z] [INFO]   Skills         : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:57.460Z] [INFO]   Workflows      : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:57.461Z] [INFO]   Agents         : 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:57.461Z] [INFO]   Boilerplates   : 17 updated / 0 skipped / 42 failed 
+[2026-03-17T08:25:57.461Z] [INFO]   Troubleshooting: 0 updated / 0 skipped / 0 failed 
+[2026-03-17T08:25:58.542Z] [INFO] 
+🚀 Backfill Content Script 
+[2026-03-17T08:25:58.544Z] [INFO]    Mode:     LIVE 
+[2026-03-17T08:25:58.545Z] [INFO]    Category: troubleshooting 
+[2026-03-17T08:25:58.546Z] [INFO]    Cap:      200 resources total
+ 
+[2026-03-17T08:25:58.899Z] [INFO] 📋 Found 0 eligible resources (cap: 200)
+ 
+[2026-03-17T08:25:58.900Z] [INFO] Nothing to process. All eligible resources already have content. 

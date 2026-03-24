@@ -106,7 +106,7 @@ mcp-servers / skills / rules / prompts / agents / workflows / boilerplates / tro
 
 ---
 
-## RALPH PROTOCOL v20.0 (MANDATORY)
+## RALPH PROTOCOL v22.0 (MANDATORY)
 
 Read `.agent/RALPH_PROTOCOL.md` at the start of every task.
 It has two parts:
@@ -117,7 +117,22 @@ It has two parts:
 
 **Phase 1 — RESEARCH** (mandatory before writing any plan)
 
-Before writing `implementation_plan.md`, search all 5 sources:
+**Before searching anything — two checks first:**
+
+**Rule C cross-check** (read `CURRENT_TASK.md`):
+- FILES READ section has at least one entry with exact quote + line number → if missing: STOP, flag to PM
+- DATA VERIFIED not blank (if spec touches data) → if blank: STOP, flag to PM
+- ACCEPTANCE CRITERIA has no subjective language → if found: STOP, flag to PM
+Only proceed if the spec passes all three checks.
+
+**Retrograde check** (verify you can answer the backwards chain from the spec):
+- What does the acceptance criterion look like when it PASSES? (from ACCEPTANCE CRITERIA)
+- What evidence file proves it? (E-code + filename from RETROGRADE ANALYSIS Step 3)
+- What command produces that evidence file? (Step 2)
+- What exact code change makes that command succeed? (Step 1)
+If any link cannot be answered from the spec → flag to PM. Do not guess missing links. Do not begin research.
+
+Then search all 5 sources:
 - **GitHub** — existing implementations, libraries that solve the problem, open issues on libraries you plan to use
 - **npm** — packages that already solve this reliably (check stars + last updated)
 - **Web** — best practices and known pitfalls for Next.js 15, TypeScript, Tailwind, Supabase, Drizzle ORM
@@ -187,21 +202,24 @@ After every task, update `AGENTS.md` in the relevant folder with anything a futu
 
 ---
 
-## RETROGRADE CHECK — WHAT IT IS AND WHAT TO DO WITH IT
+## RETROGRADE ANALYSIS — WHAT IT IS AND WHAT TO DO WITH IT
 
-Every `CURRENT_TASK.md` spec now includes a **RETROGRADE CHECK** section written by the PM.
+Every `CURRENT_TASK.md` spec now includes a **RETROGRADE ANALYSIS** section written by the PM.
 
-It answers two questions:
-1. Who is this code for, and does that person still exist on a free directory with B2B ads?
-2. What adjacent code serves the same dead user type?
+It is a 5-step backwards chain from DONE:
+- Step 4 — DONE state: what the final result looks like
+- Step 3 — Evidence required: which E-code files prove that state
+- Step 2 — Commands required: what commands produce those files
+- Step 1 — Changes required: which file:line changes make those commands succeed
+- Step 0 — Current state: what exists right now before you touch anything
 
-**Your job when you see this section:**
-- Read it before implementing
-- If the PM flagged dead adjacent code as "include in this task" — delete or fix it as part of the task
-- If the PM flagged dead adjacent code as "follow-on task" — do not touch it, the PM will create a separate task
-- If you find additional dead code the PM did not flag — report it in your evidence report under "ADDITIONAL DEAD CODE FOUND"
+**Your job when you see RETROGRADE ANALYSIS:**
+- Read it before beginning Phase 1 research
+- The chain tells you exactly what evidence to produce and what commands to run
+- Your **retrograde check** (Phase 1, step 2 above) confirms you can answer the full chain from the spec
+- If any step is blank or unanswerable → flag to PM before researching. Do not fill in blanks yourself.
 
-This is how the codebase gets cleaned as we build, not in separate cleanup sprints.
+The RETROGRADE ANALYSIS is the PM working backwards from DONE. Your retrograde check is your confirmation that it is complete enough to act on.
 
 ---
 
@@ -219,6 +237,27 @@ If no `AGENTS.md` exists in that folder, create one.
 - Any gotcha that caused a task to fail or require rework
 
 This is your long-term memory. Every entry makes future tasks faster and more accurate.
+
+---
+
+## EVIDENCE ARCHIVE — YOUR RESPONSIBILITY AFTER EVERY DONE
+
+When PM writes ✅ DONE and passes it to you:
+
+1. Run the archive commands:
+```bash
+mkdir -p logs/tasks/TASK-XXX/screenshots
+cp CURRENT_TASK.md logs/tasks/TASK-XXX/spec.md
+cp implementation_plan.md logs/tasks/TASK-XXX/plan.md 2>/dev/null || true
+cp temp/taskXXX_build.log logs/tasks/TASK-XXX/build.log 2>/dev/null || true
+cp temp/taskXXX_lint.log logs/tasks/TASK-XXX/lint.log 2>/dev/null || true
+cp temp/taskXXX_http_status.txt logs/tasks/TASK-XXX/http_status.txt 2>/dev/null || true
+cp temp/taskXXX_*.png logs/tasks/TASK-XXX/screenshots/ 2>/dev/null || true
+```
+2. Write `logs/tasks/TASK-XXX/outcome.md`
+3. Append row to `logs/TASK_INDEX.md`
+
+This is how evidence survives permanently. temp/ is ephemeral. logs/tasks/ is committed to git and never deleted — every task is provable forever, like a FAANG audit trail.
 
 ---
 
