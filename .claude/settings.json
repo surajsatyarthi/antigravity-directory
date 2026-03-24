@@ -1,3 +1,32 @@
 {
-  "hooks": {}
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/research-gate.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/evidence-gate.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/research-gate.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/evidence-gate.sh"
+          }
+        ]
+      }
+    ]
+  }
 }
