@@ -55,7 +55,7 @@ export async function generateStaticParams() {
   const params: { slug: string; pageNum: string }[] = [];
 
   for (const slug of Object.keys(CATEGORIES)) {
-    // 1. Fetch total organic count for this category
+    // 1. Fetch total count for this category (all LIVE resources)
     const result = await getFilteredResources({
       categories: [slug],
       tags: [],
@@ -63,11 +63,10 @@ export async function generateStaticParams() {
       search: '',
       sort: 'recommended',
       group: undefined,
-      isSponsored: false // Only organic count matters for pagination pages
-    }, 1, 1); // Only need count, 1 item is enough
+    }, 1, 1);
 
-    const totalOrganic = result.totalCount;
-    const totalPages = Math.ceil(totalOrganic / ITEMS_PER_PAGE);
+    const totalLive = result.totalCount;
+    const totalPages = Math.ceil(totalLive / ITEMS_PER_PAGE);
 
     // 2. Generate params for pages 2 through totalPages
     for (let page = 2; page <= totalPages; page++) {
@@ -98,7 +97,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       search: '',
       sort: 'recommended',
       group: undefined,
-      isSponsored: false
   }, 1, 1);
 
   const totalPages = Math.ceil(result.totalCount / ITEMS_PER_PAGE);
@@ -141,7 +139,20 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
     redirect(`/${slug}`);
   }
 
-  // 4. Fetch 50 organic resources for this page
+  // 4a. Count all LIVE resources (featured + organic) for header display and pagination nav
+  const countResult = await getFilteredResources({
+      categories: [slug],
+      tags: [],
+      badgeTypes: [],
+      search: '',
+      sort: 'recommended',
+      group: undefined,
+  }, 1, 1);
+
+  const totalLive = countResult.totalCount;
+  const totalPages = Math.ceil(totalLive / ITEMS_PER_PAGE);
+
+  // 4b. Fetch 50 organic resources for this page (featured resources appear on page 1 via interleaving)
   const result = await getFilteredResources({
       categories: [slug],
       tags: [],
@@ -152,10 +163,8 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
       isSponsored: false
   }, page, ITEMS_PER_PAGE);
 
-  const totalPages = Math.ceil(result.totalCount / ITEMS_PER_PAGE);
-
   // 5. 404 if beyond last page
-  if (page > totalPages && result.totalCount > 0) {
+  if (page > totalPages && totalLive > 0) {
     notFound();
   }
 
@@ -174,7 +183,7 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
             <span className="block text-2xl font-normal text-gray-400 mt-2 tracking-normal">Page {page} of {totalPages}</span>
           </h1>
           <p className="mt-3 text-gray-400 text-base">
-            {result.totalCount.toLocaleString()} resources
+            {totalLive.toLocaleString()} resources
           </p>
         </section>
 
