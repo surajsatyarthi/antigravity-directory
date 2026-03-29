@@ -9,7 +9,10 @@ const sql = postgres(process.env.DATABASE_URL!, { ssl: 'require', prepare: false
 
 async function fetchSkillList(): Promise<string[]> {
   const response = await fetch('https://api.github.com/repos/googleworkspace/cli/contents/skills/', {
-    headers: { 'User-Agent': 'googleantigravity-directory' }
+    headers: {
+      'User-Agent': 'googleantigravity-directory',
+      'Authorization': `token ${process.env.GITHUB_TOKEN}`
+    }
   });
   const items = await response.json() as Array<{ name: string; type: string }>;
   return items
@@ -20,9 +23,15 @@ async function fetchSkillList(): Promise<string[]> {
 async function fetchSkillMd(skillDir: string): Promise<string | null> {
   const response = await fetch(
     `https://api.github.com/repos/googleworkspace/cli/contents/skills/${skillDir}/SKILL.md`,
-    { headers: { 'User-Agent': 'googleantigravity-directory' } }
+    {
+      headers: {
+        'User-Agent': 'googleantigravity-directory',
+        'Authorization': `token ${process.env.GITHUB_TOKEN}`
+      }
+    }
   );
   if (!response.ok) return null;
+
   const data = await response.json() as { content: string };
   return Buffer.from(data.content, 'base64').toString('utf-8');
 }
@@ -34,26 +43,26 @@ function parseSkill(skillDir: string, markdown: string): {
   description: string;
   url: string;
 } {
-  const lines = markdown.split('\n');
+  // Extract description from YAML frontmatter
+  const frontmatterMatch = markdown.match(/^---\n([\s\S]*?)\n---/);
+  let description = '';
+  let serviceName = skillDir;
 
-  // Extract service name from first # heading
-  const headingLine = lines.find(l => l.startsWith('# '));
-  const serviceName = headingLine ? headingLine.replace(/^#\s+/, '').trim() : skillDir;
-
-  // Extract first paragraph (non-empty line after heading, before next ##)
-  let rawDesc = '';
-  let pastHeading = false;
-  for (const line of lines) {
-    if (line.startsWith('# ')) { pastHeading = true; continue; }
-    if (!pastHeading) continue;
-    if (line.startsWith('##')) break;
-    if (line.trim()) { rawDesc = line.trim(); break; }
+  if (frontmatterMatch) {
+    const frontmatter = frontmatterMatch[1];
+    const descMatch = frontmatter.match(/^description:\s*["']?(.+?)["']?\s*$/m);
+    if (descMatch) description = descMatch[1].trim();
   }
 
-  // Ensure description starts with a verb
-  let description = rawDesc.slice(0, 300);
-  if (!description) description = `Use this skill to manage ${serviceName} in Google Workspace.`;
-  if (!/^[A-Z]/.test(description)) description = `Use this skill to ${description}`;
+  // Extract service name from first # heading
+  const headingLine = markdown.split('\n').find(l => l.startsWith('# '));
+  if (headingLine) serviceName = headingLine.replace(/^#\s+/, '').trim();
+
+  // Fallback description
+  if (!description) description = `Official Google Workspace skill for ${serviceName}.`;
+
+  // Trim to 300 chars max
+  description = description.slice(0, 300);
 
   return {
     title: `${serviceName} Skill`,
@@ -62,6 +71,7 @@ function parseSkill(skillDir: string, markdown: string): {
     url: `https://github.com/googleworkspace/cli/tree/main/skills/${skillDir}`,
   };
 }
+
 
 async function ingest() {
   try {
