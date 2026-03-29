@@ -41,6 +41,15 @@ Then write CURRENT_TASK.md in this exact order:
 - Test 1: navigate to [URL] → [action] → expect [result]
 - Test 2: navigate to [URL] → [action] → expect [result]
 
+## RETROGRADE CHECK
+- Who is this code for, and does that person still exist on a free directory with B2B ads?
+- Adjacent dead code: [list any dead code serving the same dead user type]
+- Antigravity action: include in this task / follow-on task / none
+
+## SCREENSHOTS
+REQUIRED — tasks with UI changes (pages, components, styles)
+NONE — tasks with no UI changes (DB-only, config, hooks, scripts)
+
 ## ACCEPTANCE CRITERIA
 - [ ] [binary PASS/FAIL] — verified by: [file or screenshot]
 - [ ] [binary PASS/FAIL] — verified by: [file or screenshot]
