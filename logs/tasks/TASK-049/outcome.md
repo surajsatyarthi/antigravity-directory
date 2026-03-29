@@ -3,48 +3,82 @@
 ## Status
 ✅ DONE
 
+## Date
+2026-03-29
+
 ## Files Changed
-- `scripts/ingest-gws-skills.ts` [NEW]
-- `logs/tasks/TASK-049/spec.md` [NEW]
-- `logs/tasks/TASK-049/outcome.md` [NEW]
-- `logs/TASK_INDEX.md` [MODIFY]
+- scripts/ingest-gws-skills.ts — NEW — fetches + parses all gws-* SKILL.md files from github.com/googleworkspace/cli, inserts as LIVE Skills resources
+- logs/tasks/TASK-049/spec.md — NEW
+- logs/tasks/TASK-049/outcome.md — NEW
+- logs/TASK_INDEX.md — UPDATED
 
 ## Count Inserted
-- **44** official Google Workspace CLI skills ingested as `LIVE` resources.
+44 official Google Workspace CLI skills — all status=LIVE, verified=true
 
-## Build Result
-- **PASS**: Verified by `temp/task049_build.log`
+## Description Fix
+First attempt failed — descriptions contained raw PREREQUISITE markdown from skill body.
+Fix: parse YAML frontmatter description field instead. Commit 75ebe9c.
 
-## Lint Result
-- **PASS**: Verified by `temp/task049_lint.log`
-
-## Verification Data
-```json
+## Sample Rows (live DB)
 [
   {
-    "title": "workflow Skill",
-    "slug": "skill-gws-workflow",
-    "description": "Use this skill to manage Google Workspace automations and workflows using the CLI.",
-    "url": "https://github.com/googleworkspace/cli/tree/main/skills/gws-workflow",
-    "verified": true,
-    "status": "LIVE"
+    "title": "admin-reports (reports_v1) Skill",
+    "slug": "skill-gws-admin-reports",
+    "description": "Google Workspace Admin SDK: Audit logs and usage reports."
   },
   {
-    "title": "workflow +weekly-digest Skill",
-    "slug": "skill-gws-workflow-weekly-digest",
-    "description": "Use this skill to > **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.",
-    "url": "https://github.com/googleworkspace/cli/tree/main/skills/gws-workflow-weekly-digest",
-    "verified": true,
-    "status": "LIVE"
+    "title": "calendar (v3) Skill",
+    "slug": "skill-gws-calendar",
+    "description": "Google Calendar: Manage calendars and events."
   },
   {
-    "title": "workflow +standup-report Skill",
-    "slug": "skill-gws-workflow-standup-report",
-    "description": "Use this skill to > **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.",
-    "url": "https://github.com/googleworkspace/cli/tree/main/skills/gws-workflow-standup-report",
-    "verified": true,
-    "status": "LIVE"
+    "title": "calendar +agenda Skill",
+    "slug": "skill-gws-calendar-agenda",
+    "description": "Google Calendar: Show upcoming events across all calendars."
+  },
+  {
+    "title": "calendar +insert Skill",
+    "slug": "skill-gws-calendar-insert",
+    "description": "Google Calendar: Create a new event."
+  },
+  {
+    "title": "chat (v1) Skill",
+    "slug": "skill-gws-chat",
+    "description": "Google Chat: Manage Chat spaces and messages."
+  },
+  {
+    "title": "chat +send Skill",
+    "slug": "skill-gws-chat-send",
+    "description": "Google Chat: Send a message to a space."
+  },
+  {
+    "title": "classroom (v1) Skill",
+    "slug": "skill-gws-classroom",
+    "description": "Google Classroom: Manage classes, rosters, and coursework."
+  },
+  {
+    "title": "docs (v1) Skill",
+    "slug": "skill-gws-docs",
+    "description": "Read and write Google Docs."
+  },
+  {
+    "title": "docs +write Skill",
+    "slug": "skill-gws-docs-write",
+    "description": "Google Docs: Append text to a document."
+  },
+  {
+    "title": "drive (v3) Skill",
+    "slug": "skill-gws-drive",
+    "description": "Google Drive: Manage files, folders, and shared drives."
   }
 ]
-```
-**Total GWS skills found in DB:** 44
+
+## Build
+✅ PASS
+
+## Lint
+✅ PASS
+
+## Commits
+84b8d6e — initial ingestion (broken descriptions)
+75ebe9c — fix: parse YAML frontmatter for descriptions
