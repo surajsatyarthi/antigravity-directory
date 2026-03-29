@@ -49,3 +49,6 @@ next-env.d.ts
 
 # PM verification screenshots and scripts (local only, never commit)
 /temp
+
+# Conversation transcript log (local only — full chat history)
+/logs/conversation_transcript.md

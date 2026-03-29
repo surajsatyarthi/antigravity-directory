@@ -6,6 +6,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": ".claude/hooks/session-protocol-gate.sh"
+          },
+          {
+            "type": "command",
             "command": ".claude/hooks/research-gate.sh"
           },
           {
@@ -17,6 +21,10 @@
       {
         "matcher": "Edit",
         "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-protocol-gate.sh"
+          },
           {
             "type": "command",
             "command": ".claude/hooks/research-gate.sh"
