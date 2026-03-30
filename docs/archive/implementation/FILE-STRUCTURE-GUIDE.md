@@ -2,7 +2,7 @@
 
 **Status**: SUPERSEDED on 2026-03-07
 **Reason**: Project pivoted to free directory model. Everything in this document is WRONG for the current product.
-**Replacement**: See `docs/04-prds/PRD_V1.md` for current page specs and `docs/new-start/DESIGN_SPEC.md` for component behaviour.
+**Replacement**: See `docs/prds/PRD_V1.md` for current page specs and `docs/design/DESIGN_SPEC.md` for component behaviour.
 
 ---
 

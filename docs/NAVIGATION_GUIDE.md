@@ -11,79 +11,79 @@
 ### Business & Strategy
 | Looking for... | Go to... |
 |----------------|----------|
-| **Marketplace business model** (80/20 split, first 2 sales free) | [docs/01-business/MARKETPLACE_MODEL_SPEC.md](01-business/MARKETPLACE_MODEL_SPEC.md) |
-| **Competitor analysis** (cursor.directory $35k/month) | [docs/01-business/COMPETITIVE_ANALYSIS_2026.md](01-business/COMPETITIVE_ANALYSIS_2026.md) |
-| **Quick competitor reference** | [docs/01-business/COMPETITIVE_QUICK_REF.md](01-business/COMPETITIVE_QUICK_REF.md) |
-| **Legal protection strategy** (DMCA safe harbor) | [docs/01-business/UNCLAIMED_RESOURCES_LEGAL_ANALYSIS.md](01-business/UNCLAIMED_RESOURCES_LEGAL_ANALYSIS.md) |
-| **MVP launch status** | [docs/02-strategy/MVP_LAUNCH_READINESS_REPORT.md](02-strategy/MVP_LAUNCH_READINESS_REPORT.md) |
-| **Post-MVP roadmap** | [docs/02-strategy/POST_MVP_DEFERRED.md](02-strategy/POST_MVP_DEFERRED.md) |
-| **SEO growth strategy** (user profiles) | [docs/02-strategy/USER-PROFILES-SEO-STRATEGY.md](02-strategy/USER-PROFILES-SEO-STRATEGY.md) |
+| **Marketplace business model** (80/20 split, first 2 sales free) | [docs/business/MARKETPLACE_MODEL_SPEC.md](business/MARKETPLACE_MODEL_SPEC.md) |
+| **Competitor analysis** (cursor.directory $35k/month) | [docs/business/COMPETITIVE_ANALYSIS_2026.md](business/COMPETITIVE_ANALYSIS_2026.md) |
+| **Quick competitor reference** | [docs/business/COMPETITIVE_QUICK_REF.md](business/COMPETITIVE_QUICK_REF.md) |
+| **Legal protection strategy** (DMCA safe harbor) | [docs/business/UNCLAIMED_RESOURCES_LEGAL_ANALYSIS.md](business/UNCLAIMED_RESOURCES_LEGAL_ANALYSIS.md) |
+| **MVP launch status** | [docs/strategy/MVP_LAUNCH_READINESS_REPORT.md](strategy/MVP_LAUNCH_READINESS_REPORT.md) |
+| **Post-MVP roadmap** | [docs/strategy/POST_MVP_DEFERRED.md](strategy/POST_MVP_DEFERRED.md) |
+| **SEO growth strategy** (user profiles) | [docs/strategy/USER-PROFILES-SEO-STRATEGY.md](strategy/USER-PROFILES-SEO-STRATEGY.md) |
 
 ---
 
 ### Technical Implementation
 | Looking for... | Go to... |
 |----------------|----------|
-| **API keys & secrets** ⭐ | [docs/03-implementation/SECRETS_REFERENCE.md](03-implementation/SECRETS_REFERENCE.md) |
-| **Project file structure** | [docs/03-implementation/FILE-STRUCTURE-GUIDE.md](03-implementation/FILE-STRUCTURE-GUIDE.md) |
-| **Implementation guidelines** | [docs/03-implementation/IMPLEMENTATION-GUIDE.md](03-implementation/IMPLEMENTATION-GUIDE.md) |
-| **Security checklist** | [docs/03-implementation/SECURITY_CHECKLIST.md](03-implementation/SECURITY_CHECKLIST.md) |
-| **Accessibility requirements** | [docs/03-implementation/accessibility-checklist.md](03-implementation/accessibility-checklist.md) |
-| **Onboarding guide** | [docs/03-implementation/QUICK-START-CHECKLIST.md](03-implementation/QUICK-START-CHECKLIST.md) |
-| **Gate 12 completion docs** | [docs/03-implementation/gate-12/](03-implementation/gate-12/) |
+| **API keys & secrets** ⭐ | [docs/archive/implementation/SECRETS_REFERENCE.md](archive/implementation/SECRETS_REFERENCE.md) |
+| **Project file structure** | [docs/archive/implementation/FILE-STRUCTURE-GUIDE.md](archive/implementation/FILE-STRUCTURE-GUIDE.md) |
+| **Implementation guidelines** | [docs/archive/implementation/IMPLEMENTATION-GUIDE.md](archive/implementation/IMPLEMENTATION-GUIDE.md) |
+| **Security checklist** | [docs/archive/implementation/SECURITY_CHECKLIST.md](archive/implementation/SECURITY_CHECKLIST.md) |
+| **Accessibility requirements** | [docs/archive/implementation/accessibility-checklist.md](archive/implementation/accessibility-checklist.md) |
+| **Onboarding guide** | [docs/archive/implementation/QUICK-START-CHECKLIST.md](archive/implementation/QUICK-START-CHECKLIST.md) |
+| **Gate 12 completion docs** | [docs/archive/implementation/gate-12/](archive/implementation/gate-12/) |
 
 ---
 
 ### Product Requirements (PRDs)
 | Looking for... | Go to... |
 |----------------|----------|
-| **E2E Testing Infrastructure** (ENTRY-001) | [docs/04-prds/PHASE_0_E2E_TESTING_PRD.md](04-prds/PHASE_0_E2E_TESTING_PRD.md) |
-| **Resource Purchase System** (ENTRY-008) | [docs/04-prds/RESOURCE_PURCHASE_SYSTEM_PRD.md](04-prds/RESOURCE_PURCHASE_SYSTEM_PRD.md) |
-| **Resource Claiming** (ENTRY-009) | [docs/04-prds/RESOURCE_CLAIMING_SYSTEM_PRD.md](04-prds/RESOURCE_CLAIMING_SYSTEM_PRD.md) |
-| **Creator Earnings Dashboard** (ENTRY-010) | [docs/04-prds/ENTRY-010_CREATOR_EARNINGS_DASHBOARD_PRD.md](04-prds/ENTRY-010_CREATOR_EARNINGS_DASHBOARD_PRD.md) |
-| **Claim Button UI** (ENTRY-011) | [docs/04-prds/ENTRY-011_CLAIM_BUTTON_UI_PRD.md](04-prds/ENTRY-011_CLAIM_BUTTON_UI_PRD.md) |
-| **Resource Pricing UI** (ENTRY-012) | [docs/04-prds/ENTRY-012_RESOURCE_PRICING_UI_PRD.md](04-prds/ENTRY-012_RESOURCE_PRICING_UI_PRD.md) |
-| **All active PRDs** | [docs/04-prds/](04-prds/) |
+| **E2E Testing Infrastructure** (ENTRY-001) | [docs/prds/PHASE_0_E2E_TESTING_PRD.md](04-prds/PHASE_0_E2E_TESTING_PRD.md) |
+| **Resource Purchase System** (ENTRY-008) | [docs/prds/RESOURCE_PURCHASE_SYSTEM_PRD.md](04-prds/RESOURCE_PURCHASE_SYSTEM_PRD.md) |
+| **Resource Claiming** (ENTRY-009) | [docs/prds/RESOURCE_CLAIMING_SYSTEM_PRD.md](04-prds/RESOURCE_CLAIMING_SYSTEM_PRD.md) |
+| **Creator Earnings Dashboard** (ENTRY-010) | [docs/prds/ENTRY-010_CREATOR_EARNINGS_DASHBOARD_PRD.md](04-prds/ENTRY-010_CREATOR_EARNINGS_DASHBOARD_PRD.md) |
+| **Claim Button UI** (ENTRY-011) | [docs/prds/ENTRY-011_CLAIM_BUTTON_UI_PRD.md](04-prds/ENTRY-011_CLAIM_BUTTON_UI_PRD.md) |
+| **Resource Pricing UI** (ENTRY-012) | [docs/prds/ENTRY-012_RESOURCE_PRICING_UI_PRD.md](04-prds/ENTRY-012_RESOURCE_PRICING_UI_PRD.md) |
+| **All active PRDs** | [docs/prds/](04-prds/) |
 
 ---
 
 ### Reports & Audits
 | Looking for... | Go to... |
 |----------------|----------|
-| **Latest codebase audit** | [docs/05-reports/CODEBASE_AUDIT_2026-02-12.md](05-reports/CODEBASE_AUDIT_2026-02-12.md) |
-| **Documentation structure audit** | [docs/05-reports/DOCUMENTATION_STRUCTURE_AUDIT_2026-02-13.md](05-reports/DOCUMENTATION_STRUCTURE_AUDIT_2026-02-13.md) |
-| **RICE scoring analysis** | [docs/05-reports/RICE_SCORING_ANALYSIS.md](05-reports/RICE_SCORING_ANALYSIS.md) |
-| **QA reports** | [docs/05-reports/quality/](05-reports/quality/) |
-| **Phase completion summaries** | [docs/05-reports/phase-completions/](05-reports/phase-completions/) |
-| **Technical audits** (performance, security, a11y) | [docs/05-reports/audits/](05-reports/audits/) |
+| **Latest codebase audit** | [docs/archive/reports/CODEBASE_AUDIT_2026-02-12.md](archive/reports/CODEBASE_AUDIT_2026-02-12.md) |
+| **Documentation structure audit** | [docs/archive/reports/DOCUMENTATION_STRUCTURE_AUDIT_2026-02-13.md](archive/reports/DOCUMENTATION_STRUCTURE_AUDIT_2026-02-13.md) |
+| **RICE scoring analysis** | [docs/archive/reports/RICE_SCORING_ANALYSIS.md](archive/reports/RICE_SCORING_ANALYSIS.md) |
+| **QA reports** | [docs/archive/reports/quality/](archive/reports/quality/) |
+| **Phase completion summaries** | [docs/archive/reports/phase-completions/](archive/reports/phase-completions/) |
+| **Technical audits** (performance, security, a11y) | [docs/archive/reports/audits/](archive/reports/audits/) |
 
 ---
 
 ### Legal & Compliance
 | Looking for... | Go to... |
 |----------------|----------|
-| **DMCA agent registration guide** (ENTRY-018) | [docs/06-legal/DMCA_AGENT_REGISTRATION.md](06-legal/DMCA_AGENT_REGISTRATION.md) |
-| **Terms of Service IP warranties** (ENTRY-018) | [docs/06-legal/TOS_IP_WARRANTIES.md](06-legal/TOS_IP_WARRANTIES.md) |
-| **Legal docs index** | [docs/06-legal/README.md](06-legal/README.md) |
+| **DMCA agent registration guide** (ENTRY-018) | [docs/legal/DMCA_AGENT_REGISTRATION.md](legal/DMCA_AGENT_REGISTRATION.md) |
+| **Terms of Service IP warranties** (ENTRY-018) | [docs/legal/TOS_IP_WARRANTIES.md](legal/TOS_IP_WARRANTIES.md) |
+| **Legal docs index** | [docs/legal/README.md](legal/README.md) |
 
 ---
 
 ### Implementation Plans
 | Looking for... | Go to... |
 |----------------|----------|
-| **Phase 0 E2E testing plan** | [docs/06-plans/PHASE_0_PLAN_2026-02-03.md](06-plans/PHASE_0_PLAN_2026-02-03.md) |
-| **All implementation plans** | [docs/06-plans/](06-plans/) |
+| **Phase 0 E2E testing plan** | [docs/archive/plans/PHASE_0_PLAN_2026-02-03.md](archive/plans/PHASE_0_PLAN_2026-02-03.md) |
+| **All implementation plans** | [docs/archive/plans/](archive/plans/) |
 
 ---
 
 ### Walkthroughs & Guides
 | Looking for... | Go to... |
 |----------------|----------|
-| **Phase 1 ship walkthrough** | [docs/07-walkthroughs/FINAL_SHIP_PHASE_1.md](07-walkthroughs/FINAL_SHIP_PHASE_1.md) |
-| **ENTRY-006 walkthrough** (Dashboard tests) | [docs/07-walkthroughs/walkthrough_ENTRY-006.md](07-walkthroughs/walkthrough_ENTRY-006.md) |
-| **ENTRY-007 walkthrough** (CI/CD) | [docs/07-walkthroughs/walkthrough_ENTRY-007.md](07-walkthroughs/walkthrough_ENTRY-007.md) |
-| **ENTRY-009 walkthrough** (Claiming) | [docs/07-walkthroughs/walkthrough_ENTRY-009.md](07-walkthroughs/walkthrough_ENTRY-009.md) |
-| **All walkthroughs** | [docs/07-walkthroughs/](07-walkthroughs/) |
+| **Phase 1 ship walkthrough** | [docs/archive/walkthroughs/FINAL_SHIP_PHASE_1.md](archive/walkthroughs/FINAL_SHIP_PHASE_1.md) |
+| **ENTRY-006 walkthrough** (Dashboard tests) | [docs/archive/walkthroughs/walkthrough_ENTRY-006.md](archive/walkthroughs/walkthrough_ENTRY-006.md) |
+| **ENTRY-007 walkthrough** (CI/CD) | [docs/archive/walkthroughs/walkthrough_ENTRY-007.md](archive/walkthroughs/walkthrough_ENTRY-007.md) |
+| **ENTRY-009 walkthrough** (Claiming) | [docs/archive/walkthroughs/walkthrough_ENTRY-009.md](archive/walkthroughs/walkthrough_ENTRY-009.md) |
+| **All walkthroughs** | [docs/archive/walkthroughs/](archive/walkthroughs/) |
 
 ---
 
@@ -103,14 +103,14 @@
 
 ```
 docs/
-├── 01-business/          Business model, marketplace specs, legal
-├── 02-strategy/          Growth plans, roadmaps, MVP status
-├── 03-implementation/    How-to guides, secrets, Gate 12 docs
+├── business/          Business model, marketplace specs, legal
+├── strategy/          Growth plans, roadmaps, MVP status
+├── archive/implementation/    How-to guides, secrets, Gate 12 docs
 ├── 04-prds/             Product requirements for upcoming features
-├── 05-reports/          Quality reports, audits, validations
-├── 06-legal/            DMCA, TOS, legal compliance (NEW)
-├── 06-plans/            Implementation plans (Ralph Gate 3)
-├── 07-walkthroughs/     Step-by-step implementation guides
+├── archive/reports/          Quality reports, audits, validations
+├── legal/            DMCA, TOS, legal compliance (NEW)
+├── archive/plans/            Implementation plans (Ralph Gate 3)
+├── archive/walkthroughs/     Step-by-step implementation guides
 ├── archive/             Historical/completed documents
 ├── evidence/            Screenshots, logs, test results
 └── screenshots/         UI/UX screenshots
@@ -137,24 +137,24 @@ docs/
 
 ### Scenario: "I'm new, where do I start?"
 1. Read [PROJECT_LEDGER.md](../PROJECT_LEDGER.md) - Understand current work
-2. Read [MARKETPLACE_MODEL_SPEC.md](01-business/MARKETPLACE_MODEL_SPEC.md) - Understand business
-3. Read [QUICK-START-CHECKLIST.md](03-implementation/QUICK-START-CHECKLIST.md) - Setup instructions
+2. Read [MARKETPLACE_MODEL_SPEC.md](business/MARKETPLACE_MODEL_SPEC.md) - Understand business
+3. Read [QUICK-START-CHECKLIST.md](archive/implementation/QUICK-START-CHECKLIST.md) - Setup instructions
 4. Read [RALPH_PROTOCOL.md](../.agent/RALPH_PROTOCOL.md) - Quality standards
 
 ### Scenario: "I need API keys"
-→ [SECRETS_REFERENCE.md](03-implementation/SECRETS_REFERENCE.md)
+→ [SECRETS_REFERENCE.md](archive/implementation/SECRETS_REFERENCE.md)
 
 ### Scenario: "What's blocking beta launch?"
-→ [MVP_LAUNCH_READINESS_REPORT.md](02-strategy/MVP_LAUNCH_READINESS_REPORT.md) or [docs/README.md](README.md) (section: Beta Blockers)
+→ [MVP_LAUNCH_READINESS_REPORT.md](strategy/MVP_LAUNCH_READINESS_REPORT.md) or [docs/README.md](README.md) (section: Beta Blockers)
 
 ### Scenario: "How do I create a PRD?"
 → [PM_PROTOCOL.md](../.agent/PM_PROTOCOL.md) (Gate 1-2)
 
 ### Scenario: "Where's the legal compliance stuff?"
-→ [docs/06-legal/](06-legal/)
+→ [docs/legal/](legal/)
 
 ### Scenario: "I need to verify a completed feature"
-→ [docs/03-implementation/gate-12/](03-implementation/gate-12/)
+→ [docs/archive/implementation/gate-12/](archive/implementation/gate-12/)
 
 ---
 

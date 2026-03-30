@@ -31,13 +31,13 @@ These rules ensure our organized documentation system **STAYS organized**.
 - `README.md` (project overview)
 
 **Where to Create Instead**:
-- Business docs → `docs/01-business/`
-- Strategy docs → `docs/02-strategy/`
-- Technical guides → `docs/03-implementation/`
-- PRDs → `docs/04-prds/`
-- Reports → `docs/05-reports/quality/` or `/phase-completions/` or `/audits/`
-- Plans → `docs/06-plans/`
-- Walkthroughs → `docs/07-walkthroughs/`
+- Business docs → `docs/business/`
+- Strategy docs → `docs/strategy/`
+- Technical guides → `docs/archive/implementation/`
+- PRDs → `docs/prds/`
+- Reports → `docs/archive/reports/quality/` or `/phase-completions/` or `/audits/`
+- Plans → `docs/archive/plans/`
+- Walkthroughs → `docs/archive/walkthroughs/`
 - Old stuff → `docs/archive/`
 
 **Enforcement**:
@@ -186,9 +186,9 @@ All three docs talk about payment requirements → Pick ONE canonical doc
 
 ✅ **GOOD** (Different topics):
 ```
-docs/04-prds/PRD_PAYMENT_SYSTEM.md          # Requirements
-docs/06-plans/PHASE_A_PAYMENT_PLAN.md       # Implementation plan
-docs/05-reports/QA_REPORT_PAYMENT.md        # QA validation
+docs/prds/PRD_PAYMENT_SYSTEM.md          # Requirements
+docs/archive/plans/PHASE_A_PAYMENT_PLAN.md       # Implementation plan
+docs/archive/reports/QA_REPORT_PAYMENT.md        # QA validation
 ```
 Each doc serves different purpose
 
@@ -408,7 +408,7 @@ grep -r "my-new-doc.md" docs/README.md
 
 **Example**:
 
-**Created**: `docs/04-prds/PRD_EARNINGS_DASHBOARD.md`
+**Created**: `docs/prds/PRD_EARNINGS_DASHBOARD.md`
 
 **Must Add Links**:
 1. In `docs/README.md`:
@@ -423,7 +423,7 @@ grep -r "my-new-doc.md" docs/README.md
    ```markdown
    [ENTRY-012] PRD | APPROVED | 2026-02-15 | PM | -
    Title: Creator Earnings Dashboard
-   Evidence: docs/04-prds/PRD_EARNINGS_DASHBOARD.md ← ADD THIS
+   Evidence: docs/prds/PRD_EARNINGS_DASHBOARD.md ← ADD THIS
    ```
 
 ---
@@ -563,9 +563,9 @@ docs/payment-v2-final-FINAL.md
 
 **DO**:
 ```
-docs/04-prds/PRD_PAYMENT_SYSTEM.md
-docs/06-plans/PHASE_A_PAYMENT_PLAN_2026-02-12.md
-docs/05-reports/QA_REPORT_PAYMENT_2026-02-15.md
+docs/prds/PRD_PAYMENT_SYSTEM.md
+docs/archive/plans/PHASE_A_PAYMENT_PLAN_2026-02-12.md
+docs/archive/reports/QA_REPORT_PAYMENT_2026-02-15.md
 ```
 
 ---
@@ -581,7 +581,7 @@ All three say the same thing!
 
 **DO**:
 ```
-docs/04-prds/PRD_CLAIMING_SYSTEM.md  # ONE canonical doc
+docs/prds/PRD_CLAIMING_SYSTEM.md  # ONE canonical doc
 ```
 Everyone references this one doc
 
@@ -602,14 +602,14 @@ Add clear deprecation notice:
 tags: [ARCHIVED]
 status: ARCHIVED
 archived_date: 2026-02-11
-replaced_by: docs/04-prds/PRD_PAYMENT_SYSTEM.md
+replaced_by: docs/prds/PRD_PAYMENT_SYSTEM.md
 ---
 
 # [ARCHIVED] Old Payment Spec
 
 **⚠️ DEPRECATED**: This document is archived and no longer maintained.
 
-**Replacement**: See `docs/04-prds/PRD_PAYMENT_SYSTEM.md`
+**Replacement**: See `docs/prds/PRD_PAYMENT_SYSTEM.md`
 
 ---
 
@@ -742,13 +742,13 @@ Requirements:
 **✅ GOOD**:
 ```bash
 # 1. Check if PRD already exists
-grep -r "Payment" docs/04-prds/
+grep -r "Payment" docs/prds/
 
 # 2. Create with correct naming
-touch docs/04-prds/PRD_PAYMENT_SYSTEM.md
+touch docs/prds/PRD_PAYMENT_SYSTEM.md
 
 # 3. Use template with all required fields
-nano docs/04-prds/PRD_PAYMENT_SYSTEM.md
+nano docs/prds/PRD_PAYMENT_SYSTEM.md
 ```
 
 ```markdown
@@ -852,7 +852,7 @@ CREATE TABLE payments (
 # (Add to PRD section)
 
 # 6. Commit with proper message
-git add docs/04-prds/PRD_PAYMENT_SYSTEM.md PROJECT_LEDGER.md docs/README.md
+git add docs/prds/PRD_PAYMENT_SYSTEM.md PROJECT_LEDGER.md docs/README.md
 git commit -m "docs: add [ENTRY-008] PRD for Payment System"
 ```
 
@@ -877,7 +877,7 @@ git commit -m "remove old file"
 **✅ GOOD**:
 ```bash
 # 1. Identify replacement doc
-ls docs/02-strategy/MVP_LAUNCH_READINESS_REPORT.md
+ls docs/strategy/MVP_LAUNCH_READINESS_REPORT.md
 
 # 2. Move to archive with clear naming
 mv docs/old-launch-plan.md docs/archive/pre-mvp/LAUNCH_PLAN_OLD_2026-01-15.md
@@ -891,14 +891,14 @@ nano docs/archive/pre-mvp/LAUNCH_PLAN_OLD_2026-01-15.md
 tags: [ARCHIVED]
 status: ARCHIVED
 archived_date: 2026-02-11
-replaced_by: docs/02-strategy/MVP_LAUNCH_READINESS_REPORT.md
+replaced_by: docs/strategy/MVP_LAUNCH_READINESS_REPORT.md
 ---
 
 # [ARCHIVED] Old Launch Plan
 
 **⚠️ DEPRECATED**: This document is archived and no longer maintained.
 
-**Replacement**: See `docs/02-strategy/MVP_LAUNCH_READINESS_REPORT.md` for current MVP launch plan.
+**Replacement**: See `docs/strategy/MVP_LAUNCH_READINESS_REPORT.md` for current MVP launch plan.
 
 **Archived**: 2026-02-11
 **Reason**: Superseded by new strategy with blockchain ledger system

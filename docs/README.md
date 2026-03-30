@@ -272,31 +272,31 @@ last_updated: 2026-02-11
 ## 🔍 HOW TO FIND DOCUMENTS
 
 ### Looking for API Keys/Secrets/Environment Variables?
-→ `docs/03-implementation/SECRETS_REFERENCE.md` ⭐
+→ `docs/archive/implementation/SECRETS_REFERENCE.md` ⭐
 
 ### Looking for Documentation Rules?
 → `docs/DOCUMENTATION_RULES.md` ⭐
 
 ### Looking for Business Rules?
-→ `docs/01-business/MARKETPLACE_MODEL_SPEC.md`
+→ `docs/business/MARKETPLACE_MODEL_SPEC.md`
 
 ### Looking for MVP Status?
-→ `docs/02-strategy/MVP_LAUNCH_READINESS_REPORT.md`
+→ `docs/strategy/MVP_LAUNCH_READINESS_REPORT.md`
 
 ### Looking for Implementation Guides?
-→ `docs/03-implementation/`
+→ `docs/archive/implementation/`
 
 ### Looking for PRD for New Feature?
-→ `docs/04-prds/` (or check PROJECT_LEDGER.md for entry number)
+→ `docs/prds/` (or check PROJECT_LEDGER.md for entry number)
 
 ### Looking for QA Reports?
-→ `docs/05-reports/quality/`
+→ `docs/archive/reports/quality/`
 
 ### Looking for Phase Completion Summary?
-→ `docs/05-reports/phase-completions/`
+→ `docs/archive/reports/phase-completions/`
 
 ### Looking for Implementation Plan?
-→ `docs/06-plans/`
+→ `docs/archive/plans/`
 
 ### Looking for Old/Completed Docs?
 → `docs/archive/`
@@ -310,16 +310,16 @@ last_updated: 2026-02-11
 | **Current MVP tasks** | `PROJECT_LEDGER.md` (root) ⭐ |
 | **How to use ledger** | `LEDGER_GUIDE.md` (root) |
 | **PM ↔ Coder communication** | `docs/COMMUNICATION_PROTOCOL.md` ⭐ |
-| **All API keys/secrets** | `docs/03-implementation/SECRETS_REFERENCE.md` ⭐ |
+| **All API keys/secrets** | `docs/archive/implementation/SECRETS_REFERENCE.md` ⭐ |
 | **Doc maintenance rules** | `docs/DOCUMENTATION_RULES.md` ⭐ |
-| **Business model** | `docs/01-business/MARKETPLACE_MODEL_SPEC.md` |
-| **MVP status** | `docs/02-strategy/MVP_LAUNCH_READINESS_REPORT.md` |
-| **Post-MVP plans** | `docs/02-strategy/POST_MVP_DEFERRED.md` |
-| **Security checklist** | `docs/03-implementation/SECURITY_CHECKLIST.md` |
-| **New feature PRDs** | `docs/04-prds/` |
-| **QA reports** | `docs/05-reports/quality/` |
-| **Phase summaries** | `docs/05-reports/phase-completions/` |
-| **Implementation plans** | `docs/06-plans/` |
+| **Business model** | `docs/business/MARKETPLACE_MODEL_SPEC.md` |
+| **MVP status** | `docs/strategy/MVP_LAUNCH_READINESS_REPORT.md` |
+| **Post-MVP plans** | `docs/strategy/POST_MVP_DEFERRED.md` |
+| **Security checklist** | `docs/archive/implementation/SECURITY_CHECKLIST.md` |
+| **New feature PRDs** | `docs/prds/` |
+| **QA reports** | `docs/archive/reports/quality/` |
+| **Phase summaries** | `docs/archive/reports/phase-completions/` |
+| **Implementation plans** | `docs/archive/plans/` |
 | **Alpha Protocol** | `.agent/README.md` |
 | **Ralph Protocol** | `.agent/RALPH_PROTOCOL.md` |
 | **PM Protocol** | `.agent/PM_PROTOCOL.md` |

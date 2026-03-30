@@ -52,3 +52,12 @@ next-env.d.ts
 
 # Conversation transcript log (local only — full chat history)
 /logs/conversation_transcript.md
+
+# Python virtual environment
+/.venv
+
+# Claude marketing skills (installed via CLI, not project code)
+/.claude/skills
+
+# Root-level untracked artifacts
+/skills-lock.json

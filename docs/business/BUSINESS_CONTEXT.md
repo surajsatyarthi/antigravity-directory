@@ -15,11 +15,12 @@
 
 ---
 
-## THE ONE GOAL (LOCKED — 2026-03-07)
+## THE ONE GOAL
 
-**$2,000 MRR AS FAST AS POSSIBLE.**
+**$50,000 MRR MINIMUM. 20-YEAR BUSINESS. (Updated 2026-03-30)**
 
-Path: one site-wide sponsor at $2,000/month. Everything else is secondary until this number is hit.
+Immediate milestone: $2,000 MRR — one site-wide sponsor at $2,000/month.
+Ultimate target: $50,000 MRR. This is a long-term business, not a side project.
 
 ---
 
@@ -116,12 +117,19 @@ $99–$299 per listing
 
 | Competitor | What they have | Their weakness |
 |---|---|---|
-| **antigravity.codes** | 1,500+ MCPs, 500+ rules, email capture only | Dark cluttered design, no monetisation, missing Skills |
-| **antigravityai.directory** | 430+ MCPs, 125+ prompts | Basic/abandoned, no monetisation |
+| **antigravity.codes** | ~1,669 indexed URLs: 1,071 agent skills, 293 rules, 98 workflows, 154 blog posts | Dark cluttered design, GoDaddy ads, no Skills category |
+| **antigravityai.directory** | ~1,899 indexed URLs: 1,085 MCPs, 730 prompts, 51 blog posts | Framework-organised prompts, multi-lingual, no monetisation |
+
+Full competitive intelligence: `docs/strategy/COMPETITOR_RESEARCH_2026.md` — do not re-run this research.
 
 **cursor.directory is our BLUEPRINT, not a competitor.** They serve Cursor IDE users. We serve Antigravity IDE users. Different ecosystems.
 
 cursor.directory makes $35k/month from a free directory. Pontus built it in 3 hours. That's our proof of concept.
+
+**COMPETITOR RESEARCH IS FOR CONTENT GAPS ONLY.**
+Use competitor data to answer: "what resources do they have that we are missing?"
+Never use it to drive URL structure, page design, copy, or SEO strategy.
+All structural and strategic decisions must be justified by first principles — SEO best practices, user intent, conversion fundamentals. Not by what a competitor happens to do.
 
 ---
 
@@ -138,8 +146,8 @@ cursor.directory makes $35k/month from a free directory. Pontus built it in 3 ho
 
 - **Dark mode only** — `bg-black` pages, `bg-white/[0.03]` cards
 - **cursor.directory aesthetic** — cards at 60% opacity → 100% on hover, action buttons revealed on hover
-- Reference spec: `docs/new-start/DESIGN_SPEC.md` (UI-UX-SPEC.md merged in — archived)
-- Reference audit: `docs/new-start/CURSOR-DIRECTORY-AUDIT.md`
+- Reference spec: `docs/design/DESIGN_SPEC.md` (UI-UX-SPEC.md merged in — archived)
+- Reference audit: `docs/design/CURSOR-DIRECTORY-AUDIT.md`
 - Font: Inter + JetBrains Mono
 - Currently implementing on branch: `feat/ui-cursor-patterns`
 
@@ -173,6 +181,18 @@ Repo: https://github.com/googleworkspace/cli
 ---
 
 ## KEY STRATEGIC DECISIONS LOG
+
+### 2026-03-30 — Antigravity Market Pulse (UPDATE REGULARLY)
+**Situation**: Token quota crisis hit mid-March 2026 with v1.20.5. Pro users ($20/month) saw 97%+ quota reduction overnight. Ultra ($250/month) also affected. 7-10 day lockouts. Forum threads at 16K+ views. Users calling it a "paperweight." Exodus to Cursor accelerating. Market: Cursor 18%, Claude Code 10%, Windsurf 5%.
+**Google's position**: Has NOT officially acknowledged or fixed. But spent $2.4B on Windsurf acquisition — not walking away. This is a monetisation problem, not a product failure.
+**Strategic implication**: First-mover SEO thesis still holds — Google will fix this. Meanwhile the quota crisis = immediate content opportunity. Zero-competition queries: "antigravity quota fix", "antigravity token limit", "antigravity alternatives". Write troubleshooting content NOW to capture frustrated users and convert them to regular visitors.
+**New sponsor target**: Cursor — actively trying to capture frustrated Antigravity users. They are our audience.
+
+### 2026-03-30 — SEO First-Mover Thesis (CRITICAL — do not lose this)
+**Decision**: Our entire SEO strategy is built on owning Antigravity keywords NOW while competition is zero, before Google's marketing machine pushes search volumes to massive scale.
+**The thesis**: Google Antigravity launched Nov 2025. Currently 500K searches/month. Google is a trillion-dollar company actively promoting this product. As they push it — the same way they push Gmail, Google Maps, Android — "google antigravity", "antigravity ide" and all related keywords will scale to Claude Code-level volumes (5M+) or beyond. We will already own top rankings because we were there first.
+**What this means**: Do NOT chase other products' keywords (Claude Code, Cursor, etc.). Plant flags on EVERY Antigravity-specific keyword NOW. Each page we rank today becomes a permanent asset when volume surges. Waiting = losing ground to competitors who will appear once Google's promotion kicks in.
+**Discussed**: Three times with founder. Never lose this context.
 
 ### 2026-03-07 — Major Pivot: Directory not Marketplace
 **Decision**: Pivot from marketplace (creator earnings, Razorpay, claiming) to free directory + ads/promoted listings.
@@ -227,34 +247,27 @@ Repo: https://github.com/googleworkspace/cli
 
 ### 2026-03-07 — Business documents rewritten
 All stale marketplace-era business docs updated to reflect directory model:
-- `docs/01-business/BUSINESS_MODEL.md` — new master doc
-- `docs/01-business/COMPETITIVE_ANALYSIS_2026.md` — updated
-- `docs/01-business/COMPETITIVE_QUICK_REF.md` — updated
-- `docs/01-business/COPYWRITING_STRATEGY.md` — updated
-- `docs/02-strategy/MVP_LAUNCH_READINESS_REPORT.md` — updated
-- `docs/02-strategy/SEO_STRATEGY_2026.md` — updated
-- `docs/01-business/MARKETPLACE_MODEL_SPEC.md` — archived
-- `docs/01-business/MARKETPLACE_ANALYSIS_RESULTS.md` — archived
+- `docs/business/BUSINESS_MODEL.md` — new master doc
+- `docs/business/COMPETITIVE_ANALYSIS_2026.md` — updated
+- `docs/business/COMPETITIVE_QUICK_REF.md` — updated
+- `docs/business/COPYWRITING_STRATEGY.md` — updated
+- `docs/strategy/MVP_LAUNCH_READINESS_REPORT.md` — updated
+- `docs/strategy/SEO_STRATEGY_2026.md` — updated
+- `docs/business/MARKETPLACE_MODEL_SPEC.md` — archived
+- `docs/business/MARKETPLACE_ANALYSIS_RESULTS.md` — archived
 
 ---
 
 ## MANDATORY DOCUMENT LOAD ORDER (every session, no exceptions)
 
-1. `docs/01-business/BUSINESS_CONTEXT.md` ← this file, always first
-2. `docs/01-business/PRODUCT_BRIEF.md` ← what we are building, who for, what is NOT in scope
-3. `docs/04-prds/PRD_V1.md` ← exact page specs, feature list, NOT IN SCOPE list
-4. `docs/new-start/DESIGN_SPEC.md` ← exact component behaviour, banned copy, banned backgrounds
-5. `docs/02-strategy/SEO_PROGRAMMATIC_PLAN.md` ← meta formulas, schema, sitemap, programmatic SEO
-6. `docs/02-strategy/GO_TO_MARKET_PLAN.md` ← launch plan, sponsor outreach, week-by-week actions
+1. `docs/business/BUSINESS_CONTEXT.md` ← this file, always first
+2. `docs/business/PRODUCT_BRIEF.md` ← what we are building, who for, what is NOT in scope
+3. `docs/prds/PRD_V1.md` ← exact page specs, feature list, NOT IN SCOPE list
+4. `docs/design/DESIGN_SPEC.md` ← exact component behaviour, banned copy, banned backgrounds
+5. `docs/strategy/SEO_PROGRAMMATIC_PLAN.md` ← meta formulas, schema, sitemap, programmatic SEO
+6. `docs/strategy/GO_TO_MARKET_PLAN.md` ← launch plan, sponsor outreach, week-by-week actions
 
 ---
 
-## AI CODER INSTRUCTIONS
-
-1. **Read this file first, every session, before anything else**
-2. **Then read all 5 documents in the load order above** before touching any code
-3. **Update the KEY STRATEGIC DECISIONS LOG** whenever the founder makes a decision in conversation
-4. **Update CURRENT DB STATE** when resource counts change
-5. **Update KNOWN BUILD ISSUES** when new issues are found or old ones fixed
-6. **Never ask the founder to re-explain the business model** — it's all here
-7. If something contradicts this document, this document wins unless the founder explicitly overrides it
+---
+*For AI instructions and workflow protocols, see `CLAUDE.md` (PM) and `.gemini/GEMINI.md` (Antigravity).*

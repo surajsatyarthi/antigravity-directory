@@ -2,7 +2,7 @@
 **Version**: 1.0 — LOCKED
 **Date**: 2026-03-07
 **Status**: APPROVED
-**Reference**: `docs/01-business/PRODUCT_BRIEF.md`
+**Reference**: `docs/business/PRODUCT_BRIEF.md`
 
 ---
 

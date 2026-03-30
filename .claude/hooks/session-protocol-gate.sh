@@ -36,7 +36,7 @@ echo "BLOCKED: Session protocol not confirmed." >&2
 echo "========================================" >&2
 echo "" >&2
 echo "Before writing this spec, read:" >&2
-echo "  1. docs/01-business/BUSINESS_CONTEXT.md" >&2
+echo "  1. docs/business/BUSINESS_CONTEXT.md" >&2
 echo "  2. memory/failures-log.md" >&2
 echo "  3. docs/FEATURE_STATE.md" >&2
 echo "" >&2

@@ -33,7 +33,7 @@ The new sequence:
 
 **Pricing:** $2,000/month. Offer first month at $1,000 to lower the barrier to yes.
 
-**⚠️ DO NOT pitch CodeRabbit, Warp, or Groq — their logos are already live on the site as placeholders. Pitching them is contradictory.**
+**⚠️ DO NOT pitch CodeRabbit, Warp, or Mistral AI — their logos are already live on the site as placeholders. Pitching them is contradictory.**
 
 **To enable placeholder ads:** Antigravity flips `active: true` in `src/config/sponsor.ts` and updates the placeholder text to "Sponsored by [Your Brand]" — 10 minutes of work. Do this before sending any outreach.
 
@@ -66,7 +66,7 @@ Send cold emails to these targets in priority order:
 | 3 | Any MCP server company with funding | Their users are our users |
 | ❌ | CodeRabbit | Already on site as placeholder — do not pitch |
 | ❌ | Warp | Already on site as placeholder — do not pitch |
-| ❌ | Groq | Already on site as placeholder — do not pitch |
+| ❌ | Mistral AI | Already on site as placeholder — do not pitch |
 
 Email template:
 > Subject: You sponsor cursor.directory — we built the same thing for Google Antigravity IDE
@@ -253,47 +253,7 @@ The directory gets them the audience. The Advertise page shows them the price. T
 
 ---
 
-## WEEK-BY-WEEK CHECKLIST
+## LAUNCH STATUS — COMPLETE (2026-03-13)
 
-| Week | Action | Owner |
-|---|---|---|
-| Week 0 (now) | TASK-016 done. Enable placeholder ads. Launch. | Antigravity + PM |
-| Day 1 post-launch | Send 10 sponsor emails (CodeRabbit first). Submit to GSC + Bing. Post on Reddit/HN/forum. | Founder |
-| Week 1–2 | Follow up on sponsor outreach. Ingest Google Workspace CLI Skills. Outreach to 20 MCP creators. | Antigravity + Founder |
-| Week 2–3 | Close first sponsor. Swap placeholder for real sponsor logo. | Founder |
-| Week 4 | $2,000 MRR. Invoice sent. Write first Dev.to article. | Founder |
-| Month 2 | SEO compounds. Second sponsor outreach round. Write 2 articles. | Founder |
-| Month 3 | Assess Phase 2 (job board, second sponsor slot). | Founder |
-
----
-
-## LAUNCH READINESS CHECKLIST
-
-### Current State
-
-| Area | Status |
-|---|---|
-| Content — 3,116 resources in DB | ✅ Ready |
-| Category remapping to locked 10 | ✅ Done (TASK-007) |
-| tsconfig build error | ✅ Fixed (TASK-001) |
-| Design overhaul (cursor.directory pattern) | 🟡 In progress (TASK-016) |
-| Strip marketplace UI from user-facing pages | 🟡 In progress (TASK-016) |
-| Add Advertise page | ⏳ Pending |
-
-### NOT Needed for Launch
-
-- ❌ Payment system (Razorpay/PayPal removed from scope)
-- ❌ Creator claiming flow
-- ❌ Earnings dashboard
-- ❌ Admin payout approval
-
-### Launch Success Criteria
-
-- [ ] Build passes (0 errors)
-- [ ] All 10 categories show correct resources
-- [ ] Search and filtering work
-- [ ] Resource detail pages load
-- [ ] Submit form works
-- [ ] At least one ad slot visible (even placeholder)
-- [ ] Mobile responsive (375px + 1280px)
-- [ ] No marketplace/claiming UI visible to public
+Site is live. Development phase closed. Current focus: close first sponsor at $2,000/month.
+Active task list: `PROJECT_LEDGER.md`

@@ -1,7 +1,7 @@
 # SEO + PROGRAMMATIC SEO PLAN — googleantigravity.directory
 **Version**: 1.0
 **Date**: 2026-03-07
-**Reference**: `docs/02-strategy/SEO_STRATEGY_2026.md` (keyword targets, Pontus playbook)
+**Reference**: `docs/strategy/SEO_STRATEGY_2026.md` (keyword targets, Pontus playbook)
 
 ---
 

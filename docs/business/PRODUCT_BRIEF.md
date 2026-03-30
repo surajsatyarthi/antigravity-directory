@@ -8,13 +8,13 @@
 
 ## MANDATORY READING ORDER FOR EVERY AI SESSION
 
-1. `docs/01-business/BUSINESS_CONTEXT.md` — decisions log (load first, always)
+1. `docs/business/BUSINESS_CONTEXT.md` — decisions log (load first, always)
 2. **This file** — what we are building and for whom
-3. `docs/04-prds/PRD_V1.md` — exact feature spec
-4. `docs/new-start/DESIGN_SPEC.md` — component behaviour, banned copy, banned backgrounds
-5. `docs/new-start/UI-UX-SPEC.md` — design system / color tokens
-6. `docs/02-strategy/SEO_PROGRAMMATIC_PLAN.md` — meta formulas, schema, sitemap
-7. `docs/02-strategy/GO_TO_MARKET_PLAN.md` — launch plan, sponsor outreach
+3. `docs/prds/PRD_V1.md` — exact feature spec
+4. `docs/design/DESIGN_SPEC.md` — component behaviour, banned copy, banned backgrounds
+5. `docs/design/DESIGN_SPEC.md` — design system / color tokens (UI-UX-SPEC.md archived — merged into DESIGN_SPEC.md)
+6. `docs/strategy/SEO_PROGRAMMATIC_PLAN.md` — meta formulas, schema, sitemap
+7. `docs/strategy/GO_TO_MARKET_PLAN.md` — launch plan, sponsor outreach
 
 ---
 
@@ -91,7 +91,7 @@ We are doing the same for Antigravity, two years earlier in its lifecycle.
 
 ## 4. HOW WE MAKE MONEY
 
-→ See `docs/01-business/BUSINESS_CONTEXT.md` — REVENUE MODEL section. Single source of truth for all pricing and revenue streams.
+→ See `docs/business/BUSINESS_CONTEXT.md` — REVENUE MODEL section. Single source of truth for all pricing and revenue streams.
 
 ---
 
@@ -151,10 +151,10 @@ We are doing the same for Antigravity, two years earlier in its lifecycle.
 - Tools section (ROI calculator, token counter, etc.)
 - Job board
 - Newsletter (not building)
-- Discord / social media links (we have none)
+- Discord links (no Discord account exists)
 
 ---
 
 ## 7. THE ONE METRIC THAT MATTERS
 
-→ See `docs/01-business/BUSINESS_CONTEXT.md` — THE ONE GOAL section. Single source of truth.
+→ See `docs/business/BUSINESS_CONTEXT.md` — THE ONE GOAL section. Single source of truth.
