@@ -191,7 +191,7 @@ async function extractBoilerplateContent(owner: string, repo: string): Promise<s
   const readme = await fetchGithubFile(owner, repo, 'README.md');
   if (!readme) return null;
 
-  const keywords = ['npx create-', 'npm create', 'yarn create', 'pnpm create', 'git clone'];
+  const keywords = ['npx create-', 'npm create', 'yarn create', 'pnpm create', 'git clone', 'npm install', 'pnpm install', 'yarn install', 'pip install', 'docker-compose'];
 
   // Fenced code blocks
   const fenceRegex = /```[\w]*\n([\s\S]*?)```/g;
