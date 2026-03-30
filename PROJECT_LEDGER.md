@@ -13,13 +13,13 @@
 | Item | State |
 |------|-------|
 | MRR | $0 — pre-revenue |
-| LIVE resources | 3,116 |
+| LIVE resources | 2,939 |
 | Ad slots | 3 built — placeholders live |
 | Build | ✅ Passing |
 | Lint | ✅ Passing |
 | Production | ✅ Live on Vercel |
 | GitHub CI | ❌ Blocked ($40 billing) |
-| Last completed | TASK-096 ✅ DONE 2026-03-30 |
+| Last completed | TASK-097 ✅ DONE 2026-03-30 |
 | Next task | TASK-083 |
 | Ralph Protocol | v21.0 |
 
@@ -40,7 +40,7 @@ Full definitions → [docs/roadmap/MILESTONES.md](docs/roadmap/MILESTONES.md)
 
 ## THREE PILLARS (in order of impact)
 
-1. **Database** — 3,116 resources = 3,116 indexable pages
+1. **Database** — 2,939 resources = 2,939 indexable pages
 2. **SEO** — programmatic SEO turns each page into organic traffic → ad revenue
 3. **UI/UX** — clean enough that users stay + sponsors want to be seen here
 
