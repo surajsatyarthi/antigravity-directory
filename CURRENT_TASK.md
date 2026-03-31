@@ -1,170 +1,392 @@
-SESSION-PROTOCOL-CONFIRMED: 2026-03-30
+SESSION-PROTOCOL-CONFIRMED: 2026-03-31
 
-# CURRENT TASK — TASK-111: Repository Restructure — Clean Folder Hierarchy
+# CURRENT TASK — TASK-117: Fix Canonical Tags — Remove Layout Poison, Add to 11 Pages
+
+## RESEARCH
+- Web: Query: "Next.js 15 canonical tag inheritance layout metadata alternates fix duplicate canonical" → URL: https://nextjs.org/docs/app/api-reference/functions/generate-metadata → Finding: "Metadata objects exported from multiple segments in the same route are shallowly merged together. Duplicate keys are replaced based on their ordering. This means metadata with nested fields such as openGraph and robots that are defined in an earlier segment are overwritten by the last segment to define them."
+- Reddit: Not accessible from PM (Claude Code). Reddit research delegated to Antigravity for future reference.
+- Twitter/X: Query: "Next.js canonical tag layout poisoning SEO fix 2026" → URL: https://dev.to/federico_sciuca/the-nextjs-seo-bug-that-made-google-ignore-my-entire-site-and-how-i-found-it-2mg0 → Finding: "Google Search Console reported: 'Duplicate without user-selected canonical' with the user-declared canonical showing as 'None' — despite the tag being present in the final HTML." (Root cause: layout canonical inherited by all child pages that don't define their own.)
 
 ## WHAT TO BUILD
-Reorganise the entire `docs/` folder and clean up root-level clutter. Remove numbered prefixes that conflict (three `03-*` folders, two `04-*`, etc.), rename folders to descriptive names, move misplaced root-level folders into `docs/`, delete dead folders, and fix all broken links created by the moves.
+Remove `alternates: { canonical: '/' }` from `src/app/layout.tsx`. This single line poisons every page that does not define its own canonical — Google sees those pages as duplicates of the homepage. Then add a correct absolute canonical to the 11 pages that currently have none: `/advertise`, `/submit`, `/privacy`, `/terms`, `/google-antigravity`, `/tools`, and the 5 tools subpages. Also convert `/privacy` and `/terms` from `'use client'` to server components (they use no client hooks — confirmed by grep) so they can export static metadata. This fixes 23 "Duplicate without user-selected canonical" errors in GSC and unblocks those 11 pages for indexing.
 
 ## TECHNICAL SPEC
 
-### PHASE 1 — Move files using git mv (preserves history)
+**Important**: Make each file change independently, one file at a time. Build must pass after all changes.
 
-```bash
-# Rename docs/ subfolders — remove numbered prefixes
-git mv docs/01-business docs/business
-git mv docs/02-strategy docs/strategy
-git mv docs/03-decisions docs/decisions
-git mv docs/03-gtm docs/gtm
-git mv docs/04-prds docs/prds
-git mv docs/04-roadmap docs/roadmap
-git mv docs/06-legal docs/legal
-git mv docs/new-start docs/design
+---
 
-# Move into archive/ (old content, keep for history)
-mkdir -p docs/archive
-git mv docs/03-implementation docs/archive/implementation
-git mv docs/05-reports docs/archive/reports
-git mv docs/06-plans docs/archive/plans
-git mv docs/07-launch docs/archive/launch
-git mv docs/07-walkthroughs docs/archive/walkthroughs
+### File 1: `src/app/layout.tsx`
 
-# Merge root SEO/ into docs/seo/
-# docs/04-seo/ was created today but is empty — use it as docs/seo/
-git mv docs/04-seo docs/seo
-cp SEO/* docs/seo/
-git add docs/seo/
-git rm -r SEO/
+Remove the `alternates` block from the root metadata export (lines 55–57).
 
-# Move root artifacts/ and dist/ to archive
-git mv artifacts docs/archive/artifacts
-git mv dist docs/archive/dist
+**Find and remove these 3 lines exactly** (they appear inside the `export const metadata` object):
+```
+  alternates: {
+    canonical: '/',
+  },
+```
+After removal the metadata object should jump directly from the `verification` block to the closing `};`.
 
-# Move docs/screenshots under docs/design/
-git mv docs/screenshots docs/design/screenshots
+---
 
-# Remove empty folders (if they exist and are empty)
-rmdir docs/research 2>/dev/null || true
-rmdir docs/evidence 2>/dev/null || true
-rmdir docs/specs 2>/dev/null || true
+### File 2: `src/app/advertise/page.tsx`
 
-# Delete docs/04-seo and docs/05-qa if now empty after renames above
-rmdir docs/05-qa 2>/dev/null || git mv docs/05-qa docs/qa
+Add `alternates` to the existing `metadata` export. Find the closing of the `openGraph` block and add before the final `};`:
 
-# Delete .agents/ (wrong path — correct path is .agent/ singular, already exists)
-rm -rf .agents/
-
-# Remove root memory/ folder
-rm -rf memory/
+**Old**:
+```typescript
+  openGraph: {
+    title: 'Advertise on Antigravity Directory',
+    description: 'The only Antigravity IDE directory. Reach every developer building with Google Antigravity IDE.',
+    images: ['/og-image.png'],
+  },
+};
 ```
 
-### PHASE 2 — Fix broken links in live documents
-
-Update every reference from old path to new path in a single pass per file.
-
-**File: `docs/business/BUSINESS_CONTEXT.md`**
-Replace all occurrences:
-- `docs/design/` → `docs/design/`
-- `docs/business/` → `docs/business/`
-- `docs/strategy/` → `docs/strategy/`
-
-**File: `docs/business/PRODUCT_BRIEF.md`**
-Replace all occurrences:
-- `docs/design/` → `docs/design/`
-- `docs/business/` → `docs/business/`
-- `docs/strategy/` → `docs/strategy/`
-
-**File: `docs/strategy/SEO_PROGRAMMATIC_PLAN.md`**
-Replace all occurrences:
-- `docs/strategy/` → `docs/strategy/`
-
-**File: `docs/prds/PRD_V1.md`**
-Replace all occurrences:
-- `docs/business/` → `docs/business/`
-- `docs/design/` → `docs/design/`
-- `docs/prds/` → `docs/prds/`
-
-**File: `CLAUDE.md`**
-Replace all occurrences:
-- `docs/design/` → `docs/design/`
-- `docs/business/` → `docs/business/`
-- `docs/strategy/` → `docs/strategy/`
-- `docs/03-decisions/` → `docs/decisions/`
-- `docs/04-roadmap/` → `docs/roadmap/`
-- `docs/prds/` → `docs/prds/`
-
-**File: `PROJECT_LEDGER.md`**
-Replace all occurrences of any `docs/0*-` numbered path with the clean name equivalent.
-
-**File: `.claude/hooks/session-protocol-gate.sh`**
-- `docs/business/BUSINESS_CONTEXT.md` → `docs/business/BUSINESS_CONTEXT.md`
-
-**File: `docs/README.md`** (if exists at docs/README.md)
-Replace all old numbered path references with new clean names.
-
-**File: `docs/archive/implementation/FILE-STRUCTURE-GUIDE.md`**
-- `docs/design/DESIGN_SPEC.md` → `docs/design/DESIGN_SPEC.md`
-- `docs/prds/PRD_V1.md` → `docs/prds/PRD_V1.md`
-
-**File: `logs/ledger/2026/Q1.md`**
-Replace all occurrences:
-- `docs/design/` → `docs/design/`
-- `docs/business/` → `docs/business/`
-- `docs/strategy/` → `docs/strategy/`
-
-**File: `docs/NAVIGATION_GUIDE.md`**
-Replace all occurrences:
-- `docs/business/` → `docs/business/`
-- `01-business/` → `business/`
-- `docs/strategy/` → `docs/strategy/`
-- `02-strategy/` → `docs/strategy/`
-- `docs/legal/` → `docs/legal/`
-- `06-legal/` → `legal/`
-- `├── 01-business/` → `├── business/`
-- `├── 02-strategy/` → `├── strategy/`
-- `├── 06-legal/` → `├── legal/`
-
-**File: `eslint.config.mjs`**
-Remove `.agents/**` from the ignores array (line 25). The `.agents/` folder is being deleted — no need to ignore it.
-
-### PHASE 3 — Verify zero broken references
-
-Run and confirm 0 matches:
-```bash
-grep -rn "docs/01-business\|docs/02-strategy\|docs/03-decisions\|docs/03-gtm\|docs/03-implementation\|docs/04-prds\|docs/04-roadmap\|docs/new-start\|docs/05-reports\|docs/06-legal\|docs/06-plans\|docs/07-launch\|docs/07-walkthroughs" . \
-  --include="*.md" --include="*.ts" --include="*.tsx" --include="*.sh" \
-  | grep -v "\.git\|node_modules\|\.next\|task_16_diff\|logs/tasks\|temp/"
+**New**:
+```typescript
+  openGraph: {
+    title: 'Advertise on Antigravity Directory',
+    description: 'The only Antigravity IDE directory. Reach every developer building with Google Antigravity IDE.',
+    images: ['/og-image.png'],
+  },
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/advertise',
+  },
+};
 ```
 
-If any remain, fix before proceeding. Do NOT proceed to Phase 4 with broken references.
+---
 
-### PHASE 4 — Build and lint
-```bash
-npm run build 2>&1 | tee temp/task111_build.log
-npm run lint 2>&1 | tee temp/task111_lint.log
+### File 3: `src/app/google-antigravity/page.tsx`
+
+Add `alternates` to the existing `metadata` export. Also add the missing comma after the `openGraph` closing brace.
+
+**Old**:
+```typescript
+  openGraph: {
+    title: "Antigravity: The Complete Guide",
+    description: "Master Google Antigravity IDE with our comprehensive guide. Everything you need to know about Gemini 3 agentic development.",
+    type: "article",
+    url: "https://www.googleantigravity.directory/google-antigravity",
+  }
+};
 ```
 
-### PHASE 5 — Commit
-```bash
-git add -A
-git commit -m "chore: restructure docs/ — clean folder hierarchy, remove numbered prefixes"
+**New**:
+```typescript
+  openGraph: {
+    title: "Antigravity: The Complete Guide",
+    description: "Master Google Antigravity IDE with our comprehensive guide. Everything you need to know about Gemini 3 agentic development.",
+    type: "article",
+    url: "https://www.googleantigravity.directory/google-antigravity",
+  },
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/google-antigravity',
+  },
+};
 ```
-Save commit SHA to `temp/task111_build.log`.
 
-## ACCEPTANCE CRITERIA
-- [ ] `docs/` contains only clean named folders: business/, strategy/, gtm/, seo/, design/, decisions/, roadmap/, prds/, legal/, qa/, archive/
-- [ ] No numbered folder prefixes remain anywhere in docs/
-- [ ] Root-level SEO/ folder gone — contents in docs/seo/
-- [ ] Root-level artifacts/ and dist/ gone — contents in docs/archive/
-- [ ] `.agents/` deleted
-- [ ] Root `memory/` deleted
-- [ ] Phase 3 grep returns 0 matches
-- [ ] Build: exit 0
-- [ ] Lint: exit 0
+---
+
+### File 4: `src/app/privacy/page.tsx`
+
+Remove `'use client'` (line 1 — this page has no hooks, no state, no browser APIs — confirmed safe). Add `Metadata` import and `metadata` export.
+
+**Old** (first 5 lines of file):
+```typescript
+'use client';
+
+import Link from 'next/link';
+import { Zap, ArrowLeft } from 'lucide-react';
+
+export default function PrivacyPage() {
+```
+
+**New** (replace with):
+```typescript
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { Zap, ArrowLeft } from 'lucide-react';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/privacy',
+  },
+};
+
+export default function PrivacyPage() {
+```
+
+---
+
+### File 5: `src/app/terms/page.tsx`
+
+Same pattern as File 4.
+
+**Old** (first 5 lines of file):
+```typescript
+'use client';
+
+import Link from 'next/link';
+import { Zap, ArrowLeft } from 'lucide-react';
+
+export default function TermsPage() {
+```
+
+**New** (replace with):
+```typescript
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { Zap, ArrowLeft } from 'lucide-react';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/terms',
+  },
+};
+
+export default function TermsPage() {
+```
+
+---
+
+### File 6: `src/app/submit/page.tsx`
+
+This is a server component with no `metadata` export. Add `Metadata` import and `metadata` export after existing imports.
+
+**Old** (lines 1–9):
+```typescript
+import Link from 'next/link';
+import { ArrowLeft, Sparkles, Zap } from 'lucide-react';
+import { Header } from '@/components/Header';
+import { db } from '@/lib/db';
+import { categories } from '@/drizzle/schema';
+import { SubmitForm } from '@/components/SubmitForm';
+
+
+export default async function SubmitPage() {
+```
+
+**New** (replace with):
+```typescript
+import Link from 'next/link';
+import { ArrowLeft, Sparkles, Zap } from 'lucide-react';
+import { Header } from '@/components/Header';
+import { db } from '@/lib/db';
+import { categories } from '@/drizzle/schema';
+import { SubmitForm } from '@/components/SubmitForm';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/submit',
+  },
+};
+
+export default async function SubmitPage() {
+```
+
+---
+
+### File 7: `src/app/tools/page.tsx`
+
+Add `alternates` to the existing `metadata` export.
+
+**Old**:
+```typescript
+export const metadata = {
+  title: 'Free AI Developer Tools | Antigravity',
+  description: 'Essential utilities for AI engineering: Token counters, pricing calculators, and prompt optimizers.',
+};
+```
+
+**New**:
+```typescript
+export const metadata = {
+  title: 'Free AI Developer Tools | Antigravity',
+  description: 'Essential utilities for AI engineering: Token counters, pricing calculators, and prompt optimizers.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools',
+  },
+};
+```
+
+---
+
+### File 8: `src/app/tools/json-to-pydantic/page.tsx`
+
+**Old**:
+```typescript
+export const metadata = {
+  title: 'JSON to Pydantic Converter | Antigravity Tools',
+  description: 'Convert JSON objects to Python Pydantic v2 models instantly. Supports nested objects, lists, and type inference for AI engineering workflows.',
+};
+```
+
+**New**:
+```typescript
+export const metadata = {
+  title: 'JSON to Pydantic Converter | Antigravity Tools',
+  description: 'Convert JSON objects to Python Pydantic v2 models instantly. Supports nested objects, lists, and type inference for AI engineering workflows.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools/json-to-pydantic',
+  },
+};
+```
+
+---
+
+### File 9: `src/app/tools/prompt-generator/page.tsx`
+
+**Old**:
+```typescript
+export const metadata = {
+  title: 'AI Prompt Optimizer',
+  description: 'Turn basic prompts into professional system instructions using Google Gemini 1.5 Flash.',
+};
+```
+
+**New**:
+```typescript
+export const metadata = {
+  title: 'AI Prompt Optimizer',
+  description: 'Turn basic prompts into professional system instructions using Google Gemini 1.5 Flash.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools/prompt-generator',
+  },
+};
+```
+
+---
+
+### File 10: `src/app/tools/rag-visualizer/page.tsx`
+
+**Old**:
+```typescript
+export const metadata = {
+  title: 'RAG Text Chunking Visualizer',
+  description: 'Visualize how your text is split for Vector Databases using different chunk sizes and overlap settings.',
+};
+```
+
+**New**:
+```typescript
+export const metadata = {
+  title: 'RAG Text Chunking Visualizer',
+  description: 'Visualize how your text is split for Vector Databases using different chunk sizes and overlap settings.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools/rag-visualizer',
+  },
+};
+```
+
+---
+
+### File 11: `src/app/tools/roi-calculator/page.tsx`
+
+**Old**:
+```typescript
+export const metadata = {
+  title: 'LLM Cost & ROI Calculator',
+  description: 'Compare API costs for OpenAI, Anthropic, Gemini, and Llama models. Calculate monthly expenses based on your token usage.',
+};
+```
+
+**New**:
+```typescript
+export const metadata = {
+  title: 'LLM Cost & ROI Calculator',
+  description: 'Compare API costs for OpenAI, Anthropic, Gemini, and Llama models. Calculate monthly expenses based on your token usage.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools/roi-calculator',
+  },
+};
+```
+
+---
+
+### File 12: `src/app/tools/token-counter/page.tsx`
+
+**Old**:
+```typescript
+export const metadata = {
+  title: 'TikToken Counter',
+  description: 'Real-time token counting using OpenAI tiktoken logic. Estimate API costs for GPT-4 instantly.',
+};
+```
+
+**New**:
+```typescript
+export const metadata = {
+  title: 'TikToken Counter',
+  description: 'Real-time token counting using OpenAI tiktoken logic. Estimate API costs for GPT-4 instantly.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools/token-counter',
+  },
+};
+```
+
+---
+
+### Build + Lint + HTTP check
+
+After all 12 file changes:
+
+```bash
+pnpm build 2>&1 | tee temp/task117_build.log
+pnpm lint 2>&1 | tee temp/task117_lint.log
+```
+
+Start dev server and verify canonical tags in HTML:
+
+```bash
+curl -s http://localhost:3000/advertise | grep -o 'canonical[^"]*"[^"]*"' | tee temp/task117_canonical.txt
+curl -s http://localhost:3000/privacy | grep -o 'canonical[^"]*"[^"]*"' >> temp/task117_canonical.txt
+curl -s http://localhost:3000/submit | grep -o 'canonical[^"]*"[^"]*"' >> temp/task117_canonical.txt
+curl -s http://localhost:3000/terms | grep -o 'canonical[^"]*"[^"]*"' >> temp/task117_canonical.txt
+curl -s http://localhost:3000/google-antigravity | grep -o 'canonical[^"]*"[^"]*"' >> temp/task117_canonical.txt
+curl -s http://localhost:3000/tools | grep -o 'canonical[^"]*"[^"]*"' >> temp/task117_canonical.txt
+curl -s http://localhost:3000/tools/token-counter | grep -o 'canonical[^"]*"[^"]*"' >> temp/task117_canonical.txt
+```
+
+Each line in `temp/task117_canonical.txt` must show the page's own URL, NOT `/`.
+
+Also verify layout no longer emits `canonical: '/'` for a page that has its own:
+```bash
+curl -s http://localhost:3000/advertise | grep 'canonical' | tee -a temp/task117_canonical.txt
+```
+Must show exactly ONE canonical link (not two — no duplicate from layout).
+
+---
+
+## QA — PLAYWRIGHT TESTS
+- Test 1: navigate to `http://localhost:3000/advertise` → check page source → expect `<link rel="canonical" href="https://www.googleantigravity.directory/advertise"/>`
+- Test 2: navigate to `http://localhost:3000/privacy` → check page source → expect `<link rel="canonical" href="https://www.googleantigravity.directory/privacy"/>`
+- Test 3: navigate to `http://localhost:3000/tools/token-counter` → check page source → expect `<link rel="canonical" href="https://www.googleantigravity.directory/tools/token-counter"/>`
+- Test 4: navigate to `http://localhost:3000/` → check page source → expect canonical is `https://www.googleantigravity.directory` (homepage still correct, not broken)
+
+## RETROGRADE CHECK
+- Who is this code for? Google's crawler, not users. These are HTML meta tags — no user sees them. But they directly affect which pages Google considers canonical and whether they get indexed.
+- Adjacent dead code: none.
+- Antigravity action: none. After Antigravity commits, PM will submit affected URLs to Google Search Console for re-indexing.
 
 ## SCREENSHOTS
-NONE — no UI changes.
+NONE — this task changes only HTML metadata (server-rendered `<link rel="canonical">` tags). No visual UI changes. Verification is via `temp/task117_canonical.txt` content.
 
-## EVIDENCE REQUIRED
-- `temp/task111_build.log` — build output + commit SHA
-- `temp/task111_lint.log` — lint output
-- Phase 3 grep output showing 0 matches
+## ACCEPTANCE CRITERIA
+- [ ] `src/app/layout.tsx` no longer contains `alternates: { canonical: '/' }` — verified by: `git diff src/app/layout.tsx` showing 3 lines removed
+- [ ] `/advertise` canonical in HTML is `https://www.googleantigravity.directory/advertise` — verified by: `temp/task117_canonical.txt` line 1
+- [ ] `/privacy` canonical in HTML is `https://www.googleantigravity.directory/privacy` — verified by: `temp/task117_canonical.txt` line 2
+- [ ] `/submit` canonical in HTML is `https://www.googleantigravity.directory/submit` — verified by: `temp/task117_canonical.txt` line 3
+- [ ] `/terms` canonical in HTML is `https://www.googleantigravity.directory/terms` — verified by: `temp/task117_canonical.txt` line 4
+- [ ] `/google-antigravity` canonical in HTML is `https://www.googleantigravity.directory/google-antigravity` — verified by: `temp/task117_canonical.txt` line 5
+- [ ] `/tools` canonical in HTML is `https://www.googleantigravity.directory/tools` — verified by: `temp/task117_canonical.txt` line 6
+- [ ] `/tools/token-counter` canonical in HTML is `https://www.googleantigravity.directory/tools/token-counter` — verified by: `temp/task117_canonical.txt` line 7
+- [ ] Build exit 0 — verified by: `temp/task117_build.log` last line
+- [ ] Lint exit 0 — verified by: `temp/task117_lint.log` last line
+
+## QUESTIONS FROM ANTIGRAVITY
+
+## PM ANSWERS
