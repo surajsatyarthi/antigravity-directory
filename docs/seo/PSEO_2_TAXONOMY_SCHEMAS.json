@@ -1,0 +1,195 @@
+{
+  "document_title": "ANTIGRAVITY PSEO 2.0 — COMPLETE TAXONOMY + 10 CATEGORY SCHEMAS (X-informed March 31 2026)",
+  "version": "1.1",
+  "date": "2026-03-31",
+  "source": "Grok 4.20 — real-time X search since:2026-03-01",
+  "instructions_for_developer": "Copy this entire JSON into antigravity-pseo-taxonomy-schemas.json. Feed taxonomy + relevant schema into every Gemini Flash prompt. Every resource MUST conform to its category schema and inject 2-4 taxonomy entries. This is the exact Jake Ward PSEO 2.0 system that fixed indexing at scale.",
+  "antigravity_taxonomy": {
+    "personas": [
+      {"id": "persona_enterprise_dev", "name": "Enterprise Developer", "description": "Compliance-heavy, needs audit logs, verifiable artifacts, multi-agent orchestration, strict token budgets"},
+      {"id": "persona_startup_founder", "name": "Startup Founder / Indie Hacker", "description": "Bootstrapping MVPs on free/pro tier, extremely quota-sensitive, needs low-token MCPs and quick vibe-coding"},
+      {"id": "persona_freelance_dev", "name": "Freelance / Agency Developer", "description": "Client deadlines, reusable boilerplates, needs fast delivery during quota lockouts"},
+      {"id": "persona_hobbyist", "name": "Hobbyist / Student", "description": "Free-tier user, learning agentic dev, hits lockouts fast"},
+      {"id": "persona_ai_researcher", "name": "AI Researcher", "description": "High-token experimental agents, custom MCPs, needs precise control"},
+      {"id": "persona_fullstack_dev", "name": "Full-Stack Engineer", "description": "Next.js/React/Python/Supabase/Vercel stacks, needs integrated low-token workflows"},
+      {"id": "persona_mobile_dev", "name": "Mobile Developer", "description": "React Native/Flutter + Antigravity agents"},
+      {"id": "persona_devops", "name": "DevOps / Platform Engineer", "description": "CI/CD agents, infrastructure automation"},
+      {"id": "persona_data_ml", "name": "Data / ML Engineer", "description": "RAG pipelines, vector stores, token-heavy research"},
+      {"id": "persona_no_code", "name": "No-Code Builder", "description": "Uses Antigravity for agent orchestration without deep coding"}
+    ],
+    "pain_points": [
+      {"id": "pain_7day_lockout", "name": "7-Day Quota Lockout", "description": "Pro users locked for 6-7 days after only 4-15 prompts"},
+      {"id": "pain_ghost_consumption", "name": "Ghost Token Consumption", "description": "Quota drains while IDE is idle or background agents run"},
+      {"id": "pain_credit_disappear", "name": "Credits Never Show Up", "description": "Buy $25 credits but balance stays at zero"},
+      {"id": "pain_error_burn", "name": "Errors Burn Quota", "description": "Failed MCP calls or agent errors still consume full tokens"},
+      {"id": "pain_opus_limit", "name": "Opus Model Instant Lock", "description": "One Opus call locks every other model"},
+      {"id": "pain_mcp_token_heavy", "name": "Token-Heavy MCPs", "description": "Advanced MCPs eat 20% of monthly Opus tokens per run"},
+      {"id": "pain_migration_frustration", "name": "Cursor Migration Pain", "description": "Switching from Cursor feels painful during lockouts"},
+      {"id": "pain_debug_agent_fail", "name": "Hard to Debug Agent Failures", "description": "No clear logs when agents die"},
+      {"id": "pain_unpredictable_bill", "name": "Unpredictable Monthly Bill", "description": "Cannot forecast costs"},
+      {"id": "pain_quota_monitor_needed", "name": "Users Building Quota Extensions", "description": "Developers writing Chrome extensions just to see remaining quota"}
+    ],
+    "workflows": [
+      {"id": "workflow_quota_workaround", "name": "Quota Workaround Workflow", "description": "Batch processing + local cache + low-token MCP chaining"},
+      {"id": "workflow_migration_assistant", "name": "Cursor → Antigravity Migration Assistant", "description": "One-click rule/prompt conversion during lockouts"},
+      {"id": "workflow_rag_low_token", "name": "Low-Token RAG Agent", "description": "Vector store retrieval with minimal token usage"},
+      {"id": "workflow_browser_safe", "name": "Safe Browser Automation", "description": "Browser actions with token budgeting and verification"},
+      {"id": "workflow_multi_agent_handoff", "name": "Reliable Multi-Agent Handoff", "description": "Stateful handoff with artifact verification"},
+      {"id": "workflow_excel_mcp", "name": "Excel MCP Integration", "description": "Real MCP usage seen on X for VBA/AI code gen"},
+      {"id": "workflow_health_export", "name": "HealthAutoExport MCP", "description": "iPhone health data → Antigravity agents"},
+      {"id": "workflow_reasoning_engine", "name": "17-Tool Stateful Reasoning MCP", "description": "Advanced custom MCPs discussed on X"}
+    ],
+    "integrations": [
+      {"id": "integration_nextjs", "name": "Next.js 15 + Server Actions"},
+      {"id": "integration_supabase", "name": "Supabase RLS + Realtime"},
+      {"id": "integration_vercel", "name": "Vercel AI SDK"},
+      {"id": "integration_python", "name": "Python FastAPI + LangChain"},
+      {"id": "integration_claude_mcp", "name": "Claude Code MCP Bridge"}
+    ],
+    "best_practices": [
+      {"id": "bp_always_token_impact", "name": "Always declare tokenImpact"},
+      {"id": "bp_artifact_verification", "name": "Force verifiable artifacts"},
+      {"id": "bp_quota_safe_mcp", "name": "Prefer low-token MCPs during lockouts"}
+    ]
+  },
+  "schemas": {
+    "mcp_servers": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string", "minLength": 10},
+        "description": {"type": "string", "minLength": 120},
+        "useCases": {"type": "array", "minItems": 3, "items": {"type": "string"}},
+        "difficulty": {"type": "string", "enum": ["beginner", "intermediate", "advanced"]},
+        "exampleCommand": {"type": "string"},
+        "compatibility": {"type": "array", "items": {"type": "string"}},
+        "copyButtonText": {"type": "string"},
+        "tokenImpact": {"type": "string", "description": "Exact token usage estimate, quota impact, and lockout risk (MUST reference real X complaints)"},
+        "artifactsProduced": {"type": "array", "items": {"type": "string"}},
+        "tags": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+      },
+      "required": ["title", "description", "useCases", "difficulty", "exampleCommand", "tokenImpact"]
+    },
+    "rules": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string", "minLength": 10},
+        "description": {"type": "string", "minLength": 100},
+        "ruleContent": {"type": "string", "minLength": 80},
+        "useCase": {"type": "string"},
+        "difficulty": {"type": "string", "enum": ["beginner", "intermediate", "advanced"]},
+        "copyButtonText": {"type": "string"},
+        "tokenImpact": {"type": "string"},
+        "tags": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+      },
+      "required": ["title", "description", "ruleContent", "difficulty", "tokenImpact"]
+    },
+    "prompts": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string", "minLength": 10},
+        "description": {"type": "string", "minLength": 100},
+        "promptText": {"type": "string", "minLength": 150},
+        "useCase": {"type": "string"},
+        "difficulty": {"type": "string", "enum": ["beginner", "intermediate", "advanced"]},
+        "copyButtonText": {"type": "string"},
+        "tokenImpact": {"type": "string"},
+        "tags": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+      },
+      "required": ["title", "description", "promptText", "difficulty", "tokenImpact"]
+    },
+    "skills": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string", "minLength": 10},
+        "description": {"type": "string", "minLength": 100},
+        "skillCommand": {"type": "string"},
+        "useCase": {"type": "string"},
+        "difficulty": {"type": "string", "enum": ["beginner", "intermediate", "advanced"]},
+        "copyButtonText": {"type": "string"},
+        "tokenImpact": {"type": "string"},
+        "tags": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+      },
+      "required": ["title", "description", "skillCommand", "difficulty", "tokenImpact"]
+    },
+    "workflows": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string", "minLength": 10},
+        "description": {"type": "string", "minLength": 120},
+        "steps": {"type": "array", "minItems": 5, "items": {"type": "string"}},
+        "difficulty": {"type": "string", "enum": ["beginner", "intermediate", "advanced"]},
+        "copyButtonText": {"type": "string"},
+        "tokenImpact": {"type": "string"},
+        "tags": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+      },
+      "required": ["title", "description", "steps", "difficulty", "tokenImpact"]
+    },
+    "agents": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string", "minLength": 10},
+        "description": {"type": "string", "minLength": 120},
+        "agentConfig": {"type": "string"},
+        "useCases": {"type": "array", "minItems": 3, "items": {"type": "string"}},
+        "difficulty": {"type": "string", "enum": ["beginner", "intermediate", "advanced"]},
+        "copyButtonText": {"type": "string"},
+        "tokenImpact": {"type": "string"},
+        "tags": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+      },
+      "required": ["title", "description", "agentConfig", "difficulty", "tokenImpact"]
+    },
+    "boilerplates": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string", "minLength": 10},
+        "description": {"type": "string", "minLength": 100},
+        "setupCommand": {"type": "string"},
+        "difficulty": {"type": "string", "enum": ["beginner", "intermediate", "advanced"]},
+        "copyButtonText": {"type": "string"},
+        "tokenImpact": {"type": "string"},
+        "tags": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+      },
+      "required": ["title", "description", "setupCommand", "difficulty", "tokenImpact"]
+    },
+    "troubleshooting": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string", "minLength": 10},
+        "errorMessage": {"type": "string"},
+        "solution": {"type": "string", "minLength": 150},
+        "rootCause": {"type": "string"},
+        "copyButtonText": {"type": "string"},
+        "tokenImpact": {"type": "string"},
+        "tags": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+      },
+      "required": ["title", "errorMessage", "solution", "tokenImpact"]
+    },
+    "tools": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string", "minLength": 10},
+        "description": {"type": "string", "minLength": 100},
+        "usageExample": {"type": "string"},
+        "difficulty": {"type": "string", "enum": ["beginner", "intermediate", "advanced"]},
+        "copyButtonText": {"type": "string"},
+        "tokenImpact": {"type": "string"},
+        "tags": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+      },
+      "required": ["title", "description", "usageExample", "difficulty", "tokenImpact"]
+    },
+    "tutorials": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string", "minLength": 10},
+        "description": {"type": "string", "minLength": 120},
+        "steps": {"type": "array", "minItems": 5, "items": {"type": "string"}},
+        "prerequisites": {"type": "array", "items": {"type": "string"}},
+        "difficulty": {"type": "string", "enum": ["beginner", "intermediate", "advanced"]},
+        "copyButtonText": {"type": "string"},
+        "tokenImpact": {"type": "string"},
+        "tags": {"type": "array", "minItems": 3, "items": {"type": "string"}}
+      },
+      "required": ["title", "description", "steps", "difficulty", "tokenImpact"]
+    }
+  }
+}
