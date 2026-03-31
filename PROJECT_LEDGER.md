@@ -19,8 +19,8 @@
 | Lint | ✅ Passing |
 | Production | ✅ Live on Vercel |
 | GitHub CI | ❌ Blocked ($40 billing) |
-| Last completed | TASK-097 ✅ DONE 2026-03-30 |
-| Next task | TASK-083 (screenshot pending) |
+| Last completed | TASK-083 ✅ DONE 2026-03-31 |
+| Next task | TASK-117 (canonical tag fix — highest SEO priority) |
 | Ralph Protocol | v21.0 |
 
 ---

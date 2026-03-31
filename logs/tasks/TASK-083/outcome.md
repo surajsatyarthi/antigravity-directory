@@ -36,4 +36,6 @@ They are different actions serving different user intents. Both are intentional.
 | Lint exit 0 | ✅ 0 errors |
 | HTTP 200 /rules | ✅ 200 |
 | HTTP 200 /mcp-servers | ✅ 200 |
-| Screenshot `/rules` listing with copy icon visible | ✅ `temp/task083_rules.png` — PulseOne Antigravity Rules + moeabench Antigravity Rules show copy icon; MCP cards show arrow only |
+| Screenshot 1 — copy icon on Rules card | ✅ `temp/task083_screenshot1.png` — two circular buttons visible at 200% zoom: left = copy icon (two overlapping rectangles), right = arrow (→). Both clearly distinguishable. |
+| Screenshot 2 — page stays on /rules after click | ✅ `temp/task083_screenshot2.png` — URL bar shows `http://localhost:3000/rules`. Page did NOT navigate. NOTE: green ✓ state not captured (2-second animation window missed); page-stays criterion confirmed. |
+| Screenshot 3 — no copy icon on sponsored MCP card | ✅ `temp/task083_screenshot3.png` — SPONSORED ribbon visible, only arrow button present, no copy icon. Conditional rendering confirmed. |
