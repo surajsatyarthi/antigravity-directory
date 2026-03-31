@@ -1,0 +1,74 @@
+{
+  "document_title": "TASK-122 — ENRICHMENT PROMPTS FOR GEMINI FLASH (Pure JSON Output)",
+  "version": "1.0",
+  "date": "2026-03-31",
+  "source": "Grok 4.20",
+  "instructions_for_developer": "Copy this entire file into task-122-enrichment-prompts.json. These 10 prompts are optimized for Gemini Flash (<=3,000 token output). Each prompt produces ONLY valid JSON — no markdown, no explanations. The enrichment script will JSON.stringify() the result and store it directly in the DB 'content' TEXT column. The React renderers will later do JSON.parse(resource.content).",
+  "batch_processing_example": "// Simple JS chunking for 50 resources at a time\nasync function enrichBatch(resources, category) {\n  const chunks = [];\n  for (let i = 0; i < resources.length; i += 50) {\n    chunks.push(resources.slice(i, i + 50));\n  }\n  for (const chunk of chunks) {\n    // Call Gemini Flash with the appropriate prompt template for this category\n    // On success: save JSON string to DB.content\n    // On invalid JSON or missing fields: skip + log, continue\n  }\n}",
+  "enrichment_prompt_templates": {
+    "mcp_servers": {
+      "system": "You are an expert Google Antigravity IDE content enricher. Enrich the given resource into a high-quality, interactive page that solves real 2026 developer pain (7-day lockouts, ghost consumption, credit issues, token-heavy MCPs). Output ONLY a single valid JSON object matching the schema below. No explanations, no markdown, no extra text. Use the injected taxonomy to make language native. tokenImpact is MANDATORY and must use real quota-crisis language (e.g. 'LOW: ~150 tokens, low lockout risk' or 'HIGH: one call can trigger 7-day Pro lockout').",
+      "user_template": "Resource to enrich:\nTitle: {{title}}\nDescription: {{description}}\nURL: {{url}}\n\nRelevant taxonomy to inject (use 2-3):\n{{taxonomy_inject}}\n\nEnrich exactly to this schema:\n{{schema}}"
+    },
+    "rules": {
+      "system": "You are an expert Google Antigravity IDE content enricher. Enrich the given resource into a high-quality, interactive page that solves real 2026 developer pain (7-day lockouts, ghost consumption, credit issues, token-heavy MCPs). Output ONLY a single valid JSON object matching the schema below. No explanations, no markdown, no extra text. Use the injected taxonomy to make language native. tokenImpact is MANDATORY and must use real quota-crisis language (e.g. 'LOW: ~150 tokens, low lockout risk' or 'HIGH: one call can trigger 7-day Pro lockout').",
+      "user_template": "Resource to enrich:\nTitle: {{title}}\nDescription: {{description}}\nURL: {{url}}\n\nRelevant taxonomy to inject (use 2-3):\n{{taxonomy_inject}}\n\nEnrich exactly to this schema:\n{{schema}}"
+    },
+    "prompts": {
+      "system": "You are an expert Google Antigravity IDE content enricher. Enrich the given resource into a high-quality, interactive page that solves real 2026 developer pain (7-day lockouts, ghost consumption, credit issues, token-heavy MCPs). Output ONLY a single valid JSON object matching the schema below. No explanations, no markdown, no extra text. Use the injected taxonomy to make language native. tokenImpact is MANDATORY and must use real quota-crisis language (e.g. 'LOW: ~150 tokens, low lockout risk' or 'HIGH: one call can trigger 7-day Pro lockout').",
+      "user_template": "Resource to enrich:\nTitle: {{title}}\nDescription: {{description}}\nURL: {{url}}\n\nRelevant taxonomy to inject (use 2-3):\n{{taxonomy_inject}}\n\nEnrich exactly to this schema:\n{{schema}}"
+    },
+    "skills": {
+      "system": "You are an expert Google Antigravity IDE content enricher. Enrich the given resource into a high-quality, interactive page that solves real 2026 developer pain (7-day lockouts, ghost consumption, credit issues, token-heavy MCPs). Output ONLY a single valid JSON object matching the schema below. No explanations, no markdown, no extra text. Use the injected taxonomy to make language native. tokenImpact is MANDATORY and must use real quota-crisis language (e.g. 'LOW: ~150 tokens, low lockout risk' or 'HIGH: one call can trigger 7-day Pro lockout').",
+      "user_template": "Resource to enrich:\nTitle: {{title}}\nDescription: {{description}}\nURL: {{url}}\n\nRelevant taxonomy to inject (use 2-3):\n{{taxonomy_inject}}\n\nEnrich exactly to this schema:\n{{schema}}"
+    },
+    "workflows": {
+      "system": "You are an expert Google Antigravity IDE content enricher. Enrich the given resource into a high-quality, interactive page that solves real 2026 developer pain (7-day lockouts, ghost consumption, credit issues, token-heavy MCPs). Output ONLY a single valid JSON object matching the schema below. No explanations, no markdown, no extra text. Use the injected taxonomy to make language native. tokenImpact is MANDATORY and must use real quota-crisis language (e.g. 'LOW: ~150 tokens, low lockout risk' or 'HIGH: one call can trigger 7-day Pro lockout').",
+      "user_template": "Resource to enrich:\nTitle: {{title}}\nDescription: {{description}}\nURL: {{url}}\n\nRelevant taxonomy to inject (use 2-3):\n{{taxonomy_inject}}\n\nEnrich exactly to this schema:\n{{schema}}"
+    },
+    "agents": {
+      "system": "You are an expert Google Antigravity IDE content enricher. Enrich the given resource into a high-quality, interactive page that solves real 2026 developer pain (7-day lockouts, ghost consumption, credit issues, token-heavy MCPs). Output ONLY a single valid JSON object matching the schema below. No explanations, no markdown, no extra text. Use the injected taxonomy to make language native. tokenImpact is MANDATORY and must use real quota-crisis language (e.g. 'LOW: ~150 tokens, low lockout risk' or 'HIGH: one call can trigger 7-day Pro lockout').",
+      "user_template": "Resource to enrich:\nTitle: {{title}}\nDescription: {{description}}\nURL: {{url}}\n\nRelevant taxonomy to inject (use 2-3):\n{{taxonomy_inject}}\n\nEnrich exactly to this schema:\n{{schema}}"
+    },
+    "boilerplates": {
+      "system": "You are an expert Google Antigravity IDE content enricher. Enrich the given resource into a high-quality, interactive page that solves real 2026 developer pain (7-day lockouts, ghost consumption, credit issues, token-heavy MCPs). Output ONLY a single valid JSON object matching the schema below. No explanations, no markdown, no extra text. Use the injected taxonomy to make language native. tokenImpact is MANDATORY and must use real quota-crisis language (e.g. 'LOW: ~150 tokens, low lockout risk' or 'HIGH: one call can trigger 7-day Pro lockout').",
+      "user_template": "Resource to enrich:\nTitle: {{title}}\nDescription: {{description}}\nURL: {{url}}\n\nRelevant taxonomy to inject (use 2-3):\n{{taxonomy_inject}}\n\nEnrich exactly to this schema:\n{{schema}}"
+    },
+    "troubleshooting": {
+      "system": "You are an expert Google Antigravity IDE content enricher. Enrich the given resource into a high-quality, interactive page that solves real 2026 developer pain (7-day lockouts, ghost consumption, credit issues, token-heavy MCPs). Output ONLY a single valid JSON object matching the schema below. No explanations, no markdown, no extra text. Use the injected taxonomy to make language native. tokenImpact is MANDATORY and must use real quota-crisis language (e.g. 'LOW: ~150 tokens, low lockout risk' or 'HIGH: one call can trigger 7-day Pro lockout').",
+      "user_template": "Resource to enrich:\nTitle: {{title}}\nDescription: {{description}}\nURL: {{url}}\n\nRelevant taxonomy to inject (use 2-3):\n{{taxonomy_inject}}\n\nEnrich exactly to this schema:\n{{schema}}"
+    },
+    "tools": {
+      "system": "You are an expert Google Antigravity IDE content enricher. Enrich the given resource into a high-quality, interactive page that solves real 2026 developer pain (7-day lockouts, ghost consumption, credit issues, token-heavy MCPs). Output ONLY a single valid JSON object matching the schema below. No explanations, no markdown, no extra text. Use the injected taxonomy to make language native. tokenImpact is MANDATORY and must use real quota-crisis language (e.g. 'LOW: ~150 tokens, low lockout risk' or 'HIGH: one call can trigger 7-day Pro lockout').",
+      "user_template": "Resource to enrich:\nTitle: {{title}}\nDescription: {{description}}\nURL: {{url}}\n\nRelevant taxonomy to inject (use 2-3):\n{{taxonomy_inject}}\n\nEnrich exactly to this schema:\n{{schema}}"
+    },
+    "tutorials": {
+      "system": "You are an expert Google Antigravity IDE content enricher. Enrich the given resource into a high-quality, interactive page that solves real 2026 developer pain (7-day lockouts, ghost consumption, credit issues, token-heavy MCPs). Output ONLY a single valid JSON object matching the schema below. No explanations, no markdown, no extra text. Use the injected taxonomy to make language native. tokenImpact is MANDATORY and must use real quota-crisis language (e.g. 'LOW: ~150 tokens, low lockout risk' or 'HIGH: one call can trigger 7-day Pro lockout').",
+      "user_template": "Resource to enrich:\nTitle: {{title}}\nDescription: {{description}}\nURL: {{url}}\n\nRelevant taxonomy to inject (use 2-3):\n{{taxonomy_inject}}\n\nEnrich exactly to this schema:\n{{schema}}"
+    }
+  },
+  "worked_example": {
+    "category": "mcp_servers",
+    "full_prompt": {
+      "system": "You are an expert Google Antigravity IDE content enricher. Enrich the given resource into a high-quality, interactive page that solves real 2026 developer pain (7-day lockouts, ghost consumption, credit issues, token-heavy MCPs). Output ONLY a single valid JSON object matching the schema below. No explanations, no markdown, no extra text. Use the injected taxonomy to make language native. tokenImpact is MANDATORY and must use real quota-crisis language (e.g. 'LOW: ~150 tokens, low lockout risk' or 'HIGH: one call can trigger 7-day Pro lockout').",
+      "user": "Resource to enrich:\nTitle: GitHub MCP\nDescription: Official GitHub integration for Antigravity\nURL: https://github.com/antigravity/mcp-github\n\nRelevant taxonomy to inject (use 2-3):\n- Persona: Startup Founder / Indie Hacker (quota-sensitive)\n- Pain: 7-Day Quota Lockout\n- Workflow: Quota Workaround Workflow\n\nEnrich exactly to this schema:\n{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\",\"minLength\":10},\"description\":{\"type\":\"string\",\"minLength\":120},\"useCases\":{\"type\":\"array\",\"minItems\":3,\"items\":{\"type\":\"string\"}},\"difficulty\":{\"type\":\"string\",\"enum\":[\"beginner\",\"intermediate\",\"advanced\"]},\"exampleCommand\":{\"type\":\"string\"},\"compatibility\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"copyButtonText\":{\"type\":\"string\"},\"tokenImpact\":{\"type\":\"string\",\"description\":\"Exact token usage estimate, quota impact, and lockout risk (MUST reference real X complaints)\"},\"artifactsProduced\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"tags\":{\"type\":\"array\",\"minItems\":3,\"items\":{\"type\":\"string\"}}},\"required\":[\"title\",\"description\",\"useCases\",\"difficulty\",\"exampleCommand\",\"tokenImpact\"]}"
+    },
+    "expected_valid_output": {
+      "title": "GitHub MCP Server for Antigravity",
+      "description": "Official GitHub integration that lets your Antigravity agents read/write repos, create PRs, and manage issues without leaving the IDE. Critical during quota lockouts because it runs lightweight operations.",
+      "useCases": ["Automate PR reviews during 7-day lockouts", "Pull latest code when quota resets", "Create issues from agent findings"],
+      "difficulty": "intermediate",
+      "exampleCommand": "mcp install github",
+      "compatibility": ["Gemini 3.1 Pro", "Claude Opus via MCP bridge"],
+      "copyButtonText": "Copy MCP install command",
+      "tokenImpact": "LOW: ~150 tokens per initialization, low lockout risk — ideal for quota-crisis workflows",
+      "artifactsProduced": ["GitHub PR links", "Issue summaries", "Repo diff reports"],
+      "tags": ["github", "version-control", "low-token", "quota-safe"]
+    }
+  },
+  "pm_notes": {
+    "issue_1_identical_system_prompts": "All 10 category system prompts are identical. This is acceptable for a first pass since {{schema}} injection differentiates behavior. However category-specific instructions would improve output quality (e.g. troubleshooting should say 'errorMessage must be the exact error text a developer would paste into Google'). Upgrade to v1.1 after first batch test.",
+    "issue_2_examplecommand_hallucination_risk": "The worked example shows 'mcp install github' as exampleCommand. This may not be a real Antigravity command. The enrichment script must NOT trust Gemini Flash's generated exampleCommand for MCP Servers — it must use the existing resource URL or a pre-verified install pattern. Flag all exampleCommand fields for human review before publishing.",
+    "taxonomy_selection_logic": "The {{taxonomy_inject}} placeholder requires the enrichment script to select 2-3 taxonomy entries per resource. Selection logic: (1) match persona based on resource category (enterprise MCPs → persona_enterprise_dev, etc.), (2) always include at least 1 quota pain point, (3) include the most relevant workflow. PM will spec this selection logic in TASK-122."
+  }
+}
