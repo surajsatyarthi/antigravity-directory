@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, Package } from 'lucide-react';
 import { MAX_INTEGRATION_ICONS } from '@/constants';
+import { CopyButton } from '@/components/CopyButton';
 
 interface ResourceCardProps {
   resource: {
@@ -13,6 +14,7 @@ interface ResourceCardProps {
     badgeType?: string | null;
     status?: string;
     integrations?: string[] | null;
+    content?: string | null;
   };
 }
 
@@ -20,7 +22,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
   const isFeatured = resource.featured;
 
   return (
-    <div 
+    <div
       data-testid="resource-card"
       className={`group relative flex flex-col sm:flex-row items-start sm:items-center bg-white/[0.03] border rounded-none overflow-hidden hover:border-blue-500/40 transition-all duration-200 focus-within:ring-1 focus-within:ring-blue-500/50 focus-within:ring-offset-1 focus-within:ring-offset-black ${
       isFeatured
@@ -36,13 +38,13 @@ export function ResourceCard({ resource }: ResourceCardProps) {
       {isFeatured && (
         <div className="absolute top-0 right-0 z-30 flex items-center gap-1.5 px-2 py-1 bg-yellow-500/15 border-b border-l border-yellow-500/30 rounded-bl-lg backdrop-blur-sm">
           <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
-          <span className="text-[7px] font-black text-yellow-500 uppercase tracking-[0.2em]">Sponsored</span>
+          <span className="text-[7px] font-black text-yellow-500 uppercase tracking-[0.2em]">Featured</span>
         </div>
       )}
 
       {/* Container for content */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full p-5 sm:p-4 relative z-10">
-        
+
         {/* Left: Badges & Category (Mobile: Top Row) */}
         <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto">
           {resource.integrations && resource.integrations.length > 0 && (
@@ -67,7 +69,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
           </span>
 
           <div className="flex gap-2 ml-auto sm:ml-0">
-            {/* Editors Choice Removed */ }
+            {/* Editors Choice Removed */}
             {/* Editors Choice, Trending, and User's Choice Removed */}
           </div>
         </div>
@@ -88,6 +90,10 @@ export function ResourceCard({ resource }: ResourceCardProps) {
         <div className="flex items-center justify-end gap-4 shrink-0 w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t border-white/[0.06] sm:border-0">
 
           <div className="flex items-center gap-2 relative z-30">
+
+            {resource.content && (
+              <CopyButton content={resource.content} iconOnly />
+            )}
 
             <div
               className="flex items-center justify-center w-11 h-11 sm:w-7 sm:h-7 rounded-full bg-gray-950 border border-gray-900 text-slate-400 group-hover:bg-blue-600/20 group-hover:border-blue-500/30 group-hover:text-blue-400 transition-all"
