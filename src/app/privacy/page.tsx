@@ -1,7 +1,12 @@
-'use client';
-
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Zap, ArrowLeft } from 'lucide-react';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/privacy',
+  },
+};
 
 export default function PrivacyPage() {
   return (

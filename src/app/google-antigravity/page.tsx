@@ -12,7 +12,10 @@ export const metadata: Metadata = {
     description: "Master Google Antigravity IDE with our comprehensive guide. Everything you need to know about Gemini 3 agentic development.",
     type: "article",
     url: "https://www.googleantigravity.directory/google-antigravity",
-  }
+  },
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/google-antigravity',
+  },
 };
 
 export default function GoogleAntigravityPage() {

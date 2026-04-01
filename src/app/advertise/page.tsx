@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'The only Antigravity IDE directory. Reach every developer building with Google Antigravity IDE.',
     images: ['/og-image.png'],
   },
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/advertise',
+  },
 };
 
 const jsonLd = safeJsonLd({

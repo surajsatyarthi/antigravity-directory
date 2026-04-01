@@ -6,6 +6,9 @@ import { safeJsonLd } from '@/lib/utils';
 export const metadata = {
   title: 'LLM Cost & ROI Calculator',
   description: 'Compare API costs for OpenAI, Anthropic, Gemini, and Llama models. Calculate monthly expenses based on your token usage.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools/roi-calculator',
+  },
 };
 
 const jsonLd = safeJsonLd({

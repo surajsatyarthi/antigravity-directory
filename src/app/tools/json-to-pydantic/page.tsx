@@ -4,6 +4,9 @@ import { FileJson } from "lucide-react";
 export const metadata = {
   title: 'JSON to Pydantic Converter | Antigravity Tools',
   description: 'Convert JSON objects to Python Pydantic v2 models instantly. Supports nested objects, lists, and type inference for AI engineering workflows.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools/json-to-pydantic',
+  },
 };
 
 import { safeJsonLd } from "@/lib/utils/safeJsonLd";

@@ -52,9 +52,6 @@ export const metadata: Metadata = {
     description: "The #1 free directory for Google Antigravity IDE. Browse 3,116+ MCP servers, skills, rules, prompts and workflows — all free, no login required.",
     images: ["/twitter-image.png"],
   },
-  alternates: {
-    canonical: '/',
-  },
   robots: {
     index: true,
     follow: true,

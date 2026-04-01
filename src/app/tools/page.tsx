@@ -12,6 +12,9 @@ import {
 export const metadata = {
   title: 'Free AI Developer Tools | Antigravity',
   description: 'Essential utilities for AI engineering: Token counters, pricing calculators, and prompt optimizers.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools',
+  },
 };
 
 const tools = [

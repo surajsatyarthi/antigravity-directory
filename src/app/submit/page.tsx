@@ -4,7 +4,13 @@ import { Header } from '@/components/Header';
 import { db } from '@/lib/db';
 import { categories } from '@/drizzle/schema';
 import { SubmitForm } from '@/components/SubmitForm';
+import type { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/submit',
+  },
+};
 
 export default async function SubmitPage() {
   const allCategories = await db.select().from(categories).orderBy(categories.order);

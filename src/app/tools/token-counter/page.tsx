@@ -6,6 +6,9 @@ import { safeJsonLd } from '@/lib/utils';
 export const metadata = {
   title: 'TikToken Counter',
   description: 'Real-time token counting using OpenAI tiktoken logic. Estimate API costs for GPT-4 instantly.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools/token-counter',
+  },
 };
 
 const jsonLd = safeJsonLd({

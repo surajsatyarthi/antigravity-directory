@@ -6,6 +6,9 @@ import { safeJsonLd } from '@/lib/utils';
 export const metadata = {
   title: 'AI Prompt Optimizer',
   description: 'Turn basic prompts into professional system instructions using Google Gemini 1.5 Flash.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools/prompt-generator',
+  },
 };
 
 const jsonLd = safeJsonLd({

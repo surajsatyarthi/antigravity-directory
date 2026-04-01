@@ -6,6 +6,9 @@ import { safeJsonLd } from '@/lib/utils';
 export const metadata = {
   title: 'RAG Text Chunking Visualizer',
   description: 'Visualize how your text is split for Vector Databases using different chunk sizes and overlap settings.',
+  alternates: {
+    canonical: 'https://www.googleantigravity.directory/tools/rag-visualizer',
+  },
 };
 
 const jsonLd = safeJsonLd({
