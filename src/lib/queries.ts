@@ -110,6 +110,7 @@ async function getFilteredResourcesInternal(filters: FilterState, page: number =
         url: resources.url,
         thumbnail: resources.thumbnail,
         integrations: resources.integrations,
+        content: resources.content,
         featured: resources.featured,
         verified: resources.verified,
         views: resources.views,

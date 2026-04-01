@@ -2,6 +2,7 @@
   "name": "antigravity-directory",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.30.3",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -24,17 +25,17 @@
     "validate:env": "tsx scripts/validate-env.ts",
     "validate:env:production": "tsx scripts/validate-env.ts --environment=production",
     "health": "tsx scripts/health-check.ts",
-    "predev": "npm run validate:env && npm run health",
+    "predev": "pnpm validate:env && pnpm health",
     "verify:pm-gates": "node scripts/verify-pm-gates.js",
     "verify:ralph-gates": "node scripts/verify-ralph-gates.js",
     "verify:pm-documentation": "node scripts/verify-pm-documentation.js",
-    "verify:circular": "npm run verify:pm-gates && npm run verify:ralph-gates && npm run verify:pm-documentation",
+    "verify:circular": "pnpm verify:pm-gates && pnpm verify:ralph-gates && pnpm verify:pm-documentation",
     "sync:protocols": "node scripts/sync-protocols.js",
     "sync:protocols:init": "node scripts/sync-protocols.js --init",
     "push:protocols": "node scripts/push-protocols.js",
     "install:protocol-hooks": "node scripts/install-protocol-hooks.js",
     "watch:protocols": "node scripts/watch-protocols.js",
-    "postinstall": "npm run sync:protocols --silent || true"
+    "postinstall": "pnpm sync:protocols --silent || true"
   },
   "dependencies": {
     "@auth/core": "^0.34.3",
@@ -59,6 +60,7 @@
     "dompurify": "^3.3.1",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.45.1",
+    "fast-xml-parser": "^5.5.9",
     "isomorphic-dompurify": "^2.35.0",
     "js-tiktoken": "^1.0.21",
     "lucide-react": "^0.562.0",
